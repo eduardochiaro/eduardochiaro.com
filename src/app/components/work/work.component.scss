@@ -1,0 +1,137 @@
+@import 'defaults';
+@import "bootstrap/scss/bootstrap.scss";
+
+#work {
+    font-size: 1.5rem;
+    padding: 2rem 0 2rem;
+    span {
+        border-bottom: 1px dotted $trolley-grey;
+        text-decoration: none;
+        cursor: default;
+    }
+    span:hover {
+        border-bottom: 1px solid $brown-sugar;
+        text-decoration: none;
+    }
+}
+.cover {
+  display: block;
+  position: relative;
+  &::after {
+        content: "";
+        opacity: 0.1;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        position: absolute;
+        z-index: -1;   
+    }
+}
+.seattle.cover::after{
+    background: url(/assets/img/seattle-skyline-outline-silhouette.svg) no-repeat top center scroll;
+    background-size: cover;
+}
+
+#social {
+    padding: 0.5rem 0 0.5rem;
+    .icons{
+        margin: 0 auto;
+        list-style: none;
+        padding-left: 0;
+        
+    }
+    .icons li {
+        display: inline-block;
+        padding: 0.675rem 0.5rem;
+        a{
+            color: $trolley-grey;
+            text-indent: -9999;
+            font-family: FontAwesome;
+            font-size: 40px;
+            text-decoration: none;
+            border: none;
+            padding: 26px;
+
+            width: 52px;
+            height: 52px;    
+            line-height: 53px;
+            text-indent: 52px;
+            display: block;
+
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            white-space: nowrap;
+
+            border-radius: 100%;
+
+            cursor: pointer;
+            &:before {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: inherit;
+                height: inherit;
+                line-height: inherit;
+                text-align: center;
+                text-indent: 0;
+            }
+            &:hover {
+                text-decoration: none;
+                color: $white;
+                background-color: $trolley-grey;
+            }
+        }
+    }
+    
+}
+#past {
+    padding: 4rem 0 1rem;
+    h3 {
+
+        font-family: $header-font-family;
+        text-transform: uppercase;
+        font-size: 2.8rem;
+        padding-right: 15px;
+        padding-bottom: 3rem;
+
+        @include media-breakpoint-up(lg) {
+            border-right: 3px solid $light-green;
+            font-size: 1.6rem;
+        }
+
+        @include media-breakpoint-up(xl) {
+            font-size: 2.8rem;
+        }
+    }
+    .card-columns{
+        margin: auto;
+        @include media-breakpoint-down(md) {
+            column-count: 2;
+        }
+        @include media-breakpoint-up(md) {
+            column-count: 3;
+        }
+
+        .card{
+            border: none;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+            column-break-inside: avoid;
+
+            img {
+                width: 100%;
+            }
+            span {
+                position: absolute;
+                bottom: 0;
+                right: -10px;
+            }
+            .card-small {
+                font-size: 0.7rem;
+            }
+        }
+    }
+}

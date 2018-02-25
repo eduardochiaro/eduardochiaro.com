@@ -1,0 +1,32 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:300,400,700,300italic,400italic,700italic);
+@import 'defaults';
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: $main-font-family;
+    color: $trolley-grey;
+
+}
+
+.section-white {
+    background: $white;
+    color: $trolley-grey;
+    padding: 4rem 0;
+}
+
+.section-green {
+    background-color: $light-green;
+    color: $white;
+    padding: 4rem 0;
+}
+
+.section-grey {
+    background-color: $light-grey;
+    color: $dark-jet;
+    padding: 4rem 0;
+}

@@ -1,0 +1,36 @@
+<section id="work" class="section-white row">
+    <div class="col-lg-8 ml-lg-auto mr-lg-auto col-md-12 text-md-left">
+      <p>Hello!<br/>
+        I'm Eduardo, a <i class="fa fa-coffee" aria-hidden="true"></i> coffee driven Software Developer based in <span>Seattle, WA</span>.
+      </p>
+      <p>
+       I enjoy writing applications in <span>PHP</span>, <span>Swift</span>, <span>Node.js</span>, <span>Angular</span> and <span>Javascript</span>.
+       I also like working on databases, make servers do stuff, working on scalability, performance, user experiences and desktop/mobile design.
+       </p>
+    </div>
+</section>
+
+<section id="social" class="section-grey row">
+    <div class="col-12 text-center">
+      <ul class="icons">
+        <li><a href="https://twitter.com/eduardochiaro" class="fa fa-twitter">Twitter</a></li>
+        <li><a href="https://linkedin.com/in/eduardochiaro" class="fa fa-linkedin">LinkedIn</a></li>
+        <li><a href="https://github.com/eduardochiaro" class="fa fa-github">GitHub</a></li>
+      </ul>
+    </div>
+</section>
+
+<section id="past" class="section-white row">
+    <div class="col-lg-2 ml-lg-auto text-md-right text-lg-center col-md-12"><h3>I've coded for...</h3></div>
+    <div class="col-lg-5 mr-lg-auto col-md-12">
+
+      <div class="card-columns">
+        <div class="card text-center" *ngFor="let work of pastWorks">
+          <img src="assets/img/logos/{{work.logo}}" alt="{{work.name}}" [style]="work.style | safestyle" [attr.data-toggle]="work.special ? toggle : null" [attr.title]="work.disclaimer">
+          <span class="d-none d-sm-inline" *ngIf="work.special" >*</span>
+          <div class="card-small d-sm-none text-left">{{work.disclaimer}}</div>
+        </div>
+        
+      </div>
+    </div>
+</section>

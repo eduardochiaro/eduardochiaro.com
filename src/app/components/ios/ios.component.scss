@@ -1,0 +1,33 @@
+@import 'defaults';
+@import "bootstrap/scss/bootstrap.scss";
+
+#ios {
+    background: url(/assets/img/3px-tile.png), $light-green;
+    /* fallback for old browsers */
+    background: url(/assets/img/3px-tile.png), -webkit-linear-gradient(to left, $dark-jet, $light-green);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: url(/assets/img/3px-tile.png), linear-gradient(to left, $dark-jet, $light-green);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: $white;
+
+    .device {
+        background-image: url(/assets/img/thunderstorm.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: top center;
+        height: 600px;
+        display: block;
+    }
+    .app-info {
+        padding-top: 2rem;
+        h3 {
+            font-family: $header-font-family;
+            font-size: 2rem;
+            text-transform: uppercase;
+            @include media-breakpoint-up(xl) {
+                font-size: 3.2rem;
+                margin-top: 11rem;
+            }
+        }
+    }
+}
