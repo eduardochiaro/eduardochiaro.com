@@ -1,6 +1,9 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 
 //services
 import { GithubService } from './services/github.service';
@@ -14,7 +17,6 @@ import { CapitalizePipe } from './pipes/capitalize.pipe';
 import { SafestylePipe } from './pipes/safestyle.pipe';
 
 //components
-import { AppComponent } from './app.component';
 import { WorkComponent } from './components/work/work.component';
 import { HeaderComponent } from './components/header/header.component';
 import { IosComponent } from './components/ios/ios.component';
@@ -35,7 +37,8 @@ import { GithubComponent } from './components/github/github.component';
   ],
   imports: [
     BrowserModule,
-    HttpModule
+    HttpModule,
+    AppRoutingModule
   ],
   providers: [
     Title,
@@ -45,5 +48,4 @@ import { GithubComponent } from './components/github/github.component';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { 
-}
+export class AppModule { }
