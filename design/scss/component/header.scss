@@ -1,0 +1,18 @@
+
+#header {
+	font-family: $header-font-family;
+	padding: 2rem 0;
+	h1 {
+		text-transform: uppercase;
+		font-weight: 500;
+		color: $dark-jet;
+  }
+  h2 {
+    color: $trolley-grey;
+  }
+  .logo {
+    fill: $light-grey;
+    width: 45px;
+    height: 45px;
+  }
+}
