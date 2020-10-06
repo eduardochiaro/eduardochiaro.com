@@ -1,7 +1,7 @@
 import React from 'react';
 //import PropTypes from 'prop-types';
 import styles from './Body.module.scss';
-import JobCard from '../JobCard/JobCard.lazy';
+import JobCard from '../Cards/JobCard/JobCard.lazy';
 import CardColumns from 'react-bootstrap/CardColumns';
 import data from '../../data/jobs.json';
 

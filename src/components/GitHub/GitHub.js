@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styles from './GitHub.module.scss';
-import JobCard from '../JobCard/JobCard.lazy';
+import GitHubCard from '../Cards/GitHubCard/GitHubCard.lazy';
 import CardColumns from 'react-bootstrap/CardColumns';
 import findUserRepos from '../../resources/github';
 
@@ -26,7 +26,7 @@ class GitHub extends Component {
         GitHub Component
         <CardColumns>
         {this.state.data.map((repo, index) => {
-          return <JobCard key={index} title={repo.name} description={repo.description} updated={repo.updated_at} />
+          return <GitHubCard key={index} title={repo.name} description={repo.description} updated={repo.updated_at} />
         })}
         </CardColumns>
       </div>

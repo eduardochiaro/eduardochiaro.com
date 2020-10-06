@@ -4,7 +4,6 @@ import Card from 'react-bootstrap/Card';
 //import Button from 'react-bootstrap/Button';
 import styles from './JobCard.module.scss';
 import 'holderjs';
-import moment from 'moment';
 
 const JobCard = (props) => (
   <Card className={styles.JobCard}>
@@ -15,11 +14,6 @@ const JobCard = (props) => (
         {props.description}
       </Card.Text>
     </Card.Body>
-    {props.updated 
-      && <Card.Footer>
-        <small className="text-muted">Last updated {moment(props.updated).from(moment())}</small>
-      </Card.Footer>
-    }
   </Card>
 );
 
