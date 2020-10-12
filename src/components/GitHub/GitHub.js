@@ -26,7 +26,7 @@ class GitHub extends Component {
         GitHub Component
         <CardColumns>
         {this.state.data.map((repo, index) => {
-          return <GitHubCard key={index} title={repo.name} description={repo.description} updated={repo.updated_at} />
+          return <GitHubCard key={index} title={repo.name} description={repo.description} updated={repo.updated_at} language={repo.language} link={repo.html_url} />
         })}
         </CardColumns>
       </div>
