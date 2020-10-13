@@ -1,0 +1,10 @@
+@import "../../resources/defaults.scss";
+
+.Navigation {
+  background: $dark-jet;
+  .NavigationLogo {
+    fill: #fff;
+    width: 45px;
+    height: 45px;
+  }
+}

@@ -1,74 +1,61 @@
+@import "../../../resources/defaults.scss";
+
 .GitHubCard {
   color: #000;
-  &.language-php {
-    background: #8892BF;
-    color: #ffffff;
-    .GitHubCardHeaderLogo {
-      fill: #ffffff;
+  .GitHubCardHeader {
+    &.language-php {
+      background: #8892BF;
+      color: $white;
+      fill: $white;
     }
-    .GitHubCardFooter {
-      color: #ffffff;
+    &.language-java-script {
+      background: #F0DA50;
     }
-  }
-  &.language-java-script {
-    background: #F0DA50;
-  }
-  &.language-swift {
-    background: #FE4629;
-    color: #ffffff;
-    .GitHubCardHeaderLogo {
-      fill: #ffffff;
+    &.language-swift {
+      background: #FE4629;
+      color: $white;
+      fill: $white;
     }
-    .GitHubCardFooter {
-      color: #ffffff;
+    &.language-type-script {
+      background: #259F94;
+      color: $white;
+      fill: $white;
     }
-  }
-  &.language-type-script {
-    background: #259F94;
-    color: #ffffff;
-    .GitHubCardHeaderLogo {
-      fill: #ffffff;
+    &.language-html {
+      background: #E055A6;
+      color: $white;
+      fill: $white;
     }
-    .GitHubCardFooter {
-      color: #ffffff;
+    &.language-css {
+      background: #585858;
+      color: $white;
+      fill: $white;
     }
-  }
-  &.language-html {
-    background: #E055A6;
-    color: #ffffff;
-    .GitHubCardHeaderLogo {
-      fill: #ffffff;
-    }
-    .GitHubCardFooter {
-      color: #ffffff;
+    &.language-shell {
+        background: #e9e9e9;
     }
   }
-  &.language-css {
-    background: #585858;
-    color: #ffffff;
-    .GitHubCardHeaderLogo {
-      fill: #ffffff;
-    }
-    .GitHubCardFooter {
-      color: #ffffff;
-    }
+  .CardTitle {
+    font-family: $header-font-family;
   }
-  &.language-shell {
-      background: #e9e9e9;
+  .CardText {
+    font-size: 0.9rem;
   }
 }
+
 .GitHubCardHeader {
   height: 40px;
   font-size: 0.8rem;
+  .GitHubCardHeaderLogo {
+    width: 60px;
+    height: 40px;
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
 }
-.GitHubCardHeaderLogo {
-  width: 60px;
-  height: 40px;
-  display: block;
-  position: absolute;
-  top: 0;
-  right: 0;
-}
+
 .GitHubCardFooter {
   color: #000;
   text-align: right;

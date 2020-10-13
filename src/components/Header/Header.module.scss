@@ -1,12 +1,9 @@
+@import "../../resources/defaults.scss";
+
 .Header {
-  h1 {
-    color: white;
-  }
-  p {
-    color: white;
-  }
+  text-align: center;
+  font-family: $header-font-family;
   .jumbotron {
-    background-image: url("/images/jumbotron_bg.jpg");
-    background-size: cover;
+    background: $light-grey;
   }
 }

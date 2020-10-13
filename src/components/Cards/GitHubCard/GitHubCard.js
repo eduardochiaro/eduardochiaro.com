@@ -33,8 +33,8 @@ const getLanguageIcon = (language) => {
 
 const GitHubCard = (props) => (
   <a href={props.link}>
-  <Card type={kebab(props.language)} className={[styles.GitHubCard, styles["language-" + kebab(props.language)]]}>
-    <Card.Header className={styles.GitHubCardHeader}>
+  <Card type={kebab(props.language)} className={[styles.GitHubCard]}>
+    <Card.Header className={[styles.GitHubCardHeader, styles["language-" + kebab(props.language)]]}>
       <svg title={props.language} alt={props.language} className={styles.GitHubCardHeaderLogo} aria-hidden="true">
         <use href={'images/svg-icons/' + getLanguageIcon(props.language) + '.svg#icon'}></use>
       </svg>
@@ -42,8 +42,8 @@ const GitHubCard = (props) => (
     </Card.Header>
     {props.image && <Card.Img style={{ padding: '2em' }} variant="top" width={100} src={window.location.origin + '/images/logos/' + props.image} /> }
     <Card.Body>
-      <Card.Title>{props.title}</Card.Title>
-      <Card.Text>
+      <Card.Title className={styles.CardTitle}>{props.title}</Card.Title>
+      <Card.Text className={styles.CardText}>
         {props.description}
       </Card.Text>
     </Card.Body>
