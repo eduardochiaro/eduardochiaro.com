@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import Body from './Body';
+import Jobs from './Jobs';
 
-storiesOf('Body', module).add('default', () => <Body />);
+storiesOf('Jobs', module).add('default', () => <Jobs />);

@@ -1,1 +1,11 @@
-.JobCard {}
+.JobCard {
+  text-align: center;
+  margin-bottom: 3rem !important;
+  img {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  span {
+    font-size: 2rem;
+  }
+}

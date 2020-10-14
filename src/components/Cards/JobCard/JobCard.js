@@ -1,14 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
+import Tooltip from 'react-bootstrap/Tooltip';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 //import Button from 'react-bootstrap/Button';
 import styles from './JobCard.module.scss';
 import 'holderjs';
 
+function CardImage(props) {
+  if (props.image) {
+    if (props.description) {
+      return ( 
+        <OverlayTrigger
+          overlay={
+            <Tooltip>
+              {props.description}
+            </Tooltip>
+          }
+        >
+          <Card.Img style={props.stylecss} variant="top" src={window.location.origin + '/images/logos/' + props.image} />
+        </OverlayTrigger>
+      );
+    } else {
+      return <Card.Img style={props.stylecss} variant="top" src={window.location.origin + '/images/logos/' + props.image} />;
+    }
+  }
+  return null;
+}
+
 const JobCard = (props) => (
-  <Card className={styles.JobCard}>
-    {props.image && <Card.Img style={{ padding: '2em' }} variant="top" width={100} src={window.location.origin + '/images/logos/' + props.image} /> }
-    <Card.Body>
+  <Card className={[styles.JobCard, 'border-0']}>
+    <CardImage image={props.image} stylecss={props.stylecss} description={props.description} />
+    {props.description && <span className="d-block text-right font">*</span>}
+    <Card.Body className="d-sm-none">
       <Card.Title>{props.title}</Card.Title>
       <Card.Text>
         {props.description}
@@ -22,7 +46,8 @@ JobCard.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   link: PropTypes.string,
-  updated: PropTypes.string
+  updated: PropTypes.string,
+  stylecss: PropTypes.object
 };
 
 export default JobCard;

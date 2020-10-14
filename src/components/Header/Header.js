@@ -1,15 +1,18 @@
 import React from 'react';
 import styles from './Header.module.scss';
-import Jumbotron from 'react-bootstrap/Jumbotron';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import data from '../../data/header.json';
 
 const Header = () => (
-  <div className={styles.Header}>
-    <Jumbotron className={`rounded-0 ${styles.jumbotron}`} >
-      <h1>{data.title}</h1>
-      <p>{data.description}</p>
-    </Jumbotron>
-  </div>
+  <section className={`${styles.Header} grey`}>
+    <Row className={[styles.jumbotron]}>
+      <Col>
+        <h1>{data.title}</h1>
+        <p>{data.description}</p>
+      </Col>
+    </Row>
+  </section>
 );
 
 export default Header;

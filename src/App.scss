@@ -4,3 +4,13 @@ body {
   font-family: $main-font-family;
   color: $dark-jet;
 }
+
+section {
+  padding: 4rem 0;
+  &.white {
+    background-color: $white;
+  }
+  &.grey {
+    background-color: $light-grey;
+  }
+}
