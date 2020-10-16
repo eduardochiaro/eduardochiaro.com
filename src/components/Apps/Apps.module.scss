@@ -1,9 +1,21 @@
 @import "../../resources/defaults.scss";
+@import "~bootstrap/scss/bootstrap";
 
 .Apps {
   background: url(/images/3px-tile.png), $light-green;
   background: url(/images/3px-tile.png),linear-gradient(to left, $dark-jet, $light-green);
   h3 {
     font-family: $header-font-family;
+  }
+  .AppCard {
+    @include media-breakpoint-down(lg) {
+      padding-bottom: 2rem;
+    }
+    .cardTitle {
+      padding-top: 1.5rem;
+      @include media-breakpoint-down(lg) {
+        padding-top: 0;
+      }
+    }
   }
 }

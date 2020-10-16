@@ -10,7 +10,7 @@ const Footer = () => (
   <section id="footer" className={`${styles.Footer} dark`}>
     <Container>
       <Row>
-        <Col xs={12} className="text-center">
+        <Col lg={12} className="text-center">
           &copy; Copyright {moment().year()} | Eduardo Chiaro
         </Col>
       </Row>

@@ -30,7 +30,7 @@ function CardImage(props) {
 const JobCard = (props) => (
   <Card className={[styles.JobCard, 'border-0']}>
     <CardImage image={props.image} stylecss={props.stylecss} description={props.description} title={props.title} />
-    {props.description && <span className="d-block text-right font">*</span>}
+    {props.description && <span className="d-none d-sm-block text-right">*</span>}
     <Card.Body className="d-sm-none">
       <Card.Title>{props.title}</Card.Title>
       <Card.Text>

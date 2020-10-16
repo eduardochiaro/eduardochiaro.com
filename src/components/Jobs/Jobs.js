@@ -12,10 +12,10 @@ const Jobs = () => (
   <section id="work" className={`${styles.Jobs} white`}>
     <Container>
       <Row>
-        <Col xs={3} className="text-md-right text-lg-center">
+        <Col lg={3} className="text-md-right text-lg-center">
           <h3>I've coded for...</h3>
         </Col>
-        <Col>
+        <Col lg={9}>
           <CardColumns>
           {data.map((job, index) => {
             return <JobCard key={index} title={job.name} image={job.logo} description={job.disclaimer} stylecss={job.style} />

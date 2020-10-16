@@ -11,21 +11,21 @@ const Apps = () => (
   <section id="apps" className={`${styles.Apps} dark`}>
     <Container>
       <Row>
-        <Col xs={12} className="text-center">
+        <Col lg={12} className="text-center">
           <Carousel controls={false}>
           {data.map((element, index) => {
             return (
               <Carousel.Item key={index} className={styles.AppCard} interval={1000}>
                 <Row>
-                  <Col xs={8}>
+                  <Col lg={8}>
                   <img
                     className="d-block w-100"
                     src={element.image}
                     alt={element.title}
                   />
                   </Col>
-                  <Col xs={4}>
-                    <div className="pt-4">
+                  <Col lg={4}>
+                    <div className={styles.cardTitle}>
                       <h3>{element.title}</h3>
                       <p>{element.short}</p>
                     </div>
