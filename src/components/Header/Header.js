@@ -9,7 +9,7 @@ const Header = () => (
   <section className={`${styles.Header} grey`}>
     <Container>
       <Row className={[styles.jumbotron]}>
-        <Col lg={12}>
+        <Col md={12}>
           <h1>{data.title}</h1>
           <p>{data.description}</p>
         </Col>

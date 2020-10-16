@@ -30,10 +30,10 @@ class GitHub extends Component {
       <section id="github" className={`${styles.GitHub} white`}>
         <Container>
           <Row>
-            <Col lg={3} className="text-center d-sx-none">
+            <Col md={3} className="text-center d-sx-none">
               <FontAwesomeIcon icon={faGithub} size="10x" className={styles.GitHubIcon} />
             </Col>
-            <Col lg={9}>
+            <Col md={9}>
               <h3>Latest repositories<span className="badge badge-info align-text-top">{this.state.total} total</span></h3>
               <div>
                 <CardColumns>

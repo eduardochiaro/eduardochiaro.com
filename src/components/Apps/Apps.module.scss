@@ -8,12 +8,12 @@
     font-family: $header-font-family;
   }
   .AppCard {
-    @include media-breakpoint-down(lg) {
+    @include media-breakpoint-down(md) {
       padding-bottom: 2rem;
     }
     .cardTitle {
       padding-top: 1.5rem;
-      @include media-breakpoint-down(lg) {
+      @include media-breakpoint-down(md) {
         padding-top: 0;
       }
     }

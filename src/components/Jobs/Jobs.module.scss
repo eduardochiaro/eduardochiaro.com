@@ -11,7 +11,7 @@
     font-weight: normal;
     padding-right: 1rem;
     padding-bottom: 2rem;
-    @include media-breakpoint-down(lg) {
+    @include media-breakpoint-down(md) {
       border-right: 0;
     }
   }
