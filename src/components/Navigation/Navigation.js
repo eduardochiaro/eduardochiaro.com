@@ -11,7 +11,7 @@ import Scrollchor from 'react-scrollchor';
 const Navigation = () => (
   <Navbar variant="dark" expand="lg" className={styles.Navigation} sticky="top">
     <Navbar.Brand href="#home" className="m-0 p-0">
-      <svg title="Eduardo Chiaro" alt="Eduardo Chiaro" className={styles.NavigationLogo} aria-hidden="true">
+      <svg title="Eduardo Chiaro" alt="Eduardo Chiaro" className={styles.logo} aria-hidden="true">
         <use href={window.location.origin + '/images/logo.svg#logo'}></use>
       </svg>
     </Navbar.Brand>
@@ -22,7 +22,7 @@ const Navigation = () => (
         <NavItem><Scrollchor to="#work" className="nav-link">Work</Scrollchor></NavItem>
         <NavItem><Scrollchor to="#apps" className="nav-link">Apps</Scrollchor></NavItem>
         <NavItem><Scrollchor to="#github" className="nav-link">GitHub</Scrollchor></NavItem>
-        <Nav.Link href="https://blog.eduardochiaro.com/"><FontAwesomeIcon icon={faRss} />.dev</Nav.Link>
+        <Nav.Link href="https://blog.eduardochiaro.com/"><FontAwesomeIcon icon={faRss} className={styles.rss} /> .dev</Nav.Link>
       </Nav>
     </Navbar.Collapse>
   </Navbar>

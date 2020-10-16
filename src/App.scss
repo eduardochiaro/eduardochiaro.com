@@ -13,4 +13,8 @@ section {
   &.grey {
     background-color: $light-grey;
   }
+  &.dark {
+    background-color: $dark-jet;
+    color: $white;
+  }
 }

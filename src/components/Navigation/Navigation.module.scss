@@ -2,9 +2,17 @@
 
 .Navigation {
   background: $dark-jet;
-  .NavigationLogo {
+  .logo {
     fill: #fff;
     width: 45px;
     height: 45px;
+  }
+  .rss {
+    color: $brown-sugar;
+  }
+  a {
+    &:hover {
+      font-weight: bold;
+    }
   }
 }

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Tooltip from 'react-bootstrap/Tooltip';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-//import Button from 'react-bootstrap/Button';
 import styles from './JobCard.module.scss';
 import 'holderjs';
 
@@ -18,11 +17,11 @@ function CardImage(props) {
             </Tooltip>
           }
         >
-          <Card.Img style={props.stylecss} variant="top" src={window.location.origin + '/images/logos/' + props.image} />
+          <img style={props.stylecss} className="card-img-top" alt={props.title} src={window.location.origin + '/images/logos/' + props.image} />
         </OverlayTrigger>
       );
     } else {
-      return <Card.Img style={props.stylecss} variant="top" src={window.location.origin + '/images/logos/' + props.image} />;
+      return <img style={props.stylecss} className="card-img-top" alt={props.title} src={window.location.origin + '/images/logos/' + props.image} />;
     }
   }
   return null;
@@ -30,7 +29,7 @@ function CardImage(props) {
 
 const JobCard = (props) => (
   <Card className={[styles.JobCard, 'border-0']}>
-    <CardImage image={props.image} stylecss={props.stylecss} description={props.description} />
+    <CardImage image={props.image} stylecss={props.stylecss} description={props.description} title={props.title} />
     {props.description && <span className="d-block text-right font">*</span>}
     <Card.Body className="d-sm-none">
       <Card.Title>{props.title}</Card.Title>

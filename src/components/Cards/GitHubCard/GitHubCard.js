@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
-//import Button from 'react-bootstrap/Button';
 import styles from './GitHubCard.module.scss';
 import 'holderjs';
 import moment from 'moment';
@@ -34,21 +33,21 @@ const getLanguageIcon = (language) => {
 const GitHubCard = (props) => (
   <a href={props.link}>
   <Card type={kebab(props.language)} className={[styles.GitHubCard]}>
-    <Card.Header className={[styles.GitHubCardHeader, styles["language-" + kebab(props.language)]]}>
-      <svg title={props.language} alt={props.language} className={styles.GitHubCardHeaderLogo} aria-hidden="true">
+    <Card.Header className={[styles.header, styles["language-" + kebab(props.language)]]}>
+      <svg title={props.language} alt={props.language} className={styles.logo} aria-hidden="true">
         <use href={'images/svg-icons/' + getLanguageIcon(props.language) + '.svg#icon'}></use>
       </svg>
       {props.language}
     </Card.Header>
     {props.image && <Card.Img style={{ padding: '2em' }} variant="top" width={100} src={window.location.origin + '/images/logos/' + props.image} /> }
     <Card.Body>
-      <Card.Title className={styles.CardTitle}>{props.title}</Card.Title>
-      <Card.Text className={styles.CardText}>
+      <Card.Title className={styles.title}>{props.title}</Card.Title>
+      <Card.Text className={styles.text}>
         {props.description}
       </Card.Text>
     </Card.Body>
     {props.updated 
-      && <Card.Footer className={styles.GitHubCardFooter}>
+      && <Card.Footer className={styles.footer}>
         <small>Last updated {moment(props.updated).from(moment())}</small>
       </Card.Footer>
     }

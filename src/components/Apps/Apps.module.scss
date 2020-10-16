@@ -1,0 +1,9 @@
+@import "../../resources/defaults.scss";
+
+.Apps {
+  background: url(/images/3px-tile.png), $light-green;
+  background: url(/images/3px-tile.png),linear-gradient(to left, $dark-jet, $light-green);
+  h3 {
+    font-family: $header-font-family;
+  }
+}

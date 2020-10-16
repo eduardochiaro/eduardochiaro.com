@@ -2,7 +2,7 @@
 
 .GitHubCard {
   color: #000;
-  .GitHubCardHeader {
+  .header {
     &.language-php {
       background: #8892BF;
       color: $white;
@@ -35,18 +35,18 @@
         background: #e9e9e9;
     }
   }
-  .CardTitle {
+  .title {
     font-family: $header-font-family;
   }
-  .CardText {
+  .text {
     font-size: 0.9rem;
   }
 }
 
-.GitHubCardHeader {
+.header {
   height: 40px;
   font-size: 0.8rem;
-  .GitHubCardHeaderLogo {
+  .logo {
     width: 60px;
     height: 40px;
     display: block;
@@ -56,7 +56,7 @@
   }
 }
 
-.GitHubCardFooter {
+.footer {
   color: #000;
   text-align: right;
 }
