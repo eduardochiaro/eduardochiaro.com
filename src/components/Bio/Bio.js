@@ -12,7 +12,7 @@ const Bio = () => (
       <Row>
         <Col>
         <p>Hello!<br/>
-        I'm Eduardo, a <FontAwesomeIcon icon={faCoffee} /> coffee driven Software Developer based in Seattle, WA.</p>
+        I'm Eduardo, a <FontAwesomeIcon icon={faCoffee} /> coffee driven Software Developer based in Washington State.</p>
         <p>I enjoy writing applications in PHP, Swift, Node.js, Angular and Javascript. I also like working on databases, make servers do stuff, working on scalability, performance, user experiences and desktop/mobile design.</p>
         </Col>
       </Row>
