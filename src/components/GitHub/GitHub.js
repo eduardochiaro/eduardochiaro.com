@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styles from './GitHub.module.scss';
-import GitHubCard from '../Cards/GitHubCard/GitHubCard.lazy';
+import GitHubCard from '../Elements/GitHubCard/GitHubCard.lazy';
 import CardColumns from 'react-bootstrap/CardColumns';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
