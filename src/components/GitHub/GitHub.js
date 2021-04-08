@@ -12,7 +12,7 @@ import styles from './GitHub.module.scss'
 class GitHub extends Component {
   constructor() {
     super()
-    this.state = { data: [] }
+    this.state = { data: [], total: 0 }
   }
 
   async componentDidMount() {

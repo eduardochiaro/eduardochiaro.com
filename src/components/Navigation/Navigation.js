@@ -17,7 +17,7 @@ const Navigation = () => (
         className={styles.logo}
         aria-hidden="true"
       >
-        <use href={`${window.location.origin  }/images/logo.svg#logo`} />
+        <use href={`${window.location.origin}/images/logo.svg#logo`} />
       </svg>
     </Navbar.Brand>
     <Navbar.Toggle aria-controls="responsive-navbar-nav" />

@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Card from 'react-bootstrap/Card'
-import 'holderjs'
 import moment from 'moment'
 import { kebab } from 'case'
+import 'holderjs'
 import styles from './GitHubCard.module.scss'
 
 const getLanguageIcon = (language) => {
@@ -35,7 +35,7 @@ const GitHubCard = (props) => {
     <a href={link}>
       <Card type={kebab(language)} className={[styles.GitHubCard]}>
         <Card.Header
-          className={[styles.header, styles[`language-${  kebab(language)}`]]}
+          className={[styles.header, styles[`language-${kebab(language)}`]]}
         >
           <svg
             title={language}
@@ -58,7 +58,7 @@ const GitHubCard = (props) => {
             style={{ padding: '2em' }}
             variant="top"
             width={100}
-            src={`${window.location.origin  }/images/logos/${  image}`}
+            src={`${window.location.origin}/images/logos/${image}`}
           />
         )}
         <Card.Body>

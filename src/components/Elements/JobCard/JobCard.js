@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import Card from 'react-bootstrap/Card'
 import Tooltip from 'react-bootstrap/Tooltip'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
-import styles from './JobCard.module.scss'
 import 'holderjs'
+import styles from './JobCard.module.scss'
 
 function CardImage(props) {
   const { image, title, description, stylecss } = props;
@@ -16,7 +16,7 @@ function CardImage(props) {
             style={stylecss}
             className="card-img-top"
             alt={title}
-            src={`${window.location.origin  }/images/logos/${image}`}
+            src={`${window.location.origin}/images/logos/${image}`}
           />
         </OverlayTrigger>
       )
@@ -54,12 +54,6 @@ const JobCard = (props) => {
     </Card>
   )
 }
-JobCard.propTypes = {
-  image: PropTypes.string,
-  title: PropTypes.string,
-  description: PropTypes.string,
-  stylecss: PropTypes.shape,
-}
 
 JobCard.defaultProps = {
   image: '',
@@ -68,5 +62,11 @@ JobCard.defaultProps = {
   stylecss: {},
 }
 
+JobCard.propTypes = {
+  image: PropTypes.string,
+  title: PropTypes.string,
+  description: PropTypes.string,
+  stylecss: PropTypes.shape,
+}
 
 export default JobCard
