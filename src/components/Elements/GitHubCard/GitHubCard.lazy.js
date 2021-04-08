@@ -1,11 +1,11 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense } from 'react'
 
-const LazyGitHubCard = lazy(() => import('./GitHubCard'));
+const LazyGitHubCard = lazy(() => import('./GitHubCard'))
 
-const GitHubCard = props => (
+const GitHubCard = (props) => (
   <Suspense fallback={null}>
     <LazyGitHubCard {...props} />
   </Suspense>
-);
+)
 
-export default GitHubCard;
+export default GitHubCard

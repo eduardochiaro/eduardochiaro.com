@@ -1,9 +1,10 @@
-@import "../../resources/defaults.scss";
-@import "~bootstrap/scss/bootstrap";
+@import '../../resources/defaults.scss';
+@import '~bootstrap/scss/bootstrap';
 
 .Apps {
   background: url('/resources/images/3px-tile.png'), $light-green;
-  background: url('/resources/images/3px-tile.png'),linear-gradient(to left, $dark-jet, $light-green);
+  background: url('/resources/images/3px-tile.png'),
+    linear-gradient(to left, $dark-jet, $light-green);
   h3 {
     font-family: $header-font-family;
   }

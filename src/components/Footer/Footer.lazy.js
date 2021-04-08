@@ -1,11 +1,11 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense } from 'react'
 
-const LazyFooter = lazy(() => import('./Footer'));
+const LazyFooter = lazy(() => import('./Footer'))
 
-const Footer = props => (
+const Footer = (props) => (
   <Suspense fallback={null}>
     <LazyFooter {...props} />
   </Suspense>
-);
+)
 
-export default Footer;
+export default Footer

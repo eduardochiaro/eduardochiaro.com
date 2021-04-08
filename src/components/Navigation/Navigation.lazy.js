@@ -1,11 +1,11 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense } from 'react'
 
-const LazyNavigation = lazy(() => import('./Navigation'));
+const LazyNavigation = lazy(() => import('./Navigation'))
 
-const Navigation = props => (
+const Navigation = (props) => (
   <Suspense fallback={null}>
     <LazyNavigation {...props} />
   </Suspense>
-);
+)
 
-export default Navigation;
+export default Navigation

@@ -1,28 +1,28 @@
-@import "../../../resources/defaults.scss";
+@import '../../../resources/defaults.scss';
 
 .GitHubCard {
   color: #000;
   .header {
     &.language-php {
-      background: #8892BF;
+      background: #8892bf;
       color: $white;
       fill: $white;
     }
     &.language-java-script {
-      background: #F0DA50;
+      background: #f0da50;
     }
     &.language-swift {
-      background: #FE4629;
+      background: #fe4629;
       color: $white;
       fill: $white;
     }
     &.language-type-script {
-      background: #259F94;
+      background: #259f94;
       color: $white;
       fill: $white;
     }
     &.language-html {
-      background: #E055A6;
+      background: #e055a6;
       color: $white;
       fill: $white;
     }
@@ -32,7 +32,7 @@
       fill: $white;
     }
     &.language-shell {
-        background: #e9e9e9;
+      background: #e9e9e9;
     }
   }
   .title {

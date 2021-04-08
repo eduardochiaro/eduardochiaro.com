@@ -1,9 +1,9 @@
-import React from 'react';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import styles from './Header.module.scss';
-import data from '../../data/header.json';
+import React from 'react'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import styles from './Header.module.scss'
+import data from '../../data/header.json'
 
 const Header = () => (
   <section className={`${styles.Header} grey`}>
@@ -16,6 +16,6 @@ const Header = () => (
       </Row>
     </Container>
   </section>
-);
+)
 
-export default Header;
+export default Header

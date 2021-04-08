@@ -1,11 +1,11 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense } from 'react'
 
-const LazyShare = lazy(() => import('./Share'));
+const LazyShare = lazy(() => import('./Share'))
 
-const Share = props => (
+const Share = (props) => (
   <Suspense fallback={null}>
     <LazyShare {...props} />
   </Suspense>
-);
+)
 
-export default Share;
+export default Share

@@ -1,10 +1,10 @@
-import React from 'react';
-//import PropTypes from 'prop-types';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import styles from './Footer.module.scss';
-import moment from 'moment';
+import React from 'react'
+// import PropTypes from 'prop-types';
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import moment from 'moment'
+import styles from './Footer.module.scss'
 
 const Footer = () => (
   <section id="footer" className={`${styles.Footer} dark`}>
@@ -16,10 +16,10 @@ const Footer = () => (
       </Row>
     </Container>
   </section>
-);
+)
 
-//Footer.propTypes = {};
+// Footer.propTypes = {};
 
-Footer.defaultProps = {};
+Footer.defaultProps = {}
 
-export default Footer;
+export default Footer
