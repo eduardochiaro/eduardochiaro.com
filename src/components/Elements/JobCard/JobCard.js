@@ -66,7 +66,7 @@ JobCard.propTypes = {
   image: PropTypes.string,
   title: PropTypes.string,
   description: PropTypes.string,
-  stylecss: PropTypes.shape,
+  stylecss: PropTypes.objectOf(PropTypes.any),
 }
 
 export default JobCard

@@ -1,5 +1,7 @@
 @import '../../resources/defaults.scss';
-@import '~bootstrap/scss/bootstrap';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
 
 .Jobs {
   padding: 4rem 0 1rem;
