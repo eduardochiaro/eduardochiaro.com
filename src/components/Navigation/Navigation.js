@@ -6,9 +6,10 @@ import NavItem from 'react-bootstrap/NavItem'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRss } from '@fortawesome/free-solid-svg-icons'
 import { Scrollchor } from 'react-scrollchor'
+import data from '../../data/header.json'
 import styles from './Navigation.module.scss'
 
-const Navigation = () => (
+const Navigation = ({inView}) => (
   <Navbar variant="dark" expand="lg" className={styles.Navigation} sticky="top">
     <Navbar.Brand href="#home" className="m-0 p-0">
       <svg
@@ -19,6 +20,9 @@ const Navigation = () => (
       >
         <use href={`${window.location.origin}/images/logo.svg#logo`} />
       </svg>
+      { !inView &&
+        <h1>{data.title}</h1>
+      }
     </Navbar.Brand>
     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
     <Navbar.Collapse id="responsive-navbar-nav">
