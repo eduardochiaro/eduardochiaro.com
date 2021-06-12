@@ -5,7 +5,7 @@ import Nav from 'react-bootstrap/Nav'
 import NavItem from 'react-bootstrap/NavItem'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRss } from '@fortawesome/free-solid-svg-icons'
-import Scrollchor from 'react-scrollchor'
+import { Scrollchor } from 'react-scrollchor'
 import styles from './Navigation.module.scss'
 
 const Navigation = () => (
