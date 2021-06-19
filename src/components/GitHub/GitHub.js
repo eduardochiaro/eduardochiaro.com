@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { Container } from 'react-bootstrap'
-import findUserRepos from '../../resources/github'
+import { github } from '../../resources/api'
 import GitHubCard from '../Elements/GitHubCard/GitHubCard.lazy'
 import styles from './GitHub.module.scss'
 
@@ -17,8 +17,8 @@ class GitHub extends Component {
 
   async componentDidMount() {
     try {
-      const response = await findUserRepos(`eduardochiaro`)
-      const cutReposene = response.data.slice(0, 6)
+      const response = await github()
+      const cutReposene = response.data.results.slice(0, 6)
       this.setState({ data: cutReposene, total: response.data.length })
     } catch (err) {
       console.log(err)
