@@ -20,7 +20,7 @@ class GitHub extends Component {
       const response = await github()
       console.log(response.data)
       const cutReposene = response.data.results.filter((data) => !data.archived).slice(0, 6)
-      this.setState({ data: cutReposene, total: response.data.length })
+      this.setState({ data: cutReposene, total: response.data.results.length })
     } catch (err) {
       console.log(err)
     }
