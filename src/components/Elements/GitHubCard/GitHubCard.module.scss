@@ -41,6 +41,16 @@
   .text {
     font-size: 0.9rem;
   }
+  img {
+    border-radius: 0;
+  }
+  .card-img-top {
+    height: 150px;
+  }
+  .fallback-img {
+    padding: 2rem;
+    opacity: 0.1;
+  }
 }
 
 .header {
@@ -60,3 +70,4 @@
   color: #000;
   text-align: right;
 }
+

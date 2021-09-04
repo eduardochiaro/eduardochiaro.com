@@ -29,10 +29,30 @@ const getLanguageIcon = (language) => {
   }
 }
 
+const Image = ({ src, alt, fallback }) => {
+  const [error, setError] = React.useState(false);
+
+  const onError = () => {
+    setError(true);
+  };
+
+  return error ? <img 
+    className={`card-img-top ${styles['card-img-top']} ${styles['fallback-img']}`} 
+    src={fallback} alt={alt} /> : 
+    <img 
+      className={`card-img-top  ${styles['card-img-top']}`} 
+      src={src} alt={alt} onError={onError} />;
+};
+
+
 const GitHubCard = (props) => {
-  const { link, language, image, title, description, updated } = props;
+  const { link, language, title, description, updated, id } = props;
+
+  const image = `${window.location.origin}/images/github/${id}.png`;
+  const fallbackImage = `${window.location.origin}/images/svg-icons/github.svg`;
+
   return (
-    <a href={link}>
+    <a href={link} id={id}>
       <Card type={kebab(language)} className={[styles.GitHubCard]}>
         <Card.Header
           className={[styles.header, styles[`language-${kebab(language)}`]]}
@@ -53,14 +73,11 @@ const GitHubCard = (props) => {
           </svg>
           {language}
         </Card.Header>
-        {image && (
-          <Card.Img
-            style={{ padding: '2em' }}
-            variant="top"
-            width={100}
-            src={`${window.location.origin}/images/logos/${image}`}
-          />
-        )}
+        <Image
+          src={image}
+          alt={title}
+          fallback={fallbackImage}
+        />
         <Card.Body>
           <Card.Title className={styles.title}>{title}</Card.Title>
           <Card.Text className={styles.text}>{description}</Card.Text>
@@ -76,7 +93,7 @@ const GitHubCard = (props) => {
 }
 
 GitHubCard.defaultProps = {
-  image: '',
+  id: '',
   title: '',
   description: '',
   link: '',
@@ -85,7 +102,7 @@ GitHubCard.defaultProps = {
 }
 
 GitHubCard.propTypes = {
-  image: PropTypes.string,
+  id: PropTypes.number,
   title: PropTypes.string,
   description: PropTypes.string,
   link: PropTypes.string,
