@@ -18,7 +18,6 @@ class GitHub extends Component {
   async componentDidMount() {
     try {
       const response = await github()
-      console.log(response.data)
       const cutReposene = response.data.results.filter((data) => !data.archived).slice(0, 6)
       this.setState({ data: cutReposene, total: response.data.results.length })
     } catch (err) {
@@ -57,6 +56,7 @@ class GitHub extends Component {
                         language={repo.language}
                         link={repo.html_url}
                         id={repo.id}
+                        topics={repo.topics}
                       />
                     ))}
                 </CardColumns>

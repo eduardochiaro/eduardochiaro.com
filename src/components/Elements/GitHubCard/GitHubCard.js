@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Card from 'react-bootstrap/Card'
+import Badge from 'react-bootstrap/Badge'
 import moment from 'moment'
 import { kebab } from 'case'
 import 'holderjs'
@@ -46,7 +47,7 @@ const Image = ({ src, alt, fallback }) => {
 
 
 const GitHubCard = (props) => {
-  const { link, language, title, description, updated, id } = props;
+  const { link, language, title, description, updated, id, topics } = props;
 
   const image = `${window.location.origin}/images/github/${id}.png`;
   const fallbackImage = `${window.location.origin}/images/svg-icons/github.svg`;
@@ -81,6 +82,9 @@ const GitHubCard = (props) => {
         <Card.Body>
           <Card.Title className={styles.title}>{title}</Card.Title>
           <Card.Text className={styles.text}>{description}</Card.Text>
+          {topics.map((topic) => (
+            <Badge className={[styles.badge]}>{topic}</Badge>
+          ))}
         </Card.Body>
         {updated && (
           <Card.Footer className={styles.footer}>
@@ -99,6 +103,7 @@ GitHubCard.defaultProps = {
   link: '',
   updated: '',
   language: '',
+  topics: [],
 }
 
 GitHubCard.propTypes = {
@@ -108,6 +113,7 @@ GitHubCard.propTypes = {
   link: PropTypes.string,
   updated: PropTypes.string,
   language: PropTypes.string,
+  topics: PropTypes.arrayOf(PropTypes.string),
 }
 
 export default GitHubCard

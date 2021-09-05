@@ -51,6 +51,12 @@
     padding: 2rem;
     opacity: 0.1;
   }
+  .badge {
+    background: $light-green;
+    color: $white;
+    padding: 0.3rem 0.6rem;
+    margin-right: 0.6rem;
+  }
 }
 
 .header {
