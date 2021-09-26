@@ -1,8 +1,17 @@
 @import '../../../resources/defaults.scss';
 
 .GitHubCard {
-  color: #000;
-  .header {
+  .card-header {
+    position: relative;
+    min-height: 40px;
+    svg {
+      width: 60px;
+      height: 40px;
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
     &.language-php {
       background: #8892bf;
       color: $white;
@@ -36,7 +45,7 @@
     }
   }
   .title {
-    font-family: $header-font-family;
+    font-family: $font-family-header;
   }
   .text {
     font-size: 0.9rem;
@@ -50,12 +59,6 @@
   .fallback-img {
     padding: 2rem;
     opacity: 0.1;
-  }
-  .badge {
-    background: $light-green;
-    color: $white;
-    padding: 0.3rem 0.6rem;
-    margin-right: 0.6rem;
   }
 }
 
@@ -76,4 +79,3 @@
   color: #000;
   text-align: right;
 }
-

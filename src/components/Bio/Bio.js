@@ -14,14 +14,13 @@ const Bio = () => (
           <p>
             Hello!
             <br />
-            I&apos;m Eduardo, a <FontAwesomeIcon icon={faCoffee} /> coffee driven
-            Software Developer based in Washington State.
+            I&apos;m Eduardo, a <FontAwesomeIcon icon={faCoffee} /> coffee driven Software Developer
+            based in Washington State.
           </p>
           <p>
-            I enjoy writing applications in PHP, Swift, Node.js, Angular and
-            Javascript. I also like working on databases, make servers do stuff,
-            working on scalability, performance, user experiences and
-            desktop/mobile design.
+            I enjoy writing applications in PHP, Swift, Node.js, Angular and Javascript. I also like
+            working on databases, make servers do stuff, working on scalability, performance, user
+            experiences and desktop/mobile design.
           </p>
         </Col>
       </Row>

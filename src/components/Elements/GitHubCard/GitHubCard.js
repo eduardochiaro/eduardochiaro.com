@@ -31,68 +31,61 @@ const getLanguageIcon = (language) => {
 }
 
 const Image = ({ src, alt, fallback }) => {
-  const [error, setError] = React.useState(false);
+  const [error, setError] = React.useState(false)
 
   const onError = () => {
-    setError(true);
-  };
+    setError(true)
+  }
 
-  return error ? <img 
-    className={`card-img-top ${styles['card-img-top']} ${styles['fallback-img']}`} 
-    src={fallback} alt={alt} /> : 
-    <img 
-      className={`card-img-top  ${styles['card-img-top']}`} 
-      src={src} alt={alt} onError={onError} />;
-};
-
+  return error ? (
+    <img
+      className={`card-img-top ${styles['card-img-top']} ${styles['fallback-img']}`}
+      src={fallback}
+      alt={alt}
+    />
+  ) : (
+    <img
+      className={`card-img-top  ${styles['card-img-top']}`}
+      src={src}
+      alt={alt}
+      onError={onError}
+    />
+  )
+}
 
 const GitHubCard = (props) => {
-  const { link, language, title, description, updated, id, topics } = props;
+  const { link, language, title, description, updated, id, topics } = props
 
-  const image = `${window.location.origin}/images/github/${id}.png`;
-  const fallbackImage = `${window.location.origin}/images/svg-icons/github.svg`;
+  const image = `${window.location.origin}/images/github/${id}.png`
+  const fallbackImage = `${window.location.origin}/images/svg-icons/github.svg`
 
   return (
-    <a href={link} id={id}>
-      <Card type={kebab(language)} className={[styles.GitHubCard]}>
-        <Card.Header
-          className={[styles.header, styles[`language-${kebab(language)}`]]}
-        >
-          <svg
-            title={language}
-            alt={language}
-            className={styles.logo}
-            aria-hidden="true"
-          >
-            <use
-              href={
-                `images/svg-icons/${
-                getLanguageIcon(language)
-                }.svg#icon`
-              }
-            />
-          </svg>
-          {language}
-        </Card.Header>
-        <Image
-          src={image}
-          alt={title}
-          fallback={fallbackImage}
-        />
-        <Card.Body>
-          <Card.Title className={styles.title}>{title}</Card.Title>
-          <Card.Text className={styles.text}>{description}</Card.Text>
-          {topics.map((topic) => (
-            <Badge className={[styles.badge]}>{topic}</Badge>
-          ))}
-        </Card.Body>
-        {updated && (
-          <Card.Footer className={styles.footer}>
-            <small>Last updated {moment(updated).from(moment())}</small>
-          </Card.Footer>
-        )}
-      </Card>
-    </a>
+    <div className={`col-sm-6 col-lg-4 mb-4 ${styles['card-cont']}`}>
+      <a href={link} id={id} className="text-decoration-none text-secondary">
+        <Card type={kebab(language)} className={[styles.GitHubCard]}>
+          <Card.Header className={[styles[`card-header`], styles[`language-${kebab(language)}`]].join(' ')}>
+            <svg title={language} alt={language} className={styles.logo} aria-hidden="true">
+              <use href={`images/svg-icons/${getLanguageIcon(language)}.svg#icon`} />
+            </svg>
+            {language}
+          </Card.Header>
+          <Image src={image} alt={title} fallback={fallbackImage} />
+          <Card.Body>
+            <Card.Title className={styles.title}>{title}</Card.Title>
+            <Card.Text className={styles.text}>{description}</Card.Text>
+            {topics.map((topic) => (
+              <Badge className='bg-primary me-1'>{topic}</Badge>
+            ))}
+          </Card.Body>
+          {updated && (
+            <Card.Footer className={styles.footer}>
+              <small>Last updated {moment(updated).from(moment())}</small>
+            </Card.Footer>
+          )}
+        </Card>
+      </a>
+    </div>
+    
   )
 }
 

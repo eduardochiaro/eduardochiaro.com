@@ -1,11 +1,34 @@
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+
 .JobCard {
-  text-align: center;
-  margin-bottom: 3rem !important;
-  img {
-    margin: 0 auto !important;
-    padding: 0 !important;
+  min-height: 100px;
+  position: relative;
+  min-width: 130px;
+  max-width: 130px;
+  float: left;
+  .card-img {
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    @include media-breakpoint-down(md) {
+      position: relative;
+    }
+    &.half {
+      width: 50%;
+    }
   }
-  span {
-    font-size: 2rem;
+  .card-footer {
+    background: none;
+    border: none;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 0.7rem;
   }
 }

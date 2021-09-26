@@ -1,24 +1,35 @@
 @import './resources/defaults.scss';
 @import '~bootstrap/scss/bootstrap';
 
-html, body {
-  background: $dark-jet;
-}
-body {
-  font-family: $main-font-family;
-  color: $dark-jet;
+html {
+  body {
+    font-family: $font-family-sans-serif;
+    font-size: 16px;
+    background-color: $isabelline;
+  }
 }
 
-section {
-  padding: 4rem 0;
-  &.white {
-    background-color: $white;
+svg {
+  .st0,
+  .st4,
+  .cls-1 {
+    fill: $isabelline !important;
   }
-  &.grey {
-    background-color: $light-grey;
+  .st1,
+  .cls-3 {
+    fill: $tertiary !important;
   }
-  &.dark {
-    background-color: $dark-jet;
-    color: $white;
+  .st2,
+  .cls-4 {
+    fill: $primary !important;
   }
+  .st5,
+  .cls-2 {
+    fill: $secondary !important;
+  }
+}
+
+.carousel-control-prev, 
+.carousel-control-next {
+  width: 5%;
 }

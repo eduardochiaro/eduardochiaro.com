@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
-import CardColumns from 'react-bootstrap/CardColumns'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { Container } from 'react-bootstrap'
-import { github } from '../../resources/api'
+import { github } from '../../helpers/api'
 import GitHubCard from '../Elements/GitHubCard/GitHubCard.lazy'
 import styles from './GitHub.module.scss'
 
@@ -26,41 +25,34 @@ class GitHub extends Component {
   }
 
   render() {
-    const { total, data } = this.state;
+    const { total, data } = this.state
     return (
-      <section id="github" className={`${styles.GitHub} white`}>
+      <section id="github" className={`${styles.github} mt-5`}>
         <Container>
           <Row>
-            <Col md={3} className="text-center d-sx-none">
-              <FontAwesomeIcon
-                icon={faGithub}
-                size="10x"
-                className={styles.GitHubIcon}
-              />
+            <Col>
+              <h3 className="display-6 pb-4">Latest repositories <span className="badge bg-primary align-text-top">{total} total</span></h3>
             </Col>
-            <Col md={9}>
-              <h3>
-                Latest repositories
-                <span className="badge badge-info align-text-top">
-                  {total} total
-                </span>
-              </h3>
-              <div>
-                <CardColumns>
+          </Row>
+          <Row>
+            <Col lg={4} className="col-lg-4 d-none d-lg-inline text-center">
+              <FontAwesomeIcon icon={faGithub} size="10x" className="mt-5 text-secondary opacity-25" />
+            </Col>
+            <Col md={8}>
+              <Row data-masonry='{"percentPosition": true }'>
                   {data.map((repo) => (
-                      <GitHubCard
-                        key={repo.name}
-                        title={repo.name}
-                        description={repo.description}
-                        updated={repo.updated_at}
-                        language={repo.language}
-                        link={repo.html_url}
-                        id={repo.id}
-                        topics={repo.topics}
-                      />
-                    ))}
-                </CardColumns>
-              </div>
+                    <GitHubCard
+                      key={repo.name}
+                      title={repo.name}
+                      description={repo.description}
+                      updated={repo.updated_at}
+                      language={repo.language}
+                      link={repo.html_url}
+                      id={repo.id}
+                      topics={repo.topics}
+                    />
+                  ))}
+              </Row>
             </Col>
           </Row>
         </Container>

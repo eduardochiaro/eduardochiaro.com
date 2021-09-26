@@ -3,55 +3,56 @@ import React from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import NavItem from 'react-bootstrap/NavItem'
+import Container from 'react-bootstrap/Container'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRss } from '@fortawesome/free-solid-svg-icons'
 import { Scrollchor } from 'react-scrollchor'
 import data from '../../data/header.json'
 import styles from './Navigation.module.scss'
 
-const Navigation = ({inView}) => (
-  <Navbar variant="dark" expand="lg" className={styles.Navigation} sticky="top">
-    <Navbar.Brand href="#home" className="m-0 p-0">
-      <svg
-        title="Eduardo Chiaro"
-        alt="Eduardo Chiaro"
-        className={styles.logo}
-        aria-hidden="true"
-      >
-        <use href={`${window.location.origin}/images/logo.svg#logo`} />
-      </svg>
-      { !inView &&
-        <h1>{data.title}</h1>
-      }
-    </Navbar.Brand>
-    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-    <Navbar.Collapse id="responsive-navbar-nav">
-      <Nav className="ml-auto">
-        <NavItem className="active">
-          <Scrollchor to="" className="nav-link">
-            Home
-          </Scrollchor>
-        </NavItem>
-        <NavItem>
-          <Scrollchor to="#work" className="nav-link">
-            Work
-          </Scrollchor>
-        </NavItem>
-        <NavItem>
-          <Scrollchor to="#apps" className="nav-link">
-            Apps
-          </Scrollchor>
-        </NavItem>
-        <NavItem>
-          <Scrollchor to="#github" className="nav-link">
-            GitHub
-          </Scrollchor>
-        </NavItem>
-        <Nav.Link href="https://blog.eduardochiaro.com/">
-          <FontAwesomeIcon icon={faRss} className={styles.rss} /> .dev
-        </Nav.Link>
-      </Nav>
-    </Navbar.Collapse>
+const Navigation = () => (
+  <Navbar variant="light" expand="lg" className="pt-4 px-md-5">
+    <Container fluid>
+      <Navbar.Brand href="#home" className="logo">
+        <svg title={data.title} alt={data.title} className={styles.logo} aria-hidden="true">
+          <use href={`${window.location.origin}/images/logo.svg#logo`} />
+        </svg>
+      </Navbar.Brand>
+      <div className="d-lg-inline d-none">
+        <Navbar>
+          <Nav className="me-auto mb-2 mb-lg-0">
+            <NavItem>
+              <Scrollchor to="" className="nav-link px-4 active">
+                <strong>Home</strong>
+              </Scrollchor>
+            </NavItem>
+            <NavItem>
+              <Scrollchor to="#skills" className="nav-link px-4">
+                <strong>Skills</strong>
+              </Scrollchor>
+            </NavItem>
+            <NavItem>
+              <Scrollchor to="#apps" className="nav-link px-4">
+                <strong>Apps</strong>
+              </Scrollchor>
+            </NavItem>
+            <NavItem>
+              <Scrollchor to="#github" className="nav-link px-4">
+                <strong>GitHub</strong>
+              </Scrollchor>
+            </NavItem>
+          </Nav>
+        </Navbar>
+      </div>
+      <div className={`d-flex ${styles.bloglink}`}>
+        <a href="https://blog.eduardochiaro.com" className="text-decoration-none">
+          <strong>
+            <FontAwesomeIcon icon={faRss} className="text-primary me-2" />
+            .dev
+          </strong>
+        </a>
+      </div>
+    </Container>
   </Navbar>
 )
 

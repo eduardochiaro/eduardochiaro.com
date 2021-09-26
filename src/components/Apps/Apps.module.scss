@@ -2,22 +2,15 @@
 @import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/variables';
 @import '~bootstrap/scss/mixins';
-.Apps {
-  background: url('/resources/images/3px-tile.png'), $light-green;
-  background: url('/resources/images/3px-tile.png'),
-    linear-gradient(to left, $dark-jet, $light-green);
+
+.apps {
+  background: url('/resources/images/3px-tile.png'), $green-sheen;
+  background: url('/resources/images/3px-tile.png'), linear-gradient(to left, $independence, $green-sheen);
   h3 {
-    font-family: $header-font-family;
+    font-family: $font-family-header;
+    font-weight: bold;
   }
-  .AppCard {
-    @include media-breakpoint-down(md) {
-      padding-bottom: 2rem;
-    }
-    .cardTitle {
-      padding-top: 1.5rem;
-      @include media-breakpoint-down(md) {
-        padding-top: 0;
-      }
-    }
+  .card-cont {
+    position: absolute; left: 0%; top: 0px;
   }
 }

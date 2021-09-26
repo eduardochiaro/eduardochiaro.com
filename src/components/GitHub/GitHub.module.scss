@@ -3,22 +3,10 @@
 @import '~bootstrap/scss/variables';
 @import '~bootstrap/scss/mixins';
 
-.GitHub {
+.github {
   h3 {
-    font-family: $header-font-family;
-    text-transform: uppercase;
-    font-size: 3rem;
     span {
       font-size: 1rem;
-      margin-left: 1rem;
     }
-  }
-  .GitHubIcon {
-    margin: 4rem 0 2rem;
-    @include media-breakpoint-down(md) {
-      margin: 0 0 2rem;
-    }
-    //font-size: 16rem;
-    color: $light-grey;
   }
 }
