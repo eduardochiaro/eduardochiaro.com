@@ -14,9 +14,14 @@ const Skills = () => {
 
   useEffect(() => {
     try {
-      skills().then((response) => {
-        setData( response.data.results );
-      })
+
+      if(token) {
+        skills().then((response) => {
+          if (response && response.data) {
+            setData( response.data.results );
+          }
+        });
+      }
     } catch (err) {
       console.log(err)
     }

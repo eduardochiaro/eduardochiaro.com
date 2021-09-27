@@ -14,9 +14,13 @@ const Jobs = () => {
 
   useEffect(() => {
     try {
-      work().then((response) => {
-        setData( response.data.results );
-      })
+      if(token) {
+        work().then((response) => {
+          if (response && response.data) {
+            setData( response.data.results );
+          }
+        });
+      }
     } catch (err) {
       console.log(err)
     }

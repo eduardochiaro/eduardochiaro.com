@@ -1,7 +1,6 @@
 import axios from 'axios'
-import isDev from './devDetect'
 
-const base = !isDev() ? 'https://api.eduardochiaro.com' : 'http://localhost:3030';
+const base = process.env.NODE_ENV !== 'development' ? 'https://api.eduardochiaro.com' : 'http://localhost:3030';
 // const base = 'https://api.eduardochiaro.com';
 
 function logErrors(error, route) {

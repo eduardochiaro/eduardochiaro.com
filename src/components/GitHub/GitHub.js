@@ -16,11 +16,15 @@ const GitHub = () => {
 
   useEffect(() => {
     try {
-      github().then((response) => {
-        const cutReposene = response.data.results.filter((element) => !element.archived).slice(0, 6)
-        setData( cutReposene );
-        setTotal( response.data.results.length );
-      })
+      if(token) {
+        github().then((response) => {
+          if (response && response.data) {
+            const cutReposene = response.data.results.filter((element) => !element.archived).slice(0, 6)
+            setData( cutReposene );
+            setTotal( response.data.results.length );
+          }
+        });
+      }
     } catch (err) {
       console.log(err)
     }
