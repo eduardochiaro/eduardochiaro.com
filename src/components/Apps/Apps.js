@@ -15,7 +15,7 @@ const Apps = ({ token }) => {
   useEffect(() => {
     try {
       if (token) {
-        apps().then((response) => {
+        apps(token).then((response) => {
           if (response && response.data) {
             setData(response.data.results)
           }

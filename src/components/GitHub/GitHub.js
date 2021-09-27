@@ -15,7 +15,7 @@ const GitHub = ({ token }) => {
   useEffect(() => {
     try {
       if (token) {
-        github().then((response) => {
+        github(token).then((response) => {
           if (response && response.data) {
             const cutReposene = response.data.results
               .filter((element) => !element.archived)
@@ -65,10 +65,14 @@ const GitHub = ({ token }) => {
                       placeholder={false}
                     />
                   ))
-                : [...Array(6)].map((x) => (
+                : [
+                    ...Array(6)
+                      .fill()
+                      .map((_, idx) => 0 + idx),
+                  ].map((x) => (
                     <GitHubCard
                       key={x}
-                      title={x}
+                      title=""
                       description=""
                       updated=""
                       language=""

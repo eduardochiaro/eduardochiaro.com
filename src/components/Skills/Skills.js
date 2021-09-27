@@ -13,7 +13,7 @@ const Skills = ({ token }) => {
   useEffect(() => {
     try {
       if (token) {
-        skills().then((response) => {
+        skills(token).then((response) => {
           if (response && response.data) {
             setData(response.data.results)
           }

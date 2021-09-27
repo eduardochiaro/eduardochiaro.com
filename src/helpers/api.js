@@ -29,30 +29,22 @@ export const getToken = async () =>
     logErrors(error, 'access')
   })
 
-export const github = async () =>
-  axios
-    .get(`${base}/portfolio/github`, { headers: { authorization: localStorage.getItem('token') } })
-    .catch((error) => {
-      logErrors(error, 'github')
-    })
+export const github = async (token) =>
+  axios.get(`${base}/portfolio/github`, { headers: { authorization: token } }).catch((error) => {
+    logErrors(error, 'github')
+  })
 
-export const work = async () =>
-  axios
-    .get(`${base}/portfolio/work`, { headers: { authorization: localStorage.getItem('token') } })
-    .catch((error) => {
-      logErrors(error, 'work')
-    })
+export const work = async (token) =>
+  axios.get(`${base}/portfolio/work`, { headers: { authorization: token } }).catch((error) => {
+    logErrors(error, 'work')
+  })
 
-export const apps = async () =>
-  axios
-    .get(`${base}/portfolio/apps`, { headers: { authorization: localStorage.getItem('token') } })
-    .catch((error) => {
-      logErrors(error, 'apps')
-    })
+export const apps = async (token) =>
+  axios.get(`${base}/portfolio/apps`, { headers: { authorization: token } }).catch((error) => {
+    logErrors(error, 'apps')
+  })
 
-export const skills = async () =>
-  axios
-    .get(`${base}/portfolio/skills`, { headers: { authorization: localStorage.getItem('token') } })
-    .catch((error) => {
-      logErrors(error, 'skills')
-    })
+export const skills = async (token) =>
+  axios.get(`${base}/portfolio/skills`, { headers: { authorization: token } }).catch((error) => {
+    logErrors(error, 'skills')
+  })
