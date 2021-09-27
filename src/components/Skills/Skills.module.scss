@@ -3,7 +3,6 @@
 @import '~bootstrap/scss/variables';
 @import '~bootstrap/scss/mixins';
 .skills {
-
   .skill-icon {
     margin: 0 0.75rem 1rem;
     svg {
@@ -18,19 +17,19 @@
     }
     &.skill-icon-node {
       fill: $orange-web;
-      .progress-bar{
+      .progress-bar {
         border-color: $orange-web;
       }
     }
     &.skill-icon-html {
       fill: $imperial-red;
-      .progress-bar{
+      .progress-bar {
         border-color: $imperial-red;
       }
     }
     &.skill-icon-css {
       fill: $green-sheen;
-      .progress-bar{
+      .progress-bar {
         border-color: $green-sheen;
       }
     }
@@ -39,19 +38,19 @@
       svg {
         width: 90px;
       }
-      .progress-bar{
+      .progress-bar {
         border-color: $celadon-blue;
       }
     }
     &.skill-icon-mysql {
       fill: $prussian-blue;
-      .progress-bar{
+      .progress-bar {
         border-color: $prussian-blue;
       }
     }
   }
-  
-  .progress{
+
+  .progress {
     width: 120px;
     height: 120px;
     line-height: 120px;
@@ -59,8 +58,8 @@
     margin: 0 auto;
     box-shadow: none;
     position: relative;
-    &:after{
-      content: "";
+    &:after {
+      content: '';
       width: 100%;
       height: 100%;
       border-radius: 50%;
@@ -70,7 +69,7 @@
       top: 0;
       left: 0;
     }
-    & > span{
+    & > span {
       width: 50%;
       height: 100%;
       overflow: hidden;
@@ -78,10 +77,10 @@
       top: 0;
       z-index: 1;
     }
-    .progress-left{
+    .progress-left {
       left: 0;
     }
-    .progress-bar{
+    .progress-bar {
       width: 100%;
       height: 100%;
       background: none;
@@ -91,7 +90,7 @@
       top: 0;
     }
     .progress-left {
-      .progress-bar{
+      .progress-bar {
         left: 100%;
         border-top-right-radius: 80px;
         border-bottom-right-radius: 80px;
@@ -99,10 +98,10 @@
         -webkit-transform-origin: center left;
         transform-origin: center left;
       }
-    } 
-    .progress-right{
+    }
+    .progress-right {
       right: 0;
-      .progress-bar{
+      .progress-bar {
         left: -100%;
         border-top-left-radius: 80px;
         border-bottom-left-radius: 80px;
@@ -112,7 +111,7 @@
         animation: perc-100 1s linear forwards;
       }
     }
-    .progress-value{
+    .progress-value {
       width: 90%;
       height: 90%;
       border-radius: 50%;
@@ -126,68 +125,68 @@
       left: 5%;
     }
   }
-  
-  .progress.perc-100 .progress-left .progress-bar{
+
+  .progress.perc-100 .progress-left .progress-bar {
     animation: perc-100 1s linear forwards 1s;
   }
-  .progress.perc-90 .progress-left .progress-bar{
+  .progress.perc-90 .progress-left .progress-bar {
     animation: perc-75 0.75s linear forwards 1s;
   }
-  .progress.perc-75 .progress-left .progress-bar{
+  .progress.perc-75 .progress-left .progress-bar {
     animation: perc-50 0.5s linear forwards 1s;
   }
-  .progress.perc-50 .progress-left .progress-bar{
+  .progress.perc-50 .progress-left .progress-bar {
     animation: none;
   }
 }
-  
-@keyframes perc-100{
-  0%{
-      -webkit-transform: rotate(0deg);
-      transform: rotate(0deg);
+
+@keyframes perc-100 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
   }
-  100%{
-      -webkit-transform: rotate(180deg);
-      transform: rotate(180deg);
-  }
-}
-@keyframes perc-75{
-  0%{
-      -webkit-transform: rotate(0deg);
-      transform: rotate(0deg);
-  }
-  100%{
-      -webkit-transform: rotate(144deg);
-      transform: rotate(144deg);
+  100% {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
   }
 }
-@keyframes perc-50{
-  0%{
-      -webkit-transform: rotate(0deg);
-      transform: rotate(0deg);
+@keyframes perc-75 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
   }
-  100%{
-      -webkit-transform: rotate(90deg);
-      transform: rotate(90deg);
-  }
-}
-@keyframes loading-4{
-  0%{
-      -webkit-transform: rotate(0deg);
-      transform: rotate(0deg);
-  }
-  100%{
-      -webkit-transform: rotate(36deg);
-      transform: rotate(36deg);
+  100% {
+    -webkit-transform: rotate(144deg);
+    transform: rotate(144deg);
   }
 }
-@keyframes loading-5{
-  0%{
-      -webkit-transform: rotate(0deg);
-      transform: rotate(0deg);
+@keyframes perc-50 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
   }
-  100%{
-      -webkit-transform: rotate(126deg);
-      transform: rotate(126deg);
+  100% {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+  }
+}
+@keyframes loading-4 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(36deg);
+    transform: rotate(36deg);
+  }
+}
+@keyframes loading-5 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(126deg);
+    transform: rotate(126deg);
   }
 }

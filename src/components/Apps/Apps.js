@@ -9,25 +9,24 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { apps } from '../../helpers/api'
 import styles from './Apps.module.scss'
 
-const token = localStorage.getItem('token');
+const token = localStorage.getItem('token')
 
 const Apps = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([])
 
   useEffect(() => {
     try {
-
-      if(token) {
+      if (token) {
         apps().then((response) => {
           if (response && response.data) {
-            setData( response.data.results );
+            setData(response.data.results)
           }
-        });
+        })
       }
     } catch (err) {
       console.log(err)
     }
-  }, [token]);
+  }, [token])
 
   return (
     <section id="apps" className={`${styles.apps} mt-5`}>
@@ -37,7 +36,11 @@ const Apps = () => {
             <Carousel.Item key={element.id} className={styles.AppCard} interval={10000}>
               <Row>
                 <Col md={8}>
-                  <img className="d-block w-100 ms-md-4 mx-auto" src={element.image} alt={element.title} />
+                  <img
+                    className="d-block w-100 ms-md-4 mx-auto"
+                    src={element.image}
+                    alt={element.title}
+                  />
                 </Col>
                 <Col md={4} className="text-white text-center pt-md-5 pe-md-5">
                   <h3>{element.title}</h3>

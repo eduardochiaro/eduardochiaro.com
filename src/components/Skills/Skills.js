@@ -1,38 +1,39 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 // import PropTypes from 'prop-types';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { Container } from 'react-bootstrap'
 import SVG from 'react-inlinesvg'
-import { skills } from '../../helpers/api';
-import styles from './Skills.module.scss';
+import { skills } from '../../helpers/api'
+import styles from './Skills.module.scss'
 
-const token = localStorage.getItem('token');
+const token = localStorage.getItem('token')
 
 const Skills = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([])
 
   useEffect(() => {
     try {
-
-      if(token) {
+      if (token) {
         skills().then((response) => {
           if (response && response.data) {
-            setData( response.data.results );
+            setData(response.data.results)
           }
-        });
+        })
       }
     } catch (err) {
       console.log(err)
     }
-  }, [token]);
+  }, [token])
 
   return (
     <section id="skills" className={`${styles.skills} mt-5`}>
       <Container>
         <Row>
           <Col>
-            <h3 className="display-6 pb-4">What I&apos;m <span className="text-primary">good</span> at...</h3>
+            <h3 className="display-6 pb-4">
+              What I&apos;m <span className="text-primary">good</span> at...
+            </h3>
           </Col>
         </Row>
         <Row>
@@ -42,16 +43,19 @@ const Skills = () => {
           <Col lg={8} xs={12}>
             <div className="d-flex flex-wrap justify-content-between">
               {data.map((skill) => (
-                <div key={skill.name} className={[styles['skill-icon'], styles[`skill-icon-${skill.type}`]].join(' ')}>
+                <div
+                  key={skill.name}
+                  className={[styles['skill-icon'], styles[`skill-icon-${skill.type}`]].join(' ')}
+                >
                   <div className={[styles.progress, styles[`perc-${skill.percentage}`]].join(' ')}>
                     <span className={styles['progress-left']}>
-                        <span className={styles['progress-bar']} />
+                      <span className={styles['progress-bar']} />
                     </span>
                     <span className={styles['progress-right']}>
-                        <span className={styles['progress-bar']} />
+                      <span className={styles['progress-bar']} />
                     </span>
                     <svg>
-                      <use href={`${window.location.origin}/images/svg-icons/${skill.logo}`}/>
+                      <use href={`${window.location.origin}/images/svg-icons/${skill.logo}`} />
                     </svg>
                   </div>
                   <p className="text-center mt-2">{skill.name}</p>
@@ -62,11 +66,11 @@ const Skills = () => {
         </Row>
       </Container>
     </section>
-  );
+  )
 }
 
-Skills.propTypes = {};
+Skills.propTypes = {}
 
-Skills.defaultProps = {};
+Skills.defaultProps = {}
 
-export default Skills;
+export default Skills

@@ -13,7 +13,7 @@ const Footer = () => (
     <Container>
       <Row>
         <Col md={12} className="text-center my-4 text-white">
-          <FontAwesomeIcon icon={faCopyright}/> Copyright { moment().year() } 
+          <FontAwesomeIcon icon={faCopyright} /> Copyright {moment().year()}
           <svg className={`${styles.logo} mx-2`} aria-hidden="true">
             <use href={`${window.location.origin}/images/logo.svg#logo`} />
           </svg>

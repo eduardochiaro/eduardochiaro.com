@@ -12,11 +12,10 @@ import GitHub from './components/GitHub/GitHub.lazy'
 import Footer from './components/Footer/Footer.lazy'
 
 class App extends Component {
-
   async componentDidMount() {
     try {
-      const response = await token();
-      localStorage.setItem('token', response.data);
+      const response = await token()
+      localStorage.setItem('token', response.data)
     } catch (err) {
       console.log(err)
     }

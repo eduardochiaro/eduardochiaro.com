@@ -5,12 +5,15 @@
 
 .apps {
   background: url('/resources/images/3px-tile.png'), $green-sheen;
-  background: url('/resources/images/3px-tile.png'), linear-gradient(to left, $independence, $green-sheen);
+  background: url('/resources/images/3px-tile.png'),
+    linear-gradient(to left, $independence, $green-sheen);
   h3 {
     font-family: $font-family-header;
     font-weight: bold;
   }
   .card-cont {
-    position: absolute; left: 0%; top: 0px;
+    position: absolute;
+    left: 0%;
+    top: 0px;
   }
 }

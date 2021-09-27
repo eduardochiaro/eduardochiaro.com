@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-const base = process.env.NODE_ENV !== 'development' ? 'https://api.eduardochiaro.com' : 'http://localhost:3030';
+const base =
+  process.env.NODE_ENV !== 'development' ? 'https://api.eduardochiaro.com' : 'http://localhost:3030'
 // const base = 'https://api.eduardochiaro.com';
 
 function logErrors(error, route) {
@@ -26,25 +27,32 @@ function logErrors(error, route) {
 export const token = async () =>
   axios.post(`${base}/access/new`, { username: 'website' }).catch((error) => {
     logErrors(error, 'access')
-  });
+  })
 
-export const github = async () => 
-  axios.get(`${base}/portfolio/github`, { headers: { authorization:  localStorage.getItem('token') }}).catch((error) => {
-    logErrors(error, 'github')
-  });
+export const github = async () =>
+  axios
+    .get(`${base}/portfolio/github`, { headers: { authorization: localStorage.getItem('token') } })
+    .catch((error) => {
+      logErrors(error, 'github')
+    })
 
 export const work = async () =>
-  axios.get(`${base}/portfolio/work`, { headers: { authorization:  localStorage.getItem('token') }}).catch((error) => {
-    logErrors(error, 'work')
-  });
+  axios
+    .get(`${base}/portfolio/work`, { headers: { authorization: localStorage.getItem('token') } })
+    .catch((error) => {
+      logErrors(error, 'work')
+    })
 
 export const apps = async () =>
-  axios.get(`${base}/portfolio/apps`, { headers: { authorization:  localStorage.getItem('token') }}).catch((error) => {
-    logErrors(error, 'apps')
-  });
+  axios
+    .get(`${base}/portfolio/apps`, { headers: { authorization: localStorage.getItem('token') } })
+    .catch((error) => {
+      logErrors(error, 'apps')
+    })
 
 export const skills = async () =>
-  axios.get(`${base}/portfolio/skills`, { headers: { authorization:  localStorage.getItem('token') }}).catch((error) => {
-    logErrors(error, 'skills')
-  });
-  
+  axios
+    .get(`${base}/portfolio/skills`, { headers: { authorization: localStorage.getItem('token') } })
+    .catch((error) => {
+      logErrors(error, 'skills')
+    })

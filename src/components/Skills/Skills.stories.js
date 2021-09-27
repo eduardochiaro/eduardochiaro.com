@@ -1,12 +1,12 @@
 /* eslint-disable */
-import Skills from './Skills';
+import Skills from './Skills'
 
 export default {
-  title: "Skills",
-};
+  title: 'Skills',
+}
 
-export const Default = () => <Skills />;
+export const Default = () => <Skills />
 
 Default.story = {
   name: 'default',
-};
+}

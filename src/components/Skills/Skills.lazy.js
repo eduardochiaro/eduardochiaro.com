@@ -1,11 +1,11 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense } from 'react'
 
-const LazySkills = lazy(() => import('./Skills'));
+const LazySkills = lazy(() => import('./Skills'))
 
-const Skills = props => (
+const Skills = (props) => (
   <Suspense fallback={null}>
     <LazySkills {...props} />
   </Suspense>
-);
+)
 
-export default Skills;
+export default Skills

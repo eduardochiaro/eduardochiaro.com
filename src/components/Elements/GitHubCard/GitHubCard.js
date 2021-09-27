@@ -63,7 +63,9 @@ const GitHubCard = (props) => {
     <div className={`col-sm-6 col-lg-4 mb-4 ${styles['card-cont']}`}>
       <a href={link} id={id} className="text-decoration-none text-secondary">
         <Card type={kebab(language)} className={[styles.GitHubCard]}>
-          <Card.Header className={[styles[`card-header`], styles[`language-${kebab(language)}`]].join(' ')}>
+          <Card.Header
+            className={[styles[`card-header`], styles[`language-${kebab(language)}`]].join(' ')}
+          >
             <svg title={language} alt={language} className={styles.logo} aria-hidden="true">
               <use href={`images/svg-icons/${getLanguageIcon(language)}.svg#icon`} />
             </svg>
@@ -74,7 +76,9 @@ const GitHubCard = (props) => {
             <Card.Title className={styles.title}>{title}</Card.Title>
             <Card.Text className={styles.text}>{description}</Card.Text>
             {topics.map((topic) => (
-              <Badge className='bg-primary me-1' key={topic}>{topic}</Badge>
+              <Badge className="bg-primary me-1" key={topic}>
+                {topic}
+              </Badge>
             ))}
           </Card.Body>
           {updated && (
@@ -85,7 +89,6 @@ const GitHubCard = (props) => {
         </Card>
       </a>
     </div>
-    
   )
 }
 

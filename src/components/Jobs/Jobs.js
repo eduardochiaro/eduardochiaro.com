@@ -7,24 +7,25 @@ import { work } from '../../helpers/api'
 import JobCard from '../Elements/JobCard/JobCard.lazy'
 import styles from './Jobs.module.scss'
 
-const token = localStorage.getItem('token');
+const token = localStorage.getItem('token')
 
 const Jobs = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([])
 
   useEffect(() => {
     try {
-      if(token) {
+      console.log(token)
+      if (token) {
         work().then((response) => {
           if (response && response.data) {
-            setData( response.data.results );
+            setData(response.data.results)
           }
-        });
+        })
       }
     } catch (err) {
       console.log(err)
     }
-  }, [token]);
+  }, [token])
 
   return (
     <section id="work" className={`${styles.jobs} mt-5`}>
