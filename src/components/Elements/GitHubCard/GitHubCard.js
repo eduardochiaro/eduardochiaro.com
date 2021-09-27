@@ -74,7 +74,7 @@ const GitHubCard = (props) => {
             <Card.Title className={styles.title}>{title}</Card.Title>
             <Card.Text className={styles.text}>{description}</Card.Text>
             {topics.map((topic) => (
-              <Badge className='bg-primary me-1'>{topic}</Badge>
+              <Badge className='bg-primary me-1' key={topic}>{topic}</Badge>
             ))}
           </Card.Body>
           {updated && (

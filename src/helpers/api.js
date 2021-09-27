@@ -1,7 +1,8 @@
 import axios from 'axios'
 import isDev from './devDetect'
 
-const base = isDev() ? 'http://localhost:3030' : 'https://api.eduardochiaro.com'
+const base = !isDev() ? 'https://api.eduardochiaro.com' : 'http://localhost:3030';
+// const base = 'https://api.eduardochiaro.com';
 
 function logErrors(error, route) {
   console.log(route)
