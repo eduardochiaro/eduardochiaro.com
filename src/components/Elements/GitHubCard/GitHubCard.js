@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Card from 'react-bootstrap/Card'
+import Placeholder from 'react-bootstrap/Placeholder'
 import Badge from 'react-bootstrap/Badge'
 import moment from 'moment'
 import { kebab } from 'case'
@@ -54,11 +55,41 @@ const Image = ({ src, alt, fallback }) => {
 }
 
 const GitHubCard = (props) => {
-  const { link, language, title, description, updated, id, topics } = props
+  const { link, language, title, description, updated, id, topics, placeholder } = props
 
   const image = `${window.location.origin}/images/github/${id}.png`
   const fallbackImage = `${window.location.origin}/images/svg-icons/github.svg`
 
+  if (placeholder) {
+    return (
+      <div className={`col-sm-6 col-lg-4 mb-4 ${styles['card-cont']}`}>
+        <Card className={[styles.GitHubCard]}>
+          <Placeholder
+            as={Card.Header}
+            animation="glow"
+            className={[styles[`card-header`]].join(' ')}
+          >
+            <Placeholder xs={6} />
+          </Placeholder>
+          <Image src="" alt={title} fallback={fallbackImage} />
+          <Card.Body>
+            <Placeholder as={Card.Title} animation="glow">
+              <Placeholder xs={6} />
+            </Placeholder>
+            <Placeholder as={Card.Text} animation="glow">
+              <Placeholder xs={7} /> <Placeholder xs={4} /> <Placeholder xs={4} />{' '}
+              <Placeholder xs={6} /> <Placeholder xs={8} />
+            </Placeholder>
+          </Card.Body>
+          <Placeholder as={Card.Footer} className={styles.footer} animation="glow">
+            <small>
+              <Placeholder xs={6} />
+            </small>
+          </Placeholder>
+        </Card>
+      </div>
+    )
+  }
   return (
     <div className={`col-sm-6 col-lg-4 mb-4 ${styles['card-cont']}`}>
       <a href={link} id={id} className="text-decoration-none text-secondary">
@@ -100,6 +131,7 @@ GitHubCard.defaultProps = {
   updated: '',
   language: '',
   topics: [],
+  placeholder: false,
 }
 
 GitHubCard.propTypes = {
@@ -110,6 +142,7 @@ GitHubCard.propTypes = {
   updated: PropTypes.string,
   language: PropTypes.string,
   topics: PropTypes.arrayOf(PropTypes.string),
+  placeholder: PropTypes.bool,
 }
 
 export default GitHubCard

@@ -9,9 +9,7 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { apps } from '../../helpers/api'
 import styles from './Apps.module.scss'
 
-const token = localStorage.getItem('token')
-
-const Apps = () => {
+const Apps = ({ token }) => {
   const [data, setData] = useState([])
 
   useEffect(() => {

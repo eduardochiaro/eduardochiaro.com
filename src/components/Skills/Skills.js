@@ -7,9 +7,7 @@ import SVG from 'react-inlinesvg'
 import { skills } from '../../helpers/api'
 import styles from './Skills.module.scss'
 
-const token = localStorage.getItem('token')
-
-const Skills = () => {
+const Skills = ({ token }) => {
   const [data, setData] = useState([])
 
   useEffect(() => {

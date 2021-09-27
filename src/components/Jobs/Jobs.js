@@ -7,9 +7,7 @@ import { work } from '../../helpers/api'
 import JobCard from '../Elements/JobCard/JobCard.lazy'
 import styles from './Jobs.module.scss'
 
-const token = localStorage.getItem('token')
-
-const Jobs = () => {
+const Jobs = ({ token }) => {
   const [data, setData] = useState([])
 
   useEffect(() => {

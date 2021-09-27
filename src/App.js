@@ -1,39 +1,44 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.scss'
 // import { Container } from 'react-bootstrap'
 import Header from './components/Header/Header.lazy'
 import Jobs from './components/Jobs/Jobs.lazy'
 import Share from './components/Share/Share.lazy'
-import { token } from './helpers/api'
+import { getToken } from './helpers/api'
 import Skills from './components/Skills/Skills.lazy'
 import Apps from './components/Apps/Apps.lazy'
 import GitHub from './components/GitHub/GitHub.lazy'
 import Footer from './components/Footer/Footer.lazy'
 
-class App extends Component {
-  async componentDidMount() {
+const App = () => {
+  const [token, setToken] = useState(null)
+
+  useEffect(() => {
     try {
-      const response = await token()
-      localStorage.setItem('token', response.data)
+      if (!token) {
+        getToken().then((response) => {
+          if (response && response.data) {
+            setToken(response.data)
+          }
+        })
+      }
     } catch (err) {
       console.log(err)
     }
-  }
+  })
 
-  render() {
-    return (
-      <>
-        <Header />
-        <Jobs />
-        <Share />
-        <Skills />
-        <Apps />
-        <GitHub />
-        <Footer />
-      </>
-    )
-  }
+  return (
+    <>
+      <Header />
+      <Jobs token={token} />
+      <Share />
+      <Skills token={token} />
+      <Apps token={token} />
+      <GitHub token={token} />
+      <Footer />
+    </>
+  )
 }
 
 export default App

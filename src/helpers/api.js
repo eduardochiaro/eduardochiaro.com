@@ -24,7 +24,7 @@ function logErrors(error, route) {
   console.log(error.config)
 }
 
-export const token = async () =>
+export const getToken = async () =>
   axios.post(`${base}/access/new`, { username: 'website' }).catch((error) => {
     logErrors(error, 'access')
   })

@@ -8,9 +8,7 @@ import { github } from '../../helpers/api'
 import GitHubCard from '../Elements/GitHubCard/GitHubCard.lazy'
 import styles from './GitHub.module.scss'
 
-const token = localStorage.getItem('token')
-
-const GitHub = () => {
+const GitHub = ({ token }) => {
   const [data, setData] = useState([])
   const [total, setTotal] = useState(0)
 
@@ -53,18 +51,33 @@ const GitHub = () => {
           </Col>
           <Col md={8}>
             <Row data-masonry='{"percentPosition": true }'>
-              {data.map((repo) => (
-                <GitHubCard
-                  key={repo.id}
-                  title={repo.name}
-                  description={repo.description}
-                  updated={repo.updated_at}
-                  language={repo.language}
-                  link={repo.html_url}
-                  id={repo.id}
-                  topics={repo.topics}
-                />
-              ))}
+              {data && data.length > 0
+                ? data.map((repo) => (
+                    <GitHubCard
+                      key={repo.id}
+                      title={repo.name}
+                      description={repo.description}
+                      updated={repo.updated_at}
+                      language={repo.language}
+                      link={repo.html_url}
+                      id={repo.id}
+                      topics={repo.topics}
+                      placeholder={false}
+                    />
+                  ))
+                : [...Array(6)].map((x) => (
+                    <GitHubCard
+                      key={x}
+                      title={x}
+                      description=""
+                      updated=""
+                      language=""
+                      link=""
+                      id={1}
+                      topics={[]}
+                      placeholder
+                    />
+                  ))}
             </Row>
           </Col>
         </Row>
