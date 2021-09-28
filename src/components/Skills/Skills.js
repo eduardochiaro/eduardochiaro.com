@@ -4,6 +4,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { Container } from 'react-bootstrap'
 import SVG from 'react-inlinesvg'
+import Gauge from '../Elements/Gauge/Gauge.lazy'
 import { skills } from '../../helpers/api'
 import styles from './Skills.module.scss'
 
@@ -41,25 +42,14 @@ const Skills = ({ token }) => {
           <Col lg={8} xs={12}>
             <div className="d-flex flex-wrap justify-content-between">
               {data.map((skill) => (
-                <div
-                  key={skill.name}
-                  className={[styles['skill-icon'], styles[`skill-icon-${skill.type}`]].join(' ')}
-                >
-                  <div className={[styles.progress, styles[`perc-${skill.percentage}`]].join(' ')}>
-                    <span className={styles['progress-left']}>
-                      <span className={styles['progress-bar']} />
-                    </span>
-                    <span className={styles['progress-right']}>
-                      <span className={styles['progress-bar']} />
-                    </span>
-                    <svg>
-                      <use href={`${window.location.origin}/images/svg-icons/${skill.logo}`} />
-                    </svg>
-                  </div>
-                  <p className="text-center mt-2">{skill.name}</p>
-                </div>
-              ))}
-            </div>
+                  <Gauge
+                    key={`g-${skill.name}`}
+                    value={skill.percentage}
+                    skill={skill}
+                    // any other options you want
+                  />
+                ))}
+              </div>
           </Col>
         </Row>
       </Container>

@@ -29,7 +29,8 @@
     "react-inlinesvg": "^2.3.0",
     "react-intersection-observer": "^8.32.0",
     "react-scripts": "^4.0.3",
-    "react-scrollchor": "^7.0.0"
+    "react-scrollchor": "^7.0.0",
+    "svg-gauge": "^1.0.6"
   },
   "scripts": {
     "start": "react-scripts start",

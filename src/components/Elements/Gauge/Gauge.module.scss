@@ -1,0 +1,88 @@
+@import '../../../resources/defaults.scss';
+
+.gauge-container {
+  width: 150px;
+  position: relative;
+  p {
+    font-family: $font-family-header;
+    font-weight: bold;
+  }
+  .icon {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    svg {
+      width: 130px;
+    }
+  }
+  .gauge {
+    .dial {
+      stroke: $independence-opacity;
+      stroke-width: 5;
+      stroke-linecap: round;
+      fill: rgba(0, 0, 0, 0);
+    }
+    .value {
+      stroke: rgb(47, 227, 255);
+      stroke-width: 8;
+      stroke-linecap: round;
+      fill: rgba(0, 0, 0, 0);
+    }
+  }
+  &.gauge-node {
+    .value {
+      stroke: $green-sheen;
+    }
+    .icon {
+      fill: $green-sheen;
+    }
+  }
+  &.gauge-html {
+    .value {
+      stroke: $imperial-red;
+    }
+    .icon {
+      fill: $imperial-red;
+    }
+  }
+  &.gauge-css {
+    .value {
+      stroke: $celadon-blue;
+    }
+    .icon {
+      fill: $celadon-blue;
+    }
+  }
+  &.gauge-php {
+    .value {
+      stroke: $old-lavender;
+    }
+    .icon {
+      fill: $old-lavender;
+      left: 30px;
+      svg {
+        width: 90px;
+      }
+    }
+  }
+  &.gauge-mysql {
+    .value {
+      stroke: $prussian-blue;
+    }
+    .icon {
+      fill: $prussian-blue;
+    }
+  }
+  &.gauge-aws {
+    .value {
+      stroke: $orange-web;
+    }
+    .icon {
+      fill: $orange-web;
+      left: 30px;
+      svg {
+        width: 90px;
+      }
+    }
+  }
+}
