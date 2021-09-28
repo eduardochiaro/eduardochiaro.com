@@ -42,14 +42,14 @@ const Skills = ({ token }) => {
           <Col lg={8} xs={12}>
             <div className="d-flex flex-wrap justify-content-between">
               {data.map((skill) => (
-                  <Gauge
-                    key={`g-${skill.name}`}
-                    value={skill.percentage}
-                    skill={skill}
-                    // any other options you want
-                  />
-                ))}
-              </div>
+                <Gauge
+                  key={`g-${skill.name}`}
+                  value={skill.percentage}
+                  skill={skill}
+                  // any other options you want
+                />
+              ))}
+            </div>
           </Col>
         </Row>
       </Container>

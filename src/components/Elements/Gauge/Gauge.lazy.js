@@ -1,11 +1,11 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense } from 'react'
 
-const LazyGauge = lazy(() => import('./Gauge'));
+const LazyGauge = lazy(() => import('./Gauge'))
 
-const Gauge = props => (
+const Gauge = (props) => (
   <Suspense fallback={null}>
     <LazyGauge {...props} />
   </Suspense>
-);
+)
 
-export default Gauge;
+export default Gauge
