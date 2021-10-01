@@ -48,7 +48,7 @@ const Apps = ({ token }) => {
                       href={element.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="btn btn-lg btn-secondary mt-5 border"
+                      className="btn btn-lg btn-secondary mt-5 mb-5 border"
                     >
                       <FontAwesomeIcon icon={faGithub} size="1x" className="me-2" />
                       Download from GitHub
