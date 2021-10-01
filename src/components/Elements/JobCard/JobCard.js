@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Card from 'react-bootstrap/Card'
 import Tooltip from 'react-bootstrap/Tooltip'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
+import Placeholder from 'react-bootstrap/Placeholder'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStarOfLife } from '@fortawesome/free-solid-svg-icons'
 import 'holderjs'
@@ -35,9 +36,33 @@ function CardImage(props) {
   return null
 }
 
+const colors = [
+  "primary",
+  "secondary",
+  "success",
+  "danger",
+  "warning",
+  "info",
+  "dark"
+];
+
 const JobCard = (props) => {
-  const { image, title, description, stylecss } = props
+  const { image, title, description, stylecss, placeholder } = props
   const bodyStyle = description ? '' : 'd-none'
+  const color = colors[Math.floor(Math.random()*colors.length)];
+  if (placeholder) {
+    return (
+      <Card className={[styles.JobCard, 'bg-transparent mx-md-4 mx-2 border-0']}>
+      <Placeholder as={Card.Title} animation="glow">
+        <Placeholder xs={6} bg={color} />
+      </Placeholder>
+      <Placeholder as={Card.Text} animation="glow">
+        <Placeholder xs={7} bg={color} /> <Placeholder bg={color} xs={4} /> <Placeholder bg={color} xs={4} />{' '}
+        <Placeholder xs={6} bg={color} /> <Placeholder bg={color} xs={8} />
+      </Placeholder>
+      </Card>
+    )
+  }
   return (
     <Card className={[styles.JobCard, 'bg-transparent mx-md-4 mx-2 border-0']}>
       <CardImage image={image} stylecss={stylecss} description={description} title={title} />
@@ -59,6 +84,7 @@ JobCard.defaultProps = {
   title: '',
   description: '',
   stylecss: {},
+  placeholder: false
 }
 
 JobCard.propTypes = {
@@ -66,6 +92,7 @@ JobCard.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   stylecss: PropTypes.objectOf(PropTypes.any),
+  placeholder: PropTypes.bool,
 }
 
 export default JobCard

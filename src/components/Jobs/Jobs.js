@@ -35,15 +35,31 @@ const Jobs = ({ token }) => {
           </Col>
           <Col xl={10} md={8} xs={12}>
             <div className="d-flex flex-wrap justify-content-between">
-              {data.map((job) => (
+              {data && data.length > 0
+                ? data.map((job) => (
                 <JobCard
                   key={job.name}
                   title={job.name}
                   image={job.logo}
                   description={job.disclaimer}
                   stylecss={job.style}
+                  placeholder={false}
                 />
-              ))}
+                ))
+                : [
+                    ...Array(6)
+                      .fill()
+                      .map((_, idx) => 0 + idx),
+                  ].map((x) => (
+                    <JobCard
+                      key={x}
+                      title=""
+                      image=""
+                      description=""
+                      stylecss=""
+                      placeholder
+                    />
+                    ))}
             </div>
           </Col>
         </Row>

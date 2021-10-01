@@ -31,6 +31,15 @@ const getLanguageIcon = (language) => {
   }
 }
 
+const colors = [
+  "primary",
+  "success",
+  "danger",
+  "warning",
+  "info",
+  "light"
+];
+
 const Image = ({ src, alt, fallback }) => {
   const [error, setError] = React.useState(false)
 
@@ -59,6 +68,7 @@ const GitHubCard = (props) => {
 
   const image = `${window.location.origin}/images/github/${id}.png`
   const fallbackImage = `${window.location.origin}/images/svg-icons/github.svg`
+  const color = colors[Math.floor(Math.random()*colors.length)];
 
   if (placeholder) {
     return (
@@ -67,6 +77,7 @@ const GitHubCard = (props) => {
           <Placeholder
             as={Card.Header}
             animation="glow"
+            bg={color}
             className={[styles[`card-header`]].join(' ')}
           >
             <Placeholder xs={6} />
