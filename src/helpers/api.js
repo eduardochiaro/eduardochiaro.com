@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-const base =
-  process.env.NODE_ENV !== 'development' ? 'https://api.eduardochiaro.com' : 'http://localhost:3030'
+const { REACT_APP_API_ENDPOINT } = process.env;
+// process.env.NODE_ENV !== 'development' ? 'https://api.eduardochiaro.com' : 'http://localhost:3030'
 // const base = 'https://api.eduardochiaro.com';
 
 function logErrors(error, route) {
@@ -25,26 +25,26 @@ function logErrors(error, route) {
 }
 
 export const getToken = async () =>
-  axios.post(`${base}/access/new`, { username: 'website' }).catch((error) => {
+  axios.post(`${REACT_APP_API_ENDPOINT}/access/new`, { username: 'website' }).catch((error) => {
     logErrors(error, 'access')
   })
 
 export const github = async (token) =>
-  axios.get(`${base}/portfolio/github`, { headers: { authorization: token } }).catch((error) => {
+  axios.get(`${REACT_APP_API_ENDPOINT}/portfolio/github`, { headers: { authorization: token } }).catch((error) => {
     logErrors(error, 'github')
   })
 
 export const work = async (token) =>
-  axios.get(`${base}/portfolio/work`, { headers: { authorization: token } }).catch((error) => {
+  axios.get(`${REACT_APP_API_ENDPOINT}/portfolio/work`, { headers: { authorization: token } }).catch((error) => {
     logErrors(error, 'work')
   })
 
 export const apps = async (token) =>
-  axios.get(`${base}/portfolio/apps`, { headers: { authorization: token } }).catch((error) => {
+  axios.get(`${REACT_APP_API_ENDPOINT}/portfolio/apps`, { headers: { authorization: token } }).catch((error) => {
     logErrors(error, 'apps')
   })
 
 export const skills = async (token) =>
-  axios.get(`${base}/portfolio/skills`, { headers: { authorization: token } }).catch((error) => {
+  axios.get(`${REACT_APP_API_ENDPOINT}/portfolio/skills`, { headers: { authorization: token } }).catch((error) => {
     logErrors(error, 'skills')
   })
