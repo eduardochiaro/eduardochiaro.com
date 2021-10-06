@@ -27,6 +27,22 @@ svg {
   .cls-2 {
     fill: $secondary !important;
   }
+  &.main-logo {
+    .main {
+      fill: $secondary !important;
+    }
+    .accent {
+      fill: $primary !important;
+    }
+  }
+  &.bottom-logo {
+    .main {
+      fill: $white !important;
+    }
+    .accent {
+      fill: $white !important;
+    }
+  }
 }
 
 .carousel-control-prev,

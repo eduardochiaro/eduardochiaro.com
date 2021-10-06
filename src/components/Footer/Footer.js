@@ -6,6 +6,8 @@ import Col from 'react-bootstrap/Col'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCopyright } from '@fortawesome/free-solid-svg-icons'
 import moment from 'moment'
+import SVG from 'react-inlinesvg'
+import data from '../../data/header.json'
 import styles from './Footer.module.scss'
 
 const Footer = () => (
@@ -14,10 +16,9 @@ const Footer = () => (
       <Row>
         <Col md={12} className="text-center my-4 text-white">
           <FontAwesomeIcon icon={faCopyright} /> Copyright {moment().year()}
-          <svg className={`${styles.logo} mx-2`} aria-hidden="true">
-            <use href={`${window.location.origin}/images/logo.svg#logo`} />
-          </svg>
-          Eduardo Chiaro
+
+          <SVG title={data.title} alt={data.title} className={`${styles.logo} bottom-logo mx-2`} src={`${window.location.origin}/images/logo-n.svg`} />
+          {data.title}
         </Col>
       </Row>
     </Container>

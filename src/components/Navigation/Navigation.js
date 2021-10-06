@@ -7,16 +7,15 @@ import Container from 'react-bootstrap/Container'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRss } from '@fortawesome/free-solid-svg-icons'
 import { Scrollchor } from 'react-scrollchor'
+import SVG from 'react-inlinesvg'
 import data from '../../data/header.json'
 import styles from './Navigation.module.scss'
 
 const Navigation = () => (
   <Navbar variant="light" expand="lg" className="pt-4 px-md-5">
     <Container fluid>
-      <Navbar.Brand href="#home" className="logo">
-        <svg title={data.title} alt={data.title} className={styles.logo} aria-hidden="true">
-          <use href={`${window.location.origin}/images/logo.svg#logo`} />
-        </svg>
+      <Navbar.Brand href="#home" className={styles.logo}>
+        <SVG title={data.title} alt={data.title} className="main-logo" src={`${window.location.origin}/images/logo-n.svg`} />
       </Navbar.Brand>
       <div className="d-lg-inline d-none">
         <Navbar>
