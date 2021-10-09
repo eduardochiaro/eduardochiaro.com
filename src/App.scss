@@ -48,4 +48,12 @@ svg {
 .carousel-control-prev,
 .carousel-control-next {
   width: 5%;
+  @include media-breakpoint-down(md) {
+    width: 15%;
+  }
+}
+.carousel-indicators {
+  button { 
+    background-color: $orange-web !important;
+  }
 }

@@ -72,7 +72,7 @@ const GitHubCard = (props) => {
 
   if (placeholder) {
     return (
-      <div className={`col-sm-6 col-lg-4 mb-4 ${styles['card-cont']}`}>
+      <div className={`col-sm-6 col-xl-4 mb-4 ${styles['card-cont']}`}>
         <Card className={[styles.GitHubCard]}>
           <Placeholder
             as={Card.Header}
@@ -102,7 +102,7 @@ const GitHubCard = (props) => {
     )
   }
   return (
-    <div className={`col-sm-6 col-lg-4 mb-4 ${styles['card-cont']}`}>
+    <div className={`col-sm-6 col-xl-4 mb-4 ${styles['card-cont']}`}>
       <a href={link} id={id} className="text-decoration-none text-secondary">
         <Card type={kebab(language)} className={[styles.GitHubCard]}>
           <Card.Header

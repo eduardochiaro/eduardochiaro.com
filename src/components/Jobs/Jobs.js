@@ -56,7 +56,7 @@ const Jobs = ({ token }) => {
                       title=""
                       image=""
                       description=""
-                      stylecss=""
+                      stylecss={{}}
                       placeholder
                     />
                     ))}

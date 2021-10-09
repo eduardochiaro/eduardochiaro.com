@@ -6,12 +6,12 @@ import Col from 'react-bootstrap/Col'
 import Carousel from 'react-bootstrap/Carousel'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
+import Particles from "react-tsparticles";
 import { apps } from '../../helpers/api'
 import styles from './Apps.module.scss'
 
 const Apps = ({ token }) => {
   const [data, setData] = useState([])
-
   useEffect(() => {
     try {
       if (token) {
@@ -28,6 +28,39 @@ const Apps = ({ token }) => {
 
   return (
     <section id="apps" className={`${styles.apps} mt-5`}>
+      <Particles
+      className={styles.background}
+      options={{
+        autoPlay:	true,
+        fpsLimit: 60,
+        motion: {
+          disable: false,
+          reduce: {
+            factor: 4,
+            value: true
+          }
+        },
+        particles: {
+          links: {
+            distance: 100,
+            enable: true,
+            color: {
+              value: `${styles.powderblue}`
+            },
+          },
+          color: {
+            value: `${styles.powderblue}`
+          },
+          move: {
+            enable: true
+          },
+          size: {
+            value: 3
+          }
+        },
+        detectRetina: true,
+      }}
+    />
       <Container className="py-5">
         <Carousel>
           {data.map((element) => (
