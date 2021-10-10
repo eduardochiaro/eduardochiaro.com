@@ -1,6 +1,32 @@
 @import '../../resources/defaults.scss';
 
-.Bio {
-  font-size: 1.5rem;
-  color: $trolley-grey;
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+
+.bio {
+  h1,
+  h2 {
+    font-family: $font-family-header;
+    font-weight: bold;
+    font-size: 4.7rem;
+    @include media-breakpoint-down(xl) {
+      font-size: 2.7rem;
+    }
+  }
+  .bg-website-image {
+    //background: url(../images/integration.svg) bottom center no-repeat;
+    position: relative;
+    svg {
+      position: absolute;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+      left: 0;
+      right: 0;
+      margin: auto;
+      text-align: center;
+    }
+  }
 }

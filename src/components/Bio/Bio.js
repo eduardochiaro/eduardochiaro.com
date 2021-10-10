@@ -1,33 +1,32 @@
 import React from 'react'
+import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCoffee } from '@fortawesome/free-solid-svg-icons'
-import { Container } from 'react-bootstrap'
+import SVG from 'react-inlinesvg'
 import styles from './Bio.module.scss'
+// import data from '../../data/header.json'
 
 const Bio = () => (
-  <section className={`${styles.Bio} white`}>
+  <section id="bio" className={styles.bio}>
     <Container>
-      <Row>
-        <Col>
-          <p>
-            Hello!
-            <br />
-            I&apos;m Eduardo, a <FontAwesomeIcon icon={faCoffee} /> coffee driven Software Developer
-            based in Washington State.
-          </p>
-          <p>
-            I enjoy writing applications in PHP, Swift, Node.js, Angular and Javascript. I also like
-            working on databases, make servers do stuff, working on scalability, performance, user
-            experiences and desktop/mobile design.
-          </p>
+      <Row className="justify-content-center">
+        <Col lg={8} xs={12}>
+          <h1>
+            I&apos;m <span className="text-primary">Eduardo</span>,
+          </h1>
+          <h2>
+            a <FontAwesomeIcon icon={faCoffee} size="xs" className="text-secondary" /> coffee-driven
+            Software Developer based in Washington State.
+          </h2>
+        </Col>
+        <Col lg={4} className={`d-none d-lg-inline ${styles['bg-website-image']}`}>
+          <SVG src={`${window.location.origin}/images/bgs/integration.svg`} />
         </Col>
       </Row>
     </Container>
   </section>
 )
-
-Bio.defaultProps = {}
 
 export default Bio
