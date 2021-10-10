@@ -19,7 +19,7 @@ const GitHub = ({ token }) => {
           if (response && response.data) {
             const cutReposene = response.data.results
               .filter((element) => !element.archived)
-              .slice(0, 6)
+              .slice(0, 7)
             setData(cutReposene)
             setTotal(response.data.results.length)
           }
@@ -42,15 +42,15 @@ const GitHub = ({ token }) => {
           </Col>
         </Row>
         <Row>
-          <Col lg={4} className="col-lg-4 d-none d-lg-inline text-center">
-            <FontAwesomeIcon
-              icon={faGithub}
-              size="10x"
-              className="mt-5 text-secondary opacity-25"
-            />
-          </Col>
-          <Col md={8}>
-            <Row data-masonry='{"percentPosition": true }'>
+          <Col md={12}>
+            <Row>
+              <Col sm={4} xl={3} className="d-none d-lg-inline text-center">
+                <FontAwesomeIcon
+                  icon={faGithub}
+                  size="10x"
+                  className="mt-5 text-secondary opacity-25"
+                />
+              </Col>
               {data && data.length > 0
                 ? data.map((repo) => (
                     <GitHubCard

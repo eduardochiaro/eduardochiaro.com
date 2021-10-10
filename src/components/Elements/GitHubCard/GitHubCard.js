@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Card from 'react-bootstrap/Card'
+import Col from 'react-bootstrap/Col'
 import Placeholder from 'react-bootstrap/Placeholder'
 import Badge from 'react-bootstrap/Badge'
 import SVG from 'react-inlinesvg'
@@ -71,7 +72,7 @@ const GitHubCard = (props) => {
 
   if (placeholder) {
     return (
-      <div className={`col-sm-6 col-xl-4 mb-4 ${styles['card-cont']}`}>
+      <Col sm={4} xl={3} className={`mb-4 ${styles['card-cont']}`}>
         <Card className={[styles.GitHubCard]}>
           <Placeholder
             as={Card.Header}
@@ -97,11 +98,11 @@ const GitHubCard = (props) => {
             </small>
           </Placeholder>
         </Card>
-      </div>
+      </Col>
     )
   }
   return (
-    <div className={`col-sm-6 col-xl-4 mb-4 ${styles['card-cont']}`}>
+    <Col sm={4} xl={3} className={`mb-4 ${styles['card-cont']}`}>
       <a href={link} id={id} className="text-decoration-none text-secondary">
         <Card type={kebab(language)} className={styles.GitHubCard}>
           <Card.Header
@@ -129,7 +130,7 @@ const GitHubCard = (props) => {
           )}
         </Card>
       </a>
-    </div>
+    </Col>
   )
 }
 
