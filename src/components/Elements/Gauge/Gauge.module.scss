@@ -13,6 +13,7 @@
     left: 10px;
     svg {
       width: 130px;
+      height: 146px;
     }
   }
   .gauge {
@@ -55,10 +56,10 @@
   }
   &.gauge-php {
     .value {
-      stroke: $old-lavender;
+      stroke: $rhythm;
     }
     .icon {
-      fill: $old-lavender;
+      fill: $rhythm;
       left: 30px;
       svg {
         width: 90px;

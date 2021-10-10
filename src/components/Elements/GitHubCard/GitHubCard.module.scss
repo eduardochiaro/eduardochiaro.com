@@ -1,6 +1,8 @@
 @import '../../../resources/defaults.scss';
 
 .GitHubCard {
+  max-width: 280px;
+  margin: 0 auto;
   .card-header {
     position: relative;
     min-height: 40px;

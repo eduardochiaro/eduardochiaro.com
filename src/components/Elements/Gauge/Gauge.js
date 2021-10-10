@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import SvgGauge from 'svg-gauge'
 import Card from 'react-bootstrap/Card'
 import Placeholder from 'react-bootstrap/Placeholder'
+import SVG from 'react-inlinesvg'
 import styles from './Gauge.module.scss'
 
 const defaultOptions = {
@@ -62,10 +63,8 @@ const Gauge = (props) => {
       className={[styles['gauge-container'], 'pb-5', styles[`gauge-${skill.type}`]].join(' ')}
     >
       <div className={styles.icon}>
-        <svg>
-          <use href={`${window.location.origin}/images/svg-icons/${skill.logo}`} />
-        </svg>
-        <p className="text-center">{skill.name}</p>
+        <SVG src={`${window.location.origin}/images/svg-icons/${skill.logo}`} />
+        <p className="text-center mt-n2">{skill.name}</p>
       </div>
     </div>
   )

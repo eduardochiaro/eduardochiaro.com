@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Card from 'react-bootstrap/Card'
 import Placeholder from 'react-bootstrap/Placeholder'
 import Badge from 'react-bootstrap/Badge'
+import SVG from 'react-inlinesvg'
 import moment from 'moment'
 import { kebab } from 'case'
 import 'holderjs'
@@ -22,12 +23,10 @@ const getLanguageIcon = (language) => {
       return 'css3'
     case 'PHP':
       return 'php'
-    case 'HTML':
-      return 'html'
     case 'Shell':
       return 'shell'
     default:
-      return 'blank'
+      return 'html'
   }
 }
 
@@ -104,13 +103,13 @@ const GitHubCard = (props) => {
   return (
     <div className={`col-sm-6 col-xl-4 mb-4 ${styles['card-cont']}`}>
       <a href={link} id={id} className="text-decoration-none text-secondary">
-        <Card type={kebab(language)} className={[styles.GitHubCard]}>
+        <Card type={kebab(language)} className={styles.GitHubCard}>
           <Card.Header
             className={[styles[`card-header`], styles[`language-${kebab(language)}`]].join(' ')}
           >
-            <svg title={language} alt={language} className={styles.logo} aria-hidden="true">
-              <use href={`images/svg-icons/${getLanguageIcon(language)}.svg#icon`} />
-            </svg>
+
+            <SVG title={language} alt={language} className={styles.logo} src={`images/svg-icons/${getLanguageIcon(language)}.svg`} />
+
             {language}
           </Card.Header>
           <Image src={image} alt={title} fallback={fallbackImage} />

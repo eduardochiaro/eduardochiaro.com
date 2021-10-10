@@ -11,7 +11,7 @@ import data from '../../data/header.json'
 import styles from './Footer.module.scss'
 
 const Footer = () => (
-  <footer id="footer" className="mt-5 bg-secondary">
+  <footer id="footer">
     <Container>
       <Row>
         <Col md={12} className="text-center my-4 text-white">

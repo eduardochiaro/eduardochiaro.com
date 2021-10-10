@@ -31,7 +31,7 @@ const GitHub = ({ token }) => {
   }, [token])
 
   return (
-    <section id="github" className={`${styles.github} mt-5`}>
+    <section id="github" className={`${styles.github} mt-5 pb-5`}>
       <Container>
         <Row>
           <Col>
@@ -58,7 +58,7 @@ const GitHub = ({ token }) => {
                       title={repo.name}
                       description={repo.description}
                       updated={repo.updated_at}
-                      language={repo.language}
+                      language={repo.language || "Code"}
                       link={repo.html_url}
                       id={repo.id}
                       topics={repo.topics}
