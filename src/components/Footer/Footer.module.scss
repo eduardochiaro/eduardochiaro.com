@@ -1,7 +1,7 @@
 @import '../../resources/defaults.scss';
 
 footer {
-  background-color: $rhythm;
+  background-color: $dimgray;
   @media not all and (min-resolution: 0.001dpcm) {
     @supports (-webkit-appearance: none) {
       background-color: $independence;
