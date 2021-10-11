@@ -5,6 +5,12 @@
 
 .github {
   background: url(/resources/images/waves.svg) no-repeat bottom center;
+
+  @media not all and (min-resolution: 0.001dpcm) {
+    @supports (-webkit-appearance: none) {
+      box-shadow: inset 0px -1px 0px 0px $independence;
+    }
+  }
   h3 {
     span {
       font-size: 1rem;

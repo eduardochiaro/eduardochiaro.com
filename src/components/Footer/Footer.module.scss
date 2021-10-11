@@ -2,7 +2,12 @@
 
 footer {
   background-color: $rhythm;
-  color: $secondary;
+  @media not all and (min-resolution: 0.001dpcm) {
+    @supports (-webkit-appearance: none) {
+      background-color: $independence;
+    }
+  }
+
   .logo {
     width: 60px;
     margin: -8px 0 0 0;

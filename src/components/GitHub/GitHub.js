@@ -58,7 +58,7 @@ const GitHub = ({ token }) => {
                       title={repo.name}
                       description={repo.description}
                       updated={repo.updated_at}
-                      language={repo.language || "Code"}
+                      language={repo.language || 'Code'}
                       link={repo.html_url}
                       id={repo.id}
                       topics={repo.topics}
@@ -66,7 +66,7 @@ const GitHub = ({ token }) => {
                     />
                   ))
                 : [
-                    ...Array(6)
+                    ...Array(7)
                       .fill()
                       .map((_, idx) => 0 + idx),
                   ].map((x) => (
