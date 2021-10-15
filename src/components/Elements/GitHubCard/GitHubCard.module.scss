@@ -1,8 +1,15 @@
 @import '../../../resources/defaults.scss';
 
 .GitHubCard {
-  max-width: 280px;
+  // max-width: 280px;
   margin: 0 auto;
+  box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+      transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+  cursor: pointer;
+  &:hover{
+      transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+  }
   .card-header {
     position: relative;
     min-height: 40px;
@@ -15,35 +22,35 @@
       right: 0;
     }
     &.language-php {
-      background: #8892bf;
+      background: $celadon-blue;
       color: $white;
       fill: $white;
     }
     &.language-java-script {
-      background: #f0da50;
+      background: $deep-champagne;
     }
     &.language-swift {
-      background: #fe4629;
+      background: $imperial-red;
       color: $white;
       fill: $white;
     }
     &.language-type-script {
-      background: #259f94;
+      background: $terra-cotta;
       color: $white;
       fill: $white;
     }
     &.language-html {
-      background: #e055a6;
+      background: $orange-web;
       color: $white;
       fill: $white;
     }
     &.language-css {
-      background: #585858;
+      background: $old-lavender;
       color: $white;
       fill: $white;
     }
     &.language-shell {
-      background: #e9e9e9;
+      background: $honeydew;
     }
   }
   .title {
@@ -56,12 +63,31 @@
   img {
     border-radius: 0;
   }
-  .card-img-top {
-    height: 150px;
+  .card-img-container {
+    overflow: hidden;
+    img {
+      // max-height: 150px;
+      -webkit-transition:all .9s ease; 
+      -moz-transition:all .9s ease; 
+      -o-transition:all .9s ease;
+      -ms-transition:all .9s ease; 
+    }
+  }
+  &:hover {
+    .card-img-container {
+      img {
+        -webkit-transform:scale(1.15);
+        -moz-transform:scale(1.15);
+        -ms-transform:scale(1.15);
+        -o-transform:scale(1.15);
+        transform:scale(1.15);
+      }
+    }
   }
   .fallback-img {
     padding: 2rem;
     opacity: 0.1;
+    max-height: 150px;
   }
 }
 

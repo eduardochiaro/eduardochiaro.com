@@ -44,7 +44,7 @@ const GitHub = ({ token }) => {
         <Row>
           <Col md={12}>
             <Row>
-              <Col sm={4} xl={3} className="d-none d-lg-inline text-center">
+              <Col sm={6} xl={3} lg={4} className="d-none d-lg-inline text-center">
                 <FontAwesomeIcon
                   icon={faGithub}
                   size="10x"

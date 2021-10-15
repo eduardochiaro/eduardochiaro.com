@@ -48,18 +48,22 @@ const Image = ({ src, alt, fallback }) => {
   }
 
   return error ? (
-    <img
-      className={`card-img-top ${styles['card-img-top']} ${styles['fallback-img']}`}
-      src={fallback}
-      alt={alt}
-    />
+    <div className={styles['card-img-container']}>
+      <img
+        className={`card-img-top ${styles['fallback-img']}`}
+        src={fallback}
+        alt={alt}
+      />
+    </div>
   ) : (
-    <img
-      className={`card-img-top  ${styles['card-img-top']}`}
-      src={src}
-      alt={alt}
-      onError={onError}
-    />
+    <div className={styles['card-img-container']}>
+      <img
+        className="card-img-top"
+        src={src}
+        alt={alt}
+        onError={onError}
+      />
+    </div>
   )
 }
 
@@ -72,7 +76,7 @@ const GitHubCard = (props) => {
 
   if (placeholder) {
     return (
-      <Col sm={4} xl={3} className={`mb-4 ${styles['card-cont']}`}>
+      <Col sm={6} xl={3} lg={4} className="mb-4">
         <Card className={[styles.GitHubCard]}>
           <Placeholder
             as={Card.Header}
@@ -102,7 +106,7 @@ const GitHubCard = (props) => {
     )
   }
   return (
-    <Col sm={4} xl={3} className={`mb-4 ${styles['card-cont']}`}>
+    <Col sm={6} xl={3} lg={4} className="mb-4">
       <a href={link} id={id} className="text-decoration-none text-secondary">
         <Card type={kebab(language)} className={styles.GitHubCard}>
           <Card.Header
