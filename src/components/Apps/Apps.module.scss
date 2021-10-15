@@ -13,6 +13,10 @@
   background: $green-sheen;
   background: linear-gradient(to left, $independence, $green-sheen);
   position: relative;
+  .anchor {
+    position: absolute;
+    top: -88px;
+  }
   h3 {
     font-family: $font-family-header;
     font-weight: bold;

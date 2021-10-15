@@ -4,12 +4,16 @@
 @import '~bootstrap/scss/mixins';
 
 .github {
+  position: relative;
   background: url(/resources/images/waves.svg) no-repeat bottom center;
-
   @media not all and (min-resolution: 0.001dpcm) {
     @supports (-webkit-appearance: none) {
       box-shadow: inset 0px -1px 0px 0px $independence;
     }
+  }
+  .anchor {
+    position: absolute;
+    top: -88px;
   }
   h3 {
     span {

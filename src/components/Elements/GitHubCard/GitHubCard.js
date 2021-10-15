@@ -112,9 +112,7 @@ const GitHubCard = (props) => {
           <Card.Header
             className={[styles[`card-header`], styles[`language-${kebab(language)}`]].join(' ')}
           >
-
             <SVG title={language} alt={language} className={styles.logo} src={`images/svg-icons/${getLanguageIcon(language)}.svg`} />
-
             {language}
           </Card.Header>
           <Image src={image} alt={title} fallback={fallbackImage} />

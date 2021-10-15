@@ -3,6 +3,8 @@
   "version": "3.1.0",
   "private": true,
   "dependencies": {
+    "@babel/core": "^7.15.8",
+    "@babel/runtime": "^7.15.4",
     "@fortawesome/fontawesome-free": "^5.15.3",
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-brands-svg-icons": "^5.15.3",
@@ -29,7 +31,7 @@
     "react-ga": "^3.3.0",
     "react-inlinesvg": "^2.3.0",
     "react-intersection-observer": "^8.32.0",
-    "react-scripts": "^4.0.3",
+    "react-scripts": "^5.0.0-next.47",
     "react-scrollchor": "^7.0.0",
     "react-tsparticles": "^1.35.4",
     "sass": "^1.42.1",
@@ -62,7 +64,6 @@
     ]
   },
   "devDependencies": {
-    "@babel/core": "^7.14.5",
     "babel-eslint": "^10.1.0",
     "concurrently": "^6.3.0",
     "env-cmd": "^10.1.0",

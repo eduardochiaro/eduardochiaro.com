@@ -13,7 +13,7 @@ $deep-champagne: hsla(37, 79%, 75%, 1);
 $orange-web: hsla(37, 98%, 53%, 1);
 $old-lavender: hsla(263, 6%, 43%, 1);
 $white: hsla(255, 100%, 100%, 1);
-$dimgray: hsla(232, 10% ,43%, 1 );
+$dimgray: hsla(231, 9% ,44%, 1 );
 
 $primary: $terra-cotta;
 $secondary: $independence;
@@ -24,3 +24,18 @@ $danger: $orange-web;
 
 $font-family-header: 'Rajdhani', sans-serif;
 $carousel-control-color: $orange-web;
+
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
+@mixin transform($transforms...) {
+	-webkit-transform: $transforms;
+	-moz-transform: $transforms;
+	-ms-transform: $transforms;
+	transform: $transforms;
+}
