@@ -24,7 +24,7 @@
     "moment": "^2.29.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
-    "react-bootstrap": "^2.0.0-rc.0",
+    "react-bootstrap": "^2.0.0",
     "react-dom": "^17.0.2",
     "react-ga": "^3.3.0",
     "react-inlinesvg": "^2.3.0",
@@ -33,8 +33,7 @@
     "react-scrollchor": "^7.0.0",
     "react-tsparticles": "^1.35.4",
     "sass": "^1.42.1",
-    "svg-gauge": "^1.0.6",
-    "webpack": "^4.44.2"
+    "svg-gauge": "^1.0.6"
   },
   "scripts": {
     "start": "concurrently --kill-others \"npm run proxy\" \"npm run react-scripts\"",
