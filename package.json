@@ -33,7 +33,7 @@
     "react-intersection-observer": "^8.32.0",
     "react-scripts": "^5.0.0-next.58",
     "react-scrollchor": "^7.0.0",
-    "react-tsparticles": "^1.35.4",
+    "react-tsparticles": "^1.37.5",
     "sass": "^1.42.1",
     "svg-gauge": "^1.0.6"
   },

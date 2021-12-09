@@ -31,6 +31,7 @@ const Apps = ({ token }) => {
       <span className={styles.anchor} id="apps-anchor"/>
       <Particles
       className={styles.background}
+      canvasClassName={styles.particles}
       options={{
         autoPlay:	true,
         fpsLimit: 60,
