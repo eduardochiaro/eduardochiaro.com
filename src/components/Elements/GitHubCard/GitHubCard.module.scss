@@ -67,20 +67,13 @@
     overflow: hidden;
     img {
       // max-height: 150px;
-      -webkit-transition:all .9s ease; 
-      -moz-transition:all .9s ease; 
-      -o-transition:all .9s ease;
-      -ms-transition:all .9s ease; 
+      @include transition(all .9s ease);
     }
   }
   &:hover {
     .card-img-container {
       img {
-        -webkit-transform:scale(1.15);
-        -moz-transform:scale(1.15);
-        -ms-transform:scale(1.15);
-        -o-transform:scale(1.15);
-        transform:scale(1.15);
+        @include transform(scale(1.15));
       }
     }
   }

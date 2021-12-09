@@ -32,6 +32,7 @@ const GitHub = ({ token }) => {
 
   return (
     <section id="github" className={`${styles.github} mt-5 pb-5`}>
+      <span className={styles.anchor} id="github-anchor"/>
       <Container>
         <Row>
           <Col>

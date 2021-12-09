@@ -28,8 +28,10 @@ const Apps = ({ token }) => {
 
   return (
     <section id="apps" className={`${styles.apps} mt-5`}>
+      <span className={styles.anchor} id="apps-anchor"/>
       <Particles
       className={styles.background}
+      canvasClassName={styles.particles}
       options={{
         autoPlay:	true,
         fpsLimit: 60,

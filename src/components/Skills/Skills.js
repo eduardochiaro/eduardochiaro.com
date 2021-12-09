@@ -27,6 +27,7 @@ const Skills = ({ token }) => {
 
   return (
     <section id="skills" className={`${styles.skills} mt-5`}>
+      <span className={styles.anchor} id="skills-anchor"/>
       <Container>
         <Row>
           <Col>
