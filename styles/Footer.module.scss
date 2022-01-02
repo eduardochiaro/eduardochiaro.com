@@ -1,0 +1,12 @@
+@import 'variables.scss';
+
+footer {
+  .logo {
+    .main {
+      fill: $white !important;
+    }
+    .accent {
+      fill: $white !important;
+    }
+  }
+}

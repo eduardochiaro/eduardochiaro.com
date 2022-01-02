@@ -6,6 +6,7 @@ import Skills from '../components/Skills'
 import Top from '../components/Top'
 import Apps from '../components/Apps'
 import GitHub from '../components/GitHub'
+import Footer from '../components/Footer'
 
 export default function Home() {
   return (
@@ -16,8 +17,9 @@ export default function Home() {
       <Share />
       <Skills />
       <Apps />
-      <Top/>
       <GitHub />
+      <Top />
+      <Footer />
     </div>
   )
 }
