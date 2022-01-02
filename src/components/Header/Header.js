@@ -13,7 +13,7 @@ import styles from './Header.module.scss'
 
 const Header = () => (
   <header className="sticky-lg-top">
-    <Navbar variant="light" expand="lg" className={`pt-4 px-md-5 ${styles.nav}`}>
+    <Navbar variant="light" expand="lg" className={`pt-3 px-md-5 ${styles.nav}`}>
       <Container fluid>
         <Navbar.Brand href="#root" className={styles.logo}>
           <SVG title={data.title} alt={data.title} className="main-logo" src={`${window.location.origin}/images/logo-n.svg`} />
