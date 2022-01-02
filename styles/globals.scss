@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'variables.scss';
+
+h1 {
+  font-family: $font-family-header;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: $isabelline;
+  color: $body;
+}
+
+svg {
+  .st0,
+  .st4,
+  .cls-1 {
+    fill: $isabelline !important;
+  }
+  .st1,
+  .cls-4 {
+    fill: $tertiary !important;
+  }
+  .st2,
+  .cls-3 {
+    fill: $primary !important;
+  }
+  .st5,
+  .cls-2 {
+    fill: $secondary !important;
+  }
+  &.mainLogo {
+    .main {
+      fill: $secondary !important;
+    }
+    .accent {
+      fill: $primary !important;
+    }
+  }
+  &.bottomLogo {
+    .main {
+      fill: $white !important;
+    }
+    .accent {
+      fill: $white !important;
+    }
+  }
+}

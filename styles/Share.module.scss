@@ -1,0 +1,10 @@
+@import 'variables.scss';
+
+.share {
+  .shareIcon{
+    fill: $white;
+    &:hover {
+      fill: $old-lavender
+    }
+  }
+}

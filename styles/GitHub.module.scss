@@ -1,0 +1,60 @@
+@import 'variables.scss';
+
+.github {
+  background: url(/images/bgs/waves.svg) repeat-x bottom center;
+  .icon {
+    fill: $independence
+  }
+  h3 {
+    font-family: $font-family-header;
+  }
+  .card-header {
+    position: relative;
+    min-height: 40px;
+    svg {
+      width: 60px;
+      height: 40px;
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+    &.language-php {
+      background: $celadon-blue;
+      color: $white;
+      fill: $white;
+    }
+    &.language-java-script {
+      background: $deep-champagne;
+    }
+    &.language-swift {
+      background: $imperial-red;
+      color: $white;
+      fill: $white;
+    }
+    &.language-type-script {
+      background: $terra-cotta;
+      color: $white;
+      fill: $white;
+    }
+    &.language-html {
+      background: $orange-web;
+      color: $white;
+      fill: $white;
+    }
+    &.language-css {
+      background: $old-lavender;
+      color: $white;
+      fill: $white;
+    }
+    &.language-shell {
+      background: $honeydew;
+    }
+  }
+
+  .fallback-img {
+    padding: 2rem;
+    opacity: 0.1;
+    max-height: 150px;
+  }
+}
