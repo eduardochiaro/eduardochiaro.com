@@ -64,7 +64,6 @@ export default function GitHub () {
           objectFit="cover"
           alt={alt}
           onError={onError}
-          className={`drop-shadow-lg`}
         />
     )
   }
@@ -87,7 +86,7 @@ export default function GitHub () {
         <a href={repo.html_url} key={`repo-${index}`}className="text-decoration-none">
           <div className="max-w-md bg-white shadow-xl shadow-independence-500/30 hover:shadow-terra-cotta-500/30 transition-shadow duration-500 ease-out rounded h-max m-4">
             <div
-              className={`${styles["card-header"]} bg-gray-100 drop-shadow text-gray-600 rounded-t px-4 py-2 ${styles["language-" + kebab(repo.language)]}`}
+              className={`${styles["card-header"]} bg-gray-100 drop-shadow-md text-gray-600 rounded-t px-4 py-2 ${styles["language-" + kebab(repo.language)]}`}
             >
               <SVG title={repo.language} alt={repo.language} className={styles.logo} src={`images/svg-icons/${getLanguageIcon(repo.language)}.svg`} />
               {repo.language || 'Code'}
