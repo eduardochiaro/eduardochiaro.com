@@ -3,6 +3,7 @@ import useSWR from 'swr';
 import SVG from 'react-inlinesvg'
 import { kebab } from 'case'
 import GitHubIcon from '../elements/icons/github'
+import { TagIcon } from '@heroicons/react/solid';
 import styles from '../styles/GitHub.module.scss'
 import moment from 'moment';
 import Image from 'next/image';
@@ -63,6 +64,7 @@ export default function GitHub () {
           objectFit="cover"
           alt={alt}
           onError={onError}
+          className={`drop-shadow-lg`}
         />
     )
   }
@@ -83,7 +85,7 @@ export default function GitHub () {
         { cutReposene.map((repo, index) => (
 
         <a href={repo.html_url} key={`repo-${index}`}className="text-decoration-none">
-          <div  className="max-w-md bg-white shadow-lg rounded h-max m-4">
+          <div className="max-w-md bg-white shadow-xl shadow-independence-500/30 hover:shadow-terra-cotta-500/30 transition-shadow duration-500 ease-out rounded h-max m-4">
             <div
               className={`${styles["card-header"]} bg-gray-100 drop-shadow text-gray-600 rounded-t px-4 py-2 ${styles["language-" + kebab(repo.language)]}`}
             >
@@ -99,7 +101,7 @@ export default function GitHub () {
               <div className="mt-2">
               {repo.topics.map((topic) => (
                 <div className="bg-terra-cotta-900 rounded px-2 text-sm text-white mr-2 inline-block" key={topic}>
-                  {topic}
+                  <TagIcon className="w-3 inline mr-1 align-middle"/>{topic}
                 </div>
               ))}
                 </div>

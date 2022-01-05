@@ -66,44 +66,46 @@ export default function Apps () {
       />
       <div className="container mx-auto relative">
         {data && (
-        <div className="flex">
-          <div className="grow-0 flex items-center cursor-pointer" onClick={previous}>
-            <ChevronLeftIcon className={`text-gray-300 w-8 md:w-full h-20 ${styles.chevron}`}/>
-          </div>
-          <div className="grow">
-          { data?.results.map((app, index) => (
-            <div className={`flex flex-wrap transition-all duration-500 ease-in-out ${index == dataDisplay ? 'opacity-100 h-auto' : 'opacity-0 h-0'}`} key={`apps-carousel-card-${index}`} >
-              <div className={`basis-full md:basis-2/3 pt-6 relative ${index == dataDisplay ? 'block' : 'hidden'}`}>
-                <Image
-                  src={app.image}
-                  layout="intrinsic"
-                  width={1329}
-                  height={831}
-                  alt={app.title}
-                  title={app.title}
-                />
-              </div>
-              <div className={`basis-full md:basis-1/3 text-center ${index == dataDisplay ? 'block' : 'hidden'}`}>
-                <h3 className="mt-4 md:mt-20 text-4xl text-white">{app.name}</h3>
-                <h4 className="text-2xl text-white">{app.short}</h4>
-                <a
-                  href={app.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="bg-gray-700 text-white shadow-lg border border-gray-300 px-4 py-2 text-2xl rounded-md mt-8 md:mt-24 mb-8 inline-block"
-                >
-                  <GitHubIcon className="inline-block align-text-top w-7 mr-2" />
-                  Download from GitHub
-                </a>
-              </div>
+        <>
+          <div className="flex">
+            <div className="grow-0 flex items-center cursor-pointer" onClick={previous}>
+              <ChevronLeftIcon className={`text-gray-300 w-8 md:w-full h-20 ${styles.chevron}`}/>
             </div>
-            
-          ))}
+            <div className="grow">
+            { data?.results.map((app, index) => (
+              <div className={`flex flex-wrap transition-all duration-500 ease-in-out ${index == dataDisplay ? 'opacity-100 h-auto' : 'opacity-0 h-0'}`} key={`apps-carousel-card-${index}`} >
+                <div className={`basis-full md:basis-2/3 pt-6 relative ${index == dataDisplay ? 'block' : 'hidden'}`}>
+                  <Image
+                    src={app.image}
+                    layout="intrinsic"
+                    width={1329}
+                    height={831}
+                    alt={app.title}
+                    title={app.title}
+                  />
+                </div>
+                <div className={`basis-full md:basis-1/3 text-center ${index == dataDisplay ? 'block' : 'hidden'}`}>
+                  <h3 className="mt-4 md:mt-20 text-4xl text-white">{app.name}</h3>
+                  <h4 className="text-2xl text-white">{app.short}</h4>
+                  <a
+                    href={app.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="bg-gray-700 text-white shadow-lg border border-gray-300 px-4 py-2 text-2xl rounded-md mt-8 md:mt-24 mb-8 inline-block"
+                  >
+                    <GitHubIcon className="inline-block align-text-top w-7 mr-2" />
+                    Download from GitHub
+                  </a>
+                </div>
+              </div>
+              
+            ))}
+            </div>
+            <div className="grow-0 flex items-center cursor-pointer" onClick={next}>
+              <ChevronRightIcon className={`text-gray-300 w-8 md:w-full h-20 ${styles.chevron}`}/>
+            </div>
           </div>
-          <div className="grow-0 flex items-center cursor-pointer" onClick={next}>
-            <ChevronRightIcon className={`text-gray-300 w-8 md:w-full h-20 ${styles.chevron}`}/>
-          </div>
-        </div>
+        </>
         )}
       </div>
     </section>
