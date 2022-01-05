@@ -69,7 +69,7 @@ export default function Apps () {
         <>
           <div className="flex">
             <div className="grow-0 flex items-center cursor-pointer" onClick={previous}>
-              <ChevronLeftIcon className={`text-gray-300 w-8 md:w-full h-20 ${styles.chevron}`}/>
+              <ChevronLeftIcon className={`text-gray-300 w-8 md:w-full h-20 hover:text-gray-700`}/>
             </div>
             <div className="grow">
             { data?.results.map((app, index) => (
@@ -91,7 +91,7 @@ export default function Apps () {
                     href={app.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="bg-gray-700 text-white shadow-lg border border-gray-300 px-4 py-2 text-2xl rounded-md mt-8 md:mt-24 mb-8 inline-block"
+                    className="bg-gray-700 text-white hover:text-terra-cotta-900 shadow-lg border border-gray-300 px-4 py-2 text-2xl rounded-md mt-8 md:mt-24 mb-8 inline-block"
                   >
                     <GitHubIcon className="inline-block align-text-top w-7 mr-2" />
                     Download from GitHub
@@ -102,7 +102,7 @@ export default function Apps () {
             ))}
             </div>
             <div className="grow-0 flex items-center cursor-pointer" onClick={next}>
-              <ChevronRightIcon className={`text-gray-300 w-8 md:w-full h-20 ${styles.chevron}`}/>
+              <ChevronRightIcon className={`text-gray-300 w-8 md:w-full h-20 hover:text-gray-700`}/>
             </div>
           </div>
         </>

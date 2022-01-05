@@ -30,19 +30,4 @@
     font-family: $font-family-header;
     text-shadow: 0 0 7px $independence;
   }
-  a {
-    svg {
-      fill: $white;
-    }
-    &:hover {
-      svg {
-        fill: $green-sheen;
-      }
-    }
-  }
-  .chevron {
-    &:hover {
-      color: $terra-cotta
-    }
-  }
 }

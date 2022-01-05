@@ -5,13 +5,12 @@ import {
   AdjustmentsIcon,
   ChipIcon,
   HomeIcon,
-  CogIcon,
   MenuIcon
 } from '@heroicons/react/solid'
 import GitHubIcon from '../elements/icons/github';
-import Link from 'next/link';
 import SVG from 'react-inlinesvg'
 import styles from '../styles/Header.module.scss'
+import ActiveLink from './ActiveLink';
 
 export default function Header () {
   const [menuOpen, setMenuOpen] = React.useState(false);
@@ -21,7 +20,8 @@ export default function Header () {
   const menuData = [
     {
       text: 'Home',
-      link: '/#root',
+      link: '/',
+      as: '/#root',
       current: true,
       pre: <HomeIcon className="h-5 inline mr-1 align-sub" />
     },
@@ -46,6 +46,7 @@ export default function Header () {
     {
       text: 'Lab',
       link: '/lab',
+      as: '/lab#root',
       current: false,
       pre: <AdjustmentsIcon className="h-5 inline mr-1 align-sub" />
     }
@@ -67,13 +68,15 @@ export default function Header () {
               { menuData.map(function(item, i) {
                 return (
                   <li 
-                      key={`menu-link-${i}`} 
-                      className={`px-6 py-4 md:py-2 text-base hover:text-gray-900 ${item.current ? 'text-gray-900' : ''}`}>
-                    <Link 
+                    key={`menu-link-${i}`}>
+                    <ActiveLink 
                       href={ item.link } 
-                      aria-current={item.current ? 'page' : undefined}>
-                         <a onClick={openMenu}>{item.pre}{item.text}</a>
-                    </Link>
+                      as={ item.as }
+                      activeClassName={`text-gray-900`}>
+                         <a 
+                          className={`px-6 py-4 md:py-2 text-base hover:text-gray-900`}
+                          onClick={openMenu}>{item.pre}{item.text}</a>
+                    </ActiveLink>
                   </li>
                 )
               })}
