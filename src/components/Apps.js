@@ -68,12 +68,12 @@ export default function Apps () {
         {data && (
         <div className="flex">
           <div className="grow-0 flex items-center cursor-pointer" onClick={previous}>
-            <ChevronLeftIcon className={`text-gray-300 w-full h-20 ${styles.chevron}`}/>
+            <ChevronLeftIcon className={`text-gray-300 w-8 md:w-full h-20 ${styles.chevron}`}/>
           </div>
           <div className="grow">
           { data?.results.map((app, index) => (
             <div className={`flex flex-wrap transition-all duration-500 ease-in-out ${index == dataDisplay ? 'opacity-100 h-auto' : 'opacity-0 h-0'}`} key={`apps-carousel-card-${index}`} >
-              <div className={`basis-2/3 relative ${index == dataDisplay ? 'block' : 'hidden'}`}>
+              <div className={`basis-full md:basis-2/3 pt-6 relative ${index == dataDisplay ? 'block' : 'hidden'}`}>
                 <Image
                   src={app.image}
                   layout="intrinsic"
@@ -83,14 +83,14 @@ export default function Apps () {
                   title={app.title}
                 />
               </div>
-              <div className={`basis-1/3 text-center ${index == dataDisplay ? 'block' : 'hidden'}`}>
-                <h3 className="mt-8 text-4xl text-white">{app.title}</h3>
+              <div className={`basis-full md:basis-1/3 text-center ${index == dataDisplay ? 'block' : 'hidden'}`}>
+                <h3 className="mt-4 md:mt-20 text-4xl text-white">{app.name}</h3>
                 <h4 className="text-2xl text-white">{app.short}</h4>
                 <a
                   href={app.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="bg-gray-700 text-white border border-gray-300 px-4 py-2 text-2xl rounded-md mt-24 inline-block"
+                  className="bg-gray-700 text-white shadow-lg border border-gray-300 px-4 py-2 text-2xl rounded-md mt-8 md:mt-24 mb-8 inline-block"
                 >
                   <GitHubIcon className="inline-block align-text-top w-7 mr-2" />
                   Download from GitHub
@@ -101,7 +101,7 @@ export default function Apps () {
           ))}
           </div>
           <div className="grow-0 flex items-center cursor-pointer" onClick={next}>
-            <ChevronRightIcon className={`text-gray-300 w-full h-20 ${styles.chevron}`}/>
+            <ChevronRightIcon className={`text-gray-300 w-8 md:w-full h-20 ${styles.chevron}`}/>
           </div>
         </div>
         )}

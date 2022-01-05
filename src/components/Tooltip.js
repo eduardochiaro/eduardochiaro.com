@@ -10,12 +10,12 @@ export default function Tooltip({ children, tooltipText }) {
   if (tooltipText) {
     return (
       <div
-          className="relative"
+          className="relative cursor-pointer"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
       >
           <div
-              className="absolute bottom-full left-0 text-sm text-white bg-gray-900 px-4 py-2 rounded transition duration-150 ease-out z-50"
+              className="absolute w-36 -left-1/4 bottom-full text-sm text-white bg-gray-900 px-4 py-2 rounded transition duration-150 ease-out z-50"
               style={{ opacity: 0 }}
               ref={tipRef}
           >

@@ -68,22 +68,22 @@ export default function GitHub () {
   }
 
   return (
-    <section id="github" className={`${styles.github} mt-8 pb-8`}>
+    <section id="github" className={`${styles.github} pb-12  px-0 sm:px-2 md:px-4`}>
       <span className={styles.anchor} id="github-anchor"/>
-      <div className="container mx-auto">
+      <div className="container mx-auto pt-8">
         <h3 className="leading-tight text-2xl lg:text-4xl font-light mx-4 lg:mx-2 mb-2">
           Latest repositories{' '}<span className="rounded font-sans align-super bg-terra-cotta-900 text-white font-bold px-2 py-1 text-sm">{ data ? data.results.length : 0 } total</span>
         </h3>
       </div>
       <div className="container mx-auto">
-        <div className="grid grid-cols-4 gap-8">
-          <div className="text-center">
-            <GitHubIcon className={`w-36 text-gray-400 mx-auto opacity-25 mt-8 ${styles.icon}`} />
+        <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          <div className="text-center hidden md:block">
+            <GitHubIcon className={`w-36 text-independence-900 mx-auto opacity-25 mt-8`} />
           </div>
         { cutReposene.map((repo, index) => (
 
         <a href={repo.html_url} key={`repo-${index}`}className="text-decoration-none">
-          <div  className="max-w-md bg-white shadow-lg rounded h-max">
+          <div  className="max-w-md bg-white shadow-lg rounded h-max m-4">
             <div
               className={`${styles["card-header"]} bg-gray-100 drop-shadow text-gray-600 rounded-t px-4 py-2 ${styles["language-" + kebab(repo.language)]}`}
             >
