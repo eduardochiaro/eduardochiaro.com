@@ -1,7 +1,7 @@
 import * as React from 'react';
 import SVG from 'react-inlinesvg';
 import useSWR from 'swr';
-import Gauge from './Gauge';
+import Gauge from '../elements/Gauge';
 import styles from '../styles/Skills.module.scss'
 
 const fetcher = (url) => fetch(url).then((res) => res.json())

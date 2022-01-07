@@ -10,7 +10,7 @@ import {
 import GitHubIcon from '../elements/icons/github';
 import SVG from 'react-inlinesvg'
 import styles from '../styles/Header.module.scss'
-import ActiveLink from './ActiveLink';
+import ActiveLink from '../elements/ActiveLink';
 
 export default function Header () {
   const [menuOpen, setMenuOpen] = React.useState(false);

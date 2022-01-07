@@ -4,10 +4,10 @@ import useSWR from 'swr';
 import {
   InformationCircleIcon
 } from '@heroicons/react/outline';
-import Tooltip from './Tooltip';
+import Tooltip from '../elements/Tooltip';
 import styles from '../styles/Jobs.module.scss'
 
-const fetcher = (url) => fetch(url).then((res) => res.json())
+const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function Jobs () {
   const { data, error } = useSWR('/api/portfolio/works', fetcher);
