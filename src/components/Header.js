@@ -63,7 +63,7 @@ export default function Header () {
               width={65}
               src={'/images/logo-n.svg'} />
           </div>
-          <div className={`text-gray-500 w-full md:w-auto ${menuOpen ? 'block drop-shadow-lg mr-4 border border-independence-400 rounded ml-auto w-fit' : 'hidden'} md:contents absolute md:relative top-16 right-1 bg-isabelline-900 z-50`}>
+          <div className={`text-gray-500 w-full md:w-auto ${menuOpen ? 'block drop-shadow-lg mr-4 border border-independence-400 rounded ml-auto w-fit' : 'hidden drop-shadow-none'} md:contents absolute md:relative top-16 right-1 bg-isabelline-900 z-50`}>
             <ul className="md:flex font-semibold md:justify-between">
               { menuData.map(function(item, i) {
                 return (
@@ -74,7 +74,7 @@ export default function Header () {
                       as={ item.as }
                       activeClassName={`text-gray-900`}>
                          <a 
-                          className={`px-6 py-4 md:py-2 text-base hover:text-gray-900`}
+                          className={`px-6 py-2 block md:inline-block transition text-2xl md:text-base hover:text-gray-900`}
                           onClick={openMenu}>{item.pre}{item.text}</a>
                     </ActiveLink>
                   </li>
@@ -83,11 +83,11 @@ export default function Header () {
             </ul>
           </div>
           <div className="order-last">
-            <a href="https://blog.eduardochiaro.com" className="md:pr-0 pr-6 whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
+            <a href="https://blog.eduardochiaro.com" className="md:pr-0 pr-6 whitespace-nowrap text-base font-medium transition text-gray-500 hover:text-gray-900">
               <RssIcon className={`h-6 w-6 inline-block text-terra-cotta-900`} aria-hidden="true"  /> .dev
             </a>
             <a href="#" className="inline-block md:hidden" onClick={openMenu}>
-              <MenuIcon className={`w-8 inline-block border-2 rounded border-gray-500 text-gray-500 hover:text-gray-900`}/>
+              <MenuIcon className={`w-8 inline-block border-2 rounded border-gray-500 transition text-gray-500 hover:text-gray-900`}/>
             </a>
           </div>
         </div>

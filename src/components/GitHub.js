@@ -84,7 +84,7 @@ export default function GitHub () {
         { cutReposene.map((repo, index) => (
 
         <a href={repo.html_url} key={`repo-${index}`}className="text-decoration-none">
-          <div className="max-w-md bg-white shadow-xl shadow-independence-500/30 hover:shadow-terra-cotta-500/30 transition-shadow duration-500 ease-out rounded h-max m-4">
+          <div className="max-w-md bg-white shadow-xl shadow-independence-500/30 hover:shadow-terra-cotta-200/30 transition-all duration-500 ease-out rounded h-max m-4 hover:scale-110">
             <div
               className={`${styles["card-header"]} bg-gray-100 drop-shadow-md text-gray-600 rounded-t px-4 py-2 ${styles["language-" + kebab(repo.language)]}`}
             >

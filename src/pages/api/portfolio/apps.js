@@ -1,7 +1,5 @@
-import { PrismaClient } from '@prisma/client';
+import prisma from '../../../lib/prisma';
 import corsMiddleware from '../../../middlewares/cors';
-
-const prisma = new PrismaClient();
 
 export default async function handler(req, res) {
   
@@ -9,6 +7,10 @@ export default async function handler(req, res) {
   await corsMiddleware(req, res);
 
   // Run api code
-  const apps = await prisma.app.findMany();
+  const apps = await prisma.app.findMany({
+    where: {
+      deletedAt: null
+    }
+  });
   res.status(200).json({ results: apps });
 }

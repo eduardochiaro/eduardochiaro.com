@@ -32,7 +32,7 @@ const Gauge = (props) => {
   return (
     <div
       ref={gaugeEl}
-      className={[styles['gauge-container'], 'mx-auto', styles[`gauge-${skill.type}`]].join(' ')}
+      className={[styles['gauge-container'], 'mx-auto transition-all duration-500 ease-out hover:scale-110', styles[`gauge-${skill.type}`]].join(' ')}
     >
       <div className={styles.icon}>
         <SVG src={`${window.location.origin}/images/svg-icons/${skill.logo}`} />

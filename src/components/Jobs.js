@@ -25,6 +25,7 @@ export default function Jobs () {
             { data?.results.map((job, index) => (
               <div className={`text-center mx-auto z-10 relative ${styles.imageJobContainer}`} key={`job-image-${index}`}>
                 <Tooltip tooltipText={job.disclaimer}>
+                  <div className="transition-all duration-500 ease-out hover:scale-110">
                   <Image
                     layout="intrinsic"
                     width={Math.round((130 / 100) * parseInt(job.style))}
@@ -33,6 +34,7 @@ export default function Jobs () {
                     src={`/images/logos/${job.logo}`}
                     title={job.disclaimer}
                     />
+                  </div>
 
                   {job.disclaimer && (
                     <>
