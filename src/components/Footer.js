@@ -28,8 +28,8 @@ export default function Footer () {
   return (
     <footer id="footer" className="footer border-t border-independence-500 bg-independence-700">
       <div className="container mx-auto text-center text-white py-4">
-        <div className="flex">
-          <div className="flex-none w-32">
+        <div className="flex-wrap md:flex-nowrap flex">
+          <div className="hidden md:block flex-none w-32">
             
           </div>
           <div className="flex-1 text-center">
@@ -37,7 +37,7 @@ export default function Footer () {
             <SVG title="Eduardo Chiaro" alt="Eduardo Chiaro" className={`inline-block w-16 mb-2 mx-3 bottomLogo`} src={`/images/logo-n.svg`} />
             Eduardo Chiaro
           </div>
-          <div className="flex-none w-32">
+          <div className="flex-none w-full md:w-32">
             <LoginButton isLoggedIn={session} />
           </div>
         </div>
