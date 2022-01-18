@@ -16,6 +16,7 @@ module.exports = {
       emerald: colors.emerald,
       indigo: colors.indigo,
       yellow: colors.yellow,
+      blue: colors.blue,
       'independence': {
         50: 'hsla(234, 20%, 30%, 0.1)',
         100: 'hsla(234, 20%, 30%, 0.2)',
@@ -76,6 +77,9 @@ module.exports = {
         800: 'hsla(52, 50%, 91%, 0.9)',
         900: 'hsla(52, 50%, 91%, 1)',
       }
+    },
+    fontFamily: {
+      'header': ['Rajdhani', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', 'Arial', 'sans-serif'],
     },
     extend: {},
   },
