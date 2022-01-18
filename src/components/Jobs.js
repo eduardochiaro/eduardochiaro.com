@@ -1,16 +1,14 @@
 import * as React from 'react';
 import Image from 'next/image';
-import useSWR from 'swr';
 import {
   InformationCircleIcon
 } from '@heroicons/react/outline';
 import Tooltip from '../elements/Tooltip';
 import styles from '../styles/Jobs.module.scss'
-
-const fetcher = (url) => fetch(url).then((res) => res.json());
+import useStaleSWR from '../lib/staleSWR';
 
 export default function Jobs () {
-  const { data, error } = useSWR('/api/portfolio/works', fetcher);
+  const { data, error } = useStaleSWR('/api/portfolio/works');
 
   return (
     <section id="work" className={`${styles.jobs} mt-5 px-0 sm:px-2 md:px-4`}>

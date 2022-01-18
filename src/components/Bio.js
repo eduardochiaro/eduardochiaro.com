@@ -12,7 +12,7 @@ export default function Bio () {
             I&apos;m <span className="text-terra-cotta-500">Eduardo</span>,
           </h1>
           <h2 className="font-header leading-tight text-3xl lg:text-5xl xl:text-7xl font-bold">
-            a <CoffeeIcon className={`inline-block w-8 lg:w-16 text-independence-600`}/> coffee-driven
+            a <CoffeeIcon className={`inline-block w-8 lg:w-16 text-isabelline-900`}/> coffee-driven
             Software Developer based in Washington State.
           </h2>
         </div>

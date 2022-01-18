@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Particles from "react-tsparticles";
-import useSWR from 'swr';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 import GitHubIcon from '../elements/icons/github';
 import styles from '../styles/Apps.module.scss'
-
-const fetcher = (url) => fetch(url).then((res) => res.json())
+import useStaleSWR from '../lib/staleSWR';
 
 export default function Apps () {
 
   const [dataDisplay, setDataDisplay] = useState(0);
-  const { data, error } = useSWR('/api/portfolio/apps', fetcher);
+  
+  const { data, error } = useStaleSWR('/api/portfolio/apps');
 
   const previous = () => {
     if (dataDisplay <= 0) {

@@ -1,12 +1,10 @@
 import * as React from 'react';
 import SVG from 'react-inlinesvg';
-import useSWR from 'swr';
+import useStaleSWR from '../lib/staleSWR';
 import Gauge from '../elements/Gauge';
 
-const fetcher = (url) => fetch(url).then((res) => res.json())
-
 export default function Skills () {
-  const { data, error } = useSWR('/api/portfolio/skills', fetcher);
+  const { data, error } = useStaleSWR('/api/portfolio/skills');
 
   return (
     <section id="skills" className={`px-0 sm:px-2 md:px-4`}>
