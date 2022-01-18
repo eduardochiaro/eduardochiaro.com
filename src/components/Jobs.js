@@ -16,8 +16,8 @@ export default function Jobs () {
     <section id="work" className={`${styles.jobs} mt-5 px-0 sm:px-2 md:px-4`}>
       <div className="flex flex-wrap items-center justify-between container mx-auto">
         <div className="flex-1 basis-full lg:basis-1/4 xl:basis-1/6">
-          <h3 className="leading-tight text-2xl lg:text-4xl pr-4 font-light border-r-0 lg:border-r-4 border-green-sheen-900 mx-4 lg:mx-2">
-            I&apos;ve <span className="text-terra-cotta-900">coded</span> for...
+          <h3 className="font-header leading-tight text-2xl lg:text-4xl pr-4 font-light border-r-0 lg:border-r-4 border-green-sheen-500 mx-4 lg:mx-2">
+            I&apos;ve <span className="text-terra-cotta-500">coded</span> for...
           </h3>
         </div>
         <div className="flex-1 basis-full lg:basis-3/4 xl:basis-5/6">
@@ -38,7 +38,7 @@ export default function Jobs () {
 
                   {job.disclaimer && (
                     <>
-                    <InformationCircleIcon className="hidden md:block w-4 text-terra-cotta-900 absolute bottom-0 right-0" aria-hidden="true" />
+                    <InformationCircleIcon className="hidden md:block w-4 text-terra-cotta-500 absolute bottom-0 right-0" aria-hidden="true" />
                     <div className="block md:hidden text-gray-500">
                       {job.disclaimer}
                     </div>

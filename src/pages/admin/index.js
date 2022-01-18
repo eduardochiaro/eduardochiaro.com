@@ -23,7 +23,7 @@ export default function AdminIndex({ basePath }) {
                 <a href="#" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-terra-cotta-500 pr-6">
                   <InboxIcon className="inline-flex justify-center items-center ml-4 w-5"/>
                   <span className="ml-2 text-sm tracking-wide truncate">Inbox</span>
-                  <span className="px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-terra-cotta-300 bg-terra-cotta-50 rounded-full">New</span>
+                  <span className="px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-terra-cotta-600 bg-terra-cotta-100 rounded-full">New</span>
                 </a>
               </li>
               <li className="px-5">
@@ -40,7 +40,7 @@ export default function AdminIndex({ basePath }) {
             </ul>
           </div>
         </div>
-        <div className="flex-auto bg-isabelline-500">
+        <div className="flex-auto bg-isabelline-100">
 
         </div>
       </div>

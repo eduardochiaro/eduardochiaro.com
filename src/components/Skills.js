@@ -2,7 +2,6 @@ import * as React from 'react';
 import SVG from 'react-inlinesvg';
 import useSWR from 'swr';
 import Gauge from '../elements/Gauge';
-import styles from '../styles/Skills.module.scss'
 
 const fetcher = (url) => fetch(url).then((res) => res.json())
 
@@ -10,11 +9,11 @@ export default function Skills () {
   const { data, error } = useSWR('/api/portfolio/skills', fetcher);
 
   return (
-    <section id="skills" className={`${styles.skills} px-0 sm:px-2 md:px-4`}>
-      <span className={styles.anchor} id="skills-anchor"/>
+    <section id="skills" className={`px-0 sm:px-2 md:px-4`}>
+      <span id="skills-anchor"/>
       <div className="container mx-auto pt-8">
-        <h3 className="leading-tight text-2xl lg:text-4xl font-light mx-4 lg:mx-2 mb-2">
-          What I&apos;m <span className="text-terra-cotta-900">good</span> at...
+        <h3 className="font-header leading-tight text-2xl lg:text-4xl font-light mx-4 lg:mx-2 mb-2">
+          What I&apos;m <span className="text-terra-cotta-500">good</span> at...
         </h3>
       </div>
       <div className="flex flex-row items-center justify-between container mx-auto">

@@ -23,32 +23,32 @@ export default function Header () {
       link: '/',
       as: '/#root',
       current: true,
-      pre: <HomeIcon className="h-5 inline mr-1 align-sub" />
+      pre: <HomeIcon className="h-7 md:h-5 inline mr-2 md:mr-1 align-sub" />
     },
     {
       text: 'Skills',
       link: '/#skills-anchor',
       current: false,
-      pre: <TerminalIcon className="h-5 inline mr-1 align-sub" />
+      pre: <TerminalIcon className="h-7 md:h-5 inline mr-2 md:mr-1 align-sub" />
     },
     {
       text: 'Apps',
       link: '/#apps-anchor',
       current: false,
-      pre: <ChipIcon className="h-5 inline mr-1 align-sub" />
+      pre: <ChipIcon className="h-7 md:h-5 inline mr-2 md:mr-1 align-sub" />
     },
     {
       text: 'GitHub',
       link: '/#github-anchor',
       current: false,
-      pre: <GitHubIcon className="h-5 inline mr-1 align-sub" />
+      pre: <GitHubIcon className="h-7 md:h-5 inline mr-2 md:mr-1 align-sub" />
     },
     {
       text: 'Lab',
       link: '/lab',
       as: '/lab#root',
       current: false,
-      pre: <AdjustmentsIcon className="h-5 inline mr-1 align-sub" />
+      pre: <AdjustmentsIcon className="h-7 md:h-5 inline mr-2 md:mr-1 align-sub" />
     }
   ]
   return (
@@ -63,7 +63,7 @@ export default function Header () {
               width={65}
               src={'/images/logo-n.svg'} />
           </div>
-          <div className={`text-gray-500 w-full md:w-auto ${menuOpen ? 'block drop-shadow-lg mr-4 border border-independence-400 rounded ml-auto w-fit' : 'hidden drop-shadow-none'} md:contents absolute md:relative top-16 right-1 bg-isabelline-900 z-50`}>
+          <div className={`text-gray-500 w-full md:w-auto ${menuOpen ? 'block drop-shadow-lg mr-4 border border-independence-400 rounded ml-auto w-fit' : 'hidden drop-shadow-none'} md:contents absolute md:relative top-16 right-1 bg-isabelline-500 z-50`}>
             <ul className="md:flex font-semibold md:justify-between">
               { menuData.map(function(item, i) {
                 return (
@@ -84,7 +84,7 @@ export default function Header () {
           </div>
           <div className="order-last">
             <a href="https://blog.eduardochiaro.com" className="md:pr-0 pr-6 whitespace-nowrap text-base font-medium transition text-gray-500 hover:text-gray-900">
-              <RssIcon className={`h-6 w-6 inline-block text-terra-cotta-900`} aria-hidden="true"  /> .dev
+              <RssIcon className={`h-6 w-6 inline-block text-terra-cotta-500`} aria-hidden="true"  /> .dev
             </a>
             <a href="#" className="inline-block md:hidden" onClick={openMenu}>
               <MenuIcon className={`w-8 inline-block border-2 rounded border-gray-500 transition text-gray-500 hover:text-gray-900`}/>

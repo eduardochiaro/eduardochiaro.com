@@ -1,18 +1,15 @@
 import * as React from 'react';
-import Image from 'next/image';
-import SVG from 'react-inlinesvg'
 import TwitterIcon from '../elements/icons/twitter';
 import LinkedInIcon from '../elements/icons/linkedin';
 import GitHubIcon from '../elements/icons/github';
-import styles from '../styles/Share.module.scss'
 
 export default function Share () {
 
   return (
-    <section className={`${styles.share} mt-10 bg-green-sheen-900 text-white px-0 sm:px-2 md:px-4 shadow-xl`}>
+    <section className={`mt-10 bg-green-sheen-500 text-white px-0 sm:px-2 md:px-4 shadow-xl`}>
       <div className="container mx-auto py-8 flex justify-center md:justify-start gap-8">
         <div className="flex-inital lg:mx-2 hidden md:block">
-          <h3 className="leading-tight text-2xl lg:text-4xl font-light">
+          <h3 className="font-header leading-tight text-2xl lg:text-4xl font-light">
             Connect <span className="text-gray-900">more</span> with me...
           </h3>
         </div>

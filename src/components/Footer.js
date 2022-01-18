@@ -26,7 +26,7 @@ function LoginButton(props) {
 export default function Footer () {
   const { data: session } = useSession();
   return (
-    <footer id="footer" className="footer border-t border-independence-900 bg-independence-500">
+    <footer id="footer" className="footer border-t border-independence-500 bg-independence-700">
       <div className="container mx-auto text-center text-white py-4">
         <div className="flex">
           <div className="flex-none w-32">

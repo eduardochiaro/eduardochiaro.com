@@ -10,7 +10,11 @@ export default async function handler(req, res) {
   const jobs = await prisma.job.findMany({
     where: {
       deletedAt: null
-    }
+    }, 
+     orderBy: 
+      {
+        id: 'asc',
+      },
   });
   res.status(200).json({ results: jobs });
 }

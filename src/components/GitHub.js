@@ -72,19 +72,19 @@ export default function GitHub () {
     <section id="github" className={`${styles.github} pb-12  px-0 sm:px-2 md:px-4`}>
       <span className={styles.anchor} id="github-anchor"/>
       <div className="container mx-auto pt-8">
-        <h3 className="leading-tight text-2xl lg:text-4xl font-light mx-4 lg:mx-2 mb-2">
-          Latest repositories{' '}<span className="rounded font-sans align-super bg-terra-cotta-900 text-white font-bold px-2 py-1 text-sm">{ data ? data.results.length : 0 } total</span>
+        <h3 className="font-header leading-tight text-2xl lg:text-4xl font-light mx-4 lg:mx-2 mb-2">
+          Latest repositories{' '}<span className="rounded font-base align-super bg-terra-cotta-500 text-white px-2 py-1 text-sm">{ data ? data.results.length : 0 } total</span>
         </h3>
       </div>
       <div className="container mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           <div className="text-center hidden md:block">
             <GitHubIcon className={`w-36 text-independence-900 mx-auto opacity-25 mt-8`} />
           </div>
         { cutReposene.map((repo, index) => (
 
         <a href={repo.html_url} key={`repo-${index}`}className="text-decoration-none">
-          <div className="max-w-md bg-white shadow-xl shadow-independence-500/30 hover:shadow-terra-cotta-200/30 transition-all duration-500 ease-out rounded h-max m-4 hover:scale-110">
+          <div className="max-w-md bg-white shadow-xl shadow-independence-500/30 hover:shadow-terra-cotta-500/30 transition-all duration-500 ease-out rounded h-max m-4 hover:md:scale-110">
             <div
               className={`${styles["card-header"]} bg-gray-100 drop-shadow-md text-gray-600 rounded-t px-4 py-2 ${styles["language-" + kebab(repo.language)]}`}
             >
@@ -99,7 +99,7 @@ export default function GitHub () {
               <p className="text-sm text-gray-600">{repo.description}</p>
               <div className="mt-2">
               {repo.topics.map((topic) => (
-                <div className="bg-terra-cotta-900 rounded px-2 text-sm text-white mr-2 inline-block" key={topic}>
+                <div className="bg-terra-cotta-500 rounded px-2 text-sm text-white mr-2 inline-block" key={topic}>
                   <TagIcon className="w-3 inline mr-1 align-middle"/>{topic}
                 </div>
               ))}

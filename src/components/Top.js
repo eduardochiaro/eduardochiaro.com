@@ -9,7 +9,7 @@ export default function Top () {
     <div className="sticky bottom-2 right-5 text-righthidden md:block">
        <Link
         href="#root">
-          <a className="text-terra-cotta-900 z-50 absolute bottom-2 right-0 drop-shadow-sm">top <ChevronUpIcon className="inline mr-2 w-4"/></a>
+          <a className="text-terra-cotta-500 z-50 absolute bottom-2 right-0 drop-shadow-sm">top <ChevronUpIcon className="inline mr-2 w-4"/></a>
         </Link>
     </div>
   );
