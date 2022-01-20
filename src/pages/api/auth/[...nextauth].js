@@ -34,5 +34,18 @@ export default NextAuth({
   },
   pages: {
     signIn: '/auth/signin',
+  }, 
+  callbacks: {
+    async signIn({ account, profile }) {
+      if (account.provider === "google") {
+        const userData = await prisma.userAccess.findFirst({
+          where: {
+            email: profile.email
+          }
+        })
+        return userData && userData.role == 'ADMIN';
+      }
+      return false // Do different verification for other providers that don't have `email_verified`
+    },
   }
 })

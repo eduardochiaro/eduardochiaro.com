@@ -1,5 +1,6 @@
 import { LoginIcon, LogoutIcon, InboxIcon } from "@heroicons/react/outline"
 import { useSession, signIn, signOut } from "next-auth/react"
+import Image from "next/image";
 import SVG from 'react-inlinesvg'
 
 export default function AdminIndex({ basePath }) {
@@ -9,8 +10,19 @@ export default function AdminIndex({ basePath }) {
 
       <div className="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-gray-50 text-gray-800">
         <div className="fixed flex flex-col top-0 left-0 w-64 bg-gray-50 h-full border-r">
-          <div className="flex items-center justify-center h-14 border-b">
-            <div>Admin</div>
+          <div className="flex items-center justify-center h-14 border-b bg-green-sheen-100">
+            <div>
+              <div className="w-6 inline-block mr-2 align-middle">
+              <Image
+                alt={session.user.name}
+                src={session.user.image}
+                className="rounded-full"
+                width={200}
+                height={200}
+              />
+              </div>
+              {session.user.name}
+            </div>
           </div>
           <div className="overflow-y-auto overflow-x-hidden flex-grow">
             <ul className="flex flex-col py-4 space-y-1">
@@ -27,8 +39,8 @@ export default function AdminIndex({ basePath }) {
                 </a>
               </li>
               <li className="px-5">
-                <div className="flex flex-row items-center h-8">
-                  <div className="text-sm font-light tracking-wide text-gray-500">Signed in as {session.user.email}</div>
+                <div className="flex flex-row items-center h-8 mt-14">
+                  <div className="text-xs font-light tracking-wide text-gray-500">Signed in as {session.user.email}</div>
                 </div>
               </li>
               <li>

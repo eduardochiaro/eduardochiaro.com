@@ -48,6 +48,13 @@ model App {
   deletedAt  DateTime? @map("deleted_at")
 }
 
+model UserAccess {
+  @@map("user_access")
+  id  Int @id @default(autoincrement())
+  email        String   
+  role         String
+}
+
 model Account {
   @@map("accounts")
   id                 String @id @default(cuid())
