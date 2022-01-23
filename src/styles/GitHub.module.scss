@@ -2,6 +2,18 @@
 
 .github {
   background: url(/images/bgs/waves.svg) repeat-x bottom center;
+  .card {
+    &:hover {
+      transform-origin: top center;
+      @include transform(rotateX(7deg) translateY(-6px) skewX(0.001deg));
+      .card-holder {
+        top: 10rem;
+      }
+      p {
+        display: block;
+      }
+    }
+  }
   .card-header {
     position: relative;
     min-height: 40px;

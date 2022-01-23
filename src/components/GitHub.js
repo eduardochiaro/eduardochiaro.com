@@ -10,6 +10,10 @@ import Image from 'next/image';
 
 const fetcher = (url) => fetch(url).then((res) => res.json())
 
+function randomIntFromInterval(min, max) { // min and max included 
+  return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
 export default function GitHub () {
 
   const { data, error } = useSWR('/api/portfolio/github', fetcher);
@@ -45,23 +49,23 @@ export default function GitHub () {
     const onError = () => {
       setError(true)
     }
+
+    const pick = randomIntFromInterval(1,4);
   
     return error ? (
-      <div className="text-center pt-8">
-        <Image
-          className={`opacity-10`}
-          src={fallback}
-          width={110}
-          height={110}
+      <Image
+          src={`/images/random/${pick}.jpg`}
+          layout="fill"
+          objectFit="cover"
+          className="z-10"
           alt={alt}
-          layout="fixed"
         />
-      </div>
     ) : (
       <Image
           src={src}
           layout="fill"
           objectFit="cover"
+          className="z-10"
           alt={alt}
           onError={onError}
         />
@@ -82,37 +86,60 @@ export default function GitHub () {
             <GitHubIcon className={`w-36 text-independence-900 mx-auto opacity-25 mt-8`} />
           </div>
         { cutReposene.map((repo, index) => (
-
-        <a href={repo.html_url} key={`repo-${index}`}className="text-decoration-none">
-          <div className="max-w-md bg-white shadow-xl shadow-independence-500/30 hover:shadow-terra-cotta-500/30 transition-all duration-500 ease-out rounded h-max m-4 hover:md:scale-110">
-            <div
-              className={`${styles["card-header"]} bg-gray-100 drop-shadow-md text-gray-600 rounded-t px-4 py-2 ${styles["language-" + kebab(repo.language)]}`}
-            >
-              <SVG title={repo.language} alt={repo.language} className={styles.logo} src={`images/svg-icons/${getLanguageIcon(repo.language)}.svg`} />
-              {repo.language || 'Code'}
-            </div>
-            <div className="relative h-40">
-              <LoadImage src={`/images/github/${repo.id}.png`} fallback={`/images/svg-icons/github.svg`} alt={repo.name} />
-            </div>
-            <div className="p-4">
-              <h3 className="text-xl text-gray-800 font-bold">{repo.name}</h3>
-              <p className="text-sm text-gray-600">{repo.description}</p>
-              <div className="mt-2">
-              {repo.topics.map((topic) => (
-                <div className="bg-terra-cotta-500 rounded px-2 text-sm text-white mr-2 inline-block" key={topic}>
-                  <TagIcon className="w-3 inline mr-1 align-middle"/>{topic}
+        
+          <a href={repo.html_url} key={`repo-${index}`} className="text-decoration-none" style={{perspective: '1000px'}}>
+            <div className={`rounded bg-white shadow-xl shadow-independence-500/30 h-max m-4 overflow-hidden ${styles["card"]} transition-all duration-500`}>
+              <div className="relative h-96 w-full">
+                <LoadImage src={`/images/github/${repo.id}.png`} fallback={`/images/svg-icons/github.svg`} alt={repo.name} />
+                <div className={`absolute top-64 hover:top-16 z-30 w-full ${styles["card-holder"]} transition-all duration-500`}>
+                  {repo.topics.map((topic) => (
+                    <div className="bg-white border shadow-sm border-gray-200 rounded px-2 text-sm text-gray-600 ml-2 mb-2 inline-block z-30" key={topic}>
+                      <TagIcon className="w-3 inline mr-1 align-middle"/>{topic}
+                    </div>
+                  ))}
+                  <div className="inline-block w-1 h-6 mb-2 opacity-0">-</div>
+                  <div className={`bg-egg-shell-400 h-96 ${styles["language-" + kebab(repo.language)]} ${styles["card-header"]}`} >
+                    <SVG title={repo.language} alt={repo.language} className={`${styles.logo} w-14 mx-4 mt-6`} src={`images/svg-icons/${getLanguageIcon(repo.language)}.svg`} />
+                    <h3 className="text-xl font-header pt-5 mx-4 text-ellipsis w-2/3 whitespace-nowrap overflow-hidden">{repo.name}</h3>
+                    <p className="pb-5 mx-4 text-xs opacity-60">Last updated {moment(repo.updated_at).from(moment())}</p>
+                    <p className="w-2/3 mx-4 mt-4 text-sm">{repo.description}</p>
+                  </div>
                 </div>
-              ))}
-                </div>
-            </div>
-
-            {repo.updated_at && (
-              <div className="px-4 py-2 bg-gray-100 border-t border-gray-300 rounded-b">
-                <small>Last updated {moment(repo.updated_at).from(moment())}</small>
               </div>
-            )}
-          </div>
-        </a>
+            </div>
+          </a>
+            /*
+          <a href={repo.html_url} key={`repo-${index}`} className="text-decoration-none">
+            <div className="max-w-md bg-white shadow-xl shadow-independence-500/30 hover:shadow-terra-cotta-500/30 transition-all duration-500 ease-out rounded h-max m-4 hover:md:scale-110">
+              <div
+                className={`${styles["card-header"]} bg-gray-100 drop-shadow-md text-gray-600 rounded-t px-4 py-2 ${styles["language-" + kebab(repo.language)]}`}
+              >
+                <SVG title={repo.language} alt={repo.language} className={styles.logo} src={`images/svg-icons/${getLanguageIcon(repo.language)}.svg`} />
+                {repo.language || 'Code'}
+              </div>
+              <div className="relative h-40">
+                <LoadImage src={`/images/github/${repo.id}.png`} fallback={`/images/svg-icons/github.svg`} alt={repo.name} />
+              </div>
+              <div className="p-4">
+                <h3 className="text-xl text-gray-800 font-bold">{repo.name}</h3>
+                <p className="text-sm text-gray-600">{repo.description}</p>
+                <div className="mt-2">
+                {repo.topics.map((topic) => (
+                  <div className="bg-terra-cotta-500 rounded px-2 text-sm text-white mr-2 inline-block" key={topic}>
+                    <TagIcon className="w-3 inline mr-1 align-middle"/>{topic}
+                  </div>
+                ))}
+                  </div>
+              </div>
+
+              {repo.updated_at && (
+                <div className="px-4 py-2 bg-gray-100 border-t border-gray-300 rounded-b">
+                  <small>Last updated {moment(repo.updated_at).from(moment())}</small>
+                </div>
+              )}
+            </div>
+          </a>
+          */
         ))}
         </div>
       </div>
