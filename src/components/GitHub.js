@@ -44,8 +44,8 @@ export default function GitHub () {
   }
 
   const LoadImage = ({ src, alt, fallback }) => {
-    const [error, setError] = React.useState(false)
-  
+    const [error, setError] = React.useState(false);
+
     const onError = () => {
       setError(true)
     }
@@ -86,9 +86,8 @@ export default function GitHub () {
             <GitHubIcon className={`w-36 text-independence-900 mx-auto opacity-25 mt-8`} />
           </div>
         { cutReposene.map((repo, index) => (
-        
           <a href={repo.html_url} key={`repo-${index}`} className="text-decoration-none" style={{perspective: '1000px'}}>
-            <div className={`rounded bg-white shadow-xl shadow-independence-500/30 h-max m-4 overflow-hidden ${styles["card"]} transition-all duration-500`}>
+            <div className={`rounded bg-white shadow-xl shadow-independence-900/30 h-max m-4 overflow-hidden ${styles["card"]} transition-all duration-500`}>
               <div className="relative h-96 w-full">
                 <LoadImage src={`/images/github/${repo.id}.png`} fallback={`/images/svg-icons/github.svg`} alt={repo.name} />
                 <div className={`absolute top-64 hover:top-16 z-30 w-full ${styles["card-holder"]} transition-all duration-500`}>

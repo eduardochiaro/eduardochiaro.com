@@ -29,6 +29,7 @@ export default function Apps () {
   return (
     <section id="apps" className={`${styles.apps} relative mt-8 shadow-xl`}>
       <span className={styles.anchor} id="apps-anchor"/>
+      {/*
       <Particles
         className={styles.background}
         canvasClassName={styles.particles}
@@ -63,6 +64,7 @@ export default function Apps () {
           detectRetina: true,
         }}
       />
+      */}
       <div className="container mx-auto relative">
         {data && (
         <>
