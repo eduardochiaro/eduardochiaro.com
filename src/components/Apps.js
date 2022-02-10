@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
-import Particles from "react-tsparticles";
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 import GitHubIcon from '../elements/icons/github';
 import styles from '../styles/Apps.module.scss'
@@ -29,42 +28,6 @@ export default function Apps () {
   return (
     <section id="apps" className={`${styles.apps} relative mt-8 shadow-xl`}>
       <span className={styles.anchor} id="apps-anchor"/>
-      {/*
-      <Particles
-        className={styles.background}
-        canvasClassName={styles.particles}
-        options={{
-          autoPlay:	true,
-          fpsLimit: 60,
-          motion: {
-            disable: false,
-            reduce: {
-              factor: 4,
-              value: true
-            }
-          },
-          particles: {
-            links: {
-              distance: 100,
-              enable: true,
-              color: {
-                value: `${styles.powderblue}`
-              },
-            },
-            color: {
-              value: `${styles.powderblue}`
-            },
-            move: {
-              enable: true
-            },
-            size: {
-              value: 3
-            }
-          },
-          detectRetina: true,
-        }}
-      />
-      */}
       <div className="container mx-auto relative">
         {data && (
         <>
