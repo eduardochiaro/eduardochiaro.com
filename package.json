@@ -9,6 +9,8 @@
     "lint": "next lint",
     "export": "next build && next export",
     "generate": "prisma generate",
+    "migrate:dev": "prisma migrate dev",
+    "migrate:prod": "prisma migrate deploy",
     "prisma": "prisma -v"
   },
   "dependencies": {
@@ -19,8 +21,8 @@
     "cors": "^2.8.5",
     "memory-cache": "^0.2.0",
     "moment": "^2.29.1",
-    "next": "^12.0.9",
-    "next-auth": "^4.0.6",
+    "next": "^12.1.0",
+    "next-auth": "^4.2.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-inlinesvg": "^2.3.0",

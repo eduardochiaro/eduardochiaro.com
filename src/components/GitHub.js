@@ -107,38 +107,6 @@ export default function GitHub () {
               </div>
             </div>
           </a>
-            /*
-          <a href={repo.html_url} key={`repo-${index}`} className="text-decoration-none">
-            <div className="max-w-md bg-white shadow-xl shadow-independence-500/30 hover:shadow-terra-cotta-500/30 transition-all duration-500 ease-out rounded h-max m-4 hover:md:scale-110">
-              <div
-                className={`${styles["card-header"]} bg-gray-100 drop-shadow-md text-gray-600 rounded-t px-4 py-2 ${styles["language-" + kebab(repo.language)]}`}
-              >
-                <SVG title={repo.language} alt={repo.language} className={styles.logo} src={`images/svg-icons/${getLanguageIcon(repo.language)}.svg`} />
-                {repo.language || 'Code'}
-              </div>
-              <div className="relative h-40">
-                <LoadImage src={`/images/github/${repo.id}.png`} fallback={`/images/svg-icons/github.svg`} alt={repo.name} />
-              </div>
-              <div className="p-4">
-                <h3 className="text-xl text-gray-800 font-bold">{repo.name}</h3>
-                <p className="text-sm text-gray-600">{repo.description}</p>
-                <div className="mt-2">
-                {repo.topics.map((topic) => (
-                  <div className="bg-terra-cotta-500 rounded px-2 text-sm text-white mr-2 inline-block" key={topic}>
-                    <TagIcon className="w-3 inline mr-1 align-middle"/>{topic}
-                  </div>
-                ))}
-                  </div>
-              </div>
-
-              {repo.updated_at && (
-                <div className="px-4 py-2 bg-gray-100 border-t border-gray-300 rounded-b">
-                  <small>Last updated {moment(repo.updated_at).from(moment())}</small>
-                </div>
-              )}
-            </div>
-          </a>
-          */
         ))}
         </div>
       </div>

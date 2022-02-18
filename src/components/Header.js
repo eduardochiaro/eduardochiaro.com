@@ -43,6 +43,7 @@ export default function Header () {
       current: false,
       pre: <GitHubIcon className="h-7 md:h-5 inline mr-2 md:mr-1 align-sub" />
     },
+    /*
     {
       text: 'Lab',
       link: '/lab',
@@ -50,6 +51,7 @@ export default function Header () {
       current: false,
       pre: <AdjustmentsIcon className="h-7 md:h-5 inline mr-2 md:mr-1 align-sub" />
     }
+    */
   ]
   return (
     <header id="root" className={`${styles.header} z-40`}>
