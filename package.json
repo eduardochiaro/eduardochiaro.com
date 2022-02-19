@@ -5,12 +5,12 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 3001",
     "lint": "next lint",
     "export": "next build && next export",
     "generate": "prisma generate",
-    "migrate:dev": "prisma migrate dev",
-    "migrate:prod": "prisma migrate deploy",
+    "migrate:dev": "dotenv -e .env.local prisma migrate dev",
+    "migrate:prod": "dotenv -e .env.local prisma migrate deploy",
     "prisma": "prisma -v"
   },
   "dependencies": {
@@ -19,6 +19,7 @@
     "@prisma/client": "^3.8.1",
     "case": "^1.6.3",
     "cors": "^2.8.5",
+    "dotenv-cli": "^5.0.0",
     "memory-cache": "^0.2.0",
     "moment": "^2.29.1",
     "next": "^12.1.0",
