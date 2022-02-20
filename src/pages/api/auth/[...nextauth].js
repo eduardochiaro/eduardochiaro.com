@@ -47,5 +47,8 @@ export default NextAuth({
       }
       return false // Do different verification for other providers that don't have `email_verified`
     },
+    redirect({ url, baseUrl   }) {
+      return new URL('/admin', baseUrl).toString()
+    }
   }
 })
