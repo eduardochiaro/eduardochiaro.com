@@ -73,48 +73,43 @@ const AdminJobsIndex = ({ formRef }) => {
           <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
               <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                <table className="min-w-full divide-y divide-gray-200">
-                  <thead className="bg-gray-200">
+                <table className="admin-table">
+                  <thead>
                     <tr>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                       >
                         Name
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        className="textcenter"
                       >
                         Logo
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        className="textcenter"
                       >
                         Size (width)
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                       >
                         Disclaimer
                       </th>
-                      <th scope="col" className="relative px-6 py-3">
+                      <th scope="col" className="relative">
                         <span className="sr-only">Edit</span>
                       </th>
                     </tr>
                   </thead>
-                  <tbody className="bg-white divide-y divide-gray-200">
+                  <tbody>
                     {jobs?.results.map((item) => (
                       <tr key={item.id}>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="flex items-center">
+                        <td>
                             {item.name}
-                          </div>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="flex items-center">
+                        <td className="text-center">
                             <Image
                               layout="intrinsic"
                               width={Math.round((70 / 100) * parseInt(item.style))}
@@ -123,20 +118,19 @@ const AdminJobsIndex = ({ formRef }) => {
                               src={`/images/logos/${item.logo}`}
                               title={item.disclaimer}
                               />
-                          </div>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
+                        <td className="text-center">
                           {item.style}px
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
+                        <td>
                           {item.disclaimer}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <td className="text-right font-medium">
                           <a href="#" className="text-green-sheen-600 hover:text-green-sheen-900" onClick={() => openModal(item)}>
-                            <PencilAltIcon className="inline-flex align-text-bottom h-5 mr-1"/>Edit
+                            <PencilAltIcon className="inline-flex align-text-bottom h-4 mr-1"/>Edit
                           </a>
                           <a href="#" className="text-green-sheen-600 hover:text-green-sheen-900 ml-4">
-                          <TrashIcon className="inline-flex align-text-bottom h-5 mr-1"/>Delete
+                          <TrashIcon className="inline-flex align-text-bottom h-4 mr-1"/>Delete
                           </a>
                         </td>
                       </tr>
@@ -158,7 +152,7 @@ const AdminJobsIndex = ({ formRef }) => {
           <form ref={ formRef } onSubmit={onSubmitModal}>
             <div className="grid grid-cols-6 gap-6">
               <div className="col-span-6">
-                <label htmlFor="name-form" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="name-form" className="input-label">
                   Title
                 </label>
                 <input
@@ -168,14 +162,14 @@ const AdminJobsIndex = ({ formRef }) => {
                   autoComplete="off"
                   data-lpignore="true" 
                   data-form-type="other"
-                  className="mt-1 focus:ring-green-sheen-500 focus:border-green-sheen-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                  className="mt-1 input-field"
                   value={job.name}
                   onChange={handleChange}
                 />
               </div>
 
               <div className="col-span-6 sm:col-span-3">
-                <label htmlFor="logo-url-form" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="logo-url-form" className="input-label">
                   Logo Url
                 </label>
                 <input
@@ -185,14 +179,14 @@ const AdminJobsIndex = ({ formRef }) => {
                   autoComplete="off"
                   data-lpignore="true" 
                   data-form-type="other"
-                  className="mt-1 focus:ring-green-sheen-500 focus:border-green-sheen-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                  className="mt-1 input-field"
                   value={job.logo}
                   onChange={handleChange}
                 />
               </div>
 
               <div className="col-span-6 sm:col-span-3">
-                <label htmlFor="style-form" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="style-form" className="input-label">
                   Size (width)
                 </label>
                 <input
@@ -202,19 +196,19 @@ const AdminJobsIndex = ({ formRef }) => {
                   autoComplete="off"
                   data-lpignore="true" 
                   data-form-type="other"
-                  className="mt-1 focus:ring-green-sheen-500 focus:border-green-sheen-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                  className="mt-1 input-field"
                   value={job.style}
                   onChange={handleChange}
                 />
               </div>
               <div className="col-span-6">
-                <label htmlFor="disclaimer-form" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="disclaimer-form" className="input-label">
                   Disclaimer
                 </label>
                 <textarea
                   name="disclaimer"
                   id="disclaimer-form"
-                  className="mt-1 focus:ring-green-sheen-500 focus:border-green-sheen-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                  className="mt-1 input-field"
                   value={job.disclaimer}
                   onChange={handleChange}
                 />

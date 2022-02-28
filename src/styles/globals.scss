@@ -48,3 +48,38 @@ svg {
     }
   }
 }
+// Form styles 
+.input-label {
+  @apply block text-sm font-medium text-gray-700;
+}
+
+.input-field {
+  @apply focus:border-green-sheen-500 focus:ring-green-sheen-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md;
+}
+
+//Admin tables
+table.admin-table {
+  @apply min-w-full divide-y divide-gray-200;
+  thead {
+    @apply bg-gray-200;
+    tr {
+      th {
+        @apply px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider;
+        &.textcenter {
+          @apply text-center;
+        }
+      }
+    }
+  }
+  tbody {
+    @apply bg-white divide-y divide-gray-200;
+    tr {
+      &:nth-child(even) {
+        @apply bg-gray-100;
+      }
+      td {
+        @apply px-6 py-4 whitespace-nowrap text-xs leading-5 text-gray-900;
+      }
+    }
+  }
+}
