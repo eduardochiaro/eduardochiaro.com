@@ -3,7 +3,17 @@ import { XIcon } from '@heroicons/react/outline'
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from "react";
 
-const AdminModal = ({ children, title = '', isOpen, closeModal }) => {
+const AdminModal = ({ 
+  children, 
+  title = '', 
+  isOpen, 
+  closeModal, 
+  showButtons = false,
+  primaryButtonLabel = 'Save',
+  secondaryButtonLabel = 'Cancel',
+  onPrimaryButtonClick,
+  onSecondaryButtonClick,  
+}) => {
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog
@@ -35,20 +45,36 @@ const AdminModal = ({ children, title = '', isOpen, closeModal }) => {
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="inline-block w-full max-w-4xl p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
-              <div className="flex">
-                <Dialog.Title as="h3" className="flex-1 text-2xl leading-6 font-medium text-gray-900">
+            <div className="inline-block w-full max-w-4xl my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+              <div className="flex px-6 pt-6 pb-4 mb-4 bg-gray-100">
+                <Dialog.Title as="h3" className="flex-1 text-4xl leading-6 font-medium text-gray-900">
                   {title}
                 </Dialog.Title>
                 <div className="flex-none">
-                  <a onClick={closeModal} className="cursor-pointer"><XIcon className="w-5"/></a>
+                  <a onClick={closeModal} className="cursor-pointer"><XIcon className="w-8"/></a>
                 </div>
               </div>
-              <div className="mt-2">
+              <div className="mt-2 px-6 mb-10">
                 {React.Children.map(children, child => {
                     return React.cloneElement(child)   
                 })}
               </div>
+              {showButtons && (
+                <div className="px-4 py-3 bg-gray-100 text-right sm:px-6">
+                  <button 
+                    onClick={onSecondaryButtonClick}
+                    type="button"
+                    className='text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-700 mr-10'
+                  >{secondaryButtonLabel}</button>
+                  <button
+                    onClick={onPrimaryButtonClick}
+                    type="button"
+                    className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-sheen-600 hover:bg-green-sheen-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-sheen-500"
+                  >
+                    {primaryButtonLabel}
+                  </button>
+                </div>
+              )}
             </div>
           </Transition.Child>
         </div>

@@ -1,26 +1,68 @@
 import { BriefcaseIcon, PencilAltIcon, TrashIcon } from "@heroicons/react/outline";
 import { useSession } from "next-auth/react"
 import Image from "next/image";
-import { useState } from "react";
-import useSWR from "swr";
-import AdminModal, { openModal } from "../../../elements/admin/Modal";
+import { useState, createRef } from "react";
+import useSWR, { useSWRConfig } from "swr";
+import AdminModal from "../../../elements/admin/Modal";
 import AdminWrapper from "../../../elements/admin/Wrapper";
 
 const fetcher = (url) => fetch(url).then((res) => res.json())
 
-
-const AdminJobsIndex = () => {
+const AdminJobsIndex = ({ formRef }) => {
   const { data: jobs, error } = useSWR('/api/portfolio/works', fetcher);
   const { data: session } = useSession();
+  const { mutate } = useSWRConfig();
 
   let [isOpen, setIsOpen] = useState(false);
-  
-  function openModal() {
-    setIsOpen(true)
+  let [job, setJob] = useState({
+    id: null,
+    name: '',
+    disclaimer: '',
+    logo: '',
+    style: ''
+  });
+
+  const onSubmitModal = async (e) => {
+    e.preventDefault();    
+    let formData = {};
+
+    for (let [key, value] of Object.entries(job)) {
+      formData[key] = value;
+    }
+
+    await fetch('/api/portfolio/works/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
+    mutate('/api/portfolio/works');
+    closeModal();
   }
 
-  function closeModal() {
-    setIsOpen(false)
+  const onPrimaryButtonClick = () => {
+    formRef.current.dispatchEvent(
+      new Event("submit", { bubbles: true, cancelable: true })
+    )
+  }
+  
+  const openModal = (job) => {
+    setJob(job);
+    setIsOpen(true);
+  }
+
+  const closeModal = () => {
+    setJob({});
+    setIsOpen(false);
+  }
+
+  const handleChange = (e) => {
+    if (e.target.files) {
+      setJob({ ...job, [e.target.name]: e.target.files[0] });
+    } else {
+      setJob({ ...job, [e.target.name]: e.target.value });
+    }
   }
 
   if (session) {
@@ -64,36 +106,36 @@ const AdminJobsIndex = () => {
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
-                    {jobs?.results.map((job) => (
-                      <tr key={job.id}>
+                    {jobs?.results.map((item) => (
+                      <tr key={item.id}>
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="flex items-center">
-                            {job.name}
+                            {item.name}
                           </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="flex items-center">
                             <Image
                               layout="intrinsic"
-                              width={Math.round((70 / 100) * parseInt(job.style))}
+                              width={Math.round((70 / 100) * parseInt(item.style))}
                               height={50}
-                              alt={job.name}
-                              src={`/images/logos/${job.logo}`}
-                              title={job.disclaimer}
+                              alt={item.name}
+                              src={`/images/logos/${item.logo}`}
+                              title={item.disclaimer}
                               />
                           </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
-                          {job.style}px
+                          {item.style}px
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
-                          {job.disclaimer}
+                          {item.disclaimer}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                          <a href="#" className="text-indigo-600 hover:text-indigo-900" onClick={openModal}>
+                          <a href="#" className="text-green-sheen-600 hover:text-green-sheen-900" onClick={() => openModal(item)}>
                             <PencilAltIcon className="inline-flex align-text-bottom h-5 mr-1"/>Edit
                           </a>
-                          <a href="#" className="text-indigo-600 hover:text-indigo-900 ml-4">
+                          <a href="#" className="text-green-sheen-600 hover:text-green-sheen-900 ml-4">
                           <TrashIcon className="inline-flex align-text-bottom h-5 mr-1"/>Delete
                           </a>
                         </td>
@@ -105,37 +147,91 @@ const AdminJobsIndex = () => {
             </div>
           </div>
         </div>
-        <AdminModal title="Edit Job" isOpen={isOpen} closeModal={closeModal}>
-          <div className="grid grid-cols-6 gap-6">
-            <div className="col-span-6">
-              <label htmlFor="title-form" className="block text-sm font-medium text-gray-700">
-                Title
-              </label>
-              <input
-                type="text"
-                name="title"
-                id="title-form"
-                className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-              />
-            </div>
+        <AdminModal 
+          title="Edit Job" 
+          isOpen={isOpen} 
+          closeModal={closeModal} 
+          showButtons={true}
+          onSecondaryButtonClick={closeModal}
+          onPrimaryButtonClick={onPrimaryButtonClick}
+          >
+          <form ref={ formRef } onSubmit={onSubmitModal}>
+            <div className="grid grid-cols-6 gap-6">
+              <div className="col-span-6">
+                <label htmlFor="name-form" className="block text-sm font-medium text-gray-700">
+                  Title
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name-form"
+                  autoComplete="off"
+                  data-lpignore="true" 
+                  data-form-type="other"
+                  className="mt-1 focus:ring-green-sheen-500 focus:border-green-sheen-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                  value={job.name}
+                  onChange={handleChange}
+                />
+              </div>
 
-            <div className="col-span-6 sm:col-span-3">
-              <label htmlFor="last-name" className="block text-sm font-medium text-gray-700">
-                Last name
-              </label>
-              <input
-                type="text"
-                name="last-name"
-                id="last-name"
-                className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-              />
-            </div>
-          </div>
+              <div className="col-span-6 sm:col-span-3">
+                <label htmlFor="logo-url-form" className="block text-sm font-medium text-gray-700">
+                  Logo Url
+                </label>
+                <input
+                  type="text"
+                  name="logo"
+                  id="logo-url-form"
+                  autoComplete="off"
+                  data-lpignore="true" 
+                  data-form-type="other"
+                  className="mt-1 focus:ring-green-sheen-500 focus:border-green-sheen-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                  value={job.logo}
+                  onChange={handleChange}
+                />
+              </div>
+
+              <div className="col-span-6 sm:col-span-3">
+                <label htmlFor="style-form" className="block text-sm font-medium text-gray-700">
+                  Size (width)
+                </label>
+                <input
+                  type="number"
+                  name="style"
+                  id="style-form"
+                  autoComplete="off"
+                  data-lpignore="true" 
+                  data-form-type="other"
+                  className="mt-1 focus:ring-green-sheen-500 focus:border-green-sheen-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                  value={job.style}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="col-span-6">
+                <label htmlFor="disclaimer-form" className="block text-sm font-medium text-gray-700">
+                  Disclaimer
+                </label>
+                <textarea
+                  name="disclaimer"
+                  id="disclaimer-form"
+                  className="mt-1 focus:ring-green-sheen-500 focus:border-green-sheen-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                  value={job.disclaimer}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>  
+          </form>
         </AdminModal>
       </AdminWrapper>
     )
   }
   return null
+}
+
+export async function getStaticProps() {
+  return {
+    props: { formRef: createRef() }, // will be passed to the page component as props
+  }
 }
 
 export default AdminJobsIndex;
