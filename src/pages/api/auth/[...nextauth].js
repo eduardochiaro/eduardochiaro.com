@@ -9,12 +9,10 @@ export default NextAuth({
   adapter: PrismaAdapter(prisma),
   // Configure one or more authentication providers
   providers: [
-    /*
     GithubProvider({
       clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET,
+      clientSecret: process.env.GITHUB_SECRET
     }),
-    */
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
@@ -37,7 +35,7 @@ export default NextAuth({
   }, 
   callbacks: {
     async signIn({ account, profile }) {
-      if (account.provider === "google") {
+      if (account && profile.email) {
         const userData = await prisma.userAccess.findFirst({
           where: {
             email: profile.email

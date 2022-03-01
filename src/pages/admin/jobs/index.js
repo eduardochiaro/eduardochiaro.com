@@ -62,7 +62,7 @@ const AdminJobsIndex = ({ formRef }) => {
   }
 
   const closeModal = () => {
-    setJob({});
+    setJob(jobFormat);
     setIsOpen(false);
   }
 

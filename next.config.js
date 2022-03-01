@@ -3,7 +3,8 @@ module.exports = {
   images: {
     dangerouslyAllowSVG: true,
     domains: [
-      'lh3.googleusercontent.com'
+      'lh3.googleusercontent.com',
+      'avatars.githubusercontent.com'
     ]
   }
 }
