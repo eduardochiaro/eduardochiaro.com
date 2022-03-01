@@ -1,4 +1,6 @@
 import cache from "memory-cache";
+import apiWithMiddleware from '../../../lib/apiWithMiddleware';
+import cors from '../../../lib/cors';
 
 const base = "https://api.github.com/users";
 const username = process.env.GITHUB_USERNAME;
@@ -17,9 +19,10 @@ const cachedFetch = async (url, append = {}) => {
 };
 
 const handler = async (req, res) => {  
+  await cors(req, res);
   const dataFetch = await cachedFetch(`${base}/${username}/repos?sort=updated`, { headers })
   //const data = await dataFetch.json();
 
   res.status(200).json({ results: dataFetch });
 }
-export default handler;
+export default apiWithMiddleware(handler);
