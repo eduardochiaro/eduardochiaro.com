@@ -1,26 +1,30 @@
-import { BriefcaseIcon, PencilAltIcon, TrashIcon } from "@heroicons/react/outline";
+import { BriefcaseIcon, PencilAltIcon, PlusIcon, TrashIcon } from "@heroicons/react/outline";
 import { useSession } from "next-auth/react"
 import Image from "next/image";
 import { useState, createRef } from "react";
 import useSWR, { useSWRConfig } from "swr";
 import AdminModal from "../../../elements/admin/Modal";
 import AdminWrapper from "../../../elements/admin/Wrapper";
+import mergeObj from "../../../lib/mergeObj";
 
 const fetcher = (url) => fetch(url).then((res) => res.json())
 
 const AdminJobsIndex = ({ formRef }) => {
   const { data: jobs, error } = useSWR('/api/portfolio/works', fetcher);
   const { data: session } = useSession();
+  
   const { mutate } = useSWRConfig();
 
-  let [isOpen, setIsOpen] = useState(false);
-  let [job, setJob] = useState({
+  const jobFormat = {
     id: null,
     name: '',
     disclaimer: '',
     logo: '',
-    style: ''
-  });
+    style: 0
+  };
+
+  let [isOpen, setIsOpen] = useState(false);
+  let [job, setJob] = useState(jobFormat);
 
   const onSubmitModal = async (e) => {
     e.preventDefault();    
@@ -30,10 +34,14 @@ const AdminJobsIndex = ({ formRef }) => {
       formData[key] = value;
     }
 
-    await fetch('/api/portfolio/works/create', {
+    const saveJob = mergeObj(jobFormat, formData);
+
+    const urlSave = saveJob.id ? `/api/portfolio/works/${saveJob.id}` : '/api/portfolio/works/create';
+
+    await fetch(urlSave, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify(formData),
     });
@@ -48,7 +56,8 @@ const AdminJobsIndex = ({ formRef }) => {
   }
   
   const openModal = (job) => {
-    setJob(job);
+    const openJob = mergeObj(jobFormat, job);
+    setJob(openJob);
     setIsOpen(true);
   }
 
@@ -68,7 +77,12 @@ const AdminJobsIndex = ({ formRef }) => {
   if (session) {
     return (
       <AdminWrapper>
-        <h1 className="text-4xl mb-10"><BriefcaseIcon className="inline-flex align-text-bottom h-10 text-terra-cotta-500 "/> Jobs list</h1>
+        <h1 className="text-4xl mb-5"><BriefcaseIcon className="inline-flex align-text-bottom h-10 text-terra-cotta-500 "/> Jobs list</h1>
+        <div className="text-right">
+          <button className="bg-terra-cotta-500 hover:bg-terra-cotta-600 text-white font-bold py-2 px-4 mb-5 rounded" onClick={() => openModal(jobFormat)}>
+            <PlusIcon className="inline-flex align-text-bottom h-5 text-white  "/> Add new job
+          </button>
+        </div>
         <div className="flex flex-col">
           <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -142,7 +156,7 @@ const AdminJobsIndex = ({ formRef }) => {
           </div>
         </div>
         <AdminModal 
-          title="Edit Job" 
+          title={job.id ? 'Edit job' : 'Add new job'}
           isOpen={isOpen} 
           closeModal={closeModal} 
           showButtons={true}
