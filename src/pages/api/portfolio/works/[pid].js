@@ -8,12 +8,15 @@ const handler = async (req, res) => {
 
   switch (req.method) {
     case "POST":
-      const { id, ...data } = req.body;
+      const { id, logo, ...data } = req.body;
+      console.log(logo); res.status(200).json({});
+      /*
       const job = await prisma.job.update({
         where: { id },
         data: { ...data, updatedAt: new Date() },
       });
       res.status(200).json({ job });
+      */
       break;
     case "DELETE":
       await prisma.job.delete({

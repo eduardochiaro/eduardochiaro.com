@@ -38,13 +38,13 @@ const AdminJobsIndex = ({ formRef }) => {
     const saveJob = mergeObj(jobFormat, formData);
 
     const urlSave = saveJob.id ? `/api/portfolio/works/${saveJob.id}` : '/api/portfolio/works/create';
-
+    //replace with axios
     await fetch(urlSave, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(formData),
+      body: saveJob,
     });
     mutate('/api/portfolio/works');
     closeModal();
@@ -110,30 +110,20 @@ const AdminJobsIndex = ({ formRef }) => {
         <div className="flex flex-col">
           <div className="-my-2 sm:-mx-6 lg:-mx-8">
             <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-              <div className="shadow-md overflow-hidden border-b border-gray-200 sm:rounded-lg">
+              <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                 <table className="admin-table">
                   <thead>
                     <tr>
-                      <th
-                        scope="col"
-                      >
+                      <th scope="col">
                         Name
                       </th>
-                      <th
-                        scope="col"
-                        className="textcenter"
-                      >
+                      <th scope="col" className="textcenter">
                         Logo
                       </th>
-                      <th
-                        scope="col"
-                        className="textcenter"
-                      >
+                      <th scope="col" className="textcenter">
                         Size (width)
                       </th>
-                      <th
-                        scope="col"
-                      >
+                      <th scope="col">
                         Disclaimer
                       </th>
                       <th scope="col" className="relative">
@@ -187,7 +177,12 @@ const AdminJobsIndex = ({ formRef }) => {
           onSecondaryButtonClick={closeModal}
           onPrimaryButtonClick={onPrimaryButtonClick}
           >
-          <form ref={ formRef } onSubmit={onSubmitModal}>
+          <form 
+            ref={ formRef } 
+            acceptCharset="UTF-8"
+            method="POST"
+            encType="multipart/form-data"
+            onSubmit={onSubmitModal}>
             <div className="grid grid-cols-6 gap-6">
               <div className="col-span-6">
                 <label htmlFor="name-form" className="input-label">
@@ -208,17 +203,19 @@ const AdminJobsIndex = ({ formRef }) => {
 
               <div className="col-span-6 sm:col-span-3">
                 <label htmlFor="logo-url-form" className="input-label">
-                  Logo Url
+                  Logo
                 </label>
                 <input
-                  type="text"
+                  type="file"
                   name="logo"
                   id="logo-url-form"
-                  autoComplete="off"
-                  data-lpignore="true" 
-                  data-form-type="other"
-                  className="mt-1 input-field"
-                  value={job.logo}
+                  className="mt-1 block w-full text-sm text-slate-500
+                        file:mr-4 file:py-2 file:px-4
+                        file:rounded-full file:border-0
+                        file:text-sm file:font-semibold
+                        file:bg-independence-200 file:text-independence-700
+                        hover:file:bg-independence-300
+                  "
                   onChange={handleChange}
                 />
               </div>
