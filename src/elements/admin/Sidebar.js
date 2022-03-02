@@ -19,7 +19,9 @@ const AdminSidebar = () => {
             height={200}
           />
           </div>
-          {session.user.name}
+          <div className="hidden lg:inline-block">
+            {session.user.name}
+          </div>
         </div>
       </div>
       <div className="overflow-y-auto overflow-x-hidden flex-grow">
@@ -66,7 +68,7 @@ const AdminSidebar = () => {
           </li>
           <li className="px-5">
             <div className="flex flex-row items-center h-8 mt-14">
-              <div className="text-xs font-light tracking-wide text-gray-500">Signed in as {session.user.email}</div>
+              <div className="text-xs font-light tracking-wide text-gray-500 hidden lg:inline-block">Signed in as {session.user.email}</div>
             </div>
           </li>
           <li>
