@@ -9,6 +9,7 @@ const AdminModal = ({
   isOpen, 
   closeModal, 
   showButtons = false,
+  primaryButtonClass = 'button-success',
   primaryButtonLabel = 'Save',
   secondaryButtonLabel = 'Cancel',
   onPrimaryButtonClick,
@@ -69,7 +70,7 @@ const AdminModal = ({
                   <button
                     onClick={onPrimaryButtonClick}
                     type="button"
-                    className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-sheen-600 hover:bg-green-sheen-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-sheen-500"
+                    className={primaryButtonClass}
                   >
                     {primaryButtonLabel}
                   </button>

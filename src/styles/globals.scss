@@ -56,6 +56,12 @@ svg {
 .input-field {
   @apply focus:border-green-sheen-500 focus:ring-green-sheen-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md;
 }
+.button-success {
+  @apply inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-sheen-600 hover:bg-green-sheen-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-sheen-500
+}
+.button-danger {
+  @apply inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-terra-cotta-600 hover:bg-terra-cotta-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-terra-cotta-500
+}
 
 //Admin tables
 table.admin-table {

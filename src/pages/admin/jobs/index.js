@@ -24,6 +24,7 @@ const AdminJobsIndex = ({ formRef }) => {
   };
 
   let [isOpen, setIsOpen] = useState(false);
+  let [isOpenDelete, setIsOpenDelete] = useState(false); 
   let [job, setJob] = useState(jobFormat);
 
   const onSubmitModal = async (e) => {
@@ -54,6 +55,18 @@ const AdminJobsIndex = ({ formRef }) => {
       new Event("submit", { bubbles: true, cancelable: true })
     )
   }
+
+  const onPrimaryButtonClickDelete = async () => {
+    const urlDelete = `/api/portfolio/works/${job.id}`;
+    await fetch(urlDelete, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    mutate('/api/portfolio/works');
+    closeModalDelete();
+  }
   
   const openModal = (job) => {
     const openJob = mergeObj(jobFormat, job);
@@ -64,6 +77,17 @@ const AdminJobsIndex = ({ formRef }) => {
   const closeModal = () => {
     setJob(jobFormat);
     setIsOpen(false);
+  }
+  
+  const openModalDelete = (job) => {
+    const openJob = mergeObj(jobFormat, job);
+    setJob(openJob);
+    setIsOpenDelete(true);
+  }
+
+  const closeModalDelete = () => {
+    setJob(jobFormat);
+    setIsOpenDelete(false);
   }
 
   const handleChange = (e) => {
@@ -143,8 +167,8 @@ const AdminJobsIndex = ({ formRef }) => {
                           <a href="#" className="text-green-sheen-600 hover:text-green-sheen-900" onClick={() => openModal(item)}>
                             <PencilAltIcon className="inline-flex align-text-bottom h-4 mr-1"/>Edit
                           </a>
-                          <a href="#" className="text-green-sheen-600 hover:text-green-sheen-900 ml-4">
-                          <TrashIcon className="inline-flex align-text-bottom h-4 mr-1"/>Delete
+                          <a href="#" className="text-green-sheen-600 hover:text-green-sheen-900 ml-4" onClick={() => openModalDelete(item)}>
+                            <TrashIcon className="inline-flex align-text-bottom h-4 mr-1"/>Delete
                           </a>
                         </td>
                       </tr>
@@ -229,6 +253,18 @@ const AdminJobsIndex = ({ formRef }) => {
               </div>
             </div>  
           </form>
+        </AdminModal>
+        <AdminModal
+          title="Delete job"
+          isOpen={isOpenDelete}
+          closeModal={closeModalDelete}
+          showButtons={true}
+          onSecondaryButtonClick={closeModalDelete}
+          onPrimaryButtonClick={onPrimaryButtonClickDelete}
+          primaryButtonLabel="Delete"
+          primaryButtonClass="button-danger"
+        >
+          <p>Are you sure you want to delete job &quot;{ job.name }&quot;?</p>
         </AdminModal>
       </AdminWrapper>
     )
