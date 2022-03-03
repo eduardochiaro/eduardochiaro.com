@@ -20,18 +20,18 @@ const handler = async (req, res) => {
       const form = new IncomingForm();
       form.parse(req, async (err, fields, files) => {
         if (err) return reject(err)
-        const oldPath = files.logo.filepath;
-        const extension = files.logo.originalFilename.split(".").pop();
-        const newName = files.logo.newFilename + '.' + extension;
+        const oldPath = files.image.filepath;
+        const extension = files.image.originalFilename.split(".").pop();
+        const newName = files.image.newFilename + '.' + extension;
         const newPath = `${uploadPath}${newName}`;
         mv(oldPath, newPath, function(err) {
           console.error(err);
         });
-        const { id, style, ...data } = fields;
-        const job = await prisma.job.create({
-          data: { ...data, style: parseInt(style || 0), logo: newName, special: false, createdAt: new Date() },
+        const { id, ...data } = fields;
+        const app = await prisma.app.create({
+          data: { ...data, image: newName, createdAt: new Date() },
         });
-        res.status(200).json({ ...job });
+        res.status(200).json({ ...app });
       })
    })
   } else {

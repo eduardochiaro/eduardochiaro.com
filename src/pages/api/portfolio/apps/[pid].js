@@ -5,7 +5,7 @@ import { IncomingForm } from 'formidable'
 import mv from 'mv';
 import { rmFile } from 'rm-file';
 
-const uploadPath = "./public/uploads/";
+const uploadPath = "./public/uploads/"
 
 export const config = {
   api: {
@@ -17,13 +17,13 @@ const handler = async (req, res) => {
   await cors(req, res);
   const { pid } = req.query;
 
-  const jobReturn = await prisma.job.findFirst({
+  const appReturn = await prisma.app.findFirst({
     where: {
       id: parseInt(pid),
       deletedAt: null
     }
   });
-  if (!jobReturn) {
+  if (!appReturn) {
     res.status(200).json({ error: 'Record doesnt exist' });
   }
   switch (req.method) {
@@ -33,39 +33,39 @@ const handler = async (req, res) => {
         form.parse(req, async (err, fields, files) => {
           if (err) return reject(err)
           const { id, style, ...data } = fields;
-          if (files.logo) {
-            const oldPath = files.logo.filepath;
-            const extension = files.logo.originalFilename.split(".").pop();
-            const newName = files.logo.newFilename + '.' + extension;
+          if (files.image) {
+            const oldPath = files.image.filepath;
+            const extension = files.image.originalFilename.split(".").pop();
+            const newName = files.image.newFilename + '.' + extension;
             const newPath = `${uploadPath}${newName}`;
             mv(oldPath, newPath, function(err) {
               console.error(err);
             });
-            await rmFile(`${uploadPath}${jobReturn.logo}`);
-            const job = await prisma.job.update({
+            await rmFile(`${uploadPath}${appReturn.image}`);
+            const app = await prisma.app.update({
               where: { id: parseInt(id)  },
-              data: { ...data, style: parseInt(style), logo: newName, updatedAt: new Date() },
+              data: { ...data, image: newName, updatedAt: new Date() },
             });
-            res.status(200).json({ ...job });
+            res.status(200).json({ ...app });
           } else { 
-            const job = await prisma.job.update({
+            const app = await prisma.app.update({
               where: { id: parseInt(id) },
-              data: { ...data, style: parseInt(style), updatedAt: new Date() },
+              data: { ...data, updatedAt: new Date() },
             });
-            res.status(200).json({ ...job });
+            res.status(200).json({ ...app });
           }
         })
       });
       break;
     case "DELETE":
-      await prisma.job.delete({
+      await prisma.app.delete({
         where: { id: parseInt(pid) },
       });
-      await rmFile(`${uploadPath}${jobReturn.logo}`);
-      res.status(200).json({ action: 'job deleted' });
+      await rmFile(`${uploadPath}${appReturn.image}`);
+      res.status(200).json({ action: 'app deleted' });
       break;
     default:
-      res.status(200).json({ ...jobReturn });
+      res.status(200).json({ ...appReturn });
       break;
   }
 

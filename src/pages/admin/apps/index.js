@@ -11,51 +11,52 @@ import mergeObj from "../../../lib/mergeObj";
 
 const fetcher = (url) => fetch(url).then((res) => res.json())
 
-const AdminJobsIndex = ({ formRef }) => {
-  const { data: jobs, error } = useSWR('/api/portfolio/works', fetcher);
+const AdminAppsIndex = ({ formRef }) => {
+  const { data: apps, error } = useSWR('/api/portfolio/apps', fetcher);
   const { data: session } = useSession();
   
   const { mutate } = useSWRConfig();
 
-  const jobFormat = {
+  const appFormat = {
     id: null,
     name: '',
-    disclaimer: '',
-    logo: '',
-    style: 0
+    short: '',
+    image: '',
+    url: ''
   };
 
   let [isOpen, setIsOpen] = useState(false);
   let [isOpenDelete, setIsOpenDelete] = useState(false); 
-  let [job, setJob] = useState(jobFormat);
+  let [app, setApp] = useState(appFormat);
   let [formError, setFormError] = useState(false);
+
 
   const onSubmitModal = async (e) => {
     e.preventDefault();    
     setFormError(false);
-    if (!isFormValid(job)) {
+    if (!isFormValid(app)) {
       setFormError(true);
       return;
     }
 
     const formData = new FormData();
 
-    for (let [key, value] of Object.entries(job)) {
-      if (key == 'logo') {
+    for (let [key, value] of Object.entries(app)) {
+      if (key == 'image') {
         formData.append(key, value);
       } else {
         formData.append(key, value);
       }
     }
 
-    const urlSave = job.id ? `/api/portfolio/works/${job.id}` : '/api/portfolio/works/create';
+    const urlSave = app.id ? `/api/portfolio/apps/${app.id}` : '/api/portfolio/apps/create';
     //replace with axios
     axios.post(urlSave, formData, {
       headers: {
         'Content-Type': `multipart/form-data; boundary=${formData._boundary}`
       }
     }).then(({ data }) => {
-      mutate('/api/portfolio/works');
+      mutate('/api/portfolio/apps');
       closeModal();
     });
   }
@@ -63,9 +64,8 @@ const AdminJobsIndex = ({ formRef }) => {
   const isFormValid = (form) => {
     if (
       form.name == ''
-      || form.style <= 0
-      || form.style == ''
-      || (!form.id && !form.logo)
+      || form.url == ''
+      || (!form.id && !form.image)
       ) {
         return false;
     }
@@ -79,45 +79,45 @@ const AdminJobsIndex = ({ formRef }) => {
   }
 
   const onPrimaryButtonClickDelete = async () => {
-    const urlDelete = `/api/portfolio/works/${job.id}`;
+    const urlDelete = `/api/portfolio/apps/${app.id}`;
     await fetch(urlDelete, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'
       }
     });
-    mutate('/api/portfolio/works');
+    mutate('/api/portfolio/apps');
     closeModalDelete();
   }
   
-  const openModal = (job) => {
-    const openJob = mergeObj(jobFormat, job);
-    setJob(openJob);
+  const openModal = (app) => {
+    const openApp = mergeObj(appFormat, app);
+    setApp(openApp);
     setIsOpen(true);
   }
 
   const closeModal = () => {
-    setJob(jobFormat);
+    setApp(appFormat);
     setIsOpen(false);
     setFormError(false);
   }
   
-  const openModalDelete = (job) => {
-    const openJob = mergeObj(jobFormat, job);
-    setJob(openJob);
+  const openModalDelete = (app) => {
+    const openApp = mergeObj(appFormat, app);
+    setApp(openApp);
     setIsOpenDelete(true);
   }
 
   const closeModalDelete = () => {
-    setJob(jobFormat);
+    setApp(appFormat);
     setIsOpenDelete(false);
   }
 
   const handleChange = (e) => {
     if (e.target.files) {
-      setJob({ ...job, [e.target.name]: e.target.files[0] });
+      setApp({ ...app, [e.target.name]: e.target.files[0] });
     } else {
-      setJob({ ...job, [e.target.name]: e.target.value });
+      setApp({ ...app, [e.target.name]: e.target.value });
     }
   }
 
@@ -125,10 +125,10 @@ const AdminJobsIndex = ({ formRef }) => {
     return (
       <AdminWrapper>
         <div className="flex my-2">
-          <h1 className="flex-auto text-4xl"><BriefcaseIcon className="inline-flex align-text-bottom h-10 text-terra-cotta-500 "/> Jobs list</h1>
+          <h1 className="flex-auto text-4xl"><BriefcaseIcon className="inline-flex align-text-bottom h-10 text-terra-cotta-500 "/> Apps list</h1>
           <div className="flex-none text-right">
-            <button className="bg-terra-cotta-500 hover:bg-terra-cotta-600 text-white font-bold py-2 px-4 mb-5 rounded" onClick={() => openModal(jobFormat)}>
-              <PlusIcon className="inline-flex align-text-bottom h-5 text-white  "/> Add new job
+            <button className="bg-terra-cotta-500 hover:bg-terra-cotta-600 text-white font-bold py-2 px-4 mb-5 rounded" onClick={() => openModal(appFormat)}>
+              <PlusIcon className="inline-flex align-text-bottom h-5 text-white  "/> Add new app
             </button>
           </div>
         </div>
@@ -143,13 +143,13 @@ const AdminJobsIndex = ({ formRef }) => {
                         Name
                       </th>
                       <th scope="col" className="textcenter">
-                        Logo
-                      </th>
-                      <th scope="col" className="textcenter">
-                        Size (width)
+                        Image
                       </th>
                       <th scope="col">
-                        Disclaimer
+                        Short
+                      </th>
+                      <th scope="col">
+                        GitHub URL
                       </th>
                       <th scope="col" className="relative">
                         <span className="sr-only">Edit</span>
@@ -157,27 +157,31 @@ const AdminJobsIndex = ({ formRef }) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {jobs?.results.map((item) => (
+                    {apps?.results.map((item) => (
                       <tr key={item.id}>
                         <td>
-                            {item.name}
+                          {item.name}
                         </td>
                         <td className="text-center">
+                          <div className="w-1/2 m-auto">
                             <Image
                               layout="intrinsic"
-                              width={Math.round((70 / 100) * parseInt(item.style))}
-                              height={50}
+                              width={100}
+                              height={100}
                               alt={item.name}
-                              src={`/uploads/${item.logo}`}
-                              title={item.disclaimer}
+                              src={`/uploads/${item.image}`}
+                              title={item.name}
                               />
-                            <div className="small">{item.logo}</div>
-                        </td>
-                        <td className="text-center">
-                          {item.style}px
+                          </div>
+                            <div className="small">{item.image}</div>
                         </td>
                         <td>
-                          {item.disclaimer}
+                          <p className="w-64 text-ellipsis overflow-hidden">
+                            {item.short}
+                          </p>
+                        </td>
+                        <td>
+                          {item.url}
                         </td>
                         <td className="text-right font-medium">
                           <a href="#" className="text-green-sheen-600 hover:text-green-sheen-900" onClick={() => openModal(item)}>
@@ -196,7 +200,7 @@ const AdminJobsIndex = ({ formRef }) => {
           </div>
         </div>
         <AdminModal 
-          title={job.id ? 'Edit job' : 'Add new job'}
+          title={app.id ? 'Edit app' : 'Add new app'}
           isOpen={isOpen} 
           closeModal={closeModal} 
           showButtons={true}
@@ -228,21 +232,21 @@ const AdminJobsIndex = ({ formRef }) => {
                   data-lpignore="true" 
                   data-form-type="other"
                   className="mt-1 input-field"
-                  value={job.name}
+                  value={app.name}
                   onChange={handleChange}
                   required
                 />
               </div>
-              <div className="col-span-6 sm:col-span-5">
-                <label htmlFor="logo-url-form" className="input-label">
-                  Logo { !job.id &&
+              <div className="col-span-6">
+                <label htmlFor="image-url-form" className="input-label">
+                  Image { !app.id &&
                    <span className="text-terra-cotta-600 text-xl">*</span>
                   }
                 </label>
                 <input
                   type="file"
-                  name="logo"
-                  id="logo-url-form"
+                  name="image"
+                  id="image-url-form"
                   className="mt-1 block w-full text-sm text-slate-500
                         file:mr-4 file:py-2 file:px-4
                         file:rounded-full file:border-0
@@ -253,32 +257,33 @@ const AdminJobsIndex = ({ formRef }) => {
                   onChange={handleChange}
                 />
               </div>
-              <div className="col-span-6 sm:col-span-1">
-                <label htmlFor="style-form" className="input-label">
-                  Size (width) <span className="text-terra-cotta-600 text-xl">*</span>
+              <div className="col-span-6">
+                <label htmlFor="url-form" className="input-label">
+                  GitHub URL <span className="text-terra-cotta-600 text-xl">*</span>
                 </label>
                 <input
-                  type="number"
-                  name="style"
-                  id="style-form"
+                  type="url"
+                  name="url"
+                  id="url-form"
                   autoComplete="off"
                   data-lpignore="true" 
                   data-form-type="other"
                   className="mt-1 input-field"
-                  value={job.style}
+                  value={app.url}
                   onChange={handleChange}
                   required
                 />
               </div>
               <div className="col-span-6">
-                <label htmlFor="disclaimer-form" className="input-label">
-                  Disclaimer
+                <label htmlFor="short-form" className="input-label">
+                  Short text
                 </label>
                 <textarea
-                  name="disclaimer"
-                  id="disclaimer-form"
+                  name="short"
+                  id="short-form"
                   className="mt-1 input-field"
-                  value={job.disclaimer}
+                  rows={5}
+                  value={app.short}
                   onChange={handleChange}
                 />
               </div>
@@ -286,7 +291,7 @@ const AdminJobsIndex = ({ formRef }) => {
           </form>
         </AdminModal>
         <AdminModal
-          title="Delete job"
+          title="Delete app"
           isOpen={isOpenDelete}
           closeModal={closeModalDelete}
           showButtons={true}
@@ -295,7 +300,7 @@ const AdminJobsIndex = ({ formRef }) => {
           primaryButtonLabel="Delete"
           primaryButtonClass="button-danger"
         >
-          <p>Are you sure you want to delete job &quot;{ job.name }&quot;?</p>
+          <p>Are you sure you want to delete app &quot;{ app.name }&quot;?</p>
         </AdminModal>
       </AdminWrapper>
     )
@@ -309,4 +314,4 @@ export async function getStaticProps() {
   }
 }
 
-export default AdminJobsIndex;
+export default AdminAppsIndex;

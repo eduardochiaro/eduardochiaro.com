@@ -48,7 +48,7 @@ export default function Apps () {
                     title={app.title}
                   />
                 </div>
-                <div className={`basis-full md:basis-1/3 text-center ${index == dataDisplay ? 'block' : 'hidden'}`}>
+                <div className={`basis-full md:basis-1/3 text-center ${index == dataDisplay ? 'block' : 'hidden'} px-8`}>
                   <h3 className="mt-4 md:mt-20 text-4xl text-white font-header">{app.name}</h3>
                   <h4 className="text-2xl text-white">{app.short}</h4>
                   <a
