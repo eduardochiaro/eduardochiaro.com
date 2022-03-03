@@ -40,7 +40,7 @@ export default function Apps () {
               <div className={`flex flex-wrap transition-all duration-500 ease-in-out ${index == dataDisplay ? 'opacity-100 h-auto' : 'opacity-0 h-0'}`} key={`apps-carousel-card-${index}`} >
                 <div className={`basis-full md:basis-2/3 pt-6 relative ${index == dataDisplay ? 'block' : 'hidden'}`}>
                   <Image
-                    src={app.image}
+                    src={`/uploads/${app.image}`}
                     layout="intrinsic"
                     width={1329}
                     height={831}

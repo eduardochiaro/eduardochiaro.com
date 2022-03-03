@@ -29,7 +29,7 @@ export default function Jobs () {
                     width={Math.round((130 / 100) * parseInt(job.style))}
                     height={100}
                     alt={job.name}
-                    src={`/images/logos/${job.logo}`}
+                    src={`/uploads/${job.logo}`}
                     title={job.disclaimer}
                     />
                   </div>

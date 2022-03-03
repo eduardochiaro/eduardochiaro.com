@@ -43,7 +43,7 @@ export default function GitHub () {
     }
   }
 
-  const LoadImage = ({ src, alt, fallback }) => {
+  const LoadImage = ({ src, alt }) => {
     const [error, setError] = React.useState(false);
 
     const onError = () => {
@@ -89,7 +89,7 @@ export default function GitHub () {
           <a href={repo.html_url} key={`repo-${index}`} className="text-decoration-none" style={{perspective: '1000px'}}>
             <div className={`rounded bg-white shadow-xl shadow-independence-900/30 h-max m-4 overflow-hidden ${styles["card"]} transition-all duration-500`}>
               <div className="relative h-96 w-full">
-                <LoadImage src={`/images/github/${repo.id}.png`} fallback={`/images/svg-icons/github.svg`} alt={repo.name} />
+                <LoadImage src={`/uploads/${repo.id}.png`} alt={repo.name} />
                 <div className={`absolute top-64 hover:top-16 z-30 w-full ${styles["card-holder"]} transition-all duration-500`}>
                   {repo.topics.map((topic) => (
                     <div className="bg-white border shadow-sm border-gray-200 rounded px-2 text-sm text-gray-600 ml-2 mb-2 inline-block z-30" key={topic}>
