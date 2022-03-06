@@ -20,32 +20,40 @@ export default function Jobs () {
         </div>
         <div className="flex-1 basis-full lg:basis-3/4 xl:basis-5/6">
           <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6">
-            { data?.results.map((job, index) => (
-              <div className={`text-center mx-auto z-10 relative ${styles.imageJobContainer}`} key={`job-image-${index}`}>
-                <Tooltip tooltipText={job.disclaimer}>
-                  <div className="transition-all duration-500 ease-out hover:scale-110">
-                  <Image
-                    layout="intrinsic"
-                    width={Math.round((130 / 100) * parseInt(job.style))}
-                    height={100}
-                    alt={job.name}
-                    src={`/uploads/${job.logo}`}
-                    title={job.disclaimer}
-                    />
-                  </div>
-
-                  {job.disclaimer && (
-                    <>
-                    <InformationCircleIcon className="hidden md:block w-4 text-terra-cotta-500 absolute bottom-0 right-0" aria-hidden="true" />
-                    <div className="block md:hidden text-gray-500">
-                      {job.disclaimer}
+            { data && data.results ? 
+              data.results.map((job, index) => (
+                <div className={`text-center mx-auto z-10 relative ${styles.imageJobContainer}`} key={`job-image-${index}`}>
+                  <Tooltip tooltipText={job.disclaimer}>
+                    <div className="transition-all duration-500 ease-out hover:scale-110">
+                    <Image
+                      layout="intrinsic"
+                      width={Math.round((130 / 100) * parseInt(job.style))}
+                      height={100}
+                      alt={job.name}
+                      src={`/uploads/${job.logo}`}
+                      title={job.disclaimer}
+                      />
                     </div>
-                    </>
-                  )}
-                </Tooltip>
-                
-              </div>
-            ))}
+
+                    {job.disclaimer && (
+                      <>
+                      <InformationCircleIcon className="hidden md:block w-4 text-terra-cotta-500 absolute bottom-0 right-0" aria-hidden="true" />
+                      <div className="block md:hidden text-gray-500">
+                        {job.disclaimer}
+                      </div>
+                      </>
+                    )}
+                  </Tooltip>
+                  
+                </div>
+              )) : [
+                  ...Array(6)
+                    .fill()
+                    .map((_, idx) => 0 + idx),
+                ].map((x) => (
+                  <div key={x} className="w-auto mx-5 h-14 bg-green-sheen-300 rounded-md animate-pulse"></div>
+                ))
+            }
             </div>
         </div>
 

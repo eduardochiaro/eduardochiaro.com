@@ -26,12 +26,11 @@ export default function Apps () {
       setDataDisplay(dataDisplay + 1);
     }
   }
-  return (
-    <section id="apps" className={`${styles.apps} relative mt-8 shadow-xl`}>
-      <span className={styles.anchor} id="apps-anchor"/>
-      <div className="container mx-auto relative">
-        {data && (
-        <>
+    if (data && data.results) {
+    return (
+      <section id="apps" className={`${styles.apps} relative mt-8 shadow-xl`}>
+        <span className={styles.anchor} id="apps-anchor"/>
+        <div className="container mx-auto relative">
           <div className="flex">
             <div className="grow-0 flex items-center cursor-pointer" onClick={previous}>
               <ChevronLeftIcon className={`text-gray-300 w-8 lg:w-full h-20 hover:text-gray-700`}/>
@@ -68,9 +67,10 @@ export default function Apps () {
               <ChevronRightIcon className={`text-gray-300 w-8 lg:w-full h-20 hover:text-terra-cotta-700`}/>
             </div>
           </div>
-        </>
-        )}
-      </div>
-    </section>
-  );
+        </div>
+      </section>
+    );
+  } else {
+    return (<></>);
+  }
 }

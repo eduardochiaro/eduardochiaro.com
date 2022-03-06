@@ -20,16 +20,22 @@ export default function Skills () {
         </div>
         <div className="flex-1 basis-2/3 align-top">
           <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-8">
-
-          {data?.results.map((skill) => (
-            <Gauge
-              key={`g-${skill.name}`}
-              value={skill.percentage}
-              skill={skill}
-              placeholder={false}
-              // any other options you want
-            />
-            ))}
+          { data && data.results ? 
+              data.results.map((skill, index) => (
+                <Gauge
+                  key={`g-${index}`}
+                  value={skill.percentage}
+                  skill={skill}
+                  placeholder={false}
+                  // any other options you want
+                />
+            )) : [
+                ...Array(6)
+                  .fill()
+                  .map((_, idx) => 0 + idx),
+              ].map((x) => (
+                <div key={x} className="w-auto mx-5 h-full bg-green-sheen-300 rounded-md animate-pulse"></div>
+              ))}
           </div>
         </div>
       </div>
