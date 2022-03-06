@@ -1,7 +1,7 @@
-import { BriefcaseIcon, ExclamationIcon, PencilAltIcon, PlusIcon, TrashIcon } from "@heroicons/react/outline";
+import { TerminalIcon, ExclamationIcon, PencilAltIcon, PlusIcon, TrashIcon } from "@heroicons/react/outline";
 import { useSession } from "next-auth/react"
 import { useState, createRef } from "react";
-import useSWR, { useSWRConfig } from "swr";
+import { useSWRConfig } from "swr";
 import axios from 'axios';
 import fs from 'fs';
 import path from 'path';
@@ -9,11 +9,11 @@ import AdminModal from "../../../elements/admin/Modal";
 import AdminWrapper from "../../../elements/admin/Wrapper";
 import mergeObj from "../../../lib/mergeObj";
 import NaturalImage from "../../../elements/NaturalImage";
-
-const fetcher = (url) => fetch(url).then((res) => res.json())
+import useStaleSWR from "../../../lib/staleSWR";
+import moment from "moment";
 
 const AdminSkillsIndex = ({ formRef, images }) => {
-  const { data: skills, error } = useSWR('/api/portfolio/skills', fetcher);
+  const { data: skills, error } = useStaleSWR('/api/portfolio/skills');
   const { data: session } = useSession();
 
   const { mutate } = useSWRConfig();
@@ -49,9 +49,11 @@ const AdminSkillsIndex = ({ formRef, images }) => {
       }
     }
 
-    const urlSave = skill.id ? `/api/portfolio/skills/${skill.id}` : '/api/portfolio/skills/create';
     //replace with axios
-    axios.post(urlSave, formData, {
+    axios({
+      method: skill.id ? 'PUT' : 'POST',
+      url: skill.id ? `/api/portfolio/skills/${skill.id}` : '/api/portfolio/skills/create',
+      data: formData,
       headers: {
         'Content-Type': `application/json`
       }
@@ -82,7 +84,8 @@ const AdminSkillsIndex = ({ formRef, images }) => {
 
   const onPrimaryButtonClickDelete = async () => {
     const urlDelete = `/api/portfolio/skills/${skill.id}`;
-    await fetch(urlDelete, {
+    await axios({
+      url: urlDelete,
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'
@@ -127,7 +130,7 @@ const AdminSkillsIndex = ({ formRef, images }) => {
     return (
       <AdminWrapper>
         <div className="flex my-2">
-          <h1 className="flex-auto text-4xl"><BriefcaseIcon className="inline-flex align-text-bottom h-10 text-terra-cotta-500 "/> Skills list</h1>
+          <h1 className="flex-auto text-4xl"><TerminalIcon className="inline-flex align-text-bottom h-10 text-terra-cotta-500 "/> Skills list</h1>
           <div className="flex-none text-right">
             <button className="bg-terra-cotta-500 hover:bg-terra-cotta-600 text-white font-bold py-2 px-4 mb-5 rounded" onClick={() => openModal(skillFormat)}>
               <PlusIcon className="inline-flex align-text-bottom h-5 text-white  "/> Add new skill
@@ -153,6 +156,9 @@ const AdminSkillsIndex = ({ formRef, images }) => {
                       <th scope="col">
                         Type
                       </th>
+                      <th scope="col">
+                        Last Updated
+                      </th>
                       <th scope="col" className="relative">
                         <span className="sr-only">Edit</span>
                       </th>
@@ -162,12 +168,13 @@ const AdminSkillsIndex = ({ formRef, images }) => {
                     {skills?.results.map((item) => (
                       <tr key={item.id}>
                         <td>
-                            {item.name}
+                          <strong>{item.name}</strong>
                         </td>
                         <td className="text-center">
                           <div className="w-32 m-auto relative">
                             <NaturalImage
                               src={`/images/svg-icons/${item.logo}`}
+                              size={100}
                               alt={item.name}
                               title={item.name}
                               />
@@ -180,7 +187,10 @@ const AdminSkillsIndex = ({ formRef, images }) => {
                         <td>
                           {item.type}
                         </td>
-                        <td className="text-right font-medium">
+                        <td className="w-44">
+                          {moment(item.updatedAt || item.createdAt).from(moment())}
+                        </td>
+                        <td className="w-44 text-right font-medium">
                           <a href="#" className="text-green-sheen-600 hover:text-green-sheen-900" onClick={() => openModal(item)}>
                             <PencilAltIcon className="inline-flex align-text-bottom h-4 mr-1"/>Edit
                           </a>

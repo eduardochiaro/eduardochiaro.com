@@ -1,17 +1,17 @@
 import { BriefcaseIcon, ExclamationIcon, PencilAltIcon, PlusIcon, TrashIcon } from "@heroicons/react/outline";
 import { useSession } from "next-auth/react"
 import { useState, createRef } from "react";
-import useSWR, { useSWRConfig } from "swr";
+import { useSWRConfig } from "swr";
 import axios from 'axios';
 import AdminModal from "../../../elements/admin/Modal";
 import AdminWrapper from "../../../elements/admin/Wrapper";
 import mergeObj from "../../../lib/mergeObj";
 import NaturalImage from "../../../elements/NaturalImage";
-
-const fetcher = (url) => fetch(url).then((res) => res.json())
+import useStaleSWR from "../../../lib/staleSWR";
+import moment from "moment";
 
 const AdminJobsIndex = ({ formRef }) => {
-  const { data: jobs, error } = useSWR('/api/portfolio/works', fetcher);
+  const { data: jobs, error } = useStaleSWR('/api/portfolio/works');
   const { data: session } = useSession();
   
   const { mutate } = useSWRConfig();
@@ -47,9 +47,11 @@ const AdminJobsIndex = ({ formRef }) => {
       }
     }
 
-    const urlSave = job.id ? `/api/portfolio/works/${job.id}` : '/api/portfolio/works/create';
     //replace with axios
-    axios.post(urlSave, formData, {
+    axios({
+      method: job.id ? 'PUT' : 'POST',
+      url: job.id ? `/api/portfolio/works/${job.id}` : '/api/portfolio/works/create',
+      data: formData,
       headers: {
         'Content-Type': `multipart/form-data; boundary=${formData._boundary}`
       }
@@ -79,7 +81,8 @@ const AdminJobsIndex = ({ formRef }) => {
 
   const onPrimaryButtonClickDelete = async () => {
     const urlDelete = `/api/portfolio/works/${job.id}`;
-    await fetch(urlDelete, {
+    await axios({
+      url: urlDelete,
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'
@@ -150,6 +153,9 @@ const AdminJobsIndex = ({ formRef }) => {
                       <th scope="col">
                         Disclaimer
                       </th>
+                      <th scope="col">
+                        Last Updated
+                      </th>
                       <th scope="col" className="relative">
                         <span className="sr-only">Edit</span>
                       </th>
@@ -159,7 +165,7 @@ const AdminJobsIndex = ({ formRef }) => {
                     {jobs?.results.map((item) => (
                       <tr key={item.id}>
                         <td>
-                            {item.name}
+                          <strong>{item.name}</strong>
                         </td>
                         <td className="text-center">
                           <div className="w-32 m-auto relative">
@@ -178,7 +184,10 @@ const AdminJobsIndex = ({ formRef }) => {
                         <td>
                           {item.disclaimer}
                         </td>
-                        <td className="text-right font-medium">
+                        <td className="w-44">
+                          {moment(item.updatedAt || item.createdAt).from(moment())}
+                        </td>
+                        <td className="w-44 text-right font-medium">
                           <a href="#" className="text-green-sheen-600 hover:text-green-sheen-900" onClick={() => openModal(item)}>
                             <PencilAltIcon className="inline-flex align-text-bottom h-4 mr-1"/>Edit
                           </a>

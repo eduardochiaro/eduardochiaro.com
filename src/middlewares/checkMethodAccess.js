@@ -1,9 +1,9 @@
 import { getSession } from "next-auth/react";
 
-const checkPostAccess = async (req, res, next) => {
+const checkMethodAccess = async (req, res, next) => {
   const session = await getSession({ req });
   // run cors middleware
-  if (req.method == "POST" || req.method == "DELETE") {
+  if (req.method.includes([ "POST", "DELETE", "PUT", "PATCH" ])) {
     if (!session) {
       res.status(401);
       res.json({ error: 'Unauthorized' });
@@ -14,4 +14,4 @@ const checkPostAccess = async (req, res, next) => {
   return;
 }
 
-export default checkPostAccess;
+export default checkMethodAccess;

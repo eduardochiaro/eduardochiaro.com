@@ -4,6 +4,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 import GitHubIcon from '../elements/icons/github';
 import styles from '../styles/Apps.module.scss'
 import useStaleSWR from '../lib/staleSWR';
+import NaturalImage from '../elements/NaturalImage';
 
 export default function Apps () {
 
@@ -39,11 +40,9 @@ export default function Apps () {
             { data?.results.map((app, index) => (
               <div className={`flex flex-wrap transition-all duration-500 ease-in-out ${index == dataDisplay ? 'opacity-100 h-auto' : 'opacity-0 h-0'}`} key={`apps-carousel-card-${index}`} >
                 <div className={`basis-full md:basis-2/3 pt-6 relative ${index == dataDisplay ? 'block' : 'hidden'}`}>
-                  <Image
+                  <NaturalImage
                     src={`/uploads/${app.image}`}
-                    layout="intrinsic"
-                    width={1329}
-                    height={831}
+                    size={1329}
                     alt={app.title}
                     title={app.title}
                   />

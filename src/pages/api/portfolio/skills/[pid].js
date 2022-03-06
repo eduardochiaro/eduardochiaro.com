@@ -23,7 +23,7 @@ const handler = async (req, res) => {
     res.status(200).json({ error: 'Record doesnt exist' });
   }
   switch (req.method) {
-    case "POST":
+    case "PUT":
       await new Promise((resolve, reject) => {
         const form = new IncomingForm();
         form.parse(req, async (err, fields, files) => {
