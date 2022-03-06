@@ -28,7 +28,7 @@ const AdminWrapper = ({ children }) => {
             </a>
           </div>
         </div>
-        <div className="pt-4 px-10">
+        <div className="pt-4 pb-10 px-10">
         {React.Children.map(children, child => {
             return React.cloneElement(child)   
          })}

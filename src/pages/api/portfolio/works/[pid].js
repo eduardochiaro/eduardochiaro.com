@@ -58,8 +58,9 @@ const handler = async (req, res) => {
       });
       break;
     case "DELETE":
-      await prisma.job.delete({
+      await prisma.job.update({
         where: { id: parseInt(pid) },
+        data: { deletedAt: new Date() },
       });
       await rmFile(`${uploadPath}${jobReturn.logo}`);
       res.status(200).json({ action: 'job deleted' });

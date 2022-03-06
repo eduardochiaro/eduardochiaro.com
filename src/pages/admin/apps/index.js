@@ -1,13 +1,12 @@
 import { BriefcaseIcon, ExclamationIcon, PencilAltIcon, PlusIcon, TrashIcon } from "@heroicons/react/outline";
 import { useSession } from "next-auth/react"
-import Image from "next/image";
 import { useState, createRef } from "react";
 import useSWR, { useSWRConfig } from "swr";
 import axios from 'axios';
-//import FormData from 'form-data';
 import AdminModal from "../../../elements/admin/Modal";
 import AdminWrapper from "../../../elements/admin/Wrapper";
 import mergeObj from "../../../lib/mergeObj";
+import NaturalImage from "../../../elements/NaturalImage";
 
 const fetcher = (url) => fetch(url).then((res) => res.json())
 
@@ -163,17 +162,14 @@ const AdminAppsIndex = ({ formRef }) => {
                           {item.name}
                         </td>
                         <td className="text-center">
-                          <div className="w-1/2 m-auto">
-                            <Image
-                              layout="intrinsic"
-                              width={100}
-                              height={100}
-                              alt={item.name}
+                          <div className="w-32 m-auto relative">
+                            <NaturalImage
                               src={`/uploads/${item.image}`}
+                              alt={item.name}
                               title={item.name}
                               />
                           </div>
-                            <div className="small">{item.image}</div>
+                          <div className="small">{item.image}</div>
                         </td>
                         <td>
                           <p className="w-64 text-ellipsis overflow-hidden">

@@ -58,8 +58,9 @@ const handler = async (req, res) => {
       });
       break;
     case "DELETE":
-      await prisma.app.delete({
+      await prisma.app.update({
         where: { id: parseInt(pid) },
+        data: { deletedAt: new Date() },
       });
       await rmFile(`${uploadPath}${appReturn.image}`);
       res.status(200).json({ action: 'app deleted' });

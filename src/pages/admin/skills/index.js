@@ -3,6 +3,8 @@ import { useSession } from "next-auth/react"
 import { useState, createRef } from "react";
 import useSWR, { useSWRConfig } from "swr";
 import axios from 'axios';
+import fs from 'fs';
+import path from 'path';
 import AdminModal from "../../../elements/admin/Modal";
 import AdminWrapper from "../../../elements/admin/Wrapper";
 import mergeObj from "../../../lib/mergeObj";
@@ -10,36 +12,36 @@ import NaturalImage from "../../../elements/NaturalImage";
 
 const fetcher = (url) => fetch(url).then((res) => res.json())
 
-const AdminJobsIndex = ({ formRef }) => {
-  const { data: jobs, error } = useSWR('/api/portfolio/works', fetcher);
+const AdminSkillsIndex = ({ formRef, images }) => {
+  const { data: skills, error } = useSWR('/api/portfolio/skills', fetcher);
   const { data: session } = useSession();
-  
+
   const { mutate } = useSWRConfig();
 
-  const jobFormat = {
+  const skillFormat = {
     id: null,
     name: '',
-    disclaimer: '',
+    type: '',
     logo: '',
-    style: 0
+    percentage: 0
   };
 
   let [isOpen, setIsOpen] = useState(false);
   let [isOpenDelete, setIsOpenDelete] = useState(false); 
-  let [job, setJob] = useState(jobFormat);
+  let [skill, setSkill] = useState(skillFormat);
   let [formError, setFormError] = useState(false);
 
   const onSubmitModal = async (e) => {
     e.preventDefault();    
     setFormError(false);
-    if (!isFormValid(job)) {
+    if (!isFormValid(skill)) {
       setFormError(true);
       return;
     }
 
     const formData = new FormData();
 
-    for (let [key, value] of Object.entries(job)) {
+    for (let [key, value] of Object.entries(skill)) {
       if (key == 'logo') {
         formData.append(key, value);
       } else {
@@ -47,14 +49,14 @@ const AdminJobsIndex = ({ formRef }) => {
       }
     }
 
-    const urlSave = job.id ? `/api/portfolio/works/${job.id}` : '/api/portfolio/works/create';
+    const urlSave = skill.id ? `/api/portfolio/skills/${skill.id}` : '/api/portfolio/skills/create';
     //replace with axios
     axios.post(urlSave, formData, {
       headers: {
-        'Content-Type': `multipart/form-data; boundary=${formData._boundary}`
+        'Content-Type': `application/json`
       }
     }).then(({ data }) => {
-      mutate('/api/portfolio/works');
+      mutate('/api/portfolio/skills');
       closeModal();
     });
   }
@@ -62,8 +64,9 @@ const AdminJobsIndex = ({ formRef }) => {
   const isFormValid = (form) => {
     if (
       form.name == ''
-      || form.style <= 0
-      || form.style == ''
+      || form.type == ''
+      || form.percentage <= 0
+      || form.percentage == ''
       || (!form.id && !form.logo)
       ) {
         return false;
@@ -78,45 +81,45 @@ const AdminJobsIndex = ({ formRef }) => {
   }
 
   const onPrimaryButtonClickDelete = async () => {
-    const urlDelete = `/api/portfolio/works/${job.id}`;
+    const urlDelete = `/api/portfolio/skills/${skill.id}`;
     await fetch(urlDelete, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'
       }
     });
-    mutate('/api/portfolio/works');
+    mutate('/api/portfolio/skills');
     closeModalDelete();
   }
   
-  const openModal = (job) => {
-    const openJob = mergeObj(jobFormat, job);
-    setJob(openJob);
+  const openModal = (skill) => {
+    const openSkill = mergeObj(skillFormat, skill);
+    setSkill(openSkill);
     setIsOpen(true);
   }
 
   const closeModal = () => {
-    setJob(jobFormat);
+    setSkill(skillFormat);
     setIsOpen(false);
     setFormError(false);
   }
   
-  const openModalDelete = (job) => {
-    const openJob = mergeObj(jobFormat, job);
-    setJob(openJob);
+  const openModalDelete = (skill) => {
+    const openSkill = mergeObj(skillFormat, skill);
+    setSkill(openSkill);
     setIsOpenDelete(true);
   }
 
   const closeModalDelete = () => {
-    setJob(jobFormat);
+    setSkill(skillFormat);
     setIsOpenDelete(false);
   }
 
   const handleChange = (e) => {
     if (e.target.files) {
-      setJob({ ...job, [e.target.name]: e.target.files[0] });
+      setSkill({ ...skill, [e.target.name]: e.target.files[0] });
     } else {
-      setJob({ ...job, [e.target.name]: e.target.value });
+      setSkill({ ...skill, [e.target.name]: e.target.value });
     }
   }
 
@@ -124,10 +127,10 @@ const AdminJobsIndex = ({ formRef }) => {
     return (
       <AdminWrapper>
         <div className="flex my-2">
-          <h1 className="flex-auto text-4xl"><BriefcaseIcon className="inline-flex align-text-bottom h-10 text-terra-cotta-500 "/> Jobs list</h1>
+          <h1 className="flex-auto text-4xl"><BriefcaseIcon className="inline-flex align-text-bottom h-10 text-terra-cotta-500 "/> Skills list</h1>
           <div className="flex-none text-right">
-            <button className="bg-terra-cotta-500 hover:bg-terra-cotta-600 text-white font-bold py-2 px-4 mb-5 rounded" onClick={() => openModal(jobFormat)}>
-              <PlusIcon className="inline-flex align-text-bottom h-5 text-white  "/> Add new job
+            <button className="bg-terra-cotta-500 hover:bg-terra-cotta-600 text-white font-bold py-2 px-4 mb-5 rounded" onClick={() => openModal(skillFormat)}>
+              <PlusIcon className="inline-flex align-text-bottom h-5 text-white  "/> Add new skill
             </button>
           </div>
         </div>
@@ -145,10 +148,10 @@ const AdminJobsIndex = ({ formRef }) => {
                         Logo
                       </th>
                       <th scope="col" className="textcenter">
-                        Size (width)
+                        Percentage
                       </th>
                       <th scope="col">
-                        Disclaimer
+                        Type
                       </th>
                       <th scope="col" className="relative">
                         <span className="sr-only">Edit</span>
@@ -156,7 +159,7 @@ const AdminJobsIndex = ({ formRef }) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {jobs?.results.map((item) => (
+                    {skills?.results.map((item) => (
                       <tr key={item.id}>
                         <td>
                             {item.name}
@@ -164,8 +167,7 @@ const AdminJobsIndex = ({ formRef }) => {
                         <td className="text-center">
                           <div className="w-32 m-auto relative">
                             <NaturalImage
-                              src={`/uploads/${item.logo}`}
-                              size={item.style}
+                              src={`/images/svg-icons/${item.logo}`}
                               alt={item.name}
                               title={item.name}
                               />
@@ -173,10 +175,10 @@ const AdminJobsIndex = ({ formRef }) => {
                           <div className="small">{item.logo}</div>
                         </td>
                         <td className="text-center">
-                          {item.style}px
+                          {item.percentage}%
                         </td>
                         <td>
-                          {item.disclaimer}
+                          {item.type}
                         </td>
                         <td className="text-right font-medium">
                           <a href="#" className="text-green-sheen-600 hover:text-green-sheen-900" onClick={() => openModal(item)}>
@@ -195,7 +197,7 @@ const AdminJobsIndex = ({ formRef }) => {
           </div>
         </div>
         <AdminModal 
-          title={job.id ? 'Edit job' : 'Add new job'}
+          title={skill.id ? 'Edit skill' : 'Add new skill'}
           isOpen={isOpen} 
           closeModal={closeModal} 
           showButtons={true}
@@ -227,65 +229,79 @@ const AdminJobsIndex = ({ formRef }) => {
                   data-lpignore="true" 
                   data-form-type="other"
                   className="mt-1 input-field"
-                  value={job.name}
+                  value={skill.name}
                   onChange={handleChange}
                   required
                 />
               </div>
-              <div className="col-span-6 sm:col-span-5">
+              <div className="col-span-5 sm:col-span-2">
                 <label htmlFor="logo-url-form" className="input-label">
-                  Logo { !job.id &&
-                   <span className="text-terra-cotta-600 text-xl">*</span>
-                  }
+                  Logo <span className="text-terra-cotta-600 text-xl">*</span>
                 </label>
-                <input
-                  type="file"
-                  name="logo"
-                  id="logo-url-form"
-                  className="mt-1 block w-full text-sm text-slate-500
-                        file:mr-4 file:py-2 file:px-4
-                        file:rounded-full file:border-0
-                        file:text-sm file:font-semibold
-                        file:bg-independence-200 file:text-independence-700
-                        hover:file:bg-independence-300
-                  "
+                <select 
+                  name="logo" 
+                  className="mt-1 input-field"
                   onChange={handleChange}
-                />
+                  value={skill.logo}
+                  required
+                  >
+                  <option value="">Select logo</option>
+                  {images.map((item) => (
+                    <option key={item} value={item}>{item}</option>
+                  ))}
+                </select>
               </div>
-              <div className="col-span-6 sm:col-span-1">
-                <label htmlFor="style-form" className="input-label">
-                  Size (width) <span className="text-terra-cotta-600 text-xl">*</span>
+              <div className="col-span-1 relative">
+                <label htmlFor="logo-url-form" className="input-label">
+                  Preview
+                </label>
+                {skill.logo &&
+                  <NaturalImage
+                    src={`/images/svg-icons/${skill.logo}#icon`}
+                    alt="temp"
+                    />
+                }
+              </div>
+              <div className="col-span-6 sm:col-span-3">
+                <label htmlFor="percentage-form" className="input-label">
+                  Percentage <span className="text-terra-cotta-600 text-xl">*</span>
                 </label>
                 <input
-                  type="number"
-                  name="style"
-                  id="style-form"
+                  type="range"
+                  name="percentage"
+                  id="percentage-form" 
+                  min="0" 
+                  max="100" 
+                  step="5"
+                  className="mt-1 range-field"
+                  value={skill.percentage}
+                  onChange={handleChange}
+                  required
+                />
+                <p className="text-sm">(selected: {skill.percentage}%)</p>
+              </div>
+              <div className="col-span-6">
+                <label htmlFor="type-form" className="input-label">
+                  Type <span className="text-terra-cotta-600 text-xl">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="type"
+                  id="type-form"
                   autoComplete="off"
                   data-lpignore="true" 
                   data-form-type="other"
                   className="mt-1 input-field"
-                  value={job.style}
+                  value={skill.type}
                   onChange={handleChange}
                   required
-                />
-              </div>
-              <div className="col-span-6">
-                <label htmlFor="disclaimer-form" className="input-label">
-                  Disclaimer
-                </label>
-                <textarea
-                  name="disclaimer"
-                  id="disclaimer-form"
-                  className="mt-1 input-field"
-                  value={job.disclaimer}
-                  onChange={handleChange}
                 />
               </div>
             </div>  
           </form>
         </AdminModal>
         <AdminModal
-          title="Delete job"
+          title="Delete skill"
           isOpen={isOpenDelete}
           closeModal={closeModalDelete}
           showButtons={true}
@@ -294,7 +310,7 @@ const AdminJobsIndex = ({ formRef }) => {
           primaryButtonLabel="Delete"
           primaryButtonClass="button-danger"
         >
-          <p>Are you sure you want to delete job &quot;{ job.name }&quot;?</p>
+          <p>Are you sure you want to delete skill &quot;{ skill.name }&quot;?</p>
         </AdminModal>
       </AdminWrapper>
     )
@@ -303,9 +319,13 @@ const AdminJobsIndex = ({ formRef }) => {
 }
 
 export async function getStaticProps() {
+  const dirRelativeToPublicFolder = 'images/svg-icons'
+  const dir = path.resolve('./public', dirRelativeToPublicFolder);
+  const filenames = fs.readdirSync(dir);
+
   return {
-    props: { formRef: createRef() }, // will be passed to the page component as props
+    props: { formRef: createRef(), images: filenames }, // will be passed to the page component as props
   }
 }
 
-export default AdminJobsIndex;
+export default AdminSkillsIndex;
