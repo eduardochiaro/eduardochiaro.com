@@ -28,8 +28,8 @@ export default function Apps () {
   }
     if (data && data.results) {
     return (
-      <section id="apps" className={`${styles.apps} relative mt-8 shadow-xl`}>
-        <span className={styles.anchor} id="apps-anchor"/>
+      <section className={`${styles.apps} relative mt-8 shadow-xl`}>
+        <span className="anchor" name="apps"/>
         <div className="container mx-auto relative">
           <div className="flex">
             <div className="grow-0 flex items-center cursor-pointer" onClick={previous}>

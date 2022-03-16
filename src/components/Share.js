@@ -16,21 +16,21 @@ export default function Share () {
         <div className="flex-initial w-30 text-center h-10">
           <a href="https://twitter.com/eduardochiaro" title="Twitter">
             <TwitterIcon
-              className={`inline-block h-full transition duration-150 ease-out text-white hover:text-gray-600 hover:scale-110`}
+              className={`inline-block h-full transition duration-500 ease-out text-white hover:text-gray-600 hover:scale-125`}
             />
           </a>
         </div>
         <div className="flex-initial w-30 text-center h-10">
           <a href="https://linkedin.com/in/eduardochiaro" title="LinkedIn">
             <LinkedInIcon
-              className={`inline-block h-full transition duration-150 ease-out text-white hover:text-gray-600 hover:scale-110`}
+              className={`inline-block h-full transition duration-500 ease-out text-white hover:text-gray-600 hover:scale-125`}
             />
           </a>
         </div>
         <div className="flex-initial w-30 text-center h-10">
         <a href="https://github.com/eduardochiaro" title="GitHub">
             <GitHubIcon
-              className={`inline-block h-full transition duration-150 ease-out text-white hover:text-gray-600 hover:scale-110`}
+              className={`inline-block h-full transition duration-500 ease-out text-white hover:text-gray-600 hover:scale-125`}
             />
           </a>
         </div>

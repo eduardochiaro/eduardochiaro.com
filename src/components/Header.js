@@ -10,7 +10,8 @@ import {
 import GitHubIcon from '../elements/icons/github';
 import SVG from 'react-inlinesvg'
 import styles from '../styles/Header.module.scss'
-import ActiveLink from '../elements/ActiveLink';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 export default function Header () {
   const [menuOpen, setMenuOpen] = React.useState(false);
@@ -21,25 +22,25 @@ export default function Header () {
     {
       text: 'Home',
       link: '/',
-      as: '/#root',
+      as: '/#top',
       current: true,
       pre: <HomeIcon className="h-7 md:h-5 inline mr-2 md:mr-1 align-sub" />
     },
     {
       text: 'Skills',
-      link: '/#skills-anchor',
+      link: '/#skills',
       current: false,
       pre: <TerminalIcon className="h-7 md:h-5 inline mr-2 md:mr-1 align-sub" />
     },
     {
       text: 'Apps',
-      link: '/#apps-anchor',
+      link: '/#apps',
       current: false,
       pre: <ChipIcon className="h-7 md:h-5 inline mr-2 md:mr-1 align-sub" />
     },
     {
       text: 'GitHub',
-      link: '/#github-anchor',
+      link: '/#github',
       current: false,
       pre: <GitHubIcon className="h-7 md:h-5 inline mr-2 md:mr-1 align-sub" />
     },
@@ -53,10 +54,11 @@ export default function Header () {
     }
     */
   ]
+  const router = useRouter();
   return (
-    <header id="root" className={`${styles.header} z-40`}>
-      <nav className="w-100 pt-4 pb-6 md:pb-1 md:pt-6 md:px-12 md:px-auto">
-        <div className="md:h-16 px-3 mx-auto flex items-center justify-between flex-wrap md:flex-nowrap">
+    <header className={`${styles.header} sticky top-0 z-40 h-24`}>
+      <nav className="w-100 md:px-12 md:px-auto">
+        <div className="md:h-16 pt-4 md:pt-6 px-3 mx-auto flex items-center justify-between flex-wrap md:flex-nowrap">
           <div className="flex-initial text-gray-500">
             <SVG 
               title="" 
@@ -71,14 +73,13 @@ export default function Header () {
                 return (
                   <li 
                     key={`menu-link-${i}`}>
-                    <ActiveLink 
+                    <Link 
                       href={ item.link } 
-                      as={ item.as }
-                      activeClassName={`text-gray-900`}>
-                         <a 
-                          className={`px-6 py-2 block md:inline-block transition text-2xl md:text-base hover:text-gray-900`}
-                          onClick={openMenu}>{item.pre}{item.text}</a>
-                    </ActiveLink>
+                      as={ item.as }>
+                        <a 
+                          className={router.asPath != item.link && router.asPath != item.as ? `${styles.menuUrl}` : `${styles.menuUrl} text-gray-900`}
+                           onClick={openMenu}>{item.pre}{item.text}</a>
+                    </Link>
                   </li>
                 )
               })}

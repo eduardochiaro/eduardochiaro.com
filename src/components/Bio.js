@@ -6,6 +6,7 @@ export default function Bio () {
 
   return (
     <section id="bio" className={`px-0 sm:px-2 md:px-4`}>
+      <span className="anchor" name="top"/>
       <div className="flex flex-row items-center justify-between container mx-auto">
         <div className="flex-1 basis-2/3 align-top mx-4 lg:mx-0">
           <h1 className="font-header leading-tight text-3xl lg:text-5xl xl:text-7xl font-bold">

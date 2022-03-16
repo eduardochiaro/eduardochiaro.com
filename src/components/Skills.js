@@ -7,8 +7,8 @@ export default function Skills () {
   const { data, error } = useStaleSWR('/api/portfolio/skills');
 
   return (
-    <section id="skills" className={`px-0 sm:px-2 md:px-4`}>
-      <span id="skills-anchor"/>
+    <section className={`px-0 sm:px-2 md:px-4`}>
+      <span className="anchor" name="skills"/>
       <div className="container mx-auto pt-8">
         <h3 className="font-header leading-tight text-2xl lg:text-4xl font-light mx-4 lg:mx-2 mb-2">
           What I&apos;m <span className="text-terra-cotta-500">good</span> at...

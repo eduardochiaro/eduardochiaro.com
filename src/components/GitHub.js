@@ -74,7 +74,7 @@ export default function GitHub () {
 
   return (
     <section id="github" className={`${styles.github} pb-12  px-0 sm:px-2 md:px-4`}>
-      <span className={styles.anchor} id="github-anchor"/>
+      <span className="anchor" name="github"/>
       <div className="container mx-auto pt-8">
         <h3 className="font-header leading-tight text-2xl lg:text-4xl font-light mx-4 lg:mx-2 mb-2">
           Latest repositories{' '}<span className="rounded font-base align-super bg-terra-cotta-500 text-white px-2 py-1 text-sm">{ data ? data.results.length : 0 } total</span>
