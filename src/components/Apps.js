@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Image from 'next/image';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 import GitHubIcon from '../elements/icons/github';
 import styles from '../styles/Apps.module.scss'

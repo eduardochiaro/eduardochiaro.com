@@ -3,7 +3,6 @@ import * as React from 'react';
 import SVG from 'react-inlinesvg'
 import { useSession, signIn, signOut } from "next-auth/react"
 import { LoginIcon, LogoutIcon } from "@heroicons/react/solid"
-import styles from '../styles/Footer.module.scss'
 
 function LoginButton(props) {
   const isLoggedIn = props.isLoggedIn;
