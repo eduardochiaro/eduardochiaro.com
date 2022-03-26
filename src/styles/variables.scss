@@ -1,0 +1,42 @@
+/* SCSS HSL */
+$isabelline: hsla(48, 14%, 93%, 1);
+$imperial-red: hsla(355, 78%, 56%, 1);
+$honeydew: hsla(105, 55%, 96%, 1);
+$powder-blue: hsla(182, 43%, 76%, 1);
+$celadon-blue: hsla(203, 39%, 44%, 1);
+$prussian-blue: hsla(215, 50%, 23%, 1);
+$eggshell: hsla(52, 50%, 91%, 1);
+$terra-cotta: hsla(13, 68%, 63%, 1);
+$independence: hsla(234, 20%, 30%, 1);
+$green-sheen: hsla(151, 24%, 60%, 1);
+$deep-champagne: hsla(37, 79%, 75%, 1);
+$orange-web: hsla(37, 98%, 53%, 1);
+$old-lavender: hsla(263, 6%, 43%, 1);
+$white: hsla(255, 100%, 100%, 1);
+$dimgray: hsla(231, 9% ,44%, 1 );
+
+$body: hsla(210, 20%, 16%, 1);
+$primary: $terra-cotta;
+$secondary: $independence;
+$tertiary: $green-sheen;
+$link-light-hover: $eggshell;
+$success: $tertiary;
+$danger: $orange-web;
+
+$font-family-header: 'Rajdhani', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+$carousel-control-color: $orange-web;
+
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
+@mixin transform($transforms...) {
+	-webkit-transform: $transforms;
+	-moz-transform: $transforms;
+	-ms-transform: $transforms;
+	transform: $transforms;
+}

@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'variables.scss';
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: $isabelline;
+  color: $body;
+}
+
+svg {
+  .st0,
+  .st4,
+  .cls-1 {
+    fill: $isabelline !important;
+  }
+  .st1,
+  .cls-4 {
+    fill: $tertiary !important;
+  }
+  .st2,
+  .cls-3 {
+    fill: $primary !important;
+  }
+  .st5,
+  .cls-2 {
+    fill: $secondary !important;
+  }
+  &.mainLogo {
+    .main {
+      fill: $secondary !important;
+    }
+    .accent {
+      fill: $primary !important;
+    }
+  }
+  &.bottomLogo {
+    .main {
+      fill: $white !important;
+    }
+    .accent {
+      fill: $white !important;
+    }
+  }
+}
+// Form styles 
+.input-label {
+  @apply block text-sm font-medium text-gray-700;
+}
+
+.input-field {
+  @apply focus:border-green-sheen-500 focus:ring-green-sheen-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md;
+}
+.range-field {
+  @apply rounded-lg appearance-none bg-gray-200 h-3 w-full;
+  &::-webkit-slider-thumb {
+    width: 15px;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 15px;
+    cursor: ew-resize;
+    background: $green-sheen;
+    border-radius: 50%;
+  }
+}
+.button-success {
+  @apply inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-sheen-600 hover:bg-green-sheen-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-sheen-500
+}
+.button-danger {
+  @apply inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-terra-cotta-600 hover:bg-terra-cotta-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-terra-cotta-500
+}
+
+//Admin tables
+table.admin-table {
+  @apply min-w-full divide-y divide-gray-200;
+  thead {
+    @apply bg-gray-200;
+    tr {
+      th {
+        @apply px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider;
+        &.textcenter {
+          @apply text-center;
+        }
+      }
+    }
+  }
+  tbody {
+    @apply bg-white divide-y divide-gray-200;
+    tr {
+      &:nth-child(even) {
+        @apply bg-gray-100;
+      }
+      td {
+        @apply px-6 py-4 whitespace-nowrap text-xs leading-5 text-gray-900;
+      }
+    }
+  }
+}
+.anchor {
+  display: block;
+  position: relative;
+  top: -6rem;
+  visibility: hidden;
+}
