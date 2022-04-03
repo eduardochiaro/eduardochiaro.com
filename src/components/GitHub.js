@@ -18,9 +18,7 @@ export default function GitHub () {
 
   const { data, error } = useSWR('/api/portfolio/github', fetcher);
 
-  const cutReposene = (data) ? data.results
-            .filter((element) => !element.archived)
-            .slice(0, 7) : [];
+  const cutReposene = (data) ? data.results.slice(0, 7) : [];
 
   const getLanguageIcon = (language) => {
     switch (language) {
@@ -32,6 +30,7 @@ export default function GitHub () {
         return 'node'
       case 'CSS':
         return 'css'
+      case 'SCSS':
       case 'CSS3':
         return 'css3'
       case 'PHP':
@@ -44,15 +43,9 @@ export default function GitHub () {
   }
 
   const LoadImage = ({ src, alt }) => {
-    const [error, setError] = React.useState(false);
-
-    const onError = () => {
-      setError(true)
-    }
-
     const pick = randomIntFromInterval(1,4);
   
-    return error ? (
+    return src.includes('avatars.githubusercontent.com') ? (
       <Image
           src={`/images/random/${pick}.jpg`}
           layout="fill"
@@ -67,7 +60,6 @@ export default function GitHub () {
           objectFit="cover"
           className="z-10"
           alt={alt}
-          onError={onError}
         />
     )
   }
@@ -86,10 +78,10 @@ export default function GitHub () {
             <GitHubIcon className={`w-36 text-independence-900 mx-auto opacity-25 mt-8`} />
           </div>
         { cutReposene.map((repo, index) => (
-          <a href={repo.html_url} key={`repo-${index}`} className="text-decoration-none" style={{perspective: '1000px'}}>
+          <a href={repo.url} key={`repo-${index}`} className="text-decoration-none" style={{perspective: '1000px'}}>
             <div className={`rounded bg-white shadow-xl shadow-independence-900/30 h-max m-4 overflow-hidden ${styles["card"]} transition-all duration-500`}>
               <div className="relative h-96 w-full">
-                <LoadImage src={`/uploads/${repo.id}.png`} alt={repo.name} />
+                <LoadImage src={repo.openGraphImageUrl} alt={repo.name} />
                 <div className={`absolute top-64 hover:top-16 z-30 w-full ${styles["card-holder"]} transition-all duration-500`}>
                   {repo.topics.map((topic) => (
                     <div className="bg-white border shadow-sm border-gray-200 rounded px-2 text-sm text-gray-600 ml-2 mb-2 inline-block z-30" key={topic}>
@@ -100,8 +92,14 @@ export default function GitHub () {
                   <div className={`bg-egg-shell-400 h-96 ${styles["language-" + kebab(repo.language)]} ${styles["card-header"]}`} >
                     <SVG title={repo.language} alt={repo.language} className={`${styles.logo} w-14 mx-4 mt-6`} src={`images/svg-icons/${getLanguageIcon(repo.language)}.svg`} />
                     <h3 className="text-xl font-header pt-5 mx-4 text-ellipsis w-2/3 whitespace-nowrap overflow-hidden">{repo.name}</h3>
-                    <p className="pb-5 mx-4 text-xs opacity-60">Last updated {moment(repo.updated_at).from(moment())}</p>
-                    <p className="w-2/3 mx-4 mt-4 text-sm">{repo.description}</p>
+                    <p className="pb-5 mx-4 text-xs opacity-60 ">Last updated {moment(repo.updatedAt).from(moment())}</p>
+                    <p className="w-2/3 mx-4 mt-4 mb-2 text-xs antialiased">{repo.description}</p>
+                    {repo.languages.slice(0, 3).map((language, index) => (
+                      <div key={index} className="inline-block mx-4 text-xs antialiased">
+                        <div className="p-1 shadow-sm inline-block w-3 h-3 rounded-full mr-2" style={{ backgroundColor: language.color }}></div>
+                        {language.name}
+                        </div>
+                    ))}
                   </div>
                 </div>
               </div>
