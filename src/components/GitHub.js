@@ -18,7 +18,7 @@ export default function GitHub () {
 
   const { data, error } = useSWR('/api/portfolio/github', fetcher);
 
-  const cutReposene = (data) ? data.results.slice(0, 7) : [];
+  const cutReposene = (data) ? data.results.filter(x => !x.isArchived).slice(0, 7) : [];
 
   const getLanguageIcon = (language) => {
     switch (language) {
@@ -96,9 +96,9 @@ export default function GitHub () {
                     <p className="w-2/3 mx-4 mt-4 mb-2 text-xs antialiased">{repo.description}</p>
                     {repo.languages.slice(0, 3).map((language, index) => (
                       <div key={index} className="inline-block mx-4 text-xs antialiased">
-                        <div className="p-1 shadow-sm inline-block w-3 h-3 rounded-full mr-2" style={{ backgroundColor: language.color }}></div>
+                        <div className="p-1 drop-shadow inline-block w-3 h-3 rounded-full mr-2" style={{ backgroundColor: language.color }}></div>
                         {language.name}
-                        </div>
+                      </div>
                     ))}
                   </div>
                 </div>

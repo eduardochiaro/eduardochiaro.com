@@ -74,20 +74,19 @@ const handler = async (req, res) => {
       const { name, color } = language;
       return { name, color };
     });
-    if (!isArchived) {
-      return {
-        id,
-        name,
-        description,
-        openGraphImageUrl,
-        topics,
-        updatedAt,
-        url,
-        languages,
-        language: languages[0]?.name,
-      };
-    }
-  }).filter(n => n);
+    return {
+      id,
+      name,
+      description,
+      isArchived,
+      openGraphImageUrl,
+      topics,
+      updatedAt,
+      url,
+      languages,
+      language: languages[0]?.name,
+    };
+  });
 
   res.status(200).json({ results: data });
 }
