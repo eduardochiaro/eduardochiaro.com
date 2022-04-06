@@ -1,6 +1,6 @@
 {
   "name": "eduardochiaro",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -10,6 +10,7 @@
     "export": "next build && next export",
     "generate": "prisma generate",
     "migrate:dev": "dotenv -e .env.local prisma migrate dev",
+    "migrate-empty:dev": "dotenv -e .env.local prisma migrate dev --create-only",
     "migrate:prod": "dotenv -e .env.local prisma migrate deploy",
     "prisma": "prisma -v"
   },

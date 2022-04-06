@@ -47,7 +47,7 @@ export default function Apps () {
                 </div>
                 <div className={`basis-full md:basis-1/3 text-center ${index == dataDisplay ? 'block' : 'hidden'} px-8`}>
                   <h3 className="mt-4 md:mt-20 text-4xl text-white font-header">{app.name}</h3>
-                  <h4 className="text-2xl text-white">{app.short}</h4>
+                  <h4 className="text-2xl text-white">{app.description}</h4>
                   <a
                     href={app.url}
                     target="_blank"
