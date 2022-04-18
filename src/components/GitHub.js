@@ -18,7 +18,7 @@ export default function GitHub () {
 
   const { data, error } = useSWR('/api/portfolio/github', fetcher);
 
-  const cutReposene = (data) ? data.results.filter(x => !x.isArchived).slice(0, 7) : [];
+  const cutReposene = (data) ? data.results.filter(x => !x.isArchived).slice(0, 5) : [];
 
   const getLanguageIcon = (language) => {
     switch (language) {
@@ -65,15 +65,15 @@ export default function GitHub () {
   }
 
   return (
-    <section id="github" className={`${styles.github} pb-12  px-0 sm:px-2 md:px-4`}>
+    <section id="github" className={`${styles.github} px-8 lg:px-0 mt-10`}>
       <span className="anchor" name="github"/>
-      <div className="container mx-auto pt-8">
+      <div className="max-w-5xl mx-auto">
         <h3 className="font-header leading-tight text-2xl lg:text-4xl font-light mx-4 lg:mx-2 mb-2">
           Latest repositories{' '}<span className="rounded font-base align-super bg-terra-cotta-500 text-white px-2 py-1 text-sm">{ data ? data.results.length : 0 } total</span>
         </h3>
       </div>
-      <div className="container mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      <div className="max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <div className="text-center hidden md:block">
             <GitHubIcon className={`w-36 text-independence-900 mx-auto opacity-25 mt-8`} />
           </div>

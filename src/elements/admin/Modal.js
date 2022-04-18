@@ -48,7 +48,7 @@ const AdminModal = ({
           >
             <div className="inline-block w-full max-w-4xl my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
               <div className="flex px-6 pt-6 pb-4 mb-4 bg-gray-100">
-                <Dialog.Title as="h3" className="flex-1 text-4xl leading-6 font-medium text-gray-900">
+                <Dialog.Title as="h3" className="flex-1 text-4xl leading-6 font-medium text-independence-900">
                   {title}
                 </Dialog.Title>
                 <div className="flex-none">

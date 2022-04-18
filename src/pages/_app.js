@@ -1,5 +1,6 @@
 import { SessionProvider } from "next-auth/react"
 import '../styles/globals.scss'
+import { ThemeProvider } from "next-themes";
 
 function MyApp({
   Component,
@@ -7,7 +8,9 @@ function MyApp({
 }) {
   return (
     <SessionProvider session={session} refetchInterval={5 * 60}>
-      <Component {...pageProps} />
+      <ThemeProvider enableSystem={true} attribute="class">
+        <Component {...pageProps} />
+      </ThemeProvider>
     </SessionProvider>
   )
 }

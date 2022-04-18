@@ -5,19 +5,35 @@ import {
   AdjustmentsIcon,
   ChipIcon,
   HomeIcon,
-  MenuIcon
+  MenuIcon,
+  SunIcon,
+  MoonIcon
 } from '@heroicons/react/solid'
 import GitHubIcon from '../elements/icons/github';
 import SVG from 'react-inlinesvg'
 import styles from '../styles/Header.module.scss'
 import Link from 'next/link';
+import { useTheme } from "next-themes";
 import { useRouter } from 'next/router';
 
 export default function Header () {
   const [menuOpen, setMenuOpen] = React.useState(false);
+  const { systemTheme , theme, setTheme } = useTheme();
   const openMenu = () => {
     setMenuOpen(!menuOpen);
   }
+  const renderThemeChanger= () => {
+    const currentTheme = theme === "system" ? systemTheme : theme ;
+    if(currentTheme === "dark"){
+      return (
+        <SunIcon className="w-5 h-5 text-independence-900 inline-block mx-4 border rounded-full bg-isabelline-500 " role="button" onClick={() => setTheme('light')} />
+      )
+    } else {
+      return (
+        <MoonIcon className="w-5 h-5 text-isabelline-500 inline-block mx-4 border rounded-full bg-independence-900" role="button" onClick={() => setTheme('dark')} />
+      )
+    }
+  };
   const menuData = [
     {
       text: 'Home',
@@ -56,10 +72,10 @@ export default function Header () {
   ]
   const router = useRouter();
   return (
-    <header className={`${styles.header} sticky top-0 z-40 h-24`}>
-      <nav className="w-100 md:px-12 md:px-auto">
-        <div className="md:h-16 pt-4 md:pt-6 px-3 mx-auto flex items-center justify-between flex-wrap md:flex-nowrap">
-          <div className="flex-initial text-gray-500">
+    <header className={`${styles.header} sticky top-0 z-40 h-14 bg-zinc-50 dark:bg-zinc-800 border-b border-zinc-200 dark:border-zinc-600`}>
+      <nav className="w-100 px-auto">
+        <div className="h-8 pt-2 md:pt-6 px-3 mx-auto flex items-center justify-between flex-wrap md:flex-nowrap">
+          <div className="flex-initial">
             <SVG 
               title="" 
               alt="" 
@@ -67,8 +83,8 @@ export default function Header () {
               width={65}
               src={'/images/logo-n.svg'} />
           </div>
-          <div className={`text-gray-500 w-full md:w-auto ${menuOpen ? 'block drop-shadow-lg mr-4 border border-independence-400 rounded ml-auto w-fit' : 'hidden drop-shadow-none'} md:contents absolute md:relative top-16 right-1 bg-isabelline-500 z-50`}>
-            <ul className="md:flex font-semibold md:justify-between">
+          <div className={`text-isabelline-700 w-full md:w-auto ${menuOpen ? 'block drop-shadow-lg mr-4 border border-independence-400 rounded ml-auto w-fit' : 'hidden drop-shadow-none'} md:contents absolute md:relative top-16 right-1 bg-isabelline-500 z-50`}>
+            <ul className="md:flex font-semibold tracking-wider md:justify-between">
               { menuData.map(function(item, i) {
                 return (
                   <li 
@@ -77,7 +93,7 @@ export default function Header () {
                       href={ item.link } 
                       as={ item.as }>
                         <a 
-                          className={router.asPath != item.link && router.asPath != item.as ? `${styles.menuUrl}` : `${styles.menuUrl} text-gray-900`}
+                          className={router.asPath != item.link && router.asPath != item.as ? `${styles.menuUrl} hover:text-independence-900 dark:hover:text-isabelline-500` : `${styles.menuUrl} text-independence-900 dark:text-isabelline-500`}
                            onClick={openMenu}>{item.pre}{item.text}</a>
                     </Link>
                   </li>
@@ -86,11 +102,12 @@ export default function Header () {
             </ul>
           </div>
           <div className="order-last">
-            <a href="https://blog.eduardochiaro.com" className="md:pr-0 pr-6 whitespace-nowrap text-base font-medium transition text-gray-500 hover:text-gray-900">
+            <a href="https://blog.eduardochiaro.com" className="md:pr-0 pr-6 whitespace-nowrap text-base font-medium transition text-isabelline-700 hover:text-independence-900 dark:hover:text-isabelline-500">
               <RssIcon className={`h-6 w-6 inline-block text-terra-cotta-500`} aria-hidden="true"  /> .dev
             </a>
+            {renderThemeChanger()}
             <a href="#" className="inline-block md:hidden" onClick={openMenu}>
-              <MenuIcon className={`w-8 inline-block border-2 rounded border-gray-500 transition text-gray-500 hover:text-gray-900`}/>
+              <MenuIcon className={`w-6 inline-block border-2 rounded border-isabelline-700 transition text-isabelline-700 hover:text-independence-900 dark:hover:text-isabelline-500`}/>
             </a>
           </div>
         </div>

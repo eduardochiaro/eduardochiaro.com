@@ -27,9 +27,9 @@ export default function Apps () {
   }
     if (data && data.results) {
     return (
-      <section className={`${styles.apps} relative mt-8 shadow-xl`}>
+      <section className={`${styles.apps} px-8 lg:px-0 my-10`}>
         <span className="anchor" name="apps"/>
-        <div className="container mx-auto relative">
+        <div className="max-w-5xl mx-auto relative">
           <div className="flex">
             <div className="grow-0 flex items-center cursor-pointer" onClick={previous}>
               <ChevronLeftIcon className={`text-gray-300 w-8 lg:w-full h-20 hover:text-gray-700`}/>
@@ -46,15 +46,15 @@ export default function Apps () {
                   />
                 </div>
                 <div className={`basis-full md:basis-1/3 text-center ${index == dataDisplay ? 'block' : 'hidden'} px-8`}>
-                  <h3 className="mt-4 md:mt-20 text-4xl text-white font-header">{app.name}</h3>
+                  <h3 className="mt-10 text-4xl text-white font-header">{app.name}</h3>
                   <h4 className="text-2xl text-white">{app.description}</h4>
                   <a
                     href={app.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="bg-gray-700 transition text-white hover:text-terra-cotta-500 shadow-lg border border-gray-300 px-4 py-2 text-base lg:text-2xl rounded-md mt-8 lg:mt-24 mb-8 inline-block"
+                    className="bg-gray-700 transition text-white hover:text-terra-cotta-500 shadow-lg border border-gray-300 px-4 py-2 text-base rounded-md mt-8 lg:mt-24 mb-8 inline-block"
                   >
-                    <GitHubIcon className="inline-block align-text-top w-5 lg:w-7 mr-2" />
+                    <GitHubIcon className="inline-block align-text-top w-5 mr-2" />
                     Download from GitHub
                   </a>
                 </div>

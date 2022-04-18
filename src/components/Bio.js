@@ -1,25 +1,23 @@
 import * as React from 'react';
-import SVG from 'react-inlinesvg'
 import CoffeeIcon from '../elements/icons/coffee';
 
 export default function Bio () {
-
   return (
-    <section id="bio" className={`px-0 sm:px-2 md:px-4`}>
+    <section id="bio" className="px-8 lg:px-0 mt-10">
       <span className="anchor" name="top"/>
-      <div className="flex flex-row items-center justify-between container mx-auto">
-        <div className="flex-1 basis-2/3 align-top mx-4 lg:mx-0">
-          <h1 className="font-header leading-tight text-3xl lg:text-5xl xl:text-7xl font-bold">
-            I&apos;m <span className="text-terra-cotta-500">Eduardo</span>,
-          </h1>
-          <h2 className="font-header leading-tight text-3xl lg:text-5xl xl:text-7xl font-bold">
-            a <CoffeeIcon className={`inline-block w-8 lg:w-16 text-isabelline-900`}/> coffee-driven
-            Software Developer based in Washington State.
-          </h2>
-        </div>
-        <div className={`flex-1 basis-1/3 hidden lg:block`}>
-          <SVG src={`/images/bgs/integration.svg`} />
-        </div>
+      <div className="max-w-5xl mx-auto">
+        <h1 className="font-header leading-tight text-3xl lg:text-5xl xl:text-6xl font-bold">
+          I&apos;m <span className="text-terra-cotta-500">Eduardo</span>,
+        </h1>
+        <h2 className="font-header leading-tight text-3xl lg:text-5xl xl:text-6xl font-bold">
+          a <CoffeeIcon className={`inline-block w-8 lg:w-16 text-isabelline-700`}/> coffee-driven
+          Software Developer based in Washington State.
+        </h2>
+        <p className="mt-5 text-lg font-normal text-gray-600 dark:text-gray-200">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nisl lacus, auctor condimentum mi vitae, bibendum pretium lacus. 
+          Morbi molestie diam eget eros iaculis, vel pellentesque sapien tempus. Sed tempor risus dui, non euismod eros semper sit amet. 
+          Praesent mollis, elit non finibus porttitor, orci leo hendrerit orci, volutpat tincidunt libero urna vitae quam.</p>
+        <p className="mt-5 text-lg font-normal text-gray-600 dark:text-gray-200">Pellentesque tortor purus, ornare ac laoreet pellentesque, tincidunt non erat. Curabitur pellentesque velit nec mi rutrum, ac viverra nulla egestas. 
+          Sed sit amet urna pretium, maximus lacus eu, scelerisque lacus.</p>
       </div>
     </section>
   );

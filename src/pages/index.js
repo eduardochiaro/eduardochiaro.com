@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import Header from '../components/Header'
 import Bio from '../components/Bio'
 import Jobs from '../components/Jobs'
@@ -7,7 +8,7 @@ import Top from '../components/Top'
 import Apps from '../components/Apps'
 import GitHub from '../components/GitHub'
 import Footer from '../components/Footer'
-import Head from 'next/head'
+import Sidemenu from '../components/Sidemenu'
 
 export default function Home() {
   return (
@@ -22,12 +23,14 @@ export default function Home() {
       </Head>
       <Header />
       <Bio />
-      <Jobs />
       <Share />
+      <hr className="my-10 max-w-5xl mx-auto border-t border-isabelline-600 dark:border-isabelline-800" />
+      <Jobs />
       <Skills />
       <Apps />
       <GitHub />
       <Top />
+      <Sidemenu />
       <Footer />
     </div>
   )

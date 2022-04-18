@@ -7,6 +7,7 @@ module.exports = {
     "./src/components/**/*.{js,ts,jsx,tsx}",
     "./src/elements/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: "class", 
   theme: {
     colors: {
       transparent: 'transparent',
@@ -18,6 +19,7 @@ module.exports = {
       indigo: colors.indigo,
       yellow: colors.yellow,
       blue: colors.blue,
+      zinc: colors.zinc,
       independence: {
         "50": "#EAEAF1",
         "100": "#D4D6E3",

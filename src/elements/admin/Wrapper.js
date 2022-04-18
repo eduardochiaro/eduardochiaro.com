@@ -22,7 +22,7 @@ const AdminWrapper = ({ children }) => {
           />
           </div>
           <div className="inline-block">
-            <a onClick={() => signOut()} title="logout" className="cursor-pointer focus:outline-none text-gray-500 hover:text-gray-900">
+            <a onClick={() => signOut()} title="logout" className="cursor-pointer focus:outline-none text-gray-500 hover:text-independence-900">
               <LogoutIcon className="inline-flex w-7" />
             </a>
           </div>
