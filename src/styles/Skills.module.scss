@@ -1,0 +1,29 @@
+@import 'variables.scss';
+
+.dark:icon {
+  svg {
+    fill: $white
+  }
+}
+.icon {
+  
+}
+
+.bar-node {
+  background-color: $green-sheen;
+}
+.bar-html {
+  background-color: $imperial-red;
+}
+.bar-css {
+  background-color: $celadon-blue;
+}
+.bar-php {
+  background-color: $old-lavender;
+}
+.bar-mysql {
+  background-color: $prussian-blue;
+}
+.bar-aws {
+  background-color: $orange-web;
+}
