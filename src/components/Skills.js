@@ -27,7 +27,27 @@ export default function Skills () {
                 </div>
               </div>
             </div>
-          )) : '' }
+          )) : [
+            ...Array(6)
+                .fill()
+                .map((_, idx) => 0 + idx),
+            ].map((x) => (
+              <div key={`skill-${x}`} className="flex items-center mt-1">
+                <span className="flex-none font-medium text-gray-1000 dark:text-gray-100 mr-5">
+                  <div key={x} className="w-12 h-8 bg-zinc-300 dark:bg-zinc-600 rounded animate-pulse"></div>
+                </span>
+                <span className="w-full border-t border-isabelline-600 dark:border-isabelline-800 border-dashed shrink mr-5"></span>
+                <div className="flex-none w-12 relative text-white">
+                  <div key={x} className="w-8 h-8 bg-zinc-300 dark:bg-zinc-600 rounded animate-pulse"></div>
+                </div>
+                <div className="flex-none w-6/12">
+                  <div className="w-full bg-zinc-200 dark:bg-zinc-700 h-4 rounded animate-pulse">
+                    <div className={`${styles[`bar-node`]} bg-blue-600 rounded h-4`} style={{width: Math.random() * 100 + '%'}}></div>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
         </div>
       </div>
     </section>
