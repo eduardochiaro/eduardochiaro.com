@@ -18,7 +18,7 @@ export default function Apps () {
           { data?.results.map((app, index) => (
             <div className={`flex flex-wrap mt-5`} key={`apps-${index}`} >
               {index > 0 && <span className="w-full border-t border-isabelline-600 mb-6 mt-2 dark:border-isabelline-800 border-dashed shrink mr-5"></span>}
-              <div className={`basis-full md:basis-1/4 relative align-middle`}>
+              <div className={`basis-full md:basis-1/4 relative`}>
                 <NaturalImage
                   src={`/uploads/${app.image}`}
                   size={1329}
@@ -34,7 +34,7 @@ export default function Apps () {
                   href={app.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="bg-gray-700 transition text-isabelline-500 hover:text-isabelline-700 shadow-lg border border-gray-300 px-4 py-2 text-base rounded-md mt-8 inline-block"
+                  className="bg-zinc-700 transition text-isabelline-500 hover:text-isabelline-700 shadow-lg border border-gray-300 px-4 py-2 text-base rounded-md mt-8 inline-block"
                 >
                   <GitHubIcon className="inline-block align-text-top w-5 mr-2" />
                   Download from GitHub
