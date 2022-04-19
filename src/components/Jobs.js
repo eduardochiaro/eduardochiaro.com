@@ -1,11 +1,7 @@
 import * as React from 'react';
-import Image from 'next/image';
-import {
-  InformationCircleIcon
-} from '@heroicons/react/outline';
-import Tooltip from '../elements/Tooltip';
 import styles from '../styles/Jobs.module.scss'
 import useStaleSWR from '../lib/staleSWR';
+import SVG from 'react-inlinesvg';
 
 export default function Jobs () {
   const { data, error } = useStaleSWR('/api/portfolio/works');
@@ -19,36 +15,21 @@ export default function Jobs () {
         <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 mt-4">
           { data && data.results ? 
             data.results.map((job, index) => (
-              <div className={`text-center mx-auto z-10 bg-white rounded relative ${styles.imageJobContainer}`} key={`job-image-${index}`}>
-                <Tooltip tooltipText={job.disclaimer}>
-                  <div className="transition-all duration-500 ease-out hover:scale-125">
-                    <Image
-                      layout="intrinsic"
-                      width={Math.round((130 / 100) * parseInt(job.style))}
-                      height={100}
-                      alt={job.name}
-                      src={`/uploads/${job.logo}`}
-                      title={job.disclaimer}
-                      />
+              <div className={`text-center z-10 mb-5 relative align-middle`} key={`job-image-${index}`}>
+                <SVG title={job.name} alt={job.name} className={`inline w-auto fill-zinc-700 dark:fill-zinc-200`} src={`/uploads/${job.logo}`} 
+                    height={30} />
+                {job.disclaimer && (
+                  <div className="text-xs text-zinc-700 dark:text-zinc-200 mt-2">
+                    {job.disclaimer}
                   </div>
-
-                  {job.disclaimer && (
-                    <>
-                    <InformationCircleIcon className="hidden md:block w-4 text-terra-cotta-500 absolute bottom-0 right-0" aria-hidden="true" />
-                    <div className="block md:hidden text-gray-500">
-                      {job.disclaimer}
-                    </div>
-                    </>
-                  )}
-                </Tooltip>
-                
+                )}
               </div>
             )) : [
                 ...Array(6)
                   .fill()
                   .map((_, idx) => 0 + idx),
               ].map((x) => (
-                <div key={x} className="w-auto mx-5 h-14 bg-green-sheen-300 rounded-md animate-pulse"></div>
+                <div key={x} className="w-auto mx-5 h-14 bg-zinc-300 dark:bg-zinc-600 rounded-md animate-pulse"></div>
               ))
           }
           </div>

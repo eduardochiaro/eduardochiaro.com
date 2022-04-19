@@ -5,7 +5,6 @@ import SVG from 'react-inlinesvg';
 
 export default function Skills () {
   const { data, error } = useStaleSWR('/api/portfolio/skills');
-
   return (
     <section className={`px-8 lg:px-0 my-10`}>
       <span className="anchor" name="skills"/>
@@ -16,15 +15,15 @@ export default function Skills () {
         <div>
         { data && data.results ? 
             data.results.map((skill, index) => (
-            <div className="flex items-center mt-1">
+            <div key={`skill-${index}`} className="flex items-center mt-1">
               <span className="flex-none font-medium text-gray-1000 dark:text-gray-100 mr-5">{skill.name}</span>
               <span className="w-full border-t border-isabelline-600 dark:border-isabelline-800 border-dashed shrink mr-5"></span>
-              <div className="flex-none relative text-white">
-                <SVG title="Eduardo Chiaro" alt="Eduardo Chiaro" className={`inline-block h-8 w-8 fill-zinc-700 dark:fill-zinc-200`} src={`/images/svg-icons/${skill.logo}`} />
+              <div className="flex-none w-12 relative text-white">
+                <SVG title={skill.name} alt={skill.name} className={`inline-block w-8 fill-zinc-700 dark:fill-zinc-200`} src={`/images/svg-icons/${skill.logo}`} />
               </div>
               <div className="flex-none w-6/12">
-                <div className="w-full bg-zinc-200 dark:bg-zinc-700 h-4">
-                  <div className={`${styles[`bar-${skill.type}`]} bg-blue-600 h-4`} style={{width: skill.percentage + '%'}}></div>
+                <div className="w-full bg-zinc-200 dark:bg-zinc-700 h-4 rounded">
+                  <div className={`${styles[`bar-${skill.type}`]} bg-blue-600 rounded h-4`} style={{width: skill.percentage + '%'}}></div>
                 </div>
               </div>
             </div>

@@ -13,7 +13,7 @@ export default function Bio () {
           a <CoffeeIcon className={`inline-block w-8 lg:w-16 text-isabelline-700`}/> coffee-driven
           Software Developer based in Washington State.
         </h2>
-        <p className="mt-5 text-lg font-normal text-gray-600 dark:text-gray-200">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nisl lacus, auctor condimentum mi vitae, bibendum pretium lacus. 
+        <p className="mt-20 text-lg font-normal text-gray-600 dark:text-gray-200">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nisl lacus, auctor condimentum mi vitae, bibendum pretium lacus. 
           Morbi molestie diam eget eros iaculis, vel pellentesque sapien tempus. Sed tempor risus dui, non euismod eros semper sit amet. 
           Praesent mollis, elit non finibus porttitor, orci leo hendrerit orci, volutpat tincidunt libero urna vitae quam.</p>
         <p className="mt-5 text-lg font-normal text-gray-600 dark:text-gray-200">Pellentesque tortor purus, ornare ac laoreet pellentesque, tincidunt non erat. Curabitur pellentesque velit nec mi rutrum, ac viverra nulla egestas. 

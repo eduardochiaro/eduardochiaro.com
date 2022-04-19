@@ -68,11 +68,9 @@ export default function GitHub () {
     <section id="github" className={`${styles.github} px-8 lg:px-0 mt-10`}>
       <span className="anchor" name="github"/>
       <div className="max-w-5xl mx-auto">
-        <h3 className="font-header leading-tight text-2xl lg:text-4xl font-light mx-4 lg:mx-2 mb-2">
-          Latest repositories{' '}<span className="rounded font-base align-super bg-terra-cotta-500 text-white px-2 py-1 text-sm">{ data ? data.results.length : 0 } total</span>
+        <h3 className="font-header leading-tight text-2xl lg:text-3xl pr-4 font-light">
+          Latest repositories{' '}<span className="rounded font-base align-super text-isabelline-700 text-sm">({ data ? data.results.length : 0 } total)</span>
         </h3>
-      </div>
-      <div className="max-w-5xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <div className="text-center hidden md:block">
             <GitHubIcon className={`w-36 text-independence-900 mx-auto opacity-25 mt-8`} />

@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import Head from 'next/head'
 import Header from '../components/Header'
 import Bio from '../components/Bio'
@@ -27,6 +28,7 @@ export default function Home() {
       <hr className="my-10 max-w-5xl mx-auto border-t border-isabelline-600 dark:border-isabelline-800" />
       <Jobs />
       <Skills />
+      <hr className="my-10 max-w-5xl mx-auto border-t border-isabelline-600 dark:border-isabelline-800" />
       <Apps />
       <GitHub />
       <Top />

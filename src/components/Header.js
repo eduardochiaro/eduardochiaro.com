@@ -1,80 +1,58 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   RssIcon,
-  TerminalIcon,
   AdjustmentsIcon,
-  ChipIcon,
   HomeIcon,
   MenuIcon,
   SunIcon,
-  MoonIcon
+  MoonIcon,
+  BookmarkIcon
 } from '@heroicons/react/solid'
-import GitHubIcon from '../elements/icons/github';
-import SVG from 'react-inlinesvg'
+import SVG from 'react-inlinesvg';
 import styles from '../styles/Header.module.scss'
 import Link from 'next/link';
 import { useTheme } from "next-themes";
 import { useRouter } from 'next/router';
 
 export default function Header () {
-  const [menuOpen, setMenuOpen] = React.useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [inUseTheme, setInUseTheme] = useState("dark");
   const { systemTheme , theme, setTheme } = useTheme();
+
   const openMenu = () => {
     setMenuOpen(!menuOpen);
   }
-  const renderThemeChanger= () => {
+
+  useEffect(() => {
     const currentTheme = theme === "system" ? systemTheme : theme ;
-    if(currentTheme === "dark"){
-      return (
-        <SunIcon className="w-5 h-5 text-independence-900 inline-block mx-4 border rounded-full bg-isabelline-500 " role="button" onClick={() => setTheme('light')} />
-      )
-    } else {
-      return (
-        <MoonIcon className="w-5 h-5 text-isabelline-500 inline-block mx-4 border rounded-full bg-independence-900" role="button" onClick={() => setTheme('dark')} />
-      )
-    }
-  };
+    setInUseTheme(currentTheme);
+  }, [theme, systemTheme])
+
   const menuData = [
     {
       text: 'Home',
       link: '/',
-      as: '/#top',
       current: true,
       pre: <HomeIcon className="h-7 md:h-5 inline mr-2 md:mr-1 align-sub" />
     },
     {
-      text: 'Skills',
-      link: '/#skills',
+      text: 'Bookmarks',
+      link: '/bookmarks',
       current: false,
-      pre: <TerminalIcon className="h-7 md:h-5 inline mr-2 md:mr-1 align-sub" />
+      pre: <BookmarkIcon className="h-7 md:h-5 inline mr-2 md:mr-1 align-sub" />
     },
-    {
-      text: 'Apps',
-      link: '/#apps',
-      current: false,
-      pre: <ChipIcon className="h-7 md:h-5 inline mr-2 md:mr-1 align-sub" />
-    },
-    {
-      text: 'GitHub',
-      link: '/#github',
-      current: false,
-      pre: <GitHubIcon className="h-7 md:h-5 inline mr-2 md:mr-1 align-sub" />
-    },
-    /*
     {
       text: 'Lab',
       link: '/lab',
-      as: '/lab#root',
       current: false,
       pre: <AdjustmentsIcon className="h-7 md:h-5 inline mr-2 md:mr-1 align-sub" />
     }
-    */
   ]
   const router = useRouter();
   return (
     <header className={`${styles.header} sticky top-0 z-40 h-14 bg-zinc-50 dark:bg-zinc-800 border-b border-zinc-200 dark:border-zinc-600`}>
       <nav className="w-100 px-auto">
-        <div className="h-8 pt-2 md:pt-6 px-3 mx-auto flex items-center justify-between flex-wrap md:flex-nowrap">
+        <div className="h-8 pt-1 md:pt-6 px-3 mx-auto flex items-center justify-between flex-wrap md:flex-nowrap">
           <div className="flex-initial">
             <SVG 
               title="" 
@@ -90,11 +68,10 @@ export default function Header () {
                   <li 
                     key={`menu-link-${i}`}>
                     <Link 
-                      href={ item.link } 
-                      as={ item.as }>
-                        <a 
-                          className={router.asPath != item.link && router.asPath != item.as ? `${styles.menuUrl} hover:text-independence-900 dark:hover:text-isabelline-500` : `${styles.menuUrl} text-independence-900 dark:text-isabelline-500`}
-                           onClick={openMenu}>{item.pre}{item.text}</a>
+                      href={ item.link }>
+                      <a 
+                        className={router.route != item.link ? `${styles.menuUrl} hover:text-independence-900 dark:hover:text-isabelline-500` : `${styles.menuUrl} text-independence-900 dark:text-isabelline-500`}
+                          onClick={openMenu}>{item.pre}{item.text}</a>
                     </Link>
                   </li>
                 )
@@ -105,7 +82,11 @@ export default function Header () {
             <a href="https://blog.eduardochiaro.com" className="md:pr-0 pr-6 whitespace-nowrap text-base font-medium transition text-isabelline-700 hover:text-independence-900 dark:hover:text-isabelline-500">
               <RssIcon className={`h-6 w-6 inline-block text-terra-cotta-500`} aria-hidden="true"  /> .dev
             </a>
-            {renderThemeChanger()}
+            { inUseTheme === "dark" ? 
+              <SunIcon className="w-5 h-5 text-independence-900 inline-block mx-4 border rounded-full bg-isabelline-500 " role="button" onClick={() => setTheme('light')} />
+              :
+              <MoonIcon className="w-5 h-5 text-isabelline-500 inline-block mx-4 border rounded-full bg-independence-900" role="button" onClick={() => setTheme('dark')} />
+            }
             <a href="#" className="inline-block md:hidden" onClick={openMenu}>
               <MenuIcon className={`w-6 inline-block border-2 rounded border-isabelline-700 transition text-isabelline-700 hover:text-independence-900 dark:hover:text-isabelline-500`}/>
             </a>

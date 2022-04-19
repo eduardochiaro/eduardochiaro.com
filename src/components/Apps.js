@@ -25,7 +25,7 @@ export default function Apps () {
       setDataDisplay(dataDisplay + 1);
     }
   }
-    if (data && data.results) {
+  if (data && data.results) {
     return (
       <section className={`${styles.apps} px-8 lg:px-0 my-10`}>
         <span className="anchor" name="apps"/>
