@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Apps from "../components/Apps";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
@@ -7,7 +6,7 @@ export default function Projects() {
   return (
     <div className="flex flex-col h-screen justify-between">
       <Head>
-        <title>Eduardo Chiaro | Projects</title>
+        <title>Eduardo Chiaro | Bookmarks</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta name="description" content="Eduardo Chiaro - Software Developer" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
@@ -16,7 +15,6 @@ export default function Projects() {
       </Head>
       <div className="mb-auto">
         <Header />
-        <Apps />
       </div>
       <Footer />
     </div>

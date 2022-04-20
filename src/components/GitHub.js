@@ -74,12 +74,14 @@ export default function GitHub () {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-5 pb-10">
         { cutReposene.map((repo, index) => (
-          <div className="flex relative border rounded border-independence-200 dark:border-zinc-500 bg-zinc-200 dark:bg-zinc-700 p-5" key={`repo-${index}`}>
+          <div className="flex relative border rounded border-independence-200 dark:border-zinc-500 bg-zinc-200 dark:bg-zinc-700 p-2" key={`repo-${index}`}>
             <a href={repo.url} className="flex flew-wrap w-full text-decoration-none">
-              <div className="basis-1/3 relative">
-                <LoadImage src={repo.openGraphImageUrl} alt={repo.name} />
+              <div className="basis-1/3 p-4">
+                <div className="relative w-full h-full">
+                  <LoadImage src={repo.openGraphImageUrl} alt={repo.name} />
+                </div>
               </div>
-              <div className="basis-2/3 px-4">
+              <div className="basis-2/3 p-4">
                 <h4>{repo.name}</h4>
                 <p className="mt-4 mb-2 text-xs antialiased">{repo.description}</p>
                 <p className="text-xs opacity-60 ">Last updated {moment(repo.pushedAt).from(moment())}</p>
