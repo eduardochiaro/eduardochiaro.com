@@ -26,7 +26,7 @@ const cachedFetch = async (url, append = {}) => {
           first: 100, 
           orderBy: {
             direction: DESC
-            field: UPDATED_AT
+            field: PUSHED_AT
           }) {
           nodes {
             id
@@ -42,6 +42,7 @@ const cachedFetch = async (url, append = {}) => {
             }
             url
             updatedAt
+            pushedAt
             description
             openGraphImageUrl
             isArchived
@@ -68,7 +69,7 @@ const handler = async (req, res) => {
   //const data = await dataFetch.json();
 
   const data = dataFetch.viewer.repositories.nodes.map((repo) => {
-    const { id, name, description, openGraphImageUrl, isArchived, repositoryTopics, updatedAt, url, } = repo;
+    const { id, name, description, openGraphImageUrl, isArchived, repositoryTopics, pushedAt, url, } = repo;
     const topics = repositoryTopics.nodes.map((topic) => topic.topic.name);
     const languages = repo.languages.nodes.map((language) =>  {
       const { name, color } = language;
@@ -81,7 +82,7 @@ const handler = async (req, res) => {
       isArchived,
       openGraphImageUrl,
       topics,
-      updatedAt,
+      pushedAt,
       url,
       languages,
       language: languages[0]?.name,

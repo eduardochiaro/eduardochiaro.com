@@ -42,7 +42,7 @@ export default function Skills () {
                 </div>
                 <div className="flex-none w-6/12">
                   <div className="w-full bg-zinc-200 dark:bg-zinc-700 h-4 rounded animate-pulse">
-                    <div className={`${styles[`bar-node`]} bg-blue-600 rounded h-4`} style={{width: Math.random() * 100 + '%'}}></div>
+                    <div className={`${styles[`bar-node`]} bg-blue-600 rounded h-4`} style={{width: (x * 10) + '%'}}></div>
                   </div>
                 </div>
               </div>

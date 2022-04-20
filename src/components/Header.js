@@ -42,8 +42,8 @@ export default function Header () {
       pre: <BookmarkIcon className="h-7 md:h-5 inline mr-2 md:mr-1 align-sub" />
     },
     {
-      text: 'Lab',
-      link: '/lab',
+      text: 'Projects',
+      link: '/projects',
       current: false,
       pre: <AdjustmentsIcon className="h-7 md:h-5 inline mr-2 md:mr-1 align-sub" />
     }

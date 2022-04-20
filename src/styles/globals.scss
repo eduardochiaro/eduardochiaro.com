@@ -40,16 +40,24 @@ svg {
   }
   &.bottomLogo {
     .main {
-      fill: $white !important;
+      fill: $independence !important;
     }
     .accent {
-      fill: $white !important;
+      fill: $independence !important;
     }
   }
 }
 .dark {
   svg {
     &.mainLogo {
+      .main {
+        fill: $white !important;
+      }
+      .accent {
+        fill: $white !important;
+      }
+    }
+    &.bottomLogo {
       .main {
         fill: $white !important;
       }

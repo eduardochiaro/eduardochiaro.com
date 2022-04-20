@@ -16,8 +16,7 @@ export default function Apps () {
             Projects
           </h3>
           { data?.results.map((app, index) => (
-            <div className={`flex flex-wrap mt-5`} key={`apps-${index}`} >
-              {index > 0 && <span className="w-full border-t border-isabelline-600 mb-6 mt-2 dark:border-isabelline-800 border-dashed shrink mr-5"></span>}
+            <div className={`flex flex-wrap mt-5 border rounded border-independence-200 dark:border-zinc-500 bg-zinc-200 dark:bg-zinc-700 p-5`} key={`apps-${index}`} >
               <div className={`basis-full md:basis-1/4 relative`}>
                 <NaturalImage
                   src={`/uploads/${app.image}`}
@@ -29,12 +28,12 @@ export default function Apps () {
               </div>
               <div className={`basis-full md:basis-3/4 px-8`}>
                 <h3 className="text-2xl font-header">{app.name}</h3>
-                <p className="text-normal mt-4">{app.description}</p>
+                <p className="text-normal mt-2">{app.description}</p>
                 <a
                   href={app.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="bg-zinc-700 transition text-isabelline-500 hover:text-isabelline-700 shadow-lg border border-gray-300 px-4 py-2 text-base rounded-md mt-8 inline-block"
+                  className="bg-zinc-700 transition text-isabelline-500 hover:text-isabelline-600 shadow-lg border border-gray-300 px-4 py-2 text-base rounded-md mt-8 inline-block"
                 >
                   <GitHubIcon className="inline-block align-text-top w-5 mr-2" />
                   Download from GitHub

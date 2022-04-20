@@ -24,12 +24,14 @@ export default function Sidemenu () {
       current: false,
       pre: <TerminalIcon className="h-7 md:h-5 inline mr-2 align-sub" />
     },
+    /*
     {
       text: 'Projects',
       link: '/#projects',
       current: false,
       pre: <ChipIcon className="h-7 md:h-5 inline mr-2 align-sub" />
     },
+    */
     {
       text: 'GitHub',
       link: '/#github',

@@ -25,11 +25,10 @@ export default function Home() {
       <Header />
       <Bio />
       <Share />
-      <hr className="my-10 max-w-5xl mx-auto border-t border-isabelline-600 dark:border-isabelline-800" />
+      <hr className="my-10 max-w-5xl mx-auto border-t border-dotted border-isabelline-600 dark:border-isabelline-800" />
       <Jobs />
       <Skills />
-      <hr className="my-10 max-w-5xl mx-auto border-t border-isabelline-600 dark:border-isabelline-800" />
-      <Apps />
+      <hr className="my-10 max-w-5xl mx-auto border-t border-dotted border-isabelline-600 dark:border-isabelline-800" />
       <GitHub />
       <Top />
       <Sidemenu />
