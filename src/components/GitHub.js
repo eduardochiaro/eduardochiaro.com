@@ -69,7 +69,7 @@ export default function GitHub () {
       <span className="anchor" name="github"/>
       <div className="max-w-5xl mx-auto">
         <h3 className="font-header leading-tight text-2xl lg:text-3xl pr-4 font-light">
-          Latest repositories{' '}<span className="rounded font-base align-super text-isabelline-700 text-sm">({ data ? data.results.length : 0 } total)</span>
+          Latest repositories{' '}<span className="rounded font-base align-super text-isabelline-800 dark:text-isabelline-700 text-sm">({ data ? data.results.length : 0 } total)</span>
         </h3>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-5 pb-10">

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import useStaleSWR from '../lib/staleSWR';
-import styles from '../styles/Skills.module.scss'
 import SVG from 'react-inlinesvg';
+import styles from '../styles/Skills.module.scss'
 
 export default function Skills () {
   const { data, error } = useStaleSWR('/api/portfolio/skills');
@@ -10,7 +10,7 @@ export default function Skills () {
       <span className="anchor" name="skills"/>
       <div className="max-w-5xl mx-auto">
         <h3 className="font-header leading-tight text-2xl lg:text-3xl pr-4 font-light mb-2">
-          What I&apos;m <span className="text-isabelline-700">good</span> at...
+          What I&apos;m <span className="text-isabelline-800 dark:text-isabelline-700">good</span> at...
         </h3>
         <div>
         { data && data.results ? 

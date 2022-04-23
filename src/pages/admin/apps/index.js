@@ -130,7 +130,7 @@ const AdminAppsIndex = ({ formRef }) => {
         <div className="flex my-2">
           <h1 className="flex-auto text-4xl"><ChipIcon className="inline-flex align-text-bottom h-10 text-terra-cotta-500 "/> Apps list</h1>
           <div className="flex-none text-right">
-            <button className="bg-terra-cotta-500 hover:bg-terra-cotta-600 text-white font-bold py-2 px-4 mb-5 rounded" onClick={() => openModal(appFormat)}>
+            <button type="button" className="bg-terra-cotta-500 hover:bg-terra-cotta-600 text-white font-bold py-2 px-4 mb-5 rounded" onClick={() => openModal(appFormat)}>
               <PlusIcon className="inline-flex align-text-bottom h-5 text-white  "/> Add new app
             </button>
           </div>

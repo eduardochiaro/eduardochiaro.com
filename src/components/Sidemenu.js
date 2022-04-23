@@ -42,7 +42,7 @@ export default function Sidemenu () {
   const router = useRouter();
   return (
     <div className="hidden xl:block fixed top-28 left-10">
-      <ul className="text-isabelline-700 font-semibold tracking-wider">
+      <ul className="text-isabelline-800 dark:text-isabelline-700 font-semibold tracking-wider">
       { menuData.map(function(item, i) {
         return (
           <li 

@@ -69,22 +69,21 @@ svg {
 }
 // Form styles 
 .input-label {
-  @apply block text-sm font-medium text-gray-700;
+  @apply block text-sm font-medium text-independence-900 dark:text-isabelline-500;
 }
-
 .input-field {
-  @apply focus:border-green-sheen-500 focus:ring-green-sheen-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md;
+  @apply focus:border-green-sheen-500 bg-zinc-100 dark:bg-zinc-700 text-independence-900 dark:text-isabelline-500 focus:ring-green-sheen-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md;
 }
 .range-field {
-  @apply rounded-lg appearance-none bg-gray-200 h-3 w-full;
+  @apply rounded-lg appearance-none bg-gray-200 dark:bg-zinc-500 h-3 w-full;
   &::-webkit-slider-thumb {
     width: 15px;
     -webkit-appearance: none;
     appearance: none;
     height: 15px;
     cursor: ew-resize;
-    background: $green-sheen;
     border-radius: 50%;
+    @apply bg-green-sheen-500 dark:bg-isabelline-500;
   }
 }
 .button-success {

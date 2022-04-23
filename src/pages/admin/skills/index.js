@@ -5,6 +5,7 @@ import { useSWRConfig } from "swr";
 import axios from 'axios';
 import fs from 'fs';
 import path from 'path';
+import SVG from 'react-inlinesvg';
 import AdminModal from "../../../elements/admin/Modal";
 import AdminWrapper from "../../../elements/admin/Wrapper";
 import mergeObj from "../../../lib/mergeObj";
@@ -266,10 +267,7 @@ const AdminSkillsIndex = ({ formRef, images }) => {
                   Preview
                 </label>
                 {skill.logo &&
-                  <NaturalImage
-                    src={`/images/svg-icons/${skill.logo}#icon`}
-                    alt="temp"
-                    />
+                  <SVG title={skill.name} alt={skill.name} className={`inline-block w-14 fill-zinc-700 dark:fill-zinc-200`} src={`/images/svg-icons/${skill.logo}`} />
                 }
               </div>
               <div className="col-span-6 sm:col-span-3">
