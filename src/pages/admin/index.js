@@ -1,6 +1,6 @@
 import { useSession } from "next-auth/react"
 import Head from "next/head";
-import AdminWrapper from "../../elements/admin/Wrapper";
+import AdminWrapper from "../../components/admin/Wrapper";
 
 const AdminIndex = () => {
   const { data: session } = useSession();

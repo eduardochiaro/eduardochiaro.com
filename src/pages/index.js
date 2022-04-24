@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import Head from 'next/head'
-import Header from '../components/Header'
-import Bio from '../components/Bio'
-import Jobs from '../components/Jobs'
-import Share from '../components/Share'
-import Skills from '../components/Skills'
-import GitHub from '../components/GitHub'
-import Footer from '../components/Footer'
-import Sidemenu from '../components/Sidemenu'
+import Header from '../components/frontend/Header'
+import Bio from '../components/frontend/Bio'
+import Jobs from '../components/frontend/Jobs'
+import Share from '../components/frontend/Share'
+import Skills from '../components/frontend/Skills'
+import GitHub from '../components/frontend/GitHub'
+import Footer from '../components/frontend/Footer'
+import Sidemenu from '../components/frontend/Sidemenu'
 
 export default function Home() {
   return (

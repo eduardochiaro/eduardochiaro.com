@@ -2,9 +2,9 @@ import * as React from 'react';
 import useSWR from 'swr';
 import SVG from 'react-inlinesvg'
 import { kebab } from 'case'
-import GitHubIcon from '../elements/icons/github'
+import GitHubIcon from '../icons/github'
 import { TagIcon } from '@heroicons/react/solid';
-import styles from '../styles/GitHub.module.scss'
+import styles from '../../styles/GitHub.module.scss'
 import moment from 'moment';
 import Image from 'next/image';
 
@@ -74,7 +74,7 @@ export default function GitHub () {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-5 pb-10">
         { cutReposene.map((repo, index) => (
-          <div className="flex relative border rounded border-independence-200 dark:border-zinc-500 bg-zinc-200 dark:bg-zinc-700 p-2" key={`repo-${index}`}>
+          <div className="flex relative rounded-lg shadow-xl bg-zinc-200 dark:bg-zinc-700 p-2" key={`repo-${index}`}>
             <a href={repo.url} className="flex flew-wrap w-full text-decoration-none">
               <div className="basis-1/3 p-4">
                 <div className="relative w-full h-full">

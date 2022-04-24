@@ -1,6 +1,6 @@
 import * as React from 'react';
-import styles from '../styles/Jobs.module.scss'
-import useStaleSWR from '../lib/staleSWR';
+import styles from '../../styles/Jobs.module.scss'
+import useStaleSWR from '../../lib/staleSWR';
 import SVG from 'react-inlinesvg';
 
 export default function Jobs () {

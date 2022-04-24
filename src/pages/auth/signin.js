@@ -10,10 +10,10 @@ export default function SignIn({ providers, basePath }) {
   //const baseUrl = router.basePath;
   
   return (
-    <div className="flex items-center justify-center min-h-screen from-green-sheen-100 via-green-sheen-300 to-green-sheen-500 bg-gradient-to-br">
+    <div className="flex items-center justify-center min-h-screen">
       <div className='w-full max-w-lg px-10 py-8 mx-auto'>
         <div className='max-w-md mx-auto space-y-6'>
-          <div className="bg-white rounded-lg shadow-xl px-4 py-6 text-center">
+          <div className="bg-zinc-200 dark:bg-zinc-700 rounded-lg shadow-xl px-4 py-6 text-center">
             <div className="mx-auto w-40 text-center mb-4">
               <Link 
                 href={basePath}

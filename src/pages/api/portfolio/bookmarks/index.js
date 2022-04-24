@@ -8,6 +8,9 @@ const handler = async (req, res) => {
   const bookmarks = await prisma.bookmark.findMany({
     where: {
       deletedAt: null
+    },
+    include: {
+      category: true
     }
   });
   bookmarks.map(bookmark => {

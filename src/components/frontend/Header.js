@@ -9,7 +9,7 @@ import {
   BookmarkIcon
 } from '@heroicons/react/solid'
 import SVG from 'react-inlinesvg';
-import styles from '../styles/Header.module.scss'
+import styles from '../../styles/Header.module.scss'
 import Link from 'next/link';
 import { useTheme } from "next-themes";
 import { useRouter } from 'next/router';

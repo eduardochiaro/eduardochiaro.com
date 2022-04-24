@@ -54,6 +54,19 @@ model Bookmark {
   name String
   description String?
   url String
+  category Category @relation(fields: [categoryId], references: [id])
+  categoryId Int @map("category_id")
+  createdAt  DateTime? @default(now()) @map("created_at")
+  updatedAt  DateTime? @map("updated_at")
+  deletedAt  DateTime? @map("deleted_at")
+}
+
+model Category {
+  @@map("categories")
+  id  Int @id @default(autoincrement())
+  name String
+  type String
+  bookmarks Bookmark[]
   createdAt  DateTime? @default(now()) @map("created_at")
   updatedAt  DateTime? @map("updated_at")
   deletedAt  DateTime? @map("deleted_at")

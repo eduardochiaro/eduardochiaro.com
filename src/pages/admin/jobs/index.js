@@ -3,10 +3,10 @@ import { useSession } from "next-auth/react"
 import { useState, createRef } from "react";
 import { useSWRConfig } from "swr";
 import axios from 'axios';
-import AdminModal from "../../../elements/admin/Modal";
-import AdminWrapper from "../../../elements/admin/Wrapper";
+import AdminModal from "../../../components/admin/Modal";
+import AdminWrapper from "../../../components/admin/Wrapper";
 import mergeObj from "../../../lib/mergeObj";
-import NaturalImage from "../../../elements/NaturalImage";
+import SVG from 'react-inlinesvg';
 import useStaleSWR from "../../../lib/staleSWR";
 import moment from "moment";
 
@@ -127,9 +127,9 @@ const AdminJobsIndex = ({ formRef }) => {
     return (
       <AdminWrapper>
         <div className="flex my-2">
-          <h1 className="flex-auto text-4xl"><BriefcaseIcon className="inline-flex align-text-bottom h-10 text-terra-cotta-500 "/> Jobs list</h1>
+          <h1 className="flex-auto text-4xl"><BriefcaseIcon className="inline-flex align-text-bottom h-10 text-isabelline-800 "/> Jobs list</h1>
           <div className="flex-none text-right">
-            <button className="bg-terra-cotta-500 hover:bg-terra-cotta-600 text-white font-bold py-2 px-4 mb-5 rounded" onClick={() => openModal(jobFormat)}>
+            <button className="bg-isabelline-700 hover:bg-isabelline-800 text-white font-bold py-2 px-4 mb-5 rounded" onClick={() => openModal(jobFormat)}>
               <PlusIcon className="inline-flex align-text-bottom h-5 text-white  "/> Add new job
             </button>
           </div>
@@ -169,12 +169,8 @@ const AdminJobsIndex = ({ formRef }) => {
                         </td>
                         <td className="text-center">
                           <div className="w-32 m-auto relative">
-                            <NaturalImage
-                              src={`/uploads/${item.logo}`}
-                              size={item.style}
-                              alt={item.name}
-                              title={item.name}
-                              />
+                              <SVG title={item.name} alt={item.name} className={`inline w-auto fill-zinc-700 dark:fill-zinc-200`} src={`/uploads/${item.logo}`} 
+                    height={25} />
                           </div>
                           <div className="small">{item.logo}</div>
                         </td>
@@ -188,10 +184,10 @@ const AdminJobsIndex = ({ formRef }) => {
                           {moment(item.updatedAt || item.createdAt).from(moment())}
                         </td>
                         <td className="w-44 text-right font-medium">
-                          <a href="#" className="text-green-sheen-600 hover:text-green-sheen-900" onClick={() => openModal(item)}>
+                          <a href="#" className="text-isabelline-800 dark:text-isabelline-500 hover:underline" onClick={() => openModal(item)}>
                             <PencilAltIcon className="inline-flex align-text-bottom h-4 mr-1"/>Edit
                           </a>
-                          <a href="#" className="text-green-sheen-600 hover:text-green-sheen-900 ml-4" onClick={() => openModalDelete(item)}>
+                          <a href="#" className="text-isabelline-800 dark:text-isabelline-500 hover:underline ml-4" onClick={() => openModalDelete(item)}>
                             <TrashIcon className="inline-flex align-text-bottom h-4 mr-1"/>Delete
                           </a>
                         </td>

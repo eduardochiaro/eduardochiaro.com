@@ -1,8 +1,8 @@
 import * as React from 'react';
-import GitHubIcon from '../elements/icons/github';
-import styles from '../styles/Apps.module.scss'
-import useStaleSWR from '../lib/staleSWR';
-import NaturalImage from '../elements/NaturalImage';
+import GitHubIcon from '../icons/github';
+import styles from '../../styles/Apps.module.scss'
+import useStaleSWR from '../../lib/staleSWR';
+import NaturalImage from '../NaturalImage';
 
 export default function Apps () {
   const { data, error } = useStaleSWR('/api/portfolio/apps');
@@ -16,7 +16,7 @@ export default function Apps () {
             Projects
           </h3>
           { data?.results.map((app, index) => (
-            <div className={`flex flex-wrap mt-5 border rounded border-independence-200 dark:border-zinc-500 bg-zinc-200 dark:bg-zinc-700 p-5`} key={`apps-${index}`} >
+            <div className={`flex flex-wrap mt-5 rounded-lg shadow-xl bg-zinc-200 dark:bg-zinc-700 p-5`} key={`apps-${index}`} >
               <div className={`basis-full md:basis-1/4 relative`}>
                 <NaturalImage
                   src={`/uploads/${app.image}`}

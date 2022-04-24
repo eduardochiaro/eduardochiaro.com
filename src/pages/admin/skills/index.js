@@ -6,10 +6,10 @@ import axios from 'axios';
 import fs from 'fs';
 import path from 'path';
 import SVG from 'react-inlinesvg';
-import AdminModal from "../../../elements/admin/Modal";
-import AdminWrapper from "../../../elements/admin/Wrapper";
+import AdminModal from "../../../components/admin/Modal";
+import AdminWrapper from "../../../components/admin/Wrapper";
 import mergeObj from "../../../lib/mergeObj";
-import NaturalImage from "../../../elements/NaturalImage";
+import NaturalImage from "../../../components/NaturalImage";
 import useStaleSWR from "../../../lib/staleSWR";
 import moment from "moment";
 
@@ -131,9 +131,9 @@ const AdminSkillsIndex = ({ formRef, images }) => {
     return (
       <AdminWrapper>
         <div className="flex my-2">
-          <h1 className="flex-auto text-4xl"><TerminalIcon className="inline-flex align-text-bottom h-10 text-terra-cotta-500 "/> Skills list</h1>
+          <h1 className="flex-auto text-4xl"><TerminalIcon className="inline-flex align-text-bottom h-10 text-isabelline-800 "/> Skills list</h1>
           <div className="flex-none text-right">
-            <button className="bg-terra-cotta-500 hover:bg-terra-cotta-600 text-white font-bold py-2 px-4 mb-5 rounded" onClick={() => openModal(skillFormat)}>
+            <button className="bg-isabelline-700 hover:bg-isabelline-800 text-white font-bold py-2 px-4 mb-5 rounded" onClick={() => openModal(skillFormat)}>
               <PlusIcon className="inline-flex align-text-bottom h-5 text-white  "/> Add new skill
             </button>
           </div>
@@ -192,10 +192,10 @@ const AdminSkillsIndex = ({ formRef, images }) => {
                           {moment(item.updatedAt || item.createdAt).from(moment())}
                         </td>
                         <td className="w-44 text-right font-medium">
-                          <a href="#" className="text-green-sheen-600 hover:text-green-sheen-900" onClick={() => openModal(item)}>
+                          <a href="#" className="text-isabelline-800 dark:text-isabelline-500 hover:underline" onClick={() => openModal(item)}>
                             <PencilAltIcon className="inline-flex align-text-bottom h-4 mr-1"/>Edit
                           </a>
-                          <a href="#" className="text-green-sheen-600 hover:text-green-sheen-900 ml-4" onClick={() => openModalDelete(item)}>
+                          <a href="#" className="text-isabelline-800 dark:text-isabelline-500 hover:underline ml-4" onClick={() => openModalDelete(item)}>
                             <TrashIcon className="inline-flex align-text-bottom h-4 mr-1"/>Delete
                           </a>
                         </td>

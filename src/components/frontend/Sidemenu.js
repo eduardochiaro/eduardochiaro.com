@@ -4,7 +4,7 @@ import {
   ChipIcon,
   UserCircleIcon,
 } from '@heroicons/react/solid';
-import GitHubIcon from '../elements/icons/github';
+import GitHubIcon from '../icons/github';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 

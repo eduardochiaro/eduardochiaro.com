@@ -1,7 +1,7 @@
 import * as React from 'react';
-import useStaleSWR from '../lib/staleSWR';
+import useStaleSWR from '../../lib/staleSWR';
 import SVG from 'react-inlinesvg';
-import styles from '../styles/Skills.module.scss'
+import styles from '../../styles/Skills.module.scss'
 
 export default function Skills () {
   const { data, error } = useStaleSWR('/api/portfolio/skills');

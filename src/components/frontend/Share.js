@@ -1,7 +1,7 @@
 import * as React from 'react';
-import TwitterIcon from '../elements/icons/twitter';
-import LinkedInIcon from '../elements/icons/linkedin';
-import GitHubIcon from '../elements/icons/github';
+import TwitterIcon from '../icons/twitter';
+import LinkedInIcon from '../icons/linkedin';
+import GitHubIcon from '../icons/github';
 
 export default function Share () {
 

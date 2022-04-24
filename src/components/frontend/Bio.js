@@ -1,5 +1,5 @@
 import * as React from 'react';
-import CoffeeIcon from '../elements/icons/coffee';
+import CoffeeIcon from '../icons/coffee';
 
 export default function Bio () {
   return (

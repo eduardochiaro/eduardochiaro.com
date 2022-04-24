@@ -1,7 +1,7 @@
 import Head from 'next/head';
-import Apps from "../components/Apps";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
+import Apps from "../components/frontend/Apps";
+import Footer from "../components/frontend/Footer";
+import Header from "../components/frontend/Header";
 
 export default function Projects() {
   return (

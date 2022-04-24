@@ -6,26 +6,22 @@ import styles from '../../styles/Admin.Sidebar.module.scss'
 const AdminSidebar = () => {
   return(
     <div className="col-span-2 left-0 bg-zinc-50 dark:bg-zinc-800 border-b border-zinc-200 dark:border-zinc-600 h-full">
-      <div className="flex items-center justify-center h-14 border-b ">
-        <div>
-          <div className="inline-block mr-2 align-middle">
-            <SVG 
-                title="" 
-                alt="" 
-                className={`mainLogo`}
-                width={50}
-                src={'/images/logo-n.svg'} />
-          </div>
-          <div className="h-full hidden lg:inline-block">
-            Admin
-          </div>
+      <div className="flex h-14 border-b ">
+        <SVG 
+            title="" 
+            alt="" 
+            className={`mainLogo flex-none mt-2 h-10 md:h-12 mr-2 ml-4`}
+            width={50}
+            src={'/images/logo-n.svg'} />
+        <div className="flex-auto w-32 text-right font-semibold text-xl">
+          <span className="hidden lg:inline-block mt-4">Admin</span>
         </div>
       </div>
       <div className="overflow-y-auto overflow-x-hidden flex-grow">
-        <ul className="flex flex-col py-4 space-y-1">
+        <ul className="flex flex-col py-4 space-y-1 font-semibold tracking-wider">
           <li>
             <Link href="/">
-              <a className={`${`${styles['sidebar-link']} text-isabelline-800 dark:text-isabelline-700 hover:text-independence-900 dark:hover:text-isabelline-500`} text-isabelline-700 hover:text-independence-900 dark:hover:text-isabelline-500`}>
+              <a className={`${styles['sidebar-link']} text-isabelline-800 dark:text-isabelline-700 hover:text-independence-900 dark:hover:text-isabelline-500`}>
                 <HomeIcon className="inline-flex justify-center items-center ml-4 w-5"/>
                 <span className="ml-2 text-sm tracking-wide truncate">Website</span>
               </a>
