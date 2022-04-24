@@ -233,7 +233,7 @@ const AdminAppsIndex = ({ formRef }) => {
             <div className="grid grid-cols-6 gap-6">
               <div className="col-span-6">
                 <label htmlFor="name-form" className="input-label">
-                  Title <span className="text-terra-cotta-600 text-xl">*</span>
+                  Title <span className="text-isabelline-700 text-xl">*</span>
                 </label>
                 <input
                   type="text"
@@ -251,7 +251,7 @@ const AdminAppsIndex = ({ formRef }) => {
               <div className="col-span-6">
                 <label htmlFor="image-url-form" className="input-label">
                   Image { !app.id &&
-                   <span className="text-terra-cotta-600 text-xl">*</span>
+                   <span className="text-isabelline-700 text-xl">*</span>
                   }
                 </label>
                 <input
@@ -270,7 +270,7 @@ const AdminAppsIndex = ({ formRef }) => {
               </div>
               <div className="col-span-6">
                 <label htmlFor="url-form" className="input-label">
-                  GitHub URL <span className="text-terra-cotta-600 text-xl">*</span>
+                  GitHub URL <span className="text-isabelline-700 text-xl">*</span>
                 </label>
                 <input
                   type="url"

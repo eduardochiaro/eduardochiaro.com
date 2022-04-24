@@ -222,7 +222,7 @@ const AdminJobsIndex = ({ formRef }) => {
             <div className="grid grid-cols-6 gap-6">
               <div className="col-span-6">
                 <label htmlFor="name-form" className="input-label">
-                  Title <span className="text-terra-cotta-600 text-xl">*</span>
+                  Title <span className="text-isabelline-700 text-xl">*</span>
                 </label>
                 <input
                   type="text"
@@ -240,26 +240,26 @@ const AdminJobsIndex = ({ formRef }) => {
               <div className="col-span-6 sm:col-span-5">
                 <label htmlFor="logo-url-form" className="input-label">
                   Logo { !job.id &&
-                   <span className="text-terra-cotta-600 text-xl">*</span>
+                   <span className="text-isabelline-700 text-xl">*</span>
                   }
                 </label>
                 <input
                   type="file"
                   name="logo"
                   id="logo-url-form"
-                  className="mt-1 block w-full text-sm text-slate-500
+                  className="mt-1 block w-full text-sm text-independence-900 dark:text-isabelline-500
                         file:mr-4 file:py-2 file:px-4
                         file:rounded-full file:border-0
                         file:text-sm file:font-semibold
-                        file:bg-independence-200 file:text-independence-700
-                        hover:file:bg-independence-300
+                        file:bg-isabelline-700 file:text-isabelline-500
+                        hover:file:bg-isabelline-800
                   "
                   onChange={handleChange}
                 />
               </div>
               <div className="col-span-6 sm:col-span-1">
                 <label htmlFor="style-form" className="input-label">
-                  Size (width) <span className="text-terra-cotta-600 text-xl">*</span>
+                  Size (width) <span className="text-isabelline-700 text-xl">*</span>
                 </label>
                 <input
                   type="number"

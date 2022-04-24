@@ -38,7 +38,7 @@ const AdminSidebar = () => {
                 <BriefcaseIcon className="inline-flex justify-center items-center ml-4 w-5"/>
                 <span className="ml-2 text-sm tracking-wide truncate">Jobs</span>
                 {/*
-                <span className="px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-terra-cotta-600 bg-terra-cotta-100 rounded-full">New</span>
+                <span className="px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-isabelline-600 bg-terra-cotta-100 rounded-full">New</span>
                 */}
               </a>
             </Link>
