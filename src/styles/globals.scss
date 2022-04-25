@@ -95,26 +95,33 @@ svg {
 
 //Admin tables
 table.admin-table {
-  @apply min-w-full divide-y divide-gray-200 dark:divide-gray-600 shadow-xl;
+  @apply min-w-full divide-y divide-gray-200 dark:divide-gray-600;
   thead {
-    @apply bg-zinc-200 dark:bg-zinc-700 text-independence-900 dark:text-isabelline-500;
+    @apply text-independence-900 dark:text-isabelline-500;
     tr {
       th {
-        @apply px-6 py-3 text-left text-xs font-medium uppercase tracking-wider;
+        @apply px-6 py-3 text-left text-xs font-bold uppercase tracking-wider text-independence-700 dark:text-isabelline-700;
         &.textcenter {
           @apply text-center;
+        }
+        &:first-child {
+          @apply p-0;
         }
       }
     }
   }
   tbody {
-    @apply bg-zinc-50 dark:bg-zinc-500 divide-y divide-gray-200 dark:divide-gray-600 text-independence-900 dark:text-isabelline-500;
+    @apply bg-zinc-200 dark:bg-zinc-700  text-independence-900 dark:text-isabelline-500;
     tr {
+      @apply border-y-2 border-zinc-50 dark:border-zinc-800;
       &:nth-child(even) {
-        @apply bg-zinc-100 dark:bg-zinc-600;
+        @apply bg-zinc-50 dark:bg-zinc-800;
       }
       td {
-        @apply px-6 py-4 whitespace-nowrap text-xs leading-5 ;
+        @apply px-6 py-3 whitespace-nowrap text-xs leading-5 ;
+        &:first-child {
+          @apply w-4 p-0 bg-isabelline-700 border-r-2 border-zinc-50 dark:border-zinc-800;
+        }
       }
     }
   }

@@ -1,4 +1,4 @@
-import { BriefcaseIcon, ChipIcon, TerminalIcon, HomeIcon } from "@heroicons/react/solid"
+import { BriefcaseIcon, ChipIcon, TerminalIcon, HomeIcon, TagIcon, BookmarkIcon } from "@heroicons/react/solid";
 import SVG from 'react-inlinesvg'
 import Link from "next/link";
 import styles from '../../styles/Admin.Sidebar.module.scss'
@@ -33,6 +33,14 @@ const AdminSidebar = () => {
             </div>
           </li>
           <li>
+            <Link href="/admin/categories">
+              <a className={`${styles['sidebar-link']} text-isabelline-800 dark:text-isabelline-700 hover:text-independence-900 dark:hover:text-isabelline-500`}>
+                <TagIcon className="inline-flex justify-center items-center ml-4 w-5"/>
+                <span className="ml-2 text-sm tracking-wide truncate">Categories</span>
+              </a>
+            </Link>
+          </li>
+          <li>
             <Link href="/admin/jobs">
               <a className={`${styles['sidebar-link']} text-isabelline-800 dark:text-isabelline-700 hover:text-independence-900 dark:hover:text-isabelline-500`}>
                 <BriefcaseIcon className="inline-flex justify-center items-center ml-4 w-5"/>
@@ -56,6 +64,14 @@ const AdminSidebar = () => {
               <a className={`${styles['sidebar-link']} text-isabelline-800 dark:text-isabelline-700 hover:text-independence-900 dark:hover:text-isabelline-500`}>
                 <ChipIcon className="inline-flex justify-center items-center ml-4 w-5"/>
                 <span className="ml-2 text-sm tracking-wide truncate">Apps</span>
+              </a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/admin/bookmarks">
+              <a className={`${styles['sidebar-link']} text-isabelline-800 dark:text-isabelline-700 hover:text-independence-900 dark:hover:text-isabelline-500`}>
+                <BookmarkIcon className="inline-flex justify-center items-center ml-4 w-5"/>
+                <span className="ml-2 text-sm tracking-wide truncate">Bookmarks</span>
               </a>
             </Link>
           </li>

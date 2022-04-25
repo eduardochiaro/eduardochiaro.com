@@ -1,48 +1,49 @@
-import { ChipIcon, ExclamationIcon, ExternalLinkIcon, PencilAltIcon, PlusIcon, TrashIcon } from "@heroicons/react/outline";
+import { BookmarkIcon, ExclamationIcon, PencilAltIcon, PlusIcon, TrashIcon } from "@heroicons/react/outline";
 import { useSession } from "next-auth/react"
 import { useState, createRef } from "react";
 import { useSWRConfig } from "swr";
 import axios from 'axios';
+import fs from 'fs';
+import path from 'path';
 import AdminModal from "../../../components/admin/Modal";
 import AdminWrapper from "../../../components/admin/Wrapper";
 import mergeObj from "../../../lib/mergeObj";
-import NaturalImage from "../../../components/NaturalImage";
 import useStaleSWR from "../../../lib/staleSWR";
 import moment from "moment";
-import Link from "next/link";
+import * as cheerio from 'cheerio';
 
-const AdminAppsIndex = ({ formRef }) => {
-  const { data: apps, error } = useStaleSWR('/api/portfolio/apps');
+const AdminBookmarksIndex = ({ formRef, images }) => {
+  const { data: bookmarks, error } = useStaleSWR('/api/portfolio/bookmarks');
+  const { data: categories, error: categoriesError } = useStaleSWR('/api/admin/categories');
   const { data: session } = useSession();
-  
+  const [currentStatus, setCurrentStatus] = useState(null);
+
   const { mutate } = useSWRConfig();
 
-  const appFormat = {
+  const bookmarkFormat = {
     id: null,
     name: '',
+    categoryId: 0,
     description: '',
-    image: '',
-    url: ''
   };
 
   let [isOpen, setIsOpen] = useState(false);
   let [isOpenDelete, setIsOpenDelete] = useState(false); 
-  let [app, setApp] = useState(appFormat);
+  let [bookmark, setBookmark] = useState(bookmarkFormat);
   let [formError, setFormError] = useState(false);
-
 
   const onSubmitModal = async (e) => {
     e.preventDefault();    
     setFormError(false);
-    if (!isFormValid(app)) {
+    if (!isFormValid(bookmark)) {
       setFormError(true);
       return;
     }
 
     const formData = new FormData();
 
-    for (let [key, value] of Object.entries(app)) {
-      if (key == 'image') {
+    for (let [key, value] of Object.entries(bookmark)) {
+      if (key == 'logo') {
         formData.append(key, value);
       } else {
         formData.append(key, value);
@@ -51,14 +52,14 @@ const AdminAppsIndex = ({ formRef }) => {
 
     //replace with axios
     axios({
-      method: app.id ? 'PUT' : 'POST',
-      url: app.id ? `/api/portfolio/apps/${app.id}` : '/api/portfolio/apps/create',
+      method: bookmark.id ? 'PUT' : 'POST',
+      url: bookmark.id ? `/api/portfolio/bookmarks/${bookmark.id}` : '/api/portfolio/bookmarks/create',
       data: formData,
       headers: {
-        'Content-Type': `multipart/form-data; boundary=${formData._boundary}`
+        'Content-Type': `application/json`
       }
     }).then(({ data }) => {
-      mutate('/api/portfolio/apps');
+      mutate('/api/portfolio/bookmarks');
       closeModal();
     });
   }
@@ -66,8 +67,8 @@ const AdminAppsIndex = ({ formRef }) => {
   const isFormValid = (form) => {
     if (
       form.name == ''
-      || form.url == ''
-      || (!form.id && !form.image)
+      || form.categoryId <= 0
+      || form.title == ''
       ) {
         return false;
     }
@@ -81,7 +82,7 @@ const AdminAppsIndex = ({ formRef }) => {
   }
 
   const onPrimaryButtonClickDelete = async () => {
-    const urlDelete = `/api/portfolio/apps/${app.id}`;
+    const urlDelete = `/api/portfolio/bookmarks/${bookmark.id}`;
     await axios({
       url: urlDelete,
       method: 'DELETE',
@@ -89,38 +90,61 @@ const AdminAppsIndex = ({ formRef }) => {
         'Content-Type': 'application/json'
       }
     });
-    mutate('/api/portfolio/apps');
+    mutate('/api/portfolio/bookmarks');
     closeModalDelete();
   }
   
-  const openModal = (app) => {
-    const openApp = mergeObj(appFormat, app);
-    setApp(openApp);
+  const openModal = (bookmark) => {
+    const openBookmark = mergeObj(bookmarkFormat, bookmark);
+    setBookmark(openBookmark);
     setIsOpen(true);
   }
 
   const closeModal = () => {
-    setApp(appFormat);
+    setBookmark(bookmarkFormat);
     setIsOpen(false);
     setFormError(false);
   }
   
-  const openModalDelete = (app) => {
-    const openApp = mergeObj(appFormat, app);
-    setApp(openApp);
+  const openModalDelete = (bookmark) => {
+    const openBookmark = mergeObj(bookmarkFormat, bookmark);
+    setBookmark(openBookmark);
     setIsOpenDelete(true);
   }
 
   const closeModalDelete = () => {
-    setApp(appFormat);
+    setBookmark(bookmarkFormat);
     setIsOpenDelete(false);
   }
 
   const handleChange = (e) => {
     if (e.target.files) {
-      setApp({ ...app, [e.target.name]: e.target.files[0] });
+      setBookmark({ ...bookmark, [e.target.name]: e.target.files[0] });
     } else {
-      setApp({ ...app, [e.target.name]: e.target.value });
+      setBookmark({ ...bookmark, [e.target.name]: e.target.value });
+    }
+  }
+
+  const fetchUrlData = async (bookmark) => {
+    setCurrentStatus("Fetching data...");
+    const response = await axios.get(bookmark.url)
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+        setCurrentStatus(error.message);
+      });
+    setCurrentStatus(null);
+    if (response) {
+      const $ = cheerio.load(response.data);
+  
+      const titleText = $('title').text();
+      const descriptionText = $('meta[name="description"]').first().attr("content");
+  
+      bookmark.name = titleText ? titleText : '';
+      bookmark.description = descriptionText ? descriptionText : '';
+  
+      handleChange({ target: { name: 'name', value: bookmark.name } });
+      handleChange({ target: { name: 'description', value: bookmark.description } });
     }
   }
 
@@ -128,10 +152,10 @@ const AdminAppsIndex = ({ formRef }) => {
     return (
       <AdminWrapper>
         <div className="flex my-2">
-          <h1 className="flex-auto text-4xl"><ChipIcon className="inline-flex align-text-bottom h-10 text-isabelline-800 "/> Apps list</h1>
+          <h1 className="flex-auto text-4xl"><BookmarkIcon className="inline-flex align-text-bottom h-10 text-isabelline-800 "/> Bookmarks list</h1>
           <div className="flex-none text-right">
-            <button type="button" className="bg-isabelline-700 hover:bg-isabelline-800 text-white font-bold py-2 px-4 mb-5 rounded" onClick={() => openModal(appFormat)}>
-              <PlusIcon className="inline-flex align-text-bottom h-5 text-white  "/> Add new app
+            <button className="bg-isabelline-700 hover:bg-isabelline-800 text-white font-bold py-2 px-4 mb-5 rounded" onClick={() => openModal(bookmarkFormat)}>
+              <PlusIcon className="inline-flex align-text-bottom h-5 text-white  "/> Add new bookmark
             </button>
           </div>
         </div>
@@ -145,14 +169,11 @@ const AdminAppsIndex = ({ formRef }) => {
                     <th scope="col">
                       Name
                     </th>
-                    <th scope="col" className="textcenter">
-                      Image
+                    <th scope="col">
+                      Url
                     </th>
                     <th scope="col">
-                      Description
-                    </th>
-                    <th scope="col">
-                      GitHub URL
+                      Category
                     </th>
                     <th scope="col">
                       Updated
@@ -163,36 +184,19 @@ const AdminAppsIndex = ({ formRef }) => {
                   </tr>
                 </thead>
                 <tbody>
-                  {apps?.results.map((item) => (
+                  {bookmarks?.results.map((item) => (
                     <tr key={item.id}>
                       <td><span className="hidden">{item.id}</span></td>
                       <td>
                         <strong>{item.name}</strong>
                       </td>
-                      <td className="text-center">
-                        <div className="w-32 m-auto relative">
-                          <NaturalImage
-                            src={`/uploads/${item.image}`}
-                            alt={item.name}
-                            title={item.name}
-                            />
-                        </div>
-                        <div className="small">{item.image}</div>
-                      </td>
-                      <td>
-                        <p className="w-64 text-ellipsis overflow-hidden">
-                          {item.description}
-                        </p>
-                      </td>
                       <td>
                         <span className="w-64 text-ellipsis overflow-hidden inline-block">
                         {item.url} 
                         </span>
-                        <Link
-                          href={item.url}
-                        >
-                        <a target="_blank" rel="noreferrer"><ExternalLinkIcon className="h-4 inline-block align-top ml-2"/></a>
-                        </Link>
+                      </td>
+                      <td>
+                        {item.category.name}
                       </td>
                       <td className="w-44">
                         {moment(item.updatedAt || item.createdAt).from(moment())}
@@ -213,7 +217,7 @@ const AdminAppsIndex = ({ formRef }) => {
           </div>
         </div>
         <AdminModal 
-          title={app.id ? 'Edit app' : 'Add new app'}
+          title={bookmark.id ? 'Edit bookmark' : 'Add new bookmark'}
           isOpen={isOpen} 
           closeModal={closeModal} 
           showButtons={true}
@@ -234,6 +238,47 @@ const AdminAppsIndex = ({ formRef }) => {
             }
             <div className="grid grid-cols-6 gap-6">
               <div className="col-span-6">
+                <label htmlFor="category-form" className="input-label">
+                  Category <span className="text-isabelline-700 text-xl">*</span>
+                </label>
+                <select 
+                  name="categoryId" 
+                  id="category-form"
+                  className="mt-1 input-field"
+                  onChange={handleChange}
+                  value={bookmark.categoryId}
+                  required
+                  >
+                  <option value="">Select category</option>
+                  {categories?.results.filter(x => x.type == "BOOKMARK").map((item) => (
+                    <option key={item.id} value={item.id}>{item.name}</option>
+                  ))}
+                </select>
+              </div>
+              <div className="col-span-6">
+                <label htmlFor="url-form" className="input-label">
+                  URL <span className="text-isabelline-700 text-xl">*</span>
+                </label>
+                <div className="flex">
+                  <input
+                    type="url"
+                    name="url"
+                    id="url-form"
+                    autoComplete="off"
+                    data-lpignore="true" 
+                    data-form-type="other"
+                    className="mt-1 input-field w-5/6"
+                    value={bookmark.url}
+                    onChange={handleChange}
+                    required
+                  />
+                  <button type="button" onClick={() => fetchUrlData(bookmark)} className="border border-transparent shadow-sm text-sm font-medium rounded-md transition-colors ease-out duration-200 text-isabelline-900 hover:text-isabelline-500 bg-isabelline-700 hover:bg-isabelline-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-isabelline-700 flex-none w-20 ml-4">Fetch</button>
+                </div>
+              </div>
+              { currentStatus &&
+                <p className="text-isabelline-800">{currentStatus}</p>
+              }
+              <div className="col-span-6">
                 <label htmlFor="name-form" className="input-label">
                   Title <span className="text-isabelline-700 text-xl">*</span>
                 </label>
@@ -245,44 +290,7 @@ const AdminAppsIndex = ({ formRef }) => {
                   data-lpignore="true" 
                   data-form-type="other"
                   className="mt-1 input-field"
-                  value={app.name}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="col-span-6">
-                <label htmlFor="image-url-form" className="input-label">
-                  Image { !app.id &&
-                   <span className="text-isabelline-700 text-xl">*</span>
-                  }
-                </label>
-                <input
-                  type="file"
-                  name="image"
-                  id="image-url-form"
-                  className="mt-1 block w-full text-sm text-slate-500
-                        file:mr-4 file:py-2 file:px-4
-                        file:rounded-full file:border-0
-                        file:text-sm file:font-semibold
-                        file:bg-independence-200 file:text-independence-700
-                        hover:file:bg-independence-300
-                  "
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="col-span-6">
-                <label htmlFor="url-form" className="input-label">
-                  GitHub URL <span className="text-isabelline-700 text-xl">*</span>
-                </label>
-                <input
-                  type="url"
-                  name="url"
-                  id="url-form"
-                  autoComplete="off"
-                  data-lpignore="true" 
-                  data-form-type="other"
-                  className="mt-1 input-field"
-                  value={app.url}
+                  value={bookmark.name}
                   onChange={handleChange}
                   required
                 />
@@ -296,7 +304,7 @@ const AdminAppsIndex = ({ formRef }) => {
                   id="description-form"
                   className="mt-1 input-field"
                   rows={5}
-                  value={app.description}
+                  value={bookmark.description}
                   onChange={handleChange}
                 />
               </div>
@@ -304,7 +312,7 @@ const AdminAppsIndex = ({ formRef }) => {
           </form>
         </AdminModal>
         <AdminModal
-          title="Delete app"
+          title="Delete bookmark"
           isOpen={isOpenDelete}
           closeModal={closeModalDelete}
           showButtons={true}
@@ -313,7 +321,7 @@ const AdminAppsIndex = ({ formRef }) => {
           primaryButtonLabel="Delete"
           primaryButtonClass="button-danger"
         >
-          <p>Are you sure you want to delete app &quot;{ app.name }&quot;?</p>
+          <p>Are you sure you want to delete bookmark &quot;{ bookmark.name }&quot;?</p>
         </AdminModal>
       </AdminWrapper>
     )
@@ -322,9 +330,13 @@ const AdminAppsIndex = ({ formRef }) => {
 }
 
 export async function getStaticProps() {
+  const dirRelativeToPublicFolder = 'images/svg-icons'
+  const dir = path.resolve('./public', dirRelativeToPublicFolder);
+  const filenames = fs.readdirSync(dir);
+
   return {
-    props: { formRef: createRef() }, // will be passed to the page component as props
+    props: { formRef: createRef(), images: filenames }, // will be passed to the page component as props
   }
 }
 
-export default AdminAppsIndex;
+export default AdminBookmarksIndex;

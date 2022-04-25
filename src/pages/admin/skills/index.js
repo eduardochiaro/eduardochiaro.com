@@ -141,69 +141,69 @@ const AdminSkillsIndex = ({ formRef, images }) => {
         <div className="flex flex-col">
           <div className="-my-2 sm:-mx-6 lg:-mx-8">
             <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-              <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                <table className="admin-table">
-                  <thead>
-                    <tr>
-                      <th scope="col">
-                        Name
-                      </th>
-                      <th scope="col" className="textcenter">
-                        Logo
-                      </th>
-                      <th scope="col" className="textcenter">
-                        Percentage
-                      </th>
-                      <th scope="col">
-                        Type
-                      </th>
-                      <th scope="col">
-                        Last Updated
-                      </th>
-                      <th scope="col" className="relative">
-                        <span className="sr-only">Edit</span>
-                      </th>
+              <table className="admin-table">
+                <thead>
+                  <tr>
+                    <th scope="col"></th>
+                    <th scope="col">
+                      Name
+                    </th>
+                    <th scope="col" className="textcenter">
+                      Logo
+                    </th>
+                    <th scope="col" className="textcenter">
+                      Percentage
+                    </th>
+                    <th scope="col">
+                      Type
+                    </th>
+                    <th scope="col">
+                      Updated
+                    </th>
+                    <th scope="col" className="relative">
+                      <span className="sr-only">Edit</span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {skills?.results.map((item) => (
+                    <tr key={item.id}>
+                      <td><span className="hidden">{item.id}</span></td>
+                      <td>
+                        <strong>{item.name}</strong>
+                      </td>
+                      <td className="text-center">
+                        <div className="w-32 m-auto relative">
+                          <NaturalImage
+                            src={`/images/svg-icons/${item.logo}`}
+                            size={100}
+                            alt={item.name}
+                            title={item.name}
+                            />
+                        </div>
+                        <div className="small">{item.logo}</div>
+                      </td>
+                      <td className="text-center">
+                        {item.percentage}%
+                      </td>
+                      <td>
+                        {item.type}
+                      </td>
+                      <td className="w-44">
+                        {moment(item.updatedAt || item.createdAt).from(moment())}
+                      </td>
+                      <td className="w-44 text-right font-medium">
+                        <a href="#" className="text-isabelline-800 dark:text-isabelline-500 hover:underline" onClick={() => openModal(item)}>
+                          <PencilAltIcon className="inline-flex align-text-bottom h-4 mr-1"/>Edit
+                        </a>
+                        <a href="#" className="text-isabelline-800 dark:text-isabelline-500 hover:underline ml-4" onClick={() => openModalDelete(item)}>
+                          <TrashIcon className="inline-flex align-text-bottom h-4 mr-1"/>Delete
+                        </a>
+                      </td>
                     </tr>
-                  </thead>
-                  <tbody>
-                    {skills?.results.map((item) => (
-                      <tr key={item.id}>
-                        <td>
-                          <strong>{item.name}</strong>
-                        </td>
-                        <td className="text-center">
-                          <div className="w-32 m-auto relative">
-                            <NaturalImage
-                              src={`/images/svg-icons/${item.logo}`}
-                              size={100}
-                              alt={item.name}
-                              title={item.name}
-                              />
-                          </div>
-                          <div className="small">{item.logo}</div>
-                        </td>
-                        <td className="text-center">
-                          {item.percentage}%
-                        </td>
-                        <td>
-                          {item.type}
-                        </td>
-                        <td className="w-44">
-                          {moment(item.updatedAt || item.createdAt).from(moment())}
-                        </td>
-                        <td className="w-44 text-right font-medium">
-                          <a href="#" className="text-isabelline-800 dark:text-isabelline-500 hover:underline" onClick={() => openModal(item)}>
-                            <PencilAltIcon className="inline-flex align-text-bottom h-4 mr-1"/>Edit
-                          </a>
-                          <a href="#" className="text-isabelline-800 dark:text-isabelline-500 hover:underline ml-4" onClick={() => openModalDelete(item)}>
-                            <TrashIcon className="inline-flex align-text-bottom h-4 mr-1"/>Delete
-                          </a>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
@@ -246,11 +246,12 @@ const AdminSkillsIndex = ({ formRef, images }) => {
                 />
               </div>
               <div className="col-span-5 sm:col-span-2">
-                <label htmlFor="logo-url-form" className="input-label">
+                <label htmlFor="logo-type-form" className="input-label">
                   Logo <span className="text-isabelline-700 text-xl">*</span>
                 </label>
                 <select 
                   name="logo" 
+                  id="logo-type-form"
                   className="mt-1 input-field"
                   onChange={handleChange}
                   value={skill.logo}
