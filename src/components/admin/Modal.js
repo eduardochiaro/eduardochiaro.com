@@ -1,7 +1,6 @@
-import React from 'react'
-import { XIcon } from '@heroicons/react/outline'
-import { Dialog, Transition } from '@headlessui/react'
-import { Fragment, useState } from "react";
+import React from 'react';
+import { XIcon } from '@heroicons/react/outline';
+import { Dialog } from '@headlessui/react';
 
 const AdminModal = ({ 
   children, 

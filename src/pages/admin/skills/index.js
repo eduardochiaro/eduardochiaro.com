@@ -8,6 +8,7 @@ import path from 'path';
 import SVG from 'react-inlinesvg';
 import AdminModal from "../../../components/admin/Modal";
 import AdminWrapper from "../../../components/admin/Wrapper";
+import TableLayout from "../../../components/admin/tableLayout";
 import mergeObj from "../../../lib/mergeObj";
 import NaturalImage from "../../../components/NaturalImage";
 import useStaleSWR from "../../../lib/staleSWR";
@@ -127,6 +128,51 @@ const AdminSkillsIndex = ({ formRef, images }) => {
     }
   }
 
+  const columns = [
+    {
+      name: "Name",
+      key: "name",
+      classNameTd: "font-bold"
+    },
+    {
+      name: "Logo",
+      key: "logo_d",
+      className: "textcenter w-10",
+      classNameTd: "text-center"
+    },
+    {
+      name: "Percentage",
+      key: "percentage_d",
+      className: "textcenter",
+      classNameTd: "text-center"
+    },
+    {
+      name: "Type",
+      key: "type"
+    },
+    {
+      name: "Updated",
+      key: "updated",
+      classNameTd: "w-44"
+    }
+  ]
+
+  const newData = [];
+  skills?.results.map(item => {
+    const obj = { ...item };
+    obj.updated = moment(item.updatedAt || item.createdAt).from(moment());
+    obj.logo_d = (
+      <>
+        <div className="w-32 m-auto relative">
+          <SVG title={item.name} alt={item.name} className={`inline w-auto fill-zinc-700 dark:fill-zinc-200`} src={`/images/svg-icons/${item.logo}`} height={50} />
+        </div>
+        <div className="small">{item.logo}</div>
+      </>
+    );
+    obj.percentage_d = item.percentage + '%';
+    newData.push(obj);
+  });
+
   if (session) {
     return (
       <AdminWrapper>
@@ -138,75 +184,7 @@ const AdminSkillsIndex = ({ formRef, images }) => {
             </button>
           </div>
         </div>
-        <div className="flex flex-col">
-          <div className="-my-2 sm:-mx-6 lg:-mx-8">
-            <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-              <table className="admin-table">
-                <thead>
-                  <tr>
-                    <th scope="col"></th>
-                    <th scope="col">
-                      Name
-                    </th>
-                    <th scope="col" className="textcenter">
-                      Logo
-                    </th>
-                    <th scope="col" className="textcenter">
-                      Percentage
-                    </th>
-                    <th scope="col">
-                      Type
-                    </th>
-                    <th scope="col">
-                      Updated
-                    </th>
-                    <th scope="col" className="relative">
-                      <span className="sr-only">Edit</span>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {skills?.results.map((item) => (
-                    <tr key={item.id}>
-                      <td><span className="hidden">{item.id}</span></td>
-                      <td>
-                        <strong>{item.name}</strong>
-                      </td>
-                      <td className="text-center">
-                        <div className="w-32 m-auto relative">
-                          <NaturalImage
-                            src={`/images/svg-icons/${item.logo}`}
-                            size={100}
-                            alt={item.name}
-                            title={item.name}
-                            />
-                        </div>
-                        <div className="small">{item.logo}</div>
-                      </td>
-                      <td className="text-center">
-                        {item.percentage}%
-                      </td>
-                      <td>
-                        {item.type}
-                      </td>
-                      <td className="w-44">
-                        {moment(item.updatedAt || item.createdAt).from(moment())}
-                      </td>
-                      <td className="w-44 text-right font-medium">
-                        <a href="#" className="text-isabelline-800 dark:text-isabelline-500 hover:underline" onClick={() => openModal(item)}>
-                          <PencilAltIcon className="inline-flex align-text-bottom h-4 mr-1"/>Edit
-                        </a>
-                        <a href="#" className="text-isabelline-800 dark:text-isabelline-500 hover:underline ml-4" onClick={() => openModalDelete(item)}>
-                          <TrashIcon className="inline-flex align-text-bottom h-4 mr-1"/>Delete
-                        </a>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
+        <TableLayout columns={columns} data={newData} editAction={openModal} deleteAction={openModalDelete} />
         <AdminModal 
           title={skill.id ? 'Edit skill' : 'Add new skill'}
           isOpen={isOpen} 

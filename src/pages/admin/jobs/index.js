@@ -5,6 +5,7 @@ import { useSWRConfig } from "swr";
 import axios from 'axios';
 import AdminModal from "../../../components/admin/Modal";
 import AdminWrapper from "../../../components/admin/Wrapper";
+import TableLayout from "../../../components/admin/tableLayout";
 import mergeObj from "../../../lib/mergeObj";
 import SVG from 'react-inlinesvg';
 import useStaleSWR from "../../../lib/staleSWR";
@@ -123,6 +124,56 @@ const AdminJobsIndex = ({ formRef }) => {
     }
   }
 
+  const columns = [
+    {
+      name: "Name",
+      key: "name",
+      classNameTd: "font-bold"
+    },
+    {
+      name: "Logo",
+      key: "logo_d",
+      className: "textcenter",
+      classNameTd: "text-center"
+    },
+    {
+      name: "Size (width)",
+      key: "size",
+      className: "textcenter",
+      classNameTd: "text-center"
+    },
+    {
+      name: "Disclaimer",
+      key: "disclaimer"
+    },
+    {
+      name: "Updated",
+      key: "updated",
+      classNameTd: "w-44"
+    }
+  ]
+
+  const newData = [];
+  jobs?.results.map(item => {
+    const obj = { ...item };
+    obj.updated = moment(item.updatedAt || item.createdAt).from(moment());
+    obj.description_d = (
+      <p className="w-64 text-ellipsis overflow-hidden">
+        {item.description}
+      </p>
+    )
+    obj.logo_d = (
+      <>
+        <div className="w-32 m-auto relative">
+          <SVG title={item.name} alt={item.name} className={`inline w-auto fill-zinc-700 dark:fill-zinc-200`} src={`/uploads/${item.logo}`} height={25} />
+        </div>
+        <div className="small">{item.logo}</div>
+      </>
+    );
+    obj.size = item.style + 'px';
+    newData.push(obj);
+  });
+
   if (session) {
     return (
       <AdminWrapper>
@@ -134,71 +185,7 @@ const AdminJobsIndex = ({ formRef }) => {
             </button>
           </div>
         </div>
-        <div className="flex flex-col">
-          <div className="-my-2 sm:-mx-6 lg:-mx-8">
-            <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-              <table className="admin-table">
-                <thead>
-                  <tr>
-                    <th scope="col"></th>
-                    <th scope="col">
-                      Name
-                    </th>
-                    <th scope="col" className="textcenter">
-                      Logo
-                    </th>
-                    <th scope="col" className="textcenter">
-                      Size (width)
-                    </th>
-                    <th scope="col">
-                      Disclaimer
-                    </th>
-                    <th scope="col">
-                      Updated
-                    </th>
-                    <th scope="col" className="relative">
-                      <span className="sr-only">Edit</span>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {jobs?.results.map((item) => (
-                    <tr key={item.id}>
-                      <td><span className="hidden">{item.id}</span></td>
-                      <td>
-                        <strong>{item.name}</strong>
-                      </td>
-                      <td className="text-center">
-                        <div className="w-32 m-auto relative">
-                            <SVG title={item.name} alt={item.name} className={`inline w-auto fill-zinc-700 dark:fill-zinc-200`} src={`/uploads/${item.logo}`} 
-                  height={25} />
-                        </div>
-                        <div className="small">{item.logo}</div>
-                      </td>
-                      <td className="text-center">
-                        {item.style}px
-                      </td>
-                      <td>
-                        {item.disclaimer}
-                      </td>
-                      <td className="w-44">
-                        {moment(item.updatedAt || item.createdAt).from(moment())}
-                      </td>
-                      <td className="w-44 text-right font-medium">
-                        <a href="#" className="text-isabelline-800 dark:text-isabelline-500 hover:underline" onClick={() => openModal(item)}>
-                          <PencilAltIcon className="inline-flex align-text-bottom h-4 mr-1"/>Edit
-                        </a>
-                        <a href="#" className="text-isabelline-800 dark:text-isabelline-500 hover:underline ml-4" onClick={() => openModalDelete(item)}>
-                          <TrashIcon className="inline-flex align-text-bottom h-4 mr-1"/>Delete
-                        </a>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
+        <TableLayout columns={columns} data={newData} editAction={openModal} deleteAction={openModalDelete} />
         <AdminModal 
           title={job.id ? 'Edit job' : 'Add new job'}
           isOpen={isOpen} 
@@ -237,7 +224,7 @@ const AdminJobsIndex = ({ formRef }) => {
                   required
                 />
               </div>
-              <div className="col-span-6 sm:col-span-5">
+              <div className="col-span-5 sm:col-span-4">
                 <label htmlFor="logo-url-form" className="input-label">
                   Logo { !job.id &&
                    <span className="text-isabelline-700 text-xl">*</span>
@@ -256,6 +243,18 @@ const AdminJobsIndex = ({ formRef }) => {
                   "
                   onChange={handleChange}
                 />
+              </div>
+              <div className="col-span-1">
+                { job.id > 0 && job.logo &&
+                  <>
+                  <label htmlFor="style-form" className="input-label">
+                    Current
+                  </label>
+                  <div className="mt-4">
+                    <SVG title={job.name} alt={job.name} className={`inline w-auto fill-zinc-700 dark:fill-zinc-200`} src={`/uploads/${job.logo}`} height={25} />
+                  </div>
+                  </>
+                }
               </div>
               <div className="col-span-6 sm:col-span-1">
                 <label htmlFor="style-form" className="input-label">

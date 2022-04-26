@@ -5,6 +5,7 @@ import { useSWRConfig } from "swr";
 import axios from 'axios';
 import AdminModal from "../../../components/admin/Modal";
 import AdminWrapper from "../../../components/admin/Wrapper";
+import TableLayout from "../../../components/admin/tableLayout";
 import mergeObj from "../../../lib/mergeObj";
 import NaturalImage from "../../../components/NaturalImage";
 import useStaleSWR from "../../../lib/staleSWR";
@@ -124,6 +125,69 @@ const AdminAppsIndex = ({ formRef }) => {
     }
   }
 
+  const columns = [
+    {
+      name: "Name",
+      key: "name",
+      classNameTd: "font-bold"
+    },
+    {
+      name: "Image",
+      key: "image",
+      className: "textcenter",
+      classNameTd: "text-center"
+    },
+    {
+      name: "Description",
+      key: "description_d"
+    },
+    {
+      name: "GitHub URL",
+      key: "github_url"
+    },
+    {
+      name: "Updated",
+      key: "updated",
+      classNameTd: "w-44"
+    }
+  ]
+  
+  const newData = [];
+  apps?.results.map(item => {
+    const obj = { ...item };
+    obj.updated = moment(item.updatedAt || item.createdAt).from(moment());
+    obj.description_d = (
+      <p className="w-64 text-ellipsis overflow-hidden">
+        {item.description}
+      </p>
+    )
+    obj.image = (
+      <>
+        <div className="w-32 m-auto relative">
+          <NaturalImage
+            src={`/uploads/${item.image}`}
+            alt={item.name}
+            title={item.name}
+            />
+        </div>
+        <div className="small">{item.image}</div>
+      </>
+    );
+    obj.github_url = (
+      <>
+        <span className="w-64 text-ellipsis overflow-hidden inline-block">
+          {item.url} 
+        </span>
+        <Link
+          href={item.url}
+        >
+          <a target="_blank" rel="noreferrer"><ExternalLinkIcon className="h-4 inline-block align-top ml-2"/></a>
+        </Link>
+      </>
+    )
+    newData.push(obj);
+  });
+
   if (session) {
     return (
       <AdminWrapper>
@@ -135,83 +199,7 @@ const AdminAppsIndex = ({ formRef }) => {
             </button>
           </div>
         </div>
-        <div className="flex flex-col">
-          <div className="-my-2 sm:-mx-6 lg:-mx-8">
-            <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-              <table className="admin-table">
-                <thead>
-                  <tr>
-                    <th scope="col"></th>
-                    <th scope="col">
-                      Name
-                    </th>
-                    <th scope="col" className="textcenter">
-                      Image
-                    </th>
-                    <th scope="col">
-                      Description
-                    </th>
-                    <th scope="col">
-                      GitHub URL
-                    </th>
-                    <th scope="col">
-                      Updated
-                    </th>
-                    <th scope="col" className="relative">
-                      <span className="sr-only">Edit</span>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {apps?.results.map((item) => (
-                    <tr key={item.id}>
-                      <td><span className="hidden">{item.id}</span></td>
-                      <td>
-                        <strong>{item.name}</strong>
-                      </td>
-                      <td className="text-center">
-                        <div className="w-32 m-auto relative">
-                          <NaturalImage
-                            src={`/uploads/${item.image}`}
-                            alt={item.name}
-                            title={item.name}
-                            />
-                        </div>
-                        <div className="small">{item.image}</div>
-                      </td>
-                      <td>
-                        <p className="w-64 text-ellipsis overflow-hidden">
-                          {item.description}
-                        </p>
-                      </td>
-                      <td>
-                        <span className="w-64 text-ellipsis overflow-hidden inline-block">
-                        {item.url} 
-                        </span>
-                        <Link
-                          href={item.url}
-                        >
-                        <a target="_blank" rel="noreferrer"><ExternalLinkIcon className="h-4 inline-block align-top ml-2"/></a>
-                        </Link>
-                      </td>
-                      <td className="w-44">
-                        {moment(item.updatedAt || item.createdAt).from(moment())}
-                      </td>
-                      <td className="w-44 text-right font-medium">
-                        <a href="#" className="text-isabelline-800 dark:text-isabelline-500 hover:underline" onClick={() => openModal(item)}>
-                          <PencilAltIcon className="inline-flex align-text-bottom h-4 mr-1"/>Edit
-                        </a>
-                        <a href="#" className="text-isabelline-800 dark:text-isabelline-500 hover:underline ml-4" onClick={() => openModalDelete(item)}>
-                          <TrashIcon className="inline-flex align-text-bottom h-4 mr-1"/>Delete
-                        </a>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
+        <TableLayout columns={columns} data={newData} editAction={openModal} deleteAction={openModalDelete} />
         <AdminModal 
           title={app.id ? 'Edit app' : 'Add new app'}
           isOpen={isOpen} 

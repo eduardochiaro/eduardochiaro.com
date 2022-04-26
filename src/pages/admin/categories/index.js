@@ -7,6 +7,7 @@ import fs from 'fs';
 import path from 'path';
 import AdminModal from "../../../components/admin/Modal";
 import AdminWrapper from "../../../components/admin/Wrapper";
+import TableLayout from "../../../components/admin/tableLayout";
 import mergeObj from "../../../lib/mergeObj";
 import useStaleSWR from "../../../lib/staleSWR";
 import moment from "moment";
@@ -122,6 +123,27 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
     }
   }
 
+  const columns = [
+    {
+      name: "Name",
+      key: "name",
+      classNameTd: "font-bold"
+    },
+    {
+      name: "Type",
+      key: "type"
+    },
+    {
+      name: "Updated",
+      key: "updated",
+      classNameTd: "w-44"
+    }
+  ]
+
+  categories?.results.map(x => {
+    x.updated = moment(x.updatedAt || x.createdAt).from(moment());
+  });
+
   if (session) {
     return (
       <AdminWrapper>
@@ -133,55 +155,7 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
             </button>
           </div>
         </div>
-        <div className="flex flex-col">
-          <div className="-my-2 sm:-mx-6 lg:-mx-8">
-            <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-              <table className="admin-table">
-                <thead>
-                  <tr>
-                    <th scope="col"></th>
-                    <th scope="col">
-                      Name
-                    </th>
-                    <th scope="col">
-                      Type
-                    </th>
-                    <th scope="col">
-                      Updated
-                    </th>
-                    <th scope="col" className="relative">
-                      <span className="sr-only">Edit</span>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {categories?.results.map((item) => (
-                    <tr key={item.id}>
-                      <td><span className="hidden">{item.id}</span></td>
-                      <td>
-                        <strong>{item.name}</strong>
-                      </td>
-                      <td>
-                        {item.type}
-                      </td>
-                      <td className="w-44">
-                        {moment(item.updatedAt || item.createdAt).from(moment())}
-                      </td>
-                      <td className="w-44 text-right font-medium">
-                        <a href="#" className="text-isabelline-800 dark:text-isabelline-500 hover:underline" onClick={() => openModal(item)}>
-                          <PencilAltIcon className="inline-flex align-text-bottom h-4 mr-1"/>Edit
-                        </a>
-                        <a href="#" className="text-isabelline-800 dark:text-isabelline-500 hover:underline ml-4" onClick={() => openModalDelete(item)}>
-                          <TrashIcon className="inline-flex align-text-bottom h-4 mr-1"/>Delete
-                        </a>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
+        <TableLayout columns={columns} data={categories?.results} editAction={openModal} deleteAction={openModalDelete} />
         <AdminModal 
           title={category.id ? 'Edit category' : 'Add new category'}
           isOpen={isOpen} 
