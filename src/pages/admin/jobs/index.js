@@ -178,9 +178,9 @@ const AdminJobsIndex = ({ formRef }) => {
     return (
       <AdminWrapper>
         <div className="flex my-2">
-          <h1 className="flex-auto text-4xl"><BriefcaseIcon className="inline-flex align-text-bottom h-10 text-isabelline-800 "/> Jobs list</h1>
+          <h1 className="flex-auto text-4xl"><BriefcaseIcon className="inline-flex align-text-bottom h-10 text-primary-800 "/> Jobs list</h1>
           <div className="flex-none text-right">
-            <button className="bg-isabelline-700 hover:bg-isabelline-800 text-white font-bold py-2 px-4 mb-5 rounded" onClick={() => openModal(jobFormat)}>
+            <button className="bg-primary-700 hover:bg-primary-800 text-white font-bold py-2 px-4 mb-5 rounded" onClick={() => openModal(jobFormat)}>
               <PlusIcon className="inline-flex align-text-bottom h-5 text-white  "/> Add new job
             </button>
           </div>
@@ -201,7 +201,7 @@ const AdminJobsIndex = ({ formRef }) => {
             encType="multipart/form-data"
             onSubmit={onSubmitModal}>
             {formError &&
-              <div className="bg-terra-cotta-100 border border-terra-cotta-400 text-terra-cotta-700 px-4 py-3 rounded relative mb-4" role="alert">
+              <div className="bg-accent-100 border border-accent-400 text-accent-700 px-4 py-3 rounded relative mb-4" role="alert">
                 <strong className="font-bold"><ExclamationIcon className="inline-flex align-middle h-6 mr-4"/>Invalid Form! </strong>
                 <span className="block sm:inline">Some required fields are missing.</span>
               </div>
@@ -209,7 +209,7 @@ const AdminJobsIndex = ({ formRef }) => {
             <div className="grid grid-cols-6 gap-6">
               <div className="col-span-6">
                 <label htmlFor="name-form" className="input-label">
-                  Title <span className="text-isabelline-700 text-xl">*</span>
+                  Title <span className="text-primary-700 text-xl">*</span>
                 </label>
                 <input
                   type="text"
@@ -227,19 +227,19 @@ const AdminJobsIndex = ({ formRef }) => {
               <div className="col-span-5 sm:col-span-4">
                 <label htmlFor="logo-url-form" className="input-label">
                   Logo { !job.id &&
-                   <span className="text-isabelline-700 text-xl">*</span>
+                   <span className="text-primary-700 text-xl">*</span>
                   }
                 </label>
                 <input
                   type="file"
                   name="logo"
                   id="logo-url-form"
-                  className="mt-1 block w-full text-sm text-independence-900 dark:text-isabelline-500
+                  className="mt-1 block w-full text-sm text-zinc-900 dark:text-primary-500
                         file:mr-4 file:py-2 file:px-4
                         file:rounded-full file:border-0
                         file:text-sm file:font-semibold
-                        file:bg-isabelline-700 file:text-isabelline-500
-                        hover:file:bg-isabelline-800
+                        file:bg-primary-700 file:text-primary-500
+                        hover:file:bg-primary-800
                   "
                   onChange={handleChange}
                 />
@@ -258,7 +258,7 @@ const AdminJobsIndex = ({ formRef }) => {
               </div>
               <div className="col-span-6 sm:col-span-1">
                 <label htmlFor="style-form" className="input-label">
-                  Size (width) <span className="text-isabelline-700 text-xl">*</span>
+                  Size (width) <span className="text-primary-700 text-xl">*</span>
                 </label>
                 <input
                   type="number"

@@ -31,7 +31,7 @@ export default function SignIn({ providers, basePath }) {
             <p className="font-header text-xl">Not signed in</p>
             {Object.values(providers).map((provider) => (
               <div key={provider.name} className="mt-8">
-                <button className="bg-independence-800 text-white p-3 pl-4 pr-4 rounded-lg text-2xl transition duration-200 ease-in-out active:ring-2 ring-offset-2 ring-independence-600 mb-4" onClick={() => signIn(provider.id, {
+                <button className="bg-zinc-800 text-white p-3 pl-4 pr-4 rounded-lg text-2xl transition duration-200 ease-in-out active:ring-2 ring-offset-2 ring-zinc-600 mb-4" onClick={() => signIn(provider.id, {
                     callbackUrl: router.query.callbackUrl,
                   })}>
                   Sign in with {provider.name}

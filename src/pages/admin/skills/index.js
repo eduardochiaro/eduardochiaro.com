@@ -177,9 +177,9 @@ const AdminSkillsIndex = ({ formRef, images }) => {
     return (
       <AdminWrapper>
         <div className="flex my-2">
-          <h1 className="flex-auto text-4xl"><TerminalIcon className="inline-flex align-text-bottom h-10 text-isabelline-800 "/> Skills list</h1>
+          <h1 className="flex-auto text-4xl"><TerminalIcon className="inline-flex align-text-bottom h-10 text-primary-800 "/> Skills list</h1>
           <div className="flex-none text-right">
-            <button className="bg-isabelline-700 hover:bg-isabelline-800 text-white font-bold py-2 px-4 mb-5 rounded" onClick={() => openModal(skillFormat)}>
+            <button className="bg-primary-700 hover:bg-primary-800 text-white font-bold py-2 px-4 mb-5 rounded" onClick={() => openModal(skillFormat)}>
               <PlusIcon className="inline-flex align-text-bottom h-5 text-white  "/> Add new skill
             </button>
           </div>
@@ -200,7 +200,7 @@ const AdminSkillsIndex = ({ formRef, images }) => {
             encType="multipart/form-data"
             onSubmit={onSubmitModal}>
             {formError &&
-              <div className="bg-terra-cotta-100 border border-terra-cotta-400 text-terra-cotta-700 px-4 py-3 rounded relative mb-4" role="alert">
+              <div className="bg-accent-100 border border-accent-400 text-accent-700 px-4 py-3 rounded relative mb-4" role="alert">
                 <strong className="font-bold"><ExclamationIcon className="inline-flex align-middle h-6 mr-4"/>Invalid Form! </strong>
                 <span className="block sm:inline">Some required fields are missing.</span>
               </div>
@@ -208,7 +208,7 @@ const AdminSkillsIndex = ({ formRef, images }) => {
             <div className="grid grid-cols-6 gap-6">
               <div className="col-span-6">
                 <label htmlFor="name-form" className="input-label">
-                  Title <span className="text-isabelline-700 text-xl">*</span>
+                  Title <span className="text-primary-700 text-xl">*</span>
                 </label>
                 <input
                   type="text"
@@ -225,7 +225,7 @@ const AdminSkillsIndex = ({ formRef, images }) => {
               </div>
               <div className="col-span-5 sm:col-span-2">
                 <label htmlFor="logo-type-form" className="input-label">
-                  Logo <span className="text-isabelline-700 text-xl">*</span>
+                  Logo <span className="text-primary-700 text-xl">*</span>
                 </label>
                 <select 
                   name="logo" 
@@ -251,7 +251,7 @@ const AdminSkillsIndex = ({ formRef, images }) => {
               </div>
               <div className="col-span-6 sm:col-span-3">
                 <label htmlFor="percentage-form" className="input-label">
-                  Percentage <span className="text-isabelline-700 text-xl">*</span>
+                  Percentage <span className="text-primary-700 text-xl">*</span>
                 </label>
                 <input
                   type="range"
@@ -269,7 +269,7 @@ const AdminSkillsIndex = ({ formRef, images }) => {
               </div>
               <div className="col-span-6">
                 <label htmlFor="type-form" className="input-label">
-                  Type <span className="text-isabelline-700 text-xl">*</span>
+                  Type <span className="text-primary-700 text-xl">*</span>
                 </label>
                 <input
                   type="text"

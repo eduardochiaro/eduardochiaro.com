@@ -1,12 +1,5 @@
-@import 'variables.scss';
 
-:export {
-  primary: $primary;
-  secondary: $secondary;
-  powderblue: $powder-blue;
-}
 .apps {
-
   .particles {
     position: absolute !important;
   }

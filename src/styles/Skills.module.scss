@@ -1,29 +1,24 @@
-@import 'variables.scss';
-
 .dark:icon {
   svg {
-    fill: $white
+    @apply fill-white;
   }
-}
-.icon {
-  
 }
 
 .bar-node {
-  background-color: $green-sheen;
+  @apply bg-emerald-500;
 }
 .bar-html {
-  background-color: $imperial-red;
+  @apply bg-red-500;
 }
 .bar-css {
-  background-color: $celadon-blue;
+  @apply bg-blue-500;
 }
 .bar-php {
-  background-color: $old-lavender;
+  @apply bg-indigo-500;
 }
 .bar-mysql {
-  background-color: $prussian-blue;
+  @apply bg-cyan-500;
 }
 .bar-aws {
-  background-color: $orange-web;
+  @apply bg-amber-500;
 }

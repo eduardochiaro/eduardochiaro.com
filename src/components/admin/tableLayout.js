@@ -33,10 +33,10 @@ const tableLayout = ({ columns = [], data = [], editAction = () => null, deleteA
                       </td>
                     ))}
                     <td className="w-44 text-right font-medium">
-                      <a href="#" className="text-isabelline-800 dark:text-isabelline-500 hover:underline" onClick={() => editAction(item)}>
+                      <a href="#" className="text-primary-800 dark:text-primary-500 hover:underline" onClick={() => editAction(item)}>
                         <PencilAltIcon className="inline-flex align-text-bottom h-4 mr-1"/>Edit
                       </a>
-                      <a href="#" className="text-isabelline-800 dark:text-isabelline-500 hover:underline ml-4" onClick={() => deleteAction(item)}>
+                      <a href="#" className="text-primary-800 dark:text-primary-500 hover:underline ml-4" onClick={() => deleteAction(item)}>
                         <TrashIcon className="inline-flex align-text-bottom h-4 mr-1"/>Delete
                       </a>
                     </td>

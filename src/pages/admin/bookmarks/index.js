@@ -7,6 +7,7 @@ import fs from 'fs';
 import path from 'path';
 import AdminModal from "../../../components/admin/Modal";
 import AdminWrapper from "../../../components/admin/Wrapper";
+import TableLayout from "../../../components/admin/tableLayout";
 import mergeObj from "../../../lib/mergeObj";
 import useStaleSWR from "../../../lib/staleSWR";
 import moment from "moment";
@@ -133,13 +134,13 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
         console.log(error);
         setCurrentStatus(error.message);
       });
-    setCurrentStatus(null);
     if (response) {
+      setCurrentStatus(null);
       const $ = cheerio.load(response.data);
   
       const titleText = $('title').text();
-      const descriptionText = $('meta[name="description"]').first().attr("content");
-  
+      const descriptionText = $('meta[name="description"]').length > 0 ? $('meta[name="description"]').first().attr("content") : $('meta[property="og:description"]').first().attr("content");
+      
       bookmark.name = titleText ? titleText : '';
       bookmark.description = descriptionText ? descriptionText : '';
   
@@ -148,74 +149,48 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
     }
   }
 
+
+  const columns = [
+    {
+      name: "Name",
+      key: "name",
+      classNameTd: "font-bold"
+    },
+    {
+      name: "Url",
+      key: "url"
+    },
+    {
+      name: "Category",
+      key: "category_d"
+    },
+    {
+      name: "Updated",
+      key: "updated",
+      classNameTd: "w-44"
+    }
+  ]
+
+  const newData = [];
+  bookmarks?.results.map(item => {
+    const obj = { ...item };
+    obj.updated = moment(item.updatedAt || item.createdAt).from(moment());
+    obj.category_d = item.category ? item.category.name : 'N/A';
+    newData.push(obj);
+  });
+
   if (session) {
     return (
       <AdminWrapper>
         <div className="flex my-2">
-          <h1 className="flex-auto text-4xl"><BookmarkIcon className="inline-flex align-text-bottom h-10 text-isabelline-800 "/> Bookmarks list</h1>
+          <h1 className="flex-auto text-4xl"><BookmarkIcon className="inline-flex align-text-bottom h-10 text-primary-800 "/> Bookmarks list</h1>
           <div className="flex-none text-right">
-            <button className="bg-isabelline-700 hover:bg-isabelline-800 text-white font-bold py-2 px-4 mb-5 rounded" onClick={() => openModal(bookmarkFormat)}>
+            <button className="bg-primary-700 hover:bg-primary-800 text-white font-bold py-2 px-4 mb-5 rounded" onClick={() => openModal(bookmarkFormat)}>
               <PlusIcon className="inline-flex align-text-bottom h-5 text-white  "/> Add new bookmark
             </button>
           </div>
         </div>
-        <div className="flex flex-col">
-          <div className="-my-2 sm:-mx-6 lg:-mx-8">
-            <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-              <table className="admin-table">
-                <thead>
-                  <tr>
-                    <th scope="col"></th>
-                    <th scope="col">
-                      Name
-                    </th>
-                    <th scope="col">
-                      Url
-                    </th>
-                    <th scope="col">
-                      Category
-                    </th>
-                    <th scope="col">
-                      Updated
-                    </th>
-                    <th scope="col" className="relative">
-                      <span className="sr-only">Edit</span>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {bookmarks?.results.map((item) => (
-                    <tr key={item.id}>
-                      <td><span className="hidden">{item.id}</span></td>
-                      <td>
-                        <strong>{item.name}</strong>
-                      </td>
-                      <td>
-                        <span className="w-64 text-ellipsis overflow-hidden inline-block">
-                        {item.url} 
-                        </span>
-                      </td>
-                      <td>
-                        {item.category.name}
-                      </td>
-                      <td className="w-44">
-                        {moment(item.updatedAt || item.createdAt).from(moment())}
-                      </td>
-                      <td className="w-44 text-right font-medium">
-                        <a href="#" className="text-isabelline-800 dark:text-isabelline-500 hover:underline" onClick={() => openModal(item)}>
-                          <PencilAltIcon className="inline-flex align-text-bottom h-4 mr-1"/>Edit
-                        </a>
-                        <a href="#" className="text-isabelline-800 dark:text-isabelline-500 hover:underline ml-4" onClick={() => openModalDelete(item)}>
-                          <TrashIcon className="inline-flex align-text-bottom h-4 mr-1"/>Delete
-                        </a>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
+        <TableLayout columns={columns} data={newData} editAction={openModal} deleteAction={openModalDelete} />
         <AdminModal 
           title={bookmark.id ? 'Edit bookmark' : 'Add new bookmark'}
           isOpen={isOpen} 
@@ -231,7 +206,7 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
             encType="multipart/form-data"
             onSubmit={onSubmitModal}>
             {formError &&
-              <div className="bg-terra-cotta-100 border border-terra-cotta-400 text-terra-cotta-700 px-4 py-3 rounded relative mb-4" role="alert">
+              <div className="bg-accent-100 border border-accent-400 text-accent-700 px-4 py-3 rounded relative mb-4" role="alert">
                 <strong className="font-bold"><ExclamationIcon className="inline-flex align-middle h-6 mr-4"/>Invalid Form! </strong>
                 <span className="block sm:inline">Some required fields are missing.</span>
               </div>
@@ -239,7 +214,7 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
             <div className="grid grid-cols-6 gap-6">
               <div className="col-span-6">
                 <label htmlFor="category-form" className="input-label">
-                  Category <span className="text-isabelline-700 text-xl">*</span>
+                  Category <span className="text-primary-700 text-xl">*</span>
                 </label>
                 <select 
                   name="categoryId" 
@@ -257,7 +232,7 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
               </div>
               <div className="col-span-6">
                 <label htmlFor="url-form" className="input-label">
-                  URL <span className="text-isabelline-700 text-xl">*</span>
+                  URL <span className="text-primary-700 text-xl">*</span>
                 </label>
                 <div className="flex">
                   <input
@@ -272,15 +247,15 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
                     onChange={handleChange}
                     required
                   />
-                  <button type="button" onClick={() => fetchUrlData(bookmark)} className="border border-transparent shadow-sm text-sm font-medium rounded-md transition-colors ease-out duration-200 text-isabelline-900 hover:text-isabelline-500 bg-isabelline-700 hover:bg-isabelline-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-isabelline-700 flex-none w-20 ml-4">Fetch</button>
+                  <button type="button" onClick={() => fetchUrlData(bookmark)} className="border border-transparent shadow-sm text-sm font-medium rounded-md transition-colors ease-out duration-200 text-primary-900 hover:text-primary-500 bg-primary-700 hover:bg-primary-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-700 flex-none w-20 ml-4">Fetch</button>
                 </div>
               </div>
               { currentStatus &&
-                <p className="text-isabelline-800">{currentStatus}</p>
+                <p className="text-primary-800">{currentStatus}</p>
               }
               <div className="col-span-6">
                 <label htmlFor="name-form" className="input-label">
-                  Title <span className="text-isabelline-700 text-xl">*</span>
+                  Title <span className="text-primary-700 text-xl">*</span>
                 </label>
                 <input
                   type="text"

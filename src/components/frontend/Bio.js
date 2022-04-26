@@ -7,10 +7,10 @@ export default function Bio () {
       <span className="anchor" name="top"/>
       <div className="max-w-5xl mx-auto">
         <h1 className="font-header leading-tight text-3xl lg:text-5xl xl:text-6xl font-bold">
-          I&apos;m <span className="text-terra-cotta-500">Eduardo</span>,
+          I&apos;m <span className="text-accent-500">Eduardo</span>,
         </h1>
         <h2 className="font-header leading-tight text-3xl lg:text-5xl xl:text-6xl font-bold">
-          a <CoffeeIcon className={`inline-block w-8 lg:w-16 text-isabelline-800 dark:text-isabelline-700`}/> coffee-driven
+          a <CoffeeIcon className={`inline-block w-8 lg:w-16 text-primary-800 dark:text-primary-700`}/> coffee-driven
           Software Developer based in Washington State.
         </h2>
         <p className="mt-20 text-lg font-normal text-gray-600 dark:text-gray-200">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nisl lacus, auctor condimentum mi vitae, bibendum pretium lacus. 

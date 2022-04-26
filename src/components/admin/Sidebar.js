@@ -21,7 +21,7 @@ const AdminSidebar = () => {
         <ul className="flex flex-col py-4 space-y-1 font-semibold tracking-wider">
           <li>
             <Link href="/">
-              <a className={`${styles['sidebar-link']} text-isabelline-800 dark:text-isabelline-700 hover:text-independence-900 dark:hover:text-isabelline-500`}>
+              <a className={`${styles['sidebar-link']} text-primary-800 dark:text-primary-700 hover:text-zinc-900 dark:hover:text-primary-500`}>
                 <HomeIcon className="inline-flex justify-center items-center ml-4 w-5"/>
                 <span className="ml-2 text-sm tracking-wide truncate">Website</span>
               </a>
@@ -29,12 +29,12 @@ const AdminSidebar = () => {
           </li>
           <li className="px-5">
             <div className="flex flex-row items-center h-8">
-              <div className="text-sm font-light tracking-wide text-isabelline-800 dark:text-isabelline-700">Menu</div>
+              <div className="text-sm font-light tracking-wide text-primary-800 dark:text-primary-700">Menu</div>
             </div>
           </li>
           <li>
             <Link href="/admin/categories">
-              <a className={`${styles['sidebar-link']} text-isabelline-800 dark:text-isabelline-700 hover:text-independence-900 dark:hover:text-isabelline-500`}>
+              <a className={`${styles['sidebar-link']} text-primary-800 dark:text-primary-700 hover:text-zinc-900 dark:hover:text-primary-500`}>
                 <TagIcon className="inline-flex justify-center items-center ml-4 w-5"/>
                 <span className="ml-2 text-sm tracking-wide truncate">Categories</span>
               </a>
@@ -42,18 +42,18 @@ const AdminSidebar = () => {
           </li>
           <li>
             <Link href="/admin/jobs">
-              <a className={`${styles['sidebar-link']} text-isabelline-800 dark:text-isabelline-700 hover:text-independence-900 dark:hover:text-isabelline-500`}>
+              <a className={`${styles['sidebar-link']} text-primary-800 dark:text-primary-700 hover:text-zinc-900 dark:hover:text-primary-500`}>
                 <BriefcaseIcon className="inline-flex justify-center items-center ml-4 w-5"/>
                 <span className="ml-2 text-sm tracking-wide truncate">Jobs</span>
                 {/*
-                <span className="px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-isabelline-600 bg-terra-cotta-100 rounded-full">New</span>
+                <span className="px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-primary-600 bg-accent-100 rounded-full">New</span>
                 */}
               </a>
             </Link>
           </li>
           <li>
             <Link href="/admin/skills">
-              <a className={`${styles['sidebar-link']} text-isabelline-800 dark:text-isabelline-700 hover:text-independence-900 dark:hover:text-isabelline-500`}>
+              <a className={`${styles['sidebar-link']} text-primary-800 dark:text-primary-700 hover:text-zinc-900 dark:hover:text-primary-500`}>
                 <TerminalIcon className="inline-flex justify-center items-center ml-4 w-5"/>
                 <span className="ml-2 text-sm tracking-wide truncate">Skills</span>
               </a>
@@ -61,7 +61,7 @@ const AdminSidebar = () => {
           </li>
           <li>
             <Link href="/admin/apps">
-              <a className={`${styles['sidebar-link']} text-isabelline-800 dark:text-isabelline-700 hover:text-independence-900 dark:hover:text-isabelline-500`}>
+              <a className={`${styles['sidebar-link']} text-primary-800 dark:text-primary-700 hover:text-zinc-900 dark:hover:text-primary-500`}>
                 <ChipIcon className="inline-flex justify-center items-center ml-4 w-5"/>
                 <span className="ml-2 text-sm tracking-wide truncate">Apps</span>
               </a>
@@ -69,7 +69,7 @@ const AdminSidebar = () => {
           </li>
           <li>
             <Link href="/admin/bookmarks">
-              <a className={`${styles['sidebar-link']} text-isabelline-800 dark:text-isabelline-700 hover:text-independence-900 dark:hover:text-isabelline-500`}>
+              <a className={`${styles['sidebar-link']} text-primary-800 dark:text-primary-700 hover:text-zinc-900 dark:hover:text-primary-500`}>
                 <BookmarkIcon className="inline-flex justify-center items-center ml-4 w-5"/>
                 <span className="ml-2 text-sm tracking-wide truncate">Bookmarks</span>
               </a>

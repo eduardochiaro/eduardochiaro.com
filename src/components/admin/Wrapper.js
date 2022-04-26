@@ -31,13 +31,13 @@ const AdminWrapper = ({ children }) => {
           />
           </div>
           <div className="inline-block">
-            <a onClick={() => signOut()} title="logout" className="cursor-pointer focus:outline-none text-gray-500 hover:text-independence-900">
+            <a onClick={() => signOut()} title="logout" className="cursor-pointer focus:outline-none text-gray-500 hover:text-zinc-900">
               <LogoutIcon className="inline-flex w-7" />
             </a>
             { inUseTheme === "dark" ? 
-              <SunIcon className="w-5 h-5 text-independence-900 inline-block mx-4 border rounded-full bg-isabelline-500 " role="button" onClick={() => setTheme('light')} />
+              <SunIcon className="w-5 h-5 text-zinc-900 inline-block mx-4 border rounded-full bg-primary-500 " role="button" onClick={() => setTheme('light')} />
               :
-              <MoonIcon className="w-5 h-5 text-isabelline-500 inline-block mx-4 border rounded-full bg-independence-900" role="button" onClick={() => setTheme('dark')} />
+              <MoonIcon className="w-5 h-5 text-primary-500 inline-block mx-4 border rounded-full bg-zinc-900" role="button" onClick={() => setTheme('dark')} />
             }
           </div>
         </div>

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import styles from '../../styles/Jobs.module.scss'
 import useStaleSWR from '../../lib/staleSWR';
 import SVG from 'react-inlinesvg';
 
@@ -7,10 +6,10 @@ export default function Jobs () {
   const { data, error } = useStaleSWR('/api/portfolio/works');
 
   return (
-    <section id="work" className={`${styles.jobs} px-8 lg:px-0 my-10`}>
+    <section id="work" className={`px-8 lg:px-0 my-10`}>
       <div className="max-w-5xl mx-auto">
         <h3 className="font-header leading-tight text-2xl lg:text-3xl pr-4 font-light">
-          I&apos;ve <span className="text-isabelline-800 dark:text-isabelline-700">coded</span> for...
+          I&apos;ve <span className="text-primary-800 dark:text-primary-700">coded</span> for...
         </h3>
         <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 mt-4">
           { data && data.results ? 

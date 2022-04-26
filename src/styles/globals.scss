@@ -2,48 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-@import 'variables.scss';
 
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  @apply bg-zinc-50 dark:bg-zinc-800 text-independence-900 dark:text-isabelline-500;
+  @apply bg-zinc-50 dark:bg-zinc-800 text-zinc-900 dark:text-primary-500;
 }
 
 svg {
-  .st0,
-  .st4,
-  .cls-1 {
-    fill: $isabelline !important;
-  }
-  .st1,
-  .cls-4 {
-    fill: $tertiary !important;
-  }
-  .st2,
-  .cls-3 {
-    fill: $primary !important;
-  }
-  .st5,
-  .cls-2 {
-    fill: $secondary !important;
-  }
   &.mainLogo {
     .main {
-      fill: $independence !important;
+      @apply fill-zinc-700;
     }
     .accent {
-      fill: $independence !important;
+      @apply fill-zinc-700;
     }
   }
   &.bottomLogo {
     .main {
-      fill: $independence !important;
+      @apply fill-zinc-700;
     }
     .accent {
-      fill: $independence !important;
+      @apply fill-zinc-700;
     }
   }
 }
@@ -51,28 +33,28 @@ svg {
   svg {
     &.mainLogo {
       .main {
-        fill: $white !important;
+        @apply fill-white;
       }
       .accent {
-        fill: $white !important;
+        @apply fill-white;
       }
     }
     &.bottomLogo {
       .main {
-        fill: $white !important;
+        @apply fill-white;
       }
       .accent {
-        fill: $white !important;
+        @apply fill-white;
       }
     }
   }
 }
 // Form styles 
 .input-label {
-  @apply block text-sm font-medium text-independence-900 dark:text-isabelline-500;
+  @apply block text-sm font-medium text-zinc-900 dark:text-primary-500;
 }
 .input-field {
-  @apply focus:border-green-sheen-500 bg-zinc-200 dark:bg-zinc-700 text-independence-900 dark:text-isabelline-500 focus:ring-green-sheen-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md;
+  @apply focus:border-emerald-500 bg-zinc-200 dark:bg-zinc-700 text-zinc-900 dark:text-primary-500 focus:ring-emerald-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md;
 }
 .range-field {
   @apply rounded-lg appearance-none bg-gray-200 dark:bg-zinc-500 h-3 w-full;
@@ -83,24 +65,24 @@ svg {
     height: 15px;
     cursor: ew-resize;
     border-radius: 50%;
-    @apply bg-green-sheen-500 dark:bg-isabelline-500;
+    @apply bg-emerald-500 dark:bg-primary-500;
   }
 }
 .button-success {
-  @apply inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md transition-colors ease-out duration-200 text-isabelline-900 hover:text-isabelline-500 bg-isabelline-700 hover:bg-isabelline-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-isabelline-700
+  @apply inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md transition-colors ease-out duration-200 text-primary-900 hover:text-primary-500 bg-primary-700 hover:bg-primary-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-700
 }
 .button-danger {
-  @apply inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md transition-colors ease-out duration-200 text-isabelline-900 hover:text-isabelline-500 bg-red-300 hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-terra-cotta-500
+  @apply inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md transition-colors ease-out duration-200 text-primary-900 hover:text-primary-500 bg-red-300 hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-500
 }
 
 //Admin tables
 table.admin-table {
   @apply min-w-full divide-y divide-gray-200 dark:divide-gray-600;
   thead {
-    @apply text-independence-900 dark:text-isabelline-500;
+    @apply text-zinc-900 dark:text-primary-500;
     tr {
       th {
-        @apply px-6 py-3 text-left text-xs font-bold uppercase tracking-wider text-independence-700 dark:text-isabelline-700;
+        @apply px-6 py-3 text-left text-xs font-bold uppercase tracking-wider text-zinc-700 dark:text-primary-700;
         &.textcenter {
           @apply text-center;
         }
@@ -111,7 +93,7 @@ table.admin-table {
     }
   }
   tbody {
-    @apply bg-zinc-200 dark:bg-zinc-700  text-independence-900 dark:text-isabelline-500;
+    @apply bg-zinc-200 dark:bg-zinc-700  text-zinc-900 dark:text-primary-500;
     tr {
       @apply border-y-2 border-zinc-50 dark:border-zinc-800;
       &:nth-child(even) {
@@ -120,7 +102,7 @@ table.admin-table {
       td {
         @apply px-6 py-3 whitespace-nowrap text-xs leading-5 ;
         &:first-child {
-          @apply w-4 p-0 bg-isabelline-700 border-r-2 border-zinc-50 dark:border-zinc-800;
+          @apply w-4 p-0 bg-primary-700 border-r-2 border-zinc-50 dark:border-zinc-800;
         }
       }
     }

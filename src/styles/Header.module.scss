@@ -1,9 +1,4 @@
-@import 'variables.scss';
-
 .header {
-  .feed {
-    color: $orange-web;
-  }
   .menuUrl {
     @apply px-6 py-2 block md:inline-block transition text-2xl md:text-base ;
   }

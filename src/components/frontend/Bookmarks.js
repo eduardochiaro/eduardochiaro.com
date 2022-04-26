@@ -21,8 +21,8 @@ export default function Bookmarks() {
         </h3>
         { uniqueCategories.map((category, index) => (
           <div key={index} className="mt-4">
-            <h4 className="text-isabelline-800 dark:text-isabelline-700 ml-4">{category.name}</h4>
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-8">
+            <h4 className="text-primary-800 dark:text-primary-700 ml-4">{category.name}</h4>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             { data?.results.filter( x => x.categoryId == category.id).map((bookmark, index) => (
               <div className={`mt-5 rounded-lg shadow-xl bg-zinc-200 dark:bg-zinc-700 p-5`} key={`apps-${index}`} >
                 <h3 className="text-xl">

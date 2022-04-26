@@ -22,7 +22,7 @@ const AdminModal = ({
         onClose={closeModal}>
         <Dialog.Overlay className="fixed inset-0 bg-gray-400 bg-opacity-50 backdrop-filter backdrop-blur-sm" />
         <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-          <div className="inline-block w-full max-w-4xl my-8 overflow-hidden text-left align-middle transform bg-zinc-50 dark:bg-zinc-800 text-independence-900 dark:text-isabelline-500 shadow-xl rounded-2xl">
+          <div className="inline-block w-full max-w-4xl my-8 overflow-hidden text-left align-middle transform bg-zinc-50 dark:bg-zinc-800 text-zinc-900 dark:text-primary-500 shadow-xl rounded-2xl">
             <div className="flex px-6 pt-6 pb-4 mb-4 bg-zinc-100 dark:bg-zinc-900">
               <Dialog.Title as="h3" className="flex-1 text-4xl leading-6 font-medium ">
                 {title}

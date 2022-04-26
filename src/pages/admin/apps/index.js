@@ -192,9 +192,9 @@ const AdminAppsIndex = ({ formRef }) => {
     return (
       <AdminWrapper>
         <div className="flex my-2">
-          <h1 className="flex-auto text-4xl"><ChipIcon className="inline-flex align-text-bottom h-10 text-isabelline-800 "/> Apps list</h1>
+          <h1 className="flex-auto text-4xl"><ChipIcon className="inline-flex align-text-bottom h-10 text-primary-800 "/> Apps list</h1>
           <div className="flex-none text-right">
-            <button type="button" className="bg-isabelline-700 hover:bg-isabelline-800 text-white font-bold py-2 px-4 mb-5 rounded" onClick={() => openModal(appFormat)}>
+            <button type="button" className="bg-primary-700 hover:bg-primary-800 text-white font-bold py-2 px-4 mb-5 rounded" onClick={() => openModal(appFormat)}>
               <PlusIcon className="inline-flex align-text-bottom h-5 text-white  "/> Add new app
             </button>
           </div>
@@ -215,7 +215,7 @@ const AdminAppsIndex = ({ formRef }) => {
             encType="multipart/form-data"
             onSubmit={onSubmitModal}>
             {formError &&
-              <div className="bg-terra-cotta-100 border border-terra-cotta-400 text-terra-cotta-700 px-4 py-3 rounded relative mb-4" role="alert">
+              <div className="bg-accent-100 border border-accent-400 text-accent-700 px-4 py-3 rounded relative mb-4" role="alert">
                 <strong className="font-bold"><ExclamationIcon className="inline-flex align-middle h-6 mr-4"/>Invalid Form! </strong>
                 <span className="block sm:inline">Some required fields are missing.</span>
               </div>
@@ -223,7 +223,7 @@ const AdminAppsIndex = ({ formRef }) => {
             <div className="grid grid-cols-6 gap-6">
               <div className="col-span-6">
                 <label htmlFor="name-form" className="input-label">
-                  Title <span className="text-isabelline-700 text-xl">*</span>
+                  Title <span className="text-primary-700 text-xl">*</span>
                 </label>
                 <input
                   type="text"
@@ -241,7 +241,7 @@ const AdminAppsIndex = ({ formRef }) => {
               <div className="col-span-6">
                 <label htmlFor="image-url-form" className="input-label">
                   Image { !app.id &&
-                   <span className="text-isabelline-700 text-xl">*</span>
+                   <span className="text-primary-700 text-xl">*</span>
                   }
                 </label>
                 <input
@@ -252,15 +252,15 @@ const AdminAppsIndex = ({ formRef }) => {
                         file:mr-4 file:py-2 file:px-4
                         file:rounded-full file:border-0
                         file:text-sm file:font-semibold
-                        file:bg-independence-200 file:text-independence-700
-                        hover:file:bg-independence-300
+                        file:bg-zinc-200 file:text-zinc-700
+                        hover:file:bg-zinc-300
                   "
                   onChange={handleChange}
                 />
               </div>
               <div className="col-span-6">
                 <label htmlFor="url-form" className="input-label">
-                  GitHub URL <span className="text-isabelline-700 text-xl">*</span>
+                  GitHub URL <span className="text-primary-700 text-xl">*</span>
                 </label>
                 <input
                   type="url"
