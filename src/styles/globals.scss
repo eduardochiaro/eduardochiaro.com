@@ -114,3 +114,11 @@ table.admin-table {
   top: -6rem;
   visibility: hidden;
 }
+.bar {
+  height: 5px;
+  width: 250px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, red 0%, yellow 15%, lime 30%, cyan 50%, blue 65%, magenta 80%, red 100%);
+  background-size: 200%;
+  //animation: moveGradient 5s linear infinite;
+}

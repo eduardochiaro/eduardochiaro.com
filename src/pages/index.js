@@ -22,8 +22,8 @@ export default function Home() {
       </Head>
       <div className="mb-auto">
         <Header />
-        <Bio />
         <Share />
+        <Bio />
         <hr className="my-10 max-w-5xl mx-auto border-t border-dotted border-primary-600 dark:border-primary-800" />
         <Jobs />
         <Skills />

@@ -1,6 +1,7 @@
 import { SessionProvider } from "next-auth/react"
-import '../styles/globals.scss'
 import { ThemeProvider } from "next-themes";
+import NextProgress from "next-progress";
+import '../styles/globals.scss'
 
 function MyApp({
   Component,
@@ -8,6 +9,7 @@ function MyApp({
 }) {
   return (
     <SessionProvider session={session} refetchInterval={5 * 60}>
+      <NextProgress delay={300} options={{ showSpinner: false }} />
       <ThemeProvider enableSystem={true} attribute="class">
         <Component {...pageProps} />
       </ThemeProvider>

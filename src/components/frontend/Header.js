@@ -50,7 +50,7 @@ export default function Header () {
   ]
   const router = useRouter();
   return (
-    <header className={`${styles.header} sticky top-0 z-40 h-14 bg-zinc-50 dark:bg-zinc-800 border-b border-zinc-200 dark:border-zinc-600`}>
+    <header className={`${styles.header} sticky top-0 z-40 h-14 bg-zinc-100 dark:bg-zinc-700 border-b border-zinc-200 dark:border-zinc-600`}>
       <nav className="w-100 px-auto">
         <div className="h-8 pt-1 md:pt-6 px-3 mx-auto flex items-center justify-between flex-wrap md:flex-nowrap">
           <div className="flex-initial">
