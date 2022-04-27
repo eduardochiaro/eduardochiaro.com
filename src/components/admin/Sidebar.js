@@ -5,20 +5,20 @@ import styles from '../../styles/Admin.Sidebar.module.scss'
 
 const AdminSidebar = () => {
   return(
-    <div className="col-span-2 left-0 bg-zinc-50 dark:bg-zinc-800 border-b border-zinc-200 dark:border-zinc-600 h-full">
-      <div className="flex h-14 border-b ">
+    <div className="col-span-2 left-0 bg-zinc-50 dark:bg-zinc-700 h-full">
+      <div className="flex h-14 bg-zinc-50 dark:bg-zinc-800 border-b border-zinc-200 dark:border-zinc-600">
         <SVG 
             title="" 
             alt="" 
-            className={`mainLogo flex-none mt-2 h-10 md:h-12 mr-2 ml-4`}
+            className={`mainLogo flex-none mt-1 h-10 md:h-12 mr-2 ml-4`}
             width={50}
             src={'/images/logo-n.svg'} />
         <div className="flex-auto w-32 text-right font-semibold text-xl">
-          <span className="hidden lg:inline-block mt-4">Admin</span>
+          <span className="hidden lg:inline-block mt-4 mr-10">Admin</span>
         </div>
       </div>
       <div className="overflow-y-auto overflow-x-hidden flex-grow">
-        <ul className="flex flex-col py-4 space-y-1 font-semibold tracking-wider">
+        <ul className="flex flex-col py-4 space-y-1 px-4 font-semibold tracking-wider">
           <li>
             <Link href="/">
               <a className={`${styles['sidebar-link']} text-primary-800 dark:text-primary-700 hover:text-zinc-900 dark:hover:text-primary-500`}>

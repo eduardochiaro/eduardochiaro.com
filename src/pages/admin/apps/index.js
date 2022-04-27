@@ -235,6 +235,7 @@ const AdminAppsIndex = ({ formRef }) => {
                   className="mt-1 input-field"
                   value={app.name}
                   onChange={handleChange}
+                  maxLength={191}
                   required
                 />
               </div>
@@ -272,6 +273,7 @@ const AdminAppsIndex = ({ formRef }) => {
                   className="mt-1 input-field"
                   value={app.url}
                   onChange={handleChange}
+                  maxLength={191}
                   required
                 />
               </div>
@@ -286,6 +288,7 @@ const AdminAppsIndex = ({ formRef }) => {
                   rows={5}
                   value={app.description}
                   onChange={handleChange}
+                  maxLength={191}
                 />
               </div>
             </div>  

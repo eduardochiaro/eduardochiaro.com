@@ -221,6 +221,7 @@ const AdminJobsIndex = ({ formRef }) => {
                   className="mt-1 input-field"
                   value={job.name}
                   onChange={handleChange}
+                  maxLength={191}
                   required
                 />
               </div>
@@ -283,6 +284,7 @@ const AdminJobsIndex = ({ formRef }) => {
                   className="mt-1 input-field"
                   value={job.disclaimer}
                   onChange={handleChange}
+                  maxLength={191}
                 />
               </div>
             </div>  

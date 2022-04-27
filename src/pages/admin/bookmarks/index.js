@@ -23,6 +23,7 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
 
   const bookmarkFormat = {
     id: null,
+    url: '',
     name: '',
     categoryId: 0,
     description: '',
@@ -96,12 +97,14 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
   }
   
   const openModal = (bookmark) => {
+    setCurrentStatus(null);
     const openBookmark = mergeObj(bookmarkFormat, bookmark);
     setBookmark(openBookmark);
     setIsOpen(true);
   }
 
   const closeModal = () => {
+    setCurrentStatus(null);
     setBookmark(bookmarkFormat);
     setIsOpen(false);
     setFormError(false);
@@ -148,7 +151,6 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
       handleChange({ target: { name: 'description', value: bookmark.description } });
     }
   }
-
 
   const columns = [
     {
@@ -267,6 +269,7 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
                   className="mt-1 input-field"
                   value={bookmark.name}
                   onChange={handleChange}
+                  maxLength={191}
                   required
                 />
               </div>
@@ -274,13 +277,17 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
                 <label htmlFor="description-form" className="input-label">
                   Description
                 </label>
-                <textarea
+                <input
+                  type="text"
                   name="description"
                   id="description-form"
+                  autoComplete="off"
+                  data-lpignore="true" 
+                  data-form-type="other"
                   className="mt-1 input-field"
-                  rows={5}
                   value={bookmark.description}
                   onChange={handleChange}
+                  maxLength={191}
                 />
               </div>
             </div>  

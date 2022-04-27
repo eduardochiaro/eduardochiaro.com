@@ -220,6 +220,7 @@ const AdminSkillsIndex = ({ formRef, images }) => {
                   className="mt-1 input-field"
                   value={skill.name}
                   onChange={handleChange}
+                  maxLength={191}
                   required
                 />
               </div>
@@ -281,6 +282,7 @@ const AdminSkillsIndex = ({ formRef, images }) => {
                   className="mt-1 input-field"
                   value={skill.type}
                   onChange={handleChange}
+                  maxLength={191}
                   required
                 />
               </div>

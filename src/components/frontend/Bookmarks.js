@@ -1,4 +1,4 @@
-import { LinkIcon } from '@heroicons/react/solid';
+import { BookmarkAltIcon, LinkIcon, TagIcon } from '@heroicons/react/solid';
 import Link from 'next/link';
 import Image from 'next/image';
 import * as React from 'react';
@@ -21,28 +21,23 @@ export default function Bookmarks() {
         </h3>
         { uniqueCategories.map((category, index) => (
           <div key={index} className="mt-4">
-            <h4 className="text-primary-800 dark:text-primary-700 ml-4">{category.name}</h4>
+            <h4 className="text-primary-800 dark:text-primary-700 mt-10 mb-5 ">
+              <TagIcon className="inline-block w-4 h-4 align-text-bottom mr-2" />
+              {category.name}</h4>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             { data?.results.filter( x => x.categoryId == category.id).map((bookmark, index) => (
-              <div className={`mt-5 rounded-lg shadow-xl bg-zinc-200 dark:bg-zinc-700 p-5`} key={`apps-${index}`} >
-                <h3 className="text-xl">
-                  <Link
-                    href={bookmark.url}
-                    as={bookmark.url}
-                    >
-                    <a target="_blank">
-                      <LinkIcon className="inline-block align-text-top w-5 mr-2" />
+                <div key={`apps-${index}`} className={`rounded-lg shadow-xl bg-zinc-200 dark:bg-zinc-700 p-5 hover:ring-4 hover:ring-zinc-600`} >            
+                <Link
+                  href={bookmark.url}
+                  as={bookmark.url}
+                  >
+                  <a target="_blank" className="inline-block">
+                    <h3 className="text-xl">
+                      <BookmarkAltIcon className="inline-block align-text-top h-6 mr-2" />
                       {bookmark.name}
-                    </a>
-                  </Link>
-                  </h3>
-                  <p className="text-sm block opacity-80">
-                    <Link
-                      href={bookmark.url}
-                      as={bookmark.url}
-                      >
-                      <a><span 
-                        className="inline-block align-sub mr-2">
+                    </h3>
+                    <p className="text-sm block opacity-80">
+                      <span className="inline-block align-sub mr-2 ml-1">
                         <Image
                           layout="fixed"
                           src={`http://www.google.com/s2/favicons?domain=${bookmark.domain}`}
@@ -50,12 +45,13 @@ export default function Bookmarks() {
                           height="16"
                           alt={bookmark.domain}
                           />
-                        </span>
-                      {bookmark.domain}</a>
-                    </Link>
-                    </p>
-                <p className="mt-4 text-sm">{bookmark.description}</p>
-              </div>
+                      </span>
+                      {bookmark.domain}
+                      </p>
+                    <p className="mt-4 text-sm">{bookmark.description}</p>
+                  </a>
+                </Link>
+                </div>
             ))}
             
             </div>

@@ -194,6 +194,7 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
                   className="mt-1 input-field"
                   value={category.name}
                   onChange={handleChange}
+                  maxLength={191}
                   required
                 />
               </div>
