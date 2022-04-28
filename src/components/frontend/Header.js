@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import {
   RssIcon,
-  AdjustmentsIcon,
-  HomeIcon,
   MenuIcon,
   SunIcon,
   MoonIcon,
-  BookmarkIcon
 } from '@heroicons/react/solid'
 import SVG from 'react-inlinesvg';
 import styles from '../../styles/Header.module.scss'
@@ -32,20 +29,17 @@ export default function Header () {
     {
       text: 'Home',
       link: '/',
-      current: true,
-      pre: <HomeIcon className="h-7 md:h-5 inline mr-2 md:mr-1 align-sub" />
+      current: true
     },
     {
       text: 'Bookmarks',
       link: '/bookmarks',
-      current: false,
-      pre: <BookmarkIcon className="h-7 md:h-5 inline mr-2 md:mr-1 align-sub" />
+      current: false
     },
     {
       text: 'Projects',
       link: '/projects',
-      current: false,
-      pre: <AdjustmentsIcon className="h-7 md:h-5 inline mr-2 md:mr-1 align-sub" />
+      current: false
     }
   ]
   const router = useRouter();
@@ -70,8 +64,8 @@ export default function Header () {
                     <Link 
                       href={ item.link }>
                       <a 
-                        className={router.route != item.link ? `${styles.menuUrl} hover:text-zinc-900 dark:hover:text-primary-500` : `${styles.menuUrl} text-zinc-900 dark:text-primary-500`}
-                          onClick={openMenu}>{item.pre}{item.text}</a>
+                        className={router.route != item.link ? `${styles.menuUrl} hover:text-zinc-900 dark:hover:text-primary-500` : `${styles.menuUrl} text-zinc-900 dark:text-primary-500 underline`}
+                          onClick={openMenu}>{item.text}</a>
                     </Link>
                   </li>
                 )

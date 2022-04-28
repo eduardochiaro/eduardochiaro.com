@@ -52,7 +52,7 @@ export default function Sidemenu () {
               href={ item.link } 
               as={ item.as }>
                 <a 
-                  className={router.asPath != item.link && router.asPath != item.as ? `text-2xl md:text-base hover:text-zinc-900 dark:hover:text-primary-500` : `text-2xl md:text-base text-zinc-900 dark:text-primary-500`}
+                  className={router.asPath != item.link && router.asPath != item.as ? `text-2xl md:text-base transition hover:text-zinc-900 dark:hover:text-primary-500` : `text-2xl md:text-base transition text-zinc-900 dark:text-primary-500`}
                   >{item.pre}{item.text}</a>
             </Link>
           </li>

@@ -2,6 +2,7 @@ import * as React from 'react';
 import useSWR from 'swr';
 import SVG from 'react-inlinesvg'
 import { TagIcon } from '@heroicons/react/solid';
+import { ClockIcon } from '@heroicons/react/outline';
 import moment from 'moment';
 import Image from 'next/image';
 
@@ -71,20 +72,20 @@ export default function GitHub () {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-5 pb-10">
         { cutReposene.map((repo, index) => (
-          <div className="flex relative rounded-lg shadow-xl bg-zinc-200 dark:bg-zinc-700 p-2" key={`repo-${index}`}>
+          <div className="flex relative rounded-lg shadow-xl bg-zinc-200 dark:bg-zinc-700 p-2 transition hover:ring-4 hover:ring-zinc-300 hover:dark:ring-zinc-600" key={`repo-${index}`}>
             <a href={repo.url} className="flex flew-wrap w-full text-decoration-none">
               <div className="basis-1/3 p-4">
                 <div className="relative w-full h-full">
                   <LoadImage src={repo.openGraphImageUrl} alt={repo.name} />
                 </div>
               </div>
-              <div className="basis-2/3 p-4">
-                <h4>{repo.name}</h4>
+              <div className="basis-2/3 p-4 relative">
+                <h4 className="mt-2 text-lg font-bold font-header tracking-wide ">{repo.name}</h4>
                 <p className="mt-4 mb-2 text-xs antialiased">{repo.description}</p>
-                <p className="text-xs opacity-60 ">Last updated {moment(repo.pushedAt).from(moment())}</p>
-                {repo.languages.slice(0, 1).map((language, index) => (
+                <p className="text-xs opacity-60 absolute top-2 right-2"><ClockIcon alt="last updated" className="inline-block h-4 align-middle"/> {moment(repo.pushedAt).from(moment())}</p>
+                {repo.languages.slice(0, 2).map((language, index) => (
                   <div key={index} className="inline-block mr-4 text-xs antialiased">
-                    <div className="p-1 drop-shadow inline-block w-3 h-3 rounded-full mr-2" style={{ backgroundColor: language.color }}></div>
+                    <div className="p-1 inline-block w-4 h-4 align-top border border-zinc-500 dark:border-zinc-700 rounded-full mr-2" style={{ backgroundColor: language.color }}></div>
                     {language.name}
                   </div>
                 ))}

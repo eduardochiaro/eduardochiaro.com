@@ -26,7 +26,7 @@ export default function Bookmarks() {
               {category.name}</h4>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             { data?.results.filter( x => x.categoryId == category.id).map((bookmark, index) => (
-                <div key={`apps-${index}`} className={`rounded-lg shadow-xl bg-zinc-200 dark:bg-zinc-700 p-5 hover:ring-4 hover:ring-zinc-600`} >            
+                <div key={`apps-${index}`} className={`rounded-lg shadow-xl bg-zinc-200 dark:bg-zinc-700 p-5 transition hover:ring-4 hover:ring-zinc-300 hover:dark:ring-zinc-600`} >            
                 <Link
                   href={bookmark.url}
                   as={bookmark.url}

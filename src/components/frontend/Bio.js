@@ -6,10 +6,10 @@ export default function Bio () {
     <section id="bio" className="px-8 lg:px-0 mt-10">
       <span className="anchor" name="top"/>
       <div className="max-w-5xl mx-auto">
-        <h1 className="font-header leading-tight text-3xl lg:text-5xl xl:text-6xl font-bold">
+        <h1 className="font-header leading-loose tracking-wide text-3xl lg:text-5xl xl:text-6xl font-bold">
           I&apos;m <span className="text-accent-500">Eduardo</span>,
         </h1>
-        <h2 className="font-header leading-tight text-3xl lg:text-5xl xl:text-6xl font-bold">
+        <h2 className="font-header leading-loose tracking-wide text-3xl lg:text-5xl xl:text-6xl font-bold">
           a <CoffeeIcon className={`inline-block w-8 lg:w-16 text-primary-800 dark:text-primary-700`}/> coffee-driven
           Software Developer based in Washington State.
         </h2>
