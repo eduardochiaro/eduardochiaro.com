@@ -91,7 +91,7 @@ export default function GitHub () {
                 ))}
                 <div className="mt-2">                
                 {repo.topics.map((topic) => (
-                  <div className="bg-white border shadow-sm border-gray-200 rounded px-2 text-sm text-gray-600 mr-2 mb-2 inline-block z-30" key={topic}>
+                  <div className="bg-zinc-300 dark:bg-zinc-500 border border-zinc-400 dark:border-zinc-600 rounded px-2 text-sm mr-2 mb-2 inline-block z-30" key={topic}>
                     <TagIcon className="w-3 inline mr-1 align-middle"/>{topic}
                   </div>
                 ))}

@@ -29,7 +29,7 @@ const AdminWrapper = ({ children }) => {
       <div className="min-h-screen grid grid-cols-12 antialiased bg-zinc-50 dark:bg-zinc-800">
         <AdminSidebar/>
         <div className="h-full col-span-10">
-          <div className="flex items-center justify-end h-14 pr-10 border-b border-zinc-200 dark:border-zinc-600">
+          <div className="flex items-center justify-end h-14 pr-10 bg-zinc-100 dark:bg-zinc-700 border-b border-zinc-200 dark:border-zinc-600">
             <div className="h-7 w-7 inline-block mr-5 align-middle">
             <Image
               src={session.user.image}
@@ -41,7 +41,7 @@ const AdminWrapper = ({ children }) => {
             />
             </div>
             <div className="inline-block">
-              <a onClick={() => signOut()} title="logout" className="cursor-pointer focus:outline-none text-gray-500 hover:text-zinc-900">
+              <a onClick={() => signOut()} title="logout" className="cursor-pointer focus:outline-none">
                 <LogoutIcon className="inline-flex w-7" />
               </a>
               { inUseTheme === "dark" ? 

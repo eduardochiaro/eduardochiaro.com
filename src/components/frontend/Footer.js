@@ -8,14 +8,14 @@ function LoginButton(props) {
   const isLoggedIn = props.isLoggedIn;
   if (isLoggedIn) {
     return (
-      <button className="relative w-fit h-fit px-1 text-sm border-b border-white mt-2" onClick={() => signOut()}>
+      <button className="relative text-sm mt-4" onClick={() => signOut()}>
         Sign out
         <LogoutIcon className="h-4 inline ml-2 align-sub"/>
       </button>
     );
   }
   return (
-    <button className="relative w-fit h-fit px-1 text-sm border-b border-white mt-2" onClick={() => signIn(null, { callbackUrl: 'http://localhost:3000/admin' })}>
+    <button className="relative text-sm mt-4" onClick={() => signIn(null, { callbackUrl: '/admin' })}>
       Sign in
       <LoginIcon className="h-4 inline ml-2 align-sub"/>
     </button>
@@ -35,7 +35,7 @@ export default function Footer () {
             <SVG title="Eduardo Chiaro" alt="Eduardo Chiaro" className={`inline-block w-16 mb-2 mx-3 bottomLogo`} src={`/images/logo-n.svg`} />
             Eduardo Chiaro
           </div>
-          <div className="flex-none w-full md:w-32">
+          <div className="flex-none w-full align-baseline md:w-32">
             <LoginButton isLoggedIn={session} />
           </div>
         </div>
