@@ -1,6 +1,6 @@
 import apiWithMiddleware from '../../../../lib/apiWithMiddlewareAdmin';
 import prisma from '../../../../lib/prisma';
-import cors from '../../../../lib/cors';
+import cors from '../../../../middlewares/cors';
 
 const handler = async (req, res) => {
   await cors(req, res);

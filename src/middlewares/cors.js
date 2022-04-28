@@ -1,15 +1,25 @@
-import NextCors from 'nextjs-cors';
+import Cors from 'cors';
 
 //const origin = process.env.NODE_ENV == "production" ? [/eduardochiaro\.com$/] : "*";
-const origin = [/eduardochiaro\.com$/];
+//const origin = [/eduardochiaro\.com$/];
 
-const cors = async (req, res) => {
-  return NextCors(req, res, {
-    // Options
-    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
-    origin,
-    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
- });
+const cors = Cors({
+  origin: process.env.NEXTAUTH_URL,
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+})
+
+// Helper method to wait for a middleware to execute before continuing
+// And to throw an error when an error happens in a middleware
+function runMiddleware(req, res) {
+  return new Promise((resolve, reject) => {
+    cors(req, res, (result) => {
+      if (result instanceof Error) {
+        return reject(result)
+      }
+
+      return resolve(result)
+    })
+  })
 }
 
-export default cors
+export default runMiddleware

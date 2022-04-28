@@ -1,6 +1,6 @@
 import apiWithMiddleware from '../../../../lib/apiWithMiddleware';
 import prisma from '../../../../lib/prisma';
-import cors from '../../../../lib/cors';
+import cors from '../../../../middlewares/cors';
 import { IncomingForm } from 'formidable'
 
 export const config = {
