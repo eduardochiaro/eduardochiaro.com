@@ -25,17 +25,17 @@ function LoginButton(props) {
 export default function Footer () {
   const { data: session } = useSession();
   return (
-    <footer id="footer" className="footer mt-10">
+    <footer id="footer" className="footer mt-10 pb-4">
       <div className="container mx-auto text-center py-4">
         <div className="flex-wrap md:flex-nowrap flex">
           <div className="hidden md:block flex-none w-32">
           </div>
           <div className="flex-1 text-center">
             © Copyright {moment().year()}
-            <SVG title="Eduardo Chiaro" alt="Eduardo Chiaro" className={`inline-block w-16 mb-2 mx-3 bottomLogo`} src={`/images/logo-n.svg`} />
+            <SVG title="Eduardo Chiaro" alt="Eduardo Chiaro" className={`inline-block h-7 mx-3 bottomLogo font-normal`} src={`/images/logo-3.svg`} />
             Eduardo Chiaro
           </div>
-          <div className="flex-none w-full align-baseline md:w-32">
+          <div className="flex-none w-full text-right align-baseline md:w-32">
             <LoginButton isLoggedIn={session} />
           </div>
         </div>

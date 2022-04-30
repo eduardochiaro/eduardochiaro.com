@@ -33,7 +33,7 @@ const AdminWrapper = ({ children }) => {
             <div className="h-7 w-7 inline-block mr-5 align-middle">
             <Image
               src={session.user.image}
-              className="rounded-full"
+              className="rounded-full border border-zinc-400 dark:border-zinc-600"
               width={200}
               height={200}
               alt={`Logged as ${session.user.name}`}

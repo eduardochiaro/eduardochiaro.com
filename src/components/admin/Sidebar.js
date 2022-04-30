@@ -7,13 +7,15 @@ const AdminSidebar = () => {
   return(
     <div className="col-span-2 left-0 bg-zinc-50 dark:bg-zinc-700 h-full">
       <div className="flex h-14 bg-zinc-100 dark:bg-zinc-700 border-b border-zinc-200 dark:border-zinc-600">
-        <SVG 
-            title="" 
-            alt="" 
-            className={`mainLogo flex-none mt-1 h-10 md:h-12 mr-2 ml-8`}
-            width={50}
-            src={'/images/logo-n.svg'} />
-        <div className="flex-auto w-32 text-right font-semibold text-xl">
+        <div className="flex-none">
+          <SVG 
+              title="" 
+              alt="" 
+              className={`mainLogo mt-4 h-7 align-middle mr-2 ml-6`}
+              width={50}
+              src={'/images/logo-3.svg'} />
+        </div>
+        <div className="flex-auto w-32 text-center font-semibold text-xl">
           <span className="hidden lg:inline-block mt-4 mr-10">Admin</span>
         </div>
       </div>

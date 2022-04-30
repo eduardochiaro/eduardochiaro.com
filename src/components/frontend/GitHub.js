@@ -69,23 +69,22 @@ export default function GitHub () {
         <h3 className="font-header leading-tight text-2xl lg:text-3xl pr-4 font-light">
           Latest repositories{' '}<span className="rounded font-base align-super text-primary-800 dark:text-primary-700 text-sm">({ data ? data.results.length : 0 } total)</span>
         </h3>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-5 pb-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 xl:gap-8 mt-5 pb-10">
         { cutReposene.map((repo, index) => (
           <div className="flex relative rounded-lg shadow-xl bg-zinc-200 dark:bg-zinc-700 p-2 transition hover:ring-4 hover:ring-zinc-300 hover:dark:ring-zinc-600" key={`repo-${index}`}>
             <a href={repo.url} className="flex flew-wrap w-full text-decoration-none">
-              <div className="basis-1/3 p-4">
+              <div className="hidden md:basis-1/3 p-4 pr-2">
                 <div className="relative w-full h-full">
                   <LoadImage src={repo.openGraphImageUrl} alt={repo.name} />
                 </div>
               </div>
-              <div className="basis-2/3 p-4 relative">
+              <div className="basis-full md:basis-2/3 p-4 relative">
                 <h4 className="mt-2 text-lg font-bold font-header tracking-wide ">{repo.name}</h4>
                 <p className="mt-4 mb-2 text-xs antialiased">{repo.description}</p>
                 <p className="text-xs opacity-60 absolute top-2 right-2"><ClockIcon alt="last updated" className="inline-block h-4 align-middle"/> {moment(repo.pushedAt).from(moment())}</p>
                 {repo.languages.slice(0, 2).map((language, index) => (
                   <div key={index} className="inline-block mr-4 text-xs antialiased">
-                    <div className="p-1 inline-block w-4 h-4 align-top border border-zinc-500 dark:border-zinc-700 rounded-full mr-2" style={{ backgroundColor: language.color }}></div>
+                    <span className="inline-block w-3 h-3 align-middle mb-1 border border-zinc-500 dark:border-zinc-800 rounded-full mr-2" style={{ backgroundColor: language.color }}></span>
                     {language.name}
                   </div>
                 ))}
