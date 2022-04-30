@@ -1,4 +1,6 @@
+import { DesktopComputerIcon } from "@heroicons/react/outline";
 import { useSession } from "next-auth/react"
+import Head from "next/head";
 import AdminWrapper from "../../components/admin/Wrapper";
 
 const AdminIndex = () => {
@@ -6,7 +8,12 @@ const AdminIndex = () => {
   if (session) {
     return (
       <AdminWrapper>
-        <h1>Homepage</h1>
+        <Head>
+          <title>Eduardo Chiaro | Admin</title>
+        </Head>
+        <div className="flex my-2">
+          <h1 className="flex-auto text-4xl"><DesktopComputerIcon className="inline-flex align-text-bottom h-10 text-primary-800 "/> Dashboard</h1>
+        </div>
       </AdminWrapper>
     )
   }

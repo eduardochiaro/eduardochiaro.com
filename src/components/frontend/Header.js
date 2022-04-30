@@ -98,7 +98,7 @@ export default function Header () {
             <SVG 
               title="" 
               alt="" 
-              className={`w-auto h-7 mt-4 md:mt-2 md:mx-auto mainLogo`}
+              className={`w-auto h-7 mt-4 md:mt-2 md:mx-auto font-normal`}
               width={65}
               src={'/images/logo-3.svg'} />
           </div>

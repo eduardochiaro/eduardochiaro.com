@@ -11,44 +11,6 @@ body {
   @apply bg-zinc-50 dark:bg-zinc-800 text-zinc-900 dark:text-primary-500;
 }
 
-svg {
-  &.mainLogo {
-    .main {
-      @apply fill-zinc-700;
-    }
-    .accent {
-      @apply fill-zinc-700;
-    }
-  }
-  &.bottomLogo {
-    .main {
-      @apply fill-zinc-700;
-    }
-    .accent {
-      @apply fill-zinc-700;
-    }
-  }
-}
-.dark {
-  svg {
-    &.mainLogo {
-      .main {
-        @apply fill-white;
-      }
-      .accent {
-        @apply fill-white;
-      }
-    }
-    &.bottomLogo {
-      .main {
-        @apply fill-white;
-      }
-      .accent {
-        @apply fill-white;
-      }
-    }
-  }
-}
 // Form styles 
 .input-label {
   @apply block text-sm font-medium text-zinc-900 dark:text-primary-500;

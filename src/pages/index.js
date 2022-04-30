@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import Head from 'next/head'
+import * as React from 'react';
 import Header from '../components/frontend/Header'
 import Bio from '../components/frontend/Bio'
 import Jobs from '../components/frontend/Jobs'
@@ -12,14 +11,6 @@ import Sidemenu from '../components/frontend/Sidemenu'
 export default function Home() {
   return (
     <div className="flex flex-col h-screen justify-between">
-      <Head>
-        <title>Eduardo Chiaro</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <meta name="description" content="Eduardo Chiaro - Software Developer" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
-      </Head>
       <div className="mb-auto">
         <Header />
         <Share />
