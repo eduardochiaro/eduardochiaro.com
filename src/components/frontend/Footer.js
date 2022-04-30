@@ -8,14 +8,14 @@ function LoginButton(props) {
   const isLoggedIn = props.isLoggedIn;
   if (isLoggedIn) {
     return (
-      <button className="relative text-sm mt-4" onClick={() => signOut()}>
+      <button className="relative text-sm" onClick={() => signOut()}>
         Sign out
         <LogoutIcon className="h-4 inline ml-2 align-sub"/>
       </button>
     );
   }
   return (
-    <button className="relative text-sm mt-4" onClick={() => signIn(null, { callbackUrl: '/admin' })}>
+    <button className="relative text-sm" onClick={() => signIn(null, { callbackUrl: '/admin' })}>
       Sign in
       <LoginIcon className="h-4 inline ml-2 align-sub"/>
     </button>
@@ -28,14 +28,14 @@ export default function Footer () {
     <footer id="footer" className="mt-10 pb-4">
       <div className="container mx-auto text-center py-4">
         <div className="flex-wrap md:flex-nowrap flex">
-          <div className="hidden md:block flex-none w-32">
+          <div className="hidden md:block flex-none w-60 text-sm">
           </div>
           <div className="flex-1 text-center">
             © Copyright {moment().year()}
-            <SVG title="Eduardo Chiaro" alt="Eduardo Chiaro" className={`inline w-auto h-7 mx-3 font-normal`} src={`/images/logo-3.svg`} />
+            <SVG title="Eduardo Chiaro" alt="Eduardo Chiaro" className={`inline w-auto h-7 mx-3`} src={`/images/logo-3.svg`} />
             Eduardo Chiaro
           </div>
-          <div className="flex-none w-full text-right align-baseline md:w-32">
+          <div className="flex-none w-full text-right align-baseline md:w-60">
             <LoginButton isLoggedIn={session} />
           </div>
         </div>

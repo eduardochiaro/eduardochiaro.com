@@ -7,6 +7,7 @@ module.exports = {
       'lh3.googleusercontent.com',
       'avatars.githubusercontent.com',
       'repository-images.githubusercontent.com',
+      'images.unsplash.com',
     ]
   },
   webpack(config) {
@@ -18,4 +19,5 @@ module.exports = {
 
     return config;
   },
+  experimental: { images: { layoutRaw: true } }
 };

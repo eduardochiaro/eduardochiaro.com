@@ -3,11 +3,8 @@ import apiWithMiddleware from '../../../lib/apiWithMiddleware';
 import cors from '../../../middlewares/cors';
 import { gql } from "@apollo/client";
 import client from "../../../lib/apolloClient";
-import { data } from "autoprefixer";
 
 const base = "https://api.github.com/users";
-const username = process.env.GITHUB_USERNAME;
-//const headers = { Accept: "application/vnd.github.mercy-preview+json" };
 const headers = { "Authorization": `Bearer ${process.env.GITHUB_TOKEN}` };
 
 const cachedFetch = async (url, append = {}) => {
@@ -65,8 +62,7 @@ const cachedFetch = async (url, append = {}) => {
 
 const handler = async (req, res) => {  
   await cors(req, res);
-  const dataFetch = await cachedFetch(`${base}`, { headers })
-  //const data = await dataFetch.json();
+  const dataFetch = await cachedFetch(`${base}`, { headers });
 
   const data = dataFetch.viewer.repositories.nodes.map((repo) => {
     const { id, name, description, openGraphImageUrl, isArchived, repositoryTopics, pushedAt, url, } = repo;

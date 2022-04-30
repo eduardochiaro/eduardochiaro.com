@@ -73,7 +73,7 @@ export default function GitHub () {
         { cutReposene.map((repo, index) => (
           <div className="flex relative rounded-lg drop-shadow bg-zinc-200 dark:bg-zinc-700 p-2 transition hover:ring-4 ring-offset-4 ring-offset-zinc-50 dark:ring-offset-zinc-800 hover:ring-zinc-300 hover:dark:ring-zinc-600" key={`repo-${index}`}>
             <a href={repo.url} className="flex flew-wrap w-full text-decoration-none">
-              <div className="hidden md:basis-1/3 p-4 pr-2">
+              <div className="hidden md:block md:basis-1/3 p-4 pr-2">
                 <div className="relative w-full h-full">
                   <LoadImage src={repo.openGraphImageUrl} alt={repo.name} />
                 </div>
