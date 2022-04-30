@@ -24,7 +24,7 @@ export default function SignIn({ providers, basePath }) {
                       alt="" 
                       className={`w-40 mainLogo`}
                       width={65}
-                      src={'/images/logo-n.svg'} />
+                      src={'/images/logo-3.svg'} />
                   </a>
                 </Link>
             </div>
