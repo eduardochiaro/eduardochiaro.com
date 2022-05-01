@@ -18,6 +18,5 @@ module.exports = {
     };
 
     return config;
-  },
-  experimental: { images: { layoutRaw: true } }
+  }
 };
