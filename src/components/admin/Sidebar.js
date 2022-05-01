@@ -5,8 +5,8 @@ import styles from '../../styles/Admin.Sidebar.module.scss'
 
 const AdminSidebar = () => {
   return(
-    <div className="col-span-2 left-0 bg-zinc-100 dark:bg-zinc-700 border-r border-zinc-200 dark:border-zinc-600 h-full">
-      <div className="flex h-14 bg-zinc-200 dark:bg-zinc-600 border-b border-zinc-200 dark:border-zinc-600">
+    <div className="col-span-2 left-0 bg-zinc-100 dark:bg-zinc-700 h-full">
+      <div className="flex h-14 border-b border-zinc-200 dark:border-zinc-600">
         <div className="flex-none">
           <SVG 
               title="" 
@@ -19,7 +19,7 @@ const AdminSidebar = () => {
           <span className="hidden lg:inline-block mt-4 mr-10">Admin</span>
         </div>
       </div>
-      <div className="overflow-y-auto overflow-x-hidden flex-grow">
+      <div className="overflow-y-auto overflow-x-hidden flex-grow h-full bg-zinc-200 dark:bg-zinc-600 shadow">
         <ul className="flex flex-col py-4 space-y-1 font-semibold tracking-wider">
           <li>
             <Link href="/">

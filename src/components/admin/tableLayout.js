@@ -1,9 +1,8 @@
 import { PencilAltIcon } from '@heroicons/react/outline';
 import { TrashIcon } from '@heroicons/react/solid';
-import React, { useState, useEffect } from 'react';
+import * as React from 'react';
 
 const tableLayout = ({ columns = [], data = [], editAction = () => null, deleteAction = () => null}) => {
-
   return (
     <div className="flex flex-col">
       <div className="-my-2 sm:-mx-6 lg:-mx-8">

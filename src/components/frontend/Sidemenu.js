@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  DocumentTextIcon,
   TerminalIcon,
   UserCircleIcon,
 } from '@heroicons/react/solid';
@@ -20,6 +21,12 @@ export default function Sidemenu () {
       link: '/#skills',
       current: false,
       pre: <TerminalIcon className="h-7 md:h-5 inline mr-2 align-sub" />
+    },
+    {
+      text: 'Articles',
+      link: '/#articles',
+      current: false,
+      pre: <DocumentTextIcon className="h-7 md:h-5 inline mr-2 align-sub" />
     },
     {
       text: 'GitHub',

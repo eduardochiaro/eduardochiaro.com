@@ -1,26 +1,16 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import {
   RssIcon,
   MenuIcon,
-  SunIcon,
-  MoonIcon,
 } from '@heroicons/react/solid'
 import SVG from 'react-inlinesvg';
 import styles from '../../styles/Header.module.scss'
 import Link from 'next/link';
-import { useTheme } from "next-themes";
 import { useRouter } from 'next/router';
 import { Menu, Transition } from '@headlessui/react';
+import ThemeIcon from '../ThemeIcon';
 
 export default function Header () {
-  const [inUseTheme, setInUseTheme] = useState("dark");
-  const { systemTheme , theme, setTheme } = useTheme();
-
-  useEffect(() => {
-    const currentTheme = theme === "system" ? systemTheme : theme ;
-    setInUseTheme(currentTheme);
-  }, [theme, systemTheme])
-
   const menuData = [
     {
       text: 'Home',
@@ -107,11 +97,7 @@ export default function Header () {
               <a href="https://blog.eduardochiaro.com" className="md:pr-0 pr-6 whitespace-nowrap text-base font-medium transition text-primary-800 dark:text-primary-700 hover:text-zinc-900 dark:hover:text-primary-500">
                 <RssIcon className={`h-6 w-6 inline-block text-accent-500`} aria-hidden="true"  /> .dev
               </a>
-              { inUseTheme === "dark" ? 
-                <SunIcon className="w-5 h-5 text-zinc-900 inline-block ml-4 border rounded-full bg-primary-500 " role="button" onClick={() => setTheme('light')} />
-                :
-                <MoonIcon className="w-5 h-5 text-primary-500 inline-block ml-4 border rounded-full bg-zinc-900" role="button" onClick={() => setTheme('dark')} />
-              }
+              <ThemeIcon />
             </div>
           </div>
         </div>

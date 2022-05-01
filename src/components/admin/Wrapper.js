@@ -2,19 +2,12 @@ import AdminSidebar from "./Sidebar";
 import React, { useState, useEffect } from 'react';
 import Image from "next/image";
 import { useSession, signOut } from "next-auth/react"
-import { useTheme } from "next-themes";
 import { LogoutIcon } from "@heroicons/react/outline";
-import { MoonIcon, SunIcon } from "@heroicons/react/solid";
+import ThemeIcon from "../ThemeIcon";
 
 const AdminWrapper = ({ children }) => {
   const { data: session } = useSession();
-  const [inUseTheme, setInUseTheme] = useState("dark");
-  const { systemTheme , theme, setTheme } = useTheme();
 
-  useEffect(() => {
-    const currentTheme = theme === "system" ? systemTheme : theme ;
-    setInUseTheme(currentTheme);
-  }, [theme, systemTheme])
   return (
     <div className="min-h-screen grid grid-cols-12 antialiased bg-zinc-50 dark:bg-zinc-800">
       <AdminSidebar/>
@@ -34,11 +27,7 @@ const AdminWrapper = ({ children }) => {
             <a onClick={() => signOut()} title="logout" className="cursor-pointer focus:outline-none">
               <LogoutIcon className="inline-flex w-7" />
             </a>
-            { inUseTheme === "dark" ? 
-              <SunIcon className="w-5 h-5 text-zinc-900 inline-block mx-4 border rounded-full bg-primary-500 " role="button" onClick={() => setTheme('light')} />
-              :
-              <MoonIcon className="w-5 h-5 text-primary-500 inline-block mx-4 border rounded-full bg-zinc-900" role="button" onClick={() => setTheme('dark')} />
-            }
+            <ThemeIcon />
           </div>
         </div>
         <div className="pt-4 pb-10 px-10">
