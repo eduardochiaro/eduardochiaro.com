@@ -7,6 +7,7 @@ import Skills from '../components/frontend/Skills'
 import GitHub from '../components/frontend/GitHub'
 import Footer from '../components/frontend/Footer'
 import Sidemenu from '../components/frontend/Sidemenu'
+import LatestPosts from '../components/frontend/LatestPosts';
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
         <Jobs />
         <Skills />
         <hr className="my-10 max-w-5xl mx-auto border-t border-dotted border-primary-600 dark:border-primary-800" />
+        <LatestPosts />
         <GitHub />
       </div>
       <Sidemenu />
