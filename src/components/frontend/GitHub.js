@@ -67,7 +67,7 @@ export default function GitHub () {
       <span className="anchor" name="github"/>
       <div className="max-w-5xl mx-auto">
         <h3 className="font-header leading-tight text-2xl lg:text-3xl pr-4 font-light">
-          Latest repositories{' '}<span className="rounded font-base align-super text-primary-800 dark:text-primary-700 text-sm">({ data ? data.results.length : 0 } total)</span>
+          What I've <span className="text-accent-500">coded</span> recently...
         </h3>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 xl:gap-8 mt-5 pb-10">
         { cutReposene.map((repo, index) => (

@@ -8,33 +8,28 @@ export default function ThemeIcon () {
     {
       name: 'light',
       className: '',
-      icon: <SunIcon className="w-5 h-5 block mr-3"  />,
+      icon: <SunIcon className="w-5 h-5 block mr-2"  />,
     },
     {
       name: 'dark',
       className: '',
-      icon: <MoonIcon className="w-5 h-5 block mr-3"  />,
+      icon: <MoonIcon className="w-5 h-5 block mr-2"  />,
     },
     {
       name: 'system',
       className: '',
-      icon: <DesktopComputerIcon className="w-5 h-5 block mr-3"  />,
+      icon: <DesktopComputerIcon className="w-5 h-5 block mr-2"  />,
     }
   ];
   const [iconClass, setIconClass] = useState(classColors);
   const [inUseTheme, setInUseTheme] = useState("dark");
   const { systemTheme , theme, setTheme } = useTheme();
 
-  useEffect(() => {
-    const currentTheme = theme === "system" ? systemTheme : theme ;
-    setInUseTheme(currentTheme);
-    resetColors();
-  }, [theme, systemTheme]);
-
   const setColorTheme = (themeName) => {
     setTheme(themeName);
     resetColors();
   }
+  
   const resetColors = () => {
     const resetClassColors = classColors.map(x => {
       x.className = '';
@@ -42,11 +37,17 @@ export default function ThemeIcon () {
     });
     setIconClass(resetClassColors.map(x => {
       if (x.name === theme) {
-        x.className = 'text-primary-800 dark:text-primary-700';
+        x.className = 'text-accent-500';
       } 
       return x;
     }));
   }
+
+  useEffect(() => {
+    const currentTheme = theme === "system" ? systemTheme : theme ;
+    setInUseTheme(currentTheme);
+    resetColors();
+  }, [theme, systemTheme]);
 
   return (
     <Menu as="div" className="relative inline-block text-left">

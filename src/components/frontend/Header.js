@@ -30,12 +30,12 @@ export default function Header () {
   ]
   const router = useRouter();
   return (
-    <header className={`${styles.header} sticky drop-shadow top-0 z-40 h-14 bg-zinc-100 dark:bg-zinc-700 border-b border-zinc-200 dark:border-zinc-600`}>
+    <header className={`${styles.header} sticky drop-shadow-md shadow-zinc-700 top-0 z-40 h-14 bg-zinc-100 dark:bg-zinc-700 border-b border-zinc-200 dark:border-zinc-600`}>
       <nav className="w-100 px-auto">
-        <div className="md:pt-2 px-4 md:px-8 grid grid-cols-2 md:grid-cols-3">
-          <div>
+        <div className="pt-4 md:pt-2 px-4 md:px-8 grid grid-cols-2 md:grid-cols-3">
+          <div className="flex items-center">
             <Menu as="div" className="relative">
-              <Menu.Button as="a" className="inline-block md:hidden pt-4">
+              <Menu.Button as="a" className="inline-block md:hidden">
                 <MenuIcon className={`w-6 inline-block border-2 rounded border-primary-700 transition text-primary-800 dark:text-primary-700 hover:text-zinc-900 dark:hover:text-primary-500`}/>
               </Menu.Button>
               <Transition
@@ -64,6 +64,7 @@ export default function Header () {
                 </Menu.Items>
               </Transition>
             </Menu>
+            <span className="ml-2 font-header font-bold text-xl hidden xs:inline-block md:hidden">Eduardo Chiaro</span>
             <div className={`text-primary-800 dark:text-primary-700 transition-all duration-300 ease-in-out w-full md:w-auto hidden drop-shadow-none md:contents absolute md:relative top-14 pb-2 left-1 bg-zinc-100 dark:bg-zinc-700 z-50`}>
               <ul className="md:flex font-semibold tracking-wider">
                 { menuData.map(function(item, i) {
@@ -84,21 +85,22 @@ export default function Header () {
               </ul>
             </div>
           </div>
-          <div className="hidden md:block">
+          <div className="hidden md:flex items-center">
             <SVG 
-              title="" 
-              alt="" 
-              className={`w-auto h-7 mt-4 md:mt-2 md:mx-auto font-normal`}
+              title="Eduardo Chiaro" 
+              alt="Eduardo Chiaro" 
+              className={`w-auto h-7 md:mx-auto font-normal`}
               width={65}
               src={'/images/logo-3.svg'} />
           </div>
-          <div className="flex">
-            <div className="flex-1 tracking-wider py-4 md:py-2 text-right">
-              <a href="https://blog.eduardochiaro.com" className="md:pr-0 pr-6 whitespace-nowrap text-base font-medium transition text-primary-800 dark:text-primary-700 hover:text-zinc-900 dark:hover:text-primary-500">
-                <RssIcon className={`h-6 w-6 inline-block text-accent-500`} aria-hidden="true"  /> .dev
-              </a>
-              <ThemeIcon />
-            </div>
+          <div className="flex items-center text-right">
+            <span className="flex-1"></span>
+            <a href="https://blog.eduardochiaro.com" className="inline-block md:pr-0 pr-6 whitespace-nowrap text-base font-medium transition text-primary-800 dark:text-primary-700 hover:text-zinc-900 dark:hover:text-primary-500">
+              <span className="flex items-center">
+                <RssIcon className={`h-6 w-6 text-accent-500 mr-2`} aria-hidden="true"  /> .dev
+              </span>
+            </a>
+            <ThemeIcon />
           </div>
         </div>
       </nav>
