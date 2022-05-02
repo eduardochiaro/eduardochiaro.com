@@ -249,7 +249,7 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
                     onChange={handleChange}
                     required
                   />
-                  <button type="button" onClick={() => fetchUrlData(bookmark)} className="border border-transparent shadow-sm text-sm font-medium rounded-md transition-colors ease-out duration-200 text-primary-900 hover:text-primary-500 bg-primary-700 hover:bg-primary-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-700 flex-none w-20 ml-4">Fetch</button>
+                  <button type="button" onClick={() => fetchUrlData(bookmark)} className="border border-transparent shadow-sm text-sm font-medium rounded-md transition-colors ease-out duration-200 text-primary-900 hover:text-zinc-100 bg-primary-700 hover:bg-primary-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-700 flex-none w-20 ml-4">Fetch</button>
                 </div>
               </div>
               { currentStatus &&

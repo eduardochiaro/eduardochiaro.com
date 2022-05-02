@@ -235,11 +235,11 @@ const AdminJobsIndex = ({ formRef }) => {
                   type="file"
                   name="logo"
                   id="logo-url-form"
-                  className="mt-1 block w-full text-sm text-zinc-900 dark:text-primary-500
+                  className="mt-1 block w-full text-sm text-zinc-900 dark:text-zinc-100
                         file:mr-4 file:py-2 file:px-4
                         file:rounded-full file:border-0
                         file:text-sm file:font-semibold
-                        file:bg-primary-700 file:text-primary-500
+                        file:bg-primary-700 file:text-zinc-100
                         hover:file:bg-primary-800
                   "
                   onChange={handleChange}

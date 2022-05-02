@@ -8,15 +8,15 @@ html {
 }
 
 body {
-  @apply bg-zinc-50 dark:bg-zinc-800 text-zinc-900 dark:text-primary-500;
+  @apply bg-zinc-50 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100;
 }
 
 // Form styles 
 .input-label {
-  @apply block text-sm font-medium text-zinc-900 dark:text-primary-500;
+  @apply block text-sm font-medium text-zinc-900 dark:text-zinc-100;
 }
 .input-field {
-  @apply focus:border-emerald-500 bg-zinc-200 dark:bg-zinc-700 text-zinc-900 dark:text-primary-500 focus:ring-emerald-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md;
+  @apply focus:border-emerald-500 bg-zinc-200 dark:bg-zinc-700 text-zinc-900 dark:text-zinc-100 focus:ring-emerald-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md;
 }
 .range-field {
   @apply rounded-lg appearance-none bg-gray-200 dark:bg-zinc-500 h-3 w-full;
@@ -31,17 +31,17 @@ body {
   }
 }
 .button-success {
-  @apply inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md transition-colors ease-out duration-200 text-primary-900 hover:text-primary-500 bg-primary-700 hover:bg-primary-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-700
+  @apply inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md transition-colors ease-out duration-200 text-primary-900 hover:text-zinc-100 bg-primary-700 hover:bg-primary-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-700
 }
 .button-danger {
-  @apply inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md transition-colors ease-out duration-200 text-primary-900 hover:text-primary-500 bg-red-300 hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-500
+  @apply inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md transition-colors ease-out duration-200 text-primary-900 hover:text-zinc-100 bg-red-300 hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-500
 }
 
 //Admin tables
 table.admin-table {
   @apply min-w-full divide-y divide-gray-200 dark:divide-gray-600;
   thead {
-    @apply text-zinc-900 dark:text-primary-500;
+    @apply text-zinc-900 dark:text-zinc-100;
     tr {
       th {
         @apply px-6 py-3 text-left text-xs font-bold uppercase tracking-wider text-zinc-700 dark:text-primary-700;
@@ -55,7 +55,7 @@ table.admin-table {
     }
   }
   tbody {
-    @apply bg-zinc-200 dark:bg-zinc-700  text-zinc-900 dark:text-primary-500;
+    @apply bg-zinc-200 dark:bg-zinc-700  text-zinc-900 dark:text-zinc-100;
     tr {
       @apply border-y-2 border-zinc-50 dark:border-zinc-800;
       &:nth-child(even) {

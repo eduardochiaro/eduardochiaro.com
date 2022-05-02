@@ -67,14 +67,14 @@ export default function GitHub () {
       <span className="anchor" name="github"/>
       <div className="max-w-5xl mx-auto">
         <h3 className="font-header leading-tight text-2xl lg:text-3xl pr-4 font-light">
-          What I've <span className="text-accent-500">coded</span> recently...
+          What I&apos;ve <span className="text-primary-700 dark:text-primary-600">coded</span> recently...
         </h3>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 xl:gap-8 mt-5 pb-10">
         { cutReposene.map((repo, index) => (
           <div className="flex relative p-2 box-card" key={`repo-${index}`}>
             <a href={repo.url} className="flex flew-wrap w-full text-decoration-none">
               <div className="hidden md:block md:basis-1/3 p-4 pr-2">
-                <div className="relative w-full h-full">
+                <div className="relative w-full h-full border-4 border-zinc-300 dark:border-zinc-600 rounded-md">
                   <LoadImage src={repo.openGraphImageUrl} alt={repo.name} />
                 </div>
               </div>

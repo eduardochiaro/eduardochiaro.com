@@ -24,7 +24,7 @@ export default function Bookmarks() {
         { uniqueCategories.map((category, index) => (
           <div key={index}>
             <span className="anchor" name={`bookmarks-${category.id}`}/>
-            <h4 className="text-primary-800 dark:text-primary-700 mt-5 md:mt-10 mb-5">
+            <h4 className="text-primary-700 dark:text-primary-600 mt-5 md:mt-10 mb-5">
               <TagIcon className="inline-block w-4 h-4 align-text-bottom mr-2" />
               {category.name}
             </h4>
@@ -62,9 +62,9 @@ export default function Bookmarks() {
         ))}
       </div>
     </section>
-    <div className="hidden xl:block fixed top-40 left-10">
-      <div className="text-sm font-semibold mb-6">On this page</div>
-      <ul className="text-primary-800 dark:text-primary-700 font-semibold tracking-wider">
+    <div className="hidden xl:block fixed top-40 left-10 text-sm font-semibold tracking-wider">
+      <div className="mb-6">On this page</div>
+      <ul className="">
         { uniqueCategories.map((category, index) => (
           <li 
             className="my-2"
@@ -72,8 +72,8 @@ export default function Bookmarks() {
               <NavLink 
                 href={ index == 0 ? `/bookmarks` : `/bookmarks#bookmarks-${category.id}` }
                 as={`/bookmarks#bookmarks-${category.id}`}
-                className={`text-2xl md:text-base transition hover:text-zinc-900 dark:hover:text-primary-500 hover:underline`} 
-                activeClassName={`text-2xl md:text-base transition text-accent-500`}
+                className={`text-base transition hover:text-zinc-900 dark:hover:text-zinc-100 hover:underline`} 
+                activeClassName={`text-base transition text-primary-700 dark:text-primary-600`}
               >
                 <a>
                   <TagIcon className="h-7 md:h-5 inline mr-2 align-sub" />

@@ -33,7 +33,7 @@ export default function Apps () {
                   href={app.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="bg-zinc-700 transition text-primary-500 hover:text-primary-600 shadow-lg border border-zinc-300 px-4 py-2 text-base rounded-md mt-8 inline-block"
+                  className="bg-zinc-700 transition text-zinc-100 hover:text-primary-600 shadow-lg border border-zinc-300 px-4 py-2 text-base rounded-md mt-8 inline-block"
                 >
                   <GitHubIcon className="inline-block align-text-top w-5 mr-2" />
                   Download from GitHub

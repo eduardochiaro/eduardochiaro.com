@@ -50,12 +50,12 @@ export default function ThemeIcon () {
   }, [theme, systemTheme]);
 
   return (
-    <Menu as="div" className="relative inline-block text-left">
+    <Menu as="div" className="relative">
       <Menu.Button as="span">
       { inUseTheme === "dark" ? 
-        <SunIcon className="w-5 h-5 text-zinc-900 inline-block ml-4 border rounded-full bg-primary-500" />
+        <SunIcon className="w-5 h-5 text-zinc-900 inline-block ml-4 border rounded-full bg-zinc-100" />
         :
-        <MoonIcon className="w-5 h-5 text-primary-500 inline-block ml-4 border rounded-full bg-zinc-900" />
+        <MoonIcon className="w-5 h-5 text-zinc-100 inline-block ml-4 border rounded-full bg-zinc-900" />
       }
       </Menu.Button>
       <Transition

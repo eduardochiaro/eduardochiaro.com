@@ -37,9 +37,9 @@ export default function Sidemenu () {
   ];
 
   return (
-    <div className="hidden xl:block fixed top-40 left-10">
-      <div className="text-sm font-semibold mb-6">On this page</div>
-      <ul className="text-primary-800 dark:text-primary-700 font-semibold tracking-wider">
+    <div className="hidden xl:block fixed top-40 left-10 text-sm font-semibold tracking-wider">
+      <div className="mb-6">On this page</div>
+      <ul className="">
       { menuData.map(function(item, i) {
         return (
           <li 
@@ -48,8 +48,8 @@ export default function Sidemenu () {
               <NavLink 
                 href={item.link} 
                 as={ item.as }
-                className={`flex items-center text-2xl md:text-base transition hover:text-zinc-900 dark:hover:text-primary-500 hover:underline`} 
-                activeClassName={`flex items-center text-2xl md:text-base transition text-accent-500`}
+                className={`flex items-center transition hover:text-zinc-900 dark:hover:text-zinc-100 hover:underline`} 
+                activeClassName={`flex items-center transition text-primary-700 dark:text-primary-600`}
               >
                 <a>{item.pre}{item.text}</a>
               </NavLink>
