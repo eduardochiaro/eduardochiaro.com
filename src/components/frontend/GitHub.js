@@ -63,7 +63,7 @@ export default function GitHub () {
   }
 
   return (
-    <section id="github" className={`px-8 lg:px-0 mt-10`}>
+    <section id="github" className={`px-4 lg:px-0 mt-10`}>
       <span className="anchor" name="github"/>
       <div className="max-w-5xl mx-auto">
         <h3 className="font-header leading-tight text-2xl lg:text-3xl pr-4 font-light">
@@ -71,7 +71,7 @@ export default function GitHub () {
         </h3>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 xl:gap-8 mt-5 pb-10">
         { cutReposene.map((repo, index) => (
-          <div className="flex relative rounded-lg drop-shadow bg-zinc-200 dark:bg-zinc-700 p-2 transition hover:ring-4 ring-offset-4 ring-offset-zinc-50 dark:ring-offset-zinc-800 hover:ring-zinc-300 hover:dark:ring-zinc-600" key={`repo-${index}`}>
+          <div className="flex relative p-2 box-card" key={`repo-${index}`}>
             <a href={repo.url} className="flex flew-wrap w-full text-decoration-none">
               <div className="hidden md:block md:basis-1/3 p-4 pr-2">
                 <div className="relative w-full h-full">

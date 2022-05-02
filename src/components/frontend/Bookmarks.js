@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import * as React from 'react';
 import useStaleSWR from '../../lib/staleSWR';
+import NavLink from '../Navlink';
 
 export default function Bookmarks() {
   const { data, error } = useStaleSWR('/api/portfolio/bookmarks');
@@ -14,26 +15,29 @@ export default function Bookmarks() {
     ))
   ).sort((a, b) => (a.name > b.name) ? 1 : -1);
   return (
-    <section id="work" className={`px-8 lg:px-0 my-10`}>
+    <>
+    <section id="work" className={`px-4 lg:px-0 mt-10`}>
       <div className="max-w-5xl mx-auto">
         <h3 className="font-header leading-tight text-2xl lg:text-3xl pr-4 font-light">
           Bookmarks
         </h3>
         { uniqueCategories.map((category, index) => (
-          <div key={index} className="mt-4">
-            <h4 className="text-primary-800 dark:text-primary-700 mt-10 mb-5 ">
+          <div key={index}>
+            <span className="anchor" name={`bookmarks-${category.id}`}/>
+            <h4 className="text-primary-800 dark:text-primary-700 mt-5 md:mt-10 mb-5">
               <TagIcon className="inline-block w-4 h-4 align-text-bottom mr-2" />
-              {category.name}</h4>
+              {category.name}
+            </h4>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             { data?.results.filter( x => x.categoryId == category.id).map((bookmark, index) => (
-                <div key={`apps-${index}`} className={`rounded-lg shadow-xl bg-zinc-200 dark:bg-zinc-700 p-5 transition hover:ring-4 hover:ring-zinc-300 hover:dark:ring-zinc-600`} >            
+                <div key={`apps-${index}`} className={`p-5 box-card`} >            
                 <Link
                   href={bookmark.url}
                   as={bookmark.url}
                   >
                   <a target="_blank" className="inline-block">
                     <h3 className="text-xl">
-                      <BookmarkAltIcon className="inline-block align-text-top h-6 mr-2" />
+                      <BookmarkAltIcon className="inline-block align-text-top h-6 mr-1" />
                       {bookmark.name}
                     </h3>
                     <p className="text-sm block opacity-80">
@@ -61,5 +65,28 @@ export default function Bookmarks() {
         
       </div>
     </section>
+    <div className="hidden xl:block fixed top-28 left-10">
+      <div className="text-sm font-semibold mb-6">On this page</div>
+      <ul className="text-primary-800 dark:text-primary-700 font-semibold tracking-wider">
+        { uniqueCategories.map((category, index) => (
+          <li 
+            className="my-2"
+            key={`menu-link-${index}`}>
+              <NavLink 
+                href={`/bookmarks#bookmarks-${category.id}`}
+                as={`#bookmarks-${category.id}`}
+                className={`text-2xl md:text-base transition hover:text-zinc-900 dark:hover:text-primary-500`} 
+                activeClassName={`text-2xl md:text-base transition text-zinc-900 dark:text-primary-500 underline`}
+              >
+                <a>
+                  <TagIcon className="h-7 md:h-5 inline mr-2 align-sub" />
+                  {category.name}
+                </a>
+              </NavLink>
+          </li>
+        ))}
+      </ul>
+    </div>
+    </>
   )
 }

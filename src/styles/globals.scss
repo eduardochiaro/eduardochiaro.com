@@ -84,3 +84,6 @@ table.admin-table {
   background-size: 200%;
   //animation: moveGradient 5s linear infinite;
 }
+.box-card {
+  @apply rounded-lg drop-shadow bg-zinc-200 dark:bg-zinc-700 transition hover:ring-4 ring-offset-4 ring-offset-zinc-50 dark:ring-offset-zinc-800 hover:ring-zinc-300 hover:dark:ring-zinc-600;
+}

@@ -7,7 +7,7 @@ export default function LatestPosts () {
   const { data, error } = useStaleSWR('/api/portfolio/blog');
   const cutReposene = (data) ? data.results.slice(0, 3) : [];
   return (
-    <section className={`px-8 lg:px-0 my-10`}>
+    <section className={`px-4 lg:px-0 mt-10`}>
       <span className="anchor" name="articles"/>
       <div className="max-w-5xl mx-auto">
         <h3 className="font-header leading-tight text-2xl lg:text-3xl pr-4 font-light mb-2">

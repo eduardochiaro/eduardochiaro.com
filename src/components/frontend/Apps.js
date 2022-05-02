@@ -9,14 +9,14 @@ export default function Apps () {
 
   if (data && data.results) {
     return (
-      <section className={`${styles.apps} px-8 lg:px-0 my-10`}>
-        <span className="anchor" name="projects"/>
-        <div className="max-w-5xl mx-auto relative">
-          <h3 className="font-header leading-tight text-2xl lg:text-3xl pr-4 font-light mb-2">
+      <section className={`${styles.apps} px-4 lg:px-0 mt-10`}>
+        <div className="max-w-5xl mx-auto">
+          <h3 className="font-header leading-tight text-2xl lg:text-3xl pr-4 font-light">
             Projects
           </h3>
+          <div className="grid grid-cols-1 gap-8 mt-10">
           { data?.results.map((app, index) => (
-            <div className={`flex flex-wrap mt-5 rounded-lg shadow-xl bg-zinc-200 dark:bg-zinc-700 p-5`} key={`apps-${index}`} >
+            <div className={`flex flex-wrap p-4 box-card`} key={`apps-${index}`} >
               <div className={`basis-full md:basis-1/4 relative`}>
                 <NaturalImage
                   src={`/uploads/${app.image}`}
@@ -33,7 +33,7 @@ export default function Apps () {
                   href={app.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="bg-zinc-700 transition text-primary-500 hover:text-primary-600 shadow-lg border border-gray-300 px-4 py-2 text-base rounded-md mt-8 inline-block"
+                  className="bg-zinc-700 transition text-primary-500 hover:text-primary-600 shadow-lg border border-zinc-300 px-4 py-2 text-base rounded-md mt-8 inline-block"
                 >
                   <GitHubIcon className="inline-block align-text-top w-5 mr-2" />
                   Download from GitHub
@@ -41,6 +41,7 @@ export default function Apps () {
               </div>
             </div>
           ))}
+          </div>
         </div>
       </section>
     );

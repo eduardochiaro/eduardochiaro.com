@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 export default function NavLink({ href, as, exact, activeClassName, className, children, ...props }) {
   const { asPath } = useRouter();
 
-
   const child = React.Children.only(children);
 
   const [classInUse, setClassInUse] = useState(className);

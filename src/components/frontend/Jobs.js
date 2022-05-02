@@ -6,7 +6,7 @@ export default function Jobs () {
   const { data, error } = useStaleSWR('/api/portfolio/works');
 
   return (
-    <section id="work" className={`px-8 lg:px-0 my-10`}>
+    <section id="work" className={`px-4 lg:px-0 mt-10`}>
       <div className="max-w-5xl mx-auto">
         <h3 className="font-header leading-tight text-2xl lg:text-3xl pr-4 font-light">
           I&apos;ve <span className="text-primary-800 dark:text-primary-700">coded</span> for...

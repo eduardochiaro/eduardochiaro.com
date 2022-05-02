@@ -32,10 +32,10 @@ export default function Header () {
   return (
     <header className={`${styles.header} sticky drop-shadow top-0 z-40 h-14 bg-zinc-100 dark:bg-zinc-700 border-b border-zinc-200 dark:border-zinc-600`}>
       <nav className="w-100 px-auto">
-        <div className="md:pt-2 px-8 grid grid-cols-2 md:grid-cols-3">
-          <div className="">
-            <Menu>
-              <Menu.Button as="a" className="inline-block md:hidden py-4">
+        <div className="md:pt-2 px-4 md:px-8 grid grid-cols-2 md:grid-cols-3">
+          <div>
+            <Menu as="div" className="relative">
+              <Menu.Button as="a" className="inline-block md:hidden pt-4">
                 <MenuIcon className={`w-6 inline-block border-2 rounded border-primary-700 transition text-primary-800 dark:text-primary-700 hover:text-zinc-900 dark:hover:text-primary-500`}/>
               </Menu.Button>
               <Transition
@@ -47,8 +47,8 @@ export default function Header () {
                 leaveFrom="transform opacity-100 scale-100"
                 leaveTo="transform opacity-0 scale-95"
               >
-                <Menu.Items className="focus:outline-none absolute left-2 mt-2 w-56 origin-top-right divide-y divide-zinc-600 rounded-md bg-zinc-100 dark:bg-zinc-700 shadow-lg ring-1 ring-primary-900 ring-opacity-5">
-                  <div className="px-1 py-1 text-primary-800 dark:text-primary-700">
+                <Menu.Items className="focus:outline-none absolute left-0 mt-2 w-56 divide-y divide-zinc-600 rounded-md bg-zinc-100 dark:bg-zinc-700 shadow-lg ring-2 ring-primary-700 ring-opacity-50">
+                  <div className="px-1 py-1 font-semibold text-primary-800 dark:text-primary-700 divide-y divide-zinc-400">
                   { menuData.map(function(item, i) {
                       return (
                       <Menu.Item key={`menu-link-${i}`}>

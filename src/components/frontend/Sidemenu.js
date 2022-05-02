@@ -38,6 +38,7 @@ export default function Sidemenu () {
 
   return (
     <div className="hidden xl:block fixed top-28 left-10">
+      <div className="text-sm font-semibold mb-6">On this page</div>
       <ul className="text-primary-800 dark:text-primary-700 font-semibold tracking-wider">
       { menuData.map(function(item, i) {
         return (
