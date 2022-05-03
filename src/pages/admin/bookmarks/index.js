@@ -185,10 +185,10 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
     return (
       <AdminWrapper>
         <div className="flex my-2">
-          <h1 className="flex-auto text-4xl"><BookmarkIcon className="inline-flex align-text-bottom h-10 text-primary-800 "/> Bookmarks list</h1>
+          <h1 className="flex-auto text-4xl"><BookmarkIcon className="inline-flex align-text-bottom h-10 text-primary-700 dark:text-primary-600"/> Bookmarks list</h1>
           <div className="flex-none text-right">
-            <button className="bg-primary-700 hover:bg-primary-800 text-white font-bold py-2 px-4 mb-5 rounded" onClick={() => openModal(bookmarkFormat)}>
-              <PlusIcon className="inline-flex align-text-bottom h-5 text-white  "/> Add new bookmark
+            <button className="transition flex items-center bg-primary-700 dark:bg-primary-600 hover:bg-primary-800 dark:hover:bg-primary-700 text-white font-bold py-2 px-4 mb-5 rounded" onClick={() => openModal(bookmarkFormat)}>
+              <PlusIcon className="h-5 mr-2 text-white "/> Add new bookmark
             </button>
           </div>
         </div>
@@ -249,7 +249,7 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
                     onChange={handleChange}
                     required
                   />
-                  <button type="button" onClick={() => fetchUrlData(bookmark)} className="border border-transparent shadow-sm text-sm font-medium rounded-md transition-colors ease-out duration-200 text-primary-900 hover:text-zinc-100 bg-primary-700 hover:bg-primary-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-700 flex-none w-20 ml-4">Fetch</button>
+                  <button type="button" onClick={() => fetchUrlData(bookmark)} className="border border-transparent shadow-sm text-sm font-medium rounded-md transition-colors ease-out duration-200 text-primary-900 hover:text-zinc-100 bg-primary-700 dark:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-700 flex-none w-20 ml-4">Fetch</button>
                 </div>
               </div>
               { currentStatus &&

@@ -14,21 +14,21 @@ const AdminWrapper = ({ children }) => {
       <div className="h-full col-span-10">
         <div className="flex items-center justify-end h-14 pr-10 bg-zinc-100 dark:bg-zinc-700 border-b border-zinc-200 dark:border-zinc-600">
           <div className="h-7 w-7 inline-block mr-5 align-middle">
-          <Image
-            src={session.user.image}
-            className="rounded-full border border-zinc-400 dark:border-zinc-600"
-            width={200}
-            height={200}
-            alt={`Logged as ${session.user.name}`}
-            title={`Logged as ${session.user.name}`}
-          />
+            <Image
+              src={session.user.image}
+              className="rounded-full border border-zinc-400 dark:border-zinc-600"
+              width={200}
+              height={200}
+              alt={`Logged as ${session.user.name}`}
+              title={`Logged as ${session.user.name}`}
+            />
           </div>
           <div className="inline-block">
             <a onClick={() => signOut()} title="logout" className="cursor-pointer focus:outline-none">
               <LogoutIcon className="inline-flex w-7" />
             </a>
-            <ThemeIcon />
           </div>
+          <ThemeIcon />
         </div>
         <div className="pt-4 pb-10 px-10">
         {React.Children.map(children, child => {

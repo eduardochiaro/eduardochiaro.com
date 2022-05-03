@@ -1,31 +1,59 @@
 import { BriefcaseIcon, ChipIcon, TerminalIcon, HomeIcon, TagIcon, BookmarkIcon } from "@heroicons/react/solid";
 import SVG from 'react-inlinesvg'
 import Link from "next/link";
+import NavLink from '../Navlink';
 import styles from '../../styles/Admin.Sidebar.module.scss'
 
 const AdminSidebar = () => {
+  const menuList = [
+    {
+      title: 'Categories',
+      icon: <TagIcon className="ml-8 w-5 group-hover:text-primary-700 dark:group-hover:text-primary-600"/>,
+      href: '/admin/categories',
+    },
+    {
+      title: 'Jobs',
+      icon: <BriefcaseIcon className="ml-8 w-5 group-hover:text-primary-700 dark:group-hover:text-primary-600"/>,
+      href: '/admin/jobs',
+    },
+    {
+      title: 'Skills',
+      icon: <TerminalIcon className="ml-8 w-5 group-hover:text-primary-700 dark:group-hover:text-primary-600"/>,
+      href: '/admin/skills',
+    },
+    {
+      title: 'Apps',
+      icon: <ChipIcon className="ml-8 w-5 group-hover:text-primary-700 dark:group-hover:text-primary-600"/>,
+      href: '/admin/apps',
+    },
+    {
+      title: 'Bookmarks',
+      icon: <BookmarkIcon className="ml-8 w-5 group-hover:text-primary-700 dark:group-hover:text-primary-600"/>,
+      href: '/admin/bookmarks',
+    },
+  ];
   return(
     <div className="col-span-2 left-0 bg-zinc-100 dark:bg-zinc-700 h-full">
-      <div className="flex h-14 border-b border-zinc-200 dark:border-zinc-600">
+      <div className="flex items-center h-14 py-2 border-b border-zinc-200 dark:border-zinc-600">
         <div className="flex-none">
           <SVG 
-              title="" 
-              alt="" 
-              className={`mainLogo mt-4 h-7 align-middle mr-2 ml-6`}
-              width={50}
-              src={'/images/logo-3.svg'} />
+            title="" 
+            alt="" 
+            className={`mainLogo h-7 align-middle mr-2 ml-6`}
+            width={50}
+            src={'/images/logo-3.svg'} />
         </div>
-        <div className="flex-auto w-32 text-center font-semibold text-xl">
-          <span className="hidden lg:inline-block mt-4 mr-10">Admin</span>
+        <div className="flex-auto w-32 text-center font-semibold text-xl border-r border-zinc-200 dark:border-zinc-600">
+          <span className="hidden lg:inline-block mr-10">Admin</span>
         </div>
       </div>
       <div className="overflow-y-auto overflow-x-hidden flex-grow h-full bg-zinc-200 dark:bg-zinc-600 shadow">
         <ul className="flex flex-col py-4 space-y-1 font-semibold tracking-wider">
           <li>
             <Link href="/">
-              <a className={`${styles['sidebar-link']} text-primary-700 dark:text-primary-600 hover:text-zinc-900 dark:hover:text-zinc-100`}>
-                <HomeIcon className="inline-flex justify-center items-center ml-8 w-5"/>
-                <span className="ml-2 text-sm tracking-wide truncate">Website</span>
+              <a className={`${styles['sidebar-link']} group border-transparent hover:border-primary-700 dark:hover:border-primary-600`}>
+                <HomeIcon className="ml-8 w-5 group-hover:text-primary-700 dark:group-hover:text-primary-600"/>
+                <span className="ml-2 text-sm tracking-wide truncate group-hover:hunderline">Website</span>
               </a>
             </Link>
           </li>
@@ -36,49 +64,21 @@ const AdminSidebar = () => {
               <span className="w-full border-t border-primary-700 dark:border-primary-600 border-dashed shrink"></span>
             </div>
           </li>
-          <li>
-            <Link href="/admin/categories">
-              <a className={`${styles['sidebar-link']} text-primary-700 dark:text-primary-600 hover:text-zinc-900 dark:hover:text-zinc-100`}>
-                <TagIcon className="inline-flex justify-center items-center ml-8 w-5"/>
-                <span className="ml-2 text-sm tracking-wide truncate">Categories</span>
-              </a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/admin/jobs">
-              <a className={`${styles['sidebar-link']} text-primary-700 dark:text-primary-600 hover:text-zinc-900 dark:hover:text-zinc-100`}>
-                <BriefcaseIcon className="inline-flex justify-center items-center ml-8 w-5"/>
-                <span className="ml-2 text-sm tracking-wide truncate">Jobs</span>
-                {/*
-                <span className="px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-primary-600 bg-accent-100 rounded-full">New</span>
-                */}
-              </a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/admin/skills">
-              <a className={`${styles['sidebar-link']} text-primary-700 dark:text-primary-600 hover:text-zinc-900 dark:hover:text-zinc-100`}>
-                <TerminalIcon className="inline-flex justify-center items-center ml-8 w-5"/>
-                <span className="ml-2 text-sm tracking-wide truncate">Skills</span>
-              </a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/admin/apps">
-              <a className={`${styles['sidebar-link']} text-primary-700 dark:text-primary-600 hover:text-zinc-900 dark:hover:text-zinc-100`}>
-                <ChipIcon className="inline-flex justify-center items-center ml-8 w-5"/>
-                <span className="ml-2 text-sm tracking-wide truncate">Apps</span>
-              </a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/admin/bookmarks">
-              <a className={`${styles['sidebar-link']} text-primary-700 dark:text-primary-600 hover:text-zinc-900 dark:hover:text-zinc-100`}>
-                <BookmarkIcon className="inline-flex justify-center items-center ml-8 w-5"/>
-                <span className="ml-2 text-sm tracking-wide truncate">Bookmarks</span>
-              </a>
-            </Link>
-          </li>
+          {menuList.map(item => (
+            <li key={item.title}>
+              <NavLink
+                href={item.href} 
+                as={ item.href }
+                className={`${styles['sidebar-link']} group border-transparent hover:border-primary-700 dark:hover:border-primary-600`} 
+                activeClassName={`${styles['sidebar-link']} group border-primary-700 dark:border-primary-600 `}
+              >
+                <a>
+                  {item.icon}
+                  <span className="ml-2 text-sm tracking-wide truncate group-hover:hunderline">{item.title}</span>
+                </a>
+              </NavLink>
+            </li>
+          ))}
         </ul>
       </div>
     </div>

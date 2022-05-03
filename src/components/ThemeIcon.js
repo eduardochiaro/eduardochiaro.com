@@ -67,7 +67,7 @@ export default function ThemeIcon () {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="focus:outline-none whitespace-nowrap absolute right-0 mt-2 w-auto origin-top-right rounded-md bg-zinc-100 dark:bg-zinc-700 shadow-lg ring-2 ring-primary-700 ring-opacity-50">
+          <Menu.Items className="focus:outline-none z-50 whitespace-nowrap absolute right-0 mt-2 w-auto origin-top-right rounded-md bg-zinc-100 dark:bg-zinc-700 shadow-lg ring-2 ring-primary-700 ring-opacity-50">
             <div className="py-2 px-4 font-semibold divide-y divide-zinc-400">
               { iconClass.map((item, index) => (
                 <Menu.Item key={index}>

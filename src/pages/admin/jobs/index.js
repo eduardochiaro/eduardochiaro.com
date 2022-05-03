@@ -178,10 +178,10 @@ const AdminJobsIndex = ({ formRef }) => {
     return (
       <AdminWrapper>
         <div className="flex my-2">
-          <h1 className="flex-auto text-4xl"><BriefcaseIcon className="inline-flex align-text-bottom h-10 text-primary-800 "/> Jobs list</h1>
+          <h1 className="flex-auto text-4xl"><BriefcaseIcon className="inline-flex align-text-bottom h-10 text-primary-700 dark:text-primary-600"/> Jobs list</h1>
           <div className="flex-none text-right">
-            <button className="bg-primary-700 hover:bg-primary-800 text-white font-bold py-2 px-4 mb-5 rounded" onClick={() => openModal(jobFormat)}>
-              <PlusIcon className="inline-flex align-text-bottom h-5 text-white  "/> Add new job
+            <button className="transition flex items-center bg-primary-700 dark:bg-primary-600 hover:bg-primary-800 dark:hover:bg-primary-700 text-white font-bold py-2 px-4 mb-5 rounded" onClick={() => openModal(jobFormat)}>
+              <PlusIcon className="h-5 mr-2 text-white "/>  Add new job
             </button>
           </div>
         </div>
