@@ -60,14 +60,14 @@ export default function ThemeIcon () {
       </Menu.Button>
       <Transition
           as={Fragment}
-          enter="transition ease-out duration-100"
-          enterFrom="transform opacity-0 scale-95"
-          enterTo="transform opacity-100 scale-100"
-          leave="transition ease-in duration-75"
-          leaveFrom="transform opacity-100 scale-100"
-          leaveTo="transform opacity-0 scale-95"
+          enter="transition ease-out duration-200"
+          enterFrom="opacity-0 translate-y-1"
+          enterTo="opacity-100 translate-y-0"
+          leave="transition ease-in duration-150"
+          leaveFrom="opacity-100 translate-y-0"
+          leaveTo="opacity-0 translate-y-1"
         >
-          <Menu.Items className="focus:outline-none z-50 whitespace-nowrap absolute right-0 mt-2 w-auto origin-top-right rounded-md bg-zinc-100 dark:bg-zinc-700 shadow-lg ring-2 ring-primary-700 ring-opacity-50">
+          <Menu.Items className="transform focus:outline-none z-50 whitespace-nowrap absolute right-0 mt-2 w-auto origin-top-right rounded-md bg-zinc-100 dark:bg-zinc-700 shadow-lg ring-2 ring-primary-700 ring-opacity-50">
             <div className="py-2 px-4 font-semibold divide-y divide-zinc-400">
               { iconClass.map((item, index) => (
                 <Menu.Item key={index}>

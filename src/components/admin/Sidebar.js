@@ -8,27 +8,27 @@ const AdminSidebar = () => {
   const menuList = [
     {
       title: 'Categories',
-      icon: <TagIcon className="ml-8 w-5 group-hover:text-primary-700 dark:group-hover:text-primary-600"/>,
+      icon: <TagIcon className="hidden md:block ml-8 w-5 group-hover:text-primary-700 dark:group-hover:text-primary-600"/>,
       href: '/admin/categories',
     },
     {
       title: 'Jobs',
-      icon: <BriefcaseIcon className="ml-8 w-5 group-hover:text-primary-700 dark:group-hover:text-primary-600"/>,
+      icon: <BriefcaseIcon className="hidden md:block ml-8 w-5 group-hover:text-primary-700 dark:group-hover:text-primary-600"/>,
       href: '/admin/jobs',
     },
     {
       title: 'Skills',
-      icon: <TerminalIcon className="ml-8 w-5 group-hover:text-primary-700 dark:group-hover:text-primary-600"/>,
+      icon: <TerminalIcon className="hidden md:block ml-8 w-5 group-hover:text-primary-700 dark:group-hover:text-primary-600"/>,
       href: '/admin/skills',
     },
     {
       title: 'Apps',
-      icon: <ChipIcon className="ml-8 w-5 group-hover:text-primary-700 dark:group-hover:text-primary-600"/>,
+      icon: <ChipIcon className="hidden md:block ml-8 w-5 group-hover:text-primary-700 dark:group-hover:text-primary-600"/>,
       href: '/admin/apps',
     },
     {
       title: 'Bookmarks',
-      icon: <BookmarkIcon className="ml-8 w-5 group-hover:text-primary-700 dark:group-hover:text-primary-600"/>,
+      icon: <BookmarkIcon className="hidden md:block ml-8 w-5 group-hover:text-primary-700 dark:group-hover:text-primary-600"/>,
       href: '/admin/bookmarks',
     },
   ];
@@ -52,7 +52,7 @@ const AdminSidebar = () => {
           <li>
             <Link href="/">
               <a className={`${styles['sidebar-link']} group border-transparent hover:border-primary-700 dark:hover:border-primary-600`}>
-                <HomeIcon className="ml-8 w-5 group-hover:text-primary-700 dark:group-hover:text-primary-600"/>
+                <HomeIcon className="hidden md:block ml-8 w-5 group-hover:text-primary-700 dark:group-hover:text-primary-600"/>
                 <span className="ml-2 text-sm tracking-wide truncate group-hover:hunderline">Website</span>
               </a>
             </Link>
