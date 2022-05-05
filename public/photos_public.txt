@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<feed
+	xmlns="http://www.w3.org/2005/Atom"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:flickr="urn:flickr:user"
+	xmlns:media="http://search.yahoo.com/mrss/">
+	<title>Uploads from eduardo.chiaro</title>
+	<link rel="self" href="http://www.flickr.com/services/feeds/photos_public.gne?id=97365558@N03" />
+	<link rel="alternate" type="text/html" href="https://www.flickr.com/photos/97365558@N03/"/>
+	<id>tag:flickr.com,2005:/photos/public/97342504</id>
+	<icon>https://farm5.staticflickr.com/4443/buddyicons/97365558@N03.jpg?1507669104#97365558@N03</icon>
+	<subtitle></subtitle>
+	<updated>2017-10-10T20:48:34Z</updated>
+	<generator uri="https://www.flickr.com/">Flickr</generator>
+	<entry>
+		<title>DSC00963</title>
+		<link rel="alternate" type="text/html" href="https://www.flickr.com/photos/97365558@N03/37623176801/"/>
+		<id>tag:flickr.com,2005:/photo/37623176801</id>
+		<published>2017-10-10T20:48:34Z</published>
+		<updated>2017-10-10T20:48:34Z</updated>
+		<flickr:date_taken>2010-02-21T16:37:48-08:00</flickr:date_taken>
+		<dc:date.Taken>2010-02-21T16:37:48-08:00</dc:date.Taken>
+		<content type="html">			&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/people/97365558@N03/&quot;&gt;eduardo.chiaro&lt;/a&gt; posted a photo:&lt;/p&gt;
+	
+&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/photos/97365558@N03/37623176801/&quot; title=&quot;DSC00963&quot;&gt;&lt;img src=&quot;https://live.staticflickr.com/4509/37623176801_765f4f4557_m.jpg&quot; width=&quot;240&quot; height=&quot;160&quot; alt=&quot;DSC00963&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+</content>
+		<author>
+			<name>eduardo.chiaro</name>
+			<uri>https://www.flickr.com/people/97365558@N03/</uri>
+			<flickr:nsid>97365558@N03</flickr:nsid>
+			<flickr:buddyicon>https://farm5.staticflickr.com/4443/buddyicons/97365558@N03.jpg?1507669104#97365558@N03</flickr:buddyicon>
+		</author>
+		<link rel="enclosure" type="image/jpeg" href="https://live.staticflickr.com/4509/37623176801_765f4f4557_b.jpg" />
+		<category term="" scheme="https://www.flickr.com/photos/tags/" />
+		<displaycategories></displaycategories>
+	</entry>
+	<entry>
+		<title>DSC00962</title>
+		<link rel="alternate" type="text/html" href="https://www.flickr.com/photos/97365558@N03/37623176931/"/>
+		<id>tag:flickr.com,2005:/photo/37623176931</id>
+		<published>2017-10-10T20:48:33Z</published>
+		<updated>2017-10-10T20:48:33Z</updated>
+		<flickr:date_taken>2010-02-21T16:37:31-08:00</flickr:date_taken>
+		<dc:date.Taken>2010-02-21T16:37:31-08:00</dc:date.Taken>
+		<content type="html">			&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/people/97365558@N03/&quot;&gt;eduardo.chiaro&lt;/a&gt; posted a photo:&lt;/p&gt;
+	
+&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/photos/97365558@N03/37623176931/&quot; title=&quot;DSC00962&quot;&gt;&lt;img src=&quot;https://live.staticflickr.com/4497/37623176931_0f5b11a69f_m.jpg&quot; width=&quot;161&quot; height=&quot;240&quot; alt=&quot;DSC00962&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+</content>
+		<author>
+			<name>eduardo.chiaro</name>
+			<uri>https://www.flickr.com/people/97365558@N03/</uri>
+			<flickr:nsid>97365558@N03</flickr:nsid>
+			<flickr:buddyicon>https://farm5.staticflickr.com/4443/buddyicons/97365558@N03.jpg?1507669104#97365558@N03</flickr:buddyicon>
+		</author>
+		<link rel="enclosure" type="image/jpeg" href="https://live.staticflickr.com/4497/37623176931_0f5b11a69f_b.jpg" />
+		<category term="" scheme="https://www.flickr.com/photos/tags/" />
+		<displaycategories></displaycategories>
+	</entry>
+	<entry>
+		<title>DSC00951</title>
+		<link rel="alternate" type="text/html" href="https://www.flickr.com/photos/97365558@N03/37364325130/"/>
+		<id>tag:flickr.com,2005:/photo/37364325130</id>
+		<published>2017-10-10T20:48:33Z</published>
+		<updated>2017-10-10T20:48:33Z</updated>
+		<flickr:date_taken>2010-02-21T16:35:09-08:00</flickr:date_taken>
+		<dc:date.Taken>2010-02-21T16:35:09-08:00</dc:date.Taken>
+		<content type="html">			&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/people/97365558@N03/&quot;&gt;eduardo.chiaro&lt;/a&gt; posted a photo:&lt;/p&gt;
+	
+&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/photos/97365558@N03/37364325130/&quot; title=&quot;DSC00951&quot;&gt;&lt;img src=&quot;https://live.staticflickr.com/4468/37364325130_80f6c7aa51_m.jpg&quot; width=&quot;160&quot; height=&quot;240&quot; alt=&quot;DSC00951&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+</content>
+		<author>
+			<name>eduardo.chiaro</name>
+			<uri>https://www.flickr.com/people/97365558@N03/</uri>
+			<flickr:nsid>97365558@N03</flickr:nsid>
+			<flickr:buddyicon>https://farm5.staticflickr.com/4443/buddyicons/97365558@N03.jpg?1507669104#97365558@N03</flickr:buddyicon>
+		</author>
+		<link rel="enclosure" type="image/jpeg" href="https://live.staticflickr.com/4468/37364325130_80f6c7aa51_b.jpg" />
+		<category term="" scheme="https://www.flickr.com/photos/tags/" />
+		<displaycategories></displaycategories>
+	</entry>
+	<entry>
+		<title>DSC00944</title>
+		<link rel="alternate" type="text/html" href="https://www.flickr.com/photos/97365558@N03/37623177291/"/>
+		<id>tag:flickr.com,2005:/photo/37623177291</id>
+		<published>2017-10-10T20:48:32Z</published>
+		<updated>2017-10-10T20:48:32Z</updated>
+		<flickr:date_taken>2010-02-21T16:02:12-08:00</flickr:date_taken>
+		<dc:date.Taken>2010-02-21T16:02:12-08:00</dc:date.Taken>
+		<content type="html">			&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/people/97365558@N03/&quot;&gt;eduardo.chiaro&lt;/a&gt; posted a photo:&lt;/p&gt;
+	
+&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/photos/97365558@N03/37623177291/&quot; title=&quot;DSC00944&quot;&gt;&lt;img src=&quot;https://live.staticflickr.com/4490/37623177291_3ac950fbcb_m.jpg&quot; width=&quot;160&quot; height=&quot;240&quot; alt=&quot;DSC00944&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+</content>
+		<author>
+			<name>eduardo.chiaro</name>
+			<uri>https://www.flickr.com/people/97365558@N03/</uri>
+			<flickr:nsid>97365558@N03</flickr:nsid>
+			<flickr:buddyicon>https://farm5.staticflickr.com/4443/buddyicons/97365558@N03.jpg?1507669104#97365558@N03</flickr:buddyicon>
+		</author>
+		<link rel="enclosure" type="image/jpeg" href="https://live.staticflickr.com/4490/37623177291_3ac950fbcb_b.jpg" />
+		<category term="" scheme="https://www.flickr.com/photos/tags/" />
+		<displaycategories></displaycategories>
+	</entry>
+	<entry>
+		<title>DSC00938</title>
+		<link rel="alternate" type="text/html" href="https://www.flickr.com/photos/97365558@N03/37574449476/"/>
+		<id>tag:flickr.com,2005:/photo/37574449476</id>
+		<published>2017-10-10T20:48:32Z</published>
+		<updated>2017-10-10T20:48:32Z</updated>
+		<flickr:date_taken>2010-02-21T15:59:37-08:00</flickr:date_taken>
+		<dc:date.Taken>2010-02-21T15:59:37-08:00</dc:date.Taken>
+		<content type="html">			&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/people/97365558@N03/&quot;&gt;eduardo.chiaro&lt;/a&gt; posted a photo:&lt;/p&gt;
+	
+&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/photos/97365558@N03/37574449476/&quot; title=&quot;DSC00938&quot;&gt;&lt;img src=&quot;https://live.staticflickr.com/4464/37574449476_761a6e8ea1_m.jpg&quot; width=&quot;160&quot; height=&quot;240&quot; alt=&quot;DSC00938&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+</content>
+		<author>
+			<name>eduardo.chiaro</name>
+			<uri>https://www.flickr.com/people/97365558@N03/</uri>
+			<flickr:nsid>97365558@N03</flickr:nsid>
+			<flickr:buddyicon>https://farm5.staticflickr.com/4443/buddyicons/97365558@N03.jpg?1507669104#97365558@N03</flickr:buddyicon>
+		</author>
+		<link rel="enclosure" type="image/jpeg" href="https://live.staticflickr.com/4464/37574449476_761a6e8ea1_b.jpg" />
+		<category term="" scheme="https://www.flickr.com/photos/tags/" />
+		<displaycategories></displaycategories>
+	</entry>
+	<entry>
+		<title>DSC00934</title>
+		<link rel="alternate" type="text/html" href="https://www.flickr.com/photos/97365558@N03/37574449616/"/>
+		<id>tag:flickr.com,2005:/photo/37574449616</id>
+		<published>2017-10-10T20:48:31Z</published>
+		<updated>2017-10-10T20:48:31Z</updated>
+		<flickr:date_taken>2010-02-21T15:59:08-08:00</flickr:date_taken>
+		<dc:date.Taken>2010-02-21T15:59:08-08:00</dc:date.Taken>
+		<content type="html">			&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/people/97365558@N03/&quot;&gt;eduardo.chiaro&lt;/a&gt; posted a photo:&lt;/p&gt;
+	
+&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/photos/97365558@N03/37574449616/&quot; title=&quot;DSC00934&quot;&gt;&lt;img src=&quot;https://live.staticflickr.com/4477/37574449616_d83e4590f5_m.jpg&quot; width=&quot;160&quot; height=&quot;240&quot; alt=&quot;DSC00934&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+</content>
+		<author>
+			<name>eduardo.chiaro</name>
+			<uri>https://www.flickr.com/people/97365558@N03/</uri>
+			<flickr:nsid>97365558@N03</flickr:nsid>
+			<flickr:buddyicon>https://farm5.staticflickr.com/4443/buddyicons/97365558@N03.jpg?1507669104#97365558@N03</flickr:buddyicon>
+		</author>
+		<link rel="enclosure" type="image/jpeg" href="https://live.staticflickr.com/4477/37574449616_d83e4590f5_b.jpg" />
+		<category term="" scheme="https://www.flickr.com/photos/tags/" />
+		<displaycategories></displaycategories>
+	</entry>
+	<entry>
+		<title>DSC00933</title>
+		<link rel="alternate" type="text/html" href="https://www.flickr.com/photos/97365558@N03/37574449686/"/>
+		<id>tag:flickr.com,2005:/photo/37574449686</id>
+		<published>2017-10-10T20:48:30Z</published>
+		<updated>2017-10-10T20:48:30Z</updated>
+		<flickr:date_taken>2010-02-21T15:58:16-08:00</flickr:date_taken>
+		<dc:date.Taken>2010-02-21T15:58:16-08:00</dc:date.Taken>
+		<content type="html">			&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/people/97365558@N03/&quot;&gt;eduardo.chiaro&lt;/a&gt; posted a photo:&lt;/p&gt;
+	
+&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/photos/97365558@N03/37574449686/&quot; title=&quot;DSC00933&quot;&gt;&lt;img src=&quot;https://live.staticflickr.com/4476/37574449686_cacbcab763_m.jpg&quot; width=&quot;240&quot; height=&quot;160&quot; alt=&quot;DSC00933&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+</content>
+		<author>
+			<name>eduardo.chiaro</name>
+			<uri>https://www.flickr.com/people/97365558@N03/</uri>
+			<flickr:nsid>97365558@N03</flickr:nsid>
+			<flickr:buddyicon>https://farm5.staticflickr.com/4443/buddyicons/97365558@N03.jpg?1507669104#97365558@N03</flickr:buddyicon>
+		</author>
+		<link rel="enclosure" type="image/jpeg" href="https://live.staticflickr.com/4476/37574449686_cacbcab763_b.jpg" />
+		<category term="" scheme="https://www.flickr.com/photos/tags/" />
+		<displaycategories></displaycategories>
+	</entry>
+	<entry>
+		<title>DSC00931</title>
+		<link rel="alternate" type="text/html" href="https://www.flickr.com/photos/97365558@N03/37574449746/"/>
+		<id>tag:flickr.com,2005:/photo/37574449746</id>
+		<published>2017-10-10T20:48:29Z</published>
+		<updated>2017-10-10T20:48:29Z</updated>
+		<flickr:date_taken>2010-02-21T15:57:54-08:00</flickr:date_taken>
+		<dc:date.Taken>2010-02-21T15:57:54-08:00</dc:date.Taken>
+		<content type="html">			&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/people/97365558@N03/&quot;&gt;eduardo.chiaro&lt;/a&gt; posted a photo:&lt;/p&gt;
+	
+&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/photos/97365558@N03/37574449746/&quot; title=&quot;DSC00931&quot;&gt;&lt;img src=&quot;https://live.staticflickr.com/4486/37574449746_64da2ca48d_m.jpg&quot; width=&quot;240&quot; height=&quot;160&quot; alt=&quot;DSC00931&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+</content>
+		<author>
+			<name>eduardo.chiaro</name>
+			<uri>https://www.flickr.com/people/97365558@N03/</uri>
+			<flickr:nsid>97365558@N03</flickr:nsid>
+			<flickr:buddyicon>https://farm5.staticflickr.com/4443/buddyicons/97365558@N03.jpg?1507669104#97365558@N03</flickr:buddyicon>
+		</author>
+		<link rel="enclosure" type="image/jpeg" href="https://live.staticflickr.com/4486/37574449746_64da2ca48d_b.jpg" />
+		<category term="" scheme="https://www.flickr.com/photos/tags/" />
+		<displaycategories></displaycategories>
+	</entry>
+	<entry>
+		<title>DSC00925</title>
+		<link rel="alternate" type="text/html" href="https://www.flickr.com/photos/97365558@N03/37574449826/"/>
+		<id>tag:flickr.com,2005:/photo/37574449826</id>
+		<published>2017-10-10T20:48:28Z</published>
+		<updated>2017-10-10T20:48:28Z</updated>
+		<flickr:date_taken>2010-02-21T15:56:05-08:00</flickr:date_taken>
+		<dc:date.Taken>2010-02-21T15:56:05-08:00</dc:date.Taken>
+		<content type="html">			&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/people/97365558@N03/&quot;&gt;eduardo.chiaro&lt;/a&gt; posted a photo:&lt;/p&gt;
+	
+&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/photos/97365558@N03/37574449826/&quot; title=&quot;DSC00925&quot;&gt;&lt;img src=&quot;https://live.staticflickr.com/4495/37574449826_606e2645d8_m.jpg&quot; width=&quot;240&quot; height=&quot;160&quot; alt=&quot;DSC00925&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+</content>
+		<author>
+			<name>eduardo.chiaro</name>
+			<uri>https://www.flickr.com/people/97365558@N03/</uri>
+			<flickr:nsid>97365558@N03</flickr:nsid>
+			<flickr:buddyicon>https://farm5.staticflickr.com/4443/buddyicons/97365558@N03.jpg?1507669104#97365558@N03</flickr:buddyicon>
+		</author>
+		<link rel="enclosure" type="image/jpeg" href="https://live.staticflickr.com/4495/37574449826_606e2645d8_b.jpg" />
+		<category term="" scheme="https://www.flickr.com/photos/tags/" />
+		<displaycategories></displaycategories>
+	</entry>
+	<entry>
+		<title>DSC00924</title>
+		<link rel="alternate" type="text/html" href="https://www.flickr.com/photos/97365558@N03/37574449886/"/>
+		<id>tag:flickr.com,2005:/photo/37574449886</id>
+		<published>2017-10-10T20:48:27Z</published>
+		<updated>2017-10-10T20:48:27Z</updated>
+		<flickr:date_taken>2010-02-21T15:56:02-08:00</flickr:date_taken>
+		<dc:date.Taken>2010-02-21T15:56:02-08:00</dc:date.Taken>
+		<content type="html">			&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/people/97365558@N03/&quot;&gt;eduardo.chiaro&lt;/a&gt; posted a photo:&lt;/p&gt;
+	
+&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/photos/97365558@N03/37574449886/&quot; title=&quot;DSC00924&quot;&gt;&lt;img src=&quot;https://live.staticflickr.com/4496/37574449886_570dd6a9b9_m.jpg&quot; width=&quot;240&quot; height=&quot;160&quot; alt=&quot;DSC00924&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+</content>
+		<author>
+			<name>eduardo.chiaro</name>
+			<uri>https://www.flickr.com/people/97365558@N03/</uri>
+			<flickr:nsid>97365558@N03</flickr:nsid>
+			<flickr:buddyicon>https://farm5.staticflickr.com/4443/buddyicons/97365558@N03.jpg?1507669104#97365558@N03</flickr:buddyicon>
+		</author>
+		<link rel="enclosure" type="image/jpeg" href="https://live.staticflickr.com/4496/37574449886_570dd6a9b9_b.jpg" />
+		<category term="" scheme="https://www.flickr.com/photos/tags/" />
+		<displaycategories></displaycategories>
+	</entry>
+	<entry>
+		<title>DSC00900</title>
+		<link rel="alternate" type="text/html" href="https://www.flickr.com/photos/97365558@N03/37574449966/"/>
+		<id>tag:flickr.com,2005:/photo/37574449966</id>
+		<published>2017-10-10T20:48:26Z</published>
+		<updated>2017-10-10T20:48:26Z</updated>
+		<flickr:date_taken>2010-02-21T15:45:23-08:00</flickr:date_taken>
+		<dc:date.Taken>2010-02-21T15:45:23-08:00</dc:date.Taken>
+		<content type="html">			&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/people/97365558@N03/&quot;&gt;eduardo.chiaro&lt;/a&gt; posted a photo:&lt;/p&gt;
+	
+&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/photos/97365558@N03/37574449966/&quot; title=&quot;DSC00900&quot;&gt;&lt;img src=&quot;https://live.staticflickr.com/4497/37574449966_96027c53c0_m.jpg&quot; width=&quot;240&quot; height=&quot;160&quot; alt=&quot;DSC00900&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+</content>
+		<author>
+			<name>eduardo.chiaro</name>
+			<uri>https://www.flickr.com/people/97365558@N03/</uri>
+			<flickr:nsid>97365558@N03</flickr:nsid>
+			<flickr:buddyicon>https://farm5.staticflickr.com/4443/buddyicons/97365558@N03.jpg?1507669104#97365558@N03</flickr:buddyicon>
+		</author>
+		<link rel="enclosure" type="image/jpeg" href="https://live.staticflickr.com/4497/37574449966_96027c53c0_b.jpg" />
+		<category term="" scheme="https://www.flickr.com/photos/tags/" />
+		<displaycategories></displaycategories>
+	</entry>
+	<entry>
+		<title>DSC00886</title>
+		<link rel="alternate" type="text/html" href="https://www.flickr.com/photos/97365558@N03/23770120188/"/>
+		<id>tag:flickr.com,2005:/photo/23770120188</id>
+		<published>2017-10-10T20:48:26Z</published>
+		<updated>2017-10-10T20:48:26Z</updated>
+		<flickr:date_taken>2010-02-21T14:42:53-08:00</flickr:date_taken>
+		<dc:date.Taken>2010-02-21T14:42:53-08:00</dc:date.Taken>
+		<content type="html">			&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/people/97365558@N03/&quot;&gt;eduardo.chiaro&lt;/a&gt; posted a photo:&lt;/p&gt;
+	
+&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/photos/97365558@N03/23770120188/&quot; title=&quot;DSC00886&quot;&gt;&lt;img src=&quot;https://live.staticflickr.com/4487/23770120188_c4413e40b2_m.jpg&quot; width=&quot;160&quot; height=&quot;240&quot; alt=&quot;DSC00886&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+</content>
+		<author>
+			<name>eduardo.chiaro</name>
+			<uri>https://www.flickr.com/people/97365558@N03/</uri>
+			<flickr:nsid>97365558@N03</flickr:nsid>
+			<flickr:buddyicon>https://farm5.staticflickr.com/4443/buddyicons/97365558@N03.jpg?1507669104#97365558@N03</flickr:buddyicon>
+		</author>
+		<link rel="enclosure" type="image/jpeg" href="https://live.staticflickr.com/4487/23770120188_c4413e40b2_b.jpg" />
+		<category term="" scheme="https://www.flickr.com/photos/tags/" />
+		<displaycategories></displaycategories>
+	</entry>
+	<entry>
+		<title>DSC00869</title>
+		<link rel="alternate" type="text/html" href="https://www.flickr.com/photos/97365558@N03/37574443216/"/>
+		<id>tag:flickr.com,2005:/photo/37574443216</id>
+		<published>2017-10-10T20:48:25Z</published>
+		<updated>2017-10-10T20:48:25Z</updated>
+		<flickr:date_taken>2010-02-21T14:38:30-08:00</flickr:date_taken>
+		<dc:date.Taken>2010-02-21T14:38:30-08:00</dc:date.Taken>
+		<content type="html">			&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/people/97365558@N03/&quot;&gt;eduardo.chiaro&lt;/a&gt; posted a photo:&lt;/p&gt;
+	
+&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/photos/97365558@N03/37574443216/&quot; title=&quot;DSC00869&quot;&gt;&lt;img src=&quot;https://live.staticflickr.com/4451/37574443216_7e20d478cd_m.jpg&quot; width=&quot;160&quot; height=&quot;240&quot; alt=&quot;DSC00869&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+</content>
+		<author>
+			<name>eduardo.chiaro</name>
+			<uri>https://www.flickr.com/people/97365558@N03/</uri>
+			<flickr:nsid>97365558@N03</flickr:nsid>
+			<flickr:buddyicon>https://farm5.staticflickr.com/4443/buddyicons/97365558@N03.jpg?1507669104#97365558@N03</flickr:buddyicon>
+		</author>
+		<link rel="enclosure" type="image/jpeg" href="https://live.staticflickr.com/4451/37574443216_7e20d478cd_b.jpg" />
+		<category term="" scheme="https://www.flickr.com/photos/tags/" />
+		<displaycategories></displaycategories>
+	</entry>
+	<entry>
+		<title>DSC00850</title>
+		<link rel="alternate" type="text/html" href="https://www.flickr.com/photos/97365558@N03/23770120278/"/>
+		<id>tag:flickr.com,2005:/photo/23770120278</id>
+		<published>2017-10-10T20:48:25Z</published>
+		<updated>2017-10-10T20:48:25Z</updated>
+		<flickr:date_taken>2010-02-21T14:32:36-08:00</flickr:date_taken>
+		<dc:date.Taken>2010-02-21T14:32:36-08:00</dc:date.Taken>
+		<content type="html">			&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/people/97365558@N03/&quot;&gt;eduardo.chiaro&lt;/a&gt; posted a photo:&lt;/p&gt;
+	
+&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/photos/97365558@N03/23770120278/&quot; title=&quot;DSC00850&quot;&gt;&lt;img src=&quot;https://live.staticflickr.com/4488/23770120278_45c0fc4d84_m.jpg&quot; width=&quot;240&quot; height=&quot;160&quot; alt=&quot;DSC00850&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+</content>
+		<author>
+			<name>eduardo.chiaro</name>
+			<uri>https://www.flickr.com/people/97365558@N03/</uri>
+			<flickr:nsid>97365558@N03</flickr:nsid>
+			<flickr:buddyicon>https://farm5.staticflickr.com/4443/buddyicons/97365558@N03.jpg?1507669104#97365558@N03</flickr:buddyicon>
+		</author>
+		<link rel="enclosure" type="image/jpeg" href="https://live.staticflickr.com/4488/23770120278_45c0fc4d84_b.jpg" />
+		<category term="" scheme="https://www.flickr.com/photos/tags/" />
+		<displaycategories></displaycategories>
+	</entry>
+	<entry>
+		<title>DSC00840</title>
+		<link rel="alternate" type="text/html" href="https://www.flickr.com/photos/97365558@N03/37574443296/"/>
+		<id>tag:flickr.com,2005:/photo/37574443296</id>
+		<published>2017-10-10T20:48:24Z</published>
+		<updated>2017-10-10T20:48:24Z</updated>
+		<flickr:date_taken>2010-02-21T14:27:37-08:00</flickr:date_taken>
+		<dc:date.Taken>2010-02-21T14:27:37-08:00</dc:date.Taken>
+		<content type="html">			&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/people/97365558@N03/&quot;&gt;eduardo.chiaro&lt;/a&gt; posted a photo:&lt;/p&gt;
+	
+&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/photos/97365558@N03/37574443296/&quot; title=&quot;DSC00840&quot;&gt;&lt;img src=&quot;https://live.staticflickr.com/4481/37574443296_7168b1f7b0_m.jpg&quot; width=&quot;240&quot; height=&quot;160&quot; alt=&quot;DSC00840&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+</content>
+		<author>
+			<name>eduardo.chiaro</name>
+			<uri>https://www.flickr.com/people/97365558@N03/</uri>
+			<flickr:nsid>97365558@N03</flickr:nsid>
+			<flickr:buddyicon>https://farm5.staticflickr.com/4443/buddyicons/97365558@N03.jpg?1507669104#97365558@N03</flickr:buddyicon>
+		</author>
+		<link rel="enclosure" type="image/jpeg" href="https://live.staticflickr.com/4481/37574443296_7168b1f7b0_b.jpg" />
+		<category term="" scheme="https://www.flickr.com/photos/tags/" />
+		<displaycategories></displaycategories>
+	</entry>
+	<entry>
+		<title>DSC00839</title>
+		<link rel="alternate" type="text/html" href="https://www.flickr.com/photos/97365558@N03/37574443416/"/>
+		<id>tag:flickr.com,2005:/photo/37574443416</id>
+		<published>2017-10-10T20:48:23Z</published>
+		<updated>2017-10-10T20:48:23Z</updated>
+		<flickr:date_taken>2010-02-21T14:27:19-08:00</flickr:date_taken>
+		<dc:date.Taken>2010-02-21T14:27:19-08:00</dc:date.Taken>
+		<content type="html">			&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/people/97365558@N03/&quot;&gt;eduardo.chiaro&lt;/a&gt; posted a photo:&lt;/p&gt;
+	
+&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/photos/97365558@N03/37574443416/&quot; title=&quot;DSC00839&quot;&gt;&lt;img src=&quot;https://live.staticflickr.com/4453/37574443416_9624da31b4_m.jpg&quot; width=&quot;240&quot; height=&quot;160&quot; alt=&quot;DSC00839&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+</content>
+		<author>
+			<name>eduardo.chiaro</name>
+			<uri>https://www.flickr.com/people/97365558@N03/</uri>
+			<flickr:nsid>97365558@N03</flickr:nsid>
+			<flickr:buddyicon>https://farm5.staticflickr.com/4443/buddyicons/97365558@N03.jpg?1507669104#97365558@N03</flickr:buddyicon>
+		</author>
+		<link rel="enclosure" type="image/jpeg" href="https://live.staticflickr.com/4453/37574443416_9624da31b4_b.jpg" />
+		<category term="" scheme="https://www.flickr.com/photos/tags/" />
+		<displaycategories></displaycategories>
+	</entry>
+	<entry>
+		<title>DSC00838</title>
+		<link rel="alternate" type="text/html" href="https://www.flickr.com/photos/97365558@N03/37574443486/"/>
+		<id>tag:flickr.com,2005:/photo/37574443486</id>
+		<published>2017-10-10T20:48:22Z</published>
+		<updated>2017-10-10T20:48:22Z</updated>
+		<flickr:date_taken>2010-02-21T14:27:07-08:00</flickr:date_taken>
+		<dc:date.Taken>2010-02-21T14:27:07-08:00</dc:date.Taken>
+		<content type="html">			&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/people/97365558@N03/&quot;&gt;eduardo.chiaro&lt;/a&gt; posted a photo:&lt;/p&gt;
+	
+&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/photos/97365558@N03/37574443486/&quot; title=&quot;DSC00838&quot;&gt;&lt;img src=&quot;https://live.staticflickr.com/4473/37574443486_54ae5b93ca_m.jpg&quot; width=&quot;160&quot; height=&quot;240&quot; alt=&quot;DSC00838&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+</content>
+		<author>
+			<name>eduardo.chiaro</name>
+			<uri>https://www.flickr.com/people/97365558@N03/</uri>
+			<flickr:nsid>97365558@N03</flickr:nsid>
+			<flickr:buddyicon>https://farm5.staticflickr.com/4443/buddyicons/97365558@N03.jpg?1507669104#97365558@N03</flickr:buddyicon>
+		</author>
+		<link rel="enclosure" type="image/jpeg" href="https://live.staticflickr.com/4473/37574443486_54ae5b93ca_b.jpg" />
+		<category term="" scheme="https://www.flickr.com/photos/tags/" />
+		<displaycategories></displaycategories>
+	</entry>
+	<entry>
+		<title>DSC00837</title>
+		<link rel="alternate" type="text/html" href="https://www.flickr.com/photos/97365558@N03/23770120628/"/>
+		<id>tag:flickr.com,2005:/photo/23770120628</id>
+		<published>2017-10-10T20:48:22Z</published>
+		<updated>2017-10-10T20:48:22Z</updated>
+		<flickr:date_taken>2010-02-21T14:26:18-08:00</flickr:date_taken>
+		<dc:date.Taken>2010-02-21T14:26:18-08:00</dc:date.Taken>
+		<content type="html">			&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/people/97365558@N03/&quot;&gt;eduardo.chiaro&lt;/a&gt; posted a photo:&lt;/p&gt;
+	
+&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/photos/97365558@N03/23770120628/&quot; title=&quot;DSC00837&quot;&gt;&lt;img src=&quot;https://live.staticflickr.com/4492/23770120628_ff6878a93b_m.jpg&quot; width=&quot;160&quot; height=&quot;240&quot; alt=&quot;DSC00837&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+</content>
+		<author>
+			<name>eduardo.chiaro</name>
+			<uri>https://www.flickr.com/people/97365558@N03/</uri>
+			<flickr:nsid>97365558@N03</flickr:nsid>
+			<flickr:buddyicon>https://farm5.staticflickr.com/4443/buddyicons/97365558@N03.jpg?1507669104#97365558@N03</flickr:buddyicon>
+		</author>
+		<link rel="enclosure" type="image/jpeg" href="https://live.staticflickr.com/4492/23770120628_ff6878a93b_b.jpg" />
+		<category term="" scheme="https://www.flickr.com/photos/tags/" />
+		<displaycategories></displaycategories>
+	</entry>
+	<entry>
+		<title>DSC00835</title>
+		<link rel="alternate" type="text/html" href="https://www.flickr.com/photos/97365558@N03/23770120728/"/>
+		<id>tag:flickr.com,2005:/photo/23770120728</id>
+		<published>2017-10-10T20:48:21Z</published>
+		<updated>2017-10-10T20:48:21Z</updated>
+		<flickr:date_taken>2010-02-21T14:26:02-08:00</flickr:date_taken>
+		<dc:date.Taken>2010-02-21T14:26:02-08:00</dc:date.Taken>
+		<content type="html">			&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/people/97365558@N03/&quot;&gt;eduardo.chiaro&lt;/a&gt; posted a photo:&lt;/p&gt;
+	
+&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/photos/97365558@N03/23770120728/&quot; title=&quot;DSC00835&quot;&gt;&lt;img src=&quot;https://live.staticflickr.com/4461/23770120728_7d79ed722c_m.jpg&quot; width=&quot;240&quot; height=&quot;160&quot; alt=&quot;DSC00835&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+</content>
+		<author>
+			<name>eduardo.chiaro</name>
+			<uri>https://www.flickr.com/people/97365558@N03/</uri>
+			<flickr:nsid>97365558@N03</flickr:nsid>
+			<flickr:buddyicon>https://farm5.staticflickr.com/4443/buddyicons/97365558@N03.jpg?1507669104#97365558@N03</flickr:buddyicon>
+		</author>
+		<link rel="enclosure" type="image/jpeg" href="https://live.staticflickr.com/4461/23770120728_7d79ed722c_b.jpg" />
+		<category term="" scheme="https://www.flickr.com/photos/tags/" />
+		<displaycategories></displaycategories>
+	</entry>
+	<entry>
+		<title>DSC00830</title>
+		<link rel="alternate" type="text/html" href="https://www.flickr.com/photos/97365558@N03/37574443806/"/>
+		<id>tag:flickr.com,2005:/photo/37574443806</id>
+		<published>2017-10-10T20:48:20Z</published>
+		<updated>2017-10-10T20:48:20Z</updated>
+		<flickr:date_taken>2010-02-21T14:24:40-08:00</flickr:date_taken>
+		<dc:date.Taken>2010-02-21T14:24:40-08:00</dc:date.Taken>
+		<content type="html">			&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/people/97365558@N03/&quot;&gt;eduardo.chiaro&lt;/a&gt; posted a photo:&lt;/p&gt;
+	
+&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/photos/97365558@N03/37574443806/&quot; title=&quot;DSC00830&quot;&gt;&lt;img src=&quot;https://live.staticflickr.com/4444/37574443806_1f99798d51_m.jpg&quot; width=&quot;240&quot; height=&quot;160&quot; alt=&quot;DSC00830&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+</content>
+		<author>
+			<name>eduardo.chiaro</name>
+			<uri>https://www.flickr.com/people/97365558@N03/</uri>
+			<flickr:nsid>97365558@N03</flickr:nsid>
+			<flickr:buddyicon>https://farm5.staticflickr.com/4443/buddyicons/97365558@N03.jpg?1507669104#97365558@N03</flickr:buddyicon>
+		</author>
+		<link rel="enclosure" type="image/jpeg" href="https://live.staticflickr.com/4444/37574443806_1f99798d51_b.jpg" />
+		<category term="" scheme="https://www.flickr.com/photos/tags/" />
+		<displaycategories></displaycategories>
+	</entry>
+</feed>
