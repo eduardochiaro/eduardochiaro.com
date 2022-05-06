@@ -2,13 +2,18 @@ import apiWithMiddleware from '../../../lib/apiWithMiddleware';
 import cors from '../../../middlewares/cors';
 import cache from "memory-cache";
 import Parser from 'rss-parser';
+import moment from 'moment';
 
 const base = "https://www.flickr.com/services";
-const username = process.env.FLICKR_USERNAME;
-const hours = 1;
+const flickr_username = process.env.FLICKR_USERNAME;
+const instagram_username = process.env.INSTAGRAM_USERNAME;
+const hours = 10;
 
-const handler = async (req, res) => {
-  await cors(req, res);
+const getCachedFlickr = async () => {
+  const cached = cache.get("flickr");
+  if (cached) {
+    return cached;
+  }
   const parser = new Parser({
     customFields: {
        item:[
@@ -17,28 +22,60 @@ const handler = async (req, res) => {
        ],
     }
   });
-
-  const url = `${base}/feeds/photos_public.gne?id=${username}`;
-
-  const cachedResponse = cache.get(url);
-  if (cachedResponse) {
-    res.status(200).json({ results: cachedResponse }); return;
-  }
   
+  const url = `${base}/feeds/photos_public.gne?id=${flickr_username}`;
   const feed = await parser.parseURL(url);
 
+  cache.put("flickr", feed, hours * 1000 * 60 * 60);
+  return feed;
+}
+
+const getCacheInstagram = async () => {
+  const cached = cache.get("instagram");
+  if (cached) {
+    return cached;
+  }
+  const url = `https://feeds.behold.so/${instagram_username}`;
+  const instagram = await fetch(url);
+  const instagramImages = await instagram.json();
+
+  cache.put("instagram", instagramImages, hours * 1000 * 60 * 60);
+  return instagramImages;
+}
+
+const handler = async (req, res) => {
+  await cors(req, res);
   const results = [];
-  feed.items.forEach(item => {
+
+  const flickr = await getCachedFlickr();
+
+  flickr.items.slice(0,5).forEach(item => {
     results.push({
       title: item.title,
       permalink: item.link,
       published: item.isoDate,
-      content: item.content,
+      timestamp: moment(item.isoDate).unix(),
       type: "Flickr",
       image: item.images[1]['$']['href']
     });
   });
-  cache.put(url, results, hours * 1000 * 60 * 60);
+
+  const instagramImages = await getCacheInstagram();
+
+  instagramImages.slice(0,5).forEach(item => {
+    results.push({
+      title: item.caption || item.id,
+      permalink: item.permalink,
+      published: item.timestamp,
+      timestamp: moment(item.timestamp).unix(),
+      type: "Instagram",
+      image: item.thumbnailUrl || item.mediaUrl
+    });
+  });
+
+  results.sort(function(x, y){
+    return y.timestamp - x.timestamp;
+})
 
   res.status(200).json({ results });
 }

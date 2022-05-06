@@ -8,6 +8,7 @@ import Image from 'next/image';
 import moment from 'moment';
 import Link from 'next/link';
 import Flickr from '../../components/icons/flickr';
+import Instagram from '../../components/icons/instagram';
 
 export default function Projects() {
   const { data, error } = useStaleSWR('/api/portfolio/stream');
@@ -18,17 +19,21 @@ export default function Projects() {
       href={item.permalink}
         >
           <a target="_blank">
+            <div className="relative">
             <img
               src={item.image}
               alt={item.title}
               className="w-auto rounded"
               />
+              {item.type === "Flickr" && <Flickr className="w-8 absolute bottom-2 right-2" alt={item.type} />}
+              {item.type === "Instagram" && <Instagram className="w-8 absolute bottom-2 right-2" alt={item.type} />}
+              
+            </div>
             <div className="p-3">
               <div className="flex">
               <h4 className="flex-1 font-header tracking-wide text-xl">{item.title}</h4>
-              <Flickr className="w-8 " alt={item.type} />
               </div>
-              <p className="text-right text-sm opacity-70">{moment(item.published).fromNow()}</p>
+              <p className="text-right text-xs opacity-70">{moment(item.published).fromNow()}</p>
             </div>
           </a>
         </Link>

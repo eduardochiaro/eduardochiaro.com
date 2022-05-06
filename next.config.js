@@ -8,7 +8,8 @@ module.exports = {
       'avatars.githubusercontent.com',
       'repository-images.githubusercontent.com',
       'images.unsplash.com',
-      'live.staticflickr.com'
+      'live.staticflickr.com',
+      'cdninstagram.com'
     ]
   },
   webpack(config) {
