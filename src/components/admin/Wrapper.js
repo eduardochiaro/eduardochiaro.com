@@ -23,9 +23,9 @@ const AdminWrapper = ({ children }) => {
               title={`Logged as ${session.user.name}`}
             />
           </div>
-          <div className="inline-block">
+          <div className="inline-block mr-4">
             <a onClick={() => signOut()} title="logout" className="cursor-pointer focus:outline-none">
-              <LogoutIcon className="inline-flex w-7" />
+              <LogoutIcon className="inline-flex h-5" />
             </a>
           </div>
           <ThemeIcon />

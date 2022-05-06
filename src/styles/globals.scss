@@ -55,7 +55,7 @@ table.admin-table {
     }
   }
   tbody {
-    @apply bg-zinc-200 dark:bg-zinc-700  text-zinc-900 dark:text-zinc-100;
+    @apply bg-zinc-200 dark:bg-zinc-700 text-zinc-900 dark:text-zinc-100;
     tr {
       @apply border-y-2 border-zinc-50 dark:border-zinc-800;
       &:nth-child(even) {

@@ -1,10 +1,26 @@
 import { PencilAltIcon } from '@heroicons/react/outline';
 import { TrashIcon } from '@heroicons/react/solid';
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 
-const tableLayout = ({ columns = [], data = [], editAction = () => null, deleteAction = () => null}) => {
+export default function TableLayout ({ columns = [], data = [], editAction = () => null, deleteAction = () => null}) {
+  const [filteredData, setFilteredData] = useState([]);
+
+  useEffect(() => {
+    setFilteredData(data);
+  }, [data]);
+
+  const search = (search) => {
+    const filterData = data.filter(x => {
+      return x.name.toLowerCase().includes(search.toLowerCase());
+    });
+    setFilteredData(filterData);
+  }
+
   return (
-    <div className="flex flex-col">
+    <>
+    <button role="button" onClick={() => search('G')}>test</button>
+    <button role="button" onClick={() => search('')}>test 2</button>
+    <div className="flex flex-col mt-8">
       <div className="-my-2 sm:-mx-6 lg:-mx-8">
         <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
           <table className="admin-table">
@@ -22,8 +38,8 @@ const tableLayout = ({ columns = [], data = [], editAction = () => null, deleteA
               </tr>
             </thead>
             <tbody>
-              { data.length > 0 ? 
-                data.map((item) => (
+              { filteredData.length > 0 ? 
+                filteredData.map((item) => (
                   <tr key={item.id}>
                     <td><span className="hidden">{item.id}</span></td>
                     { columns.map((column, index) => (
@@ -48,7 +64,6 @@ const tableLayout = ({ columns = [], data = [], editAction = () => null, deleteA
         </div>
       </div>
     </div>
+    </>
   )
 }
-
-export default tableLayout

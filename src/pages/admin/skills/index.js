@@ -8,7 +8,7 @@ import path from 'path';
 import SVG from 'react-inlinesvg';
 import AdminModal from "../../../components/admin/Modal";
 import AdminWrapper from "../../../components/admin/Wrapper";
-import TableLayout from "../../../components/admin/tableLayout";
+import TableLayout from "../../../components/admin/TableLayout";
 import mergeObj from "../../../lib/mergeObj";
 import NaturalImage from "../../../components/NaturalImage";
 import useStaleSWR from "../../../lib/staleSWR";

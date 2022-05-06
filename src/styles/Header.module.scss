@@ -1,4 +1,5 @@
 .header {
+  @apply sticky drop-shadow-md shadow-zinc-700 top-0 z-40 h-14 ;
   .menuUrl {
     @apply px-6 py-2 block md:inline-block transition text-2xl md:text-base ;
   }

@@ -7,7 +7,7 @@ import fs from 'fs';
 import path from 'path';
 import AdminModal from "../../../components/admin/Modal";
 import AdminWrapper from "../../../components/admin/Wrapper";
-import TableLayout from "../../../components/admin/tableLayout";
+import TableLayout from "../../../components/admin/TableLayout";
 import mergeObj from "../../../lib/mergeObj";
 import useStaleSWR from "../../../lib/staleSWR";
 import moment from "moment";

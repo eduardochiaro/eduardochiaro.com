@@ -30,7 +30,7 @@ export default function Header () {
   ]
   const router = useRouter();
   return (
-    <header className={`${styles.header} sticky drop-shadow-md shadow-zinc-700 top-0 z-40 h-14 bg-zinc-100 dark:bg-zinc-700 border-b border-zinc-200 dark:border-zinc-600`}>
+    <header className={`${styles.header} bg-zinc-100 dark:bg-zinc-700 border-b border-zinc-200 dark:border-zinc-600`}>
       <nav className="w-100 px-auto">
         <div className="pt-4 md:pt-2 px-4 md:px-8 grid grid-cols-2 md:grid-cols-3">
           <div className="flex items-center">
@@ -95,7 +95,7 @@ export default function Header () {
           </div>
           <div className="flex items-center text-right">
             <span className="flex-1"></span>
-            <a href="https://blog.eduardochiaro.com" className="inline-block md:pr-0 pr-6 whitespace-nowrap text-base font-medium transition hover:underline">
+            <a href="https://blog.eduardochiaro.com" className="inline-block md:pr-0 pr-6 whitespace-nowrap text-base font-medium transition hover:underline  mr-4">
               <span className="flex items-center">
                 <RssIcon className={`h-6 w-6 text-accent-500 mr-2`} aria-hidden="true"  /> .dev
               </span>
