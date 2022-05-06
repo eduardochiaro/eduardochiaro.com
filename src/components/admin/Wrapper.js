@@ -1,9 +1,9 @@
 import AdminSidebar from "./Sidebar";
-import React, { useState, useEffect } from 'react';
 import Image from "next/image";
 import { useSession, signOut } from "next-auth/react"
 import { LogoutIcon } from "@heroicons/react/outline";
 import ThemeIcon from "../ThemeIcon";
+import React from "react";
 
 const AdminWrapper = ({ children }) => {
   const { data: session } = useSession();
