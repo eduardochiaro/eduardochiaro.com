@@ -53,9 +53,9 @@ export default function ThemeIcon () {
     <Menu as="div" className="relative">
       <Menu.Button as="span">
       { inUseTheme === "dark" ? 
-        <MoonIcon className="w-5 h-5 text-zinc-900 inline-block border rounded-full bg-zinc-100" />
+        <MoonIcon  className="w-5 h-5 text-zinc-900 inline-block border rounded-full bg-zinc-100 cursor-pointer" />
         :
-        <SunIcon className="w-5 h-5 text-zinc-500 inline-block" />
+        <SunIcon className="w-5 h-5 text-zinc-500 inline-block cursor-pointer" />
       }
       </Menu.Button>
       <Transition

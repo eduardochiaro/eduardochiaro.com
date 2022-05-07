@@ -16,7 +16,7 @@ export default function Skills () {
         { data && data.results ? 
             data.results.map((skill, index) => (
             <div key={`skill-${index}`} className="flex items-center mt-1">
-              <span className="flex-none font-medium text-gray-1000 dark:text-gray-100 mr-5">{skill.name}</span>
+              <span className="flex-none font-medium mr-5">{skill.name}</span>
               <span className="w-full border-t border-primary-700 dark:border-primary-600 border-dashed shrink mr-5"></span>
               <div className="flex-none w-12 relative text-white">
                 <SVG title={skill.name} alt={skill.name} className={`inline-block w-8 fill-zinc-700 dark:fill-zinc-200`} src={`/images/svg-icons/${skill.logo}`} />
@@ -33,11 +33,11 @@ export default function Skills () {
                 .map((_, idx) => 0 + idx),
             ].map((x) => (
               <div key={`skill-${x}`} className="flex items-center mt-1">
-                <span className="flex-none font-medium text-gray-1000 dark:text-gray-100 mr-5">
+                <span className="flex-none font-medium mr-5">
                   <div key={x} className="w-12 h-8 bg-zinc-300 dark:bg-zinc-600 rounded animate-pulse"></div>
                 </span>
                 <span className="w-full border-t border-primary-700 dark:border-primary-600 border-dashed shrink mr-5"></span>
-                <div className="flex-none w-12 relative text-white">
+                <div className="flex-none w-12 relative">
                   <div key={x} className="w-8 h-8 bg-zinc-300 dark:bg-zinc-600 rounded animate-pulse"></div>
                 </div>
                 <div className="flex-none w-6/12">

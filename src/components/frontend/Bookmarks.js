@@ -1,9 +1,9 @@
-import { BookmarkAltIcon, LinkIcon, TagIcon } from '@heroicons/react/solid';
+import { BookmarkAltIcon, TagIcon } from '@heroicons/react/solid';
 import Link from 'next/link';
 import Image from 'next/image';
 import * as React from 'react';
 import useStaleSWR from '../../lib/staleSWR';
-import NavLink from '../Navlink';
+import NavLink from '../NavLink';
 
 export default function Bookmarks() {
   const { data, error } = useStaleSWR('/api/portfolio/bookmarks');

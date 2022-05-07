@@ -12,7 +12,6 @@ import Instagram from '../../components/icons/instagram';
 
 export default function Projects() {
   const { data, error } = useStaleSWR('/api/portfolio/stream');
-  // Convert array to JSX items
   const items = data?.results.map(function(item, id) {
     return <div key={id} className="shadow box-card p-1">
       <Link
@@ -47,7 +46,7 @@ export default function Projects() {
   return (
     <div className="flex flex-col h-screen justify-between">
       <Head>
-        <title>Eduardo Chiaro | Projects &lraq; Stream</title>
+        <title>Eduardo Chiaro | Projects &gt; Stream</title>
       </Head>
       <div className="mb-auto">
         <Header />
@@ -55,7 +54,7 @@ export default function Projects() {
         <section className={`px-4 lg:px-0 mt-10`}>
           <div className="max-w-5xl mx-auto">
             <h3 className="font-header leading-tight text-2xl lg:text-3xl pr-4 font-light">
-              Stream
+              Projects &gt; Stream
             </h3>
             <div className="mt-8">
               <Masonry

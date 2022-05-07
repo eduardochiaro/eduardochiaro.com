@@ -5,7 +5,7 @@ import {
   UserCircleIcon,
 } from '@heroicons/react/solid';
 import GitHubIcon from '../icons/github';
-import NavLink from '../Navlink';
+import NavLink from '../NavLink';
 
 export default function Sidemenu () {
   const menuData = [

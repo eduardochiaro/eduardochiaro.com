@@ -1,7 +1,7 @@
 import { BriefcaseIcon, ChipIcon, TerminalIcon, HomeIcon, TagIcon, BookmarkIcon } from "@heroicons/react/solid";
 import SVG from 'react-inlinesvg'
 import Link from "next/link";
-import NavLink from '../Navlink';
+import NavLink from '../NavLink';
 import styles from '../../styles/Admin.Sidebar.module.scss'
 
 const AdminSidebar = () => {

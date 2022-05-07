@@ -16,10 +16,10 @@ body {
   @apply block text-sm font-medium text-zinc-900 dark:text-zinc-100;
 }
 .input-field {
-  @apply focus:border-emerald-500 bg-zinc-200 dark:bg-zinc-700 text-zinc-900 dark:text-zinc-100 focus:ring-emerald-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md;
+  @apply focus:border-emerald-500 bg-zinc-200 dark:bg-zinc-700 text-zinc-900 dark:text-zinc-100 focus:ring-emerald-500 block w-full shadow-sm sm:text-sm border-zinc-300 rounded-md;
 }
 .range-field {
-  @apply rounded-lg appearance-none bg-gray-200 dark:bg-zinc-500 h-3 w-full;
+  @apply rounded-lg appearance-none bg-zinc-200 dark:bg-zinc-500 h-3 w-full;
   &::-webkit-slider-thumb {
     width: 15px;
     -webkit-appearance: none;

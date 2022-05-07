@@ -5,10 +5,10 @@ import {
 } from '@heroicons/react/solid'
 import SVG from 'react-inlinesvg';
 import styles from '../../styles/Header.module.scss'
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Menu, Transition } from '@headlessui/react';
 import ThemeIcon from '../ThemeIcon';
+import NavLink from '../NavLink';
 
 export default function Header () {
   const menuData = [
@@ -70,15 +70,14 @@ export default function Header () {
                 { menuData.map(function(item, i) {
                   return (
                     <li key={`menu-link-${i}`}>
-                      { router.route == item.link ? 
-                        <Link href={item.link}>
-                          <a className={`${styles.menuUrl} text-primary-700 dark:text-primary-600`}>{item.text}</a>
-                        </Link>
-                        : 
-                        <Link href={item.link}>
-                          <a className={`${styles.menuUrl} hover:text-zinc-900 dark:hover:text-zinc-100 hover:underline`}>{item.text}</a>
-                        </Link>
-                      }
+                      <NavLink 
+                        href={item.link}
+                        className={`${styles.menuUrl} hover:text-zinc-900 dark:hover:text-zinc-100 hover:underline`}
+                        activeClassName={`${styles.menuUrl} text-primary-700 dark:text-primary-600`}
+                        type="main"
+                        >
+                        <a>{item.text}</a>
+                      </NavLink>
                     </li>
                   )
                 })}
