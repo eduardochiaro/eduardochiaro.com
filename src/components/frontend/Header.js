@@ -3,37 +3,47 @@ import {
   RssIcon,
   MenuIcon,
 } from '@heroicons/react/solid'
-import SVG from 'react-inlinesvg';
 import styles from '../../styles/Header.module.scss'
 import { useRouter } from 'next/router';
 import { Menu, Transition } from '@headlessui/react';
 import ThemeIcon from '../ThemeIcon';
 import NavLink from '../NavLink';
+import Logo from '../icons/logo';
+import Link from 'next/link';
 
 export default function Header () {
   const menuData = [
     {
       text: 'Home',
       link: '/',
-      current: true
+      current: true,
+      onlyMobile: false
     },
     {
       text: 'Bookmarks',
       link: '/bookmarks',
-      current: false
+      current: false,
+      onlyMobile: false
     },
     {
       text: 'Projects',
       link: '/projects',
-      current: false
+      current: false,
+      onlyMobile: false
+    },
+    {
+      text: ( <><RssIcon className={`h-6 w-6 text-accent-500 mr-2 inline-block`} aria-hidden="true"  />.dev</> ),
+      link: 'https://blog.eduardochiaro.com',
+      current: false,
+      onlyMobile: true
     }
   ]
   const router = useRouter();
   return (
     <header className={`${styles.header} bg-zinc-100 dark:bg-zinc-700 border-b border-zinc-200 dark:border-zinc-600`}>
       <nav className="w-100 px-auto">
-        <div className="pt-4 md:pt-2 px-4 md:px-8 grid grid-cols-2 md:grid-cols-3">
-          <div className="flex items-center">
+        <div className="pt-4 md:pt-2 px-4 md:px-8 grid grid-cols-3">
+          <div className="md:flex items-center">
             <Menu as="div" className="relative">
               <Menu.Button as="a" className="inline-block md:hidden">
                 <MenuIcon className={`w-6 inline-block border-2 rounded border-primary-700 transition text-primary-700 dark:text-primary-600 hover:text-zinc-900 dark:hover:text-zinc-100`}/>
@@ -64,10 +74,9 @@ export default function Header () {
                 </Menu.Items>
               </Transition>
             </Menu>
-            <span className="ml-2 font-header font-bold text-xl hidden xs:inline-block md:hidden">Eduardo Chiaro</span>
             <div className={` transition-all duration-300 ease-in-out w-full md:w-auto hidden drop-shadow-none md:contents absolute md:relative top-14 pb-2 left-1 bg-zinc-100 dark:bg-zinc-700 z-50`}>
               <ul className="md:flex font-semibold tracking-wider">
-                { menuData.map(function(item, i) {
+                { menuData.filter(x => !x.onlyMobile).map(function(item, i) {
                   return (
                     <li key={`menu-link-${i}`}>
                       <NavLink 
@@ -84,21 +93,21 @@ export default function Header () {
               </ul>
             </div>
           </div>
-          <div className="hidden md:flex items-center">
-            <SVG 
+          <div className="flex items-center">
+            <Logo 
               title="Eduardo Chiaro" 
               alt="Eduardo Chiaro" 
-              className={`w-auto h-7 md:mx-auto font-normal`}
-              width={65}
-              src={'/images/logo-3.svg'} />
+              className={`w-auto h-7 mx-auto`} />
           </div>
           <div className="flex items-center text-right">
             <span className="flex-1"></span>
-            <a href="https://blog.eduardochiaro.com" className="inline-block md:pr-0 pr-6 whitespace-nowrap text-base font-medium transition hover:underline  mr-4">
-              <span className="flex items-center">
-                <RssIcon className={`h-6 w-6 text-accent-500 mr-2`} aria-hidden="true"  /> .dev
-              </span>
-            </a>
+            <Link
+              href="https://blog.eduardochiaro.com"
+              >
+              <a className="hidden md:inline-block md:pr-0 pr-6 whitespace-nowrap text-base font-medium transition hover:underline  mr-4">
+                <RssIcon className={`h-6 w-6 text-accent-500 mr-2 inline-block`} aria-hidden="true"  /> .dev
+              </a>
+            </Link>
             <ThemeIcon />
           </div>
         </div>

@@ -21,7 +21,7 @@ function MyApp({
           <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
           <link rel="manifest" href="/site.webmanifest" />
           <link rel="mask-icon" href="/safari-pinned-tab.svg" color={tailwind.theme.colors.primary[800]} />
-          <meta name="msapplication-TileColor" content={tailwind.theme.colors.primary[800]} />
+          <meta name="msapplication-TileColor" content={tailwind.theme.colors.primary[200]} />
           <meta name="theme-color" content={tailwind.theme.colors.zinc[100]} media="(prefers-color-scheme: light)" key="dark-system" />
           <meta name="theme-color" content={tailwind.theme.colors.zinc[700]} media="(prefers-color-scheme: dark)" key="light-system"  />
         </Head>

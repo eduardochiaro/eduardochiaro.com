@@ -1,8 +1,8 @@
 import moment from 'moment';
 import * as React from 'react';
-import SVG from 'react-inlinesvg'
 import { useSession, signIn, signOut } from "next-auth/react"
 import { LoginIcon, LogoutIcon } from "@heroicons/react/solid"
+import Logo from '../icons/logo';
 
 function LoginButton(props) {
   const isLoggedIn = props.isLoggedIn;
@@ -31,7 +31,7 @@ export default function Footer () {
           <div className="hidden md:block flex-none w-60 text-sm"></div>
           <div className="flex-1 text-center">
             © Copyright {moment().year()}
-            <SVG title="Eduardo Chiaro" alt="Eduardo Chiaro" className={`inline w-auto h-7 mx-3 `} src={`/images/logo-3.svg`} />
+            <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={`inline w-auto h-7 mx-3 `} />
             Eduardo Chiaro
           </div>
           <div className="flex-none w-full text-right align-baseline md:w-60 mt-5 md:mt-0">

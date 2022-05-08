@@ -9,6 +9,7 @@ import moment from 'moment';
 import Link from 'next/link';
 import Flickr from '../../components/icons/flickr';
 import Instagram from '../../components/icons/instagram';
+import styles from '../../styles/Stream.module.scss';
 
 export default function Projects() {
   const { data, error } = useStaleSWR('/api/portfolio/stream');
@@ -48,7 +49,7 @@ export default function Projects() {
       <Head>
         <title>Eduardo Chiaro | Projects &gt; Stream</title>
       </Head>
-      <div className="mb-auto">
+      <div className={`${styles.stream} mb-auto pb-10`}>
         <Header />
         <Share />
         <section className={`px-4 lg:px-0 mt-10`}>
