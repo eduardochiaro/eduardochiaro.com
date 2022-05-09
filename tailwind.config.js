@@ -57,8 +57,14 @@ module.exports = {
     },
     fontFamily: {
       'header': ['Rajdhani', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', 'Arial', 'sans-serif'],
+      'mono': ['Roboto Mono', 'Courier New', 'monospace'],
     },
-    extend: {},
+    extend: {
+      transitionProperty: {
+          'width': 'width',
+          'height': 'height'
+      }
+    },
   },
   plugins: [
     require('@tailwindcss/typography'),

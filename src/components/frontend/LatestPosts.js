@@ -29,7 +29,7 @@ export default function LatestPosts () {
                       <div className="flex flex-row items-center">
                         <span className="w-full border-t border-primary-700 dark:border-primary-600 border-dashed shrink"></span>
                         <span className="w-4 border-t border-primary-700 dark:border-primary-600 border-dashed shrink"></span>
-                        <span className="text-sm font-light tracking-wide whitespace-nowrap bg-zinc-50 dark:bg-zinc-800 px-4 text-zinc-500 dark:text-primary-600">{ moment(article.published).format("MMM Do YYYY")}</span>
+                        <span className="text-sm font-mono whitespace-nowrap bg-zinc-50 dark:bg-zinc-800 px-4 text-zinc-500 dark:text-primary-600">{ moment(article.published).format("MM/DD/YYYY")}</span>
                         <span className="flex-none w-12 border-t border-primary-700 dark:border-primary-600 border-dashed"></span>
                       </div>
                     </div>

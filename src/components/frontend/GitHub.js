@@ -5,6 +5,7 @@ import { TagIcon } from '@heroicons/react/solid';
 import { ClockIcon } from '@heroicons/react/outline';
 import moment from 'moment';
 import Image from 'next/image';
+import Masonry from 'react-masonry-css';
 
 const fetcher = (url) => fetch(url).then((res) => res.json())
 
@@ -48,7 +49,7 @@ export default function GitHub () {
           src={`/images/random/${pick}.jpg`}
           layout="fill"
           objectFit="cover"
-          className="z-10 rounded"
+          className="z-10"
           alt={alt}
         />
     ) : (
@@ -56,11 +57,40 @@ export default function GitHub () {
           src={src}
           layout="fill"
           objectFit="cover"
-          className="z-10 rounded"
+          className="z-10"
           alt={alt}
         />
     )
   }
+
+  const items = cutReposene.map((repo, index) => (
+    <div className="overflow-hidden box-card max-h-min" key={`repo-${index}`}>
+      <a href={repo.url} className="flex flew-wrap w-full text-decoration-none overflow-hidden h-full">
+        <div className="relative transition-width ease-in-out duration-500 flex-none peer w-1/3 md:hidden lg:block lg:w-1/3 hover:w-2/3">
+          <LoadImage src={repo.openGraphImageUrl} alt={repo.name} />
+          <SVG title={repo.language} alt={repo.language} className={`z-30 h-6 absolute left-2 bottom-2 bg-zinc-300 dark:bg-zinc-500 rounded border border-zinc-400 dark:border-zinc-600 px-2 fill-zinc-800 dark:fill-zinc-200`} src={`images/svg-icons/${getLanguageIcon(repo.language)}.svg`} />
+        </div>
+        <div className="w-full md:w-2/3 p-4 relative whitespace-nowrap min-h-min">
+          <h4 className="mt-2 text-lg font-bold font-header tracking-wide ">{repo.name}</h4>
+          <p className="mt-4 mb-2 text-xs antialiased">{repo.description}</p>
+          <p className="text-xs opacity-60 absolute top-2 right-2 flex items-center"><ClockIcon alt="last updated" className="h-3 mr-2"/> {moment(repo.pushedAt).from(moment())}</p>
+          {repo.languages.slice(0, 2).map((language, index) => (
+            <div key={index} className="inline-block mr-4 text-xs antialiased">
+              <span className="inline-block w-3 h-3 align-middle mb-1 border border-zinc-500 dark:border-zinc-800 rounded-full mr-2" style={{ backgroundColor: language.color }}></span>
+              {language.name}
+            </div>
+          ))}
+          <div className="mt-2">                
+          {repo.topics.slice(0, 2).map((topic) => (
+            <div className="bg-zinc-300 dark:bg-zinc-500 border border-zinc-400 dark:border-zinc-600 rounded px-2 text-sm mr-2 mb-2 inline-block z-30" key={topic}>
+              <TagIcon className="w-3 inline mr-1 align-middle"/>{topic}
+            </div>
+          ))}
+          </div>
+        </div>
+      </a>
+    </div>
+  ));
 
   return (
     <section id="github" className={`px-4 lg:px-0 mt-10`}>
@@ -69,38 +99,8 @@ export default function GitHub () {
         <h3 className="font-header leading-tight text-2xl lg:text-3xl pr-4 font-light">
           What I&apos;ve <span className="text-primary-700 dark:text-primary-600">coded</span> recently...
         </h3>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 xl:gap-8 mt-5 pb-10">
-        { cutReposene.map((repo, index) => (
-          <div className="flex relative p-2 box-card" key={`repo-${index}`}>
-            <a href={repo.url} className="flex flew-wrap w-full text-decoration-none">
-              <div className="hidden md:block md:basis-1/3 p-4 pr-2">
-                <div className="relative w-full h-full border-4 border-zinc-300 dark:border-zinc-600 rounded-md">
-                  <LoadImage src={repo.openGraphImageUrl} alt={repo.name} />
-                </div>
-              </div>
-              <div className="basis-full md:basis-2/3 p-4 relative">
-                <h4 className="mt-2 text-lg font-bold font-header tracking-wide ">{repo.name}</h4>
-                <p className="mt-4 mb-2 text-xs antialiased">{repo.description}</p>
-                <p className="text-xs opacity-60 absolute top-2 right-2"><ClockIcon alt="last updated" className="inline-block h-4 align-middle"/> {moment(repo.pushedAt).from(moment())}</p>
-                {repo.languages.slice(0, 2).map((language, index) => (
-                  <div key={index} className="inline-block mr-4 text-xs antialiased">
-                    <span className="inline-block w-3 h-3 align-middle mb-1 border border-zinc-500 dark:border-zinc-800 rounded-full mr-2" style={{ backgroundColor: language.color }}></span>
-                    {language.name}
-                  </div>
-                ))}
-                <div className="mt-2">                
-                {repo.topics.map((topic) => (
-                  <div className="bg-zinc-300 dark:bg-zinc-500 border border-zinc-400 dark:border-zinc-600 rounded px-2 text-sm mr-2 mb-2 inline-block z-30" key={topic}>
-                    <TagIcon className="w-3 inline mr-1 align-middle"/>{topic}
-                  </div>
-                ))}
-                </div>
-
-              </div>
-              <SVG title={repo.language} alt={repo.language} className={`w-10 absolute right-4 bottom-2 fill-zinc-200 dark:fill-zinc-500`} src={`images/svg-icons/${getLanguageIcon(repo.language)}.svg`} />
-            </a>
-          </div>
-        ))}
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-2 gap-4 xl:gap-8 mt-5 pb-10">
+          {items }
         </div>
       </div>
     </section>

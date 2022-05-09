@@ -33,7 +33,7 @@ export default function Projects() {
               <div className="flex">
               <h4 className="flex-1 font-header tracking-wide text-xl">{item.title}</h4>
               </div>
-              <p className="text-right text-xs opacity-70">{moment(item.published).fromNow()}</p>
+              <p className="text-right text-xs font-mono opacity-70">{moment(item.published).fromNow()}</p>
             </div>
           </a>
         </Link>
