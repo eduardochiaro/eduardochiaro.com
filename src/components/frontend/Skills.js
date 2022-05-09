@@ -4,12 +4,12 @@ import SVG from 'react-inlinesvg';
 import styles from '../../styles/Skills.module.scss'
 
 export default function Skills () {
-  const { data, error } = useStaleSWR('/api/portfolio/skills');
+  const { data } = useStaleSWR('/api/portfolio/skills');
   return (
     <section className={`px-4 lg:px-0 mt-10`}>
       <span className="anchor" name="skills"/>
       <div className="max-w-5xl mx-auto">
-        <h3 className="font-header leading-tight text-2xl lg:text-3xl pr-4 font-light mb-2">
+        <h3 className="font-header leading-tight text-2xl lg:text-3xl font-light mb-2">
           What I&apos;m <span className="text-primary-700 dark:text-primary-600">good</span> at...
         </h3>
         <div>

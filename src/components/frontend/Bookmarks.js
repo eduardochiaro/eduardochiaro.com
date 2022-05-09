@@ -6,7 +6,7 @@ import useStaleSWR from '../../lib/staleSWR';
 import NavLink from '../NavLink';
 
 export default function Bookmarks() {
-  const { data, error } = useStaleSWR('/api/portfolio/bookmarks');
+  const { data } = useStaleSWR('/api/portfolio/bookmarks');
 
   const categories = data && data.results ? data.results.map((bookmark) => bookmark.category) : [];
   const uniqueCategories = categories.filter((value, index, self) =>
@@ -18,7 +18,7 @@ export default function Bookmarks() {
     <>
     <section id="work" className={`px-4 lg:px-0 mt-10`}>
       <div className="max-w-5xl mx-auto">
-        <h3 className="font-header leading-tight text-2xl lg:text-3xl pr-4 font-light">
+        <h3 className="font-header leading-tight text-2xl lg:text-3xl font-light">
           Bookmarks
         </h3>
         { uniqueCategories.map((category, index) => (
@@ -72,7 +72,7 @@ export default function Bookmarks() {
               <NavLink 
                 href={ index == 0 ? `/bookmarks` : `/bookmarks#bookmarks-${category.id}` }
                 as={`/bookmarks#bookmarks-${category.id}`}
-                className={`text-base transition hover:text-zinc-900 dark:hover:text-zinc-100 hover:underline`} 
+                className={`text-base transition hover:text-zinc-900 dark:hover:text-zinc-100 hover:underline opacity-60 hover:opacity-100`} 
                 activeClassName={`text-base transition text-primary-700 dark:text-primary-600`}
               >
                 <a>

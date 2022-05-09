@@ -4,13 +4,13 @@ import * as React from 'react';
 import useStaleSWR from '../../lib/staleSWR';
 
 export default function LatestPosts () {
-  const { data, error } = useStaleSWR('/api/portfolio/blog');
+  const { data } = useStaleSWR('/api/portfolio/blog');
   const cutReposene = (data) ? data.results.slice(0, 3) : [];
   return (
     <section className={`px-4 lg:px-0 mt-10`}>
       <span className="anchor" name="articles"/>
       <div className="max-w-5xl mx-auto">
-        <h3 className="font-header leading-tight text-2xl lg:text-3xl pr-4 font-light mb-2">
+        <h3 className="font-header leading-tight text-2xl lg:text-3xl font-light mb-2">
           Recent <span className="text-primary-700 dark:text-primary-600">articles</span> says...
         </h3>
         <div className="mt-6 -ml-6">

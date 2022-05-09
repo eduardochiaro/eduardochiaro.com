@@ -48,7 +48,7 @@ export default function Sidemenu () {
               <NavLink 
                 href={item.link} 
                 as={ item.as }
-                className={`flex items-center transition hover:text-zinc-900 dark:hover:text-zinc-100 hover:underline`} 
+                className={`flex items-center transition hover:text-zinc-900 dark:hover:text-zinc-100 hover:underline opacity-60 hover:opacity-100`}
                 activeClassName={`flex items-center transition text-primary-700 dark:text-primary-600`}
               >
                 <a>{item.pre}{item.text}</a>

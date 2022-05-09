@@ -3,12 +3,12 @@ import useStaleSWR from '../../lib/staleSWR';
 import SVG from 'react-inlinesvg';
 
 export default function Jobs () {
-  const { data, error } = useStaleSWR('/api/portfolio/works');
+  const { data } = useStaleSWR('/api/portfolio/works');
 
   return (
     <section id="work" className={`px-4 lg:px-0 mt-10`}>
       <div className="max-w-5xl mx-auto">
-        <h3 className="font-header leading-tight text-2xl lg:text-3xl pr-4 font-light">
+        <h3 className="font-header leading-tight text-2xl lg:text-3xl font-light">
           I&apos;ve <span className="text-primary-700 dark:text-primary-600">coded</span> for...
         </h3>
         <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-8 mt-4">

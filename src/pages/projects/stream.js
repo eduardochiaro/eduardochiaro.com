@@ -12,7 +12,7 @@ import Instagram from '../../components/icons/instagram';
 import styles from '../../styles/Stream.module.scss';
 
 export default function Projects() {
-  const { data, error } = useStaleSWR('/api/portfolio/stream');
+  const { data } = useStaleSWR('/api/portfolio/stream');
   const items = data?.results.map(function(item, id) {
     return <div key={id} className="shadow box-card p-1">
       <Link
@@ -54,8 +54,12 @@ export default function Projects() {
         <Share />
         <section className={`px-4 lg:px-0 mt-10`}>
           <div className="max-w-5xl mx-auto">
-            <h3 className="font-header leading-tight text-2xl lg:text-3xl pr-4 font-light">
-              Projects &gt; Stream
+            <h3 className="font-header leading-tight text-2xl lg:text-3xl font-light">
+              <Link
+                href="/projects"
+                >
+                  <a className="hover:underline">Projects</a>
+                </Link> &gt; Stream
             </h3>
             <div className="mt-8">
               <Masonry

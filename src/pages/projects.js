@@ -1,8 +1,8 @@
 import Head from 'next/head';
-import Apps from "../components/frontend/Apps";
-import Footer from "../components/frontend/Footer";
 import Header from "../components/frontend/Header";
 import Share from '../components/frontend/Share';
+import ProjectsComponent from "../components/frontend/Projects";
+import Footer from "../components/frontend/Footer";
 
 export default function Projects() {
   return (
@@ -13,7 +13,7 @@ export default function Projects() {
       <div className="mb-auto">
         <Header />
         <Share />
-        <Apps />
+        <ProjectsComponent />
       </div>
       <Footer />
     </div>

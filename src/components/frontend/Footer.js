@@ -1,7 +1,6 @@
 import moment from 'moment';
 import * as React from 'react';
 import { useSession, signIn, signOut } from "next-auth/react"
-import { LoginIcon, LogoutIcon } from "@heroicons/react/solid"
 import Logo from '../icons/logo';
 import Link from 'next/link';
 
