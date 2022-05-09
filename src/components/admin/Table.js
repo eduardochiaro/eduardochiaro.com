@@ -1,26 +1,55 @@
 import { PencilAltIcon } from '@heroicons/react/outline';
-import { TrashIcon } from '@heroicons/react/solid';
+import { TrashIcon, XIcon } from '@heroicons/react/solid';
+import { index } from 'cheerio/lib/api/traversing';
+import { filter } from 'domutils';
 import React, { useEffect, useState } from 'react';
 
-export default function TableLayout ({ columns = [], data = [], editAction = () => null, deleteAction = () => null}) {
+export default function Table ({ columns = [], data = [], editAction = () => null, deleteAction = () => null}) {
   const [filteredData, setFilteredData] = useState([]);
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     setFilteredData(data);
   }, [data]);
 
-  const search = (search) => {
-    const filterData = data.filter(x => {
-      return x.name.toLowerCase().includes(search.toLowerCase());
-    });
-    setFilteredData(filterData);
+  const typeSearch = (e) => {
+    const search = e.target.value;
+    filterData(search);
+  }
+
+  const filterData = (search) => {
+    setSearch(search);
+    const indexToSearch = columns.filter(x => x.searchable);
+    if (search.length > 0) {
+      const filterData = data.filter(x => {
+        let found = false;
+        indexToSearch.forEach(y => {
+          if (x[y.key] && x[y.key].toLowerCase().includes(search.toLowerCase())) {
+            found = true;
+          }
+        });
+        return found;
+        //return x.name.toLowerCase().includes(search.toLowerCase());
+      });
+      setFilteredData(filterData);
+    } else {
+      setFilteredData(data);
+    }
   }
 
   return (
     <>
-    <button role="button" onClick={() => search('G')}>test</button>
-    <button role="button" onClick={() => search('')}>test 2</button>
-    <div className="flex flex-col mt-8">
+    <div className="flex mt-8">
+      <div className="flex-1"></div>
+      <div className="flex relative">
+        <span className="inline-flex items-center px-3 text-sm bg-zinc-200 border border-r-0 border-zinc-300 rounded-l-md dark:bg-zinc-600 dark:border-zinc-600">
+          Search
+        </span>
+        <input onChange={typeSearch} type="text" value={search} id="website-admin" className="pr-8 rounded-none rounded-r-lg bg-zinc-50 border border-zinc-300 block flex-1 min-w-0 w-full text-sm p-2 dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder-zinc-400 focus:ring-primary-500 focus:border-primary-500  dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder=""/>
+        { search && <XIcon className="cursor-pointer absolute top-2 right-2 w-5" onClick={() => filterData('')} />}
+      </div>
+    </div>
+    <div className="flex flex-col">
       <div className="-my-2 sm:-mx-6 lg:-mx-8">
         <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
           <table className="admin-table">

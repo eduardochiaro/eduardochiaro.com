@@ -8,7 +8,7 @@ import path from 'path';
 import SVG from 'react-inlinesvg';
 import AdminModal from "../../../components/admin/Modal";
 import AdminWrapper from "../../../components/admin/Wrapper";
-import TableLayout from "../../../components/admin/TableLayout";
+import Table from "../../../components/admin/Table";
 import mergeObj from "../../../lib/mergeObj";
 import NaturalImage from "../../../components/NaturalImage";
 import useStaleSWR from "../../../lib/staleSWR";
@@ -132,6 +132,7 @@ const AdminSkillsIndex = ({ formRef, images }) => {
     {
       name: "Name",
       key: "name",
+      searchable: true,
       classNameTd: "font-bold"
     },
     {
@@ -143,12 +144,14 @@ const AdminSkillsIndex = ({ formRef, images }) => {
     {
       name: "Percentage",
       key: "percentage_d",
+      searchable: true,
       className: "textcenter",
       classNameTd: "text-center"
     },
     {
       name: "Type",
-      key: "type"
+      key: "type",
+      searchable: true
     },
     {
       name: "Updated",
@@ -184,7 +187,7 @@ const AdminSkillsIndex = ({ formRef, images }) => {
             </button>
           </div>
         </div>
-        <TableLayout columns={columns} data={newData} editAction={openModal} deleteAction={openModalDelete} />
+        <Table columns={columns} data={newData} editAction={openModal} deleteAction={openModalDelete} />
         <AdminModal 
           title={skill.id ? 'Edit skill' : 'Add new skill'}
           isOpen={isOpen} 
@@ -208,7 +211,7 @@ const AdminSkillsIndex = ({ formRef, images }) => {
             <div className="grid grid-cols-6 gap-6">
               <div className="col-span-6">
                 <label htmlFor="name-form" className="input-label">
-                  Title <span className="text-primary-700 text-xl">*</span>
+                  Title <span className="text-primary-700">*</span>
                 </label>
                 <input
                   type="text"
@@ -226,7 +229,7 @@ const AdminSkillsIndex = ({ formRef, images }) => {
               </div>
               <div className="col-span-5 sm:col-span-2">
                 <label htmlFor="logo-type-form" className="input-label">
-                  Logo <span className="text-primary-700 text-xl">*</span>
+                  Logo <span className="text-primary-700">*</span>
                 </label>
                 <select 
                   name="logo" 
@@ -252,7 +255,7 @@ const AdminSkillsIndex = ({ formRef, images }) => {
               </div>
               <div className="col-span-6 sm:col-span-3">
                 <label htmlFor="percentage-form" className="input-label">
-                  Percentage <span className="text-primary-700 text-xl">*</span>
+                  Percentage <span className="text-primary-700">*</span>
                 </label>
                 <input
                   type="range"
@@ -270,7 +273,7 @@ const AdminSkillsIndex = ({ formRef, images }) => {
               </div>
               <div className="col-span-6">
                 <label htmlFor="type-form" className="input-label">
-                  Type <span className="text-primary-700 text-xl">*</span>
+                  Type <span className="text-primary-700">*</span>
                 </label>
                 <input
                   type="text"

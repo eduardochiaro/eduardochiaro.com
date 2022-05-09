@@ -7,7 +7,7 @@ import fs from 'fs';
 import path from 'path';
 import AdminModal from "../../../components/admin/Modal";
 import AdminWrapper from "../../../components/admin/Wrapper";
-import TableLayout from "../../../components/admin/TableLayout";
+import Table from "../../../components/admin/Table";
 import mergeObj from "../../../lib/mergeObj";
 import useStaleSWR from "../../../lib/staleSWR";
 import moment from "moment";
@@ -156,15 +156,18 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
     {
       name: "Name",
       key: "name",
+      searchable: true,
       classNameTd: "font-bold"
     },
     {
       name: "Url",
-      key: "url"
+      key: "url",
+      searchable: true
     },
     {
       name: "Category",
-      key: "category_d"
+      key: "category_d",
+      searchable: true
     },
     {
       name: "Updated",
@@ -192,7 +195,7 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
             </button>
           </div>
         </div>
-        <TableLayout columns={columns} data={newData} editAction={openModal} deleteAction={openModalDelete} />
+        <Table columns={columns} data={newData} editAction={openModal} deleteAction={openModalDelete} />
         <AdminModal 
           title={bookmark.id ? 'Edit bookmark' : 'Add new bookmark'}
           isOpen={isOpen} 
@@ -216,7 +219,7 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
             <div className="grid grid-cols-6 gap-6">
               <div className="col-span-6">
                 <label htmlFor="category-form" className="input-label">
-                  Category <span className="text-primary-700 text-xl">*</span>
+                  Category <span className="text-primary-700">*</span>
                 </label>
                 <select 
                   name="categoryId" 
@@ -234,7 +237,7 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
               </div>
               <div className="col-span-6">
                 <label htmlFor="url-form" className="input-label">
-                  URL <span className="text-primary-700 text-xl">*</span>
+                  URL <span className="text-primary-700">*</span>
                 </label>
                 <div className="flex">
                   <input
@@ -249,7 +252,7 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
                     onChange={handleChange}
                     required
                   />
-                  <button type="button" onClick={() => fetchUrlData(bookmark)} className="border border-transparent shadow-sm text-sm font-medium rounded-md transition-colors ease-out duration-200 text-primary-900 hover:text-zinc-100 bg-primary-700 dark:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-700 flex-none w-20 ml-4">Fetch</button>
+                  <button type="button" onClick={() => fetchUrlData(bookmark)} className="button-success ml-4">Fetch</button>
                 </div>
               </div>
               { currentStatus &&
@@ -257,7 +260,7 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
               }
               <div className="col-span-6">
                 <label htmlFor="name-form" className="input-label">
-                  Title <span className="text-primary-700 text-xl">*</span>
+                  Title <span className="text-primary-700">*</span>
                 </label>
                 <input
                   type="text"

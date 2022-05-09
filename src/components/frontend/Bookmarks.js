@@ -1,4 +1,4 @@
-import { BookmarkAltIcon, TagIcon } from '@heroicons/react/solid';
+import { BookmarkIcon, TagIcon } from '@heroicons/react/solid';
 import Link from 'next/link';
 import Image from 'next/image';
 import * as React from 'react';
@@ -37,7 +37,7 @@ export default function Bookmarks() {
                   >
                   <a target="_blank" className="inline-block">
                     <h3 className="text-xl">
-                      <BookmarkAltIcon className="inline-block align-text-top h-6 mr-1" />
+                      <BookmarkIcon className="inline-block align-text-top h-6 mr-1" />
                       {bookmark.name}
                     </h3>
                     <p className="text-sm block opacity-80">

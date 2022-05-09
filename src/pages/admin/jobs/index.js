@@ -5,7 +5,7 @@ import { useSWRConfig } from "swr";
 import axios from 'axios';
 import AdminModal from "../../../components/admin/Modal";
 import AdminWrapper from "../../../components/admin/Wrapper";
-import TableLayout from "../../../components/admin/TableLayout";
+import Table from "../../../components/admin/Table";
 import mergeObj from "../../../lib/mergeObj";
 import SVG from 'react-inlinesvg';
 import useStaleSWR from "../../../lib/staleSWR";
@@ -128,6 +128,7 @@ const AdminJobsIndex = ({ formRef }) => {
     {
       name: "Name",
       key: "name",
+      searchable: true,
       classNameTd: "font-bold"
     },
     {
@@ -139,12 +140,14 @@ const AdminJobsIndex = ({ formRef }) => {
     {
       name: "Size (width)",
       key: "size",
+      searchable: true,
       className: "textcenter",
       classNameTd: "text-center"
     },
     {
       name: "Disclaimer",
-      key: "disclaimer"
+      key: "disclaimer",
+      searchable: true
     },
     {
       name: "Updated",
@@ -185,7 +188,7 @@ const AdminJobsIndex = ({ formRef }) => {
             </button>
           </div>
         </div>
-        <TableLayout columns={columns} data={newData} editAction={openModal} deleteAction={openModalDelete} />
+        <Table columns={columns} data={newData} editAction={openModal} deleteAction={openModalDelete} />
         <AdminModal 
           title={job.id ? 'Edit job' : 'Add new job'}
           isOpen={isOpen} 
@@ -209,7 +212,7 @@ const AdminJobsIndex = ({ formRef }) => {
             <div className="grid grid-cols-6 gap-6">
               <div className="col-span-6">
                 <label htmlFor="name-form" className="input-label">
-                  Title <span className="text-primary-700 text-xl">*</span>
+                  Title <span className="text-primary-700 align-super">*</span>
                 </label>
                 <input
                   type="text"
@@ -228,19 +231,17 @@ const AdminJobsIndex = ({ formRef }) => {
               <div className="col-span-5 sm:col-span-4">
                 <label htmlFor="logo-url-form" className="input-label">
                   Logo { !job.id &&
-                   <span className="text-primary-700 text-xl">*</span>
+                   <span className="text-primary-700">*</span>
                   }
                 </label>
                 <input
                   type="file"
                   name="logo"
                   id="logo-url-form"
-                  className="mt-1 block w-full text-sm text-zinc-900 dark:text-zinc-100
-                        file:mr-4 file:py-2 file:px-4
-                        file:rounded-full file:border-0
-                        file:text-sm file:font-semibold
-                        file:bg-primary-700 file:text-zinc-100
-                        hover:file:bg-primary-800
+                  className="input-field
+                  mt-1
+                  py-1.5 px-2
+                  focus:outline-none
                   "
                   onChange={handleChange}
                 />
@@ -259,7 +260,7 @@ const AdminJobsIndex = ({ formRef }) => {
               </div>
               <div className="col-span-6 sm:col-span-1">
                 <label htmlFor="style-form" className="input-label">
-                  Size (width) <span className="text-primary-700 text-xl">*</span>
+                  Size (width) <span className="text-primary-700">*</span>
                 </label>
                 <input
                   type="number"

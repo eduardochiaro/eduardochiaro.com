@@ -5,7 +5,7 @@ import { useSWRConfig } from "swr";
 import axios from 'axios';
 import AdminModal from "../../../components/admin/Modal";
 import AdminWrapper from "../../../components/admin/Wrapper";
-import TableLayout from "../../../components/admin/TableLayout";
+import Table from "../../../components/admin/Table";
 import mergeObj from "../../../lib/mergeObj";
 import NaturalImage from "../../../components/NaturalImage";
 import useStaleSWR from "../../../lib/staleSWR";
@@ -129,6 +129,7 @@ const AdminAppsIndex = ({ formRef }) => {
     {
       name: "Name",
       key: "name",
+      searchable: true,
       classNameTd: "font-bold"
     },
     {
@@ -139,10 +140,12 @@ const AdminAppsIndex = ({ formRef }) => {
     },
     {
       name: "Description",
+      searchable: true,
       key: "description_d"
     },
     {
       name: "GitHub URL",
+      searchable: true,
       key: "github_url"
     },
     {
@@ -199,7 +202,7 @@ const AdminAppsIndex = ({ formRef }) => {
             </button>
           </div>
         </div>
-        <TableLayout columns={columns} data={newData} editAction={openModal} deleteAction={openModalDelete} />
+        <Table columns={columns} data={newData} editAction={openModal} deleteAction={openModalDelete} />
         <AdminModal 
           title={app.id ? 'Edit app' : 'Add new app'}
           isOpen={isOpen} 
@@ -223,7 +226,7 @@ const AdminAppsIndex = ({ formRef }) => {
             <div className="grid grid-cols-6 gap-6">
               <div className="col-span-6">
                 <label htmlFor="name-form" className="input-label">
-                  Title <span className="text-primary-700 text-xl">*</span>
+                  Title <span className="text-primary-700">*</span>
                 </label>
                 <input
                   type="text"
@@ -242,7 +245,7 @@ const AdminAppsIndex = ({ formRef }) => {
               <div className="col-span-6">
                 <label htmlFor="image-url-form" className="input-label">
                   Image { !app.id &&
-                   <span className="text-primary-700 text-xl">*</span>
+                   <span className="text-primary-700">*</span>
                   }
                 </label>
                 <input
@@ -261,7 +264,7 @@ const AdminAppsIndex = ({ formRef }) => {
               </div>
               <div className="col-span-6">
                 <label htmlFor="url-form" className="input-label">
-                  GitHub URL <span className="text-primary-700 text-xl">*</span>
+                  GitHub URL <span className="text-primary-700">*</span>
                 </label>
                 <input
                   type="url"

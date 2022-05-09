@@ -7,7 +7,7 @@ import fs from 'fs';
 import path from 'path';
 import AdminModal from "../../../components/admin/Modal";
 import AdminWrapper from "../../../components/admin/Wrapper";
-import TableLayout from "../../../components/admin/TableLayout";
+import Table from "../../../components/admin/Table";
 import mergeObj from "../../../lib/mergeObj";
 import useStaleSWR from "../../../lib/staleSWR";
 import moment from "moment";
@@ -127,11 +127,13 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
     {
       name: "Name",
       key: "name",
+      searchable: true,
       classNameTd: "font-bold"
     },
     {
       name: "Type",
-      key: "type"
+      key: "type",
+      searchable: true
     },
     {
       name: "Updated",
@@ -158,7 +160,7 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
             </button>
           </div>
         </div>
-        <TableLayout columns={columns} data={newData} editAction={openModal} deleteAction={openModalDelete} />
+        <Table columns={columns} data={newData} editAction={openModal} deleteAction={openModalDelete} />
         <AdminModal 
           title={category.id ? 'Edit category' : 'Add new category'}
           isOpen={isOpen} 
@@ -182,7 +184,7 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
             <div className="grid grid-cols-6 gap-6">
               <div className="col-span-6">
                 <label htmlFor="name-form" className="input-label">
-                  Title <span className="text-primary-700 text-xl">*</span>
+                  Title <span className="text-primary-700">*</span>
                 </label>
                 <input
                   type="text"
@@ -200,7 +202,7 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
               </div>
               <div className="col-span-6">
                 <label htmlFor="type-form" className="input-label">
-                  Type <span className="text-primary-700 text-xl">*</span>
+                  Type <span className="text-primary-700">*</span>
                 </label>
                 <select 
                   name="type" 
