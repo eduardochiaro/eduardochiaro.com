@@ -38,7 +38,7 @@ export default function ThemeIcon () {
       });
       setIconClass(resetClassColors.map(x => {
         if (x.name === theme) {
-          x.className = 'text-accent-500';
+          x.className = 'text-primary-700 dark:text-primary-600';
         } 
         return x;
       }));
@@ -50,12 +50,12 @@ export default function ThemeIcon () {
   }, [theme, systemTheme]);
 
   return (
-    <Menu as="div" className="relative">
+    <Menu as="div" className="relative flex item-center">
       <Menu.Button as="span">
       { inUseTheme === "dark" ? 
-        <MoonIcon  className="w-5 h-5 text-zinc-900 inline-block border rounded-full bg-zinc-100 cursor-pointer" />
+        <MoonIcon  className="w-5 h-5 text-primary-600 cursor-pointer" />
         :
-        <SunIcon className="w-5 h-5 text-zinc-500 inline-block cursor-pointer" />
+        <SunIcon className="w-5 h-5 text-zinc-500 cursor-pointer" />
       }
       </Menu.Button>
       <Transition

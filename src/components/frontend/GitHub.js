@@ -68,7 +68,6 @@ export default function GitHub () {
       <a href={repo.url} className="flex flew-wrap w-full text-decoration-none overflow-hidden h-full">
         <div className="relative transition-width ease-in-out duration-500 flex-none peer w-1/3 md:hidden lg:block lg:w-1/3 hover:w-2/3">
           <LoadImage src={repo.openGraphImageUrl} alt={repo.name} />
-          <SVG title={repo.language} alt={repo.language} className={`z-30 h-6 absolute left-2 bottom-2 bg-zinc-300 dark:bg-zinc-500 rounded border border-zinc-400 dark:border-zinc-600 px-2 fill-zinc-800 dark:fill-zinc-200`} src={`images/svg-icons/${getLanguageIcon(repo.language)}.svg`} />
         </div>
         <div className="w-full md:w-2/3 p-4 relative whitespace-nowrap min-h-min">
           <h4 className="mt-2 text-lg font-semibold font-header tracking-wider ">{repo.name}</h4>
