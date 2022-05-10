@@ -71,9 +71,9 @@ export default function GitHub () {
           <SVG title={repo.language} alt={repo.language} className={`z-30 h-6 absolute left-2 bottom-2 bg-zinc-300 dark:bg-zinc-500 rounded border border-zinc-400 dark:border-zinc-600 px-2 fill-zinc-800 dark:fill-zinc-200`} src={`images/svg-icons/${getLanguageIcon(repo.language)}.svg`} />
         </div>
         <div className="w-full md:w-2/3 p-4 relative whitespace-nowrap min-h-min">
-          <h4 className="mt-2 text-lg font-bold font-header tracking-wide ">{repo.name}</h4>
+          <h4 className="mt-2 text-lg font-semibold font-header tracking-wider ">{repo.name}</h4>
           <p className="mt-4 mb-2 text-xs antialiased">{repo.description}</p>
-          <p className="text-xs opacity-60 absolute top-2 right-2 flex items-center"><ClockIcon alt="last updated" className="h-3 mr-2"/> {moment(repo.pushedAt).from(moment())}</p>
+          <p className="text-xs opacity-60 absolute top-2 right-4 flex items-center"><ClockIcon alt="last updated" className="h-3 mr-2"/> {moment(repo.pushedAt).from(moment())}</p>
           {repo.languages.slice(0, 2).map((language, index) => (
             <div key={index} className="inline-block mr-4 text-xs antialiased">
               <span className="inline-block w-3 h-3 align-middle mb-1 border border-zinc-500 dark:border-zinc-800 rounded-full mr-2" style={{ backgroundColor: language.color }}></span>
@@ -82,9 +82,9 @@ export default function GitHub () {
           ))}
           <div className="mt-4">                
           {repo.topics.slice(0, 2).map((topic) => (
-            <div className="bg-zinc-300 dark:bg-zinc-500 rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2 inline-block z-30 " key={topic}>
+            <div className="bg-zinc-300 dark:bg-zinc-500 rounded-full px-3 py-1 text-xs antialiased font-semibold mr-2 mb-2 inline-block z-30 " key={topic}>
               <div className="flex items-center">
-                <HashtagIcon className="w-4 inline align-middle"/>{topic}
+                <HashtagIcon className="w-3"/>{topic}
               </div>
             </div>
           ))}
