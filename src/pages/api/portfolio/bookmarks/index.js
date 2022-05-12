@@ -11,6 +11,9 @@ const handler = async (req, res) => {
     },
     include: {
       category: true
+    },
+    orderBy: {
+      createdAt: 'desc'
     }
   });
   bookmarks.map(bookmark => {

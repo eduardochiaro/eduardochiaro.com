@@ -32,7 +32,7 @@ export default function Header () {
       onlyMobile: false
     },
     {
-      text: ( <><RssIcon className={`h-6 w-6 text-accent-500 mr-2 inline-block`} aria-hidden="true"  />.dev</> ),
+      text: ( <><RssIcon className={`h-5 text-accent-500 mr-2 inline-block`} aria-hidden="true" />.dev</> ),
       link: 'https://blog.eduardochiaro.com',
       current: false,
       onlyMobile: true
@@ -77,7 +77,7 @@ export default function Header () {
             <Logo 
               title="Eduardo Chiaro" 
               alt="Eduardo Chiaro" 
-              className={`w-auto h-7 mr-2`} />
+              className={`w-auto h-7 mr-3`} />
               <div className="hidden md:inline">
                 Eduardo Chiaro
               </div>
@@ -104,13 +104,15 @@ export default function Header () {
           </div>
           <div className="flex items-center text-right">
             <span className="flex-1"></span>
-            <Link
-              href="https://blog.eduardochiaro.com"
-              >
-              <a className="hidden md:inline-block md:pr-0 pr-6 whitespace-nowrap text-base font-medium transition hover:underline mr-4">
-                <RssIcon className={`h-6 w-6 text-accent-500 mr-2 inline-block`} aria-hidden="true"  /> .dev
-              </a>
-            </Link>
+              <div className="hidden md:inline-block mr-8">
+                <Link
+                  href="https://blog.eduardochiaro.com"
+                  >
+                    <a className="md:pr-0 pr-6 whitespace-nowrap text-base font-medium transition hover:underline flex items-center">
+                      <RssIcon className={`h-5 text-accent-500 mr-1`} aria-hidden="true"  />.dev
+                    </a>
+                </Link>
+              </div>
             <ThemeIcon />
           </div>
         </div>

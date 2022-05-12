@@ -28,10 +28,10 @@ const handler = async (req, res) => {
         const form = new IncomingForm();
         form.parse(req, async (err, fields) => {
           if (err) return reject(err)
-          const { id, ...data } = fields;
+          const { id, categoryId, ...data } = fields;
           const bookmark = await prisma.bookmark.update({
             where: { id: parseInt(id) },
-            data: { ...data, updatedAt: new Date() },
+            data: { ...data, categoryId: parseInt(categoryId), updatedAt: new Date() },
           });
           res.status(200).json({ ...bookmark });
         })

@@ -4,6 +4,11 @@ import Image from 'next/image';
 import * as React from 'react';
 import useStaleSWR from '../../lib/staleSWR';
 import NavLink from '../NavLink';
+import Masonry from 'react-masonry-css';
+const breakpointColumnsObj = {
+  default: 2,
+  640: 1
+};
 
 export default function Bookmarks() {
   const { data } = useStaleSWR('/api/portfolio/bookmarks');
@@ -28,36 +33,39 @@ export default function Bookmarks() {
               <TagIcon className="inline-block w-4 h-4 align-text-bottom mr-2" />
               {category.name}
             </h4>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            { data?.results.filter( x => x.categoryId == category.id).map((bookmark, index) => (
+            <Masonry
+              breakpointCols={breakpointColumnsObj}
+              className="flex gap-8 w-auto"
+              columnClassName="bg-clip-padding flex flex-col gap-8">
+              { data?.results.filter( x => x.categoryId == category.id).map((bookmark, index) => (
                 <div key={`apps-${index}`} className={`p-5 box-card`} >            
-                <Link
-                  href={bookmark.url}
-                  as={bookmark.url}
-                  >
-                  <a target="_blank" className="inline-block">
-                    <h3 className="text-xl">
-                      <BookmarkIcon className="inline-block align-text-top h-6 mr-1" />
-                      {bookmark.name}
-                    </h3>
-                    <p className="text-sm block opacity-80">
-                      <span className="inline-block align-sub mr-2 ml-1">
-                        <Image
-                          layout="fixed"
-                          src={`http://www.google.com/s2/favicons?domain=${bookmark.domain}`}
-                          width="16"
-                          height="16"
-                          alt={bookmark.domain}
-                          />
-                      </span>
-                      {bookmark.domain}
-                      </p>
-                    <p className="mt-4 text-sm">{bookmark.description}</p>
-                  </a>
-                </Link>
+                  <Link
+                    href={bookmark.url}
+                    as={bookmark.url}
+                    >
+                    <a target="_blank" className="inline-block">
+                      <h3 className="text-xl">
+                        <BookmarkIcon className="inline-block align-text-top h-6 mr-1" />
+                        {bookmark.name}
+                      </h3>
+                      <p className="text-sm block opacity-80">
+                        <span className="inline-block align-sub mr-2 ml-1">
+                          <Image
+                            layout="fixed"
+                            src={`http://www.google.com/s2/favicons?domain=${bookmark.domain}`}
+                            width="16"
+                            height="16"
+                            alt={bookmark.domain}
+                            />
+                        </span>
+                        {bookmark.domain}
+                        </p>
+                      <p className="mt-4 text-sm">{bookmark.description}</p>
+                    </a>
+                  </Link>
                 </div>
-            ))}
-            </div>
+              ))}
+            </Masonry>
           </div>
         ))}
       </div>

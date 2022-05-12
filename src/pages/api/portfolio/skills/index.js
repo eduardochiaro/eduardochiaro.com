@@ -7,6 +7,9 @@ const handler = async (req, res) => {
   const skills = await prisma.skill.findMany({
     where: {
       deletedAt: null
+    },
+    orderBy: {
+      createdAt: 'desc'
     }
   });
   res.status(200).json({ results: skills });
