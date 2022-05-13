@@ -8,7 +8,7 @@ export default function Projects() {
   return (
     <div className="flex flex-col h-screen justify-between">
       <Head>
-        <title>Eduardo Chiaro | Projects</title>
+        <title>Projects | Eduardo Chiaro</title>
       </Head>
       <div className="mb-auto">
         <Header />

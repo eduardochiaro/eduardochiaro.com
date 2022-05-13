@@ -14,25 +14,25 @@ export default function Sidemenu () {
       link: '/',
       as: '/#top',
       current: true,
-      pre: <UserCircleIcon className="h-7 md:h-5 mr-2" />
+      pre: <UserCircleIcon className="h-4 mr-2" />
     },
     {
       text: 'Skills',
       link: '/#skills',
       current: false,
-      pre: <TerminalIcon className="h-7 md:h-5 mr-2" />
+      pre: <TerminalIcon className="h-4 mr-2" />
     },
     {
       text: 'Articles',
       link: '/#articles',
       current: false,
-      pre: <DocumentTextIcon className="h-7 md:h-5 mr-2" />
+      pre: <DocumentTextIcon className="h-4 mr-2" />
     },
     {
       text: 'GitHub',
       link: '/#github',
       current: false,
-      pre: <GitHubIcon className="h-7 md:h-5 mr-2" />
+      pre: <GitHubIcon className="h-4 mr-2" />
     }
   ];
 

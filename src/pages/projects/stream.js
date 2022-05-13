@@ -10,6 +10,7 @@ import Link from 'next/link';
 import Flickr from '../../components/icons/flickr';
 import Instagram from '../../components/icons/instagram';
 import styles from '../../styles/Stream.module.scss';
+import NaturalImage from '../../components/NaturalImage';
 
 export default function Projects() {
   const { data } = useStaleSWR('/api/portfolio/stream');
@@ -20,13 +21,14 @@ export default function Projects() {
         >
           <a target="_blank">
             <div className="relative">
-            <img
-              src={item.image}
-              alt={item.title}
-              className="w-auto rounded"
+              <NaturalImage
+                src={item.image}
+                alt={item.title}
+                size={500}
+                className="rounded"
               />
-              {item.type === "Flickr" && <Flickr className="w-8 absolute bottom-2 right-2" alt={item.type} />}
-              {item.type === "Instagram" && <Instagram className="w-8 absolute bottom-2 right-2" alt={item.type} />}
+              {item.type === "Flickr" && <Flickr className="w-8 absolute bottom-2 right-2 text-zinc-100" alt={item.type} />}
+              {item.type === "Instagram" && <Instagram className="w-8 absolute bottom-4 right-2 text-zinc-100" alt={item.type} />}
               
             </div>
             <div className="p-3">
@@ -47,7 +49,7 @@ export default function Projects() {
   return (
     <div className="flex flex-col h-screen justify-between">
       <Head>
-        <title>Eduardo Chiaro | Projects &gt; Stream</title>
+        <title>Projects &gt; Stream | Eduardo Chiaro</title>
       </Head>
       <div className={`${styles.stream} mb-auto pb-10`}>
         <Header />
@@ -58,16 +60,15 @@ export default function Projects() {
               <Link
                 href="/projects"
                 >
-                  <a className="hover:underline">Projects</a>
-                </Link> &gt; Stream
+                <a className="hover:underline">Projects</a>
+              </Link> &gt; Stream
             </h3>
             <div className="mt-8">
               <Masonry
                 breakpointCols={breakpointColumnsObj}
                 className="flex gap-8 w-auto"
                 columnClassName="bg-clip-padding flex flex-col gap-8">
-                  {items }
-                
+                  { items }
               </Masonry>
             </div>
           </div>

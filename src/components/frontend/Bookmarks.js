@@ -80,11 +80,11 @@ export default function Bookmarks() {
               <NavLink 
                 href={ index == 0 ? `/bookmarks` : `/bookmarks#bookmarks-${category.id}` }
                 as={`/bookmarks#bookmarks-${category.id}`}
-                className={`text-base transition hover:text-zinc-900 dark:hover:text-zinc-100 hover:underline opacity-60 hover:opacity-100`} 
-                activeClassName={`text-base transition text-primary-700 dark:text-primary-600`}
+                className={`flex items-center text-base transition hover:text-zinc-900 dark:hover:text-zinc-100 hover:underline opacity-60 hover:opacity-100`} 
+                activeClassName={`flex items-center text-base transition text-primary-700 dark:text-primary-600`}
               >
                 <a>
-                  <TagIcon className="h-7 md:h-5 inline mr-2 align-sub" />
+                  <TagIcon className="h-4 mr-2" />
                   {category.name}
                 </a>
               </NavLink>

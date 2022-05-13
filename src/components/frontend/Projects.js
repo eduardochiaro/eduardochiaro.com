@@ -23,7 +23,7 @@ export default function Projects () {
                   size={1329}
                   alt={app.title}
                   title={app.title}
-                  className="rounded"
+                  className="rounded bg-transparent"
                 />
               </div>
               <div className={`basis-full md:basis-2/3 px-8`}>
