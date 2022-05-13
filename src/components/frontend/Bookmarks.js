@@ -23,9 +23,9 @@ export default function Bookmarks() {
     <>
     <section id="work" className={`px-4 lg:px-0 mt-10`}>
       <div className="max-w-5xl mx-auto">
-        <h3 className="font-header leading-tight text-2xl lg:text-3xl font-light">
+        <h1 className="font-header leading-tight text-2xl lg:text-3xl font-light">
           Bookmarks
-        </h3>
+        </h1>
         { uniqueCategories.map((category, index) => (
           <div key={index}>
             <span className="anchor" name={`bookmarks-${category.id}`}/>

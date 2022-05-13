@@ -11,9 +11,9 @@ export default function Projects () {
     <section className={`${styles.apps} px-4 lg:px-0 mt-10`}>
       <div className="max-w-5xl mx-auto flex flex-wrap">
         <div className="basis-full md:basis-3/4 mb-10">
-          <h3 className="font-header leading-tight text-2xl lg:text-3xl font-light">
+          <h1 className="font-header leading-tight text-2xl lg:text-3xl font-light">
             Apps
-          </h3>
+          </h1>
           <div className="grid grid-cols-1 gap-8 mt-10">
           { data?.results.map((app, index) => (
             <div className={`flex flex-wrap p-4 box-card`} key={`apps-${index}`} >
@@ -45,9 +45,9 @@ export default function Projects () {
         </div>
 
         <div className="basis-full md:basis-1/4 md:text-right mb-10">
-          <h3 className="font-header leading-tight text-2xl lg:text-3xl font-light">
+          <h2 className="font-header leading-tight text-2xl lg:text-3xl font-light">
             Projects
-          </h3>
+          </h2>
           <ul className="mt-10 pl-0 md:pl-4 list-inside list-disc">
             <li className="text-base">
               <Link

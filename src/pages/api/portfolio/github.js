@@ -6,7 +6,7 @@ import client from "../../../lib/apolloClient";
 
 const base = "https://api.github.com/users";
 const headers = { "Authorization": `Bearer ${process.env.GITHUB_TOKEN}` };
-const hours = 1;
+const hours = 24;
 
 const cachedFetch = async (url, append = {}) => {
   const cachedResponse = cache.get(url);

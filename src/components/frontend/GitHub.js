@@ -100,7 +100,7 @@ export default function GitHub () {
         <h3 className="font-header leading-tight text-2xl lg:text-3xl font-light">
           What I&apos;ve <span className="text-primary-700 dark:text-primary-600">coded</span> recently...
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-2 gap-4 xl:gap-8 mt-5 pb-10">
+        <div id="github-list" className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-2 gap-4 xl:gap-8 mt-5 pb-10">
           {items }
         </div>
       </div>
