@@ -16,7 +16,7 @@ const NaturalImage = ({alt, size = 200, className, ...props}) => {
       alt={alt}
       width={size}
       height={size / ratio}
-      className={`bg-zinc-400 transition duration-500 ${isReady ? 'scale-100 bg-zinc-400 blur-0' : 'scale-120 blur-2xl'} ${className}`}
+      className={`bg-zinc-400 transition duration-500 ${isReady ? 'scale-100 blur-0' : 'scale-120 blur-2xl'} ${className}`}
       onLoadingComplete={onLoadCallback}
     />
   )

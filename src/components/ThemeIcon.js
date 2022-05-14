@@ -53,9 +53,9 @@ export default function ThemeIcon () {
     <Menu as="div" className="relative flex item-center">
       <Menu.Button as="span">
       { inUseTheme === "dark" ? 
-        <MoonIcon  className="w-5 h-5 text-primary-600 cursor-pointer rounded-full transition-all duration-300 ease-in-out hover:bg-zinc-100 hover:text-zinc-800" />
+        <MoonIcon  className="w-5 h-5 fill-primary-600 cursor-pointer rounded-full transition-all duration-300 ease-in-out hover:bg-zinc-100 hover:fill-zinc-800" />
         :
-        <SunIcon className="w-5 h-5 text-zinc-500 cursor-pointer rounded-full transition-all duration-300 ease-in-out hover:text-primary-600" />
+        <SunIcon className="w-5 h-5 fill-zinc-500 cursor-pointer rounded-full transition-all duration-300 ease-in-out hover:fill-primary-600" />
       }
       </Menu.Button>
       <Transition

@@ -7,6 +7,25 @@ import Link from 'next/link';
 
 export default function Projects () {
   const { data } = useStaleSWR('/api/portfolio/apps');
+
+  const projects = [
+    {
+      name: 'Stream',
+      url: '/projects/stream',
+      description: 'Unified stream of images and text from different feeds',
+    },
+    {
+      name: 'Timeline', 
+      url: '/projects/timeline',
+      description: 'Tailwind timeline of Rick and Morty episodes',
+    },
+    {
+      name: 'Timeline (variation)',
+      url: '/projects/timeline-variation',
+      description: 'Tailwind timeline of Rick and Morty episodes, with a style variation',
+    }
+  ]
+
   return (
     <section className={`${styles.apps} px-4 lg:px-0 mt-10`}>
       <div className="max-w-5xl mx-auto flex flex-wrap">
@@ -16,7 +35,7 @@ export default function Projects () {
           </h1>
           <div className="grid grid-cols-1 gap-8 mt-10">
           { data?.results.map((app, index) => (
-            <div className={`flex flex-wrap p-4 box-card`} key={`apps-${index}`} >
+            <div className={`flex flex-wrap p-4 box-card`} key={`app-${index}`} >
               <div className={`basis-full md:basis-1/3 relative`}>
                 <NaturalImage
                   src={`/uploads/${app.image}`}
@@ -49,14 +68,16 @@ export default function Projects () {
             Projects
           </h2>
           <ul className="mt-10 pl-0 md:pl-4 list-inside list-disc">
-            <li className="text-base">
+            { projects.map((project, index) => (
+            <li key={`project-${index}`} className="text-base mb-5">
               <Link
-                href="/projects/stream"
+                href={project.url}
                 >
-                <a className="hover:underline text-2xl">Stream</a>
+                <a className="hover:underline text-2xl">{project.name}</a>
               </Link>
-              <p className="text-sm opacity-50">Unified stream of images and text from different feeds</p>
+              <p className="text-sm opacity-50">{project.description}</p>
             </li>
+            ))}
           </ul>
         </div>
       </div>

@@ -10,7 +10,8 @@ module.exports = {
       'images.unsplash.com',
       'live.staticflickr.com',,
       'scontent-atl3-1.cdninstagram.com',
-      'scontent-atl3-2.cdninstagram.com'
+      'scontent-atl3-2.cdninstagram.com',
+      'rickandmortyapi.com'
     ]
   },
   webpack(config) {
