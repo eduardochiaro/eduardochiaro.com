@@ -41,9 +41,9 @@ function Timeline({ episodes }) {
             </div>
           ))}
           {episode.characters_count > 4 && (
-          <div className="flex items-center">
-            <p className="text-xs">and {episode.characters_count - 4} more characters</p>
-          </div>
+            <div className="col-span-2">
+              <p className="text-xs">and {episode.characters_count - 4} more characters</p>
+            </div>
           )}
           </div>
         </div>
@@ -59,8 +59,8 @@ function Timeline({ episodes }) {
           <p className="font-mono">{episode.episode}</p>
           <div className="grid grid-cols-2 gap-4 mt-4">
           {episode.characters.slice(0, 4).map((y, index) => (
-            <div key={`character-${index}`} className="flex items-center">
-              <div className="hidden md:block relative pr-4">
+            <div key={`character-${index}`} className="flex items-center flex-row-reverse">
+              <div className="hidden md:block relative pl-4">
                 <NaturalImage
                   layout="fixed"
                   size={50}
@@ -75,9 +75,9 @@ function Timeline({ episodes }) {
             </div>
           ))}
           {episode.characters_count > 4 && (
-          <div className="flex items-center">
-            <p className="text-xs">and {episode.characters_count - 4} more characters</p>
-          </div>
+            <div className="col-span-2">
+              <p className="text-xs text-right">and {episode.characters_count - 4} more characters</p>
+            </div>
           )}
           </div>
         </div>
