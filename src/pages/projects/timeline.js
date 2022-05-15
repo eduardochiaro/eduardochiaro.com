@@ -33,7 +33,7 @@ function Timeline({ episodes }) {
                   <span className="text-sm md:text-normal">{ moment(episode.air_date).format('MMM \'YY')}</span>
                 </div>
                 <div className="flex-none w-4 md:w-8 relative mx-2 mdmx-4">
-                  <div className="mx-auto w-0.5 h-full bg-primary-500 group-last:h-2 group-first:mt-3 z-10"></div>
+                  <div className="mx-auto w-0.5 h-full bg-gradient-to-b group-even:bg-gradient-to-t from-primary-500 to-accent-500 group-last:h-2 group-first:mt-3 z-10"></div>
                   <span className="absolute top-2 left-1/2 transform -translate-x-1/2  rounded-full w-4 h-4 bg-zinc-200 border-2 border-zinc-800 z-20 group-first:bg-emerald-500 group-last:bg-red-500"></span>
                 </div>
                 <div className="pb-16 grow pl-1">
@@ -86,12 +86,12 @@ export async function getStaticProps() {
   const res = await fetch(url);
   const pageEpisodes = await res.json();
 
-  const episodes = await Promise.all(pageEpisodes.results.map( async (x) => {
+  const episodes = await Promise.all(pageEpisodes.results.map( async (episode) => {
     const characters = episode.characters.map(y => y.replace('https://rickandmortyapi.com/api/character/', ''));
     const res = await fetch(`https://rickandmortyapi.com/api/character/${characters.join(',')}`);
     episode.characters = await res.json();
     episode.characters_count = episode.characters.length;
-    return x;
+    return episode;
   }));
   cache.put(url, episodes, hours * 1000 * 60 * 60);
   return {

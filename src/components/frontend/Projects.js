@@ -17,12 +17,12 @@ export default function Projects () {
     {
       name: 'Timeline', 
       url: '/projects/timeline',
-      description: 'Tailwind timeline of Rick and Morty episodes',
+      description: 'Example of a timeline component using Tailwind',
     },
     {
       name: 'Timeline (variation)',
       url: '/projects/timeline-variation',
-      description: 'Tailwind timeline of Rick and Morty episodes, with a style variation',
+      description: 'Example of a timeline component using Tailwind, with a style variation',
     }
   ]
 
