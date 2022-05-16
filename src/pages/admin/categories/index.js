@@ -8,8 +8,8 @@ import path from 'path';
 import AdminModal from "../../../components/admin/Modal";
 import AdminWrapper from "../../../components/admin/Wrapper";
 import Table from "../../../components/admin/Table";
-import mergeObj from "../../../lib/mergeObj";
-import useStaleSWR from "../../../lib/staleSWR";
+import mergeObj from "../../../utils/mergeObj";
+import useStaleSWR from "../../../utils/staleSWR";
 import moment from "moment";
 
 const AdminCategoriesIndex = ({ formRef, images }) => {

@@ -2,7 +2,7 @@ import { BookmarkIcon, TagIcon } from '@heroicons/react/solid';
 import Link from 'next/link';
 import Image from 'next/image';
 import * as React from 'react';
-import useStaleSWR from '../../lib/staleSWR';
+import useStaleSWR from '../../utils/staleSWR';
 import NavLink from '../NavLink';
 import Masonry from 'react-masonry-css';
 const breakpointColumnsObj = {

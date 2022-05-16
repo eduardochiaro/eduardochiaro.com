@@ -1,5 +1,5 @@
-import apiWithMiddleware from '../../../../lib/apiWithMiddleware';
-import prisma from '../../../../lib/prisma';
+import apiWithMiddleware from '../../../../utils/apiWithMiddleware';
+import prisma from '../../../../utils/prisma';
 import cors from '../../../../middlewares/cors';
 import { IncomingForm } from 'formidable'
 

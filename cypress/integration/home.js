@@ -1,4 +1,4 @@
-import { not } from "cheerio/lib/api/traversing";
+import { not } from "cheerio/utils/api/traversing";
 
 describe('Navigation', () => {
   beforeEach(() => {

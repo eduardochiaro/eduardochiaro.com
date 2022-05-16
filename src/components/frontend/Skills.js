@@ -1,5 +1,5 @@
 import * as React from 'react';
-import useStaleSWR from '../../lib/staleSWR';
+import useStaleSWR from '../../utils/staleSWR';
 import SVG from 'react-inlinesvg';
 import styles from '../../styles/Skills.module.scss'
 

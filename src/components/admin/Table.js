@@ -1,6 +1,6 @@
 import { PencilAltIcon } from '@heroicons/react/outline';
 import { TrashIcon, XIcon } from '@heroicons/react/solid';
-import { index } from 'cheerio/lib/api/traversing';
+import { index } from 'cheerio/utils/api/traversing';
 import { filter } from 'domutils';
 import React, { useEffect, useState } from 'react';
 

@@ -13,7 +13,8 @@
     "migrate-empty:dev": "dotenv -e .env.local prisma migrate dev --create-only",
     "migrate:prod": "dotenv -e .env.local prisma migrate deploy",
     "cypress": "cypress open",
-    "prisma:version": "prisma -v"
+    "prisma:version": "prisma -v",
+    "prisma:seed": "dotenv -e .env.local node seed/seeder.js"
   },
   "dependencies": {
     "@apollo/client": "^3.6.0",

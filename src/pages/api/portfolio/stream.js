@@ -1,7 +1,7 @@
 import moment from 'moment';
-import apiWithMiddleware from '../../../lib/apiWithMiddleware';
+import apiWithMiddleware from '../../../utils/apiWithMiddleware';
 import cors from '../../../middlewares/cors';
-import { getCachedFlickr, getCacheInstagram } from '../../../lib/getCachedFeeds';
+import { getCachedFlickr, getCacheInstagram } from '../../../utils/getCachedFeeds';
 
 const handler = async (req, res) => {
   await cors(req, res);

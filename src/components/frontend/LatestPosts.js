@@ -1,7 +1,7 @@
 import moment from 'moment';
 import Link from 'next/link';
 import * as React from 'react';
-import useStaleSWR from '../../lib/staleSWR';
+import useStaleSWR from '../../utils/staleSWR';
 
 export default function LatestPosts () {
   const { data } = useStaleSWR('/api/portfolio/blog');

@@ -1,4 +1,4 @@
-import apiWithMiddleware from '../../../lib/apiWithMiddleware';
+import apiWithMiddleware from '../../../utils/apiWithMiddleware';
 import cors from '../../../middlewares/cors';
 import cache from "memory-cache";
 import Parser from 'rss-parser';

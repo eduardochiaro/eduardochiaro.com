@@ -3,7 +3,7 @@ import Footer from "../../components/frontend/Footer";
 import Header from "../../components/frontend/Header";
 import Share from '../../components/frontend/Share';
 import Masonry from 'react-masonry-css';
-import useStaleSWR from '../../lib/staleSWR';
+import useStaleSWR from '../../utils/staleSWR';
 import Image from 'next/image';
 import moment from 'moment';
 import Link from 'next/link';

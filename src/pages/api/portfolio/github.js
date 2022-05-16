@@ -1,8 +1,8 @@
 import cache from "memory-cache";
-import apiWithMiddleware from '../../../lib/apiWithMiddleware';
+import apiWithMiddleware from '../../../utils/apiWithMiddleware';
 import cors from '../../../middlewares/cors';
 import { gql } from "@apollo/client";
-import client from "../../../lib/apolloClient";
+import client from "../../../utils/apolloClient";
 
 const base = "https://api.github.com/users";
 const headers = { "Authorization": `Bearer ${process.env.GITHUB_TOKEN}` };

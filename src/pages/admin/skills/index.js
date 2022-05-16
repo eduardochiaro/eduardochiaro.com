@@ -9,9 +9,9 @@ import SVG from 'react-inlinesvg';
 import AdminModal from "../../../components/admin/Modal";
 import AdminWrapper from "../../../components/admin/Wrapper";
 import Table from "../../../components/admin/Table";
-import mergeObj from "../../../lib/mergeObj";
+import mergeObj from "../../../utils/mergeObj";
 import NaturalImage from "../../../components/NaturalImage";
-import useStaleSWR from "../../../lib/staleSWR";
+import useStaleSWR from "../../../utils/staleSWR";
 import moment from "moment";
 
 const AdminSkillsIndex = ({ formRef, images }) => {

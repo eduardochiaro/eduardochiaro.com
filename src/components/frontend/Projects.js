@@ -1,7 +1,7 @@
 import * as React from 'react';
 import GitHubIcon from '../icons/github';
 import styles from '../../styles/Projects.module.scss'
-import useStaleSWR from '../../lib/staleSWR';
+import useStaleSWR from '../../utils/staleSWR';
 import NaturalImage from '../NaturalImage';
 import Link from 'next/link';
 
@@ -13,6 +13,11 @@ export default function Projects () {
       name: 'Stream',
       url: '/projects/stream',
       description: 'Unified stream of images and text from different feeds',
+    },
+    {
+      name: 'Terminal', 
+      url: '/projects/terminal',
+      description: 'Fake terminal component with few commands',
     },
     {
       name: 'Timeline', 
