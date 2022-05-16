@@ -136,10 +136,10 @@ export async function getStaticProps() {
   const pageEpisodes = await res.json();
 
   const episodes = await Promise.all(pageEpisodes.results.map( async (episode) => {
-    const characters = x.characters.map(y => y.replace('https://rickandmortyapi.com/api/character/', ''));
+    const characters = episode.characters.map(y => y.replace('https://rickandmortyapi.com/api/character/', ''));
     const res = await fetch(`https://rickandmortyapi.com/api/character/${characters.join(',')}`);
     episode.characters = await res.json();
-    episode.characters_count = x.characters.length;
+    episode.characters_count = episode.characters.length;
     return episode;
   }));
   cache.put(url, episodes, hours * 1000 * 60 * 60);
