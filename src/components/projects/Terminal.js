@@ -25,6 +25,7 @@ export default function Terminal () {
   ];
 
   const callAction = async (command, commandArgs) => {
+    setHistoryIndex(0);
     const currentHistory = [...history];
     const time = moment().format('HH:mm');
     switch (command) {
@@ -140,7 +141,7 @@ export default function Terminal () {
               </div>
             </div>
             { line.output && (
-            <div className="whitespace-pre-wrap break-words text-primary-300">
+            <div className="whitespace-pre-wrap break-words text-primary-100">
               {line.output}
             </div>
             )}
