@@ -14,9 +14,8 @@ export const about = () => {
 }
 
 export const weather = (args) => {
-
-  if (args == '') {
-    return 'Please enter a city name.';
+  if (args == '' || args.length <= 0) {
+    return 'Please add the name of a city to the command, like "weather New York".';
   } else {
     const city = args.join('+');
     return getWeather(city);

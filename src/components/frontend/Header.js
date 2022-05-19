@@ -83,7 +83,7 @@ export default function Header () {
               </div>
           </div>
           <div className="md:flex items-center">
-            <div className={`transition-all duration-300 ease-in-out w-full md:w-auto hidden drop-shadow-none md:contents absolute md:relative top-14 pb-2 left-1 bg-zinc-100 dark:bg-zinc-700 z-50`}>
+            <div className={`w-full md:w-auto hidden drop-shadow-none md:contents absolute md:relative top-14 pb-2 left-1 bg-zinc-100 dark:bg-zinc-700 z-50`}>
               <ul className="md:flex font-semibold tracking-wider mx-auto items-center">
                 { menuData.filter(x => !x.onlyMobile).map(function(item, i) {
                   return (

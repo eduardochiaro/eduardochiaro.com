@@ -1,7 +1,7 @@
 .header {
   @apply sticky drop-shadow-md shadow-zinc-700 top-0 z-40 ;
   .menuUrl {
-    @apply px-6 block md:inline-block transition text-2xl md:text-base ;
+    @apply px-6 block md:inline-block text-2xl md:text-base ;
   }
   .menuUrlMobile {
     @apply flex w-full items-center px-2 py-2;

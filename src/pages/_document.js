@@ -20,7 +20,7 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Roboto+Mono&display=swap"
             rel="stylesheet" />
         </Head>
-        <body>
+        <body className="transition duration-500 ease-in-out">
           <Main />
           <NextScript />
         </body>
