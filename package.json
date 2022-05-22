@@ -12,7 +12,7 @@
     "migrate:dev": "dotenv -e .env.local prisma migrate dev",
     "migrate-empty:dev": "dotenv -e .env.local prisma migrate dev --create-only",
     "migrate:prod": "dotenv -e .env.local prisma migrate deploy",
-    "cypress": "cypress open",
+    "cypress": "concurrently \"next dev\" \"cypress open\"",
     "prisma:version": "prisma -v",
     "prisma:seed": "dotenv -e .env.local node seed/seeder.js"
   },
@@ -54,6 +54,7 @@
     "@tailwindcss/forms": "^0.5.0",
     "@tailwindcss/typography": "^0.5.2",
     "autoprefixer": "^10.4.0",
+    "concurrently": "^7.2.0",
     "cypress": "^9.6.1",
     "eslint": "^8.13.0",
     "eslint-config-next": "^12.1.5",

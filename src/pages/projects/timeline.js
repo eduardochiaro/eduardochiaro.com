@@ -12,9 +12,9 @@ function Timeline({ episodes }) {
       <Head>
         <title>Projects &gt; Timeline | Eduardo Chiaro</title>
       </Head>
-      <div className="mb-auto">
-        <Header />
-        <Share />
+      <Header />
+      <Share />
+      <div className="grow">
         <section className={`px-4 lg:px-0 mt-10`}>
           <div className="max-w-5xl mx-auto">
             <h1 className="font-header leading-tight text-2xl lg:text-3xl font-light">

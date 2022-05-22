@@ -8,9 +8,8 @@ module.exports = {
       'avatars.githubusercontent.com',
       'repository-images.githubusercontent.com',
       'images.unsplash.com',
-      'live.staticflickr.com',,
-      'scontent-atl3-1.cdninstagram.com',
-      'scontent-atl3-2.cdninstagram.com',
+      'live.staticflickr.com',
+      'scontent-iad3-1.cdninstagram.com',
       'rickandmortyapi.com'
     ]
   },

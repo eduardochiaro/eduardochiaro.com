@@ -1,9 +1,7 @@
-import { not } from "cheerio/utils/api/traversing";
-
-describe('Navigation', () => {
-  beforeEach(() => {
+describe('Homepage', () => {
+  before(() => {
     // Start from the index page
-    cy.visit('http://localhost:3000/');
+    cy.visit('/');
   });
   it('check bio', () => {
     cy.get('#bio').should('be.visible');

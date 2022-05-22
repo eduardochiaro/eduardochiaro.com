@@ -51,30 +51,32 @@ export default function Projects() {
       <Head>
         <title>Projects &gt; Stream | Eduardo Chiaro</title>
       </Head>
-      <div className={`${styles.stream} mb-auto pb-10`}>
-        <Header />
-        <Share />
-        <section className={`px-4 lg:px-0 mt-10`}>
-          <div className="max-w-5xl mx-auto">
-            <h1 className="font-header leading-tight text-2xl lg:text-3xl font-light">
-              <Link
-                href="/projects"
-                >
-                <a className="hover:underline">Projects</a>
-              </Link> &gt; Stream
-            </h1>
-            <div className="mt-8">
-              <Masonry
-                breakpointCols={breakpointColumnsObj}
-                className="flex gap-8 w-auto"
-                columnClassName="bg-clip-padding flex flex-col gap-8">
-                  { items }
-              </Masonry>
+      <Header />
+      <div className={`${styles.stream}`}>
+        <div className={`mb-auto pb-10 grow`}>
+          <Share />
+          <section className={`px-4 lg:px-0 mt-10`}>
+            <div className="max-w-5xl mx-auto">
+              <h1 className="font-header leading-tight text-2xl lg:text-3xl font-light">
+                <Link
+                  href="/projects"
+                  >
+                  <a className="hover:underline">Projects</a>
+                </Link> &gt; Stream
+              </h1>
+              <div className="mt-8">
+                <Masonry
+                  breakpointCols={breakpointColumnsObj}
+                  className="flex gap-8 w-auto"
+                  columnClassName="bg-clip-padding flex flex-col gap-8">
+                    { items }
+                </Masonry>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </div>
+        <Footer />
       </div>
-      <Footer />
     </div>
   )
 }

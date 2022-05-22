@@ -12,7 +12,7 @@ import LatestPosts from '../components/frontend/LatestPosts';
 export default function Home() {
   return (
     <div className="flex flex-col h-screen justify-between">
-      <div className="mb-auto">
+      <div className="grow">
         <Header />
         <Share />
         <Bio />

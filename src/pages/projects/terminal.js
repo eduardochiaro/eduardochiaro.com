@@ -13,11 +13,11 @@ function Terminal() {
       <Head>
         <title>Projects &gt; Terminal | Eduardo Chiaro</title>
       </Head>
-      <div className="mb-auto">
-        <Header />
-        <Share />
-        <section className={`px-4 lg:px-0 mt-10`}>
-          <div className="max-w-5xl mx-auto">
+      <Header />
+      <Share />
+      <div className="grow">
+        <section className={`px-4 lg:px-0 mt-10 h-full`}>
+          <div className="max-w-5xl mx-auto h-full">
             <h1 className="font-header leading-tight text-2xl lg:text-3xl font-light">
               <Link
                 href="/projects"
@@ -25,7 +25,7 @@ function Terminal() {
                 <a className="hover:underline">Projects</a>
               </Link> &gt; Terminal
             </h1>
-            <div className="mt-8">
+            <div className="pt-8 h-2/3 grow">
               <TerminalComponent />
             </div>
           </div>

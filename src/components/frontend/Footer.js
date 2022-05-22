@@ -34,14 +34,14 @@ export default function Footer () {
   return (
     <footer id="footer" className="mt-10 pb-4">
       <div className="container mx-auto text-center py-4">
-        <div className="flex-wrap md:flex-nowrap flex text-sm md:text-base">
-          <div className="hidden md:block flex-none w-60 text-sm"></div>
+        <div className="flex-wrap lg:flex-nowrap flex text-sm md:text-base">
+          <div className="hidden lg:block flex-none lg:w-60 text-sm"></div>
           <div className="flex-1 text-center">
             <span>© Copyright {moment().year()}</span>
             <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={`inline w-auto h-7 mx-3 `} />
             <span>Eduardo Chiaro</span>
           </div>
-          <div className="flex-none w-full text-right align-baseline md:w-60 mt-5 md:mt-0 items-center">
+          <div className="flex-none w-full lg:w-60 text-right align-baseline mt-5 md:mt-0 items-center">
             <LoginButton isLoggedIn={session} />
           </div>
         </div>

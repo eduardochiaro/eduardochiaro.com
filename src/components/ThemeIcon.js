@@ -51,9 +51,9 @@ export default function ThemeIcon () {
 
   return (
     <Menu as="div" className="relative flex item-center">
-      <Menu.Button as="span">
+      <Menu.Button as="span" data-cy="change-mode">
       { inUseTheme === "dark" ? 
-        <MoonIcon  className="w-5 h-5 fill-primary-600 cursor-pointer rounded-full transition-all duration-300 ease-in-out hover:bg-zinc-100 hover:fill-zinc-800" />
+        <MoonIcon className="w-5 h-5 fill-primary-600 cursor-pointer rounded-full transition-all duration-300 ease-in-out hover:bg-zinc-100 hover:fill-zinc-800" />
         :
         <SunIcon className="w-5 h-5 fill-zinc-500 cursor-pointer rounded-full transition-all duration-300 ease-in-out hover:fill-primary-600" />
       }
@@ -67,11 +67,11 @@ export default function ThemeIcon () {
           leaveFrom="opacity-100 translate-y-0"
           leaveTo="opacity-0 translate-y-1"
         >
-          <Menu.Items className="transform focus:outline-none z-50 whitespace-nowrap absolute right-0 mt-2 w-auto origin-top-right rounded-md bg-zinc-100 dark:bg-zinc-700 shadow-lg ring-2 ring-primary-700 ring-opacity-50">
-            <div className="py-2 px-4 font-semibold divide-y divide-zinc-400">
+          <Menu.Items data-cy="change-mode-container" className="transform focus:outline-none z-50 whitespace-nowrap absolute right-0 mt-2 w-auto origin-top-right rounded-md bg-zinc-100 dark:bg-zinc-700 shadow-lg ring-2 ring-primary-700 ring-opacity-50">
+            <div className="py-2 px-4 font-semibold divide-y divide-zinc-400" >
               { iconClass?.map((item, index) => (
                 <Menu.Item key={index}>
-                  <div className={`${item.className} py-2 pr-12 hover:underline cursor-pointer flex items-center capitalize`} role="button" onClick={() => setColorTheme(item.name)}>
+                  <div data-cy={`change-mode-${item.name}`} className={`${item.className} py-2 pr-12 hover:underline cursor-pointer flex items-center capitalize`} role="button" onClick={() => setColorTheme(item.name)}>
                   {item.icon} {item.name}
                   </div>
                 </Menu.Item>

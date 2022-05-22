@@ -1,7 +1,7 @@
 describe('Navigation', () => {
-  beforeEach(() => {
+  before(() => {
     // Start from the index page
-    cy.visit('http://localhost:3000/');
+    cy.visit('/');
   });
   it('check navigation', () => {
     cy.get('header nav').should('be.visible');

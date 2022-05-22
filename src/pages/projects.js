@@ -10,9 +10,9 @@ export default function Projects() {
       <Head>
         <title>Projects | Eduardo Chiaro</title>
       </Head>
-      <div className="mb-auto">
-        <Header />
-        <Share />
+      <Header />
+      <Share />
+      <div className="grow">
         <ProjectsComponent />
       </div>
       <Footer />
