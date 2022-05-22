@@ -4,7 +4,6 @@ import Header from "../../components/frontend/Header";
 import Share from '../../components/frontend/Share';
 import Masonry from 'react-masonry-css';
 import useStaleSWR from '../../utils/staleSWR';
-import Image from 'next/image';
 import moment from 'moment';
 import Link from 'next/link';
 import Flickr from '../../components/icons/flickr';
@@ -52,7 +51,7 @@ export default function Projects() {
         <title>Projects &gt; Stream | Eduardo Chiaro</title>
       </Head>
       <Header />
-      <div className={`${styles.stream}`}>
+      <div className={`${styles.stream} grow flex flex-col`}>
         <div className={`mb-auto pb-10 grow`}>
           <Share />
           <section className={`px-4 lg:px-0 mt-10`}>

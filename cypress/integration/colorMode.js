@@ -9,6 +9,4 @@ describe('Dark/Light Mode', () => {
     cy.get('[data-cy="change-mode-dark"]').should('be.visible').click();
     cy.get('html').should('have.css', 'color-scheme', 'dark');
   });
-
-
 })

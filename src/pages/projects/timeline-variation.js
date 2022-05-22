@@ -3,8 +3,8 @@ import Header from "../../components/frontend/Header";
 import Share from '../../components/frontend/Share';
 import Footer from "../../components/frontend/Footer";
 import Link from 'next/link';
-import cache from "memory-cache";
 import { EvenTile, OddTile } from '../../components/projects/TimelineTile';
+import fsCache from '../../utils/fsCache';
 
 function Timeline({ episodes }) {
 
@@ -38,26 +38,30 @@ function Timeline({ episodes }) {
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const hours = 24;
   const url = 'https://rickandmortyapi.com/api/episode';
-  const cachedResponse = cache.get(url);
-  if (cachedResponse) {
-    return {
-      props: { episodes: cachedResponse  },
-    }
-  }
-  const res = await fetch(url);
-  const pageEpisodes = await res.json();
+  const episodes = await fsCache(url, hours, async () => {
+    const res = await fetch(url);
+    const pageEpisodes = await res.json();
 
-  const episodes = await Promise.all(pageEpisodes.results.map( async (episode) => {
-    const characters = episode.characters.map(y => y.replace('https://rickandmortyapi.com/api/character/', ''));
-    const res = await fetch(`https://rickandmortyapi.com/api/character/${characters.join(',')}`);
-    episode.characters = await res.json();
-    episode.characters_count = episode.characters.length;
-    return episode;
-  }));
-  cache.put(url, episodes, hours * 1000 * 60 * 60);
+    return await Promise.all(pageEpisodes.results.map( async (episode) => {
+      const characters = episode.characters.map(y => y.replace('https://rickandmortyapi.com/api/character/', ''));
+      const res = await fetch(`https://rickandmortyapi.com/api/character/${characters.join(',')}`);
+      episode.characters = await res.json();
+      episode.characters = episode.characters.map(character => {
+        return {
+          id: character.id,
+          name: character.name,
+          image: character.image,
+          species: character.species
+        }
+      });
+      episode.characters_count = episode.characters.length;
+      return episode;
+    }));
+  });
+
   return {
     props: { episodes },
   }
