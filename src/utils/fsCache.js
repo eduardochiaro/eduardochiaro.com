@@ -1,6 +1,6 @@
 import cacheApi from 'node-filesystem-cache';
 
-const cachePath = './cache';
+const cachePath = './out/_cache';
 const Cache = new cacheApi(cachePath);
 
 const fsCache = (name, hours, useCallback = () => {}) => {
