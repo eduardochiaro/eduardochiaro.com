@@ -26,10 +26,11 @@ export default function Bookmarks() {
         <h1 className="font-header leading-tight text-2xl lg:text-3xl font-light">
           Bookmarks
         </h1>
+        <div>
         { uniqueCategories.map((category, index) => (
-          <div key={index}>
+          <div key={index} className="group">
             <span className="anchor" name={`bookmarks-${category.id}`}/>
-            <h4 className="text-primary-700 dark:text-primary-600 mt-5 md:mt-10 mb-5">
+            <h4 className="text-primary-700 dark:text-primary-600 mt-10 group-first:mt-5 mb-5">
               <TagIcon className="inline-block w-4 h-4 align-text-bottom mr-2" />
               {category.name}
             </h4>
@@ -68,6 +69,7 @@ export default function Bookmarks() {
             </Masonry>
           </div>
         ))}
+        </div>
       </div>
     </section>
     <div className="hidden xl:block fixed top-40 left-10 text-sm font-semibold tracking-wider">

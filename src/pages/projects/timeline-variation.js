@@ -22,10 +22,10 @@ function Timeline({ episodes }) {
               <Link
                 href="/projects"
                 >
-                <a className="hover:underline">Projects</a>
-              </Link> &gt; Timeline (variation)
+                <a className="hover:underline text-primary-700 dark:text-primary-600">Projects</a>
+              </Link> / Timeline (variation)
             </h1>
-            <div className="mt-8">
+            <div className="mt-5">
             { episodes?.map((episode, index) => 
               index % 2 === 0 ? <OddTile key={`episode-${index}`} episode={episode} maxCharacters={4} type="small"  /> : <EvenTile key={`episode-${index}`} episode={episode} maxCharacters={4} type="small"  />
             )}

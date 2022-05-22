@@ -22,10 +22,10 @@ function Terminal() {
               <Link
                 href="/projects"
                 >
-                <a className="hover:underline">Projects</a>
-              </Link> &gt; Terminal
+                <a className="hover:underline text-primary-700 dark:text-primary-600">Projects</a>
+              </Link> / Terminal
             </h1>
-            <div className="pt-8 h-2/3 grow">
+            <div className="mt-5 h-2/3 grow">
               <TerminalComponent />
             </div>
           </div>

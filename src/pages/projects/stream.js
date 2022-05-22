@@ -60,10 +60,10 @@ export default function Projects() {
                 <Link
                   href="/projects"
                   >
-                  <a className="hover:underline">Projects</a>
-                </Link> &gt; Stream
+                  <a className="hover:underline text-primary-700 dark:text-primary-600">Projects</a>
+                </Link> / Stream
               </h1>
-              <div className="mt-8">
+              <div className="mt-5">
                 <Masonry
                   breakpointCols={breakpointColumnsObj}
                   className="flex gap-8 w-auto"

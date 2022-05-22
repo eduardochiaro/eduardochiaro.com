@@ -38,9 +38,9 @@ export default function Projects () {
           <h1 className="font-header leading-tight text-2xl lg:text-3xl font-light">
             Apps
           </h1>
-          <div className="grid grid-cols-1 gap-8 mt-10">
+          <div className="grid grid-cols-1 gap-8 mt-5">
           { data?.results.map((app, index) => (
-            <div className={`flex flex-wrap p-4 box-card`} key={`app-${index}`} >
+            <div className={`flex flex-wrap p-8 box-card`} key={`app-${index}`} >
               <div className={`basis-full md:basis-1/3 relative`}>
                 <NaturalImage
                   src={`/uploads/${app.image}`}
@@ -53,15 +53,17 @@ export default function Projects () {
               <div className={`basis-full md:basis-2/3 px-8`}>
                 <h3 className="text-2xl font-header">{app.name}</h3>
                 <p className="text-normal mt-2">{app.description}</p>
-                <a
-                  href={app.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="bg-zinc-700 transition text-zinc-100 hover:text-primary-600 shadow-lg border border-zinc-300 px-4 py-2 text-base rounded-md mt-8 inline-block"
-                >
-                  <GitHubIcon className="inline-block align-text-top w-5 mr-2" />
-                  Download from GitHub
-                </a>
+                <Link
+                  href={app.url}>
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    className="bg-primary-700 transition text-zinc-100 shadow-lg px-4 py-2 text-base rounded-md mt-6 inline-flex items-center gap-4 group hover:underline"
+                  >
+                    <GitHubIcon className="w-6 group-hover:w-8 group-hover:mr-2 transition-all duration-500 ease-in-out" />
+                    Download from GitHub
+                  </a>
+                </Link>
               </div>
             </div>
           ))}
@@ -69,18 +71,20 @@ export default function Projects () {
         </div>
 
         <div className="basis-full md:basis-1/4 md:text-right mb-10">
-          <h2 className="font-header leading-tight text-2xl lg:text-3xl font-light">
+          <h2 className="font-header leading-tight text-xl font-light mt-3">
             Projects
           </h2>
-          <ul className="mt-10 pl-0 md:pl-4 list-inside list-disc">
+          <ul className="mt-5 pl-0 md:pl-8">
             { projects.map((project, index) => (
-            <li key={`project-${index}`} className="text-base mb-5">
+            <li key={`project-${index}`} className="text-base mb-8 box-card p-4">
               <Link
                 href={project.url}
                 >
-                <a className="hover:underline text-2xl">{project.name}</a>
+                <a className="group">
+                  <h3 className="group-hover:underline text-lg">{project.name}</h3>
+                  <p className="text-sm mt-2 opacity-50">{project.description}</p>
+                  </a>
               </Link>
-              <p className="text-sm opacity-50">{project.description}</p>
             </li>
             ))}
           </ul>
