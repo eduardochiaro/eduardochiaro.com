@@ -46,12 +46,14 @@ export default function Table ({ columns = [], data = [], format = [], editActio
         { search && <XIcon className="cursor-pointer absolute top-2 right-2 w-5" onClick={() => filterData('')} />}
       </div>
       <div className="grow text-right">
+        { openAction &&
         <button className="transition bg-primary-700 dark:bg-primary-600 hover:bg-primary-800 dark:hover:bg-primary-700 text-white font-bold py-2 px-4 rounded" 
           onClick={() => openAction(format)}>
           <div className="flex items-center gap-2">
             <PlusIcon className="h-5 text-white "/> {openActionLabel}
           </div>
         </button>
+        }
       </div>
     </div>
     <div className="flex flex-col">
