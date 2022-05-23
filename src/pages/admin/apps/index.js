@@ -194,15 +194,18 @@ const AdminAppsIndex = ({ formRef }) => {
   if (session) {
     return (
       <AdminWrapper>
-        <div className="flex my-2">
-          <h1 className="flex-auto text-4xl"><ChipIcon className="inline-flex align-text-bottom h-10 text-primary-700 dark:text-primary-600"/> Apps list</h1>
-          <div className="flex-none text-right">
-          <button className="transition flex items-center bg-primary-700 dark:bg-primary-600 hover:bg-primary-800 dark:hover:bg-primary-700 text-white font-bold py-2 px-4 mb-5 rounded" onClick={() => openModal(appFormat)}>
-              <PlusIcon className="h-5 mr-2 text-white "/>  Add new app
-            </button>
-          </div>
-        </div>
-        <Table columns={columns} data={newData} editAction={openModal} deleteAction={openModalDelete} />
+        <AdminWrapper.Header>
+          <h1 className="text-2xl flex items-center gap-2"><ChipIcon className="h-6 text-primary-700 dark:text-primary-600"/> Apps list</h1>
+        </AdminWrapper.Header>
+        <Table 
+          columns={columns} 
+          data={newData} 
+          format={appFormat} 
+          editAction={openModal} 
+          deleteAction={openModalDelete} 
+          openAction={openModal}
+          openActionLabel="Add new app"
+           />
         <AdminModal 
           title={app.id ? 'Edit app' : 'Add new app'}
           isOpen={isOpen} 
