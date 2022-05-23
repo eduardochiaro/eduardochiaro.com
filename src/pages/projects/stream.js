@@ -60,7 +60,7 @@ export default function Projects() {
                 <Link
                   href="/projects"
                   >
-                  <a className="hover:underline text-primary-700 dark:text-primary-600">Projects</a>
+                  <a className="hover:underline text-primary-700 dark:text-primary-600 font-semibold">Projects</a>
                 </Link> / Stream
               </h1>
               <div className="mt-5">

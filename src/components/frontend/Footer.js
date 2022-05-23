@@ -22,11 +22,6 @@ function LoginButton(props) {
       </>
     );
   }
-  return (
-    <button className="relative text-sm" onClick={() => signIn(null, { callbackUrl: '/admin' })}>
-      Sign in
-    </button>
-  );
 }
 
 export default function Footer () {

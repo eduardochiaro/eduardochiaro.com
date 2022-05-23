@@ -74,13 +74,19 @@ export default function Header () {
                 </Menu.Items>
               </Transition>
             </Menu>
-            <Logo 
-              title="Eduardo Chiaro" 
-              alt="Eduardo Chiaro" 
-              className={`w-auto h-7 mr-3`} />
-              <div className="hidden md:inline">
-                Eduardo Chiaro
-              </div>
+            <Link
+              href="/"
+              >
+              <a className="flex items-center gap-3">
+                <Logo 
+                  title="Eduardo Chiaro" 
+                  alt="Eduardo Chiaro" 
+                  className={`w-auto h-7`} />
+                <div className="hidden md:inline">
+                  Eduardo Chiaro
+                </div>
+              </a>
+            </Link>
           </div>
           <div className="md:flex items-center">
             <div className={`w-full md:w-auto hidden drop-shadow-none md:contents absolute md:relative top-14 pb-2 left-1 bg-zinc-100 dark:bg-zinc-700 z-50`}>
