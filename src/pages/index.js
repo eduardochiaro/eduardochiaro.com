@@ -16,10 +16,10 @@ export default function Home() {
         <Header />
         <Share />
         <Bio />
-        <hr className="mt-10 max-w-5xl mx-auto border-t border-dotted border-primary-700 dark:border-primary-600" />
+        <hr className="mt-10 max-w-5xl mx-auto border-t border-solid border-primary-700 dark:border-primary-600" />
         <Jobs />
         <Skills />
-        <hr className="mt-10 max-w-5xl mx-auto border-t border-dotted border-primary-700 dark:border-primary-600" />
+        <hr className="mt-10 max-w-5xl mx-auto border-t border-solid border-primary-700 dark:border-primary-600" />
         <LatestPosts />
         <GitHub />
       </div>
