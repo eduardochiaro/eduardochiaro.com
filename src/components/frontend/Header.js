@@ -107,7 +107,7 @@ export default function Header () {
               })}
             </ul>
           </div>
-          <div className="hidden md:inline-block mx-8">
+          <div className="hidden md:inline-block ml-12 mr-6">
             <Link
               href="https://blog.eduardochiaro.com"
               >
