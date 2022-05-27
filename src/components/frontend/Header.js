@@ -40,13 +40,13 @@ export default function Header () {
   ]
   const router = useRouter();
   return (
-    <header className={`${styles.header} bg-zinc-100 dark:bg-zinc-700 border-b border-zinc-200 dark:border-zinc-600`}>
-      <nav className="w-100 px-auto">
-        <div className="px-4 md:px-8 grid grid-cols-3 h-14">
-          <div className="flex items-center font-header text-2xl">
-            <Menu as="div" className="relative">
-              <Menu.Button as="a" className="inline-block md:hidden">
-                <MenuIcon className={`w-6 inline-block border-2 mr-10 rounded border-primary-700 transition text-primary-700 dark:text-primary-600 hover:text-zinc-900 dark:hover:text-zinc-100`}/>
+    <header className={`${styles.header} bg-zinc-100/80 dark:bg-zinc-700/75 border-b border-zinc-200 dark:border-zinc-600 backdrop-blur`}>
+      <nav className="w-full">
+        <div className="px-4 md:px-8 flex items-center h-14">
+          <div className="flex-none flex gap-4 font-header text-2xl">
+            <Menu as="div" className="relative inline-block md:hidden">
+              <Menu.Button as="a" className="inline-block md:hidden hover:cursor-pointer">
+                <MenuIcon className={`w-7 inline-block border-2 rounded border-primary-700 transition text-primary-700 dark:text-primary-600 hover:text-zinc-900 dark:hover:text-zinc-100`}/>
               </Menu.Button>
               <Transition
                 as={Fragment}
@@ -77,50 +77,46 @@ export default function Header () {
             <Link
               href="/"
               >
-              <a className="flex items-center gap-3">
+              <a className="flex items-center gap-2 md:gap-3">
                 <Logo 
                   title="Eduardo Chiaro" 
                   alt="Eduardo Chiaro" 
-                  className={`w-auto h-7`} />
-                <div className="hidden md:inline">
+                  className={`w-auto h-5 md:h-7`} />
+                <div className="text-xl md:text-3xl font-semibold">
                   Eduardo Chiaro
                 </div>
               </a>
             </Link>
           </div>
-          <div className="md:flex items-center">
-            <div className={`w-full md:w-auto hidden drop-shadow-none md:contents absolute md:relative top-14 pb-2 left-1 bg-zinc-100 dark:bg-zinc-700 z-50`}>
-              <ul className="md:flex font-semibold tracking-wider mx-auto items-center">
-                { menuData.filter(x => !x.onlyMobile).map(function(item, i) {
-                  return (
-                    <li key={`menu-link-${i}`}>
-                      <NavLink 
-                        href={item.link}
-                        className={`${styles.menuUrl} hover:text-zinc-900 dark:hover:text-zinc-100 hover:underline opacity-60 hover:opacity-100`}
-                        activeClassName={`${styles.menuUrl} text-primary-700 dark:text-primary-600`}
-                        type="main"
-                        >
-                        <a>{item.text}</a>
-                      </NavLink>
-                    </li>
-                  )
-                })}
-              </ul>
-            </div>
+          <span className="flex-1"></span>
+          <div className="hidden md:flex items-center">
+            <ul className="md:flex font-semibold tracking-wider mx-auto">
+              { menuData.filter(x => !x.onlyMobile).map(function(item, i) {
+                return (
+                  <li key={`menu-link-${i}`}>
+                    <NavLink 
+                      href={item.link}
+                      className={`${styles.menuUrl} hover:text-zinc-900 dark:hover:text-zinc-100 hover:underline opacity-60 hover:opacity-100`}
+                      activeClassName={`${styles.menuUrl} text-primary-700 dark:text-primary-600`}
+                      type="main"
+                      >
+                      <a>{item.text}</a>
+                    </NavLink>
+                  </li>
+                )
+              })}
+            </ul>
           </div>
-          <div className="flex items-center text-right">
-            <span className="flex-1"></span>
-              <div className="hidden md:inline-block mr-8">
-                <Link
-                  href="https://blog.eduardochiaro.com"
-                  >
-                    <a className="md:pr-0 pr-6 whitespace-nowrap text-base font-medium transition hover:underline flex items-center">
-                      <RssIcon className={`h-5 text-accent-500 mr-1`} aria-hidden="true"  />.dev
-                    </a>
-                </Link>
-              </div>
-            <ThemeIcon />
+          <div className="hidden md:inline-block mx-8">
+            <Link
+              href="https://blog.eduardochiaro.com"
+              >
+              <a className="md:pr-0 pr-6 whitespace-nowrap text-base font-medium transition hover:underline flex items-center">
+                <RssIcon className={`h-5 text-accent-500 mr-1`} aria-hidden="true"  />.dev
+              </a>
+            </Link>
           </div>
+          <ThemeIcon />
         </div>
       </nav>
     </header>
