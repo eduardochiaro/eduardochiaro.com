@@ -14,7 +14,7 @@ export default function NavLink({ href, as, exact, activeClassName, className, t
     const isActive = href == asPath || as == asPath || href == asPathInitial || as == asPathInitial;
     const classNameUse = isActive ? activeClassName : className ;
     setClassInUse(classNameUse);
-  }, [asPath, href, as, activeClassName, className]);
+  }, [asPath, href, as, activeClassName, className, type]);
 
   return (
     <Link href={href} as={as} {...props}>
