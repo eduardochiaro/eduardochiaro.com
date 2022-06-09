@@ -36,7 +36,7 @@ export default function Projects () {
       <div className="max-w-5xl mx-auto flex flex-wrap">
         <div className="basis-full md:basis-3/4 mb-10">
           <h1 className="font-header leading-tight text-2xl lg:text-3xl font-light">
-            Apps
+            Projects
           </h1>
           <div className="grid grid-cols-1 gap-8 mt-5">
           { data?.results.map((app, index) => (
@@ -72,7 +72,7 @@ export default function Projects () {
 
         <div className="basis-full md:basis-1/4 md:text-right mb-10">
           <h2 className="font-header leading-tight text-xl font-light mt-3">
-            Projects
+            Lab
           </h2>
           <ul className="mt-5 pl-0 md:pl-8">
             { projects.map((project, index) => (

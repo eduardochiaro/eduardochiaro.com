@@ -1,3 +1,4 @@
+import moment from 'moment';
 import * as React from 'react';
 import CoffeeIcon from '../icons/coffee';
 
@@ -13,11 +14,14 @@ export default function Bio () {
           a <CoffeeIcon className={`inline-block w-8 lg:w-16 text-primary-700 dark:text-primary-600`}/> coffee-driven
           Software Developer based in Washington State.
         </h2>
-        <p className="mt-5 md:text-lg font-normal text-zinc-600 dark:text-zinc-400 md:leading-loose">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nisl lacus, auctor condimentum mi vitae, bibendum pretium lacus. 
-          Morbi molestie diam eget eros iaculis, vel pellentesque sapien tempus. Sed tempor risus dui, non euismod eros semper sit amet. 
-          Praesent mollis, elit non finibus porttitor, orci leo hendrerit orci, volutpat tincidunt libero urna vitae quam.</p>
-        <p className="mt-5 md:text-lg font-normal text-zinc-600 dark:text-zinc-400 md:leading-loose">Pellentesque tortor purus, ornare ac laoreet pellentesque, tincidunt non erat. Curabitur pellentesque velit nec mi rutrum, ac viverra nulla egestas. 
-          Sed sit amet urna pretium, maximus lacus eu, scelerisque lacus.</p>
+        <p className="mt-5 md:text-lg font-normal text-zinc-600 dark:text-zinc-400">
+          I have rich experience designing and building tailored web applications based on user needs. 
+          With {moment().diff('2005-09-01', 'years')} years of experience working on full-stack applications like e-commerce, APIs, web apps, and more.
+        </p>
+        <p className="mt-5 md:text-lg font-normal text-zinc-600 dark:text-zinc-400">
+          I started long ago working with PHP before moving on to Node.js as my primary programming language 
+          but on the side, I&lsquo;ve also used Ruby and Swift on some projects.
+        </p>
       </div>
     </section>
   );
