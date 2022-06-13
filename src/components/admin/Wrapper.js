@@ -11,8 +11,8 @@ const AdminWrapper = ({ children, header = '' }) => {
   return (
     <div className="min-h-screen grid grid-cols-12 antialiased bg-zinc-50 dark:bg-zinc-800">
       <AdminSidebar/>
-      <div className="h-full col-span-10">
-        <div className="flex items-center h-14 pr-10 bg-zinc-100 dark:bg-zinc-700 border-b border-zinc-200 dark:border-zinc-600">
+      <div className="h-full col-span-10 py-4">
+        <div className="flex items-center h-14 pr-10 border-b border-zinc-200 dark:border-zinc-600">
           <div className="flex-1 pl-10">
           {React.Children.map(children, child => {
             if (child.type === AdminWrapprerHeader) {
