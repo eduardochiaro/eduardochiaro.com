@@ -18,7 +18,7 @@ export default function Skills () {
             <div key={`skill-${index}`} className="flex items-center gap-5 mt-1">
               <span className="flex-none font-medium">{skill.name}</span>
               <span className="w-full border-t border-primary-700 dark:border-primary-600 border-dashed shrink"></span>
-              <SVG title={skill.name} alt={skill.name} className={`flex-none h-8 ${styles[`color-${skill.type}`]}  dark:fill-zinc-200`} src={`/images/svg-icons/${skill.logo}`} />
+              <SVG title={skill.name} alt={skill.name} className={`flex-none w-8 ${styles[`color-${skill.type}`]}  dark:fill-zinc-200`} src={`/images/svg-icons/${skill.logo}`} />
               <div className="flex-none w-6/12">
                 <div className="w-full bg-zinc-200 dark:bg-zinc-700 h-4 rounded">
                   <div className={`${styles[`bar-${skill.type}`]} bg-blue-600 rounded h-4`} style={{width: skill.percentage + '%'}}></div>
