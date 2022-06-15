@@ -15,12 +15,10 @@ export default function Skills () {
         <div id="skills-list">
         { data && data.results ? 
             data.results.map((skill, index) => (
-            <div key={`skill-${index}`} className="flex items-center mt-1">
-              <span className="flex-none font-medium mr-5">{skill.name}</span>
-              <span className="w-full border-t border-primary-700 dark:border-primary-600 border-dashed shrink mr-5"></span>
-              <div className="flex-none w-12 relative text-white">
-                <SVG title={skill.name} alt={skill.name} className={`inline-block w-8 fill-zinc-700 dark:fill-zinc-200`} src={`/images/svg-icons/${skill.logo}`} />
-              </div>
+            <div key={`skill-${index}`} className="flex items-center gap-5 mt-1">
+              <span className="flex-none font-medium">{skill.name}</span>
+              <span className="w-full border-t border-primary-700 dark:border-primary-600 border-dashed shrink"></span>
+              <SVG title={skill.name} alt={skill.name} className={`flex-none h-8 ${styles[`color-${skill.type}`]}  dark:fill-zinc-200`} src={`/images/svg-icons/${skill.logo}`} />
               <div className="flex-none w-6/12">
                 <div className="w-full bg-zinc-200 dark:bg-zinc-700 h-4 rounded">
                   <div className={`${styles[`bar-${skill.type}`]} bg-blue-600 rounded h-4`} style={{width: skill.percentage + '%'}}></div>
@@ -32,14 +30,12 @@ export default function Skills () {
                 .fill()
                 .map((_, idx) => 0 + idx),
             ].map((x) => (
-              <div key={`skill-${x}`} className="flex items-center mt-1">
+              <div key={`skill-${x}`} className="flex items-center gap-5 mt-1">
                 <span className="flex-none font-medium mr-5">
-                  <div key={x} className="w-12 h-8 bg-zinc-300 dark:bg-zinc-600 rounded animate-pulse"></div>
+                  <div key={x} className="w-12 h-6 bg-zinc-300 dark:bg-zinc-600 rounded animate-pulse"></div>
                 </span>
                 <span className="w-full border-t border-primary-700 dark:border-primary-600 border-dashed shrink mr-5"></span>
-                <div className="flex-none w-12 relative">
-                  <div key={x} className="w-8 h-8 bg-zinc-300 dark:bg-zinc-600 rounded animate-pulse"></div>
-                </div>
+                <div key={x} className="flex-none w-6 h-6 bg-zinc-300 dark:bg-zinc-600 rounded animate-pulse"></div>
                 <div className="flex-none w-6/12">
                   <div className="w-full bg-zinc-200 dark:bg-zinc-700 h-4 rounded animate-pulse">
                     <div className={`${styles[`bar-node`]} bg-blue-600 rounded h-4`} style={{width: (x * 10) + '%'}}></div>

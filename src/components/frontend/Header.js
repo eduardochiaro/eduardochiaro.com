@@ -82,7 +82,7 @@ export default function Header () {
                   title="Eduardo Chiaro" 
                   alt="Eduardo Chiaro" 
                   className={`w-auto h-5 md:h-7`} />
-                <div className="text-xl md:text-3xl font-semibold">
+                <div className="text-xl md:text-2xl font-semibold">
                   Eduardo Chiaro
                 </div>
               </a>

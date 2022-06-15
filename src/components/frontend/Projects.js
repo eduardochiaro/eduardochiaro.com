@@ -58,9 +58,9 @@ export default function Projects () {
                   <a
                     target="_blank"
                     rel="noreferrer"
-                    className="bg-primary-700 transition text-zinc-100 shadow-lg px-4 py-2 text-base rounded-md mt-6 inline-flex items-center gap-4 group hover:underline"
+                    className="bg-primary-700 transition text-zinc-100 shadow-lg px-4 py-2 text-base rounded-md mt-6 inline-flex items-center gap-4 hover:underline"
                   >
-                    <GitHubIcon className="w-6 group-hover:w-8 group-hover:mr-2 transition-all duration-500 ease-in-out" />
+                    <GitHubIcon className="w-6 transition-all duration-500 ease-in-out" />
                     Download from GitHub
                   </a>
                 </Link>
