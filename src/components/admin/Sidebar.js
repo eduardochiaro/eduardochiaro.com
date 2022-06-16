@@ -35,17 +35,17 @@ const AdminSidebar = () => {
     },
   ];
   return(
-    <div className={`transition-all ease-in-out duration-300 p-4 absolute sm:relative shadow md:h-full flex-col justify-between hidden sm:flex min-h-screen ${openMenu ? styles['sidebar-open'] : styles['sidebar-closed']}`}>
-      <div className="flex-grow h-full bg-zinc-200 dark:bg-zinc-600 rounded-xl p-6 relative">
-        <button type="button" className="absolute top-5 -right-5 cursor-pointer bg-zinc-100 rounded-r" onClick={() => setOpenMenu(!openMenu)}>
+    <div className={`transition-all ease-in-out duration-300 p-4 absolute sm:relative md:h-full flex-col justify-between hidden sm:flex min-h-screen ${openMenu ? styles['sidebar-open'] : styles['sidebar-closed']}`}>
+      <div className="flex-grow h-full bg-zinc-200 dark:bg-zinc-600 rounded-xl p-6 relative shadow">
+        <button type="button" className="absolute top-10 -right-4 cursor-pointer bg-zinc-600 dark:bg-zinc-300 rounded-r h-10" onClick={() => setOpenMenu(!openMenu)}>
           {openMenu ? 
-            <ChevronLeftIcon className="text-zinc-500 dark:text-zinc-500 w-5"/>
+            <ChevronLeftIcon className="text-zinc-200 dark:text-zinc-700 w-4"/>
             :
-            <ChevronRightIcon className="text-zinc-500 dark:text-zinc-500 w-5"/>
+            <ChevronRightIcon className="text-zinc-200 dark:text-zinc-700 w-4"/>
           }
         </button>
         <div className="flex items-center gap-4 h-14 pb-8 mt-6 border-b border-zinc-300 dark:border-zinc-500">
-          <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className="text-zinc-600 w-12 bg-zinc-50 rounded-full p-2" />
+          <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className="text-zinc-600 w-10 bg-zinc-50 rounded-full p-2" />
           <div className={`text-center font-bold font-header border-r border-zinc-200 dark:border-zinc-600 hidden xl:inline-block ${ openMenu ? '' : styles['hide-when-closed'] }`}>
             eduardo.chiaro
           </div>
