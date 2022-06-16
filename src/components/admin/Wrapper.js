@@ -9,42 +9,44 @@ const AdminWrapper = ({ children, header = '' }) => {
   const { data: session } = useSession();
 
   return (
-    <div className="min-h-screen grid grid-cols-12 antialiased bg-zinc-50 dark:bg-zinc-800">
-      <AdminSidebar/>
-      <div className="h-full col-span-10 py-4">
-        <div className="flex items-center h-14 pr-10 border-b border-zinc-200 dark:border-zinc-600">
-          <div className="flex-1 pl-10">
-          {React.Children.map(children, child => {
-            if (child.type === AdminWrapprerHeader) {
-              return React.cloneElement(child);
-            }
-          })}
-          </div>
-          <div className="flex items-center justify-end">
-            <div className="h-7 w-7 inline-block mr-5 align-middle">
-              <Image
-                src={session.user.image}
-                className="rounded-full border border-zinc-400 dark:border-zinc-600"
-                width={200}
-                height={200}
-                alt={`Logged as ${session.user.name}`}
-                title={`Logged as ${session.user.name}`}
-              />
+    <div className="w-full h-full antialiased bg-zinc-50 dark:bg-zinc-800">
+      <div className="flex flex-no-wrap">
+        <AdminSidebar/>
+        <div className="h-full py-4 px-6 w-full">
+          <div className="flex items-center h-14 pr-10 border-b border-zinc-200 dark:border-zinc-600">
+            <div className="flex-1 pl-10">
+            {React.Children.map(children, child => {
+              if (child.type === AdminWrapprerHeader) {
+                return React.cloneElement(child);
+              }
+            })}
             </div>
-            <div className="inline-block mr-4">
-              <a onClick={() => signOut()} title="logout" className="cursor-pointer focus:outline-none">
-                <LogoutIcon className="inline-flex h-5" />
-              </a>
+            <div className="flex items-center justify-end">
+              <div className="h-7 w-7 inline-block mr-5 align-middle">
+                <Image
+                  src={session.user.image}
+                  className="rounded-full border border-zinc-400 dark:border-zinc-600"
+                  width={200}
+                  height={200}
+                  alt={`Logged as ${session.user.name}`}
+                  title={`Logged as ${session.user.name}`}
+                />
+              </div>
+              <div className="inline-block mr-4">
+                <a onClick={() => signOut()} title="logout" className="cursor-pointer focus:outline-none">
+                  <LogoutIcon className="inline-flex h-5" />
+                </a>
+              </div>
+              <ThemeIcon />
             </div>
-            <ThemeIcon />
           </div>
-        </div>
-        <div className="pt-4 pb-10 px-10">
-          {React.Children.map(children, child => {
-            if (child.type !== AdminWrapprerHeader) {
-              return React.cloneElement(child);
-            }
-          })}
+          <div className="pt-4 pb-10 px-10">
+            {React.Children.map(children, child => {
+              if (child.type !== AdminWrapprerHeader) {
+                return React.cloneElement(child);
+              }
+            })}
+          </div>
         </div>
       </div>
     </div>

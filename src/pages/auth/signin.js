@@ -1,10 +1,7 @@
 import * as React from 'react'
 import { getProviders, signIn } from "next-auth/react"
 import { useRouter } from 'next/router'
-import SVG from 'react-inlinesvg'
 import { LoginIcon } from "@heroicons/react/outline"
-import Link from 'next/link'
-import ThemeIcon from '../../components/ThemeIcon'
 import Header from '../../components/frontend/Header'
 
 export default function SignIn({ providers, basePath }) {
