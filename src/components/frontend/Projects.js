@@ -23,11 +23,6 @@ export default function Projects () {
       name: 'Timeline', 
       url: '/projects/timeline',
       description: 'Example of a timeline component using Tailwind',
-    },
-    {
-      name: 'Timeline (variation)',
-      url: '/projects/timeline-variation',
-      description: 'Example of a timeline component using Tailwind, with a style variation',
     }
   ]
 

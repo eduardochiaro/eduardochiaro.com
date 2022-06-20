@@ -99,3 +99,16 @@ table.admin-table {
 .unset-img > div {
   position: unset !important;
 }
+.toggle-bg {
+  @apply transition-all ease-in-out delay-150 bg-zinc-200 dark:bg-zinc-700 border-2 border-zinc-200 dark:border-zinc-700 h-6 w-11 rounded-full;
+}
+.toggle-bg:after {
+  content: '';
+  @apply transition-all ease-in-out delay-150 absolute top-0.5 left-0.5 bg-zinc-50 dark:bg-zinc-500 border border-zinc-300 dark:border-zinc-600 rounded-full h-5 w-5 shadow-sm;
+}
+input:checked + .toggle-bg:after {
+  transform: translateX(100%);
+}
+input:checked + .toggle-bg {
+  @apply bg-primary-600 border-primary-600;
+}
