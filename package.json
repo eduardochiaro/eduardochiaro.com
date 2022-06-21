@@ -31,7 +31,7 @@
     "nanoid": "^3.3.1",
     "next": "^12.1.4",
     "next-api-middleware": "^1.0.1",
-    "next-auth": "^4.3.1",
+    "next-auth": "^4.5.0",
     "nextjs-cors": "^2.1.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
