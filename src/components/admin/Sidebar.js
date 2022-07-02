@@ -67,9 +67,9 @@ const AdminSidebar = () => {
             </div>
           </li>
           {menuList.map(item => (
-            <li key={item.title}>
+            <li key={ item.title }>
               <NavLink
-                href={item.href} 
+                href={ item.href } 
                 as={ item.href }
                 className={`${styles['sidebar-link']} group border-transparent `} 
                 activeClassName={`${styles['sidebar-link']} group rounded-xl bg-zinc-100 dark:bg-zinc-700`}
@@ -78,7 +78,7 @@ const AdminSidebar = () => {
                   className="flex items-center gap-2"
                   alt={ item.title }
                   title={ item.title }>
-                  {item.icon}
+                  { item.icon }
                   <span className={`text-sm tracking-wide truncate group-hover:hunderline hidden xl:inline-block ${ openMenu ? '' : styles['hide-when-closed'] }`}>{item.title}</span>
                 </a>
               </NavLink>
