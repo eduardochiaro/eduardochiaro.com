@@ -13,8 +13,8 @@ const AdminWrapper = ({ children, header = '' }) => {
       <div className="flex flex-no-wrap">
         <AdminSidebar/>
         <div className="h-full py-4 px-6 w-full">
-          <div className="flex items-center h-14 pr-10 border-b border-zinc-200 dark:border-zinc-600">
-            <div className="flex-1 pl-10">
+          <div className="flex items-center h-14 px-4 border-b border-zinc-200 dark:border-zinc-600">
+            <div className="flex-1">
             {React.Children.map(children, child => {
               if (child.type === AdminWrapprerHeader) {
                 return React.cloneElement(child);
@@ -40,7 +40,7 @@ const AdminWrapper = ({ children, header = '' }) => {
               <ThemeIcon />
             </div>
           </div>
-          <div className="pt-4 pb-10 px-10">
+          <div className="pt-4 pb-10 px-4">
             {React.Children.map(children, child => {
               if (child.type !== AdminWrapprerHeader) {
                 return React.cloneElement(child);

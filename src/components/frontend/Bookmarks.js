@@ -1,4 +1,4 @@
-import { BookmarkIcon, TagIcon } from '@heroicons/react/solid';
+import { BookmarkIcon, ChevronUpIcon, TagIcon } from '@heroicons/react/solid';
 import Link from 'next/link';
 import Image from 'next/image';
 import * as React from 'react';
@@ -29,10 +29,15 @@ export default function Bookmarks() {
         <div>
         { uniqueCategories.map((category, index) => (
           <div key={index} className="group">
-            <span className="anchor" name={`bookmarks-${category.id}`}/>
-            <h4 className="text-primary-700 dark:text-primary-600 mt-10 group-first:mt-5 mb-5">
-              <TagIcon className="inline-block w-4 h-4 align-text-bottom mr-2" />
-              {category.name}
+            <span className="anchor" name={`bookmarks-${index}`}/>
+            <h4 className="text-primary-700 dark:text-primary-600 mt-14 group-first:mt-5 mb-5 flex items-center gap-2">
+              <TagIcon className="none w-4 h-4" />
+              <span className="flex-none">{category.name}</span>
+              <span className="w-full border-t border-primary-700 dark:border-primary-600 border-dashed shrink"></span>
+              <Link
+                href="#bookmarks-0">
+                  <a className="text-primary-700 dark:text-primary-600 flex items-center group-first:hidden">top <ChevronUpIcon className="inline w-4"/></a>
+                </Link>
             </h4>
             <Masonry
               breakpointCols={breakpointColumnsObj}
@@ -80,8 +85,8 @@ export default function Bookmarks() {
             className="my-2"
             key={`menu-link-${index}`}>
               <NavLink 
-                href={ index == 0 ? `/bookmarks` : `/bookmarks#bookmarks-${category.id}` }
-                as={`/bookmarks#bookmarks-${category.id}`}
+                href={ index == 0 ? `/bookmarks` : `/bookmarks#bookmarks-${index}` }
+                as={`/bookmarks#bookmarks-${index}`}
                 className={`flex items-center gap-2 transition hover:text-zinc-900 dark:hover:text-zinc-100 hover:underline opacity-60 hover:opacity-100`} 
                 activeClassName={`flex items-center gap-2 transition text-primary-700 dark:text-primary-600`}
               >
