@@ -15,12 +15,12 @@ export default function Bio () {
           Software Developer based in Washington State.
         </h2>
         <p className="mt-5 md:text-lg font-normal text-zinc-600 dark:text-zinc-400">
-          I have rich experience designing and building tailored web applications based on user needs.
-          With {moment().diff('2005-09-01', 'years')} years of experience working on full-stack applications like e-commerce, APIs, web apps, and more.
+          With {moment().diff('2005-09-01', 'years')} years of experience working on full-stack applications like e-commerce, APIs, web apps, and more,
+          I have extensive experience designing and developing tailoerd web applications.
         </p>
         <p className="mt-5 md:text-lg font-normal text-zinc-600 dark:text-zinc-400">
-          I started long ago working with PHP before moving on to Node.js as my primary programming language 
-          and have since been working with it ever since. I have a passion for learning new technologies and constantly learning new things. 
+          After many years of working with PHP, i switched to Node.js and have been using it ever since. 
+          I'm passionate about learning new technologies and never stop learning.
         </p>
       </div>
     </section>
