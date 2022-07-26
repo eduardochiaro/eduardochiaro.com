@@ -16,11 +16,11 @@ export default function Bio () {
         </h2>
         <p className="mt-5 md:text-lg font-normal text-zinc-600 dark:text-zinc-400">
           With {moment().diff('2005-09-01', 'years')} years of experience working on full-stack applications like e-commerce, APIs, web apps, and more,
-          I have extensive experience designing and developing tailoerd web applications.
+          I have extensive experience designing and developing bespoke web applications.
         </p>
         <p className="mt-5 md:text-lg font-normal text-zinc-600 dark:text-zinc-400">
-          After many years of working with PHP, i switched to Node.js and have been using it ever since. 
-          I'm passionate about learning new technologies and never stop learning.
+        After many years of working with PHP, I switched to Node.js and have been using it ever since. 
+        It&rsquo;s my passion to learn new technologies and I never stop learning.
         </p>
       </div>
     </section>
