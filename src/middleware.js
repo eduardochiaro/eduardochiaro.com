@@ -1,10 +1,10 @@
-import { getToken } from "next-auth/jwt"
-import { NextResponse } from "next/server"
+import { withAuth } from 'next-auth/middleware';
 
-export async function middleware(req) {
-  if (req.nextUrl.pathname.startsWith('/admin')) {
-    const session = await getToken({ req, secret: process.env.SECRET });
-    if (!session) return NextResponse.redirect(new URL('/auth/signin', req.url));
-  }
-  return NextResponse.next();
-}
+export default withAuth({
+	callbacks: {
+		authorized: ({ token, req }) => {
+			if (req.nextUrl.pathname.startsWith('/admin')) return token;
+			return true;
+		},
+	},
+});
