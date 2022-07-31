@@ -4,9 +4,6 @@ import * as React from 'react';
 import CoffeeIcon from '../icons/coffee';
 
 export default function Bio () {
-  const { data: session } = useSession();
-
-  console.log(session);
   return (
     <section id="bio" className="px-4 lg:px-0 mt-8 md:mt-10">
       <span className="anchor" name="top"/>
