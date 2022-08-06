@@ -39,7 +39,7 @@ export default function Sidemenu () {
   return (
     <div className="hidden xl:block fixed top-40 left-10 text-sm font-semibold tracking-wider">
       <div className="mb-6">On this page</div>
-      <ul className="">
+      <ul>
       { menuData.map(function(item, i) {
         return (
           <li 

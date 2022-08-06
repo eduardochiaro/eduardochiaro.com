@@ -7,9 +7,9 @@ export default function Bio () {
   return (
     <section id="bio" className="px-4 lg:px-0 mt-8 md:mt-10">
       <span className="anchor" name="top"/>
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-5xl mx-auto tracking-wide">
         <h1 className="font-header md:leading-loose tracking-wide text-3xl lg:text-5xl xl:text-6xl font-bold">
-          I&apos;m <span className="text-accent-500">Eduardo</span>,
+          I&apos;m <span className="from-accent-500 bg-gradient-to-br to-red-500 bg-clip-text text-transparent">Eduardo</span>,
         </h1>
         <h2 className="font-header md:leading-loose tracking-wide text-3xl lg:text-5xl xl:text-6xl font-bold pb-5 md:pb-8">
           a <CoffeeIcon className={`inline-block w-8 lg:w-16 text-primary-700 dark:text-primary-600`}/> caffeine-fueled

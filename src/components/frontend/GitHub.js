@@ -97,8 +97,8 @@ export default function GitHub () {
     <section id="github" className={`px-4 lg:px-0 mt-10`}>
       <span className="anchor" name="github"/>
       <div className="max-w-5xl mx-auto">
-        <h3 className="font-header leading-tight text-2xl lg:text-3xl font-light">
-          What I&apos;ve <span className="text-primary-700 dark:text-primary-600">coded</span> recently...
+        <h3 className="font-header leading-tight tracking-wide text-2xl lg:text-3xl font-light">
+          What I&apos;ve <span className="overlay-color">coded</span> recently...
         </h3>
         <div id="github-list" className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-2 gap-4 xl:gap-8 mt-5 pb-10">
           {items }

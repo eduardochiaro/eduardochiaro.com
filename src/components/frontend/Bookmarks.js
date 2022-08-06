@@ -23,7 +23,7 @@ export default function Bookmarks() {
     <>
     <section id="work" className={`px-4 lg:px-0 mt-10`}>
       <div className="max-w-5xl mx-auto">
-        <h1 className="font-header leading-tight text-2xl lg:text-3xl font-light">
+        <h1 className="font-header leading-tight tracking-wide text-2xl lg:text-3xl font-light">
           Bookmarks
         </h1>
         <div>
@@ -50,11 +50,11 @@ export default function Bookmarks() {
                     as={bookmark.url}
                     >
                     <a target="_blank" className="inline-block">
-                      <h3 className="text-xl">
+                      <h3 className="text-xl tracking-wide">
                         <BookmarkIcon className="inline-block align-text-top h-6 mr-1" />
                         {bookmark.name}
                       </h3>
-                      <p className="text-sm block opacity-80">
+                      <p className="text-sm block opacity-80 tracking-wide">
                         <span className="inline-block align-sub mr-2 ml-1">
                           <Image
                             layout="fixed"

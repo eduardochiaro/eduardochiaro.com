@@ -39,7 +39,7 @@ function Timeline({ episodes }) {
         <section className={`px-4 lg:px-0 mt-10`}>
           <div className="max-w-5xl mx-auto">
             <div className="grid grid-cols-3">
-              <h1 className="font-header leading-tight text-2xl lg:text-3xl font-light col-span-2">
+              <h1 className="font-header leading-tight tracking-wide text-2xl lg:text-3xl font-light col-span-2">
                 <Link
                   href="/projects"
                   >

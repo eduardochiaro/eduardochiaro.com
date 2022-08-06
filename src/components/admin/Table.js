@@ -39,10 +39,10 @@ export default function Table ({ columns = [], data = [], format = [], editActio
     <>
     <div className="flex mt-8 mb-2">
       <div className="flex relative">
-        <span className="inline-flex items-center px-3 text-sm bg-zinc-200 border border-r-0 border-zinc-300 rounded-l-md dark:bg-zinc-600 dark:border-zinc-600">
+        <label htmlFor="website-admin-search" className="inline-flex items-center px-3 text-sm bg-zinc-200 border border-r-0 border-zinc-300 rounded-l-md dark:bg-zinc-600 dark:border-zinc-600">
           Search
-        </span>
-        <input onChange={typeSearch} type="text" value={search} id="website-admin" className="pr-8 rounded-none rounded-r-lg bg-zinc-50 border border-zinc-300 block flex-1 min-w-0 w-full text-sm p-2 dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder-zinc-400 focus:ring-primary-500 focus:border-primary-500  dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder=""/>
+        </label>
+        <input onChange={typeSearch} type="text" value={search} id="website-admin-search" className="pr-8 rounded-none rounded-r-lg bg-zinc-50 border border-zinc-300 block flex-1 min-w-0 w-full text-sm p-2 dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder-zinc-400 focus:ring-primary-500 focus:border-primary-500  dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder=""/>
         { search && <XIcon className="cursor-pointer absolute top-2 right-2 w-5" onClick={() => filterData('')} />}
       </div>
       <div className="grow text-right">

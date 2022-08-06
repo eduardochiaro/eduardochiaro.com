@@ -82,7 +82,7 @@ export default function Header () {
                   title="Eduardo Chiaro" 
                   alt="Eduardo Chiaro" 
                   className={`w-auto h-5 md:h-7`} />
-                <div className="text-xl md:text-2xl font-semibold">
+                <div className="text-xl md:text-2xl font-semibold tracking-wide">
                   Eduardo Chiaro
                 </div>
               </a>
@@ -97,7 +97,7 @@ export default function Header () {
                     <NavLink 
                       href={item.link}
                       className={`${styles.menuUrl} hover:text-zinc-900 dark:hover:text-zinc-100 hover:underline opacity-60 hover:opacity-100`}
-                      activeClassName={`${styles.menuUrl} text-primary-700 dark:text-primary-600`}
+                      activeClassName={`${styles.menuUrl} overlay-color`}
                       type="main"
                       >
                       <a>{item.text}</a>
@@ -107,12 +107,12 @@ export default function Header () {
               })}
             </ul>
           </div>
-          <div className="hidden md:inline-block ml-12 mr-6">
+          <div className="hidden md:inline-block ml-12 mr-6 tracking-wider">
             <Link
               href="https://blog.eduardochiaro.com"
               >
               <a className="md:pr-0 pr-6 whitespace-nowrap text-base font-medium transition hover:underline flex items-center">
-                <RssIcon className={`h-5 text-accent-500 mr-1`} aria-hidden="true"  />.dev
+                <RssIcon className={`h-5 text-accent-500 mr-1`} aria-hidden="true" />.dev
               </a>
             </Link>
           </div>

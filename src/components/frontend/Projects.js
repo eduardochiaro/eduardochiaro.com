@@ -30,7 +30,7 @@ export default function Projects () {
     <section className={`${styles.apps} px-4 lg:px-0 mt-10`}>
       <div className="max-w-5xl mx-auto flex flex-wrap">
         <div className="basis-full md:basis-3/4 mb-10">
-          <h1 className="font-header leading-tight text-2xl lg:text-3xl font-light">
+          <h1 className="font-header leading-tight tracking-wide text-2xl lg:text-3xl font-light">
             Projects
           </h1>
           <div className="grid grid-cols-1 gap-8 mt-5">
@@ -46,14 +46,14 @@ export default function Projects () {
                 />
               </div>
               <div className={`basis-full md:basis-2/3 px-8`}>
-                <h3 className="text-2xl font-header">{app.name}</h3>
+                <h3 className="text-2xl font-header tracking-wide">{app.name}</h3>
                 <p className="text-normal mt-2">{app.description}</p>
                 <Link
                   href={app.url}>
                   <a
                     target="_blank"
                     rel="noreferrer"
-                    className="bg-primary-700 transition text-zinc-100 shadow-lg px-4 py-2 text-base rounded-md mt-6 inline-flex items-center gap-4 hover:underline"
+                    className="from-primary-600 to-primary-800 bg-gradient-to-r transition text-zinc-100 shadow-lg px-4 py-2 text-base rounded-md mt-6 inline-flex items-center gap-4 hover:underline"
                   >
                     <GitHubIcon className="w-6 transition-all duration-500 ease-in-out" />
                     Download from GitHub
@@ -66,7 +66,7 @@ export default function Projects () {
         </div>
 
         <div className="basis-full md:basis-1/4 md:text-right mb-10">
-          <h2 className="font-header leading-tight text-xl font-light mt-3">
+          <h2 className="font-header leading-tight tracking-wide text-xl font-light mt-3">
             Lab
           </h2>
           <ul className="mt-5 pl-0 md:pl-8">
@@ -76,7 +76,7 @@ export default function Projects () {
                 href={project.url}
                 >
                 <a className="group">
-                  <h3 className="group-hover:underline text-lg">{project.name}</h3>
+                  <h3 className="group-hover:underline text-lg tracking-wide">{project.name}</h3>
                   <p className="text-sm mt-2 opacity-50">{project.description}</p>
                   </a>
               </Link>
