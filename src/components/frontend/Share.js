@@ -11,30 +11,36 @@ export default function Share () {
       <div className="max-w-5xl mx-auto flex gap-8">
         <span className="grow"/>
         <Link
-          alt="GitHub"
           href="https://github.com/eduardochiaro"
           >
-          <a className="flex-none w-30">
+          <a 
+            className="flex-none w-30"
+            alt="GitHub"
+            title="GitHub">
             <GitHubIcon
               className={`inline-block h-6 transition-colors ease-out duration-500 fill-zinc-900 dark:fill-zinc-100 hover:fill-primary-700 dark:hover:fill-primary-600`}
             />
           </a>
         </Link>
         <Link
-          alt="LinkedIn"
           href="https://linkedin.com/in/eduardochiaro"
           >
-          <a className="flex-none w-30">
+          <a 
+            className="flex-none w-30"
+            alt="LinkedIn"
+            title="LinkedIn">
             <LinkedInIcon
               className={`inline-block h-6 transition-colors ease-out duration-500 fill-zinc-900 dark:fill-zinc-100 hover:fill-primary-700 dark:hover:fill-primary-600`}
             />
           </a>
         </Link>
         <Link
-          alt="Twitter"
           href="https://twitter.com/eduardo_chiaro"
           >
-          <a className="flex-none w-30">
+          <a 
+            className="flex-none w-30"
+            alt="Twitter"
+            title="Twitter">
             <TwitterIcon
               className={`inline-block h-6 transition-colors ease-out duration-500 fill-zinc-900 dark:fill-zinc-100 hover:fill-primary-700 dark:hover:fill-primary-600`}
             />

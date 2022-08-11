@@ -51,7 +51,7 @@ export default function ThemeIcon () {
 
   return (
     <Menu as="div" className="relative flex item-center">
-      <Menu.Button as="span" data-cy="change-mode">
+      <Menu.Button title="change theme" data-cy="change-mode">
       { inUseTheme === "dark" ? 
         <MoonIcon className="w-5 h-5 fill-primary-600 cursor-pointer rounded-full transition-all duration-300 ease-in-out hover:bg-zinc-100 hover:fill-zinc-800" />
         :

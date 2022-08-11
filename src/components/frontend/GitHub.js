@@ -81,7 +81,7 @@ export default function GitHub () {
           ))}
           <div className="mt-4">                
           {repo.topics.slice(0, 2).map((topic) => (
-            <div className="bg-zinc-300 dark:bg-zinc-500 rounded-full px-3 py-1 text-xs antialiased font-semibold mr-2 mb-2 inline-block z-30 " key={topic}>
+            <div className="bg-accent-300 dark:bg-accent-700 rounded-full px-3 py-1 text-xs antialiased font-semibold mr-2 mb-2 inline-block z-30 " key={topic}>
               <div className="flex items-center">
                 <HashtagIcon className="w-3"/>{topic}
               </div>

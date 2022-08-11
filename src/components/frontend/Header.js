@@ -45,7 +45,7 @@ export default function Header () {
         <div className="px-4 md:px-8 flex items-center h-14">
           <div className="flex-none flex gap-4 font-header text-2xl">
             <Menu as="div" className="relative inline-block md:hidden">
-              <Menu.Button as="a" className="inline-block md:hidden hover:cursor-pointer">
+              <Menu.Button title="open menu" className="inline-block md:hidden hover:cursor-pointer">
                 <MenuIcon className={`w-7 inline-block border-2 rounded border-primary-700 transition text-primary-700 dark:text-primary-600 hover:text-zinc-900 dark:hover:text-zinc-100`}/>
               </Menu.Button>
               <Transition
