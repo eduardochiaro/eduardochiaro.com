@@ -22,12 +22,14 @@ const AdminWrapper = ({ children, header = '' }) => {
             })}
             </div>
             <div className="flex items-center justify-end">
-              <div className="h-7 w-7 inline-block mr-5 align-middle">
+              <div className="h-7 w-7 inline-block mr-5 align-middle relative rounded-full border border-zinc-800 dark:border-zinc-400">
                 <Image
                   src={session.user.image}
-                  className="rounded-full border border-zinc-400 dark:border-zinc-600"
+                  className="rounded-full"
                   width={200}
                   height={200}
+                  layout="fill" // required
+                  objectFit="cover" // change to suit your needs
                   alt={`Logged as ${session.user.name}`}
                   title={`Logged as ${session.user.name}`}
                 />
