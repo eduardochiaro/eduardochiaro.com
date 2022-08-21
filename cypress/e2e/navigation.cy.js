@@ -18,7 +18,7 @@ describe('Navigation', () => {
   it('should navigate to the projects page', () => {
     cy.get('a[href*="projects"]').click();
     cy.url().should('include', '/projects');
-    cy.get('h1').should('contain', 'Apps');
-    cy.get('h2').should('contain', 'Projects');
+    cy.get('h2').should('contain', 'Lab');
+    cy.get('h1').should('contain', 'Projects');
   });
 })
