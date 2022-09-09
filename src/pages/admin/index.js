@@ -1,4 +1,4 @@
-import { DesktopComputerIcon } from "@heroicons/react/outline";
+import { DesktopComputerIcon } from "@heroicons/react/24/outline";
 import { useSession } from "next-auth/react"
 import Head from "next/head";
 import AdminWrapper from "../../components/admin/Wrapper";

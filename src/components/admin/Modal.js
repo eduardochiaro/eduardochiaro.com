@@ -1,5 +1,5 @@
 import React from 'react';
-import { XIcon } from '@heroicons/react/outline';
+import { XIcon } from '@heroicons/react/24/outline';
 import { Dialog } from '@headlessui/react';
 
 const AdminModal = ({ 

@@ -1,5 +1,5 @@
-import { PencilAltIcon, PlusIcon } from '@heroicons/react/outline';
-import { TrashIcon, XIcon } from '@heroicons/react/solid';
+import { PencilAltIcon, PlusIcon } from '@heroicons/react/24/outline';
+import { TrashIcon, XIcon } from '@heroicons/react/24/solid';
 import React, { useEffect, useState } from 'react';
 
 export default function Table ({ columns = [], data = [], format = [], editAction = () => null, deleteAction = () => null, openAction = () => null, openActionLabel = '' }) {

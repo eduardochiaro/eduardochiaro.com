@@ -4,7 +4,7 @@ import Share from '../../components/frontend/Share';
 import Footer from "../../components/frontend/Footer";
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { SunIcon } from '@heroicons/react/solid';
+import { SunIcon } from '@heroicons/react/24/solid';
 
 const replacer = (match) => {
   const length = match.length < 6 ? match.length + 1 : match.length;

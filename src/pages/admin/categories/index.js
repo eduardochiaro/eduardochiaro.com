@@ -1,4 +1,4 @@
-import { TagIcon, ExclamationIcon, PencilAltIcon, PlusIcon, TrashIcon } from "@heroicons/react/outline";
+import { TagIcon, ExclamationIcon, PencilAltIcon, PlusIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { useSession } from "next-auth/react"
 import { useState, createRef } from "react";
 import { useSWRConfig } from "swr";

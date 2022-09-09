@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import { MoonIcon, SunIcon, DesktopComputerIcon } from '@heroicons/react/solid';
+import { MoonIcon, SunIcon, ComputerDesktopIcon } from '@heroicons/react/24/solid';
 import { useTheme } from "next-themes";
 import { Menu, Transition } from '@headlessui/react';
 
@@ -27,7 +27,7 @@ export default function ThemeIcon () {
       {
         name: 'system',
         className: '',
-        icon: <DesktopComputerIcon className="w-5 h-5 block mr-2"  />,
+        icon: <ComputerDesktopIcon className="w-5 h-5 block mr-2"  />,
       }
     ];
 

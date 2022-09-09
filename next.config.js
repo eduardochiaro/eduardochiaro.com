@@ -1,17 +1,42 @@
 module.exports = {
   reactStrictMode: true,
+  swcMinify: true,
   images: {
     dangerouslyAllowSVG: true,
-    domains: [
-      'www.google.com',
-      'lh3.googleusercontent.com',
-      'avatars.githubusercontent.com',
-      'repository-images.githubusercontent.com',
-      'images.unsplash.com',
-      'live.staticflickr.com',
-      'scontent-iad3-1.cdninstagram.com',
-      'rickandmortyapi.com'
-    ]
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.google.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.googleusercontent.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.githubusercontent.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.unsplash.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.cdninstagram.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.githubassets.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'rickandmortyapi.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.staticflickr.com',
+      },
+    ],
   },
   webpack(config) {
     config.resolve.fallback = {

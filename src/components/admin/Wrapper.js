@@ -1,7 +1,7 @@
 import AdminSidebar from "./Sidebar";
 import Image from "next/image";
 import { useSession, signOut } from "next-auth/react"
-import { LogoutIcon } from "@heroicons/react/outline";
+import { LogoutIcon } from "@heroicons/react/24/outline";
 import ThemeIcon from "../ThemeIcon";
 import React from "react";
 

@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { getProviders, signIn } from "next-auth/react"
 import { useRouter } from 'next/router'
-import { LoginIcon } from "@heroicons/react/outline"
+import { LoginIcon } from "@heroicons/react/24/outline"
 import Header from '../../components/frontend/Header'
 
 export default function SignIn({ providers, basePath }) {

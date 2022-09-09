@@ -1,4 +1,4 @@
-import { BookmarkIcon, ChevronUpIcon, TagIcon } from '@heroicons/react/solid';
+import { BookmarkIcon, ChevronUpIcon, TagIcon } from '@heroicons/react/24/solid';
 import Link from 'next/link';
 import Image from 'next/image';
 import * as React from 'react';
@@ -58,7 +58,7 @@ export default function Bookmarks() {
                         <span className="inline-block align-sub mr-2 ml-1">
                           <Image
                             layout="fixed"
-                            src={`http://www.google.com/s2/favicons?domain=${bookmark.domain}`}
+                            src={`https://www.google.com/s2/favicons?domain=${bookmark.domain}`}
                             width="16"
                             height="16"
                             alt={bookmark.domain}

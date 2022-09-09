@@ -1,4 +1,4 @@
-import { BriefcaseIcon, ChipIcon, TerminalIcon, HomeIcon, TagIcon, BookmarkIcon, ChevronRightIcon, ChevronLeftIcon } from "@heroicons/react/outline";
+import { BriefcaseIcon, ChipIcon, TerminalIcon, HomeIcon, TagIcon, BookmarkIcon, ChevronRightIcon, ChevronLeftIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import NavLink from '../NavLink';
 import styles from '../../styles/Admin.Sidebar.module.scss'

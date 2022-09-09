@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
 import {
   RssIcon,
-  MenuIcon,
-} from '@heroicons/react/solid'
-import styles from '../../styles/Header.module.scss'
+  Bars4Icon,
+} from '@heroicons/react/24/solid';
+import styles from '../../styles/Header.module.scss';
 import { useRouter } from 'next/router';
 import { Menu, Transition } from '@headlessui/react';
 import ThemeIcon from '../ThemeIcon';
@@ -46,7 +46,7 @@ export default function Header () {
           <div className="flex-none flex gap-4 font-header text-2xl">
             <Menu as="div" className="relative inline-block md:hidden">
               <Menu.Button title="open menu" className="inline-block md:hidden hover:cursor-pointer">
-                <MenuIcon className={`w-7 inline-block border-2 rounded border-primary-700 transition text-primary-700 dark:text-primary-600 hover:text-zinc-900 dark:hover:text-zinc-100`}/>
+                <Bars4Icon className={`w-7 inline-block border-2 rounded border-primary-700 transition text-primary-700 dark:text-primary-600 hover:text-zinc-900 dark:hover:text-zinc-100`}/>
               </Menu.Button>
               <Transition
                 as={Fragment}

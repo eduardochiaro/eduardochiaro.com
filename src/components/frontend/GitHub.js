@@ -1,8 +1,8 @@
 import * as React from 'react';
 import useSWR from 'swr';
 import SVG from 'react-inlinesvg'
-import { HashtagIcon, TagIcon } from '@heroicons/react/solid';
-import { ClockIcon } from '@heroicons/react/outline';
+import { HashtagIcon, TagIcon } from '@heroicons/react/24/solid';
+import { ClockIcon } from '@heroicons/react/24/outline';
 import moment from 'moment';
 import Image from 'next/image';
 import Masonry from 'react-masonry-css';

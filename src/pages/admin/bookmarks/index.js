@@ -1,4 +1,4 @@
-import { BookmarkIcon, ExclamationIcon, PlusIcon } from "@heroicons/react/outline";
+import { BookmarkIcon, ExclamationIcon, PlusIcon } from "@heroicons/react/24/outline";
 import { useSession } from "next-auth/react"
 import { useState, createRef } from "react";
 import { useSWRConfig } from "swr";

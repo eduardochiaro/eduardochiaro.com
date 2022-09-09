@@ -1,9 +1,9 @@
 import React from 'react';
 import {
   DocumentTextIcon,
-  TerminalIcon,
+  CommandLineIcon,
   UserCircleIcon,
-} from '@heroicons/react/solid';
+} from '@heroicons/react/24/solid';
 import GitHubIcon from '../icons/github';
 import NavLink from '../NavLink';
 
@@ -20,7 +20,7 @@ export default function Sidemenu () {
       text: 'Skills',
       link: '/#skills',
       current: false,
-      pre: <TerminalIcon className="h-4" />
+      pre: <CommandLineIcon className="h-4" />
     },
     {
       text: 'Articles',
