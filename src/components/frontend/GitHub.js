@@ -1,11 +1,9 @@
 import * as React from 'react';
 import useSWR from 'swr';
-import SVG from 'react-inlinesvg'
-import { HashtagIcon, TagIcon } from '@heroicons/react/24/solid';
+import { HashtagIcon } from '@heroicons/react/24/solid';
 import { ClockIcon } from '@heroicons/react/24/outline';
 import moment from 'moment';
-import Image from 'next/image';
-import Masonry from 'react-masonry-css';
+import Image from 'next/future/image';
 
 const fetcher = (url) => fetch(url).then((res) => res.json())
 
@@ -47,17 +45,17 @@ export default function GitHub () {
     return src.includes('avatars.githubusercontent.com') ? (
       <Image
           src={`/images/random/${pick}.jpg`}
-          layout="fill"
-          objectFit="cover"
-          className="z-10"
+          fill
+          sizes="33vw"
+          className="z-10 object-cover"
           alt={alt}
         />
     ) : (
       <Image
           src={src}
-          layout="fill"
-          objectFit="cover"
-          className="z-10"
+          fill
+          sizes="33vw"
+          className="z-10 object-cover"
           alt={alt}
         />
     )

@@ -20,7 +20,6 @@ export const EvenTile = ({ episode, maxCharacters = 6, type = "small" }) => (
           <div key={`character-${index}`} className="flex items-center">
             <div className="hidden md:block relative pr-4">
               <NaturalImage
-                layout="fixed"
                 size={50}
                 src={y.image}
                 className="rounded-full"
@@ -54,7 +53,6 @@ export const OddTile = ({ episode, maxCharacters = 6, type = "small" }) => (
           <div key={`character-${index}`} className="flex items-center flex-row-reverse">
             <div className="hidden md:block relative pl-4">
               <NaturalImage
-                layout="fixed"
                 size={50}
                 src={y.image}
                 className="rounded-full"

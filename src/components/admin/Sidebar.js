@@ -1,4 +1,4 @@
-import { BriefcaseIcon, ChipIcon, TerminalIcon, HomeIcon, TagIcon, BookmarkIcon, ChevronRightIcon, ChevronLeftIcon } from "@heroicons/react/24/outline";
+import { BriefcaseIcon, CpuChipIcon, CommandLineIcon, HomeIcon, TagIcon, BookmarkIcon, ChevronRightIcon, ChevronLeftIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import NavLink from '../NavLink';
 import styles from '../../styles/Admin.Sidebar.module.scss'
@@ -20,12 +20,12 @@ const AdminSidebar = () => {
     },
     {
       title: 'Skills',
-      icon: <TerminalIcon className="w-5 group-hover:text-primary-700 dark:group-hover:text-primary-600"/>,
+      icon: <CommandLineIcon className="w-5 group-hover:text-primary-700 dark:group-hover:text-primary-600"/>,
       href: '/admin/skills',
     },
     {
       title: 'Apps',
-      icon: <ChipIcon className="w-5 group-hover:text-primary-700 dark:group-hover:text-primary-600"/>,
+      icon: <CpuChipIcon className="w-5 group-hover:text-primary-700 dark:group-hover:text-primary-600"/>,
       href: '/admin/apps',
     },
     {

@@ -21,7 +21,7 @@ export default function Skills () {
               <SVG title={skill.name} alt={skill.name} className={`flex-none w-8 ${styles[`color-${skill.type}`]}  dark:fill-zinc-200`} src={`/images/svg-icons/${skill.logo}`} />
               <div className="flex-none w-6/12">
                 <div className="w-full bg-zinc-200 dark:bg-zinc-700 h-4 rounded">
-                  <div className={`${styles[`bar-${skill.type}`]} bg-blue-600 rounded h-4`} style={{width: skill.percentage + '%'}}></div>
+                  <div className={`${styles[`bar-${skill.type}`]} rounded h-4`} style={{width: skill.percentage + '%'}}></div>
                 </div>
               </div>
             </div>
@@ -38,7 +38,7 @@ export default function Skills () {
                 <div key={x} className="flex-none w-6 h-6 bg-zinc-300 dark:bg-zinc-600 rounded animate-pulse"></div>
                 <div className="flex-none w-6/12">
                   <div className="w-full bg-zinc-200 dark:bg-zinc-700 h-4 rounded animate-pulse">
-                    <div className={`${styles[`bar-node`]} bg-blue-600 rounded h-4`} style={{width: (x * 10) + '%'}}></div>
+                    <div className={`${styles[`bar-node`]} rounded h-4`} style={{width: (x * 10) + '%'}}></div>
                   </div>
                 </div>
               </div>

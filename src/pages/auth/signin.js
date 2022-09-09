@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { getProviders, signIn } from "next-auth/react"
 import { useRouter } from 'next/router'
-import { LoginIcon } from "@heroicons/react/24/outline"
+import { ArrowRightCircleIcon } from "@heroicons/react/24/outline"
 import Header from '../../components/frontend/Header'
 
 export default function SignIn({ providers, basePath }) {
@@ -22,7 +22,7 @@ export default function SignIn({ providers, basePath }) {
                       callbackUrl: router.query.callbackUrl,
                     })}>
                     Sign in with {provider.name}
-                    <LoginIcon className="h-5 ml-2"/>
+                    <ArrowRightCircleIcon className="h-5 ml-2"/>
                   </button>
                 </div>
               ))}

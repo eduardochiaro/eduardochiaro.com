@@ -1,4 +1,4 @@
-import { BriefcaseIcon, ExclamationIcon, PencilAltIcon, PlusIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { BriefcaseIcon, ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 import { useSession } from "next-auth/react"
 import { useState, createRef } from "react";
 import { useSWRConfig } from "swr";
@@ -208,7 +208,7 @@ const AdminJobsIndex = ({ formRef }) => {
             onSubmit={onSubmitModal}>
             {formError &&
               <div className="bg-accent-100 border border-accent-400 text-accent-700 px-4 py-3 rounded relative mb-4" role="alert">
-                <strong className="font-bold"><ExclamationIcon className="inline-flex align-middle h-6 mr-4"/>Invalid Form! </strong>
+                <strong className="font-bold"><ExclamationTriangleIcon className="inline-flex align-middle h-6 mr-4"/>Invalid Form! </strong>
                 <span className="block sm:inline">Some required fields are missing.</span>
               </div>
             }

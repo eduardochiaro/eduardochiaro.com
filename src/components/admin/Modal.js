@@ -1,5 +1,5 @@
 import React from 'react';
-import { XIcon } from '@heroicons/react/24/outline';
+import { XMarkIcon } from '@heroicons/react/24/outline';
 import { Dialog } from '@headlessui/react';
 
 const AdminModal = ({ 
@@ -28,7 +28,7 @@ const AdminModal = ({
                 {title}
               </Dialog.Title>
               <div className="flex-none">
-                <a onClick={closeModal} className="cursor-pointer"><XIcon className="w-8"/></a>
+                <a onClick={closeModal} className="cursor-pointer"><XMarkIcon className="w-8"/></a>
               </div>
             </div>
             <div className="mt-2 px-6 mb-10 ">

@@ -1,7 +1,7 @@
 import AdminSidebar from "./Sidebar";
-import Image from "next/image";
+import Image from "next/future/image";
 import { useSession, signOut } from "next-auth/react"
-import { LogoutIcon } from "@heroicons/react/24/outline";
+import { ArrowLeftCircleIcon } from "@heroicons/react/24/outline";
 import ThemeIcon from "../ThemeIcon";
 import React from "react";
 
@@ -28,15 +28,13 @@ const AdminWrapper = ({ children, header = '' }) => {
                   className="rounded-full"
                   width={200}
                   height={200}
-                  layout="fill" // required
-                  objectFit="cover" // change to suit your needs
                   alt={`Logged as ${session.user.name}`}
                   title={`Logged as ${session.user.name}`}
                 />
               </div>
               <div className="inline-block mr-4">
                 <a onClick={() => signOut()} title="logout" className="cursor-pointer focus:outline-none">
-                  <LogoutIcon className="inline-flex h-5" />
+                  <ArrowLeftCircleIcon className="inline-flex h-5" />
                 </a>
               </div>
               <ThemeIcon />

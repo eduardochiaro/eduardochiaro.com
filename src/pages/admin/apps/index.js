@@ -1,4 +1,4 @@
-import { ChipIcon, ExclamationIcon, ExternalLinkIcon, PencilAltIcon, PlusIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { CpuChipIcon, ExclamationTriangleIcon, ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 import { useSession } from "next-auth/react"
 import { useState, createRef } from "react";
 import { useSWRConfig } from "swr";
@@ -184,7 +184,7 @@ const AdminAppsIndex = ({ formRef }) => {
         <Link
           href={item.url}
         >
-          <a target="_blank" rel="noreferrer"><ExternalLinkIcon className="h-4 inline-block align-top ml-2"/></a>
+          <a target="_blank" rel="noreferrer"><ArrowTopRightOnSquareIcon className="h-4 inline-block align-top ml-2"/></a>
         </Link>
       </>
     )
@@ -195,7 +195,7 @@ const AdminAppsIndex = ({ formRef }) => {
     return (
       <AdminWrapper>
         <AdminWrapper.Header>
-          <h1 className="text-2xl flex items-center gap-2"><ChipIcon className="h-6 text-primary-700 dark:text-primary-600"/> Apps list</h1>
+          <h1 className="text-2xl flex items-center gap-2"><CpuChipIcon className="h-6 text-primary-700 dark:text-primary-600"/> Apps list</h1>
         </AdminWrapper.Header>
         <Table 
           columns={columns} 
@@ -222,7 +222,7 @@ const AdminAppsIndex = ({ formRef }) => {
             onSubmit={onSubmitModal}>
             {formError &&
               <div className="bg-accent-100 border border-accent-400 text-accent-700 px-4 py-3 rounded relative mb-4" role="alert">
-                <strong className="font-bold"><ExclamationIcon className="inline-flex align-middle h-6 mr-4"/>Invalid Form! </strong>
+                <strong className="font-bold"><ExclamationTriangleIcon className="inline-flex align-middle h-6 mr-4"/>Invalid Form! </strong>
                 <span className="block sm:inline">Some required fields are missing.</span>
               </div>
             }

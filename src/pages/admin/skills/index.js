@@ -1,4 +1,4 @@
-import { TerminalIcon, ExclamationIcon, PencilAltIcon, PlusIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { CommandLineIcon, ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 import { useSession } from "next-auth/react"
 import { useState, createRef } from "react";
 import { useSWRConfig } from "swr";
@@ -10,7 +10,6 @@ import AdminModal from "../../../components/admin/Modal";
 import AdminWrapper from "../../../components/admin/Wrapper";
 import Table from "../../../components/admin/Table";
 import mergeObj from "../../../utils/mergeObj";
-import NaturalImage from "../../../components/NaturalImage";
 import useStaleSWR from "../../../utils/staleSWR";
 import moment from "moment";
 
@@ -166,7 +165,7 @@ const AdminSkillsIndex = ({ formRef, images }) => {
     obj.updated = moment(item.updatedAt || item.createdAt).from(moment());
     obj.logo_d = (
       <>
-        <div className="w-32 m-auto relative">
+        <div className={`w-32 m-auto relative`}>
           <SVG title={item.name} alt={item.name} className={`inline w-auto fill-zinc-700 dark:fill-zinc-200`} src={`/images/svg-icons/${item.logo}`} height={50} />
         </div>
         <div className="small">{item.logo}</div>
@@ -180,7 +179,7 @@ const AdminSkillsIndex = ({ formRef, images }) => {
     return (
       <AdminWrapper>
         <AdminWrapper.Header>
-          <h1 className="text-2xl flex items-center gap-2"><TerminalIcon className="h-6 text-primary-700 dark:text-primary-600"/> Skills list</h1>
+          <h1 className="text-2xl flex items-center gap-2"><CommandLineIcon className="h-6 text-primary-700 dark:text-primary-600"/> Skills list</h1>
         </AdminWrapper.Header>
         <Table 
           columns={columns} 
@@ -207,7 +206,7 @@ const AdminSkillsIndex = ({ formRef, images }) => {
             onSubmit={onSubmitModal}>
             {formError &&
               <div className="bg-accent-100 border border-accent-400 text-accent-700 px-4 py-3 rounded relative mb-4" role="alert">
-                <strong className="font-bold"><ExclamationIcon className="inline-flex align-middle h-6 mr-4"/>Invalid Form! </strong>
+                <strong className="font-bold"><ExclamationTriangleIcon className="inline-flex align-middle h-6 mr-4"/>Invalid Form! </strong>
                 <span className="block sm:inline">Some required fields are missing.</span>
               </div>
             }
