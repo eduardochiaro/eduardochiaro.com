@@ -1,5 +1,5 @@
-import NaturalImage from "../../components/NaturalImage";
 import moment from 'moment';
+import Image from "next/future/image";
 
 export const EvenTile = ({ episode, maxCharacters = 6, type = "small" }) => (
   <div className="flex group">
@@ -19,8 +19,10 @@ export const EvenTile = ({ episode, maxCharacters = 6, type = "small" }) => (
         {episode.characters.slice(0, maxCharacters).map((y, index) => (
           <div key={`character-${index}`} className="flex items-center">
             <div className="hidden md:block relative pr-4">
-              <NaturalImage
-                size={50}
+              <Image
+                width={50}
+                height={50}
+                alt={y.name}
                 src={y.image}
                 className="rounded-full"
               />
@@ -52,8 +54,10 @@ export const OddTile = ({ episode, maxCharacters = 6, type = "small" }) => (
         {episode.characters.slice(0, maxCharacters).map((y, index) => (
           <div key={`character-${index}`} className="flex items-center flex-row-reverse">
             <div className="hidden md:block relative pl-4">
-              <NaturalImage
-                size={50}
+              <Image
+                width={50}
+                height={50}
+                alt={y.name}
                 src={y.image}
                 className="rounded-full"
               />
@@ -76,7 +80,7 @@ export const OddTile = ({ episode, maxCharacters = 6, type = "small" }) => (
       <div className="mx-auto w-0.5 h-full bg-gradient-to-b group-odd:bg-gradient-to-t from-primary-500 to-accent-500 group-last:h-2 group-first:mt-3 z-10"></div>
       <span className="absolute top-2 left-1/2 transform -translate-x-1/2  rounded-full w-4 h-4 bg-zinc-200 border-2 border-zinc-800 z-20 group-first:bg-emerald-500 group-last:bg-red-500 group-last:w-6 group-last:h-6 group-first:w-6 group-first:h-6"></span>
     </div>
-    <div className="flex-1 md:w-24 font-mono">
+    <div className={`${type == "small" ? "flex-1" : "flex-none w-12 "} md:w-24 font-mono`}>
       <span className="text-xl md:text-3xl block">{ moment(episode.air_date, 'MMM DD, YYYY').format('DD')}</span>
       <span className="text-sm md:text-normal">{ moment(episode.air_date, 'MMM DD, YYYY').format('MMM \'YY')}</span>
     </div>

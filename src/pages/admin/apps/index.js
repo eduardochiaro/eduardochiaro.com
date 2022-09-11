@@ -7,10 +7,10 @@ import AdminModal from "../../../components/admin/Modal";
 import AdminWrapper from "../../../components/admin/Wrapper";
 import Table from "../../../components/admin/Table";
 import mergeObj from "../../../utils/mergeObj";
-import NaturalImage from "../../../components/NaturalImage";
 import useStaleSWR from "../../../utils/staleSWR";
 import moment from "moment";
 import Link from "next/link";
+import Image from "next/future/image";
 
 const AdminAppsIndex = ({ formRef }) => {
   const { data: apps, error } = useStaleSWR('/api/portfolio/apps');
@@ -166,11 +166,15 @@ const AdminAppsIndex = ({ formRef }) => {
     )
     obj.image = (
       <>
-        <div className="w-32 m-auto relative">
-          <NaturalImage
+        <div className="w-32 h-20 m-auto relative">
+          <Image
             src={`/uploads/${item.image}`}
+            fill
+            sizes="100vw"
             alt={item.name}
             title={item.name}
+            className="bg-transparent object-contain"
+            priority="false"
             />
         </div>
         <div className="small">{item.image}</div>

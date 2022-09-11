@@ -21,9 +21,9 @@ export default function Projects() {
           <a target="_blank">
             <div className="relative">
               <NaturalImage
+                size={500}
                 src={item.image}
                 alt={item.title}
-                size={500}
                 className="rounded"
               />
               {item.type === "Flickr" && <Flickr className="w-8 absolute bottom-2 right-2 text-zinc-100" alt={item.type} />}

@@ -2,8 +2,8 @@ import * as React from 'react';
 import GitHubIcon from '../icons/github';
 import styles from '../../styles/Projects.module.scss'
 import useStaleSWR from '../../utils/staleSWR';
-import NaturalImage from '../NaturalImage';
 import Link from 'next/link';
+import Image from 'next/future/image';
 
 export default function Projects () {
   const { data } = useStaleSWR('/api/portfolio/apps');
@@ -37,12 +37,13 @@ export default function Projects () {
           { data?.results.map((app, index) => (
             <div className={`flex flex-wrap p-8 box-card`} key={`app-${index}`} >
               <div className={`basis-full md:basis-1/3 relative`}>
-                <NaturalImage
+                <Image
                   src={`/uploads/${app.image}`}
-                  size={1329}
-                  alt={app.title}
-                  title={app.title}
-                  className="rounded bg-transparent"
+                  fill
+                  sizes="100vw"
+                  alt={app.name}
+                  className="bg-transparent object-contain"
+                  priority="false"
                 />
               </div>
               <div className={`basis-full md:basis-2/3 px-8`}>
