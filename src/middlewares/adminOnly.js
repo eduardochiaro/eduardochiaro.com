@@ -1,4 +1,4 @@
-import { getSession } from "next-auth/react";
+import { getSession } from 'next-auth/react';
 
 const adminOnly = async (req, res, next) => {
   const session = await getSession({ req });

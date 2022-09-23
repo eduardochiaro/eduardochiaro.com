@@ -1,16 +1,16 @@
-import { BookmarkIcon, ExclamationTriangleIcon } from "@heroicons/react/24/outline";
-import { useSession } from "next-auth/react"
-import { useState, createRef } from "react";
-import { useSWRConfig } from "swr";
+import { BookmarkIcon, ExclamationTriangleIcon } from '@heroicons/react/24/outline';
+import { useSession } from 'next-auth/react'
+import { useState, createRef } from 'react';
+import { useSWRConfig } from 'swr';
 import axios from 'axios';
 import fs from 'fs';
 import path from 'path';
-import AdminModal from "../../../components/admin/Modal";
-import AdminWrapper from "../../../components/admin/Wrapper";
-import Table from "../../../components/admin/Table";
-import mergeObj from "../../../utils/mergeObj";
-import useStaleSWR from "../../../utils/staleSWR";
-import moment from "moment";
+import AdminModal from '@/components/admin/Modal';
+import AdminWrapper from '@/components/admin/Wrapper';
+import Table from '@/components/admin/Table';
+import mergeObj from '@/utils/mergeObj';
+import useStaleSWR from '@/utils/staleSWR';
+import moment from 'moment';
 import * as cheerio from 'cheerio';
 
 const AdminBookmarksIndex = ({ formRef, images }) => {
@@ -58,7 +58,7 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
       url: bookmark.id ? `/api/portfolio/bookmarks/${bookmark.id}` : '/api/portfolio/bookmarks/create',
       data: formData,
       headers: {
-        'Content-Type': `application/json`
+        'Content-Type': 'application/json'
       }
     }).then(({ data }) => {
       mutate('/api/portfolio/bookmarks');
@@ -79,7 +79,7 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
 
   const onPrimaryButtonClick = () => {
     formRef.current.dispatchEvent(
-      new Event("submit", { bubbles: true, cancelable: true })
+      new Event('submit', { bubbles: true, cancelable: true })
     )
   }
 
@@ -130,7 +130,7 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
   }
 
   const fetchUrlData = async (bookmark) => {
-    setCurrentStatus("Fetching data...");
+    setCurrentStatus('Fetching data...');
     const response = await axios.get(bookmark.url)
       .catch(function (error) {
         // handle error
@@ -142,7 +142,7 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
       const $ = cheerio.load(response.data);
   
       const titleText = $('title').text();
-      const descriptionText = $('meta[name="description"]').length > 0 ? $('meta[name="description"]').first().attr("content") : $('meta[property="og:description"]').first().attr("content");
+      const descriptionText = $('meta[name="description"]').length > 0 ? $('meta[name="description"]').first().attr('content') : $('meta[property="og:description"]').first().attr('content');
       
       bookmark.name = titleText ? titleText : '';
       bookmark.description = descriptionText ? descriptionText : '';
@@ -154,25 +154,25 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
 
   const columns = [
     {
-      name: "Name",
-      key: "name",
+      name: 'Name',
+      key: 'name',
       searchable: true,
-      classNameTd: "font-bold"
+      classNameTd: 'font-bold'
     },
     {
-      name: "Url",
-      key: "url",
+      name: 'Url',
+      key: 'url',
       searchable: true
     },
     {
-      name: "Category",
-      key: "category_d",
+      name: 'Category',
+      key: 'category_d',
       searchable: true
     },
     {
-      name: "Updated",
-      key: "updated",
-      classNameTd: "w-44"
+      name: 'Updated',
+      key: 'updated',
+      classNameTd: 'w-44'
     }
   ]
 
@@ -233,7 +233,7 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
                   required
                   >
                   <option value="">Select category</option>
-                  {categories?.results.filter(x => x.type == "BOOKMARK").map((item) => (
+                  {categories?.results.filter(x => x.type == 'BOOKMARK').map((item) => (
                     <option key={item.id} value={item.id}>{item.name}</option>
                   ))}
                 </select>

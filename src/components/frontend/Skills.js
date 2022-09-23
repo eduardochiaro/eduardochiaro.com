@@ -1,13 +1,12 @@
 import * as React from 'react';
-import useStaleSWR from '../../utils/staleSWR';
+import useStaleSWR from '@/utils/staleSWR';
 import SVG from 'react-inlinesvg';
-import styles from '../../styles/Skills.module.scss'
+import styles from '@/styles/Skills.module.scss'
 
 export default function Skills () {
   const { data } = useStaleSWR('/api/portfolio/skills');
   return (
-    <section id="skills" className={`px-4 lg:px-0 mt-10`}>
-      <span className="anchor" name="skills"/>
+    <section id="skills-component" className={'px-4 lg:px-0 mt-10 relative'}>
       <div className="max-w-5xl mx-auto">
         <h3 className="font-header leading-tight tracking-wide text-2xl lg:text-3xl font-light mb-2">
           What I&apos;m <span className="overlay-color">good</span> at...
@@ -38,7 +37,7 @@ export default function Skills () {
                 <div key={x} className="flex-none w-6 h-6 bg-zinc-300 dark:bg-zinc-600 rounded animate-pulse"></div>
                 <div className="flex-none w-6/12">
                   <div className="w-full bg-zinc-200 dark:bg-zinc-700 h-4 rounded animate-pulse">
-                    <div className={`${styles[`bar-node`]} rounded h-4`} style={{width: (x * 10) + '%'}}></div>
+                    <div className={`${styles['bar-node']} rounded h-4`} style={{width: (x * 10) + '%'}}></div>
                   </div>
                 </div>
               </div>

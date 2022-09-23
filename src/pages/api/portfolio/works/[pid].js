@@ -1,11 +1,11 @@
-import apiWithMiddleware from '../../../../utils/apiWithMiddleware';
-import prisma from '../../../../utils/prisma';
-import cors from '../../../../middlewares/cors';
+import apiWithMiddleware from '@/utils/apiWithMiddleware';
+import prisma from '@/utils/prisma';
+import cors from '@/middlewares/cors';
 import { IncomingForm } from 'formidable'
 import mv from 'mv';
 import { rmFile } from 'rm-file';
 
-const uploadPath = "./public/uploads/";
+const uploadPath = './public/uploads/';
 
 export const config = {
   api: {
@@ -27,7 +27,7 @@ const handler = async (req, res) => {
     res.status(200).json({ error: 'Record doesnt exist' });
   }
   switch (req.method) {
-    case "PUT":
+    case 'PUT':
       await new Promise((resolve, reject) => {
         const form = new IncomingForm();
         form.parse(req, async (err, fields, files) => {
@@ -35,7 +35,7 @@ const handler = async (req, res) => {
           const { id, style, ...data } = fields;
           if (files.logo) {
             const oldPath = files.logo.filepath;
-            const extension = files.logo.originalFilename.split(".").pop();
+            const extension = files.logo.originalFilename.split('.').pop();
             const newName = files.logo.newFilename + '.' + extension;
             const newPath = `${uploadPath}${newName}`;
             mv(oldPath, newPath, function(err) {
@@ -57,7 +57,7 @@ const handler = async (req, res) => {
         })
       });
       break;
-    case "DELETE":
+    case 'DELETE':
       await prisma.job.update({
         where: { id: parseInt(pid) },
         data: { deletedAt: new Date() },

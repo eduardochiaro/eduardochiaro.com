@@ -2,9 +2,11 @@ import { BookmarkIcon, ChevronUpIcon, TagIcon } from '@heroicons/react/24/solid'
 import Link from 'next/link';
 import Image from 'next/future/image';
 import * as React from 'react';
-import useStaleSWR from '../../utils/staleSWR';
-import NavLink from '../NavLink';
+import useStaleSWR from '@/utils/staleSWR';
+import NavLink from '@/components/NavLink';
 import Masonry from 'react-masonry-css';
+import { useRef } from 'react';
+
 const breakpointColumnsObj = {
   default: 2,
   640: 1
@@ -19,9 +21,11 @@ export default function Bookmarks() {
       t.id === value.id
     ))
   ).sort((a, b) => (a.name > b.name) ? 1 : -1);
+
+  const elementsRef = useRef([]);
   return (
     <>
-    <section id="work" className={`px-4 lg:px-0 mt-10`}>
+    <section id="work" className={'px-4 lg:px-0 mt-10'}>
       <div className="max-w-5xl mx-auto">
         <h1 className="font-header leading-tight tracking-wide text-2xl lg:text-3xl font-light">
           Bookmarks
@@ -29,7 +33,7 @@ export default function Bookmarks() {
         <div>
         { uniqueCategories.map((category, index) => (
           <div key={index} className="group">
-            <span className="anchor" name={`bookmarks-${index}`}/>
+            <span className="anchor" ref={ ref=>elementsRef.current.push(ref) }/>
             <h4 className="text-primary-700 dark:text-primary-600 mt-14 group-first:mt-5 mb-5 flex items-center gap-2">
               <TagIcon className="none w-4 h-4" />
               <span className="flex-none">{category.name}</span>
@@ -44,7 +48,7 @@ export default function Bookmarks() {
               className="flex gap-8 w-auto"
               columnClassName="bg-clip-padding flex flex-col gap-8">
               { data?.results.filter( x => x.categoryId == category.id).map((bookmark, index) => (
-                <div key={`apps-${index}`} className={`p-5 box-card`} >            
+                <div key={`apps-${index}`} className={'p-5 box-card'} >            
                   <Link
                     href={bookmark.url}
                     as={bookmark.url}
@@ -84,12 +88,11 @@ export default function Bookmarks() {
             className="my-2"
             key={`menu-link-${index}`}>
               <NavLink 
-                href={ index == 0 ? `/bookmarks` : `/bookmarks#bookmarks-${index}` }
-                as={`/bookmarks#bookmarks-${index}`}
-                className={`flex items-center gap-2 transition hover:text-zinc-900 dark:hover:text-zinc-100 hover:underline opacity-60 hover:opacity-100`} 
-                activeClassName={`flex items-center gap-2 transition text-primary-700 dark:text-primary-600`}
+                href={`/bookmarks#bookmarks-${index}`}
+                className={'flex items-center gap-2 transition hover:text-zinc-900 dark:hover:text-zinc-100 hover:underline opacity-60 hover:opacity-100'} 
+                activeClassName={'flex items-center gap-2 transition text-primary-700 dark:text-primary-600'}
               >
-                <a>
+                <a onClick={() => elementsRef.current[index].scrollIntoView({ behavior: 'smooth' }) }>
                   <TagIcon className="h-4" />
                   {category.name}
                 </a>

@@ -1,6 +1,6 @@
-import apiWithMiddleware from '../../../../utils/apiWithMiddlewareAdmin';
-import prisma from '../../../../utils/prisma';
-import cors from '../../../../middlewares/cors';
+import apiWithMiddleware from '@/utils/apiWithMiddlewareAdmin';
+import prisma from '@/utils/prisma';
+import cors from '@/middlewares/cors';
 import { IncomingForm } from 'formidable'
 
 export const config = {
@@ -23,7 +23,7 @@ const handler = async (req, res) => {
     res.status(200).json({ error: 'Record doesnt exist' });
   }
   switch (req.method) {
-    case "PUT":
+    case 'PUT':
       await new Promise((resolve, reject) => {
         const form = new IncomingForm();
         form.parse(req, async (err, fields) => {
@@ -37,7 +37,7 @@ const handler = async (req, res) => {
         })
       });
       break;
-    case "DELETE":
+    case 'DELETE':
       await prisma.category.update({
         where: { id: parseInt(pid) },
         data: { deletedAt: new Date() },

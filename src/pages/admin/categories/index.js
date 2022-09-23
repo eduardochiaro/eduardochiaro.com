@@ -1,16 +1,16 @@
-import { TagIcon, ExclamationTriangleIcon } from "@heroicons/react/24/outline";
-import { useSession } from "next-auth/react"
-import { useState, createRef } from "react";
-import { useSWRConfig } from "swr";
+import { TagIcon, ExclamationTriangleIcon } from '@heroicons/react/24/outline';
+import { useSession } from 'next-auth/react'
+import { useState, createRef } from 'react';
+import { useSWRConfig } from 'swr';
 import axios from 'axios';
 import fs from 'fs';
 import path from 'path';
-import AdminModal from "../../../components/admin/Modal";
-import AdminWrapper from "../../../components/admin/Wrapper";
-import Table from "../../../components/admin/Table";
-import mergeObj from "../../../utils/mergeObj";
-import useStaleSWR from "../../../utils/staleSWR";
-import moment from "moment";
+import AdminModal from '@/components/admin/Modal';
+import AdminWrapper from '@/components/admin/Wrapper';
+import Table from '@/components/admin/Table';
+import mergeObj from '@/utils/mergeObj';
+import useStaleSWR from '@/utils/staleSWR';
+import moment from 'moment';
 
 const AdminCategoriesIndex = ({ formRef, images }) => {
   const { data: categories, error } = useStaleSWR('/api/admin/categories');
@@ -55,7 +55,7 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
       url: category.id ? `/api/admin/categories/${category.id}` : '/api/admin/categories/create',
       data: formData,
       headers: {
-        'Content-Type': `application/json`
+        'Content-Type': 'application/json'
       }
     }).then(({ data }) => {
       mutate('/api/admin/categories');
@@ -75,7 +75,7 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
 
   const onPrimaryButtonClick = () => {
     formRef.current.dispatchEvent(
-      new Event("submit", { bubbles: true, cancelable: true })
+      new Event('submit', { bubbles: true, cancelable: true })
     )
   }
 
@@ -125,20 +125,20 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
 
   const columns = [
     {
-      name: "Name",
-      key: "name",
+      name: 'Name',
+      key: 'name',
       searchable: true,
-      classNameTd: "font-bold"
+      classNameTd: 'font-bold'
     },
     {
-      name: "Type",
-      key: "type",
+      name: 'Type',
+      key: 'type',
       searchable: true
     },
     {
-      name: "Updated",
-      key: "updated",
-      classNameTd: "w-44"
+      name: 'Updated',
+      key: 'updated',
+      classNameTd: 'w-44'
     }
   ]
 

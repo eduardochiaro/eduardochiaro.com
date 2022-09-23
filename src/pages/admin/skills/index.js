@@ -1,17 +1,17 @@
-import { CommandLineIcon, ExclamationTriangleIcon } from "@heroicons/react/24/outline";
-import { useSession } from "next-auth/react"
-import { useState, createRef } from "react";
-import { useSWRConfig } from "swr";
+import { CommandLineIcon, ExclamationTriangleIcon } from '@heroicons/react/24/outline';
+import { useSession } from 'next-auth/react'
+import { useState, createRef } from 'react';
+import { useSWRConfig } from 'swr';
 import axios from 'axios';
 import fs from 'fs';
 import path from 'path';
 import SVG from 'react-inlinesvg';
-import AdminModal from "../../../components/admin/Modal";
-import AdminWrapper from "../../../components/admin/Wrapper";
-import Table from "../../../components/admin/Table";
-import mergeObj from "../../../utils/mergeObj";
-import useStaleSWR from "../../../utils/staleSWR";
-import moment from "moment";
+import AdminModal from '@/components/admin/Modal';
+import AdminWrapper from '@/components/admin/Wrapper';
+import Table from '@/components/admin/Table';
+import mergeObj from '@/utils/mergeObj';
+import useStaleSWR from '@/utils/staleSWR';
+import moment from 'moment';
 
 const AdminSkillsIndex = ({ formRef, images }) => {
   const { data: skills, error } = useStaleSWR('/api/portfolio/skills');
@@ -56,7 +56,7 @@ const AdminSkillsIndex = ({ formRef, images }) => {
       url: skill.id ? `/api/portfolio/skills/${skill.id}` : '/api/portfolio/skills/create',
       data: formData,
       headers: {
-        'Content-Type': `application/json`
+        'Content-Type': 'application/json'
       }
     }).then(({ data }) => {
       mutate('/api/portfolio/skills');
@@ -79,7 +79,7 @@ const AdminSkillsIndex = ({ formRef, images }) => {
 
   const onPrimaryButtonClick = () => {
     formRef.current.dispatchEvent(
-      new Event("submit", { bubbles: true, cancelable: true })
+      new Event('submit', { bubbles: true, cancelable: true })
     )
   }
 
@@ -129,33 +129,33 @@ const AdminSkillsIndex = ({ formRef, images }) => {
 
   const columns = [
     {
-      name: "Name",
-      key: "name",
+      name: 'Name',
+      key: 'name',
       searchable: true,
-      classNameTd: "font-bold"
+      classNameTd: 'font-bold'
     },
     {
-      name: "Logo",
-      key: "logo_d",
-      className: "textcenter w-10",
-      classNameTd: "text-center"
+      name: 'Logo',
+      key: 'logo_d',
+      className: 'textcenter w-10',
+      classNameTd: 'text-center'
     },
     {
-      name: "Percentage",
-      key: "percentage_d",
+      name: 'Percentage',
+      key: 'percentage_d',
       searchable: true,
-      className: "textcenter",
-      classNameTd: "text-center"
+      className: 'textcenter',
+      classNameTd: 'text-center'
     },
     {
-      name: "Type",
-      key: "type",
+      name: 'Type',
+      key: 'type',
       searchable: true
     },
     {
-      name: "Updated",
-      key: "updated",
-      classNameTd: "w-44"
+      name: 'Updated',
+      key: 'updated',
+      classNameTd: 'w-44'
     }
   ]
 
@@ -165,8 +165,8 @@ const AdminSkillsIndex = ({ formRef, images }) => {
     obj.updated = moment(item.updatedAt || item.createdAt).from(moment());
     obj.logo_d = (
       <>
-        <div className={`w-32 m-auto relative`}>
-          <SVG title={item.name} alt={item.name} className={`inline w-auto fill-zinc-700 dark:fill-zinc-200`} src={`/images/svg-icons/${item.logo}`} height={50} />
+        <div className={'w-32 m-auto relative'}>
+          <SVG title={item.name} alt={item.name} className={'inline w-auto fill-zinc-700 dark:fill-zinc-200'} src={`/images/svg-icons/${item.logo}`} height={50} />
         </div>
         <div className="small">{item.logo}</div>
       </>
@@ -252,7 +252,7 @@ const AdminSkillsIndex = ({ formRef, images }) => {
                   Preview
                 </label>
                 {skill.logo &&
-                  <SVG title={skill.name} alt={skill.name} className={`inline-block w-14 fill-zinc-700 dark:fill-zinc-200`} src={`/images/svg-icons/${skill.logo}`} />
+                  <SVG title={skill.name} alt={skill.name} className={'inline-block w-14 fill-zinc-700 dark:fill-zinc-200'} src={`/images/svg-icons/${skill.logo}`} />
                 }
               </div>
               <div className="col-span-6 sm:col-span-3">

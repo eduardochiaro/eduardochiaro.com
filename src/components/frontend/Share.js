@@ -1,7 +1,7 @@
 import * as React from 'react';
-import TwitterIcon from '../icons/twitter';
-import LinkedInIcon from '../icons/linkedin';
-import GitHubIcon from '../icons/github';
+import TwitterIcon from '@/components/icons/twitter';
+import LinkedInIcon from '@/components/icons/linkedin';
+import GitHubIcon from '@/components/icons/github';
 import Link from 'next/link';
 
 export default function Share () {
@@ -18,7 +18,7 @@ export default function Share () {
             alt="GitHub"
             title="GitHub">
             <GitHubIcon
-              className={`inline-block h-6 transition-colors ease-out duration-500 fill-zinc-900 dark:fill-zinc-100 hover:fill-primary-700 dark:hover:fill-primary-600`}
+              className={'inline-block h-6 transition-colors ease-out duration-500 fill-zinc-900 dark:fill-zinc-100 hover:fill-primary-700 dark:hover:fill-primary-600'}
             />
           </a>
         </Link>
@@ -30,7 +30,7 @@ export default function Share () {
             alt="LinkedIn"
             title="LinkedIn">
             <LinkedInIcon
-              className={`inline-block h-6 transition-colors ease-out duration-500 fill-zinc-900 dark:fill-zinc-100 hover:fill-primary-700 dark:hover:fill-primary-600`}
+              className={'inline-block h-6 transition-colors ease-out duration-500 fill-zinc-900 dark:fill-zinc-100 hover:fill-primary-700 dark:hover:fill-primary-600'}
             />
           </a>
         </Link>
@@ -42,7 +42,7 @@ export default function Share () {
             alt="Twitter"
             title="Twitter">
             <TwitterIcon
-              className={`inline-block h-6 transition-colors ease-out duration-500 fill-zinc-900 dark:fill-zinc-100 hover:fill-primary-700 dark:hover:fill-primary-600`}
+              className={'inline-block h-6 transition-colors ease-out duration-500 fill-zinc-900 dark:fill-zinc-100 hover:fill-primary-700 dark:hover:fill-primary-600'}
             />
           </a>
         </Link>

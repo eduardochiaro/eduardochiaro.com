@@ -1,10 +1,10 @@
-import apiWithMiddleware from '../../../../utils/apiWithMiddleware';
-import prisma from '../../../../utils/prisma';
-import cors from '../../../../middlewares/cors';
+import apiWithMiddleware from '@/utils/apiWithMiddleware';
+import prisma from '@/utils/prisma';
+import cors from '@/middlewares/cors';
 import { IncomingForm } from 'formidable'
 import mv from 'mv';
 
-const uploadPath = "./public/uploads/";
+const uploadPath = './public/uploads/';
 
 export const config = {
   api: {
@@ -21,7 +21,7 @@ const handler = async (req, res) => {
       form.parse(req, async (err, fields, files) => {
         if (err) return reject(err)
         const oldPath = files.logo.filepath;
-        const extension = files.logo.originalFilename.split(".").pop();
+        const extension = files.logo.originalFilename.split('.').pop();
         const newName = files.logo.newFilename + '.' + extension;
         const newPath = `${uploadPath}${newName}`;
         mv(oldPath, newPath, function(err) {

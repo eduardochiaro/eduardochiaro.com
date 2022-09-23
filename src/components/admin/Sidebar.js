@@ -1,9 +1,9 @@
-import { BriefcaseIcon, CpuChipIcon, CommandLineIcon, HomeIcon, TagIcon, BookmarkIcon, ChevronRightIcon, ChevronLeftIcon } from "@heroicons/react/24/outline";
-import Link from "next/link";
-import NavLink from '../NavLink';
-import styles from '../../styles/Admin.Sidebar.module.scss'
-import Logo from "../icons/logo";
-import { useState } from "react";
+import { BriefcaseIcon, CpuChipIcon, CommandLineIcon, HomeIcon, TagIcon, BookmarkIcon, ChevronRightIcon, ChevronLeftIcon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
+import NavLink from '@/components/NavLink';
+import styles from '@/styles/Admin.Sidebar.module.scss'
+import Logo from '@/components/icons/logo';
+import { useState } from 'react';
 
 const AdminSidebar = () => {
   const [openMenu, setOpenMenu] = useState(true);

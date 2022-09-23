@@ -1,14 +1,14 @@
 import Parser from 'rss-parser';
 import fsCache from './fsCache';
 
-const flickr_base = "https://www.flickr.com";
-const instagram_base = "https://feeds.behold.so";
+const flickr_base = 'https://www.flickr.com';
+const instagram_base = 'https://feeds.behold.so';
 const flickr_username = process.env.FLICKR_USERNAME;
 const instagram_username = process.env.INSTAGRAM_USERNAME;
 const hours = 10;
 
 const getCachedFlickr = async () => {
-  return fsCache("flickr", hours, async () => {
+  return fsCache('flickr', hours, async () => {
     const parser = new Parser({
       customFields: {
         item:[
@@ -24,7 +24,7 @@ const getCachedFlickr = async () => {
 }
 
 const getCacheInstagram = async () => {
-  return fsCache("instagram", hours, async () => {
+  return fsCache('instagram', hours, async () => {
     const url = `${instagram_base}/${instagram_username}`;
     const instagram = await fetch(url);
     return instagram.json();

@@ -1,7 +1,7 @@
-import { ComputerDesktopIcon } from "@heroicons/react/24/outline";
-import { useSession } from "next-auth/react"
-import Head from "next/head";
-import AdminWrapper from "../../components/admin/Wrapper";
+import { ComputerDesktopIcon } from '@heroicons/react/24/outline';
+import { useSession } from 'next-auth/react'
+import Head from 'next/head';
+import AdminWrapper from '@/components/admin/Wrapper';
 
 const AdminIndex = () => {
   const { data: session } = useSession();

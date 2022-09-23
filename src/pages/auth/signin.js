@@ -1,8 +1,8 @@
 import * as React from 'react'
-import { getProviders, signIn } from "next-auth/react"
+import { getProviders, signIn } from 'next-auth/react'
 import { useRouter } from 'next/router'
-import { ArrowRightCircleIcon } from "@heroicons/react/24/outline"
-import Header from '../../components/frontend/Header'
+import { ArrowRightCircleIcon } from '@heroicons/react/24/outline'
+import Header from '@/components/frontend/Header'
 
 export default function SignIn({ providers, basePath }) {
   const router = useRouter();

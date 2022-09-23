@@ -1,9 +1,9 @@
 import Head from 'next/head';
-import Header from "../../components/frontend/Header";
-import Share from '../../components/frontend/Share';
-import Footer from "../../components/frontend/Footer";
+import Header from '@/components/frontend/Header';
+import Share from '@/components/frontend/Share';
+import Footer from '@/components/frontend/Footer';
 import Link from 'next/link';
-import TerminalComponent from '../../components/projects/Terminal';
+import TerminalComponent from '@/components/projects/Terminal';
 
 
 function Terminal() {
@@ -16,7 +16,7 @@ function Terminal() {
       <Header />
       <Share />
       <div className="grow">
-        <section className={`px-4 lg:px-0 mt-10 h-full`}>
+        <section className={'px-4 lg:px-0 mt-10 h-full'}>
           <div className="max-w-5xl mx-auto h-full">
             <h1 className="font-header leading-tight tracking-wide text-2xl lg:text-3xl font-light">
               <Link

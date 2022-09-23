@@ -1,9 +1,9 @@
-import AdminSidebar from "./Sidebar";
-import Image from "next/future/image";
-import { useSession, signOut } from "next-auth/react"
-import { ArrowLeftCircleIcon } from "@heroicons/react/24/outline";
-import ThemeIcon from "../ThemeIcon";
-import React from "react";
+import AdminSidebar from './Sidebar';
+import Image from 'next/future/image';
+import { useSession, signOut } from 'next-auth/react'
+import { ArrowLeftCircleIcon } from '@heroicons/react/24/outline';
+import ThemeIcon from '@/components/ThemeIcon';
+import React from 'react';
 
 const AdminWrapper = ({ children, header = '' }) => {
   const { data: session } = useSession();

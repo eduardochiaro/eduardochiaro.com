@@ -1,14 +1,13 @@
 import moment from 'moment';
 import Link from 'next/link';
 import * as React from 'react';
-import useStaleSWR from '../../utils/staleSWR';
+import useStaleSWR from '@/utils/staleSWR';
 
 export default function LatestPosts () {
   const { data } = useStaleSWR('/api/portfolio/blog');
   const cutReposene = (data) ? data.results.slice(0, 3) : [];
   return (
-    <section id="articles" className={`px-4 lg:px-0 mt-10`}>
-      <span className="anchor" name="articles"/>
+    <section id="latest-posts" className={'px-4 lg:px-0 mt-10'}>
       <div className="max-w-5xl mx-auto">
         <h3 className="font-header leading-tight tracking-wide text-2xl lg:text-3xl font-light mb-2">
           Recent <span className="overlay-color">articles</span> says...
@@ -29,7 +28,7 @@ export default function LatestPosts () {
                       <div className="flex flex-row items-center">
                         <span className="w-full border-t border-primary-700 dark:border-primary-600 border-dashed shrink"></span>
                         <span className="w-4 border-t border-primary-700 dark:border-primary-600 border-dashed shrink"></span>
-                        <span className="text-sm font-mono whitespace-nowrap bg-zinc-50 dark:bg-zinc-800 px-4 overlay-color">{ moment(article.published).format("MM/DD/YYYY")}</span>
+                        <span className="text-sm font-mono whitespace-nowrap bg-zinc-50 dark:bg-zinc-800 px-4 overlay-color">{ moment(article.published).format('MM/DD/YYYY')}</span>
                         <span className="flex-none w-12 border-t border-primary-700 dark:border-primary-600 border-dashed"></span>
                       </div>
                     </div>

@@ -1,7 +1,7 @@
 import moment from 'moment';
-import apiWithMiddleware from '../../../utils/apiWithMiddleware';
-import cors from '../../../middlewares/cors';
-import { getCachedFlickr, getCacheInstagram } from '../../../utils/getCachedFeeds';
+import apiWithMiddleware from '@/utils/apiWithMiddleware';
+import cors from '@/middlewares/cors';
+import { getCachedFlickr, getCacheInstagram } from '@/utils/getCachedFeeds';
 
 const handler = async (req, res) => {
   await cors(req, res);
@@ -15,7 +15,7 @@ const handler = async (req, res) => {
       permalink: item.link,
       published: item.isoDate,
       timestamp: moment(item.isoDate).unix(),
-      type: "Flickr",
+      type: 'Flickr',
       image: item.images[1]['$']['href']
     });
   });
@@ -28,7 +28,7 @@ const handler = async (req, res) => {
       permalink: item.permalink,
       published: item.timestamp,
       timestamp: moment(item.timestamp).unix(),
-      type: "Instagram",
+      type: 'Instagram',
       image: item.thumbnailUrl || item.mediaUrl
     });
   });

@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from 'react'
 
 const Coffee = ({width='530', height='530', ...props}) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox={`0 0 ${width} ${height}`} fill="currentColor" {...props}>

@@ -92,8 +92,7 @@ export default function GitHub () {
   ));
 
   return (
-    <section id="github" className={`px-4 lg:px-0 mt-10`}>
-      <span className="anchor" name="github"/>
+    <section id="github-component" className={'px-4 lg:px-0 mt-10'}>
       <div className="max-w-5xl mx-auto">
         <h3 className="font-header leading-tight tracking-wide text-2xl lg:text-3xl font-light">
           What I&apos;ve <span className="overlay-color">coded</span> recently...

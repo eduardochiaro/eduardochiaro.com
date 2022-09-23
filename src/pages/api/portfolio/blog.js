@@ -1,7 +1,7 @@
-import apiWithMiddleware from '../../../utils/apiWithMiddleware';
-import cors from '../../../middlewares/cors';
+import apiWithMiddleware from '@/utils/apiWithMiddleware';
+import cors from '@/middlewares/cors';
 import Parser from 'rss-parser';
-import fsCache from '../../../utils/fsCache';
+import fsCache from '@/utils/fsCache';
 
 const url = 'https://blog.eduardochiaro.com/rss/';
 const hours = 1;

@@ -1,6 +1,6 @@
-import apiWithMiddleware from '../../../../utils/apiWithMiddleware';
-import prisma from '../../../../utils/prisma';
-import cors from '../../../../middlewares/cors';
+import apiWithMiddleware from '@/utils/apiWithMiddleware';
+import prisma from '@/utils/prisma';
+import cors from '@/middlewares/cors';
 import { URL } from 'url';
 
 const handler = async (req, res) => {

@@ -1,15 +1,15 @@
-import { BriefcaseIcon, ExclamationTriangleIcon } from "@heroicons/react/24/outline";
-import { useSession } from "next-auth/react"
-import { useState, createRef } from "react";
-import { useSWRConfig } from "swr";
+import { BriefcaseIcon, ExclamationTriangleIcon } from '@heroicons/react/24/outline';
+import { useSession } from 'next-auth/react'
+import { useState, createRef } from 'react';
+import { useSWRConfig } from 'swr';
 import axios from 'axios';
-import AdminModal from "../../../components/admin/Modal";
-import AdminWrapper from "../../../components/admin/Wrapper";
-import Table from "../../../components/admin/Table";
-import mergeObj from "../../../utils/mergeObj";
+import AdminModal from '@/components/admin/Modal';
+import AdminWrapper from '@/components/admin/Wrapper';
+import Table from '@/components/admin/Table';
+import mergeObj from '@/utils/mergeObj';
 import SVG from 'react-inlinesvg';
-import useStaleSWR from "../../../utils/staleSWR";
-import moment from "moment";
+import useStaleSWR from '@/utils/staleSWR';
+import moment from 'moment';
 
 const AdminJobsIndex = ({ formRef }) => {
   const { data: jobs, error } = useStaleSWR('/api/portfolio/works');
@@ -76,7 +76,7 @@ const AdminJobsIndex = ({ formRef }) => {
 
   const onPrimaryButtonClick = () => {
     formRef.current.dispatchEvent(
-      new Event("submit", { bubbles: true, cancelable: true })
+      new Event('submit', { bubbles: true, cancelable: true })
     )
   }
 
@@ -126,33 +126,33 @@ const AdminJobsIndex = ({ formRef }) => {
 
   const columns = [
     {
-      name: "Name",
-      key: "name",
+      name: 'Name',
+      key: 'name',
       searchable: true,
-      classNameTd: "font-bold"
+      classNameTd: 'font-bold'
     },
     {
-      name: "Logo",
-      key: "logo_d",
-      className: "textcenter",
-      classNameTd: "text-center"
+      name: 'Logo',
+      key: 'logo_d',
+      className: 'textcenter',
+      classNameTd: 'text-center'
     },
     {
-      name: "Size (width)",
-      key: "size",
+      name: 'Size (width)',
+      key: 'size',
       searchable: true,
-      className: "textcenter",
-      classNameTd: "text-center"
+      className: 'textcenter',
+      classNameTd: 'text-center'
     },
     {
-      name: "Disclaimer",
-      key: "disclaimer",
+      name: 'Disclaimer',
+      key: 'disclaimer',
       searchable: true
     },
     {
-      name: "Updated",
-      key: "updated",
-      classNameTd: "w-44"
+      name: 'Updated',
+      key: 'updated',
+      classNameTd: 'w-44'
     }
   ]
 
@@ -168,7 +168,7 @@ const AdminJobsIndex = ({ formRef }) => {
     obj.logo_d = (
       <>
         <div className="w-32 m-auto relative">
-          <SVG title={item.name} alt={item.name} className={`inline w-auto fill-zinc-700 dark:fill-zinc-200`} src={`/uploads/${item.logo}`} height={25} />
+          <SVG title={item.name} alt={item.name} className={'inline w-auto fill-zinc-700 dark:fill-zinc-200'} src={`/uploads/${item.logo}`} height={25} />
         </div>
         <div className="small">{item.logo}</div>
       </>
@@ -256,7 +256,7 @@ const AdminJobsIndex = ({ formRef }) => {
                     Current
                   </label>
                   <div className="mt-4">
-                    <SVG title={job.name} alt={job.name} className={`inline w-auto fill-zinc-700 dark:fill-zinc-200`} src={`/uploads/${job.logo}`} height={25} />
+                    <SVG title={job.name} alt={job.name} className={'inline w-auto fill-zinc-700 dark:fill-zinc-200'} src={`/uploads/${job.logo}`} height={25} />
                   </div>
                   </>
                 }

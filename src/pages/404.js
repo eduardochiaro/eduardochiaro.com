@@ -1,5 +1,4 @@
-import styles from '../styles/404.module.scss'
-import NotFound from '../components/icons/404'
+import NotFound from '@/components/icons/404'
 import Link from 'next/link'
 
 export default function Custom404() {

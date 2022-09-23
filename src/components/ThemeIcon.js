@@ -1,11 +1,11 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { MoonIcon, SunIcon, ComputerDesktopIcon } from '@heroicons/react/24/solid';
-import { useTheme } from "next-themes";
+import { useTheme } from 'next-themes';
 import { Menu, Transition } from '@headlessui/react';
 
 export default function ThemeIcon () {
   const [iconClass, setIconClass] = useState(null);
-  const [inUseTheme, setInUseTheme] = useState("dark");
+  const [inUseTheme, setInUseTheme] = useState('dark');
   const { systemTheme , theme, setTheme } = useTheme();
 
   const setColorTheme = (themeName) => {
@@ -44,7 +44,7 @@ export default function ThemeIcon () {
       }));
     }
 
-    const currentTheme = theme === "system" ? systemTheme : theme ;
+    const currentTheme = theme === 'system' ? systemTheme : theme ;
     setInUseTheme(currentTheme);
     resetColors();
   }, [theme, systemTheme]);
@@ -52,7 +52,7 @@ export default function ThemeIcon () {
   return (
     <Menu as="div" className="relative flex item-center">
       <Menu.Button title="change theme" data-cy="change-mode">
-      { inUseTheme === "dark" ? 
+      { inUseTheme === 'dark' ? 
         <MoonIcon className="w-5 h-5 fill-primary-600 cursor-pointer rounded-full transition-all duration-300 ease-in-out hover:bg-zinc-100 hover:fill-zinc-800" />
         :
         <SunIcon className="w-5 h-5 fill-zinc-500 cursor-pointer rounded-full transition-all duration-300 ease-in-out hover:fill-primary-600" />

@@ -1,9 +1,9 @@
 import Head from 'next/head';
-import Header from "../../components/frontend/Header";
-import Share from '../../components/frontend/Share';
-import Footer from "../../components/frontend/Footer";
+import Header from '@/components/frontend/Header';
+import Share from '@/components/frontend/Share';
+import Footer from '@/components/frontend/Footer';
 import Link from 'next/link';
-import { EvenTile, OddTile } from '../../components/projects/TimelineTile';
+import { EvenTile, OddTile } from '@/components/projects/TimelineTile';
 import { useState } from 'react';
 
 const TimelineComponent = ({ episodes, type }) => {
@@ -36,7 +36,7 @@ function Timeline({ episodes }) {
       <Header />
       <Share />
       <div className="grow">
-        <section className={`px-4 lg:px-0 mt-10`}>
+        <section className={'px-4 lg:px-0 mt-10'}>
           <div className="max-w-5xl mx-auto">
             <div className="grid grid-cols-3">
               <h1 className="font-header leading-tight tracking-wide text-2xl lg:text-3xl font-light col-span-2">

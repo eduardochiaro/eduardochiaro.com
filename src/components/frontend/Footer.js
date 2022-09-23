@@ -1,7 +1,7 @@
 import moment from 'moment';
 import * as React from 'react';
-import { useSession, signIn, signOut } from "next-auth/react"
-import Logo from '../icons/logo';
+import { useSession, signOut } from 'next-auth/react'
+import Logo from '@/components/icons/logo';
 import Link from 'next/link';
 
 function LoginButton(props) {
@@ -33,7 +33,7 @@ export default function Footer () {
           <div className="hidden lg:block flex-none lg:w-60 text-sm"></div>
           <div className="flex-1 text-center">
             <span>© Copyright {moment().year()}</span>
-            <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={`inline w-auto h-7 mx-3 `} />
+            <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={'inline w-auto h-7 mx-3 '} />
             <span>Eduardo Chiaro</span>
           </div>
           <div className="flex-none w-full lg:w-60 text-right align-baseline mt-5 md:mt-0 items-center">

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import moment from 'moment';
-import SpinnerIcon from '../icons/spinner';
-import * as commands from '../../utils/projects/terminal/commands';
+import SpinnerIcon from '@/components/icons/spinner';
+import * as commands from '@/utils/projects/terminal/commands';
 
 const useFocus = () => {
   const htmlElRef = useRef(null)

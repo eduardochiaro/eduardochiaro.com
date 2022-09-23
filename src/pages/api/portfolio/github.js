@@ -1,10 +1,10 @@
-import apiWithMiddleware from '../../../utils/apiWithMiddleware';
-import cors from '../../../middlewares/cors';
-import { gql } from "@apollo/client";
-import client from "../../../utils/apolloClient";
-import fsCache from '../../../utils/fsCache';
+import apiWithMiddleware from '@/utils/apiWithMiddleware';
+import cors from '@/middlewares/cors';
+import { gql } from '@apollo/client';
+import client from '@/utils/apolloClient';
+import fsCache from '@/utils/fsCache';
 
-const base = "https://api.github.com/users";
+const base = 'https://api.github.com/users';
 const hours = 24;
 
 const cachedFetch = async (url) => {

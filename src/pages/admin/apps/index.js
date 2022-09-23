@@ -1,16 +1,16 @@
-import { CpuChipIcon, ExclamationTriangleIcon, ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
-import { useSession } from "next-auth/react"
-import { useState, createRef } from "react";
-import { useSWRConfig } from "swr";
+import { CpuChipIcon, ExclamationTriangleIcon, ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
+import { useSession } from 'next-auth/react'
+import { useState, createRef } from 'react';
+import { useSWRConfig } from 'swr';
 import axios from 'axios';
-import AdminModal from "../../../components/admin/Modal";
-import AdminWrapper from "../../../components/admin/Wrapper";
-import Table from "../../../components/admin/Table";
-import mergeObj from "../../../utils/mergeObj";
-import useStaleSWR from "../../../utils/staleSWR";
-import moment from "moment";
-import Link from "next/link";
-import Image from "next/future/image";
+import AdminModal from '@/components/admin/Modal';
+import AdminWrapper from '@/components/admin/Wrapper';
+import Table from '@/components/admin/Table';
+import mergeObj from '@/utils/mergeObj';
+import useStaleSWR from '@/utils/staleSWR';
+import moment from 'moment';
+import Link from 'next/link';
+import Image from 'next/future/image';
 
 const AdminAppsIndex = ({ formRef }) => {
   const { data: apps, error } = useStaleSWR('/api/portfolio/apps');
@@ -77,7 +77,7 @@ const AdminAppsIndex = ({ formRef }) => {
 
   const onPrimaryButtonClick = () => {
     formRef.current.dispatchEvent(
-      new Event("submit", { bubbles: true, cancelable: true })
+      new Event('submit', { bubbles: true, cancelable: true })
     )
   }
 
@@ -127,31 +127,31 @@ const AdminAppsIndex = ({ formRef }) => {
 
   const columns = [
     {
-      name: "Name",
-      key: "name",
+      name: 'Name',
+      key: 'name',
       searchable: true,
-      classNameTd: "font-bold"
+      classNameTd: 'font-bold'
     },
     {
-      name: "Image",
-      key: "image",
-      className: "textcenter",
-      classNameTd: "text-center"
+      name: 'Image',
+      key: 'image',
+      className: 'textcenter',
+      classNameTd: 'text-center'
     },
     {
-      name: "Description",
+      name: 'Description',
       searchable: true,
-      key: "description_d"
+      key: 'description_d'
     },
     {
-      name: "GitHub URL",
+      name: 'GitHub URL',
       searchable: true,
-      key: "github_url"
+      key: 'github_url'
     },
     {
-      name: "Updated",
-      key: "updated",
-      classNameTd: "w-44"
+      name: 'Updated',
+      key: 'updated',
+      classNameTd: 'w-44'
     }
   ]
   

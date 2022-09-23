@@ -1,8 +1,8 @@
-import NextAuth from "next-auth"
-import GithubProvider from "next-auth/providers/github"
-import GoogleProvider from "next-auth/providers/google"
-import { PrismaAdapter } from "@next-auth/prisma-adapter"
-import prisma from '../../../utils/prisma';
+import NextAuth from 'next-auth'
+import GithubProvider from 'next-auth/providers/github'
+import GoogleProvider from 'next-auth/providers/google'
+import { PrismaAdapter } from '@next-auth/prisma-adapter'
+import prisma from '@/utils/prisma';
 
 export default NextAuth({
   secret: process.env.NEXTAUTH_SECRET,
@@ -18,16 +18,16 @@ export default NextAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       authorization: {
         params: {
-          prompt: "consent",
-          access_type: "offline",
-          response_type: "code"
+          prompt: 'consent',
+          access_type: 'offline',
+          response_type: 'code'
         }
       }
     })
     // ...add more providers here
   ],
   session: {
-    strategy: "jwt",
+    strategy: 'jwt',
     maxAge: 5 * 60 * 60 // 30 days
   },
   pages: {

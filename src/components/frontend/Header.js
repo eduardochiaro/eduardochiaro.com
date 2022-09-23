@@ -3,12 +3,12 @@ import {
   RssIcon,
   Bars4Icon,
 } from '@heroicons/react/24/solid';
-import styles from '../../styles/Header.module.scss';
+import styles from '@/styles/Header.module.scss';
 import { useRouter } from 'next/router';
 import { Menu, Transition } from '@headlessui/react';
-import ThemeIcon from '../ThemeIcon';
-import NavLink from '../NavLink';
-import Logo from '../icons/logo';
+import ThemeIcon from '@/components/ThemeIcon';
+import NavLink from '@/components/NavLink';
+import Logo from '@/components/icons/logo';
 import Link from 'next/link';
 
 export default function Header () {
@@ -32,7 +32,7 @@ export default function Header () {
       onlyMobile: false
     },
     {
-      text: ( <><RssIcon className={`h-5 text-accent-500 mr-2 inline-block`} aria-hidden="true" />.dev</> ),
+      text: ( <><RssIcon className={'h-5 text-accent-500 mr-2 inline-block'} aria-hidden="true" />.dev</> ),
       link: 'https://blog.eduardochiaro.com',
       current: false,
       onlyMobile: true
@@ -46,7 +46,7 @@ export default function Header () {
           <div className="flex-none flex gap-4 font-header text-2xl">
             <Menu as="div" className="relative inline-block md:hidden">
               <Menu.Button title="open menu" className="inline-block md:hidden hover:cursor-pointer">
-                <Bars4Icon className={`w-7 inline-block border-2 rounded border-primary-700 transition text-primary-700 dark:text-primary-600 hover:text-zinc-900 dark:hover:text-zinc-100`}/>
+                <Bars4Icon className={'w-7 inline-block border-2 rounded border-primary-700 transition text-primary-700 dark:text-primary-600 hover:text-zinc-900 dark:hover:text-zinc-100'}/>
               </Menu.Button>
               <Transition
                 as={Fragment}
@@ -81,7 +81,7 @@ export default function Header () {
                 <Logo 
                   title="Eduardo Chiaro" 
                   alt="Eduardo Chiaro" 
-                  className={`w-auto h-5 md:h-7`} />
+                  className={'w-auto h-5 md:h-7'} />
                 <div className="text-xl md:text-2xl font-semibold tracking-wide">
                   Eduardo Chiaro
                 </div>
@@ -112,7 +112,7 @@ export default function Header () {
               href="https://blog.eduardochiaro.com"
               >
               <a className="md:pr-0 pr-6 whitespace-nowrap text-base font-medium transition hover:underline flex items-center">
-                <RssIcon className={`h-5 text-accent-500 mr-1`} aria-hidden="true" />.dev
+                <RssIcon className={'h-5 text-accent-500 mr-1'} aria-hidden="true" />.dev
               </a>
             </Link>
           </div>

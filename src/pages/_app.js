@@ -1,9 +1,9 @@
-import { SessionProvider } from "next-auth/react"
-import { ThemeProvider } from "next-themes";
-import NextProgress from "next-progress";
-import '../styles/globals.scss'
-import tailwindConfig from "../../tailwind.config";
-import Head from "next/head";
+import { SessionProvider } from 'next-auth/react'
+import { ThemeProvider } from 'next-themes';
+import NextProgress from 'next-progress';
+import tailwindConfig from '../../tailwind.config';
+import Head from 'next/head';
+import '@/styles/globals.scss'
 
 function MyApp({
   Component,

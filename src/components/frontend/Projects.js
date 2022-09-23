@@ -1,7 +1,7 @@
 import * as React from 'react';
-import GitHubIcon from '../icons/github';
-import styles from '../../styles/Projects.module.scss'
-import useStaleSWR from '../../utils/staleSWR';
+import GitHubIcon from '@/components/icons/github';
+import styles from '@/styles/Projects.module.scss'
+import useStaleSWR from '@/utils/staleSWR';
 import Link from 'next/link';
 import Image from 'next/future/image';
 
@@ -35,18 +35,18 @@ export default function Projects () {
           </h1>
           <div className="grid grid-cols-1 gap-8 mt-5">
           { data?.results.map((app, index) => (
-            <div className={`flex flex-wrap p-8 box-card`} key={`app-${index}`} >
-              <div className={`basis-full md:basis-1/3 relative`}>
+            <div className={'flex flex-wrap p-8 box-card'} key={`app-${index}`} >
+              <div className={'basis-full md:basis-1/3 relative'}>
                 <Image
                   src={`/uploads/${app.image}`}
                   fill
-                  sizes="100vw"
+                  sizes="30vw"
                   alt={app.name}
                   className="bg-transparent object-contain"
                   priority="false"
                 />
               </div>
-              <div className={`basis-full md:basis-2/3 px-8`}>
+              <div className={'basis-full md:basis-2/3 px-8'}>
                 <h3 className="text-2xl font-header tracking-wide">{app.name}</h3>
                 <p className="text-normal mt-2">{app.description}</p>
                 <Link

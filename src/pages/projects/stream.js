@@ -1,15 +1,15 @@
 import Head from 'next/head';
-import Footer from "../../components/frontend/Footer";
-import Header from "../../components/frontend/Header";
-import Share from '../../components/frontend/Share';
+import Footer from '@/components/frontend/Footer';
+import Header from '@/components/frontend/Header';
+import Share from '@/components/frontend/Share';
 import Masonry from 'react-masonry-css';
-import useStaleSWR from '../../utils/staleSWR';
+import useStaleSWR from '@/utils/staleSWR';
 import moment from 'moment';
 import Link from 'next/link';
-import Flickr from '../../components/icons/flickr';
-import Instagram from '../../components/icons/instagram';
-import styles from '../../styles/Stream.module.scss';
-import NaturalImage from '../../components/NaturalImage';
+import Flickr from '@/components/icons/flickr';
+import Instagram from '@/components/icons/instagram';
+import styles from '@/styles/Stream.module.scss';
+import NaturalImage from '@/components/NaturalImage';
 
 export default function Projects() {
   const { data } = useStaleSWR('/api/portfolio/stream');
@@ -26,8 +26,8 @@ export default function Projects() {
                 alt={item.title}
                 className="rounded"
               />
-              {item.type === "Flickr" && <Flickr className="w-8 absolute bottom-2 right-2 text-zinc-100" alt={item.type} />}
-              {item.type === "Instagram" && <Instagram className="w-8 absolute bottom-4 right-2 text-zinc-100" alt={item.type} />}
+              {item.type === 'Flickr' && <Flickr className="w-8 absolute bottom-2 right-2 text-zinc-100" alt={item.type} />}
+              {item.type === 'Instagram' && <Instagram className="w-8 absolute bottom-4 right-2 text-zinc-100" alt={item.type} />}
               
             </div>
             <div className="p-3">
@@ -52,9 +52,9 @@ export default function Projects() {
       </Head>
       <Header />
       <div className={`${styles.stream} grow flex flex-col`}>
-        <div className={`mb-auto pb-10 grow`}>
+        <div className={'mb-auto pb-10 grow'}>
           <Share />
-          <section className={`px-4 lg:px-0 mt-10`}>
+          <section className={'px-4 lg:px-0 mt-10'}>
             <div className="max-w-5xl mx-auto">
               <h1 className="font-header leading-tight tracking-wide text-2xl lg:text-3xl font-light">
                 <Link
