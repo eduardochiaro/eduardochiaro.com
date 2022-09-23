@@ -13,37 +13,31 @@ import NaturalImage from '@/components/NaturalImage';
 
 export default function Projects() {
   const { data } = useStaleSWR('/api/portfolio/stream');
-  const items = data?.results.map(function(item, id) {
-    return <div key={id} className="shadow box-card p-1">
-      <Link
-      href={item.permalink}
-        >
+  const items = data?.results.map(function (item, id) {
+    return (
+      <div key={id} className="shadow box-card p-1">
+        <Link href={item.permalink}>
           <a target="_blank">
             <div className="relative">
-              <NaturalImage
-                size={500}
-                src={item.image}
-                alt={item.title}
-                className="rounded"
-              />
+              <NaturalImage size={500} src={item.image} alt={item.title} className="rounded" />
               {item.type === 'Flickr' && <Flickr className="w-8 absolute bottom-2 right-2 text-zinc-100" alt={item.type} />}
               {item.type === 'Instagram' && <Instagram className="w-8 absolute bottom-4 right-2 text-zinc-100" alt={item.type} />}
-              
             </div>
             <div className="p-3">
               <div className="flex">
-              <h4 className="flex-1 font-header tracking-wide text-xl">{item.title}</h4>
+                <h4 className="flex-1 font-header tracking-wide text-xl">{item.title}</h4>
               </div>
               <p className="text-right text-xs font-mono opacity-70">{moment(item.published).fromNow()}</p>
             </div>
           </a>
         </Link>
       </div>
+    );
   });
   const breakpointColumnsObj = {
     default: 3,
     1024: 2,
-    640: 1
+    640: 1,
   };
   return (
     <div className="flex flex-col h-screen justify-between">
@@ -57,18 +51,14 @@ export default function Projects() {
           <section className={'px-4 lg:px-0 mt-10'}>
             <div className="max-w-5xl mx-auto">
               <h1 className="font-header leading-tight tracking-wide text-2xl lg:text-3xl font-light">
-                <Link
-                  href="/projects"
-                  >
+                <Link href="/projects">
                   <a className="hover:underline text-primary-700 dark:text-primary-600 font-semibold">Projects</a>
-                </Link> / Stream
+                </Link>{' '}
+                / Stream
               </h1>
               <div className="mt-5">
-                <Masonry
-                  breakpointCols={breakpointColumnsObj}
-                  className="flex gap-8 w-auto"
-                  columnClassName="bg-clip-padding flex flex-col gap-8">
-                    { items }
+                <Masonry breakpointCols={breakpointColumnsObj} className="flex gap-8 w-auto" columnClassName="bg-clip-padding flex flex-col gap-8">
+                  {items}
                 </Masonry>
               </div>
             </div>
@@ -77,5 +67,5 @@ export default function Projects() {
         <Footer />
       </div>
     </div>
-  )
+  );
 }

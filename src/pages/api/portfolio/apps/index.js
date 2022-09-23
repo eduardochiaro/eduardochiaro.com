@@ -6,13 +6,12 @@ const handler = async (req, res) => {
   await cors(req, res);
   const apps = await prisma.app.findMany({
     where: {
-      deletedAt: null
+      deletedAt: null,
     },
     orderBy: {
-      createdAt: 'desc'
-    }
+      createdAt: 'desc',
+    },
   });
   res.status(200).json({ results: apps });
-}
+};
 export default apiWithMiddleware(handler);
-

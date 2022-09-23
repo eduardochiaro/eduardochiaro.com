@@ -9,34 +9,34 @@ const handler = async (req, res) => {
 
   const flickr = await getCachedFlickr();
 
-  flickr.items.slice(0,5).forEach(item => {
+  flickr.items.slice(0, 5).forEach((item) => {
     results.push({
       title: item.title,
       permalink: item.link,
       published: item.isoDate,
       timestamp: moment(item.isoDate).unix(),
       type: 'Flickr',
-      image: item.images[1]['$']['href']
+      image: item.images[1]['$']['href'],
     });
   });
 
   const instagramImages = await getCacheInstagram();
 
-  instagramImages.slice(0,5).forEach(item => {
+  instagramImages.slice(0, 5).forEach((item) => {
     results.push({
       title: item.caption || item.id,
       permalink: item.permalink,
       published: item.timestamp,
       timestamp: moment(item.timestamp).unix(),
       type: 'Instagram',
-      image: item.thumbnailUrl || item.mediaUrl
+      image: item.thumbnailUrl || item.mediaUrl,
     });
   });
 
-  results.sort(function(x, y){
+  results.sort(function (x, y) {
     return y.timestamp - x.timestamp;
-})
+  });
 
   res.status(200).json({ results });
-}
+};
 export default apiWithMiddleware(handler);

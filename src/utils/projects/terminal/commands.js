@@ -10,8 +10,8 @@ const getWeather = async (city) => {
 };
 
 export const about = () => {
-  return 'This is a personal website built with Next.js and TailwindCSS.'
-}
+  return 'This is a personal website built with Next.js and TailwindCSS.';
+};
 
 export const weather = (args) => {
   if (args == '' || args.length <= 0) {
@@ -20,7 +20,7 @@ export const weather = (args) => {
     const city = args.join('+');
     return getWeather(city);
   }
-}
+};
 
 export const logo = () => {
   return `
@@ -37,14 +37,12 @@ export const logo = () => {
                    @@@      @@@@@       
                            @@@@@@       
                           @@@`;
-}
+};
 
 export const fetch = () => {
   return (
     <div className="ml-4 my-4">
-      <div className="border-b border-dashed  w-1/3 mb-2">
-        user@eduardochiaro.com
-      </div>
+      <div className="border-b border-dashed  w-1/3 mb-2">user@eduardochiaro.com</div>
       <div className="flex w-1/3">
         <span className="grow text-emerald-500">OS</span>
         <span className="mx-2 text-red-500">-&gt;</span>
@@ -78,5 +76,5 @@ export const fetch = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

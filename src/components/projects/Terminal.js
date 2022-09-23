@@ -4,13 +4,14 @@ import SpinnerIcon from '@/components/icons/spinner';
 import * as commands from '@/utils/projects/terminal/commands';
 
 const useFocus = () => {
-  const htmlElRef = useRef(null)
-  const setFocus = () => {htmlElRef.current &&  htmlElRef.current.focus()}
+  const htmlElRef = useRef(null);
+  const setFocus = () => {
+    htmlElRef.current && htmlElRef.current.focus();
+  };
 
-  return [ htmlElRef, setFocus ] 
-}
-export default function Terminal () {
-
+  return [htmlElRef, setFocus];
+};
+export default function Terminal() {
   const [historyIndex, setHistoryIndex] = useState(0);
   const [inputRef, setInputFocus] = useFocus();
   const [isLoading, setIsLoading] = useState(false);
@@ -18,11 +19,7 @@ export default function Terminal () {
   const [history, setHistory] = useState([]);
   const [currentTime, setCurrentTime] = useState(moment().format('HH:mm'));
 
-  const availableCommands = [
-    'help',
-    'clear',
-    ...Object.keys(commands)
-  ];
+  const availableCommands = ['help', 'clear', ...Object.keys(commands)];
 
   const callAction = async (command, commandArgs) => {
     setHistoryIndex(0);
@@ -43,7 +40,7 @@ export default function Terminal () {
         const commandLine = command + (commandArgs.length > 0 ? ' ' + commandArgs.join(' ') : '');
         if (Object.keys(commands).indexOf(command) === -1) {
           const output = `shell: command not found: ${command}`;
-          currentHistory.push({ ...commandFormat, command: commandLine , time, output });
+          currentHistory.push({ ...commandFormat, command: commandLine, time, output });
         } else {
           const outputShell = await commands[command](commandArgs);
           currentHistory.push({ ...commandFormat, command: commandLine, time, output: outputShell });
@@ -52,13 +49,13 @@ export default function Terminal () {
     }
     setIsLoading(false);
     setHistory(currentHistory);
-  }
+  };
 
   const commandFormat = {
     command: '',
     output: '',
     time: '',
-  }
+  };
 
   const handleChange = async (e) => {
     if (e.key === 'Enter' || e.code === '13') {
@@ -98,8 +95,8 @@ export default function Terminal () {
       }
       setCurrentTime(moment().format('HH:mm'));
     }
-  }
-  
+  };
+
   const AlwaysScrollToBottom = () => {
     const elementRef = useRef();
     useEffect(() => elementRef.current.scrollIntoView());
@@ -108,11 +105,13 @@ export default function Terminal () {
 
   const isACommand = (command) => {
     return availableCommands.includes(command.split(' ')[0]);
-  }
-  
-  const Ps1Line = ({time}) => (
+  };
+
+  const Ps1Line = ({ time }) => (
     <div className="flex items-center gap-1">
-      <span>[<span className="text-red-300">{time}</span>]</span>
+      <span>
+        [<span className="text-red-300">{time}</span>]
+      </span>
       <span>
         <span className="text-blue-300">user</span>
         <span className="">::</span>
@@ -129,8 +128,8 @@ export default function Terminal () {
         <div className="w-3 h-3 rounded-full bg-primary-500 border border-primary-600"></div>
         <div className="w-3 h-3 rounded-full bg-emerald-500 border border-emerald-600"></div>
       </div>
-      <div className="bg-zinc-900 text-zinc-100 rounded-b-lg grow font-mono p-4 overflow-y-auto justify-end shadow-lg" onClick={setInputFocus} >
-        { history.map((line, index) => (
+      <div className="bg-zinc-900 text-zinc-100 rounded-b-lg grow font-mono p-4 overflow-y-auto justify-end shadow-lg" onClick={setInputFocus}>
+        {history.map((line, index) => (
           <div key={`history-${index}`} className="mb-1">
             <div className="flex flex-row space-x-2 items-center">
               <div className="flex-shrink">
@@ -140,25 +139,21 @@ export default function Terminal () {
                 <p>{line.command}</p>
               </div>
             </div>
-            { line.output && (
-            <div className="whitespace-pre-wrap break-words text-primary-100">
-              {line.output}
-            </div>
-            )}
+            {line.output && <div className="whitespace-pre-wrap break-words text-primary-100">{line.output}</div>}
           </div>
         ))}
         <div className="flex flex-row space-x-2 items-center">
           <div className="flex-shrink">
             <Ps1Line time={currentTime} />
           </div>
-          <div className="flex-1 relative" >
-            <input 
+          <div className="flex-1 relative">
+            <input
               autoFocus
               ref={inputRef}
               name="line"
               id="line-form"
               autoComplete="off"
-              data-lpignore="true" 
+              data-lpignore="true"
               data-form-type="other"
               className={`border-0 p-0 bg-transparent focus:outline-none w-full ${!isACommand(command) && command != '' ? 'text-red-400' : ''}`}
               onKeyDown={handleChange}
@@ -171,5 +166,5 @@ export default function Terminal () {
         <AlwaysScrollToBottom />
       </div>
     </div>
-  )
+  );
 }

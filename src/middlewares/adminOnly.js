@@ -9,6 +9,6 @@ const adminOnly = async (req, res, next) => {
   }
   await next();
   return;
-}
+};
 
 export default adminOnly;

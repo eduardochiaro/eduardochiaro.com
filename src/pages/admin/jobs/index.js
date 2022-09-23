@@ -1,5 +1,5 @@
 import { BriefcaseIcon, ExclamationTriangleIcon } from '@heroicons/react/24/outline';
-import { useSession } from 'next-auth/react'
+import { useSession } from 'next-auth/react';
 import { useState, createRef } from 'react';
 import { useSWRConfig } from 'swr';
 import axios from 'axios';
@@ -14,7 +14,7 @@ import moment from 'moment';
 const AdminJobsIndex = ({ formRef }) => {
   const { data: jobs, error } = useStaleSWR('/api/portfolio/works');
   const { data: session } = useSession();
-  
+
   const { mutate } = useSWRConfig();
 
   const jobFormat = {
@@ -22,16 +22,16 @@ const AdminJobsIndex = ({ formRef }) => {
     name: '',
     disclaimer: '',
     logo: '',
-    style: 0
+    style: 0,
   };
 
   let [isOpen, setIsOpen] = useState(false);
-  let [isOpenDelete, setIsOpenDelete] = useState(false); 
+  let [isOpenDelete, setIsOpenDelete] = useState(false);
   let [job, setJob] = useState(jobFormat);
   let [formError, setFormError] = useState(false);
 
   const onSubmitModal = async (e) => {
-    e.preventDefault();    
+    e.preventDefault();
     setFormError(false);
     if (!isFormValid(job)) {
       setFormError(true);
@@ -54,31 +54,24 @@ const AdminJobsIndex = ({ formRef }) => {
       url: job.id ? `/api/portfolio/works/${job.id}` : '/api/portfolio/works/create',
       data: formData,
       headers: {
-        'Content-Type': `multipart/form-data; boundary=${formData._boundary}`
-      }
+        'Content-Type': `multipart/form-data; boundary=${formData._boundary}`,
+      },
     }).then(({ data }) => {
       mutate('/api/portfolio/works');
       closeModal();
     });
-  }
+  };
 
   const isFormValid = (form) => {
-    if (
-      form.name == ''
-      || form.style <= 0
-      || form.style == ''
-      || (!form.id && !form.logo)
-      ) {
-        return false;
+    if (form.name == '' || form.style <= 0 || form.style == '' || (!form.id && !form.logo)) {
+      return false;
     }
     return true;
-  }
+  };
 
   const onPrimaryButtonClick = () => {
-    formRef.current.dispatchEvent(
-      new Event('submit', { bubbles: true, cancelable: true })
-    )
-  }
+    formRef.current.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+  };
 
   const onPrimaryButtonClickDelete = async () => {
     const urlDelete = `/api/portfolio/works/${job.id}`;
@@ -86,35 +79,35 @@ const AdminJobsIndex = ({ formRef }) => {
       url: urlDelete,
       method: 'DELETE',
       headers: {
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     });
     mutate('/api/portfolio/works');
     closeModalDelete();
-  }
-  
+  };
+
   const openModal = (job) => {
     const openJob = mergeObj(jobFormat, job);
     setJob(openJob);
     setIsOpen(true);
-  }
+  };
 
   const closeModal = () => {
     setJob(jobFormat);
     setIsOpen(false);
     setFormError(false);
-  }
-  
+  };
+
   const openModalDelete = (job) => {
     const openJob = mergeObj(jobFormat, job);
     setJob(openJob);
     setIsOpenDelete(true);
-  }
+  };
 
   const closeModalDelete = () => {
     setJob(jobFormat);
     setIsOpenDelete(false);
-  }
+  };
 
   const handleChange = (e) => {
     if (e.target.files) {
@@ -122,49 +115,45 @@ const AdminJobsIndex = ({ formRef }) => {
     } else {
       setJob({ ...job, [e.target.name]: e.target.value });
     }
-  }
+  };
 
   const columns = [
     {
       name: 'Name',
       key: 'name',
       searchable: true,
-      classNameTd: 'font-bold'
+      classNameTd: 'font-bold',
     },
     {
       name: 'Logo',
       key: 'logo_d',
       className: 'textcenter',
-      classNameTd: 'text-center'
+      classNameTd: 'text-center',
     },
     {
       name: 'Size (width)',
       key: 'size',
       searchable: true,
       className: 'textcenter',
-      classNameTd: 'text-center'
+      classNameTd: 'text-center',
     },
     {
       name: 'Disclaimer',
       key: 'disclaimer',
-      searchable: true
+      searchable: true,
     },
     {
       name: 'Updated',
       key: 'updated',
-      classNameTd: 'w-44'
-    }
-  ]
+      classNameTd: 'w-44',
+    },
+  ];
 
   const newData = [];
-  jobs?.results.map(item => {
+  jobs?.results.map((item) => {
     const obj = { ...item };
     obj.updated = moment(item.updatedAt || item.createdAt).from(moment());
-    obj.description_d = (
-      <p className="w-64 text-ellipsis overflow-hidden">
-        {item.description}
-      </p>
-    )
+    obj.description_d = <p className="w-64 text-ellipsis overflow-hidden">{item.description}</p>;
     obj.logo_d = (
       <>
         <div className="w-32 m-auto relative">
@@ -181,37 +170,37 @@ const AdminJobsIndex = ({ formRef }) => {
     return (
       <AdminWrapper>
         <AdminWrapper.Header>
-          <h1 className="text-2xl flex items-center gap-2"><BriefcaseIcon className="h-6 text-primary-700 dark:text-primary-600"/> Jobs list</h1>
+          <h1 className="text-2xl flex items-center gap-2">
+            <BriefcaseIcon className="h-6 text-primary-700 dark:text-primary-600" /> Jobs list
+          </h1>
         </AdminWrapper.Header>
-        <Table 
-          columns={columns} 
-          data={newData} 
-          format={jobFormat} 
-          editAction={openModal} 
-          deleteAction={openModalDelete} 
+        <Table
+          columns={columns}
+          data={newData}
+          format={jobFormat}
+          editAction={openModal}
+          deleteAction={openModalDelete}
           openAction={openModal}
           openActionLabel="Add new job"
-           />
-        <AdminModal 
+        />
+        <AdminModal
           title={job.id ? 'Edit job' : 'Add new job'}
-          isOpen={isOpen} 
-          closeModal={closeModal} 
+          isOpen={isOpen}
+          closeModal={closeModal}
           showButtons={true}
           onSecondaryButtonClick={closeModal}
           onPrimaryButtonClick={onPrimaryButtonClick}
-          >
-          <form 
-            ref={ formRef } 
-            acceptCharset="UTF-8"
-            method="POST"
-            encType="multipart/form-data"
-            onSubmit={onSubmitModal}>
-            {formError &&
+        >
+          <form ref={formRef} acceptCharset="UTF-8" method="POST" encType="multipart/form-data" onSubmit={onSubmitModal}>
+            {formError && (
               <div className="bg-accent-100 border border-accent-400 text-accent-700 px-4 py-3 rounded relative mb-4" role="alert">
-                <strong className="font-bold"><ExclamationTriangleIcon className="inline-flex align-middle h-6 mr-4"/>Invalid Form! </strong>
+                <strong className="font-bold">
+                  <ExclamationTriangleIcon className="inline-flex align-middle h-6 mr-4" />
+                  Invalid Form!{' '}
+                </strong>
                 <span className="block sm:inline">Some required fields are missing.</span>
               </div>
-            }
+            )}
             <div className="grid grid-cols-6 gap-6">
               <div className="col-span-6">
                 <label htmlFor="name-form" className="input-label">
@@ -222,7 +211,7 @@ const AdminJobsIndex = ({ formRef }) => {
                   name="name"
                   id="name-form"
                   autoComplete="off"
-                  data-lpignore="true" 
+                  data-lpignore="true"
                   data-form-type="other"
                   className="mt-1 input-field"
                   value={job.name}
@@ -233,9 +222,7 @@ const AdminJobsIndex = ({ formRef }) => {
               </div>
               <div className="col-span-5 sm:col-span-4">
                 <label htmlFor="logo-url-form" className="input-label">
-                  Logo { !job.id &&
-                   <span className="text-primary-700">*</span>
-                  }
+                  Logo {!job.id && <span className="text-primary-700">*</span>}
                 </label>
                 <input
                   type="file"
@@ -250,16 +237,22 @@ const AdminJobsIndex = ({ formRef }) => {
                 />
               </div>
               <div className="col-span-1">
-                { job.id > 0 && job.logo &&
+                {job.id > 0 && job.logo && (
                   <>
-                  <label htmlFor="style-form" className="input-label">
-                    Current
-                  </label>
-                  <div className="mt-4">
-                    <SVG title={job.name} alt={job.name} className={'inline w-auto fill-zinc-700 dark:fill-zinc-200'} src={`/uploads/${job.logo}`} height={25} />
-                  </div>
+                    <label htmlFor="style-form" className="input-label">
+                      Current
+                    </label>
+                    <div className="mt-4">
+                      <SVG
+                        title={job.name}
+                        alt={job.name}
+                        className={'inline w-auto fill-zinc-700 dark:fill-zinc-200'}
+                        src={`/uploads/${job.logo}`}
+                        height={25}
+                      />
+                    </div>
                   </>
-                }
+                )}
               </div>
               <div className="col-span-6 sm:col-span-1">
                 <label htmlFor="style-form" className="input-label">
@@ -270,7 +263,7 @@ const AdminJobsIndex = ({ formRef }) => {
                   name="style"
                   id="style-form"
                   autoComplete="off"
-                  data-lpignore="true" 
+                  data-lpignore="true"
                   data-form-type="other"
                   className="mt-1 input-field"
                   value={job.style}
@@ -282,16 +275,9 @@ const AdminJobsIndex = ({ formRef }) => {
                 <label htmlFor="disclaimer-form" className="input-label">
                   Disclaimer
                 </label>
-                <textarea
-                  name="disclaimer"
-                  id="disclaimer-form"
-                  className="mt-1 input-field"
-                  value={job.disclaimer}
-                  onChange={handleChange}
-                  maxLength={191}
-                />
+                <textarea name="disclaimer" id="disclaimer-form" className="mt-1 input-field" value={job.disclaimer} onChange={handleChange} maxLength={191} />
               </div>
-            </div>  
+            </div>
           </form>
         </AdminModal>
         <AdminModal
@@ -304,18 +290,18 @@ const AdminJobsIndex = ({ formRef }) => {
           primaryButtonLabel="Delete"
           primaryButtonClass="button-danger"
         >
-          <p>Are you sure you want to delete job &quot;{ job.name }&quot;?</p>
+          <p>Are you sure you want to delete job &quot;{job.name}&quot;?</p>
         </AdminModal>
       </AdminWrapper>
-    )
+    );
   }
-  return null
-}
+  return null;
+};
 
 export async function getStaticProps() {
   return {
     props: { formRef: createRef() }, // will be passed to the page component as props
-  }
+  };
 }
 
 export default AdminJobsIndex;

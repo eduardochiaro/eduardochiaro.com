@@ -8,6 +8,8 @@
     "start": "next start -p 3001",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
+    "prettier": "prettier --write \"src/**/*.{js,json,graphql}\"",
+    "cleanup": "npm run prettier && npm run lint:fix",
     "export": "next build && next export",
     "generate": "prisma generate",
     "migrate:dev": "dotenv -e .env.local prisma migrate dev",
@@ -61,6 +63,7 @@
     "eslint-config-next": "^12.3.1",
     "postcss": "^8.4.16",
     "postcss-import": "^15.0.0",
+    "prettier": "^2.7.1",
     "prisma": "^4.3.1",
     "tailwindcss": "^3.1.8"
   }

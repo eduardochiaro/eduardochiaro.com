@@ -6,13 +6,13 @@ export default function NavLink({ href, as, exact, activeClassName, className, t
   const { asPath } = useRouter();
 
   const child = React.Children.only(children);
-  const asPathInitial = type == 'main' ?  '/' + asPath.split('#')[0].split('/')[1] : asPath;
+  const asPathInitial = type == 'main' ? '/' + asPath.split('#')[0].split('/')[1] : asPath;
 
   const [classInUse, setClassInUse] = useState(className);
 
   useEffect(() => {
     const isActive = href == asPath || as == asPath || href == asPathInitial || as == asPathInitial;
-    const classNameUse = isActive ? activeClassName : className ;
+    const classNameUse = isActive ? activeClassName : className;
     setClassInUse(classNameUse);
   }, [asPath, asPathInitial, href, as, activeClassName, className]);
 

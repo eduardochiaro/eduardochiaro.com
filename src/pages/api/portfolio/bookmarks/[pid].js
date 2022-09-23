@@ -1,12 +1,12 @@
 import apiWithMiddleware from '@/utils/apiWithMiddleware';
 import prisma from '@/utils/prisma';
 import cors from '@/middlewares/cors';
-import { IncomingForm } from 'formidable'
+import { IncomingForm } from 'formidable';
 
 export const config = {
   api: {
-     bodyParser: false,
-  }
+    bodyParser: false,
+  },
 };
 
 const handler = async (req, res) => {
@@ -16,8 +16,8 @@ const handler = async (req, res) => {
   const bookmarkReturn = await prisma.bookmark.findFirst({
     where: {
       id: parseInt(pid),
-      deletedAt: null
-    }
+      deletedAt: null,
+    },
   });
   if (!bookmarkReturn) {
     res.status(200).json({ error: 'Record doesnt exist' });
@@ -27,14 +27,14 @@ const handler = async (req, res) => {
       await new Promise((resolve, reject) => {
         const form = new IncomingForm();
         form.parse(req, async (err, fields) => {
-          if (err) return reject(err)
+          if (err) return reject(err);
           const { id, categoryId, ...data } = fields;
           const bookmark = await prisma.bookmark.update({
             where: { id: parseInt(id) },
             data: { ...data, categoryId: parseInt(categoryId), updatedAt: new Date() },
           });
           res.status(200).json({ ...bookmark });
-        })
+        });
       });
       break;
     case 'DELETE':
@@ -48,6 +48,5 @@ const handler = async (req, res) => {
       res.status(200).json({ ...bookmarkReturn });
       break;
   }
-
-}
+};
 export default apiWithMiddleware(handler);

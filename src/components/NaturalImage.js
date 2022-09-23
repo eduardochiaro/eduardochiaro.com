@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import Image from 'next/future/image';
 
-const NaturalImage = ({size = 200, className, alt, ...props}) => {
+const NaturalImage = ({ size = 200, className, alt, ...props }) => {
   const [isReady, setIsReady] = useState(false);
-  const [ratio, setRatio] = useState(16/9) // default to 16:9
+  const [ratio, setRatio] = useState(16 / 9); // default to 16:9
 
   const onLoadCallback = ({ naturalWidth, naturalHeight }) => {
     setRatio(naturalWidth / naturalHeight);
@@ -20,7 +20,7 @@ const NaturalImage = ({size = 200, className, alt, ...props}) => {
       onLoadingComplete={onLoadCallback}
       priority="false"
     />
-  )
-}
+  );
+};
 
 export default NaturalImage;

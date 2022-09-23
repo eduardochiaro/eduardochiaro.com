@@ -21,19 +21,21 @@ describe('Homepage', () => {
   it('check articles', () => {
     cy.get('#articles').should('be.visible');
     cy.get('#articles h3').should('contain', 'articles');
-    cy.get('#articles-list').find('h4').each(x=> {
-      expect(x).to.be.visible;
-      expect(x).not.to.be.empty;
-    });
+    cy.get('#articles-list')
+      .find('h4')
+      .each((x) => {
+        expect(x).to.be.visible;
+        expect(x).not.to.be.empty;
+      });
   });
   it('check github', () => {
     cy.get('#github').should('be.visible');
     cy.get('#github h3').should('contain', 'coded');
-    cy.get('#github-list').find('h4').each(x=> {
-      expect(x).to.be.visible;
-      expect(x).not.to.be.empty;
-    });
+    cy.get('#github-list')
+      .find('h4')
+      .each((x) => {
+        expect(x).to.be.visible;
+        expect(x).not.to.be.empty;
+      });
   });
-
-
-})
+});

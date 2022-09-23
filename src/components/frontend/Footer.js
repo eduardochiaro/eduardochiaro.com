@@ -1,6 +1,6 @@
 import moment from 'moment';
 import * as React from 'react';
-import { useSession, signOut } from 'next-auth/react'
+import { useSession, signOut } from 'next-auth/react';
 import Logo from '@/components/icons/logo';
 import Link from 'next/link';
 
@@ -9,12 +9,8 @@ function LoginButton(props) {
   if (isLoggedIn) {
     return (
       <>
-      <Link
-        href="/admin"
-        >
-        <a className="relative text-sm mr-4 hover:underline">
-          Admin
-        </a>
+        <Link href="/admin">
+          <a className="relative text-sm mr-4 hover:underline">Admin</a>
         </Link>
         <button className="relative text-sm hover:underline" onClick={() => signOut()}>
           Sign out
@@ -24,7 +20,7 @@ function LoginButton(props) {
   }
 }
 
-export default function Footer () {
+export default function Footer() {
   const { data: session } = useSession();
   return (
     <footer id="footer" className="mt-10 pb-4">

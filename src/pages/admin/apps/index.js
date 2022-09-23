@@ -1,5 +1,5 @@
 import { CpuChipIcon, ExclamationTriangleIcon, ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
-import { useSession } from 'next-auth/react'
+import { useSession } from 'next-auth/react';
 import { useState, createRef } from 'react';
 import { useSWRConfig } from 'swr';
 import axios from 'axios';
@@ -15,7 +15,7 @@ import Image from 'next/future/image';
 const AdminAppsIndex = ({ formRef }) => {
   const { data: apps, error } = useStaleSWR('/api/portfolio/apps');
   const { data: session } = useSession();
-  
+
   const { mutate } = useSWRConfig();
 
   const appFormat = {
@@ -23,17 +23,16 @@ const AdminAppsIndex = ({ formRef }) => {
     name: '',
     description: '',
     image: '',
-    url: ''
+    url: '',
   };
 
   let [isOpen, setIsOpen] = useState(false);
-  let [isOpenDelete, setIsOpenDelete] = useState(false); 
+  let [isOpenDelete, setIsOpenDelete] = useState(false);
   let [app, setApp] = useState(appFormat);
   let [formError, setFormError] = useState(false);
 
-
   const onSubmitModal = async (e) => {
-    e.preventDefault();    
+    e.preventDefault();
     setFormError(false);
     if (!isFormValid(app)) {
       setFormError(true);
@@ -56,30 +55,24 @@ const AdminAppsIndex = ({ formRef }) => {
       url: app.id ? `/api/portfolio/apps/${app.id}` : '/api/portfolio/apps/create',
       data: formData,
       headers: {
-        'Content-Type': `multipart/form-data; boundary=${formData._boundary}`
-      }
+        'Content-Type': `multipart/form-data; boundary=${formData._boundary}`,
+      },
     }).then(({ data }) => {
       mutate('/api/portfolio/apps');
       closeModal();
     });
-  }
+  };
 
   const isFormValid = (form) => {
-    if (
-      form.name == ''
-      || form.url == ''
-      || (!form.id && !form.image)
-      ) {
-        return false;
+    if (form.name == '' || form.url == '' || (!form.id && !form.image)) {
+      return false;
     }
     return true;
-  }
+  };
 
   const onPrimaryButtonClick = () => {
-    formRef.current.dispatchEvent(
-      new Event('submit', { bubbles: true, cancelable: true })
-    )
-  }
+    formRef.current.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+  };
 
   const onPrimaryButtonClickDelete = async () => {
     const urlDelete = `/api/portfolio/apps/${app.id}`;
@@ -87,35 +80,35 @@ const AdminAppsIndex = ({ formRef }) => {
       url: urlDelete,
       method: 'DELETE',
       headers: {
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     });
     mutate('/api/portfolio/apps');
     closeModalDelete();
-  }
-  
+  };
+
   const openModal = (app) => {
     const openApp = mergeObj(appFormat, app);
     setApp(openApp);
     setIsOpen(true);
-  }
+  };
 
   const closeModal = () => {
     setApp(appFormat);
     setIsOpen(false);
     setFormError(false);
-  }
-  
+  };
+
   const openModalDelete = (app) => {
     const openApp = mergeObj(appFormat, app);
     setApp(openApp);
     setIsOpenDelete(true);
-  }
+  };
 
   const closeModalDelete = () => {
     setApp(appFormat);
     setIsOpenDelete(false);
-  }
+  };
 
   const handleChange = (e) => {
     if (e.target.files) {
@@ -123,47 +116,43 @@ const AdminAppsIndex = ({ formRef }) => {
     } else {
       setApp({ ...app, [e.target.name]: e.target.value });
     }
-  }
+  };
 
   const columns = [
     {
       name: 'Name',
       key: 'name',
       searchable: true,
-      classNameTd: 'font-bold'
+      classNameTd: 'font-bold',
     },
     {
       name: 'Image',
       key: 'image',
       className: 'textcenter',
-      classNameTd: 'text-center'
+      classNameTd: 'text-center',
     },
     {
       name: 'Description',
       searchable: true,
-      key: 'description_d'
+      key: 'description_d',
     },
     {
       name: 'GitHub URL',
       searchable: true,
-      key: 'github_url'
+      key: 'github_url',
     },
     {
       name: 'Updated',
       key: 'updated',
-      classNameTd: 'w-44'
-    }
-  ]
-  
+      classNameTd: 'w-44',
+    },
+  ];
+
   const newData = [];
-  apps?.results.map(item => {
+  apps?.results.map((item) => {
     const obj = { ...item };
     obj.updated = moment(item.updatedAt || item.createdAt).from(moment());
-    obj.description_d = (
-      <p className="w-64 text-ellipsis overflow-hidden">
-        {item.description}
-      </p>
-    )
+    obj.description_d = <p className="w-64 text-ellipsis overflow-hidden">{item.description}</p>;
     obj.image = (
       <>
         <div className="w-32 h-20 m-auto relative">
@@ -175,23 +164,21 @@ const AdminAppsIndex = ({ formRef }) => {
             title={item.name}
             className="bg-transparent object-contain"
             priority="false"
-            />
+          />
         </div>
         <div className="small">{item.image}</div>
       </>
     );
     obj.github_url = (
       <>
-        <span className="w-64 text-ellipsis overflow-hidden inline-block">
-          {item.url} 
-        </span>
-        <Link
-          href={item.url}
-        >
-          <a target="_blank" rel="noreferrer"><ArrowTopRightOnSquareIcon className="h-4 inline-block align-top ml-2"/></a>
+        <span className="w-64 text-ellipsis overflow-hidden inline-block">{item.url}</span>
+        <Link href={item.url}>
+          <a target="_blank" rel="noreferrer">
+            <ArrowTopRightOnSquareIcon className="h-4 inline-block align-top ml-2" />
+          </a>
         </Link>
       </>
-    )
+    );
     newData.push(obj);
   });
 
@@ -199,37 +186,37 @@ const AdminAppsIndex = ({ formRef }) => {
     return (
       <AdminWrapper>
         <AdminWrapper.Header>
-          <h1 className="text-2xl flex items-center gap-2"><CpuChipIcon className="h-6 text-primary-700 dark:text-primary-600"/> Apps list</h1>
+          <h1 className="text-2xl flex items-center gap-2">
+            <CpuChipIcon className="h-6 text-primary-700 dark:text-primary-600" /> Apps list
+          </h1>
         </AdminWrapper.Header>
-        <Table 
-          columns={columns} 
-          data={newData} 
-          format={appFormat} 
-          editAction={openModal} 
-          deleteAction={openModalDelete} 
+        <Table
+          columns={columns}
+          data={newData}
+          format={appFormat}
+          editAction={openModal}
+          deleteAction={openModalDelete}
           openAction={openModal}
           openActionLabel="Add new app"
-           />
-        <AdminModal 
+        />
+        <AdminModal
           title={app.id ? 'Edit app' : 'Add new app'}
-          isOpen={isOpen} 
-          closeModal={closeModal} 
+          isOpen={isOpen}
+          closeModal={closeModal}
           showButtons={true}
           onSecondaryButtonClick={closeModal}
           onPrimaryButtonClick={onPrimaryButtonClick}
-          >
-          <form 
-            ref={ formRef } 
-            acceptCharset="UTF-8"
-            method="POST"
-            encType="multipart/form-data"
-            onSubmit={onSubmitModal}>
-            {formError &&
+        >
+          <form ref={formRef} acceptCharset="UTF-8" method="POST" encType="multipart/form-data" onSubmit={onSubmitModal}>
+            {formError && (
               <div className="bg-accent-100 border border-accent-400 text-accent-700 px-4 py-3 rounded relative mb-4" role="alert">
-                <strong className="font-bold"><ExclamationTriangleIcon className="inline-flex align-middle h-6 mr-4"/>Invalid Form! </strong>
+                <strong className="font-bold">
+                  <ExclamationTriangleIcon className="inline-flex align-middle h-6 mr-4" />
+                  Invalid Form!{' '}
+                </strong>
                 <span className="block sm:inline">Some required fields are missing.</span>
               </div>
-            }
+            )}
             <div className="grid grid-cols-6 gap-6">
               <div className="col-span-6">
                 <label htmlFor="name-form" className="input-label">
@@ -240,7 +227,7 @@ const AdminAppsIndex = ({ formRef }) => {
                   name="name"
                   id="name-form"
                   autoComplete="off"
-                  data-lpignore="true" 
+                  data-lpignore="true"
                   data-form-type="other"
                   className="mt-1 input-field"
                   value={app.name}
@@ -251,9 +238,7 @@ const AdminAppsIndex = ({ formRef }) => {
               </div>
               <div className="col-span-6">
                 <label htmlFor="image-url-form" className="input-label">
-                  Image { !app.id &&
-                   <span className="text-primary-700">*</span>
-                  }
+                  Image {!app.id && <span className="text-primary-700">*</span>}
                 </label>
                 <input
                   type="file"
@@ -278,7 +263,7 @@ const AdminAppsIndex = ({ formRef }) => {
                   name="url"
                   id="url-form"
                   autoComplete="off"
-                  data-lpignore="true" 
+                  data-lpignore="true"
                   data-form-type="other"
                   className="mt-1 input-field"
                   value={app.url}
@@ -301,7 +286,7 @@ const AdminAppsIndex = ({ formRef }) => {
                   maxLength={191}
                 />
               </div>
-            </div>  
+            </div>
           </form>
         </AdminModal>
         <AdminModal
@@ -314,18 +299,18 @@ const AdminAppsIndex = ({ formRef }) => {
           primaryButtonLabel="Delete"
           primaryButtonClass="button-danger"
         >
-          <p>Are you sure you want to delete app &quot;{ app.name }&quot;?</p>
+          <p>Are you sure you want to delete app &quot;{app.name}&quot;?</p>
         </AdminModal>
       </AdminWrapper>
-    )
+    );
   }
-  return null
-}
+  return null;
+};
 
 export async function getStaticProps() {
   return {
     props: { formRef: createRef() }, // will be passed to the page component as props
-  }
+  };
 }
 
 export default AdminAppsIndex;

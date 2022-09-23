@@ -21,4 +21,4 @@ describe('Navigation', () => {
     cy.get('h2').should('contain', 'Lab');
     cy.get('h1').should('contain', 'Projects');
   });
-})
+});

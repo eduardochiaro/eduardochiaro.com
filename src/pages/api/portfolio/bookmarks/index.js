@@ -7,21 +7,20 @@ const handler = async (req, res) => {
   await cors(req, res);
   const bookmarks = await prisma.bookmark.findMany({
     where: {
-      deletedAt: null
+      deletedAt: null,
     },
     include: {
-      category: true
+      category: true,
     },
     orderBy: {
-      createdAt: 'desc'
-    }
+      createdAt: 'desc',
+    },
   });
-  bookmarks.map(bookmark => {
+  bookmarks.map((bookmark) => {
     const myURL = new URL(bookmark.url);
     bookmark.domain = myURL.hostname;
     return bookmark;
   });
   res.status(200).json({ results: bookmarks });
-}
+};
 export default apiWithMiddleware(handler);
-

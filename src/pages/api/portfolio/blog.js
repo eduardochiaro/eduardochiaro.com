@@ -13,18 +13,18 @@ const handler = async (req, res) => {
   const results = await fsCache(url, hours, async () => {
     const feed = await parser.parseURL(url);
     const results = [];
-    feed.items.forEach(item => {
+    feed.items.forEach((item) => {
       results.push({
         title: item.title,
         permalink: item.link,
         published: item.isoDate,
         content: item.contentSnippet,
-        categories: item.categories
+        categories: item.categories,
       });
     });
     return results;
   });
 
   res.status(200).json({ results });
-}
+};
 export default apiWithMiddleware(handler);

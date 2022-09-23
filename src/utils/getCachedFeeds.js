@@ -11,17 +11,17 @@ const getCachedFlickr = async () => {
   return fsCache('flickr', hours, async () => {
     const parser = new Parser({
       customFields: {
-        item:[
-          ['flickr:date_taken','dateTaken'],
-          ['link', 'images', {keepArray: true}]
+        item: [
+          ['flickr:date_taken', 'dateTaken'],
+          ['link', 'images', { keepArray: true }],
         ],
-      }
+      },
     });
-    
+
     const url = `${flickr_base}/services/feeds/photos_public.gne?id=${flickr_username}`;
     return parser.parseURL(url);
   });
-}
+};
 
 const getCacheInstagram = async () => {
   return fsCache('instagram', hours, async () => {
@@ -29,6 +29,6 @@ const getCacheInstagram = async () => {
     const instagram = await fetch(url);
     return instagram.json();
   });
-}
+};
 
 export { getCachedFlickr, getCacheInstagram };

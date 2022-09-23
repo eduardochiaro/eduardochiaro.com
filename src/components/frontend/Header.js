@@ -1,8 +1,5 @@
 import React, { Fragment } from 'react';
-import {
-  RssIcon,
-  Bars4Icon,
-} from '@heroicons/react/24/solid';
+import { RssIcon, Bars4Icon } from '@heroicons/react/24/solid';
 import styles from '@/styles/Header.module.scss';
 import { useRouter } from 'next/router';
 import { Menu, Transition } from '@headlessui/react';
@@ -11,33 +8,38 @@ import NavLink from '@/components/NavLink';
 import Logo from '@/components/icons/logo';
 import Link from 'next/link';
 
-export default function Header () {
+export default function Header() {
   const menuData = [
     {
       text: 'Home',
       link: '/',
       current: true,
-      onlyMobile: false
+      onlyMobile: false,
     },
     {
       text: 'Bookmarks',
       link: '/bookmarks',
       current: false,
-      onlyMobile: false
+      onlyMobile: false,
     },
     {
       text: 'Projects',
       link: '/projects',
       current: false,
-      onlyMobile: false
+      onlyMobile: false,
     },
     {
-      text: ( <><RssIcon className={'h-5 text-accent-500 mr-2 inline-block'} aria-hidden="true" />.dev</> ),
+      text: (
+        <>
+          <RssIcon className={'h-5 text-accent-500 mr-2 inline-block'} aria-hidden="true" />
+          .dev
+        </>
+      ),
       link: 'https://blog.eduardochiaro.com',
       current: false,
-      onlyMobile: true
-    }
-  ]
+      onlyMobile: true,
+    },
+  ];
   const router = useRouter();
   return (
     <header className={`${styles.header} bg-zinc-100/80 dark:bg-zinc-700/75 border-b border-zinc-200 dark:border-zinc-600 backdrop-blur`}>
@@ -46,7 +48,11 @@ export default function Header () {
           <div className="flex-none flex gap-4 font-header text-2xl">
             <Menu as="div" className="relative inline-block md:hidden">
               <Menu.Button title="open menu" className="inline-block md:hidden hover:cursor-pointer">
-                <Bars4Icon className={'w-7 inline-block border-2 rounded border-primary-700 transition text-primary-700 dark:text-primary-600 hover:text-zinc-900 dark:hover:text-zinc-100'}/>
+                <Bars4Icon
+                  className={
+                    'w-7 inline-block border-2 rounded border-primary-700 transition text-primary-700 dark:text-primary-600 hover:text-zinc-900 dark:hover:text-zinc-100'
+                  }
+                />
               </Menu.Button>
               <Transition
                 as={Fragment}
@@ -59,60 +65,58 @@ export default function Header () {
               >
                 <Menu.Items className="focus:outline-none absolute left-0 mt-2 w-56 divide-y divide-zinc-600 rounded-md bg-zinc-100 dark:bg-zinc-700 shadow-lg ring-2 ring-primary-700 ring-opacity-50">
                   <div className="px-1 py-1 font-semibold text-primary-700 dark:text-primary-600 divide-y divide-zinc-400">
-                  { menuData.map(function(item, i) {
+                    {menuData.map(function (item, i) {
                       return (
-                      <Menu.Item key={`menu-link-${i}`}>
-                        { router.route == item.link ? 
-                          <a href={item.link} className={`${styles.menuUrlMobile}`}>{item.text}</a>
-                          : 
-                          <a href={item.link} className={`${styles.menuUrlMobile} text-zinc-900 dark:text-zinc-100 hover:underline`}>{item.text}</a>
-                        }
-                      </Menu.Item>
-                      )
+                        <Menu.Item key={`menu-link-${i}`}>
+                          {router.route == item.link ? (
+                            <a href={item.link} className={`${styles.menuUrlMobile}`}>
+                              {item.text}
+                            </a>
+                          ) : (
+                            <a href={item.link} className={`${styles.menuUrlMobile} text-zinc-900 dark:text-zinc-100 hover:underline`}>
+                              {item.text}
+                            </a>
+                          )}
+                        </Menu.Item>
+                      );
                     })}
                   </div>
                 </Menu.Items>
               </Transition>
             </Menu>
-            <Link
-              href="/"
-              >
+            <Link href="/">
               <a className="flex items-center gap-2 md:gap-3">
-                <Logo 
-                  title="Eduardo Chiaro" 
-                  alt="Eduardo Chiaro" 
-                  className={'w-auto h-5 md:h-7'} />
-                <div className="text-xl md:text-2xl font-semibold tracking-wide">
-                  Eduardo Chiaro
-                </div>
+                <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={'w-auto h-5 md:h-7'} />
+                <div className="text-xl md:text-2xl font-semibold tracking-wide">Eduardo Chiaro</div>
               </a>
             </Link>
           </div>
           <span className="flex-1"></span>
           <div className="hidden md:flex items-center">
             <ul className="md:flex font-semibold tracking-wider mx-auto">
-              { menuData.filter(x => !x.onlyMobile).map(function(item, i) {
-                return (
-                  <li key={`menu-link-${i}`}>
-                    <NavLink 
-                      href={item.link}
-                      className={`${styles.menuUrl} hover:text-zinc-900 dark:hover:text-zinc-100 hover:underline opacity-60 hover:opacity-100`}
-                      activeClassName={`${styles.menuUrl} overlay-color`}
-                      type="main"
+              {menuData
+                .filter((x) => !x.onlyMobile)
+                .map(function (item, i) {
+                  return (
+                    <li key={`menu-link-${i}`}>
+                      <NavLink
+                        href={item.link}
+                        className={`${styles.menuUrl} hover:text-zinc-900 dark:hover:text-zinc-100 hover:underline opacity-60 hover:opacity-100`}
+                        activeClassName={`${styles.menuUrl} overlay-color`}
+                        type="main"
                       >
-                      <a>{item.text}</a>
-                    </NavLink>
-                  </li>
-                )
-              })}
+                        <a>{item.text}</a>
+                      </NavLink>
+                    </li>
+                  );
+                })}
             </ul>
           </div>
           <div className="hidden md:inline-block ml-12 mr-6 tracking-wider">
-            <Link
-              href="https://blog.eduardochiaro.com"
-              >
+            <Link href="https://blog.eduardochiaro.com">
               <a className="md:pr-0 pr-6 whitespace-nowrap text-base font-medium transition hover:underline flex items-center">
-                <RssIcon className={'h-5 text-accent-500 mr-1'} aria-hidden="true" />.dev
+                <RssIcon className={'h-5 text-accent-500 mr-1'} aria-hidden="true" />
+                .dev
               </a>
             </Link>
           </div>

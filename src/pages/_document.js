@@ -1,4 +1,4 @@
-import Document, { Html, Head, Main, NextScript } from 'next/document'
+import Document, { Html, Head, Main, NextScript } from 'next/document';
 import tailwind from 'tailwind.config';
 
 class MyDocument extends Document {
@@ -13,23 +13,19 @@ class MyDocument extends Document {
           <link rel="mask-icon" href="/safari-pinned-tab.svg" color={tailwind.theme.colors.primary[800]} />
           <meta name="msapplication-TileColor" content={tailwind.theme.colors.primary[200]} />
           <meta name="theme-color" content={tailwind.theme.colors.zinc[100]} media="(prefers-color-scheme: light)" key="dark-system" />
-          <meta name="theme-color" content={tailwind.theme.colors.zinc[700]} media="(prefers-color-scheme: dark)" key="light-system"  />
-          <link rel="preconnect" href="https://fonts.googleapis.com" /> 
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" /> 
-          <link
-            href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap"
-            rel="stylesheet" />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap"
-            rel="stylesheet" />
+          <meta name="theme-color" content={tailwind.theme.colors.zinc[700]} media="(prefers-color-scheme: dark)" key="light-system" />
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
+          <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet" />
+          <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet" />
         </Head>
         <body className="transition duration-500 ease-in-out">
           <Main />
           <NextScript />
         </body>
       </Html>
-    )
+    );
   }
 }
 
-export default MyDocument
+export default MyDocument;

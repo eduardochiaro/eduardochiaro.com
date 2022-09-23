@@ -1,20 +1,20 @@
 const categories = [
   {
     name: 'Design',
-    type: 'BOOKMARK'
+    type: 'BOOKMARK',
   },
   {
     name: 'Tools',
-    type: 'BOOKMARK'
+    type: 'BOOKMARK',
   },
   {
     name: 'Articles',
-    type: 'BOOKMARK'
+    type: 'BOOKMARK',
   },
   {
     name: 'Coding',
-    type: 'BOOKMARK'
-  }
+    type: 'BOOKMARK',
+  },
 ];
 
-module.exports = { categories }
+module.exports = { categories };

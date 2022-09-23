@@ -12,7 +12,7 @@ const replacer = (match) => {
   const wordStart = match.slice(0, slicePoint);
   const wordEnd = match.slice(slicePoint);
   return `<span class="font-bold">${wordStart}</span><span>${wordEnd}</span>`;
-}
+};
 
 function RapidReading() {
   const [text, setText] = useState('');
@@ -20,7 +20,7 @@ function RapidReading() {
   useEffect(() => {
     const returned = text.replace(/\S+/g, replacer).replace(/(?:\r\n|\r|\n)/g, '<br/>');
     setOutput(returned);
-  }, [text])
+  }, [text]);
   return (
     <div className="flex flex-col h-screen justify-between">
       <Head>
@@ -32,32 +32,27 @@ function RapidReading() {
         <section className={'px-4 lg:px-0 mt-5'}>
           <div className="max-w-5xl mx-auto">
             <h1 className="font-header leading-tight tracking-wide text-2xl lg:text-3xl font-light">
-              <Link
-                href="/projects"
-                >
+              <Link href="/projects">
                 <a className="hover:underline text-primary-700 dark:text-primary-600 font-semibold">Projects</a>
-              </Link> / Rapid Reading
+              </Link>{' '}
+              / Rapid Reading
             </h1>
             <div className="mt-8">
               <div className="p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800" role="alert">
-                <span className="font-medium">Info:</span> This project works better on <span className="font-bold"><SunIcon className="w-4 h-4 inline align-middle" /> Light mode</span>
+                <span className="font-medium">Info:</span> This project works better on{' '}
+                <span className="font-bold">
+                  <SunIcon className="w-4 h-4 inline align-middle" /> Light mode
+                </span>
               </div>
-              <textarea
-                className="mb-8 input-field"
-                rows={6}
-                onChange={(event) => setText(event.target.value)}
-                value={text} />
+              <textarea className="mb-8 input-field" rows={6} onChange={(event) => setText(event.target.value)} value={text} />
             </div>
-            <div className="antialiased" dangerouslySetInnerHTML={{__html: output}}>
-              
-            </div>
-
+            <div className="antialiased" dangerouslySetInnerHTML={{ __html: output }}></div>
           </div>
         </section>
       </div>
       <Footer />
     </div>
-  )
+  );
 }
 
 export default RapidReading;
