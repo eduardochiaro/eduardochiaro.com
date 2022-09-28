@@ -301,6 +301,7 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
           onPrimaryButtonClick={onPrimaryButtonClickDelete}
           primaryButtonLabel="Delete"
           primaryButtonClass="button-danger"
+          fullSize={false}
         >
           <p>Are you sure you want to delete bookmark &quot;{bookmark.name}&quot;?</p>
         </AdminModal>

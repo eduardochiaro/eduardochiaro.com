@@ -223,6 +223,7 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
           onPrimaryButtonClick={onPrimaryButtonClickDelete}
           primaryButtonLabel="Delete"
           primaryButtonClass="button-danger"
+          fullSize={false}
         >
           <p>Are you sure you want to delete category &quot;{category.name}&quot;?</p>
         </AdminModal>

@@ -1,11 +1,10 @@
-import { CommandLineIcon, ExclamationTriangleIcon } from '@heroicons/react/24/outline';
+import { Bars3Icon, ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 import { useSession } from 'next-auth/react';
 import { useState, createRef } from 'react';
 import { useSWRConfig } from 'swr';
 import axios from 'axios';
 import fs from 'fs';
 import path from 'path';
-import SVG from 'react-inlinesvg';
 import AdminModal from '@/components/admin/Modal';
 import AdminWrapper from '@/components/admin/Wrapper';
 import Table from '@/components/admin/Table';
@@ -13,59 +12,56 @@ import mergeObj from '@/utils/mergeObj';
 import useStaleSWR from '@/utils/staleSWR';
 import moment from 'moment';
 
-const AdminSkillsIndex = ({ formRef, images }) => {
-  const { data: skills, error } = useStaleSWR('/api/portfolio/skills');
+const AdminCategoriesIndex = ({ formRef, images }) => {
+  const { data: menuLinks, error } = useStaleSWR('/api/site/menu');
   const { data: session } = useSession();
 
   const { mutate } = useSWRConfig();
 
-  const skillFormat = {
+  const menuLinkFormat = {
     id: null,
     name: '',
-    type: '',
-    logo: '',
-    percentage: 0,
+    url: '',
+    onlyMobile: false,
+    active: true,
+    order: 0
   };
 
   let [isOpen, setIsOpen] = useState(false);
   let [isOpenDelete, setIsOpenDelete] = useState(false);
-  let [skill, setSkill] = useState(skillFormat);
+  let [menuLink, setMenuLink] = useState(menuLinkFormat);
   let [formError, setFormError] = useState(false);
 
   const onSubmitModal = async (e) => {
     e.preventDefault();
     setFormError(false);
-    if (!isFormValid(skill)) {
+    if (!isFormValid(menuLink)) {
       setFormError(true);
       return;
     }
 
     const formData = new FormData();
 
-    for (let [key, value] of Object.entries(skill)) {
-      if (key == 'logo') {
-        formData.append(key, value);
-      } else {
-        formData.append(key, value);
-      }
+    for (let [key, value] of Object.entries(menuLink)) {
+      formData.append(key, value);
     }
 
     //replace with axios
     axios({
-      method: skill.id ? 'PUT' : 'POST',
-      url: skill.id ? `/api/portfolio/skills/${skill.id}` : '/api/portfolio/skills/create',
+      method: menuLink.id ? 'PUT' : 'POST',
+      url: menuLink.id ? `/api/site/menu/${menuLink.id}` : '/api/site/menu/create',
       data: formData,
       headers: {
         'Content-Type': 'application/json',
       },
     }).then(({ data }) => {
-      mutate('/api/portfolio/skills');
+      mutate('/api/site/menu');
       closeModal();
     });
   };
 
   const isFormValid = (form) => {
-    if (form.name == '' || form.type == '' || form.percentage <= 0 || form.percentage == '' || (!form.id && !form.logo)) {
+    if (form.name == '' || form.url == '') {
       return false;
     }
     return true;
@@ -76,7 +72,7 @@ const AdminSkillsIndex = ({ formRef, images }) => {
   };
 
   const onPrimaryButtonClickDelete = async () => {
-    const urlDelete = `/api/portfolio/skills/${skill.id}`;
+    const urlDelete = `/api/site/menu/${menuLink.id}`;
     await axios({
       url: urlDelete,
       method: 'DELETE',
@@ -84,38 +80,38 @@ const AdminSkillsIndex = ({ formRef, images }) => {
         'Content-Type': 'application/json',
       },
     });
-    mutate('/api/portfolio/skills');
+    mutate('/api/site/menu');
     closeModalDelete();
   };
 
-  const openModal = (skill) => {
-    const openSkill = mergeObj(skillFormat, skill);
-    setSkill(openSkill);
+  const openModal = (menuLink) => {
+    const openMenuLink = mergeObj(menuLinkFormat, menuLink);
+    setMenuLink(openMenuLink);
     setIsOpen(true);
   };
 
   const closeModal = () => {
-    setSkill(skillFormat);
+    setMenuLink(menuLinkFormat);
     setIsOpen(false);
     setFormError(false);
   };
 
-  const openModalDelete = (skill) => {
-    const openSkill = mergeObj(skillFormat, skill);
-    setSkill(openSkill);
+  const openModalDelete = (menuLink) => {
+    const openMenuLink = mergeObj(menuLinkFormat, menuLink);
+    setMenuLink(openMenuLink);
     setIsOpenDelete(true);
   };
 
   const closeModalDelete = () => {
-    setSkill(skillFormat);
+    setMenuLink(menuLinkFormat);
     setIsOpenDelete(false);
   };
 
   const handleChange = (e) => {
     if (e.target.files) {
-      setSkill({ ...skill, [e.target.name]: e.target.files[0] });
+      setMenuLink({ ...menuLink, [e.target.name]: e.target.files[0] });
     } else {
-      setSkill({ ...skill, [e.target.name]: e.target.value });
+      setMenuLink({ ...menuLink, [e.target.name]: e.target.value });
     }
   };
 
@@ -127,22 +123,19 @@ const AdminSkillsIndex = ({ formRef, images }) => {
       classNameTd: 'font-bold',
     },
     {
-      name: 'Logo',
-      key: 'logo_d',
-      className: 'textcenter w-10',
-      classNameTd: 'text-center',
+      name: 'Url',
+      key: 'url',
+      searchable: true,
     },
     {
-      name: 'Percentage',
-      key: 'percentage_d',
-      searchable: true,
-      className: 'textcenter',
-      classNameTd: 'text-center',
+      name: 'Show on...',
+      key: 'onlyMobile_d',
+      searchable: false,
     },
     {
-      name: 'Type',
-      key: 'type',
-      searchable: true,
+      name: 'Active link',
+      key: 'active_d',
+      searchable: false,
     },
     {
       name: 'Updated',
@@ -152,24 +145,11 @@ const AdminSkillsIndex = ({ formRef, images }) => {
   ];
 
   const newData = [];
-  skills?.results.map((item) => {
+  menuLinks?.results.map((item) => {
     const obj = { ...item };
+    obj.onlyMobile_d = item.onlyMobile ? "All Browsers" : "Mobile only";
+    obj.active_d = item.active ? "Yes" : "No";
     obj.updated = moment(item.updatedAt || item.createdAt).from(moment());
-    obj.logo_d = (
-      <>
-        <div className={'w-32 m-auto relative'}>
-          <SVG
-            title={item.name}
-            alt={item.name}
-            className={'inline w-auto fill-zinc-700 dark:fill-zinc-200'}
-            src={`/images/svg-icons/${item.logo}`}
-            height={50}
-          />
-        </div>
-        <div className="small">{item.logo}</div>
-      </>
-    );
-    obj.percentage_d = item.percentage + '%';
     newData.push(obj);
   });
 
@@ -178,20 +158,20 @@ const AdminSkillsIndex = ({ formRef, images }) => {
       <AdminWrapper>
         <AdminWrapper.Header>
           <h1 className="text-2xl flex items-center gap-2">
-            <CommandLineIcon className="h-6 text-primary-700 dark:text-primary-600" /> Skills list
+            <Bars3Icon className="h-6 text-primary-700 dark:text-primary-600" /> Menu link list
           </h1>
         </AdminWrapper.Header>
         <Table
           columns={columns}
           data={newData}
-          format={skillFormat}
+          format={menuLinkFormat}
           editAction={openModal}
           deleteAction={openModalDelete}
           openAction={openModal}
-          openActionLabel="Add new skill"
+          openActionLabel="Add new menu link"
         />
         <AdminModal
-          title={skill.id ? 'Edit skill' : 'Add new skill'}
+          title={menuLink.id ? 'Edit menu link' : 'Add new menu link'}
           isOpen={isOpen}
           closeModal={closeModal}
           showButtons={true}
@@ -221,79 +201,72 @@ const AdminSkillsIndex = ({ formRef, images }) => {
                   data-lpignore="true"
                   data-form-type="other"
                   className="mt-1 input-field"
-                  value={skill.name}
+                  value={menuLink.name}
                   onChange={handleChange}
                   maxLength={191}
                   required
                 />
               </div>
-              <div className="col-span-5 sm:col-span-2">
-                <label htmlFor="logo-type-form" className="input-label">
-                  Logo <span className="text-primary-700">*</span>
-                </label>
-                <select name="logo" id="logo-type-form" className="mt-1 input-field" onChange={handleChange} value={skill.logo} required>
-                  <option value="">Select logo</option>
-                  {images.map((item) => (
-                    <option key={item} value={item}>
-                      {item}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div className="col-span-1 relative">
-                <label htmlFor="logo-url-form" className="input-label">
-                  Preview
-                </label>
-                {skill.logo && (
-                  <SVG
-                    title={skill.name}
-                    alt={skill.name}
-                    className={'inline-block w-14 fill-zinc-700 dark:fill-zinc-200'}
-                    src={`/images/svg-icons/${skill.logo}`}
-                  />
-                )}
-              </div>
-              <div className="col-span-6 sm:col-span-3">
-                <label htmlFor="percentage-form" className="input-label">
-                  Percentage <span className="text-primary-700">*</span>
-                </label>
-                <input
-                  type="range"
-                  name="percentage"
-                  id="percentage-form"
-                  min="0"
-                  max="100"
-                  step="5"
-                  className="mt-1 range-field"
-                  value={skill.percentage}
-                  onChange={handleChange}
-                  required
-                />
-                <p className="text-sm">(selected: {skill.percentage}%)</p>
-              </div>
               <div className="col-span-6">
-                <label htmlFor="type-form" className="input-label">
-                  Type <span className="text-primary-700">*</span>
+                <label htmlFor="name-form" className="input-label">
+                  Url <span className="text-primary-700">*</span>
                 </label>
                 <input
                   type="text"
-                  name="type"
-                  id="type-form"
+                  name="url"
+                  id="url-form"
                   autoComplete="off"
                   data-lpignore="true"
                   data-form-type="other"
-                  className="mt-1 input-field"
-                  value={skill.type}
+                  className="mt-1 input-field w-5/6"
+                  value={menuLink.url}
                   onChange={handleChange}
-                  maxLength={191}
                   required
+                />
+              </div>
+              <div className="col-span-3">
+                <label htmlFor="name-form" className="input-label">
+                  Show on...
+                </label>
+
+                <select name="onlyMobile" id="onlyMobile-form" className="mt-1 input-field" onChange={handleChange} value={menuLink.onlyMobile} required>
+                  <option value={false}>All Browsers</option>
+                  <option value={true}>Mobile only</option>
+                </select>
+               
+              </div>
+              <div className="col-span-2">
+                <label htmlFor="name-form" className="input-label">
+                  Active link
+                </label>
+
+                <select name="active" id="active-form" className="mt-1 input-field" onChange={handleChange} value={menuLink.active} required>
+                  <option value={false}>No</option>
+                  <option value={true}>Yes</option>
+                </select>
+               
+              </div>
+              <div className="col-span-1">
+                <label htmlFor="name-form" className="input-label">
+                  Order
+                </label>
+                <input
+                  type="number"
+                  name="order"
+                  id="order-form"
+                  autoComplete="off"
+                  data-lpignore="true"
+                  data-form-type="other"
+                  className="mt-1 input-field w-5/6"
+                  value={menuLink.order}
+                  onChange={handleChange}
                 />
               </div>
             </div>
           </form>
         </AdminModal>
         <AdminModal
-          title="Delete skill"
+          title="Delete menuLink"
           isOpen={isOpenDelete}
           closeModal={closeModalDelete}
           showButtons={true}
@@ -303,7 +276,7 @@ const AdminSkillsIndex = ({ formRef, images }) => {
           primaryButtonClass="button-danger"
           fullSize={false}
         >
-          <p>Are you sure you want to delete skill &quot;{skill.name}&quot;?</p>
+          <p>Are you sure you want to delete menuLink &quot;{menuLink.name}&quot;?</p>
         </AdminModal>
       </AdminWrapper>
     );
@@ -321,4 +294,4 @@ export async function getStaticProps() {
   };
 }
 
-export default AdminSkillsIndex;
+export default AdminCategoriesIndex;

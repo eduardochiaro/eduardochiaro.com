@@ -11,11 +11,11 @@ const AdminIndex = () => {
         <Head>
           <title>Eduardo Chiaro | Admin</title>
         </Head>
-        <div className="flex my-2">
-          <h1 className="flex-auto text-4xl">
-            <ComputerDesktopIcon className="inline-flex align-text-bottom h-10 text-primary-700 dark:text-primary-600" /> Dashboard
+        <AdminWrapper.Header>
+          <h1 className="text-2xl flex items-center gap-2">
+            <ComputerDesktopIcon className="h-6 text-primary-700 dark:text-primary-600" /> Dashboard
           </h1>
-        </div>
+        </AdminWrapper.Header>
       </AdminWrapper>
     );
   }

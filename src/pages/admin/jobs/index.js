@@ -289,6 +289,7 @@ const AdminJobsIndex = ({ formRef }) => {
           onPrimaryButtonClick={onPrimaryButtonClickDelete}
           primaryButtonLabel="Delete"
           primaryButtonClass="button-danger"
+          fullSize={false}
         >
           <p>Are you sure you want to delete job &quot;{job.name}&quot;?</p>
         </AdminModal>

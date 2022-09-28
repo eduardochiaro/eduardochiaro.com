@@ -28,10 +28,10 @@ const handler = async (req, res) => {
         const form = new IncomingForm();
         form.parse(req, async (err, fields) => {
           if (err) return reject(err);
-          const { id, order, ...data } = fields;
+          const { id, order, onlyMobile, active, ...data } = fields;
           const menuLink = await prisma.menuLink.update({
             where: { id: parseInt(id) },
-            data: { ...data, order: parseInt(order), updatedAt: new Date() },
+            data: { ...data, order: parseInt(order), onlyMobile: onlyMobile == "true", active: active == "true", updatedAt: new Date() },
           });
           res.status(200).json({ ...menuLink });
         });

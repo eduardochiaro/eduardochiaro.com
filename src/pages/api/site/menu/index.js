@@ -9,7 +9,7 @@ const handler = async (req, res) => {
       deletedAt: null,
     },
     orderBy: {
-      createdAt: 'desc',
+      order: 'asc',
     },
   });
   res.status(200).json({ results: menuLinks });

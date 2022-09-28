@@ -8,6 +8,7 @@ const AdminModal = ({
   isOpen,
   closeModal,
   showButtons = false,
+  fullSize = true,
   primaryButtonClass = 'button-success',
   primaryButtonLabel = 'Save',
   secondaryButtonLabel = 'Cancel',
@@ -18,7 +19,7 @@ const AdminModal = ({
     <Dialog open={isOpen} as="div" className="fixed inset-0 z-10 overflow-y-auto" onClose={closeModal}>
       <div className="fixed inset-0 bg-zinc-400 bg-opacity-50 backdrop-filter backdrop-blur-sm" />
       <Dialog.Panel className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-        <div className="inline-block w-full max-w-4xl my-8 overflow-hidden text-left align-middle transform bg-zinc-50 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 shadow-xl rounded-2xl">
+        <div className={`inline-block w-full ${ fullSize ? 'max-w-4xl' : 'max-w-xl' } my-8 overflow-hidden text-left align-middle transform bg-zinc-50 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 shadow-xl rounded-2xl`}>
           <div className="flex px-6 pt-6 pb-4 mb-4 bg-zinc-100 dark:bg-zinc-900">
             <Dialog.Title as="h3" className="flex-1 text-4xl leading-6 font-medium ">
               {title}

@@ -298,6 +298,7 @@ const AdminAppsIndex = ({ formRef }) => {
           onPrimaryButtonClick={onPrimaryButtonClickDelete}
           primaryButtonLabel="Delete"
           primaryButtonClass="button-danger"
+          fullSize={false}
         >
           <p>Are you sure you want to delete app &quot;{app.name}&quot;?</p>
         </AdminModal>

@@ -41,11 +41,11 @@ const AdminSidebar = () => {
   ];
   return (
     <div
-      className={`transition-all ease-in-out duration-300 p-4 absolute sm:relative md:h-full flex-col justify-between hidden sm:flex min-h-screen ${
+      className={`transition-all ease-in-out duration-300 absolute sm:relative md:h-full flex-col justify-between hidden sm:flex min-h-screen ${
         openMenu ? styles['sidebar-open'] : styles['sidebar-closed']
       }`}
     >
-      <div className="flex-grow h-full bg-zinc-200 dark:bg-zinc-600 rounded-xl p-6 relative shadow">
+      <div className="flex-grow h-full bg-zinc-100 dark:bg-zinc-700 p-3 relative shadow">
         <button
           type="button"
           className="absolute top-10 -right-4 cursor-pointer bg-zinc-600 dark:bg-zinc-300 rounded-r h-10"
@@ -60,7 +60,7 @@ const AdminSidebar = () => {
         <div className="flex items-center gap-4 h-14 pb-8 mt-6 border-b border-zinc-300 dark:border-zinc-500">
           <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className="text-zinc-600 w-10 bg-zinc-50 rounded-full p-2" />
           <div
-            className={`text-center font-bold font-header border-r border-zinc-200 dark:border-zinc-600 hidden xl:inline-block ${
+            className={`text-center font-bold font-header hidden xl:inline-block ${
               openMenu ? '' : styles['hide-when-closed']
             }`}
           >
