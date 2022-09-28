@@ -1,4 +1,4 @@
-import { BriefcaseIcon, CpuChipIcon, CommandLineIcon, HomeIcon, TagIcon, BookmarkIcon, ChevronRightIcon, ChevronLeftIcon } from '@heroicons/react/24/outline';
+import { BriefcaseIcon, CpuChipIcon, CommandLineIcon, HomeIcon, TagIcon, BookmarkIcon, Bars3Icon, ChevronRightIcon, ChevronLeftIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import NavLink from '@/components/NavLink';
 import styles from '@/styles/Admin.Sidebar.module.scss';
@@ -8,6 +8,11 @@ import { useState } from 'react';
 const AdminSidebar = () => {
   const [openMenu, setOpenMenu] = useState(true);
   const menuList = [
+    {
+      title: 'Menu links',
+      icon: <Bars3Icon className="w-5 group-hover:text-primary-700 dark:group-hover:text-primary-600" />,
+      href: '/admin/menu',
+    },
     {
       title: 'Categories',
       icon: <TagIcon className="w-5 group-hover:text-primary-700 dark:group-hover:text-primary-600" />,
