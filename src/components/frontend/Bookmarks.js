@@ -23,6 +23,7 @@ export default function Bookmarks() {
   const elementsRef = useRef([]);
   return (
     <>
+      { data && data.results ? 'yes' : 'no' }
       <section id="work" className={'px-4 lg:px-0 mt-10'}>
         <div className="max-w-5xl mx-auto">
           <h1 className="font-header leading-tight tracking-wide text-2xl lg:text-3xl font-light">Bookmarks</h1>

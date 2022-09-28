@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { DocumentTextIcon, CommandLineIcon, UserCircleIcon } from '@heroicons/react/24/solid';
 import Header from '@/components/frontend/Header';
 import Bio from '@/components/frontend/Bio';
 import Jobs from '@/components/frontend/Jobs';
@@ -8,8 +9,6 @@ import GitHub from '@/components/frontend/GitHub';
 import Footer from '@/components/frontend/Footer';
 import Sidemenu from '@/components/frontend/Sidemenu';
 import LatestPosts from '@/components/frontend/LatestPosts';
-
-import { DocumentTextIcon, CommandLineIcon, UserCircleIcon } from '@heroicons/react/24/solid';
 import GitHubIcon from '@/components/icons/github';
 
 export default function Home() {

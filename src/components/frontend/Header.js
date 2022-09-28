@@ -7,28 +7,18 @@ import ThemeIcon from '@/components/ThemeIcon';
 import NavLink from '@/components/NavLink';
 import Logo from '@/components/icons/logo';
 import Link from 'next/link';
+import useStaleSWR from '@/utils/staleSWR';
 
 export default function Header() {
-  const menuData = [
-    {
-      text: 'Home',
-      link: '/',
-      current: true,
-      onlyMobile: false,
-    },
-    {
-      text: 'Bookmarks',
-      link: '/bookmarks',
-      current: false,
-      onlyMobile: false,
-    },
-    {
-      text: 'Projects',
-      link: '/projects',
-      current: false,
-      onlyMobile: false,
-    },
-    {
+  const router = useRouter();
+  const { data } = useStaleSWR('/api/site/menu');
+
+  const menuData = data && data.results ? data.results.map((menuLink) => {
+    return { text: menuLink.name, link: menuLink.url, current: false, onlyMobile: menuLink.onlyMobile }
+  }) : [];
+
+  if (menuData.length > 0) {
+    menuData.push({
       text: (
         <>
           <RssIcon className={'h-5 text-accent-500 mr-2 inline-block'} aria-hidden="true" />
@@ -38,9 +28,9 @@ export default function Header() {
       link: 'https://blog.eduardochiaro.com',
       current: false,
       onlyMobile: true,
-    },
-  ];
-  const router = useRouter();
+    })
+  }
+
   return (
     <header className={`${styles.header} bg-zinc-100/80 dark:bg-zinc-700/75 border-b border-zinc-200 dark:border-zinc-600 backdrop-blur`}>
       <nav className="w-full">
@@ -65,7 +55,7 @@ export default function Header() {
               >
                 <Menu.Items className="focus:outline-none absolute left-0 mt-2 w-56 divide-y divide-zinc-600 rounded-md bg-zinc-100 dark:bg-zinc-700 shadow-lg ring-2 ring-primary-700 ring-opacity-50">
                   <div className="px-1 py-1 font-semibold text-primary-700 dark:text-primary-600 divide-y divide-zinc-400">
-                    {menuData.map(function (item, i) {
+                    {menuData?.map(function (item, i) {
                       return (
                         <Menu.Item key={`menu-link-${i}`}>
                           {router.route == item.link ? (
