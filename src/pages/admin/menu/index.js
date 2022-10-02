@@ -133,7 +133,7 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
       searchable: false,
     },
     {
-      name: 'Active link',
+      name: 'Status',
       key: 'active_d',
       searchable: false,
     },
@@ -147,8 +147,10 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
   const newData = [];
   menuLinks?.results.map((item) => {
     const obj = { ...item };
-    obj.onlyMobile_d = item.onlyMobile ? "All Browsers" : "Mobile only";
-    obj.active_d = item.active ? "Yes" : "No";
+    obj.onlyMobile_d = !item.onlyMobile ? "All Browsers" : "Mobile only";
+    obj.active_d = (
+      <span className={ item.active ? "text-emerald-500 font-bold" : "text-red-500 font-bold" }>{ item.active ? "Active" : "Inactive" }</span>
+    );
     obj.updated = moment(item.updatedAt || item.createdAt).from(moment());
     newData.push(obj);
   });

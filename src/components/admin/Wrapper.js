@@ -22,7 +22,7 @@ const AdminWrapper = ({ children, header = '' }) => {
               })}
             </div>
             <div className="flex items-center justify-end">
-              <div className="h-7 w-7 inline-block mr-5 align-middle relative rounded-full border border-zinc-800 dark:border-zinc-400">
+              <div className="h-7 w-7 inline-block mr-5 align-middle relative rounded-full border-2 border-zinc-800 dark:border-zinc-400">
                 <Image
                   src={session.user.image}
                   className="rounded-full"
