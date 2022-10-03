@@ -13,9 +13,12 @@ export default function Header() {
   const router = useRouter();
   const { data } = useStaleSWR('/api/site/menu');
 
-  const menuData = data && data.results ? data.results.map((menuLink) => {
-    return { text: menuLink.name, link: menuLink.url, current: false, ...menuLink }
-  }) : [];
+  const menuData =
+    data && data.results
+      ? data.results.map((menuLink) => {
+          return { text: menuLink.name, link: menuLink.url, current: false, ...menuLink };
+        })
+      : [];
 
   if (menuData.length > 0) {
     menuData.push({
@@ -28,7 +31,7 @@ export default function Header() {
       link: 'https://blog.eduardochiaro.com',
       current: false,
       onlyMobile: true,
-    })
+    });
   }
 
   return (
@@ -58,20 +61,20 @@ export default function Header() {
                     {menuData
                       .filter((x) => x.active)
                       .map(function (item, i) {
-                      return (
-                        <Menu.Item key={`menu-link-${i}`}>
-                          {router.route == item.link ? (
-                            <a href={item.link} className={`${styles.menuUrlMobile}`}>
-                              {item.text}
-                            </a>
-                          ) : (
-                            <a href={item.link} className={`${styles.menuUrlMobile} text-zinc-900 dark:text-zinc-100 hover:underline`}>
-                              {item.text}
-                            </a>
-                          )}
-                        </Menu.Item>
-                      );
-                    })}
+                        return (
+                          <Menu.Item key={`menu-link-${i}`}>
+                            {router.route == item.link ? (
+                              <a href={item.link} className={`${styles.menuUrlMobile}`}>
+                                {item.text}
+                              </a>
+                            ) : (
+                              <a href={item.link} className={`${styles.menuUrlMobile} text-zinc-900 dark:text-zinc-100 hover:underline`}>
+                                {item.text}
+                              </a>
+                            )}
+                          </Menu.Item>
+                        );
+                      })}
                   </div>
                 </Menu.Items>
               </Transition>

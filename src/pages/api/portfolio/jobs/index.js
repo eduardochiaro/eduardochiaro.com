@@ -9,7 +9,7 @@ const handler = async (req, res) => {
       deletedAt: null,
     },
     orderBy: {
-      createdAt: 'desc',
+      startDate: 'desc',
     },
   });
   res.status(200).json({ results: jobs });

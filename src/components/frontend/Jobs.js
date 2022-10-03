@@ -3,7 +3,7 @@ import useStaleSWR from '@/utils/staleSWR';
 import SVG from 'react-inlinesvg';
 
 export default function Jobs() {
-  const { data } = useStaleSWR('/api/portfolio/works');
+  const { data } = useStaleSWR('/api/portfolio/jobs');
 
   return (
     <section id="work" className={'px-4 lg:px-0 mt-10'}>

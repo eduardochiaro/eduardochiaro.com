@@ -28,7 +28,7 @@ const handler = async (req, res) => {
         });
         const { id, style, ...data } = fields;
         const job = await prisma.job.create({
-          data: { ...data, style: parseInt(style || 0), logo: newName, special: false, createdAt: new Date() },
+          data: { ...data, logo: newName, createdAt: new Date() },
         });
         res.status(200).json({ ...job });
       });

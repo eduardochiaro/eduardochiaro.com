@@ -24,7 +24,7 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
     url: '',
     onlyMobile: false,
     active: true,
-    order: 0
+    order: 0,
   };
 
   let [isOpen, setIsOpen] = useState(false);
@@ -147,10 +147,8 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
   const newData = [];
   menuLinks?.results.map((item) => {
     const obj = { ...item };
-    obj.onlyMobile_d = !item.onlyMobile ? "All Browsers" : "Mobile only";
-    obj.active_d = (
-      <span className={ item.active ? "text-emerald-500 font-bold" : "text-red-500 font-bold" }>{ item.active ? "Active" : "Inactive" }</span>
-    );
+    obj.onlyMobile_d = !item.onlyMobile ? 'All Browsers' : 'Mobile only';
+    obj.active_d = <span className={item.active ? 'text-emerald-500 font-bold' : 'text-red-500 font-bold'}>{item.active ? 'Active' : 'Inactive'}</span>;
     obj.updated = moment(item.updatedAt || item.createdAt).from(moment());
     newData.push(obj);
   });
@@ -235,7 +233,6 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
                   <option value={false}>All Browsers</option>
                   <option value={true}>Mobile only</option>
                 </select>
-               
               </div>
               <div className="col-span-2">
                 <label htmlFor="name-form" className="input-label">
@@ -246,7 +243,6 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
                   <option value={false}>No</option>
                   <option value={true}>Yes</option>
                 </select>
-               
               </div>
               <div className="col-span-1">
                 <label htmlFor="name-form" className="input-label">

@@ -1,4 +1,14 @@
-import { BriefcaseIcon, CpuChipIcon, CommandLineIcon, HomeIcon, TagIcon, BookmarkIcon, Bars3Icon, ChevronRightIcon, ChevronLeftIcon } from '@heroicons/react/24/outline';
+import {
+  BriefcaseIcon,
+  CpuChipIcon,
+  CommandLineIcon,
+  HomeIcon,
+  TagIcon,
+  BookmarkIcon,
+  Bars3Icon,
+  ChevronRightIcon,
+  ChevronLeftIcon,
+} from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import NavLink from '@/components/NavLink';
 import styles from '@/styles/Admin.Sidebar.module.scss';
@@ -59,13 +69,7 @@ const AdminSidebar = () => {
         </button>
         <div className="flex items-center gap-4 h-14 pb-8 mt-6 border-b border-zinc-300 dark:border-zinc-500">
           <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className="text-zinc-600 w-10 bg-zinc-50 rounded-full p-2" />
-          <div
-            className={`text-center font-bold font-header hidden xl:inline-block ${
-              openMenu ? '' : styles['hide-when-closed']
-            }`}
-          >
-            eduardo.chiaro
-          </div>
+          <div className={`text-center font-bold font-header hidden xl:inline-block ${openMenu ? '' : styles['hide-when-closed']}`}>eduardo.chiaro</div>
         </div>
         <ul className="flex flex-col py-4 space-y-1 font-semibold tracking-wider">
           <li>

@@ -18,7 +18,7 @@ const handler = async (req, res) => {
         if (err) return reject(err);
         const { id, order, onlyMobile, active, ...data } = fields;
         const menuLink = await prisma.menuLink.create({
-          data: { ...data, order: parseInt(order || 0), onlyMobile: onlyMobile == "true", active: active == "true",  createdAt: new Date() },
+          data: { ...data, order: parseInt(order || 0), onlyMobile: onlyMobile == 'true', active: active == 'true', createdAt: new Date() },
         });
         res.status(200).json({ ...menuLink });
       });

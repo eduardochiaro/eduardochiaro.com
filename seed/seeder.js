@@ -1,19 +1,17 @@
+const categoriesSeed = require('./categories.js');
+const jobsSeed = require('./jobs.js');
+const skillsSeed = require('./skills.js');
+const menuSeed = require('./menu.js');
 const { PrismaClient } = require('@prisma/client');
-const { categories } = require('./data.js');
 const prisma = new PrismaClient();
 
 const load = async () => {
   try {
-    await prisma.category.deleteMany();
-    console.log('Deleted records in categories table');
-
-    await prisma.$queryRaw`ALTER TABLE categories AUTO_INCREMENT = 1`;
-    console.log('reset categories auto increment to 1');
-
-    await prisma.category.createMany({
-      data: categories,
-    });
-    console.log('Added categories data');
+    await categoriesSeed();
+    await jobsSeed();
+    await skillsSeed();
+    await menuSeed();
+    
   } catch (e) {
     console.error(e);
     process.exit(1);

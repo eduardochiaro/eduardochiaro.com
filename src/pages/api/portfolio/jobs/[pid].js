@@ -4,6 +4,7 @@ import cors from '@/middlewares/cors';
 import { IncomingForm } from 'formidable';
 import mv from 'mv';
 import { rmFile } from 'rm-file';
+import moment from 'moment';
 
 const uploadPath = './public/uploads/';
 
@@ -32,7 +33,7 @@ const handler = async (req, res) => {
         const form = new IncomingForm();
         form.parse(req, async (err, fields, files) => {
           if (err) return reject(err);
-          const { id, style, ...data } = fields;
+          const { id, startDate, endDate, ...data } = fields;
           if (files.logo) {
             const oldPath = files.logo.filepath;
             const extension = files.logo.originalFilename.split('.').pop();
@@ -44,13 +45,24 @@ const handler = async (req, res) => {
             await rmFile(`${uploadPath}${jobReturn.logo}`);
             const job = await prisma.job.update({
               where: { id: parseInt(id) },
-              data: { ...data, style: parseInt(style), logo: newName, updatedAt: new Date() },
+              data: {
+                ...data,
+                startDate: startDate ? moment(startDate).toISOString() : null,
+                endDate: endDate ? moment(endDate).toISOString() : null,
+                logo: newName,
+                updatedAt: new Date(),
+              },
             });
             res.status(200).json({ ...job });
           } else {
             const job = await prisma.job.update({
               where: { id: parseInt(id) },
-              data: { ...data, style: parseInt(style), updatedAt: new Date() },
+              data: {
+                ...data,
+                startDate: startDate ? moment(startDate).toISOString() : null,
+                endDate: endDate ? moment(endDate).toISOString() : null,
+                updatedAt: new Date(),
+              },
             });
             res.status(200).json({ ...job });
           }

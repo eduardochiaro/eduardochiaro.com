@@ -31,7 +31,7 @@ const handler = async (req, res) => {
           const { id, order, onlyMobile, active, ...data } = fields;
           const menuLink = await prisma.menuLink.update({
             where: { id: parseInt(id) },
-            data: { ...data, order: parseInt(order), onlyMobile: onlyMobile == "true", active: active == "true", updatedAt: new Date() },
+            data: { ...data, order: parseInt(order), onlyMobile: onlyMobile == 'true', active: active == 'true', updatedAt: new Date() },
           });
           res.status(200).json({ ...menuLink });
         });

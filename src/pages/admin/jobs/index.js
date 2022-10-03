@@ -12,7 +12,7 @@ import useStaleSWR from '@/utils/staleSWR';
 import moment from 'moment';
 
 const AdminJobsIndex = ({ formRef }) => {
-  const { data: jobs, error } = useStaleSWR('/api/portfolio/works');
+  const { data: jobs, error } = useStaleSWR('/api/portfolio/jobs');
   const { data: session } = useSession();
 
   const { mutate } = useSWRConfig();
@@ -22,7 +22,8 @@ const AdminJobsIndex = ({ formRef }) => {
     name: '',
     disclaimer: '',
     logo: '',
-    style: 0,
+    startDate: null,
+    endDate: null,
   };
 
   let [isOpen, setIsOpen] = useState(false);
@@ -51,13 +52,13 @@ const AdminJobsIndex = ({ formRef }) => {
     //replace with axios
     axios({
       method: job.id ? 'PUT' : 'POST',
-      url: job.id ? `/api/portfolio/works/${job.id}` : '/api/portfolio/works/create',
+      url: job.id ? `/api/portfolio/jobs/${job.id}` : '/api/portfolio/jobs/create',
       data: formData,
       headers: {
         'Content-Type': `multipart/form-data; boundary=${formData._boundary}`,
       },
     }).then(({ data }) => {
-      mutate('/api/portfolio/works');
+      mutate('/api/portfolio/jobs');
       closeModal();
     });
   };
@@ -74,7 +75,7 @@ const AdminJobsIndex = ({ formRef }) => {
   };
 
   const onPrimaryButtonClickDelete = async () => {
-    const urlDelete = `/api/portfolio/works/${job.id}`;
+    const urlDelete = `/api/portfolio/jobs/${job.id}`;
     await axios({
       url: urlDelete,
       method: 'DELETE',
@@ -82,7 +83,7 @@ const AdminJobsIndex = ({ formRef }) => {
         'Content-Type': 'application/json',
       },
     });
-    mutate('/api/portfolio/works');
+    mutate('/api/portfolio/jobs');
     closeModalDelete();
   };
 
@@ -131,11 +132,9 @@ const AdminJobsIndex = ({ formRef }) => {
       classNameTd: 'text-center',
     },
     {
-      name: 'Size (width)',
-      key: 'size',
-      searchable: true,
-      className: 'textcenter',
-      classNameTd: 'text-center',
+      name: 'When',
+      key: 'when_d',
+      searchable: false,
     },
     {
       name: 'Disclaimer',
@@ -153,6 +152,8 @@ const AdminJobsIndex = ({ formRef }) => {
   jobs?.results.map((item) => {
     const obj = { ...item };
     obj.updated = moment(item.updatedAt || item.createdAt).from(moment());
+    obj.when_d =
+      (item.startDate ? moment(item.startDate).format('YYYY-MM') : 'N/A') + ' - ' + (item.endDate ? moment(item.endDate).format('YYYY-MM') : 'Current');
     obj.description_d = <p className="w-64 text-ellipsis overflow-hidden">{item.description}</p>;
     obj.logo_d = (
       <>
@@ -236,7 +237,7 @@ const AdminJobsIndex = ({ formRef }) => {
                   onChange={handleChange}
                 />
               </div>
-              <div className="col-span-1">
+              <div className="col-span-2">
                 {job.id > 0 && job.logo && (
                   <>
                     <label htmlFor="style-form" className="input-label">
@@ -254,21 +255,36 @@ const AdminJobsIndex = ({ formRef }) => {
                   </>
                 )}
               </div>
-              <div className="col-span-6 sm:col-span-1">
-                <label htmlFor="style-form" className="input-label">
-                  Size (width) <span className="text-primary-700">*</span>
+              <div className="col-span-3">
+                <label htmlFor="startDate-form" className="input-label">
+                  Start date
                 </label>
                 <input
-                  type="number"
-                  name="style"
-                  id="style-form"
+                  type="date"
+                  name="startDate"
+                  id="startDate-form"
                   autoComplete="off"
                   data-lpignore="true"
                   data-form-type="other"
                   className="mt-1 input-field"
-                  value={job.style}
+                  value={job.startDate ? moment(job.startDate).format('YYYY-MM-DD') : ''}
                   onChange={handleChange}
-                  required
+                />
+              </div>
+              <div className="col-span-3">
+                <label htmlFor="endDate-form" className="input-label">
+                  End date
+                </label>
+                <input
+                  type="date"
+                  name="endDate"
+                  id="endDate-form"
+                  autoComplete="off"
+                  data-lpignore="true"
+                  data-form-type="other"
+                  className="mt-1 input-field"
+                  value={job.endDate ? moment(job.endDate).format('YYYY-MM-DD') : ''}
+                  onChange={handleChange}
                 />
               </div>
               <div className="col-span-6">
