@@ -127,7 +127,7 @@ const AdminAppsIndex = ({ formRef }) => {
     },
     {
       name: 'Image',
-      key: 'image',
+      key: 'image_d',
       className: 'textcenter',
       classNameTd: 'text-center',
     },
@@ -153,7 +153,7 @@ const AdminAppsIndex = ({ formRef }) => {
     const obj = { ...item };
     obj.updated = moment(item.updatedAt || item.createdAt).from(moment());
     obj.description_d = <p className="w-64 text-ellipsis overflow-hidden">{item.description}</p>;
-    obj.image = (
+    obj.image_d = (
       <>
         <div className="w-32 h-20 m-auto relative">
           <Image
@@ -236,7 +236,7 @@ const AdminAppsIndex = ({ formRef }) => {
                   required
                 />
               </div>
-              <div className="col-span-6">
+              <div className="col-span-4">
                 <label htmlFor="image-url-form" className="input-label">
                   Image {!app.id && <span className="text-primary-700">*</span>}
                 </label>
@@ -253,6 +253,26 @@ const AdminAppsIndex = ({ formRef }) => {
                   "
                   onChange={handleChange}
                 />
+              </div>
+              <div className="col-span-2">
+                {app.id > 0 && app.image && (
+                  <>
+                    <label htmlFor="style-form" className="input-label">
+                      Current
+                    </label>
+                    <div className="mt-4 w-32 h-20 m-auto  relative">
+                      <Image
+                        src={`/uploads/${app.image}`}
+                        fill
+                        sizes="100vw"
+                        alt={app.name}
+                        title={app.name}
+                        className="bg-transparent object-contain"
+                        priority="false"
+                      />
+                    </div>
+                  </>
+                )}
               </div>
               <div className="col-span-6">
                 <label htmlFor="url-form" className="input-label">
