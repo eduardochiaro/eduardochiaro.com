@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { RssIcon, Bars4Icon } from '@heroicons/react/24/solid';
+import { RssIcon, Bars3Icon } from '@heroicons/react/24/solid';
 import styles from '@/styles/Header.module.scss';
 import { useRouter } from 'next/router';
 import { Menu, Transition } from '@headlessui/react';
@@ -35,15 +35,15 @@ export default function Header() {
   }
 
   return (
-    <header className={`${styles.header} bg-zinc-100/80 dark:bg-zinc-700/75 border-b border-zinc-200 dark:border-zinc-600 backdrop-blur`}>
-      <nav className="w-full">
+    <header className={`${styles.header} bg-zinc-100/80 dark:bg-zinc-700/75 border-b border-zinc-200 dark:border-zinc-600 backdrop-blur `}>
+      <nav className="w-full relative">
         <div className="px-4 md:px-8 flex items-center h-14">
           <div className="flex-none flex gap-4 font-header text-2xl">
-            <Menu as="div" className="relative inline-block md:hidden">
+            <Menu as="div" className="inline-block md:hidden">
               <Menu.Button title="open menu" className="inline-block md:hidden hover:cursor-pointer">
-                <Bars4Icon
+                <Bars3Icon
                   className={
-                    'w-7 inline-block border-2 rounded border-primary-700 transition text-primary-700 dark:text-primary-600 hover:text-zinc-900 dark:hover:text-zinc-100'
+                    'w-7 inline-block transition hover:text-zinc-900 dark:hover:text-zinc-100'
                   }
                 />
               </Menu.Button>
@@ -56,7 +56,7 @@ export default function Header() {
                 leaveFrom="opacity-100 translate-y-0"
                 leaveTo="opacity-0 translate-y-1"
               >
-                <Menu.Items className="focus:outline-none absolute left-0 mt-2 w-56 divide-y divide-zinc-600 rounded-md bg-zinc-100 dark:bg-zinc-700 shadow-lg ring-2 ring-primary-700 ring-opacity-50">
+                <Menu.Items className="focus:outline-none absolute left-0 top-full w-full max-w-lg divide-y divide-zinc-600 bg-zinc-100 dark:bg-zinc-700 shadow-lg">
                   <div className="px-1 py-1 font-semibold text-primary-700 dark:text-primary-600 divide-y divide-zinc-400">
                     {menuData
                       .filter((x) => x.active)
