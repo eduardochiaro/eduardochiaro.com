@@ -66,11 +66,11 @@ export default function Table({
         <div className="grow text-right">
           {openAction && (
             <button
-              className="transition bg-primary-700 dark:bg-primary-600 hover:bg-primary-800 dark:hover:bg-primary-700 text-white font-bold py-2 px-4 rounded"
+              className="transition bg-primary-700 dark:bg-primary-600 hover:bg-primary-800 dark:hover:bg-primary-700 text-zinc-50 font-bold py-2 px-4 rounded"
               onClick={() => openAction(format)}
             >
               <div className="flex items-center gap-2">
-                <PlusIcon className="h-5 text-white " /> {openActionLabel}
+                <PlusIcon className="h-5 text-zinc-50 " /> {openActionLabel}
               </div>
             </button>
           )}

@@ -19,7 +19,7 @@ export default function SignIn({ providers, basePath }) {
               {Object.values(providers).map((provider) => (
                 <div key={provider.name} className="mt-8">
                   <button
-                    className="flex items-center mx-auto bg-zinc-800 text-white p-3 px-4 rounded-lg text-xl transition duration-200 ease-in-out hover:ring-2 ring-offset-2 ring-zinc-800 mb-4"
+                    className="flex items-center mx-auto bg-zinc-800 text-zinc-50 p-3 px-4 rounded-lg text-xl transition duration-200 ease-in-out hover:ring-2 ring-offset-2 ring-zinc-800 mb-4"
                     onClick={() =>
                       signIn(provider.id, {
                         callbackUrl: router.query.callbackUrl,

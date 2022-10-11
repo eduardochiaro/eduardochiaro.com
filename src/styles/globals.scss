@@ -113,5 +113,5 @@ input:checked + .toggle-bg {
   @apply bg-primary-600 border-primary-600 dark:bg-primary-700 dark:border-primary-700;
 }
 .overlay-color {
-  @apply from-primary-600 dark:from-primary-400 bg-gradient-to-r to-primary-700 dark:to-primary-600 bg-clip-text text-transparent;
+  @apply from-primary-700 dark:from-primary-400 bg-gradient-to-r to-primary-800 dark:to-primary-600 bg-clip-text text-transparent;
 }
