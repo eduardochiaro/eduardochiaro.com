@@ -18,7 +18,7 @@ const handler = async (req, res) => {
         title: item.title,
         permalink: item.link,
         published: item.isoDate,
-        content: item.contentSnippet,
+        content: item.contentSnippet + '...',
         categories: item.categories,
       });
     });
