@@ -37,7 +37,7 @@ export default function Header() {
   return (
     <header className={`${styles.header} bg-zinc-100/80 dark:bg-zinc-700/75 border-b border-zinc-200 dark:border-zinc-600 backdrop-blur `}>
       <nav className="w-full relative">
-        <div className="px-4 md:px-8 flex items-center h-14">
+        <div className="px-4 md:px-8 flex items-center h-12">
           <div className="flex-none flex gap-4 font-header text-2xl">
             <Menu as="div" className="inline-block md:hidden">
               <Menu.Button title="open menu" className="inline-block md:hidden hover:cursor-pointer">
@@ -80,9 +80,9 @@ export default function Header() {
               </Transition>
             </Menu>
             <Link href="/">
-              <a className="flex items-center gap-2 md:gap-3">
-                <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={'w-auto h-5 md:h-7'} />
-                <div className="text-xl md:text-2xl font-semibold tracking-wide">Eduardo Chiaro</div>
+              <a className="flex items-center gap-2 md:gap-3 group">
+                <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={'w-auto h-5 md:h-7 group-hover:fill-primary-600 group-hover:text-primary-600'} />
+                <div className="text-xl md:text-2xl font-semibold tracking-wide group-hover:bg-clip-text group-hover:text-transparent bg-gradient-to-r group-hover:from-primary-600 group-hover:to-primary-800">Eduardo Chiaro</div>
               </a>
             </Link>
           </div>
