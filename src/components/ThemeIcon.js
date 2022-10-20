@@ -53,7 +53,13 @@ export default function ThemeIcon() {
 
   return (
     <Menu as="div" className="relative flex item-center">
-      <Menu.Button title="change theme" data-cy="change-mode" className={`rounded-full p-1 transition-all duration-300 group ease-in-out ${inUseTheme === 'dark' ? 'hover:bg-zinc-100' : 'bg-zinc-300 hover:bg-primary-600'}`}>
+      <Menu.Button
+        title="change theme"
+        data-cy="change-mode"
+        className={`rounded-full p-1 transition-all duration-300 group ease-in-out ${
+          inUseTheme === 'dark' ? 'hover:bg-zinc-100' : 'bg-zinc-300 hover:bg-primary-600'
+        }`}
+      >
         {inUseTheme === 'dark' ? (
           <MoonIcon className="w-4 text-primary-600 cursor-pointer rounded-full group-hover:fill-zinc-800" />
         ) : (

@@ -1,5 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import tailwind from 'tailwind.config';
+import tailwind from '/tailwind.config';
 
 class MyDocument extends Document {
   render() {

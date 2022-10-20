@@ -15,8 +15,8 @@ export default function Bio() {
           Washington State.
         </h2>
         <p className="mt-5 md:text-lg font-normal text-zinc-600 dark:text-zinc-400">
-          I have extensive experience designing and developing bespoke web applications with {moment().diff('2005-09-01', 'years')} years
-          experience working on full-stack applications like e-commerce, APIs, and web apps.
+          I have extensive experience designing and developing bespoke web applications with {moment().diff('2005-09-01', 'years')} years experience working on
+          full-stack applications like e-commerce, APIs, and web apps.
         </p>
         <p className="mt-5 md:text-lg font-normal text-zinc-600 dark:text-zinc-400">
           After many years of working with PHP, I switched to Node.js and have been using it ever since. It&rsquo;s my passion to learn new technologies and I

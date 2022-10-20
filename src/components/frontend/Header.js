@@ -41,11 +41,7 @@ export default function Header() {
           <div className="flex-none flex gap-4 font-header text-2xl">
             <Menu as="div" className="inline-block md:hidden">
               <Menu.Button title="open menu" className="inline-block md:hidden hover:cursor-pointer">
-                <Bars3Icon
-                  className={
-                    'w-7 inline-block transition hover:text-zinc-900 dark:hover:text-zinc-100'
-                  }
-                />
+                <Bars3Icon className={'w-7 inline-block transition hover:text-zinc-900 dark:hover:text-zinc-100'} />
               </Menu.Button>
               <Transition
                 as={Fragment}
@@ -82,7 +78,9 @@ export default function Header() {
             <Link href="/">
               <a className="flex items-center gap-2 md:gap-3 group">
                 <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={'w-auto h-5 md:h-7 group-hover:fill-primary-600 group-hover:text-primary-600'} />
-                <div className="text-xl md:text-2xl font-semibold tracking-wide group-hover:bg-clip-text group-hover:text-transparent bg-gradient-to-r group-hover:from-primary-600 group-hover:to-primary-800">Eduardo Chiaro</div>
+                <div className="text-xl md:text-2xl font-semibold tracking-wide group-hover:bg-clip-text group-hover:text-transparent bg-gradient-to-r group-hover:from-primary-600 group-hover:to-primary-800">
+                  Eduardo Chiaro
+                </div>
               </a>
             </Link>
           </div>
