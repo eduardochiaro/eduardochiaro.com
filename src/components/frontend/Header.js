@@ -75,13 +75,13 @@ export default function Header() {
                 </Menu.Items>
               </Transition>
             </Menu>
-            <Link href="/">
-              <a className="flex items-center gap-2 md:gap-3 group">
-                <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={'w-auto h-5 md:h-7 group-hover:fill-secondary-600 group-hover:text-secondary-600'} />
-                <div className="text-xl md:text-2xl font-semibold tracking-wide group-hover:bg-clip-text group-hover:text-transparent bg-gradient-to-r group-hover:from-secondary-600 group-hover:to-secondary-800">
-                  Eduardo Chiaro
-                </div>
-              </a>
+            <Link href="/" className="flex items-center gap-2 md:gap-3 group">
+
+              <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={'w-auto h-5 md:h-7 group-hover:fill-secondary-600 group-hover:text-secondary-600'} />
+              <div className="text-xl md:text-2xl font-semibold tracking-wide group-hover:bg-clip-text group-hover:text-transparent bg-gradient-to-r group-hover:from-secondary-600 group-hover:to-secondary-800">
+                Eduardo Chiaro
+              </div>
+
             </Link>
           </div>
           <span className="flex-1"></span>
@@ -106,11 +106,11 @@ export default function Header() {
             </ul>
           </div>
           <div className="hidden md:inline-block ml-12 mr-6 tracking-wider">
-            <Link href="https://blog.eduardochiaro.com">
-              <a className="md:pr-0 pr-6 whitespace-nowrap text-base font-medium transition hover:underline flex items-center">
-                <RssIcon className={'h-5 text-accent-500 mr-1'} aria-hidden="true" />
-                .dev
-              </a>
+            <Link
+              href="https://blog.eduardochiaro.com"
+              className="md:pr-0 pr-6 whitespace-nowrap text-base font-medium transition hover:underline flex items-center">
+
+              <RssIcon className={'h-5 text-accent-500 mr-1'} aria-hidden="true" />.dev
             </Link>
           </div>
           <ThemeIcon />

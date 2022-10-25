@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Image from 'next/future/image';
+import Image from 'next/image';
 
 const NaturalImage = ({ size = 200, className, alt, ...props }) => {
   const [isReady, setIsReady] = useState(false);

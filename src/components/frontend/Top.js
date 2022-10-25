@@ -7,10 +7,11 @@ export default function Top() {
   const router = useRouter();
   return (
     <div className="sticky bottom-2 right-5 text-righthidden md:block">
-      <Link href="#top">
-        <a className="text-accent-500 z-50 absolute bottom-2 right-2 shadow bg-primary-50 rounded-sm px-2 w-auto">
-          top <ChevronUpIcon className="inline w-4" />
-        </a>
+      <Link
+        href="#top"
+        className="text-accent-500 z-50 absolute bottom-2 right-2 shadow bg-primary-50 rounded-sm px-2 w-auto">
+        top<ChevronUpIcon className="inline w-4" />
+
       </Link>
     </div>
   );

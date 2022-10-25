@@ -16,23 +16,25 @@ export default function LatestPosts() {
           {cutReposene
             ? cutReposene.map((article, index) => (
                 <div key={`article-${index}`} className="mb-8 relative">
-                  <Link href={article.permalink}>
-                    <a className="group block border-l-8 border-primary-50 dark:border-primary-800 hover:border-secondary-700 dark:hover:border-secondary-600 pl-4">
-                      <div className="flex flex-row items-top">
-                        <h4 className="grow-0 font-medium text-lg tracking-wide">{article.title}</h4>
-                        <div className="grow ml-4 mt-1">
-                          <div className="flex flex-row items-center">
-                            <span className="w-full border-t border-secondary-700 dark:border-secondary-600 border-dashed shrink"></span>
-                            <span className="w-4 border-t border-secondary-700 dark:border-secondary-600 border-dashed shrink"></span>
-                            <span className="text-sm font-mono whitespace-nowrap bg-primary-50 dark:bg-primary-800 px-4 overlay-color">
-                              {moment(article.published).format('MM/DD/YYYY')}
-                            </span>
-                            <span className="flex-none w-12 border-t border-secondary-700 dark:border-secondary-600 border-dashed"></span>
-                          </div>
+                  <Link
+                    href={article.permalink}
+                    className="group block border-l-8 border-primary-50 dark:border-primary-800 hover:border-secondary-700 dark:hover:border-secondary-600 pl-4">
+
+                    <div className="flex flex-row items-top">
+                      <h4 className="grow-0 font-medium text-lg tracking-wide">{article.title}</h4>
+                      <div className="grow ml-4 mt-1">
+                        <div className="flex flex-row items-center">
+                          <span className="w-full border-t border-secondary-700 dark:border-secondary-600 border-dashed shrink"></span>
+                          <span className="w-4 border-t border-secondary-700 dark:border-secondary-600 border-dashed shrink"></span>
+                          <span className="text-sm font-mono whitespace-nowrap bg-primary-50 dark:bg-primary-800 px-4 overlay-color">
+                            {moment(article.published).format('MM/DD/YYYY')}
+                          </span>
+                          <span className="flex-none w-12 border-t border-secondary-700 dark:border-secondary-600 border-dashed"></span>
                         </div>
                       </div>
-                      <p className="text-sm mt-2 text-primary-600 dark:text-primary-400">{article.content}</p>
-                    </a>
+                    </div>
+                    <p className="text-sm mt-2 text-primary-600 dark:text-primary-400">{article.content}</p>
+
                   </Link>
                 </div>
               ))

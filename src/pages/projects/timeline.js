@@ -44,8 +44,10 @@ function Timeline({ episodes }) {
           <div className="max-w-5xl mx-auto">
             <div className="grid grid-cols-3">
               <h1 className="font-header leading-tight tracking-wide text-2xl lg:text-3xl font-light col-span-2">
-                <Link href="/projects">
-                  <a className="hover:underline text-secondary-700 dark:text-secondary-600 font-semibold">Projects</a>
+                <Link
+                  href="/projects"
+                  className="hover:underline text-secondary-700 dark:text-secondary-600 font-semibold">
+                  Projects
                 </Link>{' '}
                 / Timeline {type ? '' : '(variation)'}
               </h1>

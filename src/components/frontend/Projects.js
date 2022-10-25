@@ -3,7 +3,7 @@ import GitHubIcon from '@/components/icons/github';
 import styles from '@/styles/Projects.module.scss';
 import useStaleSWR from '@/utils/staleSWR';
 import Link from 'next/link';
-import Image from 'next/future/image';
+import Image from 'next/image';
 
 export default function Projects() {
   const { data } = useStaleSWR('/api/portfolio/apps');
@@ -40,15 +40,13 @@ export default function Projects() {
                 <div className={'basis-full md:basis-2/3 px-8'}>
                   <h3 className="text-2xl font-header tracking-wide">{app.name}</h3>
                   <p className="text-normal mt-2">{app.description}</p>
-                  <Link href={app.url}>
-                    <a
-                      target="_blank"
-                      rel="noreferrer"
-                      className="from-secondary-600 to-secondary-700 bg-gradient-to-r transition text-primary-100 shadow-lg px-4 py-2 text-base rounded-md mt-6 inline-flex items-center gap-4 hover:underline"
-                    >
-                      <GitHubIcon className="w-6 transition-all duration-500 ease-in-out" />
-                      Download from GitHub
-                    </a>
+                  <Link
+                    href={app.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="from-secondary-600 to-secondary-700 bg-gradient-to-r transition text-primary-100 shadow-lg px-4 py-2 text-base rounded-md mt-6 inline-flex items-center gap-4 hover:underline">
+
+                    <GitHubIcon className="w-6 transition-all duration-500 ease-in-out" />Download from GitHub
                   </Link>
                 </div>
               </div>
@@ -63,11 +61,11 @@ export default function Projects() {
           <ul className="mt-5 pl-0 md:pl-8">
             {projects.map((project, index) => (
               <li key={`project-${index}`} className="text-base mb-8 box-card p-4">
-                <Link href={project.url}>
-                  <a className="group">
-                    <h3 className="group-hover:underline text-lg tracking-wide">{project.name}</h3>
-                    <p className="text-sm mt-2 opacity-50">{project.description}</p>
-                  </a>
+                <Link href={project.url} className="group">
+
+                  <h3 className="group-hover:underline text-lg tracking-wide">{project.name}</h3>
+                  <p className="text-sm mt-2 opacity-50">{project.description}</p>
+
                 </Link>
               </li>
             ))}

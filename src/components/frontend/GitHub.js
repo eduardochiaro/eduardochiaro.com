@@ -3,7 +3,7 @@ import useSWR from 'swr';
 import { HashtagIcon } from '@heroicons/react/24/solid';
 import { ClockIcon } from '@heroicons/react/24/outline';
 import moment from 'moment';
-import Image from 'next/future/image';
+import Image from 'next/image';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 

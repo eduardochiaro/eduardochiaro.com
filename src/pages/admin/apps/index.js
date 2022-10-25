@@ -10,7 +10,7 @@ import mergeObj from '@/utils/mergeObj';
 import useStaleSWR from '@/utils/staleSWR';
 import moment from 'moment';
 import Link from 'next/link';
-import Image from 'next/future/image';
+import Image from 'next/image';
 
 const AdminAppsIndex = ({ formRef }) => {
   const { data: apps, error } = useStaleSWR('/api/portfolio/apps');
@@ -172,10 +172,10 @@ const AdminAppsIndex = ({ formRef }) => {
     obj.github_url = (
       <>
         <span className="w-64 text-ellipsis overflow-hidden inline-block">{item.url}</span>
-        <Link href={item.url}>
-          <a target="_blank" rel="noreferrer">
-            <ArrowTopRightOnSquareIcon className="h-4 inline-block align-top ml-2" />
-          </a>
+        <Link href={item.url} target="_blank" rel="noreferrer">
+
+          <ArrowTopRightOnSquareIcon className="h-4 inline-block align-top ml-2" />
+
         </Link>
       </>
     );

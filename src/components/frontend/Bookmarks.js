@@ -1,7 +1,7 @@
 import { ChevronUpIcon, TagIcon } from '@heroicons/react/24/solid';
 import { BookmarkIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
-import Image from 'next/future/image';
+import Image from 'next/image';
 import * as React from 'react';
 import useStaleSWR from '@/utils/staleSWR';
 import NavLink from '@/components/NavLink';
@@ -36,10 +36,11 @@ export default function Bookmarks() {
                   <TagIcon className="none w-4 h-4" />
                   <span className="flex-none">{category.name}</span>
                   <span className="w-full border-t border-secondary-700 dark:border-secondary-600 border-dashed shrink"></span>
-                  <Link href="#bookmarks-0">
-                    <a className="text-secondary-700 dark:text-secondary-600 flex items-center group-first/list:hidden">
-                      top <ChevronUpIcon className="inline w-4" />
-                    </a>
+                  <Link
+                    href="#bookmarks-0"
+                    className="text-secondary-700 dark:text-secondary-600 flex items-center group-first/list:hidden">
+                    top<ChevronUpIcon className="inline w-4" />
+
                   </Link>
                 </h4>
                 <Masonry breakpointCols={breakpointColumnsObj} className="flex gap-8 w-auto" columnClassName="bg-clip-padding flex flex-col gap-8">
@@ -47,20 +48,25 @@ export default function Bookmarks() {
                     .filter((x) => x.categoryId == category.id)
                     .map((bookmark, index) => (
                       <div key={`apps-${index}`} className={'p-5 group/card box-card'}>
-                        <Link href={bookmark.url} as={bookmark.url}>
-                          <a target="_blank" className="block" rel="noopener noreferrer">
-                            <h3 className="text-xl tracking-wide flex justify-between">
-                              {bookmark.name}
-                              <BookmarkIcon className="w-5 group-hover/card:text-secondary-600" />
-                            </h3>
-                            <p className="text-sm opacity-80 tracking-wide flex items-center gap-2">
-                              <span className="block w-5">
-                                <Image src={`https://www.google.com/s2/favicons?domain=${bookmark.domain}`} className="m-auto" width="16" height="16" alt={bookmark.domain} />
-                              </span>
-                              {bookmark.domain}
-                            </p>
-                            <p className="mt-4 text-sm">{bookmark.description}</p>
-                          </a>
+                        <Link
+                          href={bookmark.url}
+                          as={bookmark.url}
+                          target="_blank"
+                          className="block"
+                          rel="noopener noreferrer">
+
+                          <h3 className="text-xl tracking-wide flex justify-between">
+                            {bookmark.name}
+                            <BookmarkIcon className="w-5 group-hover/card:text-secondary-600" />
+                          </h3>
+                          <p className="text-sm opacity-80 tracking-wide flex items-center gap-2">
+                            <span className="block w-5">
+                              <Image src={`https://www.google.com/s2/favicons?domain=${bookmark.domain}`} className="m-auto" width="16" height="16" alt={bookmark.domain} />
+                            </span>
+                            {bookmark.domain}
+                          </p>
+                          <p className="mt-4 text-sm">{bookmark.description}</p>
+
                         </Link>
                       </div>
                     ))}

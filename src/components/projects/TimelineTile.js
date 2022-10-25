@@ -1,5 +1,5 @@
 import moment from 'moment';
-import Image from 'next/future/image';
+import Image from 'next/image';
 
 export const EvenTile = ({ episode, maxCharacters = 6, type = 'small' }) => (
   <div className="flex group">
