@@ -1,4 +1,5 @@
-import { BookmarkIcon, ChevronUpIcon, TagIcon } from '@heroicons/react/24/solid';
+import { ChevronUpIcon, TagIcon } from '@heroicons/react/24/solid';
+import { BookmarkIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import Image from 'next/future/image';
 import * as React from 'react';
@@ -22,21 +23,21 @@ export default function Bookmarks() {
 
   const elementsRef = useRef([]);
   return (
-    <>
-      {data && data.results ? 'yes' : 'no'}
-      <section id="work" className={'px-4 lg:px-0 mt-10'}>
+    <div className="flex">
+      <div className="grow"></div>
+      <section id="work" className={'grow-0 px-4 lg:px-0 mt-10'}>
         <div className="max-w-5xl mx-auto">
           <h1 className="font-header leading-tight tracking-wide text-2xl lg:text-3xl font-light">Bookmarks</h1>
           <div>
             {uniqueCategories.map((category, index) => (
-              <div key={index} className="group">
+              <div key={index} className="group/list">
                 <span className="anchor" ref={(ref) => elementsRef.current.push(ref)} />
-                <h4 className="text-primary-700 dark:text-primary-600 mt-14 group-first:mt-5 mb-5 flex items-center gap-2">
+                <h4 className="text-primary-700 dark:text-primary-600 mt-14 group-first/list:mt-5 mb-5 flex items-center gap-2">
                   <TagIcon className="none w-4 h-4" />
                   <span className="flex-none">{category.name}</span>
                   <span className="w-full border-t border-primary-700 dark:border-primary-600 border-dashed shrink"></span>
                   <Link href="#bookmarks-0">
-                    <a className="text-primary-700 dark:text-primary-600 flex items-center group-first:hidden">
+                    <a className="text-primary-700 dark:text-primary-600 flex items-center group-first/list:hidden">
                       top <ChevronUpIcon className="inline w-4" />
                     </a>
                   </Link>
@@ -45,16 +46,16 @@ export default function Bookmarks() {
                   {data?.results
                     .filter((x) => x.categoryId == category.id)
                     .map((bookmark, index) => (
-                      <div key={`apps-${index}`} className={'p-5 box-card'}>
+                      <div key={`apps-${index}`} className={'p-5 group/card box-card'}>
                         <Link href={bookmark.url} as={bookmark.url}>
-                          <a target="_blank" className="inline-block">
-                            <h3 className="text-xl tracking-wide">
-                              <BookmarkIcon className="inline-block align-text-top h-6 mr-1" />
+                          <a target="_blank" className="block" rel="noopener noreferrer">
+                            <h3 className="text-xl tracking-wide flex justify-between">
                               {bookmark.name}
+                              <BookmarkIcon className="w-5 group-hover/card:text-primary-600" />
                             </h3>
-                            <p className="text-sm block opacity-80 tracking-wide">
-                              <span className="inline-block align-sub mr-2 ml-1">
-                                <Image src={`https://www.google.com/s2/favicons?domain=${bookmark.domain}`} width="16" height="16" alt={bookmark.domain} />
+                            <p className="text-sm opacity-80 tracking-wide flex items-center gap-2">
+                              <span className="block w-5">
+                                <Image src={`https://www.google.com/s2/favicons?domain=${bookmark.domain}`} className="m-auto" width="16" height="16" alt={bookmark.domain} />
                               </span>
                               {bookmark.domain}
                             </p>
@@ -69,25 +70,27 @@ export default function Bookmarks() {
           </div>
         </div>
       </section>
-      <div className="hidden xl:block fixed top-40 left-10 text-sm font-semibold tracking-wider">
-        <div className="mb-6">On this page</div>
-        <ul className="">
-          {uniqueCategories.map((category, index) => (
-            <li className="my-2" key={`menu-link-${index}`}>
-              <NavLink
-                href={`/bookmarks#bookmarks-${index}`}
-                className={'flex items-center gap-2 transition hover:text-zinc-900 dark:hover:text-zinc-100 hover:underline opacity-60 hover:opacity-100'}
-                activeClassName={'flex items-center gap-2 transition text-primary-700 dark:text-primary-600'}
-              >
-                <a onClick={() => elementsRef.current[index].scrollIntoView({ behavior: 'smooth' })}>
-                  <TagIcon className="h-4" />
-                  {category.name}
-                </a>
-              </NavLink>
-            </li>
-          ))}
-        </ul>
+      <div className="grow relative">
+        <div className="fixed hidden xl:block text-sm font-semibold tracking-wider">
+          <div className="mb-6 mt-10 ml-4">On this page</div>
+          <ul className="ml-4">
+            {uniqueCategories.map((category, index) => (
+              <li className="my-2" key={`menu-link-${index}`}>
+                <NavLink
+                  href={`/bookmarks#bookmarks-${index}`}
+                  className={'flex items-center gap-2 transition hover:text-zinc-900 dark:hover:text-zinc-100 hover:underline'}
+                  activeClassName={'flex items-center gap-2 transition text-primary-800 dark:text-primary-600'}
+                >
+                  <a onClick={() => elementsRef.current[index].scrollIntoView({ behavior: 'smooth' })}>
+                    <TagIcon className="h-4" />
+                    {category.name}
+                  </a>
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
-    </>
+    </div>
   );
 }

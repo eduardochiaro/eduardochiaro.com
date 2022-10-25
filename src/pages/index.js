@@ -48,27 +48,30 @@ export default function Home() {
   ];
   return (
     <div className="flex flex-col h-screen justify-between">
-      <div className="grow">
-        <Header />
-        <Share />
-        <Bio />
-        <hr className="mt-10 max-w-5xl mx-auto border-t border-solid border-primary-700 dark:border-primary-600" />
-        <Jobs />
-        <div className="relative">
-          <span className="anchor" ref={skillsRef} />
+      <Header />
+      <Share />
+      <div className="flex">
+        <div className="grow"></div>
+        <div className="grow-0">
+          <Bio />
+          <hr className="mt-10 max-w-5xl mx-auto border-t border-solid border-primary-700 dark:border-primary-600" />
+          <Jobs />
+          <div className="relative">
+            <span className="anchor" ref={skillsRef} />
+          </div>
+          <Skills />
+          <hr className="mt-10 max-w-5xl mx-auto border-t border-solid border-primary-700 dark:border-primary-600" />
+          <div className="relative">
+            <span className="anchor" ref={articlesRef} />
+          </div>
+          <LatestPosts />
+          <div className="relative">
+            <span className="anchor" ref={githubRef} />
+          </div>
+          <GitHub />
         </div>
-        <Skills />
-        <hr className="mt-10 max-w-5xl mx-auto border-t border-solid border-primary-700 dark:border-primary-600" />
-        <div className="relative">
-          <span className="anchor" ref={articlesRef} />
-        </div>
-        <LatestPosts />
-        <div className="relative">
-          <span className="anchor" ref={githubRef} />
-        </div>
-        <GitHub />
+        <Sidemenu menuData={menuData} />
       </div>
-      <Sidemenu menuData={menuData} />
       <Footer />
     </div>
   );
