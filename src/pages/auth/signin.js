@@ -14,12 +14,12 @@ export default function SignIn({ providers, basePath }) {
       <div className="flex items-center justify-center min-h-screen -mt-14">
         <div className="w-full max-w-lg px-10 py-8 mx-auto">
           <div className="max-w-md mx-auto space-y-6">
-            <div className="bg-zinc-200 dark:bg-zinc-700 rounded-lg shadow-xl px-4 py-6 text-center">
+            <div className="bg-primary-200 dark:bg-primary-700 rounded-lg shadow-xl px-4 py-6 text-center">
               <h1 className="font-header mt-6 text-3xl">Not signed in</h1>
               {Object.values(providers).map((provider) => (
                 <div key={provider.name} className="mt-8">
                   <button
-                    className="flex items-center mx-auto bg-zinc-800 text-zinc-50 p-3 px-4 rounded-lg text-xl transition duration-200 ease-in-out hover:ring-2 ring-offset-2 ring-zinc-800 mb-4"
+                    className="flex items-center mx-auto bg-primary-800 text-primary-50 p-3 px-4 rounded-lg text-xl transition duration-200 ease-in-out hover:ring-2 ring-offset-2 ring-primary-800 mb-4"
                     onClick={() =>
                       signIn(provider.id, {
                         callbackUrl: router.query.callbackUrl,

@@ -158,7 +158,7 @@ const AdminJobsIndex = ({ formRef }) => {
     obj.logo_d = (
       <>
         <div className="w-32 m-auto relative">
-          <SVG title={item.name} alt={item.name} className={'inline w-auto fill-zinc-700 dark:fill-zinc-200'} src={`/uploads/${item.logo}`} height={25} />
+          <SVG title={item.name} alt={item.name} className={'inline w-auto fill-primary-700 dark:fill-primary-200'} src={`/uploads/${item.logo}`} height={25} />
         </div>
         <div className="small">{item.logo}</div>
       </>
@@ -172,7 +172,7 @@ const AdminJobsIndex = ({ formRef }) => {
       <AdminWrapper>
         <AdminWrapper.Header>
           <h1 className="text-2xl flex items-center gap-2">
-            <BriefcaseIcon className="h-6 text-primary-700 dark:text-primary-600" /> Jobs list
+            <BriefcaseIcon className="h-6 text-secondary-700 dark:text-secondary-600" /> Jobs list
           </h1>
         </AdminWrapper.Header>
         <Table
@@ -205,7 +205,7 @@ const AdminJobsIndex = ({ formRef }) => {
             <div className="grid grid-cols-6 gap-6">
               <div className="col-span-6">
                 <label htmlFor="name-form" className="input-label">
-                  Title <span className="text-primary-700 align-super">*</span>
+                  Title <span className="text-secondary-700 align-super">*</span>
                 </label>
                 <input
                   type="text"
@@ -223,7 +223,7 @@ const AdminJobsIndex = ({ formRef }) => {
               </div>
               <div className="col-span-5 sm:col-span-4">
                 <label htmlFor="logo-url-form" className="input-label">
-                  Logo {!job.id && <span className="text-primary-700">*</span>}
+                  Logo {!job.id && <span className="text-secondary-700">*</span>}
                 </label>
                 <input
                   type="file"
@@ -247,7 +247,7 @@ const AdminJobsIndex = ({ formRef }) => {
                       <SVG
                         title={job.name}
                         alt={job.name}
-                        className={'inline w-auto fill-zinc-700 dark:fill-zinc-200'}
+                        className={'inline w-auto fill-primary-700 dark:fill-primary-200'}
                         src={`/uploads/${job.logo}`}
                         height={25}
                       />

@@ -39,7 +39,7 @@ export default function ThemeIcon() {
       setIconClass(
         resetClassColors.map((x) => {
           if (x.name === theme) {
-            x.className = 'text-primary-700 dark:text-primary-600';
+            x.className = 'text-secondary-700 dark:text-secondary-600';
           }
           return x;
         }),
@@ -57,13 +57,13 @@ export default function ThemeIcon() {
         title="change theme"
         data-cy="change-mode"
         className={`rounded-full p-1 transition-all duration-300 group ease-in-out ${
-          inUseTheme === 'dark' ? 'hover:bg-zinc-100' : 'bg-zinc-300 hover:bg-primary-300'
+          inUseTheme === 'dark' ? 'hover:bg-primary-100' : 'bg-primary-300 hover:bg-secondary-300'
         }`}
       >
         {inUseTheme === 'dark' ? (
-          <MoonIcon className="w-4 text-primary-600 cursor-pointer rounded-full group-hover:fill-zinc-800 transition-all duration-300" />
+          <MoonIcon className="w-4 text-secondary-600 cursor-pointer rounded-full group-hover:fill-primary-800 transition-all duration-300" />
         ) : (
-          <SunIcon className="w-4 text-zinc-800 cursor-pointer rounded-full group-hover:text-primary-900 transition-all duration-300" />
+          <SunIcon className="w-4 text-primary-800 cursor-pointer rounded-full group-hover:text-secondary-900 transition-all duration-300" />
         )}
       </Menu.Button>
       <Transition
@@ -77,9 +77,9 @@ export default function ThemeIcon() {
       >
         <Menu.Items
           data-cy="change-mode-container"
-          className="transform focus:outline-none z-50 top-full whitespace-nowrap absolute right-0 mt-2 w-auto origin-top-right rounded-md bg-zinc-100 dark:bg-zinc-700 shadow-lg ring-2 ring-primary-700 ring-opacity-50"
+          className="transform focus:outline-none z-50 top-full whitespace-nowrap absolute right-0 mt-2 w-auto origin-top-right rounded-md bg-primary-100 dark:bg-primary-700 shadow-lg ring-2 ring-secondary-700 ring-opacity-50"
         >
-          <div className="py-2 px-4 font-semibold divide-y divide-zinc-400">
+          <div className="py-2 px-4 font-semibold divide-y divide-primary-400">
             {iconClass?.map((item, index) => (
               <Menu.Item key={index}>
                 <div

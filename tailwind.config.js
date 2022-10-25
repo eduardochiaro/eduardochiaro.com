@@ -20,9 +20,9 @@ module.exports = {
       cyan: colors.cyan,
       indigo: colors.indigo,
       amber: colors.amber,
-      zinc: colors.zinc,
       emerald: colors.emerald,
-      primary: {
+      primary: colors.slate,
+      secondary: {
         "50": "#FEF9F0",
         "100": "#FEF2DD",
         "200": "#FCE5BB",

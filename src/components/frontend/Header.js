@@ -35,13 +35,13 @@ export default function Header() {
   }
 
   return (
-    <header className={`${styles.header} bg-zinc-100/80 dark:bg-zinc-700/75 border-b border-zinc-200 dark:border-zinc-600 backdrop-blur `}>
+    <header className={`${styles.header} bg-primary-100/80 dark:bg-primary-700/75 border-b border-primary-200 dark:border-primary-600 backdrop-blur `}>
       <nav className="w-full relative">
         <div className="px-4 md:px-8 flex items-center h-12">
           <div className="flex-none flex gap-4 font-header text-2xl">
             <Menu as="div" className="inline-block md:hidden">
               <Menu.Button title="open menu" className="inline-block md:hidden hover:cursor-pointer">
-                <Bars3Icon className={'w-7 inline-block transition hover:text-zinc-900 dark:hover:text-zinc-100'} />
+                <Bars3Icon className={'w-7 inline-block transition hover:text-primary-900 dark:hover:text-primary-100'} />
               </Menu.Button>
               <Transition
                 as={Fragment}
@@ -52,8 +52,8 @@ export default function Header() {
                 leaveFrom="opacity-100 translate-y-0"
                 leaveTo="opacity-0 translate-y-1"
               >
-                <Menu.Items className="focus:outline-none absolute left-0 top-full w-full max-w-lg divide-y divide-zinc-600 bg-zinc-100 dark:bg-zinc-700 shadow-lg">
-                  <div className="px-1 py-1 font-semibold text-primary-700 dark:text-primary-600 divide-y divide-zinc-400">
+                <Menu.Items className="focus:outline-none absolute left-0 top-full w-full max-w-lg divide-y divide-primary-600 bg-primary-100 dark:bg-primary-700 shadow-lg">
+                  <div className="px-1 py-1 font-semibold text-secondary-700 dark:text-secondary-600 divide-y divide-primary-400">
                     {menuData
                       .filter((x) => x.active)
                       .map(function (item, i) {
@@ -64,7 +64,7 @@ export default function Header() {
                                 {item.text}
                               </a>
                             ) : (
-                              <a href={item.link} className={`${styles.menuUrlMobile} text-zinc-900 dark:text-zinc-100 hover:underline`}>
+                              <a href={item.link} className={`${styles.menuUrlMobile} text-primary-900 dark:text-primary-100 hover:underline`}>
                                 {item.text}
                               </a>
                             )}
@@ -77,8 +77,8 @@ export default function Header() {
             </Menu>
             <Link href="/">
               <a className="flex items-center gap-2 md:gap-3 group">
-                <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={'w-auto h-5 md:h-7 group-hover:fill-primary-600 group-hover:text-primary-600'} />
-                <div className="text-xl md:text-2xl font-semibold tracking-wide group-hover:bg-clip-text group-hover:text-transparent bg-gradient-to-r group-hover:from-primary-600 group-hover:to-primary-800">
+                <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={'w-auto h-5 md:h-7 group-hover:fill-secondary-600 group-hover:text-secondary-600'} />
+                <div className="text-xl md:text-2xl font-semibold tracking-wide group-hover:bg-clip-text group-hover:text-transparent bg-gradient-to-r group-hover:from-secondary-600 group-hover:to-secondary-800">
                   Eduardo Chiaro
                 </div>
               </a>
@@ -94,7 +94,7 @@ export default function Header() {
                     <li key={`menu-link-${i}`}>
                       <NavLink
                         href={item.link}
-                        className={`${styles.menuUrl} hover:text-zinc-900 dark:hover:text-zinc-100 hover:underline opacity-60 hover:opacity-100`}
+                        className={`${styles.menuUrl} hover:text-primary-900 dark:hover:text-primary-100 hover:underline opacity-60 hover:opacity-100`}
                         activeClassName={`${styles.menuUrl} overlay-color`}
                         type="main"
                       >

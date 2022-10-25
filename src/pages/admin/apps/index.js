@@ -187,7 +187,7 @@ const AdminAppsIndex = ({ formRef }) => {
       <AdminWrapper>
         <AdminWrapper.Header>
           <h1 className="text-2xl flex items-center gap-2">
-            <CpuChipIcon className="h-6 text-primary-700 dark:text-primary-600" /> Apps list
+            <CpuChipIcon className="h-6 text-secondary-700 dark:text-secondary-600" /> Apps list
           </h1>
         </AdminWrapper.Header>
         <Table
@@ -220,7 +220,7 @@ const AdminAppsIndex = ({ formRef }) => {
             <div className="grid grid-cols-6 gap-6">
               <div className="col-span-6">
                 <label htmlFor="name-form" className="input-label">
-                  Title <span className="text-primary-700">*</span>
+                  Title <span className="text-secondary-700">*</span>
                 </label>
                 <input
                   type="text"
@@ -238,7 +238,7 @@ const AdminAppsIndex = ({ formRef }) => {
               </div>
               <div className="col-span-4">
                 <label htmlFor="image-url-form" className="input-label">
-                  Image {!app.id && <span className="text-primary-700">*</span>}
+                  Image {!app.id && <span className="text-secondary-700">*</span>}
                 </label>
                 <input
                   type="file"
@@ -248,8 +248,8 @@ const AdminAppsIndex = ({ formRef }) => {
                         file:mr-4 file:py-2 file:px-4
                         file:rounded-full file:border-0
                         file:text-sm file:font-semibold
-                        file:bg-zinc-200 file:text-zinc-700
-                        hover:file:bg-zinc-300
+                        file:bg-primary-200 file:text-primary-700
+                        hover:file:bg-primary-300
                   "
                   onChange={handleChange}
                 />
@@ -276,7 +276,7 @@ const AdminAppsIndex = ({ formRef }) => {
               </div>
               <div className="col-span-6">
                 <label htmlFor="url-form" className="input-label">
-                  GitHub URL <span className="text-primary-700">*</span>
+                  GitHub URL <span className="text-secondary-700">*</span>
                 </label>
                 <input
                   type="url"

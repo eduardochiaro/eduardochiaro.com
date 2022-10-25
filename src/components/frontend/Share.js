@@ -13,7 +13,7 @@ export default function Share() {
           <a className="flex-none w-30" alt="GitHub" title="GitHub">
             <GitHubIcon
               className={
-                'inline-block h-6 transition-colors ease-out duration-500 fill-zinc-900 dark:fill-zinc-100 hover:fill-primary-700 dark:hover:fill-primary-600'
+                'inline-block h-6 transition-colors ease-out duration-500 fill-primary-900 dark:fill-primary-100 hover:fill-secondary-700 dark:hover:fill-secondary-600'
               }
             />
           </a>
@@ -22,7 +22,7 @@ export default function Share() {
           <a className="flex-none w-30" alt="LinkedIn" title="LinkedIn">
             <LinkedInIcon
               className={
-                'inline-block h-6 transition-colors ease-out duration-500 fill-zinc-900 dark:fill-zinc-100 hover:fill-primary-700 dark:hover:fill-primary-600'
+                'inline-block h-6 transition-colors ease-out duration-500 fill-primary-900 dark:fill-primary-100 hover:fill-secondary-700 dark:hover:fill-secondary-600'
               }
             />
           </a>
@@ -31,7 +31,7 @@ export default function Share() {
           <a className="flex-none w-30" alt="Twitter" title="Twitter">
             <TwitterIcon
               className={
-                'inline-block h-6 transition-colors ease-out duration-500 fill-zinc-900 dark:fill-zinc-100 hover:fill-primary-700 dark:hover:fill-primary-600'
+                'inline-block h-6 transition-colors ease-out duration-500 fill-primary-900 dark:fill-primary-100 hover:fill-secondary-700 dark:hover:fill-secondary-600'
               }
             />
           </a>

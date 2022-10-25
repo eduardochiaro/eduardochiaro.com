@@ -158,7 +158,7 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
       <AdminWrapper>
         <AdminWrapper.Header>
           <h1 className="text-2xl flex items-center gap-2">
-            <Bars3Icon className="h-6 text-primary-700 dark:text-primary-600" /> Menu link list
+            <Bars3Icon className="h-6 text-secondary-700 dark:text-secondary-600" /> Menu link list
           </h1>
         </AdminWrapper.Header>
         <Table
@@ -191,7 +191,7 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
             <div className="grid grid-cols-6 gap-6">
               <div className="col-span-6">
                 <label htmlFor="name-form" className="input-label">
-                  Title <span className="text-primary-700">*</span>
+                  Title <span className="text-secondary-700">*</span>
                 </label>
                 <input
                   type="text"
@@ -209,7 +209,7 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
               </div>
               <div className="col-span-6">
                 <label htmlFor="name-form" className="input-label">
-                  Url <span className="text-primary-700">*</span>
+                  Url <span className="text-secondary-700">*</span>
                 </label>
                 <input
                   type="text"

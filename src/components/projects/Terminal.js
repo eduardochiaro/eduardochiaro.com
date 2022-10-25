@@ -123,12 +123,12 @@ export default function Terminal() {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="flex-none h-6 rounded-t-lg bg-zinc-300 flex items-center px-3 gap-2">
+      <div className="flex-none h-6 rounded-t-lg bg-primary-300 flex items-center px-3 gap-2">
         <div className="w-3 h-3 rounded-full bg-red-500 border border-red-600"></div>
-        <div className="w-3 h-3 rounded-full bg-primary-500 border border-primary-600"></div>
+        <div className="w-3 h-3 rounded-full bg-secondary-500 border border-secondary-600"></div>
         <div className="w-3 h-3 rounded-full bg-emerald-500 border border-emerald-600"></div>
       </div>
-      <div className="bg-zinc-900 text-zinc-100 rounded-b-lg grow font-mono p-4 overflow-y-auto justify-end shadow-lg" onClick={setInputFocus}>
+      <div className="bg-primary-900 text-primary-100 rounded-b-lg grow font-mono p-4 overflow-y-auto justify-end shadow-lg" onClick={setInputFocus}>
         {history.map((line, index) => (
           <div key={`history-${index}`} className="mb-1">
             <div className="flex flex-row space-x-2 items-center">
@@ -139,7 +139,7 @@ export default function Terminal() {
                 <p>{line.command}</p>
               </div>
             </div>
-            {line.output && <div className="whitespace-pre-wrap break-words text-primary-100">{line.output}</div>}
+            {line.output && <div className="whitespace-pre-wrap break-words text-secondary-100">{line.output}</div>}
           </div>
         ))}
         <div className="flex flex-row space-x-2 items-center">

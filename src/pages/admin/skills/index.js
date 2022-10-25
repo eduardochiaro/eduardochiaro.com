@@ -161,7 +161,7 @@ const AdminSkillsIndex = ({ formRef, images }) => {
           <SVG
             title={item.name}
             alt={item.name}
-            className={'inline w-auto fill-zinc-700 dark:fill-zinc-200'}
+            className={'inline w-auto fill-primary-700 dark:fill-primary-200'}
             src={`/images/svg-icons/${item.logo}`}
             height={50}
           />
@@ -178,7 +178,7 @@ const AdminSkillsIndex = ({ formRef, images }) => {
       <AdminWrapper>
         <AdminWrapper.Header>
           <h1 className="text-2xl flex items-center gap-2">
-            <CommandLineIcon className="h-6 text-primary-700 dark:text-primary-600" /> Skills list
+            <CommandLineIcon className="h-6 text-secondary-700 dark:text-secondary-600" /> Skills list
           </h1>
         </AdminWrapper.Header>
         <Table
@@ -211,7 +211,7 @@ const AdminSkillsIndex = ({ formRef, images }) => {
             <div className="grid grid-cols-6 gap-6">
               <div className="col-span-6">
                 <label htmlFor="name-form" className="input-label">
-                  Title <span className="text-primary-700">*</span>
+                  Title <span className="text-secondary-700">*</span>
                 </label>
                 <input
                   type="text"
@@ -229,7 +229,7 @@ const AdminSkillsIndex = ({ formRef, images }) => {
               </div>
               <div className="col-span-5 sm:col-span-2">
                 <label htmlFor="logo-type-form" className="input-label">
-                  Logo <span className="text-primary-700">*</span>
+                  Logo <span className="text-secondary-700">*</span>
                 </label>
                 <select name="logo" id="logo-type-form" className="mt-1 input-field" onChange={handleChange} value={skill.logo} required>
                   <option value="">Select logo</option>
@@ -248,14 +248,14 @@ const AdminSkillsIndex = ({ formRef, images }) => {
                   <SVG
                     title={skill.name}
                     alt={skill.name}
-                    className={'inline-block w-14 fill-zinc-700 dark:fill-zinc-200'}
+                    className={'inline-block w-14 fill-primary-700 dark:fill-primary-200'}
                     src={`/images/svg-icons/${skill.logo}`}
                   />
                 )}
               </div>
               <div className="col-span-6 sm:col-span-3">
                 <label htmlFor="percentage-form" className="input-label">
-                  Percentage <span className="text-primary-700">*</span>
+                  Percentage <span className="text-secondary-700">*</span>
                 </label>
                 <input
                   type="range"
@@ -273,7 +273,7 @@ const AdminSkillsIndex = ({ formRef, images }) => {
               </div>
               <div className="col-span-6">
                 <label htmlFor="type-form" className="input-label">
-                  Type <span className="text-primary-700">*</span>
+                  Type <span className="text-secondary-700">*</span>
                 </label>
                 <input
                   type="text"

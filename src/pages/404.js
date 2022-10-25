@@ -14,7 +14,7 @@ export default function Custom404() {
       </center>
       <center className="mt-6">
         <Link href="/">
-          <a className="text-zinc-500 text-xl bg-primary-300 p-3 rounded-md hover:shadow-md">Go back </a>
+          <a className="text-primary-500 text-xl bg-secondary-300 p-3 rounded-md hover:shadow-md">Go back </a>
         </Link>
       </center>
     </div>

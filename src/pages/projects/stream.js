@@ -20,8 +20,8 @@ export default function Projects() {
           <a target="_blank">
             <div className="relative">
               <NaturalImage size={500} src={item.image} alt={item.title} className="rounded" />
-              {item.type === 'Flickr' && <Flickr className="w-8 absolute bottom-2 right-2 text-zinc-100" alt={item.type} />}
-              {item.type === 'Instagram' && <Instagram className="w-8 absolute bottom-4 right-2 text-zinc-100" alt={item.type} />}
+              {item.type === 'Flickr' && <Flickr className="w-8 absolute bottom-2 right-2 text-primary-100" alt={item.type} />}
+              {item.type === 'Instagram' && <Instagram className="w-8 absolute bottom-4 right-2 text-primary-100" alt={item.type} />}
             </div>
             <div className="p-3">
               <div className="flex">
@@ -52,7 +52,7 @@ export default function Projects() {
             <div className="max-w-5xl mx-auto">
               <h1 className="font-header leading-tight tracking-wide text-2xl lg:text-3xl font-light">
                 <Link href="/projects">
-                  <a className="hover:underline text-primary-700 dark:text-primary-600 font-semibold">Projects</a>
+                  <a className="hover:underline text-secondary-700 dark:text-secondary-600 font-semibold">Projects</a>
                 </Link>{' '}
                 / Stream
               </h1>

@@ -13,8 +13,8 @@ export default function Sidemenu({ menuData }) {
                 <NavLink
                   href={item.link}
                   as={item.as}
-                  className={'flex items-center gap-2 transition hover:text-zinc-900 dark:hover:text-zinc-100 hover:underline'}
-                  activeClassName={'flex items-center gap-2 transition text-primary-800 dark:text-primary-600'}
+                  className={'flex items-center gap-2 transition hover:text-primary-900 dark:hover:text-primary-100 hover:underline'}
+                  activeClassName={'flex items-center gap-2 transition text-secondary-800 dark:text-secondary-600'}
                 >
                   <a onClick={item.onClick || null}>
                     {item.pre}

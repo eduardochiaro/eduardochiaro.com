@@ -17,21 +17,21 @@ export default function LatestPosts() {
             ? cutReposene.map((article, index) => (
                 <div key={`article-${index}`} className="mb-8 relative">
                   <Link href={article.permalink}>
-                    <a className="group block border-l-8 border-zinc-50 dark:border-zinc-800 hover:border-primary-700 dark:hover:border-primary-600 pl-4">
+                    <a className="group block border-l-8 border-primary-50 dark:border-primary-800 hover:border-secondary-700 dark:hover:border-secondary-600 pl-4">
                       <div className="flex flex-row items-top">
                         <h4 className="grow-0 font-medium text-lg tracking-wide">{article.title}</h4>
                         <div className="grow ml-4 mt-1">
                           <div className="flex flex-row items-center">
-                            <span className="w-full border-t border-primary-700 dark:border-primary-600 border-dashed shrink"></span>
-                            <span className="w-4 border-t border-primary-700 dark:border-primary-600 border-dashed shrink"></span>
-                            <span className="text-sm font-mono whitespace-nowrap bg-zinc-50 dark:bg-zinc-800 px-4 overlay-color">
+                            <span className="w-full border-t border-secondary-700 dark:border-secondary-600 border-dashed shrink"></span>
+                            <span className="w-4 border-t border-secondary-700 dark:border-secondary-600 border-dashed shrink"></span>
+                            <span className="text-sm font-mono whitespace-nowrap bg-primary-50 dark:bg-primary-800 px-4 overlay-color">
                               {moment(article.published).format('MM/DD/YYYY')}
                             </span>
-                            <span className="flex-none w-12 border-t border-primary-700 dark:border-primary-600 border-dashed"></span>
+                            <span className="flex-none w-12 border-t border-secondary-700 dark:border-secondary-600 border-dashed"></span>
                           </div>
                         </div>
                       </div>
-                      <p className="text-sm mt-2 text-zinc-600 dark:text-zinc-400">{article.content}</p>
+                      <p className="text-sm mt-2 text-primary-600 dark:text-primary-400">{article.content}</p>
                     </a>
                   </Link>
                 </div>

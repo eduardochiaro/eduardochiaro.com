@@ -54,13 +54,13 @@ export default function Home() {
         <div className="grow"></div>
         <div className="grow-0">
           <Bio />
-          <hr className="mt-10 max-w-5xl mx-auto border-t border-solid border-primary-700 dark:border-primary-600" />
+          <hr className="mt-10 max-w-5xl mx-auto border-t border-solid border-secondary-700 dark:border-secondary-600" />
           <Jobs />
           <div className="relative">
             <span className="anchor" ref={skillsRef} />
           </div>
           <Skills />
-          <hr className="mt-10 max-w-5xl mx-auto border-t border-solid border-primary-700 dark:border-primary-600" />
+          <hr className="mt-10 max-w-5xl mx-auto border-t border-solid border-secondary-700 dark:border-secondary-600" />
           <div className="relative">
             <span className="anchor" ref={articlesRef} />
           </div>

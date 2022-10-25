@@ -32,12 +32,12 @@ export default function Bookmarks() {
             {uniqueCategories.map((category, index) => (
               <div key={index} className="group/list">
                 <span className="anchor" ref={(ref) => elementsRef.current.push(ref)} />
-                <h4 className="text-primary-700 dark:text-primary-600 mt-14 group-first/list:mt-5 mb-5 flex items-center gap-2">
+                <h4 className="text-secondary-700 dark:text-secondary-600 mt-14 group-first/list:mt-5 mb-5 flex items-center gap-2">
                   <TagIcon className="none w-4 h-4" />
                   <span className="flex-none">{category.name}</span>
-                  <span className="w-full border-t border-primary-700 dark:border-primary-600 border-dashed shrink"></span>
+                  <span className="w-full border-t border-secondary-700 dark:border-secondary-600 border-dashed shrink"></span>
                   <Link href="#bookmarks-0">
-                    <a className="text-primary-700 dark:text-primary-600 flex items-center group-first/list:hidden">
+                    <a className="text-secondary-700 dark:text-secondary-600 flex items-center group-first/list:hidden">
                       top <ChevronUpIcon className="inline w-4" />
                     </a>
                   </Link>
@@ -51,7 +51,7 @@ export default function Bookmarks() {
                           <a target="_blank" className="block" rel="noopener noreferrer">
                             <h3 className="text-xl tracking-wide flex justify-between">
                               {bookmark.name}
-                              <BookmarkIcon className="w-5 group-hover/card:text-primary-600" />
+                              <BookmarkIcon className="w-5 group-hover/card:text-secondary-600" />
                             </h3>
                             <p className="text-sm opacity-80 tracking-wide flex items-center gap-2">
                               <span className="block w-5">
@@ -78,8 +78,8 @@ export default function Bookmarks() {
               <li className="my-2" key={`menu-link-${index}`}>
                 <NavLink
                   href={`/bookmarks#bookmarks-${index}`}
-                  className={'flex items-center gap-2 transition hover:text-zinc-900 dark:hover:text-zinc-100 hover:underline'}
-                  activeClassName={'flex items-center gap-2 transition text-primary-800 dark:text-primary-600'}
+                  className={'flex items-center gap-2 transition hover:text-primary-900 dark:hover:text-primary-100 hover:underline'}
+                  activeClassName={'flex items-center gap-2 transition text-secondary-800 dark:text-secondary-600'}
                 >
                   <a onClick={() => elementsRef.current[index].scrollIntoView({ behavior: 'smooth' })}>
                     <TagIcon className="h-4" />

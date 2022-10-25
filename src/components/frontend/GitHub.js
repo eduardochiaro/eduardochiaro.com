@@ -64,7 +64,7 @@ export default function GitHub() {
           {repo.languages.slice(0, 2).map((language, index) => (
             <div key={index} className="inline-block mr-4 text-xs antialiased">
               <span
-                className="inline-block w-3 h-3 align-middle mb-1 border border-zinc-500 dark:border-zinc-800 rounded-full mr-2"
+                className="inline-block w-3 h-3 align-middle mb-1 border border-primary-500 dark:border-primary-800 rounded-full mr-2"
                 style={{ backgroundColor: language.color }}
               ></span>
               {language.name}

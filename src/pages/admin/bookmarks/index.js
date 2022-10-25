@@ -185,7 +185,7 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
       <AdminWrapper>
         <AdminWrapper.Header>
           <h1 className="text-2xl flex items-center gap-2">
-            <BookmarkIcon className="h-6 text-primary-700 dark:text-primary-600" /> Bookmarks list
+            <BookmarkIcon className="h-6 text-secondary-700 dark:text-secondary-600" /> Bookmarks list
           </h1>
         </AdminWrapper.Header>
         <Table
@@ -218,7 +218,7 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
             <div className="grid grid-cols-6 gap-6">
               <div className="col-span-6">
                 <label htmlFor="category-form" className="input-label">
-                  Category <span className="text-primary-700">*</span>
+                  Category <span className="text-secondary-700">*</span>
                 </label>
                 <select name="categoryId" id="category-form" className="mt-1 input-field" onChange={handleChange} value={bookmark.categoryId} required>
                   <option value="">Select category</option>
@@ -233,7 +233,7 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
               </div>
               <div className="col-span-6">
                 <label htmlFor="url-form" className="input-label">
-                  URL <span className="text-primary-700">*</span>
+                  URL <span className="text-secondary-700">*</span>
                 </label>
                 <div className="flex">
                   <input
@@ -253,10 +253,10 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
                   </button>
                 </div>
               </div>
-              {currentStatus && <p className="text-primary-800">{currentStatus}</p>}
+              {currentStatus && <p className="text-secondary-800">{currentStatus}</p>}
               <div className="col-span-6">
                 <label htmlFor="name-form" className="input-label">
-                  Title <span className="text-primary-700">*</span>
+                  Title <span className="text-secondary-700">*</span>
                 </label>
                 <input
                   type="text"

@@ -10,10 +10,10 @@ class MyDocument extends Document {
           <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
           <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
           <link rel="manifest" href="/site.webmanifest" />
-          <link rel="mask-icon" href="/safari-pinned-tab.svg" color={tailwind.theme.colors.primary[800]} />
-          <meta name="msapplication-TileColor" content={tailwind.theme.colors.primary[200]} />
-          <meta name="theme-color" content={tailwind.theme.colors.zinc[100]} media="(prefers-color-scheme: light)" key="dark-system" />
-          <meta name="theme-color" content={tailwind.theme.colors.zinc[700]} media="(prefers-color-scheme: dark)" key="light-system" />
+          <link rel="mask-icon" href="/safari-pinned-tab.svg" color={tailwind.theme.colors.secondary[800]} />
+          <meta name="msapplication-TileColor" content={tailwind.theme.colors.secondary[200]} />
+          <meta name="theme-color" content={tailwind.theme.colors.primary[100]} media="(prefers-color-scheme: light)" key="dark-system" />
+          <meta name="theme-color" content={tailwind.theme.colors.primary[700]} media="(prefers-color-scheme: dark)" key="light-system" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
           <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet" />

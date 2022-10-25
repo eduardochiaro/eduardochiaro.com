@@ -13,7 +13,7 @@ const AdminIndex = () => {
         </Head>
         <AdminWrapper.Header>
           <h1 className="text-2xl flex items-center gap-2">
-            <ComputerDesktopIcon className="h-6 text-primary-700 dark:text-primary-600" /> Dashboard
+            <ComputerDesktopIcon className="h-6 text-secondary-700 dark:text-secondary-600" /> Dashboard
           </h1>
         </AdminWrapper.Header>
       </AdminWrapper>
