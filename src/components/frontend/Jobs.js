@@ -15,7 +15,7 @@ export default function Jobs() {
           {data && data.results
             ? data.results.map((job, index) => (
                 <div className={'text-center z-10 mb-5 relative align-middle'} key={`job-image-${index}`}>
-                  <SVG title={job.name} alt={job.name} className={'inline w-full fill-primary-700 dark:fill-primary-200'} src={`/uploads/${job.logo}`} height={30} />
+                  <SVG alt={job.name} className={'inline w-full fill-primary-700 dark:fill-primary-200'} src={`/uploads/${job.logo}`} height={30} />
                   {job.disclaimer && <div className="text-xs text-primary-700 dark:text-primary-200 mt-2">{job.disclaimer}</div>}
                 </div>
               ))

@@ -158,7 +158,7 @@ const AdminJobsIndex = ({ formRef }) => {
     obj.logo_d = (
       <>
         <div className="w-32 m-auto relative">
-          <SVG title={item.name} alt={item.name} className={'inline w-auto fill-primary-700 dark:fill-primary-200'} src={`/uploads/${item.logo}`} height={25} />
+          <SVG alt={item.name} className={'inline w-auto fill-primary-700 dark:fill-primary-200'} src={`/uploads/${item.logo}`} height={25} />
         </div>
         <div className="small">{item.logo}</div>
       </>
@@ -245,7 +245,6 @@ const AdminJobsIndex = ({ formRef }) => {
                     </label>
                     <div className="mt-4">
                       <SVG
-                        title={job.name}
                         alt={job.name}
                         className={'inline w-auto fill-primary-700 dark:fill-primary-200'}
                         src={`/uploads/${job.logo}`}

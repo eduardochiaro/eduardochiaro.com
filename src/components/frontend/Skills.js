@@ -18,7 +18,6 @@ export default function Skills() {
                   <span className="flex-none font-medium">{skill.name}</span>
                   <span className="w-full border-t border-secondary-700 dark:border-secondary-600 border-dashed shrink"></span>
                   <SVG
-                    title={skill.name}
                     alt={skill.name}
                     className={`flex-none w-8 ${styles[`color-${skill.type}`]}  dark:fill-primary-200`}
                     src={`/images/svg-icons/${skill.logo}`}

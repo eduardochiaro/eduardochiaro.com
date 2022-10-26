@@ -159,7 +159,6 @@ const AdminSkillsIndex = ({ formRef, images }) => {
       <>
         <div className={'w-32 m-auto relative'}>
           <SVG
-            title={item.name}
             alt={item.name}
             className={'inline w-auto fill-primary-700 dark:fill-primary-200'}
             src={`/images/svg-icons/${item.logo}`}
@@ -246,7 +245,6 @@ const AdminSkillsIndex = ({ formRef, images }) => {
                 </label>
                 {skill.logo && (
                   <SVG
-                    title={skill.name}
                     alt={skill.name}
                     className={'inline-block w-14 fill-primary-700 dark:fill-primary-200'}
                     src={`/images/svg-icons/${skill.logo}`}
