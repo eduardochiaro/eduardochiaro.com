@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import { MoonIcon, SunIcon, ComputerDesktopIcon } from '@heroicons/react/24/solid';
+import { MoonIcon, ComputerDesktopIcon } from '@heroicons/react/24/solid';
+import { SunIcon } from '@heroicons/react/24/outline';
 import { useTheme } from 'next-themes';
 import { Menu, Transition } from '@headlessui/react';
 
@@ -56,14 +57,14 @@ export default function ThemeIcon() {
       <Menu.Button
         title="change theme"
         data-cy="change-mode"
-        className={`rounded-full p-1 transition-all duration-300 group ease-in-out ${
+        className={`rounded-full transition-all duration-300 group ease-in-out ${
           inUseTheme === 'dark' ? 'hover:bg-primary-100' : 'bg-primary-300 hover:bg-secondary-300'
         }`}
       >
         {inUseTheme === 'dark' ? (
-          <MoonIcon className="w-4 text-secondary-600 cursor-pointer rounded-full group-hover:fill-primary-800 transition-all duration-300" />
+          <MoonIcon className="w-6 text-secondary-600 cursor-pointer rounded-full group-hover:fill-primary-800 transition-all duration-300" />
         ) : (
-          <SunIcon className="w-4 text-primary-800 cursor-pointer rounded-full group-hover:text-secondary-900 transition-all duration-300" />
+          <SunIcon className="w-6 text-primary-800 cursor-pointer rounded-full group-hover:text-secondary-900 transition-all duration-300" />
         )}
       </Menu.Button>
       <Transition

@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import { RssIcon, Bars3Icon } from '@heroicons/react/24/solid';
-import styles from '@/styles/Header.module.scss';
 import { useRouter } from 'next/router';
 import { Menu, Transition } from '@headlessui/react';
 import ThemeIcon from '@/components/ThemeIcon';
@@ -8,6 +7,8 @@ import NavLink from '@/components/NavLink';
 import Logo from '@/components/icons/logo';
 import Link from 'next/link';
 import useStaleSWR from '@/utils/staleSWR';
+
+import styles from '@/styles/Header.module.scss';
 
 export default function Header() {
   const router = useRouter();
@@ -35,7 +36,7 @@ export default function Header() {
   }
 
   return (
-    <header className={`${styles.header} bg-primary-100/80 dark:bg-primary-700/75 border-b border-primary-200 dark:border-primary-600 backdrop-blur `}>
+    <header className={`${styles.header} bg-primary-50/95 dark:bg-primary-800/95`}>
       <nav className="w-full relative">
         <div className="px-4 md:px-8 flex items-center h-12">
           <div className="flex-none flex gap-4 font-header text-2xl">
@@ -76,12 +77,10 @@ export default function Header() {
               </Transition>
             </Menu>
             <Link href="/" className="flex items-center gap-2 md:gap-3 group">
-
               <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={'w-auto h-5 md:h-7 group-hover:fill-secondary-600 group-hover:text-secondary-600'} />
               <div className="text-xl md:text-2xl font-semibold tracking-wide group-hover:bg-clip-text group-hover:text-transparent bg-gradient-to-r group-hover:from-secondary-600 group-hover:to-secondary-800">
                 Eduardo Chiaro
               </div>
-
             </Link>
           </div>
           <span className="flex-1"></span>
