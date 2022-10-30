@@ -3,6 +3,7 @@ import { MoonIcon, ComputerDesktopIcon } from '@heroicons/react/24/solid';
 import { SunIcon } from '@heroicons/react/24/outline';
 import { useTheme } from 'next-themes';
 import { Menu, Transition } from '@headlessui/react';
+import classNames from '@/utils/classNames';
 
 export default function ThemeIcon() {
   const [iconClass, setIconClass] = useState(null);
@@ -78,22 +79,33 @@ export default function ThemeIcon() {
       >
         <Menu.Items
           data-cy="change-mode-container"
-          className="transform focus:outline-none z-50 top-full whitespace-nowrap absolute right-0 mt-2 w-auto origin-top-right rounded-md bg-primary-100 dark:bg-primary-700 shadow-lg ring-2 ring-secondary-700 ring-opacity-50"
+          className="transform absolute right-0 z-10 mt-10 w-56 origin-bottom-right rounded-md shadow-lg ring-1 ring-primary-900 ring-opacity-10 focus:outline-none bg-primary-100 dark:bg-primary-700 divide-y divide-primary-200 dark:divide-primary-600"
+          role="menu"
+          aria-orientation="vertical"
+          aria-labelledby="menu-button"
+          tabindex="-1"
         >
-          <div className="py-2 px-4 font-semibold divide-y divide-primary-400">
-            {iconClass?.map((item, index) => (
-              <Menu.Item key={index}>
-                <div
-                  data-cy={`change-mode-${item.name}`}
-                  className={`${item.className} py-2 pr-12 hover:underline cursor-pointer flex items-center capitalize`}
-                  role="button"
-                  onClick={() => setColorTheme(item.name)}
-                >
-                  {item.icon} {item.name}
-                </div>
+          {iconClass?.map((item, index) => (
+            <div className="py-1 font-semibold" key={index}>
+              <Menu.Item>
+                {({ active }) => (
+                  <div
+                    data-cy={`change-mode-${item.name}`}
+                    className={classNames(
+                      `${item.className} py-2 px-4 cursor-pointer flex items-center gap-2 capitalize`,
+                      active ? 'bg-primary-300 dark:bg-primary-500' : '',
+                    )}
+                    role="menuitem"
+                    tabindex="-1"
+                    id={`menu-item-${index}`}
+                    onClick={() => setColorTheme(item.name)}
+                  >
+                    {item.icon} {item.name}
+                  </div>
+                )}
               </Menu.Item>
-            ))}
-          </div>
+            </div>
+          ))}
         </Menu.Items>
       </Transition>
     </Menu>

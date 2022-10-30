@@ -33,7 +33,7 @@ const TimelineComponent = ({ episodes, type }) => {
 function Timeline({ episodes }) {
   const [type, setType] = useState(true);
   return (
-    <div className="flex flex-col h-screen justify-between">
+    <div className="flex flex-col min-h-screen justify-between">
       <Head>
         <title>Projects &gt; Timeline | Eduardo Chiaro</title>
       </Head>

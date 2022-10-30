@@ -9,6 +9,7 @@ import Link from 'next/link';
 import useStaleSWR from '@/utils/staleSWR';
 
 import styles from '@/styles/Header.module.scss';
+import classNames from '@/utils/classNames';
 
 export default function Header() {
   const router = useRouter();
@@ -53,26 +54,27 @@ export default function Header() {
                 leaveFrom="opacity-100 translate-y-0"
                 leaveTo="opacity-0 translate-y-1"
               >
-                <Menu.Items className="focus:outline-none absolute left-0 top-full w-full max-w-lg divide-y divide-primary-600 bg-primary-100 dark:bg-primary-700 shadow-lg">
-                  <div className="px-1 py-1 font-semibold text-secondary-700 dark:text-secondary-600 divide-y divide-primary-400">
-                    {menuData
-                      .filter((x) => x.active)
-                      .map(function (item, i) {
-                        return (
-                          <Menu.Item key={`menu-link-${i}`}>
-                            {router.route == item.link ? (
-                              <a href={item.link} className={`${styles.menuUrlMobile}`}>
-                                {item.text}
-                              </a>
-                            ) : (
-                              <a href={item.link} className={`${styles.menuUrlMobile} text-primary-900 dark:text-primary-100 hover:underline`}>
+                <Menu.Items className="focus:outline-none absolute left-0 top-full w-full max-w-lg bg-primary-100 dark:bg-primary-700 shadow-lg ring-1 ring-primary-900 ring-opacity-10">
+                  {menuData
+                    .filter((x) => x.active)
+                    .map(function (item, i) {
+                      return (
+                        <div key={`menu-link-${i}`} className="px-1 py-1 font-semibold text-secondary-700 dark:text-secondary-600 divide-y divide-primary-400">
+                          <Menu.Item>
+                            {({ active }) => (
+                              <a href={item.link} className={
+                                classNames(
+                                  styles.menuUrlMobile,
+                                  router.route == item.link ? '' : 'text-primary-900 dark:text-primary-100',
+                                  active ? 'bg-primary-300 dark:bg-primary-500' : '',
+                                )}>
                                 {item.text}
                               </a>
                             )}
                           </Menu.Item>
-                        );
-                      })}
-                  </div>
+                        </div>
+                      );
+                    })}
                 </Menu.Items>
               </Transition>
             </Menu>

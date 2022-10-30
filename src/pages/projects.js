@@ -6,7 +6,7 @@ import Footer from '@/components/frontend/Footer';
 
 export default function Projects() {
   return (
-    <div className="flex flex-col h-screen justify-between">
+    <div className="flex flex-col min-h-screen justify-between">
       <Head>
         <title>Projects | Eduardo Chiaro</title>
       </Head>

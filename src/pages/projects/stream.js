@@ -38,7 +38,7 @@ export default function Projects() {
     640: 1,
   };
   return (
-    <div className="flex flex-col h-screen justify-between">
+    <div className="flex flex-col min-h-screen justify-between">
       <Head>
         <title>Projects &gt; Stream | Eduardo Chiaro</title>
       </Head>

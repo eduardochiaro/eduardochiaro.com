@@ -23,7 +23,7 @@ export default function Projects() {
   ];
   const secondaryPalette = ['bg-blue-500', 'bg-red-500', 'bg-cyan-500', 'bg-emerald-500', 'bg-indigo-500', 'bg-amber-500'];
   return (
-    <div className="flex flex-col h-screen justify-between">
+    <div className="flex flex-col min-h-screen justify-between">
       <Head>
         <title>Projects | Eduardo Chiaro</title>
       </Head>
