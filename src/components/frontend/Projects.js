@@ -44,9 +44,10 @@ export default function Projects() {
                     href={app.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="from-secondary-600 to-secondary-700 bg-gradient-to-r transition text-primary-100 shadow-lg px-4 py-2 text-base rounded-md mt-6 inline-flex items-center gap-4 hover:underline">
-
-                    <GitHubIcon className="w-6 transition-all duration-500 ease-in-out" />Download from GitHub
+                    className="from-secondary-600 to-secondary-700 bg-gradient-to-r transition text-primary-100 shadow-lg px-4 py-2 text-base rounded-md mt-6 inline-flex items-center gap-4 hover:underline"
+                  >
+                    <GitHubIcon className="w-6 transition-all duration-500 ease-in-out" />
+                    Download from GitHub
                   </Link>
                 </div>
               </div>
@@ -62,10 +63,8 @@ export default function Projects() {
             {projects.map((project, index) => (
               <li key={`project-${index}`} className="text-base mb-8 box-card p-4">
                 <Link href={project.url} className="group">
-
                   <h3 className="group-hover:underline text-lg tracking-wide">{project.name}</h3>
                   <p className="text-sm mt-2 opacity-50">{project.description}</p>
-
                 </Link>
               </li>
             ))}

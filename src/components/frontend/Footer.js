@@ -7,14 +7,16 @@ import Link from 'next/link';
 function LoginButton(props) {
   const isLoggedIn = props.isLoggedIn;
   if (isLoggedIn) {
-    return <>
-      <Link href="/admin" className="relative text-sm mr-4 hover:underline">
-        Admin
-      </Link>
-      <button className="relative text-sm hover:underline" onClick={() => signOut()}>
-        Sign out
-      </button>
-    </>;
+    return (
+      <>
+        <Link href="/admin" className="relative text-sm mr-4 hover:underline">
+          Admin
+        </Link>
+        <button className="relative text-sm hover:underline" onClick={() => signOut()}>
+          Sign out
+        </button>
+      </>
+    );
   }
 }
 

@@ -32,9 +32,7 @@ function RapidReading() {
         <section className={'px-4 lg:px-0 mt-5'}>
           <div className="max-w-5xl mx-auto">
             <h1 className="font-header leading-tight tracking-wide text-2xl lg:text-3xl font-light">
-              <Link
-                href="/projects"
-                className="hover:underline text-secondary-700 dark:text-secondary-600 font-semibold">
+              <Link href="/projects" className="hover:underline text-secondary-700 dark:text-secondary-600 font-semibold">
                 Projects
               </Link>{' '}
               / Rapid Reading

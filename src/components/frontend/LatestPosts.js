@@ -18,8 +18,8 @@ export default function LatestPosts() {
                 <div key={`article-${index}`} className="mb-8 relative">
                   <Link
                     href={article.permalink}
-                    className="group block border-l-8 border-primary-50 dark:border-primary-800 hover:border-secondary-700 dark:hover:border-secondary-600 pl-4">
-
+                    className="group block border-l-8 border-primary-50 dark:border-primary-800 hover:border-secondary-700 dark:hover:border-secondary-600 pl-4"
+                  >
                     <div className="flex flex-row items-top">
                       <h4 className="grow-0 font-medium text-lg tracking-wide">{article.title}</h4>
                       <div className="grow ml-4 mt-1">
@@ -34,7 +34,6 @@ export default function LatestPosts() {
                       </div>
                     </div>
                     <p className="text-sm mt-2 text-primary-600 dark:text-primary-400">{article.content}</p>
-
                   </Link>
                 </div>
               ))

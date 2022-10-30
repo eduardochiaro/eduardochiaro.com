@@ -158,12 +158,7 @@ const AdminSkillsIndex = ({ formRef, images }) => {
     obj.logo_d = (
       <>
         <div className={'w-32 m-auto relative'}>
-          <SVG
-            alt={item.name}
-            className={'inline w-auto fill-primary-700 dark:fill-primary-200'}
-            src={`/images/svg-icons/${item.logo}`}
-            height={50}
-          />
+          <SVG alt={item.name} className={'inline w-auto fill-primary-700 dark:fill-primary-200'} src={`/images/svg-icons/${item.logo}`} height={50} />
         </div>
         <div className="small">{item.logo}</div>
       </>
@@ -244,11 +239,7 @@ const AdminSkillsIndex = ({ formRef, images }) => {
                   Preview
                 </label>
                 {skill.logo && (
-                  <SVG
-                    alt={skill.name}
-                    className={'inline-block w-14 fill-primary-700 dark:fill-primary-200'}
-                    src={`/images/svg-icons/${skill.logo}`}
-                  />
+                  <SVG alt={skill.name} className={'inline-block w-14 fill-primary-700 dark:fill-primary-200'} src={`/images/svg-icons/${skill.logo}`} />
                 )}
               </div>
               <div className="col-span-6 sm:col-span-3">

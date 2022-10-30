@@ -36,7 +36,7 @@ export default function Header() {
   }
 
   return (
-    <header className={`${styles.header} bg-primary-50/95 dark:bg-primary-800/95`}>
+    <header className={`${styles.header} bg-primary-100/95 dark:bg-primary-800/95`}>
       <nav className="w-full relative">
         <div className="px-4 md:px-8 flex items-center h-12">
           <div className="flex-none flex gap-4 font-header text-2xl">
@@ -107,9 +107,10 @@ export default function Header() {
           <div className="hidden md:inline-block ml-12 mr-6 tracking-wider">
             <Link
               href="https://blog.eduardochiaro.com"
-              className="md:pr-0 pr-6 whitespace-nowrap text-base font-medium transition hover:underline flex items-center">
-
-              <RssIcon className={'h-5 text-accent-500 mr-1'} aria-hidden="true" />.dev
+              className="md:pr-0 pr-6 whitespace-nowrap text-base font-medium transition hover:underline flex items-center"
+            >
+              <RssIcon className={'h-5 text-accent-500 mr-1'} aria-hidden="true" />
+              .dev
             </Link>
           </div>
           <ThemeIcon />

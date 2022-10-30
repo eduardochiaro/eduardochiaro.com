@@ -77,13 +77,12 @@ const AdminSidebar = () => {
               href="/"
               className={`${styles['sidebar-link']} group border-transparent hover:border-secondary-700 dark:hover:border-secondary-600`}
               alt="Website"
-              title="Website">
-
+              title="Website"
+            >
               <HomeIcon className="w-5 group-hover:text-secondary-700 dark:group-hover:text-secondary-600" />
               <span className={`text-sm tracking-wide truncate group-hover:hunderline hidden xl:inline-block ${openMenu ? '' : styles['hide-when-closed']}`}>
                 Website
               </span>
-
             </Link>
           </li>
           <li>

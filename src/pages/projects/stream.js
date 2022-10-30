@@ -17,7 +17,6 @@ export default function Projects() {
     return (
       <div key={id} className="shadow box-card p-1">
         <Link href={item.permalink} target="_blank">
-
           <div className="relative">
             <NaturalImage size={500} src={item.image} alt={item.title} className="rounded" />
             {item.type === 'Flickr' && <Flickr className="w-8 absolute bottom-2 right-2 text-primary-100" alt={item.type} />}
@@ -29,7 +28,6 @@ export default function Projects() {
             </div>
             <p className="text-right text-xs font-mono opacity-70">{moment(item.published).fromNow()}</p>
           </div>
-
         </Link>
       </div>
     );
@@ -51,9 +49,7 @@ export default function Projects() {
           <section className={'px-4 lg:px-0 mt-10'}>
             <div className="max-w-5xl mx-auto">
               <h1 className="font-header leading-tight tracking-wide text-2xl lg:text-3xl font-light">
-                <Link
-                  href="/projects"
-                  className="hover:underline text-secondary-700 dark:text-secondary-600 font-semibold">
+                <Link href="/projects" className="hover:underline text-secondary-700 dark:text-secondary-600 font-semibold">
                   Projects
                 </Link>{' '}
                 / Stream

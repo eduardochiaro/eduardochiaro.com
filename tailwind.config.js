@@ -21,7 +21,7 @@ module.exports = {
       indigo: colors.indigo,
       amber: colors.amber,
       emerald: colors.emerald,
-      primary: colors.slate,
+      primary: colors.gray,
       secondary: {
         "50": "#FEF9F0",
         "100": "#FEF2DD",

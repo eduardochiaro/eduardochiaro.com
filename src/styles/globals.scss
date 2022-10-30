@@ -2,13 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  @apply bg-primary-50 dark:bg-primary-800 text-primary-900 dark:text-primary-100;
+  @apply bg-primary-100 dark:bg-primary-800 text-primary-900 dark:text-primary-100;
 }
 
 // Form styles 

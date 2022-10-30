@@ -173,9 +173,7 @@ const AdminAppsIndex = ({ formRef }) => {
       <>
         <span className="w-64 text-ellipsis overflow-hidden inline-block">{item.url}</span>
         <Link href={item.url} target="_blank" rel="noreferrer">
-
           <ArrowTopRightOnSquareIcon className="h-4 inline-block align-top ml-2" />
-
         </Link>
       </>
     );
