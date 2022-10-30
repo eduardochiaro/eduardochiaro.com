@@ -75,7 +75,7 @@ export default function Bookmarks() {
       </section>
       <div className="grow relative">
         <div className="fixed hidden xl:block text-sm font-semibold tracking-wider">
-          <div className="mb-6 mt-10 ml-4">Quick nav</div>
+          <div className="mb-6 mt-14 ml-4">Quick nav</div>
           <ul className="ml-4">
             {uniqueCategories.map((category, index) => (
               <li className="my-2" key={`menu-link-${index}`}>
