@@ -45,8 +45,8 @@ export default function Bookmarks() {
                   {data?.results
                     .filter((x) => x.categoryId == category.id)
                     .map((bookmark, index) => (
-                      <div key={`apps-${index}`} className={'p-5 group/card box-card'}>
-                        <Link href={bookmark.url} as={bookmark.url} target="_blank" className="block" rel="noopener noreferrer">
+                      <div key={`apps-${index}`} className={'group/card box-card'}>
+                        <Link href={bookmark.url} as={bookmark.url} target="_blank" className="p-5 block" rel="noopener noreferrer">
                           <h3 className="text-xl tracking-wide flex justify-between">
                             {bookmark.name}
                             <BookmarkIcon className="w-5 group-hover/card:text-secondary-600" />

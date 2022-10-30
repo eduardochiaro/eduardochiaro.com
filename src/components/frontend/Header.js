@@ -62,12 +62,14 @@ export default function Header() {
                         <div key={`menu-link-${i}`} className="px-1 py-1 font-semibold text-secondary-700 dark:text-secondary-600 divide-y divide-primary-400">
                           <Menu.Item>
                             {({ active }) => (
-                              <a href={item.link} className={
-                                classNames(
+                              <a
+                                href={item.link}
+                                className={classNames(
                                   styles.menuUrlMobile,
                                   router.route == item.link ? '' : 'text-primary-900 dark:text-primary-100',
                                   active ? 'bg-primary-300 dark:bg-primary-500' : '',
-                                )}>
+                                )}
+                              >
                                 {item.text}
                               </a>
                             )}

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import moment from 'moment';
 import SpinnerIcon from '@/components/icons/spinner';
 import * as commands from '@/utils/projects/terminal/commands';
+import classNames from '@/utils/classNames';
 
 const useFocus = () => {
   const htmlElRef = useRef(null);
@@ -155,7 +156,10 @@ export default function Terminal() {
               autoComplete="off"
               data-lpignore="true"
               data-form-type="other"
-              className={`border-0 p-0 bg-transparent focus:outline-none w-full ${!isACommand(command) && command != '' ? 'text-red-400' : ''}`}
+              className={classNames(
+                'border-0 p-0 bg-transparent focus:outline-none w-full',
+                !isACommand(command) && command != '' ? 'text-red-400' : 'text-emerald-500',
+              )}
               onKeyDown={handleChange}
               onChange={(e) => setCommand(e.target.value)}
               value={command}
