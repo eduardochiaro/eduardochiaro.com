@@ -16,6 +16,34 @@ export default function Home() {
   const articlesRef = React.useRef();
   const githubRef = React.useRef();
 
+  const [activeLink, setActiveLink] = React.useState(null);
+
+  React.useEffect(() => {
+    let observer
+    if (skillsRef.current && articlesRef.current && githubRef.current) {
+      const options = {
+        threshold: 0.3,
+      }
+      observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            if (activeLink == null) {
+              setActiveLink(entry.target.id);
+            }
+          } else {
+            if (activeLink != null) {
+              setActiveLink(null);
+            }
+          }
+        })
+      }, options)
+      observer.observe(skillsRef.current)
+      observer.observe(articlesRef.current)
+      observer.observe(githubRef.current)
+    }
+    return () => observer.disconnect()
+  }, [skillsRef, articlesRef, githubRef])
+
   const menuData = [
     {
       text: 'Bio',
@@ -57,20 +85,20 @@ export default function Home() {
           <hr className="mt-10 max-w-5xl mx-auto border-t border-solid border-secondary-700 dark:border-secondary-600" />
           <Jobs />
           <div className="relative">
-            <span className="anchor" ref={skillsRef} />
+            <span id="skills" className="anchor" ref={skillsRef} />
           </div>
           <Skills />
           <hr className="mt-10 max-w-5xl mx-auto border-t border-solid border-secondary-700 dark:border-secondary-600" />
           <div className="relative">
-            <span className="anchor" ref={articlesRef} />
+            <span id="articles"  className="anchor" ref={articlesRef} />
           </div>
           <LatestPosts />
           <div className="relative">
-            <span className="anchor" ref={githubRef} />
+            <span id="github" className="anchor" ref={githubRef} />
           </div>
           <GitHub />
         </div>
-        <Sidemenu menuData={menuData} />
+        <Sidemenu menuData={menuData} activeLink={activeLink} />
       </div>
       <Footer />
     </div>
