@@ -80,7 +80,7 @@ export default function Home() {
       <Share />
       <div className="flex">
         <div className="grow"></div>
-        <div className="grow-0">
+        <div className="grow max-w-5xl mx-auto">
           <Bio />
           <hr className="mt-10 max-w-5xl mx-auto border-t border-solid border-secondary-700 dark:border-secondary-600" />
           <Jobs />

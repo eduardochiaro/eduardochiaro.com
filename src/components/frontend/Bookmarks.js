@@ -25,52 +25,50 @@ export default function Bookmarks() {
   return (
     <div className="flex">
       <div className="grow"></div>
-      <section id="work" className={'grow-0 px-4 lg:px-0 mt-10'}>
-        <div className="max-w-5xl mx-auto">
-          <h1 className="font-header leading-tight tracking-wide text-2xl lg:text-3xl font-light">Bookmarks</h1>
-          <div>
-            {uniqueCategories.map((category, index) => (
-              <div key={index} className="group/list">
-                <span className="anchor" ref={(ref) => elementsRef.current.push(ref)} />
-                <h4 className="text-secondary-700 dark:text-secondary-600 mt-14 group-first/list:mt-5 mb-5 flex items-center gap-2">
-                  <TagIcon className="none w-4 h-4" />
-                  <span className="flex-none">{category.name}</span>
-                  <span className="w-full border-t border-secondary-700 dark:border-secondary-600 border-dashed shrink"></span>
-                  <Link href="#bookmarks-0" className="text-secondary-700 dark:text-secondary-600 flex items-center group-first/list:hidden">
-                    top
-                    <ChevronUpIcon className="inline w-4" />
-                  </Link>
-                </h4>
-                <Masonry breakpointCols={breakpointColumnsObj} className="flex gap-8 w-auto" columnClassName="bg-clip-padding flex flex-col gap-8">
-                  {data?.results
-                    .filter((x) => x.categoryId == category.id)
-                    .map((bookmark, index) => (
-                      <div key={`apps-${index}`} className={'group/card box-card'}>
-                        <Link href={bookmark.url} as={bookmark.url} target="_blank" className="p-5 block" rel="noopener noreferrer">
-                          <h3 className="text-xl tracking-wide flex justify-between">
-                            {bookmark.name}
-                            <BookmarkIcon className="w-5 group-hover/card:text-secondary-600" />
-                          </h3>
-                          <p className="text-sm opacity-80 tracking-wide flex items-center gap-2">
-                            <span className="block w-5">
-                              <Image
-                                src={`https://www.google.com/s2/favicons?domain=${bookmark.domain}`}
-                                className="m-auto"
-                                width="16"
-                                height="16"
-                                alt={bookmark.domain}
-                              />
-                            </span>
-                            {bookmark.domain}
-                          </p>
-                          <p className="mt-4 text-sm">{bookmark.description}</p>
-                        </Link>
-                      </div>
-                    ))}
-                </Masonry>
-              </div>
-            ))}
-          </div>
+      <section id="work" className={'grow px-4 lg:px-0 mt-10 max-w-5xl mx-auto'}>
+        <h1 className="font-header leading-tight tracking-wide text-2xl lg:text-3xl font-light">Bookmarks</h1>
+        <div>
+          {uniqueCategories.map((category, index) => (
+            <div key={index} className="group/list">
+              <span className="anchor" ref={(ref) => elementsRef.current.push(ref)} />
+              <h4 className="text-secondary-700 dark:text-secondary-600 mt-14 group-first/list:mt-5 mb-5 flex items-center gap-2">
+                <TagIcon className="none w-4 h-4" />
+                <span className="flex-none">{category.name}</span>
+                <span className="w-full border-t border-secondary-700 dark:border-secondary-600 border-dashed shrink"></span>
+                <Link href="#bookmarks-0" className="text-secondary-700 dark:text-secondary-600 flex items-center group-first/list:hidden">
+                  top
+                  <ChevronUpIcon className="inline w-4" />
+                </Link>
+              </h4>
+              <Masonry breakpointCols={breakpointColumnsObj} className="flex gap-8 w-auto" columnClassName="bg-clip-padding flex flex-col gap-8">
+                {data?.results
+                  .filter((x) => x.categoryId == category.id)
+                  .map((bookmark, index) => (
+                    <div key={`apps-${index}`} className={'group/card box-card'}>
+                      <Link href={bookmark.url} as={bookmark.url} target="_blank" className="p-5 block" rel="noopener noreferrer">
+                        <h3 className="text-xl tracking-wide flex justify-between">
+                          {bookmark.name}
+                          <BookmarkIcon className="w-5 group-hover/card:text-secondary-600" />
+                        </h3>
+                        <p className="text-sm opacity-80 tracking-wide flex items-center gap-2">
+                          <span className="block w-5">
+                            <Image
+                              src={`https://www.google.com/s2/favicons?domain=${bookmark.domain}`}
+                              className="m-auto"
+                              width="16"
+                              height="16"
+                              alt={bookmark.domain}
+                            />
+                          </span>
+                          {bookmark.domain}
+                        </p>
+                        <p className="mt-4 text-sm">{bookmark.description}</p>
+                      </Link>
+                    </div>
+                  ))}
+              </Masonry>
+            </div>
+          ))}
         </div>
       </section>
       <div className="grow relative">
