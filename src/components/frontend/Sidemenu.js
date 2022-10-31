@@ -5,7 +5,6 @@ export default function Sidemenu({ menuData, activeLink }) {
   return (
     <div className="grow relative">
       <div className="fixed hidden xl:block text-sm font-semibold tracking-wider">
-        {activeLink}
         <div className="mb-6 mt-14 ml-4">Quick nav</div>
         <ul className="ml-4">
           {menuData.map(function (item, i) {

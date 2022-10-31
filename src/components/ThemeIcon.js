@@ -83,7 +83,7 @@ export default function ThemeIcon() {
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="menu-button"
-          tabindex="-1"
+          tabIndex="-1"
         >
           {iconClass?.map((item, index) => (
             <div className="py-1 font-semibold" key={index}>
@@ -96,7 +96,7 @@ export default function ThemeIcon() {
                       active ? 'bg-primary-300 dark:bg-primary-500' : '',
                     )}
                     role="menuitem"
-                    tabindex="-1"
+                    tabIndex="-1"
                     id={`menu-item-${index}`}
                     onClick={() => setColorTheme(item.name)}
                   >
