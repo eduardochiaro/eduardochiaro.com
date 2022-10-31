@@ -7,7 +7,7 @@ export default function LatestPosts() {
   const { data } = useStaleSWR('/api/portfolio/blog');
   const cutReposene = data ? data.results.slice(0, 3) : [];
   return (
-    <section id="latest-posts" className={'px-4 lg:px-0 mt-10'}>
+    <section id="latest-posts-component" className={'px-4 lg:px-0 mt-10'}>
       <div className="max-w-5xl mx-auto">
         <h3 className="font-header leading-tight tracking-wide text-2xl lg:text-3xl font-light mb-2">
           Recent <span className="overlay-color">articles</span> says...
