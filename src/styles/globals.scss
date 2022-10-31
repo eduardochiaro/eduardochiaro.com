@@ -7,7 +7,7 @@ html {
 }
 
 body {
-  @apply bg-primary-100 dark:bg-primary-800 text-primary-900 dark:text-primary-100;
+  @apply bg-primary-50 dark:bg-primary-800 text-primary-900 dark:text-primary-100;
 }
 
 // Form styles 
@@ -84,7 +84,7 @@ table.admin-table {
   //animation: moveGradient 5s linear infinite;
 }
 .box-card {
-  @apply rounded-lg bg-gradient-to-br from-primary-200 to-primary-300 dark:from-primary-600 dark:to-primary-700 transition hover:ring-4 ring-offset-4 ring-offset-primary-50 dark:ring-offset-primary-800 hover:ring-primary-300 dark:hover:ring-primary-600;
+  @apply shadow-md rounded-lg bg-gradient-to-br from-primary-100 to-primary-200 dark:from-primary-600 dark:to-primary-700 transition hover:ring-4 ring-offset-4 ring-offset-primary-50 dark:ring-offset-primary-800 hover:ring-primary-300 dark:hover:ring-primary-600 ring-1 ring-primary-900 ring-opacity-5;
 }
 .custom-img {
   object-fit: contain;
