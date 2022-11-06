@@ -82,9 +82,7 @@ export default function Header() {
             </Menu>
             <Link href="/" className="flex items-center gap-2 md:gap-3 group">
               <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={'w-auto h-5 md:h-7 group-hover:fill-accent-600 group-hover:text-accent-600'} />
-              <div className="text-xl md:text-2xl font-semibold tracking-wide group-hover:underline">
-                Eduardo Chiaro
-              </div>
+              <div className="text-xl md:text-2xl font-semibold tracking-wide group-hover:underline">Eduardo Chiaro</div>
             </Link>
           </div>
           <span className="flex-1"></span>

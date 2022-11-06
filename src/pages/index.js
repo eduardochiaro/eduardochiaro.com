@@ -19,13 +19,13 @@ export default function Home() {
   const [activeLink, setActiveLink] = React.useState(null);
 
   React.useEffect(() => {
-    let observer
+    let observer;
     if (skillsRef.current && articlesRef.current && githubRef.current) {
       const options = {
         threshold: 0.3,
-      }
+      };
       observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
             if (activeLink == null) {
               setActiveLink(entry.target.id);
@@ -35,14 +35,14 @@ export default function Home() {
               setActiveLink(null);
             }
           }
-        })
-      }, options)
-      observer.observe(skillsRef.current)
-      observer.observe(articlesRef.current)
-      observer.observe(githubRef.current)
+        });
+      }, options);
+      observer.observe(skillsRef.current);
+      observer.observe(articlesRef.current);
+      observer.observe(githubRef.current);
     }
-    return () => observer.disconnect()
-  }, [skillsRef, articlesRef, githubRef])
+    return () => observer.disconnect();
+  }, [skillsRef, articlesRef, githubRef]);
 
   const menuData = [
     {
@@ -90,7 +90,7 @@ export default function Home() {
           <Skills />
           <hr className="mt-10 max-w-5xl mx-auto border-t border-solid border-secondary-700 dark:border-secondary-600" />
           <div className="relative">
-            <span id="articles"  className="anchor" ref={articlesRef} />
+            <span id="articles" className="anchor" ref={articlesRef} />
           </div>
           <LatestPosts />
           <div className="relative">
