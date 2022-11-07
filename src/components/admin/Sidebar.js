@@ -69,7 +69,7 @@ const AdminSidebar = () => {
         </button>
         <div className="flex items-center gap-4 h-14 pb-8 mt-6 border-b border-primary-300 dark:border-primary-500 px-3">
           <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className="text-primary-600 w-10 bg-primary-50 rounded-full p-2" />
-          <div className={`text-center font-bold font-header hidden xl:inline-block ${openMenu ? '' : styles['hide-when-closed']}`}>eduardo.chiaro</div>
+          <div className={`text-center font-bold font-header hidden xl:inline-block ${openMenu ? '' : styles['hide-when-closed']}`}>Eduardo Chiaro</div>
         </div>
         <ul className="flex flex-col py-4 space-y-1 font-semibold tracking-wider">
           <li>
