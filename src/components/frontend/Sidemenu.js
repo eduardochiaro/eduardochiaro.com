@@ -1,7 +1,7 @@
 import * as React from 'react';
-import NavLink from '@/components/NavLink';
+import Link from 'next/link';
 
-export default function Sidemenu({ menuData, activeLink }) {
+export default function Sidemenu({ menuData }) {
   return (
     <div className="grow relative">
       <div className="fixed hidden xl:block text-sm font-semibold tracking-wider">
@@ -9,18 +9,11 @@ export default function Sidemenu({ menuData, activeLink }) {
         <ul className="ml-4">
           {menuData.map(function (item, i) {
             return (
-              <li className="my-2" key={`menu-link-${i}`}>
-                <NavLink
-                  href={item.link}
-                  as={item.as}
-                  className={'flex items-center gap-2 transition hover:text-primary-900 dark:hover:text-primary-100 hover:underline'}
-                  activeClassName={'flex items-center gap-2 transition text-secondary-800 dark:text-secondary-600'}
-                >
-                  <a onClick={item.onClick || null}>
-                    {item.pre}
-                    {item.text}
-                  </a>
-                </NavLink>
+              <li key={`menu-link-${i}`} className="my-2">
+                <Link href={item.link} className="flex items-center gap-2 transition hover:underline">
+                  {item.pre}
+                  {item.text}
+                </Link>
               </li>
             );
           })}

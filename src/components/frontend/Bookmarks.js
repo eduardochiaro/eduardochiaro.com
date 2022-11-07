@@ -4,9 +4,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import * as React from 'react';
 import useStaleSWR from '@/utils/staleSWR';
-import NavLink from '@/components/NavLink';
 import Masonry from 'react-masonry-css';
-import { useRef } from 'react';
+import Sidemenu from './Sidemenu';
 
 const breakpointColumnsObj = {
   default: 2,
@@ -21,7 +20,15 @@ export default function Bookmarks() {
     .filter((value, index, self) => index === self.findIndex((t) => t.id === value.id))
     .sort((a, b) => (a.name > b.name ? 1 : -1));
 
-  const elementsRef = useRef([]);
+  const menuData = uniqueCategories.map((item, index) => {
+    return {
+      id: `bookmarks-${index}`,
+      text: item.name,
+      link: `#bookmarks-${index}`,
+      pre: <TagIcon className="h-4" />,
+    };
+  });
+
   return (
     <div className="flex">
       <div className="grow"></div>
@@ -30,12 +37,12 @@ export default function Bookmarks() {
         <div>
           {uniqueCategories.map((category, index) => (
             <div key={index} className="group/list">
-              <span className="anchor" ref={(ref) => elementsRef.current.push(ref)} />
+              <span className="anchor" id={`bookmarks-${index}`} />
               <h4 className="text-secondary-700 dark:text-secondary-600 mt-14 group-first/list:mt-5 mb-5 flex items-center gap-2">
                 <TagIcon className="none w-4 h-4" />
                 <span className="flex-none">{category.name}</span>
                 <span className="w-full border-t border-secondary-700 dark:border-secondary-600 border-dashed shrink"></span>
-                <Link href="#bookmarks-0" className="text-secondary-700 dark:text-secondary-600 flex items-center group-first/list:hidden">
+                <Link href="#top" className="text-secondary-700 dark:text-secondary-600 flex items-center group-first/list:hidden">
                   top
                   <ChevronUpIcon className="inline w-4" />
                 </Link>
@@ -71,27 +78,7 @@ export default function Bookmarks() {
           ))}
         </div>
       </section>
-      <div className="grow relative">
-        <div className="fixed hidden xl:block text-sm font-semibold tracking-wider">
-          <div className="mb-6 mt-14 ml-4">Quick nav</div>
-          <ul className="ml-4">
-            {uniqueCategories.map((category, index) => (
-              <li className="my-2" key={`menu-link-${index}`}>
-                <NavLink
-                  href={`/bookmarks#bookmarks-${index}`}
-                  className={'flex items-center gap-2 transition hover:text-primary-900 dark:hover:text-primary-100 hover:underline'}
-                  activeClassName={'flex items-center gap-2 transition text-secondary-800 dark:text-secondary-600'}
-                >
-                  <a onClick={() => elementsRef.current[index].scrollIntoView({ behavior: 'smooth' })}>
-                    <TagIcon className="h-4" />
-                    {category.name}
-                  </a>
-                </NavLink>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+      <Sidemenu menuData={menuData} />
     </div>
   );
 }

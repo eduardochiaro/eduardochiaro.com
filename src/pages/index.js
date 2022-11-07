@@ -12,65 +12,29 @@ import LatestPosts from '@/components/frontend/LatestPosts';
 import GitHubIcon from '@/components/icons/github';
 
 export default function Home() {
-  const skillsRef = React.useRef();
-  const articlesRef = React.useRef();
-  const githubRef = React.useRef();
-
-  const [activeLink, setActiveLink] = React.useState(null);
-
-  React.useEffect(() => {
-    let observer;
-    if (skillsRef.current && articlesRef.current && githubRef.current) {
-      const options = {
-        threshold: 0.3,
-      };
-      observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            if (activeLink == null) {
-              setActiveLink(entry.target.id);
-            }
-          } else {
-            if (activeLink != null) {
-              setActiveLink(null);
-            }
-          }
-        });
-      }, options);
-      observer.observe(skillsRef.current);
-      observer.observe(articlesRef.current);
-      observer.observe(githubRef.current);
-    }
-    return () => observer.disconnect();
-  }, [skillsRef, articlesRef, githubRef]);
-
   const menuData = [
     {
+      id: 'bio',
       text: 'Bio',
-      link: '/',
-      as: '/#top',
-      current: true,
+      link: '#bio',
       pre: <UserCircleIcon className="h-4" />,
     },
     {
+      id: 'skills',
       text: 'Skills',
-      link: '/#skills',
-      current: false,
-      onClick: () => skillsRef.current.scrollIntoView({ behavior: 'smooth' }),
+      link: '#skills',
       pre: <CommandLineIcon className="h-4" />,
     },
     {
+      id: 'articles',
       text: 'Articles',
-      link: '/#articles',
-      current: false,
-      onClick: () => articlesRef.current.scrollIntoView({ behavior: 'smooth' }),
+      link: '#articles',
       pre: <DocumentTextIcon className="h-4" />,
     },
     {
+      id: 'github',
       text: 'GitHub',
-      link: '/#github',
-      current: false,
-      onClick: () => githubRef.current.scrollIntoView({ behavior: 'smooth' }),
+      link: '#github',
       pre: <GitHubIcon className="h-4" />,
     },
   ];
@@ -81,24 +45,27 @@ export default function Home() {
       <div className="flex">
         <div className="grow"></div>
         <div className="grow max-w-5xl mx-auto">
+          <div className="relative">
+            <span id="bio" className="anchor" />
+          </div>
           <Bio />
           <hr className="mt-10 max-w-5xl mx-auto border-t border-solid border-secondary-700 dark:border-secondary-600" />
           <Jobs />
           <div className="relative">
-            <span id="skills" className="anchor" ref={skillsRef} />
+            <span id="skills" className="anchor" />
           </div>
           <Skills />
           <hr className="mt-10 max-w-5xl mx-auto border-t border-solid border-secondary-700 dark:border-secondary-600" />
           <div className="relative">
-            <span id="articles" className="anchor" ref={articlesRef} />
+            <span id="articles" className="anchor" />
           </div>
           <LatestPosts />
           <div className="relative">
-            <span id="github" className="anchor" ref={githubRef} />
+            <span id="github" className="anchor" />
           </div>
           <GitHub />
         </div>
-        <Sidemenu menuData={menuData} activeLink={activeLink} />
+        <Sidemenu menuData={menuData} />
       </div>
       <Footer />
     </div>

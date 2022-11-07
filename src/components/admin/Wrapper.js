@@ -5,7 +5,7 @@ import { ArrowLeftCircleIcon } from '@heroicons/react/24/solid';
 import ThemeIcon from '@/components/ThemeIcon';
 import React from 'react';
 
-const AdminWrapper = ({ children, header = '' }) => {
+const AdminWrapper = ({ children }) => {
   const { data: session } = useSession();
 
   return (
