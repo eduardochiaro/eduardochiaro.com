@@ -51,14 +51,14 @@ const AdminWrapper = ({ children }) => {
                     aria-labelledby="menu-button"
                     tabIndex="-1"
                   >
-                  <div className="py-1 font-semibold">
-                    <Menu.Item>
-                    <div onClick={() => signOut()} title="logout" className="py-2 px-4 cursor-pointer flex items-center gap-2">
-                      <ArrowLeftCircleIcon className="inline-flex h-4" />
-                      <span>Logout</span>
+                    <div className="py-1 font-semibold">
+                      <Menu.Item>
+                        <div onClick={() => signOut()} title="logout" className="py-2 px-4 cursor-pointer flex items-center gap-2">
+                          <ArrowLeftCircleIcon className="inline-flex h-4" />
+                          <span>Logout</span>
+                        </div>
+                      </Menu.Item>
                     </div>
-                    </Menu.Item>
-                  </div>
                   </Menu.Items>
                 </Transition>
               </Menu>
