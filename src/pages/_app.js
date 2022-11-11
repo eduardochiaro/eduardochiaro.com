@@ -9,22 +9,22 @@ import Head from 'next/head';
 import '@/styles/globals.scss';
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
-  const router = useRouter()
+  const router = useRouter();
 
   useEffect(() => {
     const handleRouteChange = (url) => {
-      pageview(url)
-    }
+      pageview(url);
+    };
     //When the component is mounted, subscribe to router changes
     //and log those page views
-    router.events.on('routeChangeComplete', handleRouteChange)
+    router.events.on('routeChangeComplete', handleRouteChange);
 
     // If the component is unmounted, unsubscribe
     // from the event with the `off` method
     return () => {
-      router.events.off('routeChangeComplete', handleRouteChange)
-    }
-  }, [router.events])
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router.events]);
   return (
     <SessionProvider session={session} refetchInterval={5 * 60}>
       <ThemeProvider enableSystem={true} attribute="class">
