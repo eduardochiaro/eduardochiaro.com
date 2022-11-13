@@ -1,0 +1,26 @@
+import apiWithMiddleware from '@/utils/apiWithMiddleware';
+import prisma from '@/utils/prisma';
+import cors from '@/middlewares/cors';
+import { URL } from 'url';
+
+const handler = async (req, res) => {
+  await cors(req, res);
+  const bookmarks = await prisma.bookmark.findMany({
+    where: {
+      deletedAt: null,
+    },
+    include: {
+      category: true,
+    },
+    orderBy: {
+      createdAt: 'desc',
+    },
+  });
+  bookmarks.map((bookmark) => {
+    const myURL = new URL(bookmark.url);
+    bookmark.domain = myURL.hostname;
+    return bookmark;
+  });
+  res.status(200).json({ results: bookmarks });
+};
+export default apiWithMiddleware(handler);

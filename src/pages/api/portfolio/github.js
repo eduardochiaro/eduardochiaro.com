@@ -1,76 +1,59 @@
-import cache from "memory-cache";
-import apiWithMiddleware from '../../../lib/apiWithMiddleware';
-import cors from '../../../lib/cors';
-import { gql } from "@apollo/client";
-import client from "../../../lib/apolloClient";
-import { data } from "autoprefixer";
+import apiWithMiddleware from '@/utils/apiWithMiddleware';
+import cors from '@/middlewares/cors';
+import { gql } from '@apollo/client';
+import client from '@/utils/apolloClient';
+import fsCache from '@/utils/fsCache';
 
-const base = "https://api.github.com/users";
-const username = process.env.GITHUB_USERNAME;
-//const headers = { Accept: "application/vnd.github.mercy-preview+json" };
-const headers = { "Authorization": `Bearer ${process.env.GITHUB_TOKEN}` };
+const base = 'https://api.github.com/users';
+const hours = 24;
 
-const cachedFetch = async (url, append = {}) => {
-  const cachedResponse = cache.get(url);
-  if (cachedResponse) {
-    return cachedResponse;
-  }
-  const hours = 1;
-  const { data } = await client.query({
-    query: gql`
-     query REPOS { 
-      viewer { 
-        repositories (
-          ownerAffiliations: [OWNER]
-          isLocked: false
-          first: 100, 
-          orderBy: {
-            direction: DESC
-            field: UPDATED_AT
-          }) {
-          nodes {
-            id
-            name
-            languages(first: 5, orderBy: {
-              field: SIZE,
-              direction: DESC
-            }) {
+const cachedFetch = async (url) => {
+  return fsCache(url, hours, async () => {
+    const { data } = await client.query({
+      query: gql`
+        query REPOS {
+          viewer {
+            repositories(ownerAffiliations: [OWNER], isLocked: false, first: 100, orderBy: { direction: DESC, field: PUSHED_AT }) {
               nodes {
+                id
                 name
-                color
-              }
-            }
-            url
-            updatedAt
-            description
-            openGraphImageUrl
-            isArchived
-            repositoryTopics (first: 5) {
-              nodes {
-                topic {
-                  name
+                languages(first: 5, orderBy: { field: SIZE, direction: DESC }) {
+                  nodes {
+                    name
+                    color
+                  }
+                }
+                url
+                updatedAt
+                pushedAt
+                description
+                openGraphImageUrl
+                isArchived
+                repositoryTopics(first: 5) {
+                  nodes {
+                    topic {
+                      name
+                    }
+                  }
                 }
               }
             }
           }
         }
-      }
-     }
-    `,
+      `,
+    });
+    return data;
   });
-  cache.put(url, data, hours * 1000 * 60 * 60);
-  return data;
 };
 
-const handler = async (req, res) => {  
+const handler = async (req, res) => {
   await cors(req, res);
-  const dataFetch = await cachedFetch(`${base}`, { headers })
-  //const data = await dataFetch.json();
+  const dataFetch = await cachedFetch(`${base}`);
 
   const data = dataFetch.viewer.repositories.nodes.map((repo) => {
-    const { id, name, description, openGraphImageUrl, isArchived, repositoryTopics, updatedAt, url, } = repo;
+    const { id, name, description, openGraphImageUrl, isArchived, repositoryTopics, pushedAt, url } = repo;
     const topics = repositoryTopics.nodes.map((topic) => topic.topic.name);
-    const languages = repo.languages.nodes.map((language) =>  {
+    const languages = repo.languages.nodes.map((language) => {
       const { name, color } = language;
       return { name, color };
     });
@@ -81,7 +64,7 @@ const handler = async (req, res) => {
       isArchived,
       openGraphImageUrl,
       topics,
-      updatedAt,
+      pushedAt,
       url,
       languages,
       language: languages[0]?.name,
@@ -89,5 +72,5 @@ const handler = async (req, res) => {
   });
 
   res.status(200).json({ results: data });
-}
+};
 export default apiWithMiddleware(handler);

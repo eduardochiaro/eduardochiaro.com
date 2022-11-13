@@ -2,101 +2,69 @@
 @tailwind components;
 @tailwind utilities;
 
-@import 'variables.scss';
-
-html {
-  scroll-behavior: smooth;
+html,body {
+  user-select: none;
 }
 
 body {
-  background-color: $isabelline;
-  color: $body;
+  @apply bg-primary-50 dark:bg-primary-800 text-primary-900 dark:text-primary-100;
 }
 
-svg {
-  .st0,
-  .st4,
-  .cls-1 {
-    fill: $isabelline !important;
-  }
-  .st1,
-  .cls-4 {
-    fill: $tertiary !important;
-  }
-  .st2,
-  .cls-3 {
-    fill: $primary !important;
-  }
-  .st5,
-  .cls-2 {
-    fill: $secondary !important;
-  }
-  &.mainLogo {
-    .main {
-      fill: $secondary !important;
-    }
-    .accent {
-      fill: $primary !important;
-    }
-  }
-  &.bottomLogo {
-    .main {
-      fill: $white !important;
-    }
-    .accent {
-      fill: $white !important;
-    }
-  }
-}
 // Form styles 
 .input-label {
-  @apply block text-sm font-medium text-gray-700;
+  @apply block text-sm font-medium text-primary-900 dark:text-primary-100;
 }
-
 .input-field {
-  @apply focus:border-green-sheen-500 focus:ring-green-sheen-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md;
+  @apply transition ease-in-out bg-primary-200 dark:bg-primary-700 text-primary-900 dark:text-primary-100 focus:ring-secondary-500 focus:border-secondary-500  dark:focus:ring-secondary-500 dark:focus:border-secondary-500 block w-full shadow-sm sm:text-sm border-2 border-primary-300 rounded-md;
 }
 .range-field {
-  @apply rounded-lg appearance-none bg-gray-200 h-3 w-full;
+  @apply rounded-lg appearance-none bg-primary-200 dark:bg-primary-500 h-3 w-full;
   &::-webkit-slider-thumb {
     width: 15px;
     -webkit-appearance: none;
     appearance: none;
     height: 15px;
     cursor: ew-resize;
-    background: $green-sheen;
     border-radius: 50%;
+    @apply bg-emerald-500 dark:bg-secondary-500;
   }
 }
 .button-success {
-  @apply inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-sheen-600 hover:bg-green-sheen-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-sheen-500
+  @apply inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md transition-colors ease-out duration-200 bg-secondary-700 dark:bg-secondary-600 hover:bg-secondary-800 dark:hover:bg-secondary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-700 ring-offset-primary-50 dark:ring-offset-primary-800
 }
 .button-danger {
-  @apply inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-terra-cotta-600 hover:bg-terra-cotta-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-terra-cotta-500
+  @apply inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md transition-colors ease-out duration-200 text-primary-900 bg-accent-300 hover:bg-accent-500 focus:outline-none focus:ring-2 focus:ring-offset-2 ring-offset-primary-50 dark:ring-offset-primary-800 focus:ring-accent-500
 }
 
 //Admin tables
 table.admin-table {
-  @apply min-w-full divide-y divide-gray-200;
+  @apply min-w-full divide-y divide-primary-200 dark:divide-primary-600;
   thead {
-    @apply bg-gray-200;
+    @apply text-primary-900 dark:text-primary-100;
     tr {
       th {
-        @apply px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider;
+        @apply px-6 py-3 text-left text-xs font-bold uppercase tracking-wider text-secondary-700 dark:text-secondary-600;
         &.textcenter {
           @apply text-center;
+        }
+        &:first-child {
+          @apply p-0;
         }
       }
     }
   }
   tbody {
-    @apply bg-white divide-y divide-gray-200;
+    @apply bg-primary-200 dark:bg-primary-700 text-primary-900 dark:text-primary-100;
     tr {
+      @apply border-y-2 border-primary-50 dark:border-primary-800;
       &:nth-child(even) {
-        @apply bg-gray-100;
+        @apply bg-primary-50 dark:bg-primary-800;
       }
       td {
-        @apply px-6 py-4 whitespace-nowrap text-xs leading-5 text-gray-900;
+        @apply px-6 py-3 whitespace-nowrap text-xs leading-5;
+        &:first-child {
+          @apply w-4 p-0 bg-secondary-700 dark:bg-secondary-600 border-r-2 border-primary-50 dark:border-primary-800;
+        }
       }
     }
   }
@@ -106,4 +74,43 @@ table.admin-table {
   position: relative;
   top: -6rem;
   visibility: hidden;
+}
+.bar {
+  height: 5px;
+  width: 250px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, red 0%, yellow 15%, lime 30%, cyan 50%, blue 65%, magenta 80%, red 100%);
+  background-size: 200%;
+  //animation: moveGradient 5s linear infinite;
+}
+.box-card {
+  @apply shadow-md rounded-lg bg-gradient-to-br from-primary-100 to-primary-200 dark:from-primary-600 dark:to-primary-700 transition hover:ring-4 ring-offset-4 ring-offset-primary-50 dark:ring-offset-primary-800 hover:ring-primary-300 dark:hover:ring-primary-600 ring-1 ring-primary-900 ring-opacity-5;
+}
+.custom-img {
+  object-fit: contain;
+  width: 100% !important;
+  position: relative !important;
+  height: unset !important;
+}
+.unset-img {
+  width: 100%;
+}
+.unset-img > div {
+  position: unset !important;
+}
+.toggle-bg {
+  @apply transition-all ease-in-out delay-150 bg-primary-200 dark:bg-primary-500 border-2 border-primary-200 dark:border-primary-500 h-6 w-11 rounded-full;
+}
+.toggle-bg:after {
+  content: '';
+  @apply transition-all ease-in-out delay-150 absolute top-0.5 left-0.5 bg-primary-50 dark:bg-primary-200 border border-primary-300 dark:border-primary-300 rounded-full h-5 w-5 shadow-sm;
+}
+input:checked + .toggle-bg:after {
+  transform: translateX(100%);
+}
+input:checked + .toggle-bg {
+  @apply bg-secondary-600 border-secondary-600 dark:bg-secondary-700 dark:border-secondary-700;
+}
+.overlay-color {
+  @apply from-secondary-700 dark:from-secondary-400 bg-gradient-to-r to-secondary-800 dark:to-secondary-600 bg-clip-text text-transparent;
 }

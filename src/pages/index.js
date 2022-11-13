@@ -1,34 +1,73 @@
-import Header from '../components/Header'
-import Bio from '../components/Bio'
-import Jobs from '../components/Jobs'
-import Share from '../components/Share'
-import Skills from '../components/Skills'
-import Top from '../components/Top'
-import Apps from '../components/Apps'
-import GitHub from '../components/GitHub'
-import Footer from '../components/Footer'
-import Head from 'next/head'
+import * as React from 'react';
+import { DocumentTextIcon, CommandLineIcon, UserCircleIcon } from '@heroicons/react/24/solid';
+import Header from '@/components/frontend/Header';
+import Bio from '@/components/frontend/Bio';
+import Jobs from '@/components/frontend/Jobs';
+import Share from '@/components/frontend/Share';
+import Skills from '@/components/frontend/Skills';
+import GitHub from '@/components/frontend/GitHub';
+import Footer from '@/components/frontend/Footer';
+import Sidemenu from '@/components/frontend/Sidemenu';
+import LatestPosts from '@/components/frontend/LatestPosts';
+import GitHubIcon from '@/components/icons/github';
 
 export default function Home() {
+  const menuData = [
+    {
+      id: 'bio',
+      text: 'Bio',
+      link: '#bio',
+      pre: <UserCircleIcon className="h-4" />,
+    },
+    {
+      id: 'skills',
+      text: 'Skills',
+      link: '#skills',
+      pre: <CommandLineIcon className="h-4" />,
+    },
+    {
+      id: 'articles',
+      text: 'Articles',
+      link: '#articles',
+      pre: <DocumentTextIcon className="h-4" />,
+    },
+    {
+      id: 'github',
+      text: 'GitHub',
+      link: '#github',
+      pre: <GitHubIcon className="h-4" />,
+    },
+  ];
   return (
-    <div>
-      <Head>
-        <title>Eduardo Chiaro</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <meta name="description" content="Eduardo Chiaro - Software Developer" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
-      </Head>
+    <div className="flex flex-col min-h-screen justify-between">
       <Header />
-      <Bio />
-      <Jobs />
       <Share />
-      <Skills />
-      <Apps />
-      <GitHub />
-      <Top />
+      <div className="flex">
+        <div className="grow"></div>
+        <div className="grow max-w-5xl mx-auto">
+          <div className="relative">
+            <span id="bio" className="anchor" />
+          </div>
+          <Bio />
+          <hr className="mt-10 max-w-5xl mx-auto border-t border-solid border-secondary-700 dark:border-secondary-600" />
+          <Jobs />
+          <div className="relative">
+            <span id="skills" className="anchor" />
+          </div>
+          <Skills />
+          <hr className="mt-10 max-w-5xl mx-auto border-t border-solid border-secondary-700 dark:border-secondary-600" />
+          <div className="relative">
+            <span id="articles" className="anchor" />
+          </div>
+          <LatestPosts />
+          <div className="relative">
+            <span id="github" className="anchor" />
+          </div>
+          <GitHub />
+        </div>
+        <Sidemenu menuData={menuData} />
+      </div>
       <Footer />
     </div>
-  )
+  );
 }

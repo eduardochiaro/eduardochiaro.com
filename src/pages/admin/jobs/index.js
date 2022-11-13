@@ -1,19 +1,20 @@
-import { BriefcaseIcon, ExclamationIcon, PencilAltIcon, PlusIcon, TrashIcon } from "@heroicons/react/outline";
-import { useSession } from "next-auth/react"
-import { useState, createRef } from "react";
-import { useSWRConfig } from "swr";
+import { BriefcaseIcon, ExclamationTriangleIcon } from '@heroicons/react/24/outline';
+import { useSession } from 'next-auth/react';
+import { useState, createRef } from 'react';
+import { useSWRConfig } from 'swr';
 import axios from 'axios';
-import AdminModal from "../../../elements/admin/Modal";
-import AdminWrapper from "../../../elements/admin/Wrapper";
-import mergeObj from "../../../lib/mergeObj";
-import NaturalImage from "../../../elements/NaturalImage";
-import useStaleSWR from "../../../lib/staleSWR";
-import moment from "moment";
+import AdminModal from '@/components/admin/Modal';
+import AdminWrapper from '@/components/admin/Wrapper';
+import Table from '@/components/admin/Table';
+import mergeObj from '@/utils/mergeObj';
+import SVG from 'react-inlinesvg';
+import useStaleSWR from '@/utils/staleSWR';
+import moment from 'moment';
 
 const AdminJobsIndex = ({ formRef }) => {
-  const { data: jobs, error } = useStaleSWR('/api/portfolio/works');
+  const { data: jobs, error } = useStaleSWR('/api/portfolio/jobs');
   const { data: session } = useSession();
-  
+
   const { mutate } = useSWRConfig();
 
   const jobFormat = {
@@ -21,16 +22,17 @@ const AdminJobsIndex = ({ formRef }) => {
     name: '',
     disclaimer: '',
     logo: '',
-    style: 0
+    startDate: null,
+    endDate: null,
   };
 
   let [isOpen, setIsOpen] = useState(false);
-  let [isOpenDelete, setIsOpenDelete] = useState(false); 
+  let [isOpenDelete, setIsOpenDelete] = useState(false);
   let [job, setJob] = useState(jobFormat);
   let [formError, setFormError] = useState(false);
 
   const onSubmitModal = async (e) => {
-    e.preventDefault();    
+    e.preventDefault();
     setFormError(false);
     if (!isFormValid(job)) {
       setFormError(true);
@@ -50,70 +52,63 @@ const AdminJobsIndex = ({ formRef }) => {
     //replace with axios
     axios({
       method: job.id ? 'PUT' : 'POST',
-      url: job.id ? `/api/portfolio/works/${job.id}` : '/api/portfolio/works/create',
+      url: job.id ? `/api/portfolio/jobs/${job.id}` : '/api/portfolio/jobs/create',
       data: formData,
       headers: {
-        'Content-Type': `multipart/form-data; boundary=${formData._boundary}`
-      }
+        'Content-Type': `multipart/form-data; boundary=${formData._boundary}`,
+      },
     }).then(({ data }) => {
-      mutate('/api/portfolio/works');
+      mutate('/api/portfolio/jobs');
       closeModal();
     });
-  }
+  };
 
   const isFormValid = (form) => {
-    if (
-      form.name == ''
-      || form.style <= 0
-      || form.style == ''
-      || (!form.id && !form.logo)
-      ) {
-        return false;
+    if (form.name == '' || form.style <= 0 || form.style == '' || (!form.id && !form.logo)) {
+      return false;
     }
     return true;
-  }
+  };
 
   const onPrimaryButtonClick = () => {
-    formRef.current.dispatchEvent(
-      new Event("submit", { bubbles: true, cancelable: true })
-    )
-  }
+    formRef.current.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+  };
 
   const onPrimaryButtonClickDelete = async () => {
-    const urlDelete = `/api/portfolio/works/${job.id}`;
+    const urlDelete = `/api/portfolio/jobs/${job.id}`;
     await axios({
       url: urlDelete,
       method: 'DELETE',
       headers: {
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     });
-    mutate('/api/portfolio/works');
+    mutate('/api/portfolio/jobs');
     closeModalDelete();
-  }
-  
+  };
+
   const openModal = (job) => {
     const openJob = mergeObj(jobFormat, job);
     setJob(openJob);
     setIsOpen(true);
-  }
+  };
 
   const closeModal = () => {
     setJob(jobFormat);
     setIsOpen(false);
     setFormError(false);
-  }
-  
+  };
+
   const openModalDelete = (job) => {
     const openJob = mergeObj(jobFormat, job);
     setJob(openJob);
     setIsOpenDelete(true);
-  }
+  };
 
   const closeModalDelete = () => {
     setJob(jobFormat);
     setIsOpenDelete(false);
-  }
+  };
 
   const handleChange = (e) => {
     if (e.target.files) {
@@ -121,176 +116,178 @@ const AdminJobsIndex = ({ formRef }) => {
     } else {
       setJob({ ...job, [e.target.name]: e.target.value });
     }
-  }
+  };
+
+  const columns = [
+    {
+      name: 'Name',
+      key: 'name',
+      searchable: true,
+      classNameTd: 'font-bold',
+    },
+    {
+      name: 'Logo',
+      key: 'logo_d',
+      className: 'textcenter',
+      classNameTd: 'text-center',
+    },
+    {
+      name: 'When',
+      key: 'when_d',
+      searchable: false,
+    },
+    {
+      name: 'Disclaimer',
+      key: 'disclaimer',
+      searchable: true,
+    },
+    {
+      name: 'Updated',
+      key: 'updated',
+      classNameTd: 'w-44',
+    },
+  ];
+
+  const newData = [];
+  jobs?.results.map((item) => {
+    const obj = { ...item };
+    obj.updated = moment(item.updatedAt || item.createdAt).from(moment());
+    obj.when_d =
+      (item.startDate ? moment(item.startDate).format('YYYY-MM') : 'N/A') + ' - ' + (item.endDate ? moment(item.endDate).format('YYYY-MM') : 'Current');
+    obj.description_d = <p className="w-64 text-ellipsis overflow-hidden">{item.description}</p>;
+    obj.logo_d = (
+      <>
+        <div className="w-32 m-auto relative">
+          <SVG alt={item.name} className={'inline w-auto fill-primary-700 dark:fill-primary-200'} src={`/uploads/${item.logo}`} height={25} />
+        </div>
+        <div className="small">{item.logo}</div>
+      </>
+    );
+    obj.size = item.style + 'px';
+    newData.push(obj);
+  });
 
   if (session) {
     return (
       <AdminWrapper>
-        <div className="flex my-2">
-          <h1 className="flex-auto text-4xl"><BriefcaseIcon className="inline-flex align-text-bottom h-10 text-terra-cotta-500 "/> Jobs list</h1>
-          <div className="flex-none text-right">
-            <button className="bg-terra-cotta-500 hover:bg-terra-cotta-600 text-white font-bold py-2 px-4 mb-5 rounded" onClick={() => openModal(jobFormat)}>
-              <PlusIcon className="inline-flex align-text-bottom h-5 text-white  "/> Add new job
-            </button>
-          </div>
-        </div>
-        <div className="flex flex-col">
-          <div className="-my-2 sm:-mx-6 lg:-mx-8">
-            <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-              <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                <table className="admin-table">
-                  <thead>
-                    <tr>
-                      <th scope="col">
-                        Name
-                      </th>
-                      <th scope="col" className="textcenter">
-                        Logo
-                      </th>
-                      <th scope="col" className="textcenter">
-                        Size (width)
-                      </th>
-                      <th scope="col">
-                        Disclaimer
-                      </th>
-                      <th scope="col">
-                        Last Updated
-                      </th>
-                      <th scope="col" className="relative">
-                        <span className="sr-only">Edit</span>
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {jobs?.results.map((item) => (
-                      <tr key={item.id}>
-                        <td>
-                          <strong>{item.name}</strong>
-                        </td>
-                        <td className="text-center">
-                          <div className="w-32 m-auto relative">
-                            <NaturalImage
-                              src={`/uploads/${item.logo}`}
-                              size={item.style}
-                              alt={item.name}
-                              title={item.name}
-                              />
-                          </div>
-                          <div className="small">{item.logo}</div>
-                        </td>
-                        <td className="text-center">
-                          {item.style}px
-                        </td>
-                        <td>
-                          {item.disclaimer}
-                        </td>
-                        <td className="w-44">
-                          {moment(item.updatedAt || item.createdAt).from(moment())}
-                        </td>
-                        <td className="w-44 text-right font-medium">
-                          <a href="#" className="text-green-sheen-600 hover:text-green-sheen-900" onClick={() => openModal(item)}>
-                            <PencilAltIcon className="inline-flex align-text-bottom h-4 mr-1"/>Edit
-                          </a>
-                          <a href="#" className="text-green-sheen-600 hover:text-green-sheen-900 ml-4" onClick={() => openModalDelete(item)}>
-                            <TrashIcon className="inline-flex align-text-bottom h-4 mr-1"/>Delete
-                          </a>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-        <AdminModal 
+        <AdminWrapper.Header>
+          <h1 className="text-2xl flex items-center gap-2">
+            <BriefcaseIcon className="h-6 text-secondary-700 dark:text-secondary-600" /> Jobs list
+          </h1>
+        </AdminWrapper.Header>
+        <Table
+          columns={columns}
+          data={newData}
+          format={jobFormat}
+          editAction={openModal}
+          deleteAction={openModalDelete}
+          openAction={openModal}
+          openActionLabel="Add new job"
+        />
+        <AdminModal
           title={job.id ? 'Edit job' : 'Add new job'}
-          isOpen={isOpen} 
-          closeModal={closeModal} 
+          isOpen={isOpen}
+          closeModal={closeModal}
           showButtons={true}
           onSecondaryButtonClick={closeModal}
           onPrimaryButtonClick={onPrimaryButtonClick}
-          >
-          <form 
-            ref={ formRef } 
-            acceptCharset="UTF-8"
-            method="POST"
-            encType="multipart/form-data"
-            onSubmit={onSubmitModal}>
-            {formError &&
-              <div className="bg-terra-cotta-100 border border-terra-cotta-400 text-terra-cotta-700 px-4 py-3 rounded relative mb-4" role="alert">
-                <strong className="font-bold"><ExclamationIcon className="inline-flex align-middle h-6 mr-4"/>Invalid Form! </strong>
+        >
+          <form ref={formRef} acceptCharset="UTF-8" method="POST" encType="multipart/form-data" onSubmit={onSubmitModal}>
+            {formError && (
+              <div className="bg-accent-100 border border-accent-400 text-accent-700 px-4 py-3 rounded relative mb-4" role="alert">
+                <strong className="font-bold">
+                  <ExclamationTriangleIcon className="inline-flex align-middle h-6 mr-4" />
+                  Invalid Form!{' '}
+                </strong>
                 <span className="block sm:inline">Some required fields are missing.</span>
               </div>
-            }
+            )}
             <div className="grid grid-cols-6 gap-6">
               <div className="col-span-6">
                 <label htmlFor="name-form" className="input-label">
-                  Title <span className="text-terra-cotta-600 text-xl">*</span>
+                  Title <span className="text-secondary-700 align-super">*</span>
                 </label>
                 <input
                   type="text"
                   name="name"
                   id="name-form"
                   autoComplete="off"
-                  data-lpignore="true" 
+                  data-lpignore="true"
                   data-form-type="other"
                   className="mt-1 input-field"
                   value={job.name}
                   onChange={handleChange}
+                  maxLength={191}
                   required
                 />
               </div>
-              <div className="col-span-6 sm:col-span-5">
+              <div className="col-span-5 sm:col-span-4">
                 <label htmlFor="logo-url-form" className="input-label">
-                  Logo { !job.id &&
-                   <span className="text-terra-cotta-600 text-xl">*</span>
-                  }
+                  Logo {!job.id && <span className="text-secondary-700">*</span>}
                 </label>
                 <input
                   type="file"
                   name="logo"
                   id="logo-url-form"
-                  className="mt-1 block w-full text-sm text-slate-500
-                        file:mr-4 file:py-2 file:px-4
-                        file:rounded-full file:border-0
-                        file:text-sm file:font-semibold
-                        file:bg-independence-200 file:text-independence-700
-                        hover:file:bg-independence-300
+                  className="input-field
+                  mt-1
+                  py-1.5 px-2
+                  focus:outline-none
                   "
                   onChange={handleChange}
                 />
               </div>
-              <div className="col-span-6 sm:col-span-1">
-                <label htmlFor="style-form" className="input-label">
-                  Size (width) <span className="text-terra-cotta-600 text-xl">*</span>
+              <div className="col-span-2">
+                {job.id > 0 && job.logo && (
+                  <>
+                    <label htmlFor="style-form" className="input-label">
+                      Current
+                    </label>
+                    <div className="mt-4">
+                      <SVG alt={job.name} className={'inline w-auto fill-primary-700 dark:fill-primary-200'} src={`/uploads/${job.logo}`} height={25} />
+                    </div>
+                  </>
+                )}
+              </div>
+              <div className="col-span-3">
+                <label htmlFor="startDate-form" className="input-label">
+                  Start date
                 </label>
                 <input
-                  type="number"
-                  name="style"
-                  id="style-form"
+                  type="date"
+                  name="startDate"
+                  id="startDate-form"
                   autoComplete="off"
-                  data-lpignore="true" 
+                  data-lpignore="true"
                   data-form-type="other"
                   className="mt-1 input-field"
-                  value={job.style}
+                  value={job.startDate ? moment(job.startDate).format('YYYY-MM-DD') : ''}
                   onChange={handleChange}
-                  required
+                />
+              </div>
+              <div className="col-span-3">
+                <label htmlFor="endDate-form" className="input-label">
+                  End date
+                </label>
+                <input
+                  type="date"
+                  name="endDate"
+                  id="endDate-form"
+                  autoComplete="off"
+                  data-lpignore="true"
+                  data-form-type="other"
+                  className="mt-1 input-field"
+                  value={job.endDate ? moment(job.endDate).format('YYYY-MM-DD') : ''}
+                  onChange={handleChange}
                 />
               </div>
               <div className="col-span-6">
                 <label htmlFor="disclaimer-form" className="input-label">
                   Disclaimer
                 </label>
-                <textarea
-                  name="disclaimer"
-                  id="disclaimer-form"
-                  className="mt-1 input-field"
-                  value={job.disclaimer}
-                  onChange={handleChange}
-                />
+                <textarea name="disclaimer" id="disclaimer-form" className="mt-1 input-field" value={job.disclaimer} onChange={handleChange} maxLength={191} />
               </div>
-            </div>  
+            </div>
           </form>
         </AdminModal>
         <AdminModal
@@ -302,19 +299,20 @@ const AdminJobsIndex = ({ formRef }) => {
           onPrimaryButtonClick={onPrimaryButtonClickDelete}
           primaryButtonLabel="Delete"
           primaryButtonClass="button-danger"
+          fullSize={false}
         >
-          <p>Are you sure you want to delete job &quot;{ job.name }&quot;?</p>
+          <p>Are you sure you want to delete job &quot;{job.name}&quot;?</p>
         </AdminModal>
       </AdminWrapper>
-    )
+    );
   }
-  return null
-}
+  return null;
+};
 
 export async function getStaticProps() {
   return {
     props: { formRef: createRef() }, // will be passed to the page component as props
-  }
+  };
 }
 
 export default AdminJobsIndex;

@@ -1,15 +1,17 @@
-import apiWithMiddleware from '../../../../lib/apiWithMiddleware';
-import prisma from '../../../../lib/prisma';
-import cors from '../../../../lib/cors';
+import apiWithMiddleware from '@/utils/apiWithMiddleware';
+import prisma from '@/utils/prisma';
+import cors from '@/middlewares/cors';
 
 const handler = async (req, res) => {
   await cors(req, res);
   const apps = await prisma.app.findMany({
     where: {
-      deletedAt: null
-    }
+      deletedAt: null,
+    },
+    orderBy: {
+      createdAt: 'desc',
+    },
   });
   res.status(200).json({ results: apps });
-}
+};
 export default apiWithMiddleware(handler);
-

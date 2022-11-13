@@ -1,6 +1,7 @@
-import { useSession } from "next-auth/react"
-import Head from "next/head";
-import AdminWrapper from "../../elements/admin/Wrapper";
+import { ComputerDesktopIcon } from '@heroicons/react/24/outline';
+import { useSession } from 'next-auth/react';
+import Head from 'next/head';
+import AdminWrapper from '@/components/admin/Wrapper';
 
 const AdminIndex = () => {
   const { data: session } = useSession();
@@ -8,18 +9,17 @@ const AdminIndex = () => {
     return (
       <AdminWrapper>
         <Head>
-          <title>Eduardo Chiaro - Admin</title>
-          <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-          <meta name="description" content="Eduardo Chiaro - Software Developer" />
-          <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
-          <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
-          <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
+          <title>Eduardo Chiaro | Admin</title>
         </Head>
-        <h1>Homepage</h1>
+        <AdminWrapper.Header>
+          <h1 className="text-2xl flex items-center gap-2">
+            <ComputerDesktopIcon className="h-6 text-secondary-700 dark:text-secondary-600" /> Dashboard
+          </h1>
+        </AdminWrapper.Header>
       </AdminWrapper>
-    )
+    );
   }
-  return null
-}
+  return null;
+};
 
 export default AdminIndex;

@@ -1,3 +1,15 @@
 .sidebar-link {
-  @apply relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-terra-cotta-500 pr-6
+  @apply relative flex items-center gap-2 h-11 focus:outline-none px-3;
+}
+.sidebar-open {
+  @apply w-64;
+}
+.sidebar-closed {
+  @apply w-24;
+  svg {
+    @apply mx-auto
+  }
+  .hide-when-closed {
+    @apply hidden;
+  }
 }
