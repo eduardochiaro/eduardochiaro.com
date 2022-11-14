@@ -1,11 +1,12 @@
 import { ChevronUpIcon, TagIcon } from '@heroicons/react/24/solid';
 import { BookmarkIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
-import Image from 'next/image';
 import * as React from 'react';
 import useStaleSWR from '@/utils/staleSWR';
 import Masonry from 'react-masonry-css';
 import Sidemenu from './Sidemenu';
+import ImageWithFallback from '../ImageWithFallback';
+import emptyIcon from '../icons/empty';
 
 const breakpointColumnsObj = {
   default: 2,
@@ -59,12 +60,13 @@ export default function Bookmarks() {
                         </h3>
                         <p className="text-sm opacity-80 tracking-wide flex items-center gap-2">
                           <span className="block w-5">
-                            <Image
+                            <ImageWithFallback
                               src={`https://www.google.com/s2/favicons?domain=${bookmark.domain}`}
                               className="m-auto"
                               width="16"
                               height="16"
                               alt={bookmark.domain}
+                              fallbackSrc={emptyIcon}
                             />
                           </span>
                           {bookmark.domain}
