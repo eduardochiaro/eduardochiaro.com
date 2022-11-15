@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-html,body {
-  user-select: none;
-}
-
 body {
   @apply bg-primary-50 dark:bg-primary-800 text-primary-900 dark:text-primary-100;
 }
