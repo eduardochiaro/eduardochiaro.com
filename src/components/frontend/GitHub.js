@@ -19,7 +19,7 @@ export default function GitHub() {
 
   const LoadImage = ({ src, alt }) => {
     const pick = randomIntFromInterval(1, 4);
-    const replaceSrc = src.includes('githubusercontent.com') ? src : `/images/random/${pick}.jpg`; 
+    const replaceSrc = src.includes('githubusercontent.com') ? src : `/images/random/${pick}.jpg`;
     return <Image src={replaceSrc} fill sizes="33vw" className="z-10 object-cover" alt={alt} />;
   };
 

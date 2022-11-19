@@ -24,7 +24,7 @@ export default function Terminal() {
 
   const callAction = async (command, commandArgs) => {
     setHistoryIndex(0);
-    const currentHistory = [...history];
+    let currentHistory = [...history];
     const time = moment().format('HH:mm');
     switch (command) {
       case 'help':
