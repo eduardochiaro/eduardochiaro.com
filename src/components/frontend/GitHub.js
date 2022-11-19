@@ -17,36 +17,10 @@ export default function GitHub() {
 
   const cutReposene = data ? data.results.filter((x) => !x.isArchived).slice(0, 6) : [];
 
-  const getLanguageIcon = (language) => {
-    switch (language) {
-      case 'JavaScript':
-        return 'js';
-      case 'Swift':
-        return 'swift';
-      case 'TypeScript':
-        return 'node';
-      case 'CSS':
-        return 'css';
-      case 'SCSS':
-      case 'CSS3':
-        return 'css3';
-      case 'PHP':
-        return 'php';
-      case 'Shell':
-        return 'shell';
-      default:
-        return 'html';
-    }
-  };
-
   const LoadImage = ({ src, alt }) => {
     const pick = randomIntFromInterval(1, 4);
-
-    return src.includes('avatars.githubusercontent.com') ? (
-      <Image src={`/images/random/${pick}.jpg`} fill sizes="33vw" className="z-10 object-cover" alt={alt} />
-    ) : (
-      <Image src={src} fill sizes="33vw" className="z-10 object-cover" alt={alt} />
-    );
+    const replaceSrc = src.includes('githubusercontent.com') ? src : `/images/random/${pick}.jpg`; 
+    return <Image src={replaceSrc} fill sizes="33vw" className="z-10 object-cover" alt={alt} />;
   };
 
   const items = cutReposene.map((repo, index) => (
