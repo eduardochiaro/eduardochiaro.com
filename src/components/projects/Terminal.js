@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useReducer, useRef } from 'react';
 import moment from 'moment';
 import SpinnerIcon from '@/components/icons/spinner';
 import * as commands from '@/utils/projects/terminal/commands';
@@ -9,22 +9,30 @@ const useFocus = () => {
   const setFocus = () => {
     htmlElRef.current && htmlElRef.current.focus();
   };
-
   return [htmlElRef, setFocus];
 };
+
+const initialState = {
+  time: moment().format('HH:mm'),
+  command: '',
+  historyIndex: 0,
+  history: [],
+  isLoading: false
+}
+
+function reducer(state, action) {
+  return { ...state, ...action };
+}
+
 export default function Terminal() {
-  const [historyIndex, setHistoryIndex] = useState(0);
+  const [state, dispatch] = useReducer(reducer, initialState);
   const [inputRef, setInputFocus] = useFocus();
-  const [isLoading, setIsLoading] = useState(false);
-  const [command, setCommand] = useState('');
-  const [history, setHistory] = useState([]);
-  const [currentTime, setCurrentTime] = useState(moment().format('HH:mm'));
 
   const availableCommands = ['help', 'clear', ...Object.keys(commands)];
 
   const callAction = async (command, commandArgs) => {
-    setHistoryIndex(0);
-    let currentHistory = [...history];
+    dispatch({ historyIndex: 0 });
+    let currentHistory = [...state.history];
     const time = moment().format('HH:mm');
     switch (command) {
       case 'help':
@@ -48,8 +56,7 @@ export default function Terminal() {
         }
         break;
     }
-    setIsLoading(false);
-    setHistory(currentHistory);
+    dispatch({ isLoading: false, history: currentHistory });
   };
 
   const commandFormat = {
@@ -66,35 +73,29 @@ export default function Terminal() {
       const command = args[0].toLowerCase();
       const commandArgs = args.slice(1);
 
-      setIsLoading(true);
+      dispatch({ isLoading: true });
       await callAction(command, commandArgs);
-      setCommand('');
-      setCurrentTime(moment().format('HH:mm'));
+      dispatch({ time: moment().format('HH:mm'), command: '' });
     }
 
     if (e.key === 'ArrowUp') {
       e.preventDefault();
-      const index = historyIndex + 1;
-      const findOldCommand = history[history.length - index]?.command;
+      const index = state.historyIndex + 1;
+      const findOldCommand = state.history[state.history.length - index]?.command;
       if (findOldCommand) {
-        setHistoryIndex(index);
-        setCommand(findOldCommand);
-        setCurrentTime(moment().format('HH:mm'));
+        dispatch({ time: moment().format('HH:mm'), command: findOldCommand, historyIndex: index });
       }
     }
 
     if (e.key === 'ArrowDown') {
       e.preventDefault();
-      const index = historyIndex - 1;
-      const findOldCommand = history[history.length - index]?.command;
+      const index = state.historyIndex - 1;
+      const findOldCommand = state.history[state.history.length - index]?.command;
       if (findOldCommand) {
-        setHistoryIndex(index);
-        setCommand(findOldCommand);
+        dispatch({ time: moment().format('HH:mm'), command: findOldCommand, historyIndex: index });
       } else {
-        setHistoryIndex(0);
-        setCommand('');
+        dispatch({ time: moment().format('HH:mm'), command: '', historyIndex: 0 });
       }
-      setCurrentTime(moment().format('HH:mm'));
     }
   };
 
@@ -130,7 +131,7 @@ export default function Terminal() {
         <div className="w-3 h-3 rounded-full bg-emerald-500 border border-emerald-600"></div>
       </div>
       <div className="bg-primary-900 text-primary-100 rounded-b-lg grow font-mono p-4 overflow-y-auto justify-end shadow-lg" onClick={setInputFocus}>
-        {history.map((line, index) => (
+        {state.history.map((line, index) => (
           <div key={`history-${index}`} className="mb-1">
             <div className="flex flex-row space-x-2 items-center">
               <div className="flex-shrink">
@@ -145,7 +146,7 @@ export default function Terminal() {
         ))}
         <div className="flex flex-row space-x-2 items-center">
           <div className="flex-shrink">
-            <Ps1Line time={currentTime} />
+            <Ps1Line time={state.time} />
           </div>
           <div className="flex-1 relative">
             <input
@@ -158,13 +159,13 @@ export default function Terminal() {
               data-form-type="other"
               className={classNames(
                 'border-0 p-0 bg-transparent focus:outline-none w-full',
-                !isACommand(command) && command != '' ? 'text-red-400' : 'text-emerald-500',
+                !isACommand(state.command) && state.command != '' ? 'text-red-400' : 'text-emerald-500',
               )}
               onKeyDown={handleChange}
-              onChange={(e) => setCommand(e.target.value)}
-              value={command}
+              onChange={(e) => dispatch({ command: e.target.value })}
+              value={state.command}
             />
-            {isLoading && <SpinnerIcon className="h-5 animate-spin absolute top-0 right-0" />}
+            {state.isLoading && <SpinnerIcon className="h-5 animate-spin absolute top-0 right-0" />}
           </div>
         </div>
         <AlwaysScrollToBottom />
