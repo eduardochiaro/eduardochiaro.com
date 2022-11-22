@@ -6,7 +6,7 @@ import NavLink from '@/components/NavLink';
 import styles from '@/styles/Admin.Sidebar.module.scss';
 import Logo from '@/components/icons/logo';
 import { Fragment, useState } from 'react';
-import { ArrowLeftCircleIcon, Bars3CenterLeftIcon } from '@heroicons/react/24/solid';
+import { ArrowLeftCircleIcon, Bars3BottomRightIcon } from '@heroicons/react/24/solid';
 import { Menu, Transition } from '@headlessui/react';
 import { useSession, signOut } from 'next-auth/react';
 import ThemeIcon from '../ThemeIcon';
@@ -28,7 +28,7 @@ const AdminSidebar = ({ menuList }) => {
           <div className={`grow font-bold font-header hidden xl:block ${openMenu ? '' : styles['hide-when-closed']}`}>Eduardo Chiaro</div>
           <button
           onClick={() => setOpenMenu(!openMenu)}>
-            <Bars3CenterLeftIcon className="w-5" />
+            <Bars3BottomRightIcon className="w-5" />
           </button>
         </div>
         <ul className="grow flex flex-col py-4 space-y-1 font-semibold tracking-wider">
