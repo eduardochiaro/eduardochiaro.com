@@ -1,33 +1,47 @@
 import * as React from 'react';
 import { getProviders, signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
-import { ArrowRightCircleIcon } from '@heroicons/react/24/outline';
-import Header from '@/components/frontend/Header';
+import Logo from '@/components/icons/logo';
+import GitHub from '@/components/icons/github';
+import Google from '@/components/icons/google';
+import ThemeIcon from '@/components/ThemeIcon';
+
+const LogoProvider = ({ id }) => {
+  switch (id) {
+    case 'github':
+      return <GitHub className="w-5" />;
+    case 'google':
+      return <Google className="w-5" />;
+  }
+};
 
 export default function SignIn({ providers, basePath }) {
   const router = useRouter();
   //const baseUrl = router.basePath;
-
+  console.log(providers);
   return (
     <div>
-      <Header />
-      <div className="flex items-center justify-center min-h-screen -mt-14">
-        <div className="w-full max-w-lg px-10 py-8 mx-auto">
-          <div className="max-w-md mx-auto space-y-6">
-            <div className="bg-primary-200 dark:bg-primary-700 rounded-lg shadow-xl px-4 py-6 text-center">
-              <h1 className="font-header mt-6 text-3xl">Not signed in</h1>
+      <div className="flex items-center justify-center min-h-screen relative">
+        <div className="absolute top-4 right-4">
+          <ThemeIcon />
+        </div>
+        <div className="w-full px-10 py-8 mx-auto">
+          <div className="max-w-sm mx-auto space-y-6">
+            <div className="bg-primary-200 dark:bg-primary-700 rounded-lg drop-shadow px-4 py-6 text-center">
+              <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={'w-20 h-20 mx-auto'} />
+              <h1 className="font-header my-6 text-3xl">Not signed in</h1>
               {Object.values(providers).map((provider) => (
-                <div key={provider.name} className="mt-8">
+                <div key={provider.name} className="py-4">
                   <button
-                    className="flex items-center mx-auto bg-primary-800 text-primary-50 p-3 px-4 rounded-lg text-xl transition duration-200 ease-in-out hover:ring-2 ring-offset-2 ring-primary-800 mb-4"
+                    className="flex items-center gap-3 mx-auto bg-primary-300 dark:bg-primary-800 text-primary-800 dark:text-primary-50 p-3 px-4 rounded-lg text-xl transition duration-200 ease-in-out hover:ring-2 ring-offset-2 ring-primary-500"
                     onClick={() =>
                       signIn(provider.id, {
                         callbackUrl: router.query.callbackUrl,
                       })
                     }
                   >
+                    <LogoProvider id={provider.id} />
                     Sign in with {provider.name}
-                    <ArrowRightCircleIcon className="h-5 ml-2" />
                   </button>
                 </div>
               ))}
