@@ -5,7 +5,7 @@ import { useTheme } from 'next-themes';
 import { Menu, Transition } from '@headlessui/react';
 import classNames from '@/utils/classNames';
 
-export default function ThemeIcon() {
+export default function ThemeIcon({ orientation }) {
   const [iconClass, setIconClass] = useState(null);
   const [inUseTheme, setInUseTheme] = useState('dark');
   const { systemTheme, theme, setTheme } = useTheme();
@@ -13,6 +13,15 @@ export default function ThemeIcon() {
   const setColorTheme = (themeName) => {
     setTheme(themeName);
   };
+
+  const orientationClass = (orientation) => {
+    switch (orientation) {
+      case 'top':
+        return 'left-0 bottom-0 mb-10';
+      default:
+        return 'right-0 mt-10';
+    }
+  }
 
   useEffect(() => {
     const classColors = [
@@ -79,7 +88,7 @@ export default function ThemeIcon() {
       >
         <Menu.Items
           data-cy="change-mode-container"
-          className="transform absolute right-0 z-10 mt-10 w-56 origin-bottom-right rounded-md shadow-lg ring-1 ring-primary-900 ring-opacity-10 focus:outline-none bg-primary-100 dark:bg-primary-700 divide-y divide-primary-200 dark:divide-primary-600"
+          className={`${orientationClass(orientation)} transform absolute z-10 w-56 rounded-md shadow-lg ring-1 ring-primary-900 ring-opacity-10 focus:outline-none bg-primary-100 dark:bg-primary-700 divide-y divide-primary-200 dark:divide-primary-600`}
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="menu-button"
