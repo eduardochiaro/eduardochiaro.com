@@ -15,10 +15,8 @@ const LogoProvider = ({ id }) => {
   }
 };
 
-export default function SignIn({ providers, basePath }) {
+export default function SignIn({ providers }) {
   const router = useRouter();
-  //const baseUrl = router.basePath;
-  console.log(providers);
   return (
     <div>
       <div className="flex items-center justify-center min-h-screen relative">
