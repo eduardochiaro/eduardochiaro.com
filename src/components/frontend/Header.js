@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { RssIcon, Bars3Icon } from '@heroicons/react/24/solid';
+import { RssIcon, Bars3BottomLeftIcon } from '@heroicons/react/24/solid';
 import { useRouter } from 'next/router';
 import { Menu, Transition } from '@headlessui/react';
 import ThemeIcon from '@/components/ThemeIcon';
@@ -43,7 +43,7 @@ export default function Header() {
           <div className="flex-none flex gap-4 font-header text-2xl">
             <Menu as="div" className="inline-block md:hidden">
               <Menu.Button title="open menu" className="inline-block md:hidden hover:cursor-pointer">
-                <Bars3Icon className={'w-7 inline-block transition hover:text-primary-900 dark:hover:text-primary-100'} />
+                <Bars3BottomLeftIcon className={'w-7 inline-block transition hover:text-primary-900 dark:hover:text-primary-100'} />
               </Menu.Button>
               <Transition
                 as={Fragment}
@@ -81,7 +81,7 @@ export default function Header() {
               </Transition>
             </Menu>
             <Link href="/" className="flex items-center gap-2 md:gap-3 group">
-              <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={'w-auto h-5 md:h-7 group-hover:fill-accent-600 group-hover:text-accent-600'} />
+              <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={'w-auto h-5 md:h-7 group-hover:fill-secondary-600 group-hover:text-secondary-600'} />
               <div className="text-xl md:text-2xl font-semibold tracking-wide group-hover:underline">Eduardo Chiaro</div>
             </Link>
           </div>
