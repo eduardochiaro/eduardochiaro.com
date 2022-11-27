@@ -6,7 +6,7 @@ export default function Jobs() {
   const { data } = useStaleSWR('/api/portfolio/jobs');
 
   return (
-    <section id="work" className={'px-4 lg:px-0 mt-10'}>
+    <section id="work-component" className={'px-4 lg:px-0 mt-10'}>
       <div className="max-w-5xl mx-auto">
         <h3 className="font-header leading-tight tracking-wide text-2xl lg:text-3xl font-light">
           I&apos;ve <span className="overlay-color">worked</span> for...
