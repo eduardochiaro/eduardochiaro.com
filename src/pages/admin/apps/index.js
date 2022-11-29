@@ -5,12 +5,13 @@ import { useSWRConfig } from 'swr';
 import axios from 'axios';
 import AdminModal from '@/components/admin/Modal';
 import AdminWrapper from '@/components/admin/Wrapper';
-import Table from '@/components/admin/Table';
+import List from '@/components/admin/List';
 import mergeObj from '@/utils/mergeObj';
 import useStaleSWR from '@/utils/staleSWR';
 import moment from 'moment';
 import Link from 'next/link';
 import Image from 'next/image';
+import { TrashIcon } from '@heroicons/react/24/solid';
 
 const AdminAppsIndex = ({ formRef }) => {
   const { data: apps, error } = useStaleSWR('/api/portfolio/apps');
@@ -154,20 +155,15 @@ const AdminAppsIndex = ({ formRef }) => {
     obj.updated = moment(item.updatedAt || item.createdAt).from(moment());
     obj.description_d = <p className="w-64 text-ellipsis overflow-hidden">{item.description}</p>;
     obj.image_d = (
-      <>
-        <div className="w-32 h-20 m-auto relative">
           <Image
             src={`/uploads/${item.image}`}
             fill
             sizes="100vw"
             alt={item.name}
             title={item.name}
-            className="bg-transparent object-contain"
+            className="bg-transparent object-cover"
             priority="false"
           />
-        </div>
-        <div className="small">{item.image}</div>
-      </>
     );
     obj.github_url = (
       <>
@@ -183,130 +179,147 @@ const AdminAppsIndex = ({ formRef }) => {
   if (session) {
     return (
       <AdminWrapper>
-        <AdminWrapper.Header>
+
+        <div className="h-full py-8 px-6 w-full w-1/4">
           <h1 className="text-2xl flex items-center gap-2">
             <CpuChipIcon className="h-6 text-secondary-700 dark:text-secondary-600" /> Apps list
           </h1>
-        </AdminWrapper.Header>
-        <Table
-          columns={columns}
-          data={newData}
-          format={appFormat}
-          editAction={openModal}
-          deleteAction={openModalDelete}
-          openAction={openModal}
-          openActionLabel="Add new app"
-        />
-        <AdminModal
-          title={app.id ? 'Edit app' : 'Add new app'}
-          isOpen={isOpen}
-          closeModal={closeModal}
-          showButtons={true}
-          onSecondaryButtonClick={closeModal}
-          onPrimaryButtonClick={onPrimaryButtonClick}
-        >
-          <form ref={formRef} acceptCharset="UTF-8" method="POST" encType="multipart/form-data" onSubmit={onSubmitModal}>
-            {formError && (
-              <div className="bg-accent-100 border border-accent-400 text-accent-700 px-4 py-3 rounded relative mb-4" role="alert">
-                <strong className="font-bold">
-                  <ExclamationTriangleIcon className="inline-flex align-middle h-6 mr-4" />
-                  Invalid Form!{' '}
-                </strong>
-                <span className="block sm:inline">Some required fields are missing.</span>
-              </div>
-            )}
-            <div className="grid grid-cols-6 gap-6">
-              <div className="col-span-6">
-                <label htmlFor="name-form" className="input-label">
-                  Title <span className="text-secondary-700">*</span>
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  id="name-form"
-                  autoComplete="off"
-                  data-lpignore="true"
-                  data-form-type="other"
-                  className="mt-1 input-field"
-                  value={app.name}
-                  onChange={handleChange}
-                  maxLength={191}
-                  required
-                />
-              </div>
-              <div className="col-span-4">
-                <label htmlFor="image-url-form" className="input-label">
-                  Image {!app.id && <span className="text-secondary-700">*</span>}
-                </label>
-                <input
-                  type="file"
-                  name="image"
-                  id="image-url-form"
-                  className="mt-1 block w-full text-sm text-slate-500
-                        file:mr-4 file:py-2 file:px-4
-                        file:rounded-full file:border-0
-                        file:text-sm file:font-semibold
-                        file:bg-primary-200 file:text-primary-700
-                        hover:file:bg-primary-300
-                  "
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="col-span-2">
-                {app.id > 0 && app.image && (
-                  <>
-                    <label htmlFor="style-form" className="input-label">
-                      Current
-                    </label>
-                    <div className="mt-4 w-32 h-20 m-auto  relative">
-                      <Image
-                        src={`/uploads/${app.image}`}
-                        fill
-                        sizes="100vw"
-                        alt={app.name}
-                        title={app.name}
-                        className="bg-transparent object-contain"
-                        priority="false"
-                      />
-                    </div>
-                  </>
-                )}
-              </div>
-              <div className="col-span-6">
-                <label htmlFor="url-form" className="input-label">
-                  GitHub URL <span className="text-secondary-700">*</span>
-                </label>
-                <input
-                  type="url"
-                  name="url"
-                  id="url-form"
-                  autoComplete="off"
-                  data-lpignore="true"
-                  data-form-type="other"
-                  className="mt-1 input-field"
-                  value={app.url}
-                  onChange={handleChange}
-                  maxLength={191}
-                  required
-                />
-              </div>
-              <div className="col-span-6">
-                <label htmlFor="description-form" className="input-label">
-                  Description
-                </label>
-                <textarea
-                  name="description"
-                  id="description-form"
-                  className="mt-1 input-field"
-                  rows={5}
-                  value={app.description}
-                  onChange={handleChange}
-                  maxLength={191}
-                />
-              </div>
+          
+          <List
+            columns={columns}
+            data={newData}
+            format={appFormat}
+            editAction={openModal}
+            openAction={openModal}
+            openActionLabel="Add new app"
+          />
+        </div>
+        <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6  ${isOpen ? '' : 'hidden'}`}>
+          <div className="flex items-center justify-between">
+            <h2 className="text-2xl flex items-center gap-2">
+              <CpuChipIcon className="h-6 text-secondary-700 dark:text-secondary-600" /> {app.id ? 'Edit app' : 'Add new app'}
+            </h2>
+            <div className="flex items-center gap-4">
+              <a 
+                href="#" 
+                className="text-sm text-red-500 hover:underline" 
+                onClick={() => openModalDelete(app)}
+                role="menuitem"
+                tabIndex="-1">
+                <TrashIcon className="inline-flex align-text-bottom h-4 mr-1" />
+                Delete
+              </a>
+              <button onClick={onPrimaryButtonClick} type="button" className={`button-success`}>
+                Save
+              </button>
             </div>
-          </form>
-        </AdminModal>
+          </div>
+          
+          <div className={`mt-8 mb-2`}>
+            <form ref={formRef} acceptCharset="UTF-8" method="POST" encType="multipart/form-data" onSubmit={onSubmitModal}>
+              {formError && (
+                <div className="bg-accent-100 border border-accent-400 text-accent-700 px-4 py-3 rounded relative mb-4" role="alert">
+                  <strong className="font-bold">
+                    <ExclamationTriangleIcon className="inline-flex align-middle h-6 mr-4" />
+                    Invalid Form!{' '}
+                  </strong>
+                  <span className="block sm:inline">Some required fields are missing.</span>
+                </div>
+              )}
+              <div className="grid grid-cols-6 gap-6">
+                <div className="col-span-6">
+                  <label htmlFor="name-form" className="input-label">
+                    Title <span className="text-secondary-700">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    id="name-form"
+                    autoComplete="off"
+                    data-lpignore="true"
+                    data-form-type="other"
+                    className="mt-1 input-field"
+                    value={app.name}
+                    onChange={handleChange}
+                    maxLength={191}
+                    required
+                  />
+                </div>
+                <div className="col-span-4">
+                  <label htmlFor="image-url-form" className="input-label">
+                    Image {!app.id && <span className="text-secondary-700">*</span>}
+                  </label>
+                  <input
+                    type="file"
+                    name="image"
+                    id="image-url-form"
+                    className="mt-1 block w-full text-sm text-slate-500
+                          file:mr-4 file:py-2 file:px-4
+                          file:rounded-full file:border-0
+                          file:text-sm file:font-semibold
+                          file:bg-primary-200 file:text-primary-700
+                          hover:file:bg-primary-300
+                    "
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="col-span-2">
+                  {app.id > 0 && app.image && (
+                    <>
+                      <label htmlFor="style-form" className="input-label">
+                        Current
+                      </label>
+                      <div className="mt-4 w-32 h-20 m-auto  relative">
+                        <Image
+                          src={`/uploads/${app.image}`}
+                          fill
+                          sizes="100vw"
+                          alt={app.name}
+                          title={app.name}
+                          className="bg-transparent object-contain"
+                          priority="false"
+                        />
+                      </div>
+                    </>
+                  )}
+                </div>
+                <div className="col-span-6">
+                  <label htmlFor="url-form" className="input-label">
+                    GitHub URL <span className="text-secondary-700">*</span>
+                  </label>
+                  <input
+                    type="url"
+                    name="url"
+                    id="url-form"
+                    autoComplete="off"
+                    data-lpignore="true"
+                    data-form-type="other"
+                    className="mt-1 input-field"
+                    value={app.url}
+                    onChange={handleChange}
+                    maxLength={191}
+                    required
+                  />
+                </div>
+                <div className="col-span-6">
+                  <label htmlFor="description-form" className="input-label">
+                    Description
+                  </label>
+                  <textarea
+                    name="description"
+                    id="description-form"
+                    className="mt-1 input-field"
+                    rows={5}
+                    value={app.description}
+                    onChange={handleChange}
+                    maxLength={191}
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
         <AdminModal
           title="Delete app"
           isOpen={isOpenDelete}
