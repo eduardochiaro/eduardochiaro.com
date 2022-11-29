@@ -60,27 +60,14 @@ export { menuList };
 const AdminWrapper = ({ children }) => {
 
   return (
-    <div className="w-full h-full antialiased bg-primary-50 dark:bg-primary-800">
+    <div className="w-full h-full antialiased bg-primary-100 dark:bg-primary-800">
       <div className="flex flex-no-wrap">
         <AdminSidebar menuList={menuList} />
-        <div className="h-full pb-4 px-6 w-full">
-          <div className="flex items-center h-14 px-4 border-b border-primary-200 dark:border-primary-600">
-            <div className="flex-1">
-              {React.Children.map(children, (child) => {
-                if (child.type === AdminWrapprerHeader) {
-                  return React.cloneElement(child);
-                }
-              })}
-            </div>
-          </div>
-          <div className="pt-4 pb-10 px-4">
-            {React.Children.map(children, (child) => {
-              if (child.type !== AdminWrapprerHeader) {
-                return React.cloneElement(child);
-              }
-            })}
-          </div>
-        </div>
+        {React.Children.map(children, (child) => {
+          if (child.type !== AdminWrapprerHeader) {
+            return React.cloneElement(child);
+          }
+        })}
       </div>
     </div>
   );

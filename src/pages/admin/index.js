@@ -12,26 +12,27 @@ const AdminIndex = () => {
         <Head>
           <title>Eduardo Chiaro | Admin</title>
         </Head>
-        <AdminWrapper.Header>
-          <h1 className="text-2xl flex items-center gap-2">
+        <div className="h-full py-8 px-6 w-full">
+          <h1 className="text-2xl flex items-center gap-2 pb-4 border-b border-primary-200 dark:border-primary-600">
             <ComputerDesktopIcon className="h-6 text-secondary-700 dark:text-secondary-600" /> Dashboard
           </h1>
-        </AdminWrapper.Header>
-        <div class="mx-auto mt-10 grid grid-cols-3 gap-12">
-          {menuList.map((item) => (
-            <Link
-              href={item.href}
-              className={`flex gap-6`}
-            >
-              <div className={`${item.classColor} p-4 rounded-full`}>{item.icon}</div>
-              <div className="hover:text-secondary-700">
-                <span className={`text-lg`} >
-                  {item.title}
-                </span>
-                <p className="opacity-50 text-sm ">{item.description}</p>
-              </div>
-            </Link>
-          ))}
+          <div className="mx-auto mt-10 grid grid-cols-3 gap-12">
+            {menuList.map((item) => (
+              <Link 
+                key={item.title}
+                href={item.href}
+                className={`flex gap-6`}
+              >
+                <div className={`${item.classColor} p-4 rounded-full h-fit`}>{item.icon}</div>
+                <div className="hover:text-secondary-700">
+                  <span className={`text-lg`} >
+                    {item.title}
+                  </span>
+                  <p className="opacity-50 text-sm ">{item.description}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </AdminWrapper>
     );

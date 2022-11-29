@@ -18,12 +18,12 @@ const AdminSidebar = ({ menuList }) => {
   const [openMenu, setOpenMenu] = useState(true);
   return (
     <div
-      className={`transition-all ease-in-out duration-300 absolute sm:relative md:h-full flex-col justify-between hidden sm:flex min-h-screen  bg-primary-100 dark:bg-primary-700  ${
+      className={`transition-all ease-in-out duration-300 absolute sm:relative md:h-full flex-col justify-between hidden sm:flex min-h-screen bg-primary-200 dark:bg-primary-700  ${
         openMenu ? styles['sidebar-open'] : styles['sidebar-closed']
       }`}
     >
       <div className="grow p-3 relative">
-        <div className="flex items-center gap-4 h-14 pb-8 mt-6 border-b border-primary-300 dark:border-primary-500 px-3">
+        <div className="flex items-center gap-4 h-14 my-3 border-b border-primary-300 dark:border-primary-500 px-3">
           <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className="h-5 text-secondary-700" />
           <div className={`grow font-bold font-header hidden xl:block ${openMenu ? '' : styles['hide-when-closed']}`}>Eduardo Chiaro</div>
           <button
@@ -40,7 +40,7 @@ const AdminSidebar = ({ menuList }) => {
               title="Website"
             >
               <HomeIcon className="w-5 group-hover:text-secondary-700 dark:group-hover:text-secondary-600" />
-              <span className={`text-sm tracking-wide truncate group-hover:hunderline hidden xl:inline-block ${openMenu ? '' : styles['hide-when-closed']}`}>
+              <span className={`text-sm tracking-wide truncate group-hover:hunderline hidden xl:block ${openMenu ? '' : styles['hide-when-closed']}`}>
                 Website
               </span>
             </Link>
@@ -63,7 +63,7 @@ const AdminSidebar = ({ menuList }) => {
                 <a className="flex items-center gap-2" alt={item.title} title={item.title}>
                   {item.icon}
                   <span
-                    className={`text-sm tracking-wide truncate group-hover:hunderline hidden xl:inline-block ${openMenu ? '' : styles['hide-when-closed']}`}
+                    className={`text-sm tracking-wide truncate group-hover:hunderline hidden xl:block ${openMenu ? '' : styles['hide-when-closed']}`}
                   >
                     {item.title}
                   </span>
