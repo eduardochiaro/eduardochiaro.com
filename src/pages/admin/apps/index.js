@@ -178,7 +178,7 @@ const AdminAppsIndex = ({ formRef }) => {
     return (
       <AdminWrapper>
 
-        <div className="h-full py-8 pr-6 w-full w-1/4">
+        <div className="h-full py-8 w-full w-1/4">
           <List
             title={title}
             columns={columns}
