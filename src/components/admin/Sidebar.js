@@ -24,13 +24,14 @@ const AdminSidebar = ({ menuList }) => {
     >
       <div className="grow p-3 relative">
         <div className="flex items-center gap-4 h-14 my-3 border-b border-primary-300 dark:border-primary-500 px-3">
-          <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className="h-5 text-secondary-700" />
+          <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className="h-6 text-secondary-700" />
           <div className={`grow font-bold font-header hidden xl:block ${openMenu ? '' : styles['hide-when-closed']}`}>Eduardo Chiaro</div>
-          <button
-          onClick={() => setOpenMenu(!openMenu)}>
-            <Bars3BottomRightIcon className="w-5" />
-          </button>
         </div>
+        <button
+          onClick={() => setOpenMenu(!openMenu)} 
+          className="absolute top-4 right-4">
+          <Bars3BottomRightIcon className="w-5" />
+        </button>
         <ul className="grow flex flex-col py-4 space-y-1 font-semibold tracking-wider">
           <li>
             <Link
@@ -74,7 +75,7 @@ const AdminSidebar = ({ menuList }) => {
         </ul>
       
       </div>
-      <div className="p-6 border-t border-primary-600 flex items-center justify-between">
+      <div className="p-6 border-t border-primary-300 dark:border-primary-600 flex items-center justify-between">
         <Menu as="div" className="relative flex item-center">
           <Menu.Button className="h-7 w-7 relative rounded-full border-2 border-primary-800 dark:border-primary-400">
             <Image
