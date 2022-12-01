@@ -21,7 +21,7 @@ export default function ThemeIcon({ orientation }) {
       default:
         return 'right-0 mt-10';
     }
-  }
+  };
 
   useEffect(() => {
     const classColors = [
@@ -88,7 +88,9 @@ export default function ThemeIcon({ orientation }) {
       >
         <Menu.Items
           data-cy="change-mode-container"
-          className={`${orientationClass(orientation)} transform absolute z-10 w-56 rounded-md shadow-lg ring-1 ring-primary-900 ring-opacity-10 focus:outline-none bg-primary-100 dark:bg-primary-700 divide-y divide-primary-200 dark:divide-primary-600`}
+          className={`${orientationClass(
+            orientation,
+          )} transform absolute z-10 w-56 rounded-md shadow-lg ring-1 ring-primary-900 ring-opacity-10 focus:outline-none bg-primary-100 dark:bg-primary-700 divide-y divide-primary-200 dark:divide-primary-600`}
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="menu-button"

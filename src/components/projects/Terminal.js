@@ -17,8 +17,8 @@ const initialState = {
   command: '',
   historyIndex: 0,
   history: [],
-  isLoading: false
-}
+  isLoading: false,
+};
 
 function reducer(state, action) {
   return { ...state, ...action };
