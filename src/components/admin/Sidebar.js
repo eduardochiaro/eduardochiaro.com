@@ -59,7 +59,7 @@ const AdminSidebar = ({ menuList }) => {
                 href={item.href}
                 as={item.href}
                 className={`${styles['sidebar-link']} group border-transparent `}
-                activeClassName={`${styles['sidebar-link']} group rounded-xl bg-primary-100 dark:bg-primary-700`}
+                activeClassName={`${styles['sidebar-link']} group text-secondary-700 dark:text-secondary-600`}
               >
                 <a className="flex items-center gap-2" alt={item.title} title={item.title}>
                   {item.icon}
