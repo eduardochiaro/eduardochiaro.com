@@ -11,7 +11,7 @@ import useStaleSWR from '@/utils/staleSWR';
 import moment from 'moment';
 import Link from 'next/link';
 import Image from 'next/image';
-import { TrashIcon } from '@heroicons/react/24/solid';
+import { PlusIcon, TrashIcon } from '@heroicons/react/24/solid';
 
 const AdminAppsIndex = ({ formRef }) => {
   const { data: apps, error } = useStaleSWR('/api/portfolio/apps');
@@ -153,45 +153,39 @@ const AdminAppsIndex = ({ formRef }) => {
   apps?.results.map((item) => {
     const obj = { ...item };
     obj.updated = moment(item.updatedAt || item.createdAt).from(moment());
-    obj.description_d = <p className="w-64 text-ellipsis overflow-hidden">{item.description}</p>;
     obj.image_d = (
           <Image
             src={`/uploads/${item.image}`}
             fill
-            sizes="100vw"
+            sizes="33vw"
             alt={item.name}
             title={item.name}
             className="bg-transparent object-cover"
             priority="false"
           />
     );
-    obj.github_url = (
-      <>
-        <span className="w-64 text-ellipsis overflow-hidden inline-block">{item.url}</span>
-        <Link href={item.url} target="_blank" rel="noreferrer">
-          <ArrowTopRightOnSquareIcon className="h-4 inline-block align-top ml-2" />
-        </Link>
-      </>
-    );
     newData.push(obj);
   });
+
+  const title = (
+    <h1 className="grow flex items-center gap-2">
+      <CpuChipIcon className="h-6 text-secondary-700 dark:text-secondary-600" /> 
+      <span>Apps list</span>
+    </h1>
+  );
 
   if (session) {
     return (
       <AdminWrapper>
 
-        <div className="h-full py-8 px-6 w-full w-1/4">
-          <h1 className="text-2xl flex items-center gap-2">
-            <CpuChipIcon className="h-6 text-secondary-700 dark:text-secondary-600" /> Apps list
-          </h1>
-          
+        <div className="h-full py-8 pr-6 w-full w-1/4">
           <List
+            title={title}
             columns={columns}
             data={newData}
             format={appFormat}
-            editAction={openModal}
             openAction={openModal}
-            openActionLabel="Add new app"
+            editAction={openModal}
           />
         </div>
         <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6  ${isOpen ? '' : 'hidden'}`}>
@@ -202,7 +196,7 @@ const AdminAppsIndex = ({ formRef }) => {
             <div className="flex items-center gap-4">
               <a 
                 href="#" 
-                className="text-sm text-red-500 hover:underline" 
+                className="text-sm text-red-500 font-semibold hover:underline" 
                 onClick={() => openModalDelete(app)}
                 role="menuitem"
                 tabIndex="-1">
