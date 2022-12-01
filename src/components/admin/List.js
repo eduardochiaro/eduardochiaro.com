@@ -54,7 +54,7 @@ export default function List({
 
   return (
     <>
-      <div className="text-2xl flex items-center gap-2 pl-6">
+      <div className="text-2xl flex items-center gap-2 px-6">
         {title}
         <button
           className="font-bold p-2"
@@ -64,7 +64,7 @@ export default function List({
           <PlusIcon className="h-6 text-primary-50" />
         </button>
       </div>
-      <div className="mt-8 mb-2 pl-6">
+      <div className="mt-8 mb-2 px-6">
         <div className="flex relative">
           <label
             htmlFor="website-admin-search"
@@ -84,7 +84,7 @@ export default function List({
         </div>
       </div>
       <div 
-        className="flex flex-col gap-4 mt-10"
+        className="flex flex-col gap-4 mt-10 pl-6"
         role="menu"
         aria-orientation="vertical"
         aria-labelledby="menu-button"
@@ -93,16 +93,19 @@ export default function List({
           filteredData.map((item) => (
             <div 
               key={item.id} 
-              className={`flex items-center gap-4 cursor-pointer hover:dark:bg-primary-700 hover:bg-primary-200 p-2 pl-6 rounded-r ${activeMenu == item.id ? 'dark:bg-primary-700 bg-primary-200' : ''}`}
+              className={`flex items-center gap-4 cursor-pointer hover:dark:bg-primary-700 hover:bg-primary-200 p-2 pl-4 pr-6 rounded-l ${activeMenu == item.id ? 'bg-primary-50 dark:bg-primary-900' : ''}`}
               onClick={() => clickOnEdit(item)}
               role="menuitem"
               tabIndex="-1">
               <div className="w-16 h-16 rounded overflow-hidden hidden xl:block relative">
                 {item.image_d}
               </div>
-              <div className="grow">
+              <div className="grow flex flex-col gap-1">
                 <h4 className="text-lg">{item.name}</h4>
-                <p className="text-sm w-48 opacity-50 truncate">{item.description}</p>
+                <div className="flex items-center gap-4">
+                  <p className="text-sm w-48 grow opacity-50 truncate">{item.description}</p>
+                  <p className="text-xs opacity-50 flex-none">{item.updated}</p>
+                </div>
               </div>
               
             </div>
