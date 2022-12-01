@@ -1,19 +1,17 @@
-import { PencilSquareIcon, PlusIcon } from '@heroicons/react/24/outline';
-import { EllipsisVerticalIcon, TrashIcon, XMarkIcon } from '@heroicons/react/24/solid';
-import { Popover, Transition } from '@headlessui/react';
-import React, { Fragment, useEffect, useState } from 'react';
+import { PlusIcon, XMarkIcon } from '@heroicons/react/24/solid';
+import React, { useEffect, useState } from 'react';
 
 export default function List({
+  title = () => null,
   columns = [],
   data = [],
-  format = [],
-  editAction = () => null,
-  deleteAction = () => null,
+  format={},
   openAction = () => null,
-  openActionLabel = '',
+  editAction = () => null,
 }) {
   const [filteredData, setFilteredData] = useState([]);
   const [search, setSearch] = useState('');
+  const [activeMenu, setActiveMenu] = useState();
 
   useEffect(() => {
     setFilteredData(data);
@@ -23,6 +21,16 @@ export default function List({
     const search = e.target.value;
     filterData(search);
   };
+
+  const clickOnEdit = (item) => {
+    setActiveMenu(item.id);
+    editAction(item);
+  }
+
+  const clickOnAdd = (item) => {
+    setActiveMenu('');
+    openAction(item);
+  }
 
   const filterData = (search) => {
     setSearch(search);
@@ -46,7 +54,17 @@ export default function List({
 
   return (
     <>
-      <div className="flex mt-8 mb-2">
+      <div className="text-2xl flex items-center gap-2 pl-6">
+        {title}
+        <button
+          className="font-bold p-2"
+          onClick={() => clickOnAdd(format)}
+          title="Add new app"
+        >
+          <PlusIcon className="h-6 text-primary-50" />
+        </button>
+      </div>
+      <div className="mt-8 mb-2 pl-6">
         <div className="flex relative">
           <label
             htmlFor="website-admin-search"
@@ -59,21 +77,10 @@ export default function List({
             type="text"
             value={search}
             id="website-admin-search"
-            className="pr-8 rounded-none rounded-r-lg bg-primary-50 border border-primary-300 block flex-1 min-w-0 w-full text-sm p-2 dark:bg-primary-700 dark:border-primary-600 dark:placeholder-primary-400 focus:ring-secondary-500 focus:border-secondary-500  dark:focus:ring-secondary-500 dark:focus:border-secondary-500"
+            className="pr-8 rounded-none rounded-r-lg bg-primary-50 border border-primary-300 block grow min-w-0 w-full text-sm p-2 dark:bg-primary-700 dark:border-primary-600 dark:placeholder-primary-400 focus:ring-secondary-500 focus:border-secondary-500  dark:focus:ring-secondary-500 dark:focus:border-secondary-500"
             placeholder=""
           />
           {search && <XMarkIcon className="cursor-pointer absolute top-2 right-2 w-5" onClick={() => filterData('')} />}
-        </div>
-        <div className="grow text-right">
-          {openAction && (
-            <button
-              className="font-bold p-2"
-              onClick={() => openAction(format)}
-              title= {openActionLabel}
-            >
-              <PlusIcon className="h-5 text-primary-50" />
-            </button>
-          )}
         </div>
       </div>
       <div 
@@ -86,11 +93,11 @@ export default function List({
           filteredData.map((item) => (
             <div 
               key={item.id} 
-              className="flex items-center gap-4 cursor-pointer hover:bg-primary"
-              onClick={() => editAction(item)}
+              className={`flex items-center gap-4 cursor-pointer hover:dark:bg-primary-700 hover:bg-primary-200 p-2 pl-6 rounded-r ${activeMenu == item.id ? 'dark:bg-primary-700 bg-primary-200' : ''}`}
+              onClick={() => clickOnEdit(item)}
               role="menuitem"
               tabIndex="-1">
-              <div className="w-16 h-16 hidden xl:block relative">
+              <div className="w-16 h-16 rounded overflow-hidden hidden xl:block relative">
                 {item.image_d}
               </div>
               <div className="grow">
