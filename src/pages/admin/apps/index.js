@@ -119,57 +119,21 @@ const AdminAppsIndex = ({ formRef }) => {
     }
   };
 
-  const columns = [
-    {
-      name: 'Name',
-      key: 'name',
-      searchable: true,
-      classNameTd: 'font-bold',
-    },
-    {
-      name: 'Image',
-      key: 'image_d',
-      className: 'textcenter',
-      classNameTd: 'text-center',
-    },
-    {
-      name: 'Description',
-      searchable: true,
-      key: 'description_d',
-    },
-    {
-      name: 'GitHub URL',
-      searchable: true,
-      key: 'github_url',
-    },
-    {
-      name: 'Updated',
-      key: 'updated',
-      classNameTd: 'w-44',
-    },
-  ];
+  const columns = ['name', 'description', 'github_url'];
 
   const newData = [];
   apps?.results.map((item) => {
     const obj = { ...item };
     obj.updated = moment(item.updatedAt || item.createdAt).from(moment());
     obj.image_d = (
-          <Image
-            src={`/uploads/${item.image}`}
-            fill
-            sizes="33vw"
-            alt={item.name}
-            title={item.name}
-            className="bg-transparent object-cover"
-            priority="false"
-          />
+      <Image src={`/uploads/${item.image}`} fill sizes="33vw" alt={item.name} title={item.name} className="bg-transparent object-cover" priority="false" />
     );
     newData.push(obj);
   });
 
   const title = (
     <h1 className="grow flex items-center gap-2">
-      <CpuChipIcon className="h-6 text-secondary-700 dark:text-secondary-600" /> 
+      <CpuChipIcon className="h-6 text-secondary-700 dark:text-secondary-600" />
       <span>Apps list</span>
     </h1>
   );
@@ -177,16 +141,8 @@ const AdminAppsIndex = ({ formRef }) => {
   if (session) {
     return (
       <AdminWrapper>
-
         <div className="h-full py-8 w-full w-1/4">
-          <List
-            title={title}
-            columns={columns}
-            data={newData}
-            format={appFormat}
-            openAction={openModal}
-            editAction={openModal}
-          />
+          <List title={title} columns={columns} data={newData} format={appFormat} openAction={openModal} editAction={openModal} />
         </div>
         <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6  ${isOpen ? '' : 'hidden'}`}>
           <div className="flex items-center justify-between">
@@ -194,22 +150,17 @@ const AdminAppsIndex = ({ formRef }) => {
               <CpuChipIcon className="h-6 text-secondary-700 dark:text-secondary-600" /> {app.id ? 'Edit app' : 'Add new app'}
             </h2>
             <div className="flex items-center gap-4">
-              <a 
-                href="#" 
-                className="text-sm text-red-500 font-semibold hover:underline" 
-                onClick={() => openModalDelete(app)}
-                role="menuitem"
-                tabIndex="-1">
+              <a href="#" className="text-sm text-red-500 font-semibold hover:underline" onClick={() => openModalDelete(app)} role="menuitem" tabIndex="-1">
                 <TrashIcon className="inline-flex align-text-bottom h-4 mr-1" />
                 Delete
               </a>
-              <button onClick={onPrimaryButtonClick} type="button" className={`button-success`}>
+              <button onClick={onPrimaryButtonClick} type="button" className={'button-success'}>
                 Save
               </button>
             </div>
           </div>
-          
-          <div className={`mt-8 mb-2`}>
+
+          <div className={'mt-8 mb-2'}>
             <form ref={formRef} acceptCharset="UTF-8" method="POST" encType="multipart/form-data" onSubmit={onSubmitModal}>
               {formError && (
                 <div className="bg-accent-100 border border-accent-400 text-accent-700 px-4 py-3 rounded relative mb-4" role="alert">

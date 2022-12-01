@@ -1,14 +1,7 @@
 import { PlusIcon, XMarkIcon } from '@heroicons/react/24/solid';
 import React, { useEffect, useState } from 'react';
 
-export default function List({
-  title = () => null,
-  columns = [],
-  data = [],
-  format={},
-  openAction = () => null,
-  editAction = () => null,
-}) {
+export default function List({ title = () => null, columns = [], data = [], format = {}, openAction = () => null, editAction = () => null }) {
   const [filteredData, setFilteredData] = useState([]);
   const [search, setSearch] = useState('');
   const [activeMenu, setActiveMenu] = useState();
@@ -25,21 +18,20 @@ export default function List({
   const clickOnEdit = (item) => {
     setActiveMenu(item.id);
     editAction(item);
-  }
+  };
 
   const clickOnAdd = (item) => {
     setActiveMenu('');
     openAction(item);
-  }
+  };
 
   const filterData = (search) => {
     setSearch(search);
-    const indexToSearch = columns.filter((x) => x.searchable);
     if (search.length > 0) {
       const filterData = data.filter((x) => {
         let found = false;
-        indexToSearch.forEach((y) => {
-          if (x[y.key] && x[y.key].toLowerCase().includes(search.toLowerCase())) {
+        columns.forEach((key) => {
+          if (x[key] && x[key].toLowerCase().includes(search.toLowerCase())) {
             found = true;
           }
         });
@@ -56,11 +48,7 @@ export default function List({
     <>
       <div className="text-2xl flex items-center gap-2 px-6">
         {title}
-        <button
-          className="font-bold p-2"
-          onClick={() => clickOnAdd(format)}
-          title="Add new app"
-        >
+        <button className="font-bold p-2" onClick={() => clickOnAdd(format)} title="Add new app">
           <PlusIcon className="h-6 text-primary-50" />
         </button>
       </div>
@@ -83,34 +71,29 @@ export default function List({
           {search && <XMarkIcon className="cursor-pointer absolute top-2 right-2 w-5" onClick={() => filterData('')} />}
         </div>
       </div>
-      <div 
-        className="flex flex-col gap-4 mt-10 pl-6"
-        role="menu"
-        aria-orientation="vertical"
-        aria-labelledby="menu-button"
-        tabIndex="-1">
-        {filteredData.length > 0 ? 
-          filteredData.map((item) => (
-            <div 
-              key={item.id} 
-              className={`flex items-center gap-4 cursor-pointer hover:dark:bg-primary-700 hover:bg-primary-200 p-2 pl-4 pr-6 rounded-l ${activeMenu == item.id ? 'bg-primary-50 dark:bg-primary-900' : ''}`}
-              onClick={() => clickOnEdit(item)}
-              role="menuitem"
-              tabIndex="-1">
-              <div className="w-16 h-16 rounded overflow-hidden hidden xl:block relative">
-                {item.image_d}
-              </div>
-              <div className="grow flex flex-col gap-1">
-                <h4 className="text-lg">{item.name}</h4>
-                <div className="flex items-center gap-4">
-                  <p className="text-sm w-48 grow opacity-50 truncate">{item.description}</p>
-                  <p className="text-xs opacity-50 flex-none">{item.updated}</p>
+      <div className="flex flex-col gap-4 mt-10 pl-6" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabIndex="-1">
+        {filteredData.length > 0
+          ? filteredData.map((item) => (
+              <div
+                key={item.id}
+                className={`flex items-center gap-4 cursor-pointer hover:dark:bg-primary-700 hover:bg-primary-200 p-2 pl-4 pr-8 rounded-l ${
+                  activeMenu == item.id ? 'bg-primary-50 dark:bg-primary-900' : ''
+                }`}
+                onClick={() => clickOnEdit(item)}
+                role="menuitem"
+                tabIndex="-1"
+              >
+                <div className="w-16 h-16 rounded overflow-hidden hidden xl:block relative">{item.image_d}</div>
+                <div className="grow flex flex-col gap-1">
+                  <h4 className="text-lg">{item.name}</h4>
+                  <div className="flex items-center gap-4">
+                    <p className="text-sm w-48 grow opacity-50 truncate">{item.description}</p>
+                    <p className="text-xs opacity-50 flex-none hidden xl:block">{item.updated}</p>
+                  </div>
                 </div>
               </div>
-              
-            </div>
-          )) : ""
-        }
+            ))
+          : ''}
       </div>
     </>
   );

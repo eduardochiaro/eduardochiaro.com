@@ -1,6 +1,4 @@
-import {
-  HomeIcon,
-} from '@heroicons/react/24/outline';
+import { HomeIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import NavLink from '@/components/NavLink';
 import styles from '@/styles/Admin.Sidebar.module.scss';
@@ -27,9 +25,7 @@ const AdminSidebar = ({ menuList }) => {
           <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className="h-6 text-secondary-700" />
           <div className={`grow font-bold font-header hidden xl:block ${openMenu ? '' : styles['hide-when-closed']}`}>Eduardo Chiaro</div>
         </div>
-        <button
-          onClick={() => setOpenMenu(!openMenu)} 
-          className="absolute top-4 right-4">
+        <button onClick={() => setOpenMenu(!openMenu)} className="absolute top-4 right-4">
           <Bars3BottomRightIcon className="w-5" />
         </button>
         <ul className="grow flex flex-col py-4 space-y-1 font-semibold tracking-wider">
@@ -63,9 +59,7 @@ const AdminSidebar = ({ menuList }) => {
               >
                 <a className="flex items-center gap-2" alt={item.title} title={item.title}>
                   {item.icon}
-                  <span
-                    className={`text-sm tracking-wide truncate group-hover:hunderline hidden xl:block ${openMenu ? '' : styles['hide-when-closed']}`}
-                  >
+                  <span className={`text-sm tracking-wide truncate group-hover:hunderline hidden xl:block ${openMenu ? '' : styles['hide-when-closed']}`}>
                     {item.title}
                   </span>
                 </a>
@@ -73,7 +67,6 @@ const AdminSidebar = ({ menuList }) => {
             </li>
           ))}
         </ul>
-      
       </div>
       <div className="p-6 border-t border-primary-300 dark:border-primary-600 flex items-center justify-between">
         <Menu as="div" className="relative flex item-center">
@@ -106,21 +99,19 @@ const AdminSidebar = ({ menuList }) => {
             >
               <div className="py-1 font-semibold">
                 <Menu.Item>
-                {({ active }) => (
-                  <div 
-                    onClick={() => signOut()} 
-                    title="logout" 
-                    className={classNames(
-                      `py-2 px-4 cursor-pointer flex items-center gap-2`,
-                      active ? 'bg-primary-300 dark:bg-primary-500' : '',
-                    )}
-                    role="menuitem"
-                    id={`user-logout`}
-                    tabIndex="-1">
-                    <ArrowLeftCircleIcon className="inline-flex h-4" />
-                    <span>Logout</span>
-                  </div>
-                )}
+                  {({ active }) => (
+                    <div
+                      onClick={() => signOut()}
+                      title="logout"
+                      className={classNames('py-2 px-4 cursor-pointer flex items-center gap-2', active ? 'bg-primary-300 dark:bg-primary-500' : '')}
+                      role="menuitem"
+                      id={'user-logout'}
+                      tabIndex="-1"
+                    >
+                      <ArrowLeftCircleIcon className="inline-flex h-4" />
+                      <span>Logout</span>
+                    </div>
+                  )}
                 </Menu.Item>
               </div>
             </Menu.Items>
