@@ -13,6 +13,7 @@ module.exports = {
       '2xl': '1536px',
     },
     colors: {
+      inherit: colors.inherit, 
       transparent: 'transparent',
       current: 'currentColor',
       blue: colors.blue,

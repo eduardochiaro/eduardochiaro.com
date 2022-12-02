@@ -37,7 +37,7 @@ export default function Header() {
   }
 
   return (
-    <header className={`${styles.header} bg-primary-50/95 dark:bg-primary-800/95`}>
+    <header className={`${styles.header} bg-gradient-to-r from-primary-50/95 to-primary-100/95 dark:from-primary-700/95 dark:to-primary-800/95`}>
       <nav className="w-full relative">
         <div className="px-4 md:px-8 flex items-center h-12">
           <div className="flex-none flex gap-4 font-header text-2xl">
