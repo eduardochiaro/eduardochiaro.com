@@ -80,7 +80,7 @@ table.admin-table {
   //animation: moveGradient 5s linear infinite;
 }
 .box-card {
-  @apply shadow-md rounded-lg bg-gradient-to-br from-primary-100 to-primary-200 dark:from-primary-600 dark:to-primary-700 transition hover:ring-4 ring-offset-4 ring-offset-primary-50 dark:ring-offset-primary-800 hover:ring-primary-300 dark:hover:ring-primary-600 ring-1 ring-primary-900 ring-opacity-5;
+  @apply shadow-md rounded-lg bg-primary-200 dark:bg-primary-700 transition hover:ring-4 ring-offset-1 ring-offset-primary-100 dark:ring-offset-primary-600 hover:ring-primary-200 dark:hover:ring-primary-700 ring-1 ring-primary-800 ring-opacity-5;
 }
 .custom-img {
   object-fit: contain;
