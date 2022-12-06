@@ -10,7 +10,7 @@ import mergeObj from '@/utils/mergeObj';
 import useStaleSWR from '@/utils/staleSWR';
 import moment from 'moment';
 import Image from 'next/image';
-import { TrashIcon } from '@heroicons/react/24/solid';
+import { CheckIcon, TrashIcon } from '@heroicons/react/24/solid';
 
 const AdminAppsIndex = ({ formRef }) => {
   const { data: apps } = useStaleSWR('/api/portfolio/apps');
@@ -30,6 +30,7 @@ const AdminAppsIndex = ({ formRef }) => {
   let [isOpenDelete, setIsOpenDelete] = useState(false);
   let [app, setApp] = useState(appFormat);
   let [formError, setFormError] = useState(false);
+  let [formSuccess, setFormSuccess] = useState(false);
 
   const onSubmitModal = async (e) => {
     e.preventDefault();
@@ -57,8 +58,15 @@ const AdminAppsIndex = ({ formRef }) => {
       headers: {
         'Content-Type': `multipart/form-data; boundary=${formData._boundary}`,
       },
+    }).catch(function (error) {
+      // handle error
+      console.log(error);
+      setFormError(true);
+      setFormSuccess(false);
     }).then(({ data }) => {
       mutate('/api/portfolio/apps');
+      const openApp = mergeObj(appFormat, data);
+      setApp(openApp);
       closeModal();
     });
   };
@@ -91,12 +99,12 @@ const AdminAppsIndex = ({ formRef }) => {
     const openApp = mergeObj(appFormat, app);
     setApp(openApp);
     setIsOpen(true);
+    setFormSuccess(false);
   };
 
   const closeModal = () => {
-    setApp(appFormat);
-    setIsOpen(false);
     setFormError(false);
+    setFormSuccess(true);
   };
 
   const openModalDelete = (app) => {
@@ -108,6 +116,7 @@ const AdminAppsIndex = ({ formRef }) => {
   const closeModalDelete = () => {
     setApp(appFormat);
     setIsOpenDelete(false);
+    setIsOpen(false);
   };
 
   const handleChange = (e) => {
@@ -141,7 +150,7 @@ const AdminAppsIndex = ({ formRef }) => {
     return (
       <AdminWrapper>
         <div className="h-full py-8 w-full w-1/4">
-          <List title={title} columns={columns} data={newData} format={appFormat} openAction={openModal} editAction={openModal} />
+          <List title={title} columns={columns} data={newData} format={appFormat} openAction={openModal} editAction={openModal} activeId={app.id} />
         </div>
         <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6  ${isOpen ? '' : 'hidden'}`}>
           <div className="flex items-center justify-between">
@@ -161,14 +170,23 @@ const AdminAppsIndex = ({ formRef }) => {
 
           <div className={'mt-8 mb-2'}>
             <form ref={formRef} acceptCharset="UTF-8" method="POST" encType="multipart/form-data" onSubmit={onSubmitModal}>
-              {formError && (
-                <div className="bg-accent-100 border border-accent-400 text-accent-700 px-4 py-3 rounded relative mb-4" role="alert">
+            {formError && (
+              <div className="bg-accent-100 border border-accent-400 text-accent-700 px-4 py-3 rounded relative mb-4" role="alert">
+                <strong className="font-bold">
+                  <ExclamationTriangleIcon className="inline-flex align-middle h-6 mr-4" />
+                  Invalid Form!{' '}
+                </strong>
+                <span className="block sm:inline">Some required fields are missing.</span>
+              </div>
+              )}
+              {formSuccess && (
+               <div className="bg-emerald-100 border border-emerald-400 text-emerald-700 px-4 py-3 rounded relative mb-4" role="alert">
                   <strong className="font-bold">
-                    <ExclamationTriangleIcon className="inline-flex align-middle h-6 mr-4" />
-                    Invalid Form!{' '}
-                  </strong>
-                  <span className="block sm:inline">Some required fields are missing.</span>
-                </div>
+                  <CheckIcon className="inline-flex align-middle h-6 mr-4" />
+                  Success!{' '}
+                </strong>
+                <span className="block sm:inline">This page was saved.</span>
+              </div>
               )}
               <div className="grid grid-cols-6 gap-6">
                 <div className="col-span-6">

@@ -1,7 +1,7 @@
 import { PlusIcon, TagIcon, XMarkIcon } from '@heroicons/react/24/solid';
 import React, { useEffect, useState } from 'react';
 
-export default function List({ title = () => null, columns = [], data = [], format = {}, openAction = () => null, editAction = () => null }) {
+export default function List({ title = () => null, columns = [], data = [], format = {}, openAction = () => null, editAction = () => null, activeId = null }) {
   const [filteredData, setFilteredData] = useState([]);
   const [search, setSearch] = useState('');
   const [activeMenu, setActiveMenu] = useState();
@@ -10,18 +10,23 @@ export default function List({ title = () => null, columns = [], data = [], form
     setFilteredData(data);
   }, [data]);
 
+
+  useEffect(() => {
+    setActiveMenu(activeId);
+  }, [activeId]);
+
   const typeSearch = (e) => {
     const search = e.target.value;
     filterData(search);
   };
 
   const clickOnEdit = (item) => {
-    setActiveMenu(item.id);
+    //setActiveMenu(item.id);
     editAction(item);
   };
 
   const clickOnAdd = (item) => {
-    setActiveMenu('');
+    //setActiveMenu('');
     openAction(item);
   };
 
