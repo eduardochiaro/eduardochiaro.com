@@ -1,4 +1,4 @@
-import { CpuChipIcon, ExclamationTriangleIcon, ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
+import { CpuChipIcon, ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 import { useSession } from 'next-auth/react';
 import { useState, createRef } from 'react';
 import { useSWRConfig } from 'swr';
@@ -9,12 +9,11 @@ import List from '@/components/admin/List';
 import mergeObj from '@/utils/mergeObj';
 import useStaleSWR from '@/utils/staleSWR';
 import moment from 'moment';
-import Link from 'next/link';
 import Image from 'next/image';
-import { PlusIcon, TrashIcon } from '@heroicons/react/24/solid';
+import { TrashIcon } from '@heroicons/react/24/solid';
 
 const AdminAppsIndex = ({ formRef }) => {
-  const { data: apps, error } = useStaleSWR('/api/portfolio/apps');
+  const { data: apps } = useStaleSWR('/api/portfolio/apps');
   const { data: session } = useSession();
 
   const { mutate } = useSWRConfig();
@@ -248,7 +247,7 @@ const AdminAppsIndex = ({ formRef }) => {
                 </div>
                 <div className="col-span-6">
                   <label htmlFor="description-form" className="input-label">
-                    Description
+                    Description ({app.description.length}/191)
                   </label>
                   <textarea
                     name="description"

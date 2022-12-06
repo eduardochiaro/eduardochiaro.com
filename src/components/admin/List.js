@@ -1,4 +1,4 @@
-import { PlusIcon, XMarkIcon } from '@heroicons/react/24/solid';
+import { PlusIcon, TagIcon, XMarkIcon } from '@heroicons/react/24/solid';
 import React, { useEffect, useState } from 'react';
 
 export default function List({ title = () => null, columns = [], data = [], format = {}, openAction = () => null, editAction = () => null }) {
@@ -76,16 +76,26 @@ export default function List({ title = () => null, columns = [], data = [], form
           ? filteredData.map((item) => (
               <div
                 key={item.id}
-                className={`flex items-center gap-4 cursor-pointer hover:dark:bg-primary-700 hover:bg-primary-200 p-2 pl-4 pr-8 rounded-l ${
+                className={`flex items-center gap-4 cursor-pointer group p-2 pl-4 pr-8 rounded-l ${
                   activeMenu == item.id ? 'bg-primary-50 dark:bg-primary-900' : ''
                 }`}
                 onClick={() => clickOnEdit(item)}
                 role="menuitem"
                 tabIndex="-1"
               >
-                <div className="w-16 h-16 rounded overflow-hidden hidden xl:block relative">{item.image_d}</div>
+                { item.image_d ? (
+                  <div className="w-16 h-16 rounded overflow-hidden hidden xl:block relative">{item.image_d}</div>
+                ) : ""}
                 <div className="grow flex flex-col gap-1">
-                  <h4 className="text-lg">{item.name}</h4>
+                  <div className="flex justify-between items-center gap-2">
+                    <h4 className="text-lg group-hover:text-secondary-700">{item.name}</h4>
+                    { item.category_d ? (
+                      <div className="text-xs flex items-center gap-2">
+                        <TagIcon className="w-3 text-secondary-600"/>
+                        { item.category_d }
+                      </div>
+                    ) : ""}
+                  </div>
                   <div className="flex items-center gap-4">
                     <p className="text-sm w-48 grow opacity-50 truncate">{item.description}</p>
                     <p className="text-xs opacity-50 flex-none hidden xl:block">{item.updated}</p>

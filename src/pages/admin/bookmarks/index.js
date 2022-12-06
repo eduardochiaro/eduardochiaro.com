@@ -7,11 +7,12 @@ import fs from 'fs';
 import path from 'path';
 import AdminModal from '@/components/admin/Modal';
 import AdminWrapper from '@/components/admin/Wrapper';
-import Table from '@/components/admin/Table';
 import mergeObj from '@/utils/mergeObj';
 import useStaleSWR from '@/utils/staleSWR';
 import moment from 'moment';
 import * as cheerio from 'cheerio';
+import List from '@/components/admin/List';
+import { TrashIcon } from '@heroicons/react/24/solid';
 
 const AdminBookmarksIndex = ({ formRef, images }) => {
   const { data: bookmarks, error } = useStaleSWR('/api/portfolio/bookmarks');
@@ -60,6 +61,11 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
       headers: {
         'Content-Type': 'application/json',
       },
+    }).catch(function (error) {
+      // handle error
+      console.log('im here');
+      console.log(error);
+      setCurrentStatus(error.message);
     }).then(({ data }) => {
       mutate('/api/portfolio/bookmarks');
       closeModal();
@@ -134,7 +140,7 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
       setCurrentStatus(null);
       const $ = cheerio.load(response.data);
 
-      const titleText = $('title').text();
+      const titleText = $('title').first().text();
       const descriptionText =
         $('meta[name="description"]').length > 0
           ? $('meta[name="description"]').first().attr('content')
@@ -143,34 +149,21 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
       bookmark.name = titleText ? titleText : '';
       bookmark.description = descriptionText ? descriptionText : '';
 
+      if (bookmark.description.length > 191) {
+        const maxLength = 188;
+        //trim the string to the maximum length
+        var trimmedString = bookmark.description.substr(0, maxLength);
+        //re-trim if we are in the middle of a word
+        trimmedString = trimmedString.substr(0, Math.min(trimmedString.length, trimmedString.lastIndexOf(" "))) + '...'
+        bookmark.description = trimmedString;
+      }
+
       handleChange({ target: { name: 'name', value: bookmark.name } });
       handleChange({ target: { name: 'description', value: bookmark.description } });
     }
   };
 
-  const columns = [
-    {
-      name: 'Name',
-      key: 'name',
-      searchable: true,
-      classNameTd: 'font-bold',
-    },
-    {
-      name: 'Url',
-      key: 'url',
-      searchable: true,
-    },
-    {
-      name: 'Category',
-      key: 'category_d',
-      searchable: true,
-    },
-    {
-      name: 'Updated',
-      key: 'updated',
-      classNameTd: 'w-44',
-    },
-  ];
+  const columns = ['name', 'url', 'category_d'];
 
   const newData = [];
   bookmarks?.results.map((item) => {
@@ -180,118 +173,126 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
     newData.push(obj);
   });
 
+
+  const title = (
+    <h1 className="grow flex items-center gap-2">
+      <BookmarkIcon className="h-6 text-secondary-700 dark:text-secondary-600" />
+      <span>Bookmarks list</span>
+    </h1>
+  );
+
   if (session) {
     return (
       <AdminWrapper>
-        <AdminWrapper.Header>
-          <h1 className="text-2xl flex items-center gap-2">
-            <BookmarkIcon className="h-6 text-secondary-700 dark:text-secondary-600" /> Bookmarks list
-          </h1>
-        </AdminWrapper.Header>
-        <Table
-          columns={columns}
-          data={newData}
-          format={bookmarkFormat}
-          editAction={openModal}
-          deleteAction={openModalDelete}
-          openAction={openModal}
-          openActionLabel="Add new bookmark"
-        />
-        <AdminModal
-          title={bookmark.id ? 'Edit bookmark' : 'Add new bookmark'}
-          isOpen={isOpen}
-          closeModal={closeModal}
-          showButtons={true}
-          onSecondaryButtonClick={closeModal}
-          onPrimaryButtonClick={onPrimaryButtonClick}
-        >
-          <form ref={formRef} acceptCharset="UTF-8" method="POST" encType="multipart/form-data" onSubmit={onSubmitModal}>
-            {formError && (
-              <div className="bg-accent-100 border border-accent-400 text-accent-700 px-4 py-3 rounded relative mb-4" role="alert">
-                <strong className="font-bold">
-                  <ExclamationTriangleIcon className="inline-flex align-middle h-6 mr-4" />
-                  Invalid Form!{' '}
-                </strong>
-                <span className="block sm:inline">Some required fields are missing.</span>
-              </div>
-            )}
-            <div className="grid grid-cols-6 gap-6">
-              <div className="col-span-6">
-                <label htmlFor="category-form" className="input-label">
-                  Category <span className="text-secondary-700">*</span>
-                </label>
-                <select name="categoryId" id="category-form" className="mt-1 input-field" onChange={handleChange} value={bookmark.categoryId} required>
-                  <option value="">Select category</option>
-                  {categories?.results
-                    .filter((x) => x.type == 'BOOKMARK')
-                    .map((item) => (
-                      <option key={item.id} value={item.id}>
-                        {item.name}
-                      </option>
-                    ))}
-                </select>
-              </div>
-              <div className="col-span-6">
-                <label htmlFor="url-form" className="input-label">
-                  URL <span className="text-secondary-700">*</span>
-                </label>
-                <div className="flex">
+        <div className="h-full py-8 w-full w-1/4">
+          <List title={title} columns={columns} data={newData} format={bookmarkFormat} openAction={openModal} editAction={openModal} />
+        </div>
+        <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6  ${isOpen ? '' : 'hidden'}`}>
+          <div className="flex items-center justify-between">
+            <h2 className="text-2xl flex items-center gap-2">
+              <BookmarkIcon className="h-6 text-secondary-700 dark:text-secondary-600" /> {bookmark.id ? 'Edit bookmark' : 'Add new bookmark'}
+            </h2>
+            <div className="flex items-center gap-4">
+              <a href="#" className="text-sm text-red-500 font-semibold hover:underline" onClick={() => openModalDelete(app)} role="menuitem" tabIndex="-1">
+                <TrashIcon className="inline-flex align-text-bottom h-4 mr-1" />
+                Delete
+              </a>
+              <button onClick={onPrimaryButtonClick} type="button" className={'button-success'}>
+                Save
+              </button>
+            </div>
+          </div>
+
+          <div className={'mt-8 mb-2'}>
+            <form ref={formRef} acceptCharset="UTF-8" method="POST" encType="multipart/form-data" onSubmit={onSubmitModal}>
+              {formError && (
+                <div className="bg-accent-100 border border-accent-400 text-accent-700 px-4 py-3 rounded relative mb-4" role="alert">
+                  <strong className="font-bold">
+                    <ExclamationTriangleIcon className="inline-flex align-middle h-6 mr-4" />
+                    Invalid Form!{' '}
+                  </strong>
+                  <span className="block sm:inline">Some required fields are missing.</span>
+                </div>
+              )}
+              <div className="grid grid-cols-6 gap-6">
+                <div className="col-span-6">
+                  <label htmlFor="category-form" className="input-label">
+                    Category <span className="text-secondary-700">*</span>
+                  </label>
+                  <select name="categoryId" id="category-form" className="mt-1 input-field" onChange={handleChange} value={bookmark.categoryId} required>
+                    <option value="">Select category</option>
+                    {categories?.results
+                      .filter((x) => x.type == 'BOOKMARK')
+                      .map((item) => (
+                        <option key={item.id} value={item.id}>
+                          {item.name}
+                        </option>
+                      ))}
+                  </select>
+                </div>
+                <div className="col-span-6">
+                  <label htmlFor="url-form" className="input-label">
+                    URL <span className="text-secondary-700">*</span>
+                  </label>
+                  <div className="flex gap-4 items-center">
+                    <input
+                      type="url"
+                      name="url"
+                      id="url-form"
+                      autoComplete="off"
+                      data-lpignore="true"
+                      data-form-type="other"
+                      className="mt-1 input-field w-5/6"
+                      value={bookmark.url}
+                      onChange={handleChange}
+                      required
+                    />
+                    <button type="button" onClick={() => fetchUrlData(bookmark)} className="button-success">
+                      Fetch
+                    </button>
+                  </div>
+                </div>
+                {currentStatus && <p className="text-secondary-800 col-span-6">{currentStatus}</p>}
+                <div className="col-span-6">
+                  <label htmlFor="name-form" className="input-label">
+                    Title <span className="text-secondary-700">*</span>
+                  </label>
                   <input
-                    type="url"
-                    name="url"
-                    id="url-form"
+                    type="text"
+                    name="name"
+                    id="name-form"
                     autoComplete="off"
                     data-lpignore="true"
                     data-form-type="other"
-                    className="mt-1 input-field w-5/6"
-                    value={bookmark.url}
+                    className="mt-1 input-field"
+                    value={bookmark.name}
                     onChange={handleChange}
+                    maxLength={191}
                     required
                   />
-                  <button type="button" onClick={() => fetchUrlData(bookmark)} className="button-success ml-4">
-                    Fetch
-                  </button>
+                </div>
+                <div className="col-span-6">
+                  <label htmlFor="description-form" className="input-label">
+                    Description ({bookmark.description.length}/191)
+                  </label>
+                  <input
+                    type="text"
+                    name="description"
+                    id="description-form"
+                    autoComplete="off"
+                    data-lpignore="true"
+                    data-form-type="other"
+                    className="mt-1 input-field"
+                    value={bookmark.description}
+                    onChange={handleChange}
+                    maxLength={191}
+                  />
                 </div>
               </div>
-              {currentStatus && <p className="text-secondary-800">{currentStatus}</p>}
-              <div className="col-span-6">
-                <label htmlFor="name-form" className="input-label">
-                  Title <span className="text-secondary-700">*</span>
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  id="name-form"
-                  autoComplete="off"
-                  data-lpignore="true"
-                  data-form-type="other"
-                  className="mt-1 input-field"
-                  value={bookmark.name}
-                  onChange={handleChange}
-                  maxLength={191}
-                  required
-                />
-              </div>
-              <div className="col-span-6">
-                <label htmlFor="description-form" className="input-label">
-                  Description
-                </label>
-                <input
-                  type="text"
-                  name="description"
-                  id="description-form"
-                  autoComplete="off"
-                  data-lpignore="true"
-                  data-form-type="other"
-                  className="mt-1 input-field"
-                  value={bookmark.description}
-                  onChange={handleChange}
-                  maxLength={191}
-                />
-              </div>
-            </div>
-          </form>
-        </AdminModal>
+            </form>
+          </div>
+        </div>
+
         <AdminModal
           title="Delete bookmark"
           isOpen={isOpenDelete}
@@ -303,7 +304,7 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
           primaryButtonClass="button-danger"
           fullSize={false}
         >
-          <p>Are you sure you want to delete bookmark &quot;{bookmark.name}&quot;?</p>
+          <p>Are you sure you want to delete app &quot;{bookmark.name}&quot;?</p>
         </AdminModal>
       </AdminWrapper>
     );

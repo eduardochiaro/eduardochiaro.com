@@ -14,7 +14,7 @@ const handler = async (req, res) => {
   if (req.method === 'POST') {
     await new Promise((resolve, reject) => {
       const form = new IncomingForm();
-      form.parse(req, async (err, fields, files) => {
+      form.parse(req, async (err, fields) => {
         if (err) return reject(err);
         const { id, categoryId, ...data } = fields;
         const bookmark = await prisma.bookmark.create({
