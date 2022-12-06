@@ -1,47 +1,48 @@
 import AdminSidebar from './Sidebar';
-import { useSession } from 'next-auth/react';
 import { BriefcaseIcon, CpuChipIcon, CommandLineIcon, TagIcon, BookmarkIcon, Bars3Icon } from '@heroicons/react/24/outline';
-import React, { Fragment } from 'react';
+import React from 'react';
+
+const classForIcon = "w-5 group-hover:text-secondary-700 dark:group-hover:text-secondary-600";
 
 const menuList = [
   {
     title: 'Menu links',
-    icon: <Bars3Icon className="w-5 group-hover:text-secondary-700 dark:group-hover:text-secondary-600" />,
+    icon: <Bars3Icon className={classForIcon} />,
     href: '/admin/menu',
     description: 'Set up primary navigation menu',
     classColor: 'bg-secondary-700',
   },
   {
     title: 'Categories',
-    icon: <TagIcon className="w-5 group-hover:text-secondary-700 dark:group-hover:text-secondary-600" />,
+    icon: <TagIcon className={classForIcon} />,
     href: '/admin/categories',
     description: 'Manage categories used in several other sections',
     classColor: 'bg-cyan-700',
   },
   {
     title: 'Jobs',
-    icon: <BriefcaseIcon className="w-5 group-hover:text-secondary-700 dark:group-hover:text-secondary-600" />,
+    icon: <BriefcaseIcon className={classForIcon} />,
     href: '/admin/jobs',
     description: 'Manage entries on Jobs section in Homepage',
     classColor: 'bg-emerald-700',
   },
   {
     title: 'Skills',
-    icon: <CommandLineIcon className="w-5 group-hover:text-secondary-700 dark:group-hover:text-secondary-600" />,
+    icon: <CommandLineIcon className={classForIcon} />,
     href: '/admin/skills',
     description: 'Manage entries on Skills section in Homepage',
     classColor: 'bg-amber-700',
   },
   {
     title: 'Apps',
-    icon: <CpuChipIcon className="w-5 group-hover:text-secondary-700 dark:group-hover:text-secondary-600" />,
+    icon: <CpuChipIcon className={classForIcon} />,
     href: '/admin/apps',
     description: 'Manage entries on Apps in Projects page',
     classColor: 'bg-indigo-700',
   },
   {
     title: 'Bookmarks',
-    icon: <BookmarkIcon className="w-5 group-hover:text-secondary-700 dark:group-hover:text-secondary-600" />,
+    icon: <BookmarkIcon className={classForIcon} />,
     href: '/admin/bookmarks',
     description: 'Manage entries for bookmarks page',
     classColor: 'bg-red-700',

@@ -20,8 +20,8 @@ const AdminSidebar = ({ menuList }) => {
         openMenu ? styles['sidebar-open'] : styles['sidebar-closed']
       }`}
     >
-      <div className="grow p-3 relative">
-        <div className="flex items-center gap-4 h-14 my-3 border-b border-primary-300 dark:border-primary-500 px-3">
+      <div className="grow p-3 pr-0 relative">
+        <div className="flex items-center gap-4 h-14 my-3 border-b border-primary-300 dark:border-primary-500 px-3 mr-3">
           <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className="h-6 text-secondary-700" />
           <div className={`grow font-bold font-header hidden xl:block ${openMenu ? '' : styles['hide-when-closed']}`}>Eduardo Chiaro</div>
         </div>
@@ -43,7 +43,7 @@ const AdminSidebar = ({ menuList }) => {
             </Link>
           </li>
           <li>
-            <div className="flex flex-row items-center h-8">
+            <div className="flex flex-row items-center h-8 mr-3">
               <span className="w-10 border-t border-secondary-700 dark:border-secondary-600 border-dashed shrink"></span>
               <div className={`text-sm font-light tracking-wide mx-3 ${openMenu ? '' : styles['hide-when-closed']}`}>Menu</div>
               <span className="w-full border-t border-secondary-700 dark:border-secondary-600 border-dashed shrink"></span>
@@ -55,7 +55,7 @@ const AdminSidebar = ({ menuList }) => {
                 href={item.href}
                 as={item.href}
                 className={`${styles['sidebar-link']} group border-transparent `}
-                activeClassName={`${styles['sidebar-link']} group text-secondary-700 dark:text-secondary-600`}
+                activeClassName={`${styles['sidebar-link']} group text-secondary-700 dark:text-secondary-600 bg-primary-100 dark:bg-primary-800 rounded-l`}
               >
                 <a className="flex items-center gap-2" alt={item.title} title={item.title}>
                   {item.icon}
