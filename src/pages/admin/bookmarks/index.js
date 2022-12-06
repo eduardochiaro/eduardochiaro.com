@@ -12,7 +12,7 @@ import useStaleSWR from '@/utils/staleSWR';
 import moment from 'moment';
 import * as cheerio from 'cheerio';
 import List from '@/components/admin/List';
-import { TrashIcon } from '@heroicons/react/24/solid';
+import { CheckIcon, TrashIcon } from '@heroicons/react/24/solid';
 
 const AdminBookmarksIndex = ({ formRef, images }) => {
   const { data: bookmarks, error } = useStaleSWR('/api/portfolio/bookmarks');
@@ -34,6 +34,7 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
   let [isOpenDelete, setIsOpenDelete] = useState(false);
   let [bookmark, setBookmark] = useState(bookmarkFormat);
   let [formError, setFormError] = useState(false);
+  let [formSuccess, setFormSuccess] = useState(false);
 
   const onSubmitModal = async (e) => {
     e.preventDefault();
@@ -63,11 +64,13 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
       },
     }).catch(function (error) {
       // handle error
-      console.log('im here');
       console.log(error);
-      setCurrentStatus(error.message);
+      setFormError(true);
+      setFormSuccess(false);
     }).then(({ data }) => {
       mutate('/api/portfolio/bookmarks');
+      const openApp = mergeObj(bookmarkFormat, data);
+      setBookmark(openApp);
       closeModal();
     });
   };
@@ -101,13 +104,13 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
     const openBookmark = mergeObj(bookmarkFormat, bookmark);
     setBookmark(openBookmark);
     setIsOpen(true);
+    setFormSuccess(false);
   };
 
   const closeModal = () => {
     setCurrentStatus(null);
-    setBookmark(bookmarkFormat);
-    setIsOpen(false);
     setFormError(false);
+    setFormSuccess(true);
   };
 
   const openModalDelete = (bookmark) => {
@@ -119,6 +122,7 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
   const closeModalDelete = () => {
     setBookmark(bookmarkFormat);
     setIsOpenDelete(false);
+    setIsOpen(false);
   };
 
   const handleChange = (e) => {
@@ -185,7 +189,7 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
     return (
       <AdminWrapper>
         <div className="h-full py-8 w-full w-1/4">
-          <List title={title} columns={columns} data={newData} format={bookmarkFormat} openAction={openModal} editAction={openModal} />
+          <List title={title} columns={columns} data={newData} format={bookmarkFormat} openAction={openModal} editAction={openModal} activeId={bookmark.id} />
         </div>
         <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6  ${isOpen ? '' : 'hidden'}`}>
           <div className="flex items-center justify-between">
@@ -193,7 +197,7 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
               <BookmarkIcon className="h-6 text-secondary-700 dark:text-secondary-600" /> {bookmark.id ? 'Edit bookmark' : 'Add new bookmark'}
             </h2>
             <div className="flex items-center gap-4">
-              <a href="#" className="text-sm text-red-500 font-semibold hover:underline" onClick={() => openModalDelete(app)} role="menuitem" tabIndex="-1">
+              <a href="#" className="text-sm text-red-500 font-semibold hover:underline" onClick={() => openModalDelete(bookmark)} role="menuitem" tabIndex="-1">
                 <TrashIcon className="inline-flex align-text-bottom h-4 mr-1" />
                 Delete
               </a>
@@ -206,13 +210,22 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
           <div className={'mt-8 mb-2'}>
             <form ref={formRef} acceptCharset="UTF-8" method="POST" encType="multipart/form-data" onSubmit={onSubmitModal}>
               {formError && (
-                <div className="bg-accent-100 border border-accent-400 text-accent-700 px-4 py-3 rounded relative mb-4" role="alert">
+              <div className="bg-accent-100 border border-accent-400 text-accent-700 px-4 py-3 rounded relative mb-4" role="alert">
+                <strong className="font-bold">
+                  <ExclamationTriangleIcon className="inline-flex align-middle h-6 mr-4" />
+                  Invalid Form!{' '}
+                </strong>
+                <span className="block sm:inline">Some required fields are missing.</span>
+              </div>
+              )}
+              {formSuccess && (
+               <div className="bg-emerald-100 border border-emerald-400 text-emerald-700 px-4 py-3 rounded relative mb-4" role="alert">
                   <strong className="font-bold">
-                    <ExclamationTriangleIcon className="inline-flex align-middle h-6 mr-4" />
-                    Invalid Form!{' '}
-                  </strong>
-                  <span className="block sm:inline">Some required fields are missing.</span>
-                </div>
+                  <CheckIcon className="inline-flex align-middle h-6 mr-4" />
+                  Success!{' '}
+                </strong>
+                <span className="block sm:inline">This page was saved.</span>
+              </div>
               )}
               <div className="grid grid-cols-6 gap-6">
                 <div className="col-span-6">
