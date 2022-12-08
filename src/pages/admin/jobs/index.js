@@ -60,18 +60,20 @@ const AdminJobsIndex = ({ formRef }) => {
       headers: {
         'Content-Type': `multipart/form-data; boundary=${formData._boundary}`,
       },
-    }).catch(function (error) {
-      // handle error
-      console.log(error);
-      setFormError(true);
-      setFormSuccess(false);
-    }).then(({ data }) => {
-      inputFileRef.current.value = "";
-      mutate('/api/portfolio/jobs');
-      const mergedData = mergeObj(jobFormat, data);
-      setJob(mergedData);
-      closeModal();
-    });
+    })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+        setFormError(true);
+        setFormSuccess(false);
+      })
+      .then(({ data }) => {
+        inputFileRef.current.value = '';
+        mutate('/api/portfolio/jobs');
+        const mergedData = mergeObj(jobFormat, data);
+        setJob(mergedData);
+        closeModal();
+      });
   };
 
   const isFormValid = (form) => {
@@ -94,7 +96,7 @@ const AdminJobsIndex = ({ formRef }) => {
         'Content-Type': 'application/json',
       },
     });
-    inputFileRef.current.value = "";
+    inputFileRef.current.value = '';
     mutate('/api/portfolio/jobs');
     closeModalDelete();
   };
@@ -107,7 +109,7 @@ const AdminJobsIndex = ({ formRef }) => {
   };
 
   const closeModal = () => {
-    inputFileRef.current.value = "";
+    inputFileRef.current.value = '';
     setFormError(false);
     setFormSuccess(false);
   };
@@ -139,9 +141,7 @@ const AdminJobsIndex = ({ formRef }) => {
     obj.updated = moment(item.updatedAt || item.createdAt).from(moment());
     obj.category_d =
       (item.startDate ? moment(item.startDate).format('YYYY-MM') : 'N/A') + ' - ' + (item.endDate ? moment(item.endDate).format('YYYY-MM') : 'Current');
-    obj.image_d = (
-      <SVG alt={item.name} className={'object-cover w-16 fill-primary-700 dark:fill-primary-200'} src={`/uploads/${item.logo}`} height={25} />
-    );
+    obj.image_d = <SVG alt={item.name} className={'object-cover w-16 fill-primary-700 dark:fill-primary-200'} src={`/uploads/${item.logo}`} height={25} />;
     obj.size = item.style + 'px';
     obj.description = obj.disclaimer;
     newData.push(obj);
@@ -178,23 +178,23 @@ const AdminJobsIndex = ({ formRef }) => {
 
           <div className={'mt-8 mb-2'}>
             <form ref={formRef} acceptCharset="UTF-8" method="POST" encType="multipart/form-data" onSubmit={onSubmitModal}>
-            {formError && (
-              <div className="bg-accent-100 border border-accent-400 text-accent-700 px-4 py-3 rounded relative mb-4" role="alert">
-                <strong className="font-bold">
-                  <ExclamationTriangleIcon className="inline-flex align-middle h-6 mr-4" />
-                  Invalid Form!{' '}
-                </strong>
-                <span className="block sm:inline">Some required fields are missing.</span>
-              </div>
+              {formError && (
+                <div className="bg-accent-100 border border-accent-400 text-accent-700 px-4 py-3 rounded relative mb-4" role="alert">
+                  <strong className="font-bold">
+                    <ExclamationTriangleIcon className="inline-flex align-middle h-6 mr-4" />
+                    Invalid Form!{' '}
+                  </strong>
+                  <span className="block sm:inline">Some required fields are missing.</span>
+                </div>
               )}
               {formSuccess && (
-               <div className="bg-emerald-100 border border-emerald-400 text-emerald-700 px-4 py-3 rounded relative mb-4" role="alert">
+                <div className="bg-emerald-100 border border-emerald-400 text-emerald-700 px-4 py-3 rounded relative mb-4" role="alert">
                   <strong className="font-bold">
-                  <CheckIcon className="inline-flex align-middle h-6 mr-4" />
-                  Success!{' '}
-                </strong>
-                <span className="block sm:inline">This page was saved.</span>
-              </div>
+                    <CheckIcon className="inline-flex align-middle h-6 mr-4" />
+                    Success!{' '}
+                  </strong>
+                  <span className="block sm:inline">This page was saved.</span>
+                </div>
               )}
               <div className="grid grid-cols-6 gap-6">
                 <div className="col-span-6">
@@ -280,7 +280,14 @@ const AdminJobsIndex = ({ formRef }) => {
                   <label htmlFor="disclaimer-form" className="input-label">
                     Disclaimer
                   </label>
-                  <textarea name="disclaimer" id="disclaimer-form" className="mt-1 input-field" value={job.disclaimer} onChange={handleChange} maxLength={191} />
+                  <textarea
+                    name="disclaimer"
+                    id="disclaimer-form"
+                    className="mt-1 input-field"
+                    value={job.disclaimer}
+                    onChange={handleChange}
+                    maxLength={191}
+                  />
                 </div>
               </div>
             </form>

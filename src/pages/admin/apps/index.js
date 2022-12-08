@@ -59,18 +59,20 @@ const AdminAppsIndex = ({ formRef }) => {
       headers: {
         'Content-Type': `multipart/form-data; boundary=${formData._boundary}`,
       },
-    }).catch(function (error) {
-      // handle error
-      console.log(error);
-      setFormError(true);
-      setFormSuccess(false);
-    }).then(({ data }) => {
-      inputFileRef.current.value = "";
-      mutate('/api/portfolio/apps');
-      const mergedData = mergeObj(appFormat, data);
-      setApp(mergedData);
-      closeModal();
-    });
+    })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+        setFormError(true);
+        setFormSuccess(false);
+      })
+      .then(({ data }) => {
+        inputFileRef.current.value = '';
+        mutate('/api/portfolio/apps');
+        const mergedData = mergeObj(appFormat, data);
+        setApp(mergedData);
+        closeModal();
+      });
   };
 
   const isFormValid = (form) => {
@@ -93,7 +95,7 @@ const AdminAppsIndex = ({ formRef }) => {
         'Content-Type': 'application/json',
       },
     });
-    inputFileRef.current.value = "";
+    inputFileRef.current.value = '';
     mutate('/api/portfolio/apps');
     closeModalDelete();
   };
@@ -106,7 +108,7 @@ const AdminAppsIndex = ({ formRef }) => {
   };
 
   const closeModal = () => {
-    inputFileRef.current.value = "";
+    inputFileRef.current.value = '';
     setFormError(false);
     setFormSuccess(true);
   };
@@ -174,23 +176,23 @@ const AdminAppsIndex = ({ formRef }) => {
 
           <div className={'mt-8 mb-2'}>
             <form ref={formRef} acceptCharset="UTF-8" method="POST" encType="multipart/form-data" onSubmit={onSubmitModal}>
-            {formError && (
-              <div className="bg-accent-100 border border-accent-400 text-accent-700 px-4 py-3 rounded relative mb-4" role="alert">
-                <strong className="font-bold">
-                  <ExclamationTriangleIcon className="inline-flex align-middle h-6 mr-4" />
-                  Invalid Form!{' '}
-                </strong>
-                <span className="block sm:inline">Some required fields are missing.</span>
-              </div>
+              {formError && (
+                <div className="bg-accent-100 border border-accent-400 text-accent-700 px-4 py-3 rounded relative mb-4" role="alert">
+                  <strong className="font-bold">
+                    <ExclamationTriangleIcon className="inline-flex align-middle h-6 mr-4" />
+                    Invalid Form!{' '}
+                  </strong>
+                  <span className="block sm:inline">Some required fields are missing.</span>
+                </div>
               )}
               {formSuccess && (
-               <div className="bg-emerald-100 border border-emerald-400 text-emerald-700 px-4 py-3 rounded relative mb-4" role="alert">
+                <div className="bg-emerald-100 border border-emerald-400 text-emerald-700 px-4 py-3 rounded relative mb-4" role="alert">
                   <strong className="font-bold">
-                  <CheckIcon className="inline-flex align-middle h-6 mr-4" />
-                  Success!{' '}
-                </strong>
-                <span className="block sm:inline">This page was saved.</span>
-              </div>
+                    <CheckIcon className="inline-flex align-middle h-6 mr-4" />
+                    Success!{' '}
+                  </strong>
+                  <span className="block sm:inline">This page was saved.</span>
+                </div>
               )}
               <div className="grid grid-cols-6 gap-6">
                 <div className="col-span-6">
@@ -220,13 +222,11 @@ const AdminAppsIndex = ({ formRef }) => {
                     type="file"
                     name="image"
                     id="image-url-form"
-                    className="mt-1 block w-full text-sm text-slate-500
-                          file:mr-4 file:py-2 file:px-4
-                          file:rounded-full file:border-0
-                          file:text-sm file:font-semibold
-                          file:bg-primary-200 file:text-primary-700
-                          hover:file:bg-primary-300
-                    "
+                    className="input-field
+                      mt-1
+                      py-1.5 px-2
+                      focus:outline-none
+                      "
                     onChange={handleChange}
                   />
                 </div>

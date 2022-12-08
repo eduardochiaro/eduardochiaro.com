@@ -2,7 +2,7 @@ import AdminSidebar from './Sidebar';
 import { BriefcaseIcon, CpuChipIcon, CommandLineIcon, TagIcon, BookmarkIcon, Bars3Icon } from '@heroicons/react/24/outline';
 import React from 'react';
 
-const classForIcon = "w-5 group-hover:text-secondary-700 dark:group-hover:text-secondary-600";
+const classForIcon = 'w-5 group-hover:text-secondary-700 dark:group-hover:text-secondary-600';
 
 const menuList = [
   {
