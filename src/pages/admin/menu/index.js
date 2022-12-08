@@ -57,18 +57,18 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
         'Content-Type': 'application/json',
       },
     })
-    .catch(function (error) {
-      // handle error
-      console.log(error);
-      setFormError(true);
-      setFormSuccess(false);
-    })
-    .then(({ data }) => {
-      mutate('/api/site/menu');
-      const mergedData = mergeObj(menuLinkFormat, data);
-      setMenuLink(mergedData);
-      closeModal();
-    });
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+        setFormError(true);
+        setFormSuccess(false);
+      })
+      .then(({ data }) => {
+        mutate('/api/site/menu');
+        const mergedData = mergeObj(menuLinkFormat, data);
+        setMenuLink(mergedData);
+        closeModal();
+      });
   };
 
   const isFormValid = (form) => {
@@ -132,9 +132,11 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
   menuLinks?.results.map((item) => {
     const obj = { ...item };
     obj.status_d = obj.active ? 'Active' : 'Inactive';
-    obj.description = <>
+    obj.description = (
+      <>
         <span className={obj.active ? 'text-emerald-500 font-bold' : 'text-red-500 font-bold'}>{obj.status_d}</span> [{obj.url}]
-      </>;
+      </>
+    );
     obj.category_d = !item.onlyMobile ? 'All Browsers' : 'Mobile only';
     obj.updated = moment(item.updatedAt || item.createdAt).from(moment());
     newData.push(obj);

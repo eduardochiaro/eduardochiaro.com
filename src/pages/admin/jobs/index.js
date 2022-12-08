@@ -239,7 +239,7 @@ const AdminJobsIndex = ({ formRef }) => {
                         Current
                       </label>
                       <div className="mt-4 w-32 m-auto relative">
-                        <SVG alt={job.name} className={'w-32 fill-primary-700 dark:fill-primary-200'} src={`/uploads/${job.logo}`} height={25} />
+                        <SVG alt={job.name} className={'w-32 fill-primary-700 dark:fill-primary-200'} src={`/uploads/${job.logo}`} height={50} />
                       </div>
                     </>
                   )}
