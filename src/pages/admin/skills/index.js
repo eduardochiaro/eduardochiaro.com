@@ -27,10 +27,10 @@ const AdminSkillsIndex = ({ formRef, images }) => {
     percentage: 0,
   };
 
-  let [isOpen, setIsOpen] = useState(false);
-  let [isOpenDelete, setIsOpenDelete] = useState(false);
-  let [skill, setSkill] = useState(skillFormat);
-  let [formError, setFormError] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenDelete, setIsOpenDelete] = useState(false);
+  const [skill, setSkill] = useState(skillFormat);
+  const [formError, setFormError] = useState(false);
 
   const onSubmitModal = async (e) => {
     e.preventDefault();
@@ -42,7 +42,7 @@ const AdminSkillsIndex = ({ formRef, images }) => {
 
     const formData = new FormData();
 
-    for (let [key, value] of Object.entries(skill)) {
+    for (const [key, value] of Object.entries(skill)) {
       if (key == 'logo') {
         formData.append(key, value);
       } else {

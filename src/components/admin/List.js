@@ -95,8 +95,7 @@ export default function List({ title = () => null, columns = [], data = [], form
                   <div className="flex justify-between items-center gap-2">
                     <h4 className="text-lg group-hover:text-secondary-700">{item.name}</h4>
                     { item.category_d ? (
-                      <div className="text-xs flex items-center gap-2">
-                        <TagIcon className="w-3 text-secondary-600"/>
+                      <div className="text-xs rounded px-2 py-1 bg-secondary-800 gap-2">
                         { item.category_d }
                       </div>
                     ) : ""}

@@ -1,6 +1,6 @@
 import { CpuChipIcon, ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 import { useSession } from 'next-auth/react';
-import { useState, createRef } from 'react';
+import { useState, createRef, useRef } from 'react';
 import { useSWRConfig } from 'swr';
 import axios from 'axios';
 import AdminModal from '@/components/admin/Modal';
@@ -26,11 +26,12 @@ const AdminAppsIndex = ({ formRef }) => {
     url: '',
   };
 
-  let [isOpen, setIsOpen] = useState(false);
-  let [isOpenDelete, setIsOpenDelete] = useState(false);
-  let [app, setApp] = useState(appFormat);
-  let [formError, setFormError] = useState(false);
-  let [formSuccess, setFormSuccess] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenDelete, setIsOpenDelete] = useState(false);
+  const [app, setApp] = useState(appFormat);
+  const [formError, setFormError] = useState(false);
+  const [formSuccess, setFormSuccess] = useState(false);
+  const inputFileRef = useRef(null);
 
   const onSubmitModal = async (e) => {
     e.preventDefault();
@@ -42,7 +43,7 @@ const AdminAppsIndex = ({ formRef }) => {
 
     const formData = new FormData();
 
-    for (let [key, value] of Object.entries(app)) {
+    for (const [key, value] of Object.entries(app)) {
       if (key == 'image') {
         formData.append(key, value);
       } else {
@@ -64,6 +65,7 @@ const AdminAppsIndex = ({ formRef }) => {
       setFormError(true);
       setFormSuccess(false);
     }).then(({ data }) => {
+      inputFileRef.current.value = "";
       mutate('/api/portfolio/apps');
       const mergedData = mergeObj(appFormat, data);
       setApp(mergedData);
@@ -91,6 +93,7 @@ const AdminAppsIndex = ({ formRef }) => {
         'Content-Type': 'application/json',
       },
     });
+    inputFileRef.current.value = "";
     mutate('/api/portfolio/apps');
     closeModalDelete();
   };
@@ -103,6 +106,7 @@ const AdminAppsIndex = ({ formRef }) => {
   };
 
   const closeModal = () => {
+    inputFileRef.current.value = "";
     setFormError(false);
     setFormSuccess(true);
   };
@@ -152,7 +156,7 @@ const AdminAppsIndex = ({ formRef }) => {
         <div className="h-full py-8 w-full w-1/4">
           <List title={title} columns={columns} data={newData} format={appFormat} openAction={openModal} editAction={openModal} activeId={app.id} />
         </div>
-        <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6  ${isOpen ? '' : 'hidden'}`}>
+        <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6 ${isOpen ? '' : 'hidden'}`}>
           <div className="flex items-center justify-between">
             <h2 className="text-2xl flex items-center gap-2">
               <CpuChipIcon className="h-6 text-secondary-700 dark:text-secondary-600" /> {app.id ? 'Edit app' : 'Add new app'}
@@ -212,6 +216,7 @@ const AdminAppsIndex = ({ formRef }) => {
                     Image {!app.id && <span className="text-secondary-700">*</span>}
                   </label>
                   <input
+                    ref={inputFileRef}
                     type="file"
                     name="image"
                     id="image-url-form"

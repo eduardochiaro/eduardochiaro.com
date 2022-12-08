@@ -27,10 +27,10 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
     order: 0,
   };
 
-  let [isOpen, setIsOpen] = useState(false);
-  let [isOpenDelete, setIsOpenDelete] = useState(false);
-  let [menuLink, setMenuLink] = useState(menuLinkFormat);
-  let [formError, setFormError] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenDelete, setIsOpenDelete] = useState(false);
+  const [menuLink, setMenuLink] = useState(menuLinkFormat);
+  const [formError, setFormError] = useState(false);
 
   const onSubmitModal = async (e) => {
     e.preventDefault();
@@ -42,7 +42,7 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
 
     const formData = new FormData();
 
-    for (let [key, value] of Object.entries(menuLink)) {
+    for (const [key, value] of Object.entries(menuLink)) {
       formData.append(key, value);
     }
 
