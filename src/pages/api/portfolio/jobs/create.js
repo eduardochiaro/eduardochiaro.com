@@ -3,6 +3,7 @@ import prisma from '@/utils/prisma';
 import cors from '@/middlewares/cors';
 import { IncomingForm } from 'formidable';
 import mv from 'mv';
+import moment from 'moment';
 
 const uploadPath = './public/uploads/';
 
@@ -26,9 +27,12 @@ const handler = async (req, res) => {
         mv(oldPath, newPath, function (err) {
           console.error(err);
         });
-        const { id, style, ...data } = fields;
+        const { id, startDate, endDate, ...data } = fields;
         const job = await prisma.job.create({
-          data: { ...data, logo: newName, createdAt: new Date() },
+          data: { ...data,
+            startDate: startDate ? moment(startDate).toISOString() : null,
+            endDate: endDate ? moment(endDate).toISOString() : null,
+            logo: newName, createdAt: new Date() },
         });
         res.status(200).json({ ...job });
       });

@@ -30,11 +30,11 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
     description: '',
   };
 
-  let [isOpen, setIsOpen] = useState(false);
-  let [isOpenDelete, setIsOpenDelete] = useState(false);
-  let [bookmark, setBookmark] = useState(bookmarkFormat);
-  let [formError, setFormError] = useState(false);
-  let [formSuccess, setFormSuccess] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenDelete, setIsOpenDelete] = useState(false);
+  const [bookmark, setBookmark] = useState(bookmarkFormat);
+  const [formError, setFormError] = useState(false);
+  const [formSuccess, setFormSuccess] = useState(false);
 
   const onSubmitModal = async (e) => {
     e.preventDefault();
@@ -46,7 +46,7 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
 
     const formData = new FormData();
 
-    for (let [key, value] of Object.entries(bookmark)) {
+    for (const [key, value] of Object.entries(bookmark)) {
       if (key == 'logo') {
         formData.append(key, value);
       } else {
