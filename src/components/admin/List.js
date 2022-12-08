@@ -80,7 +80,7 @@ export default function List({ title = () => null, columns = [], data = [], form
           ? filteredData.map((item) => (
               <div
                 key={item.id}
-                className={`flex items-center gap-4 cursor-pointer group p-2 pl-4 pr-8 rounded-l ${
+                className={`flex items-center gap-4 cursor-pointer group p-2 pl-4 pr-8 rounded-l-lg ${
                   activeMenu == item.id ? 'bg-primary-50 dark:bg-primary-900' : ''
                 }`}
                 onClick={() => clickOnEdit(item)}
@@ -100,7 +100,9 @@ export default function List({ title = () => null, columns = [], data = [], form
                 </div>
               </div>
             ))
-          : ''}
+          : (
+            <div className="text-center text-base opacity-50">...nothing here</div>
+          )}
       </div>
     </>
   );

@@ -7,10 +7,11 @@ import fs from 'fs';
 import path from 'path';
 import AdminModal from '@/components/admin/Modal';
 import AdminWrapper from '@/components/admin/Wrapper';
-import Table from '@/components/admin/Table';
 import mergeObj from '@/utils/mergeObj';
 import useStaleSWR from '@/utils/staleSWR';
 import moment from 'moment';
+import List from '@/components/admin/List';
+import { CheckIcon, TrashIcon } from '@heroicons/react/24/solid';
 
 const AdminCategoriesIndex = ({ formRef, images }) => {
   const { data: menuLinks, error } = useStaleSWR('/api/site/menu');
@@ -31,6 +32,7 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
   const [isOpenDelete, setIsOpenDelete] = useState(false);
   const [menuLink, setMenuLink] = useState(menuLinkFormat);
   const [formError, setFormError] = useState(false);
+  const [formSuccess, setFormSuccess] = useState(false);
 
   const onSubmitModal = async (e) => {
     e.preventDefault();
@@ -54,8 +56,17 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
       headers: {
         'Content-Type': 'application/json',
       },
-    }).then(({ data }) => {
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+      setFormError(true);
+      setFormSuccess(false);
+    })
+    .then(({ data }) => {
       mutate('/api/site/menu');
+      const mergedData = mergeObj(menuLinkFormat, data);
+      setMenuLink(mergedData);
       closeModal();
     });
   };
@@ -88,12 +99,12 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
     const openMenuLink = mergeObj(menuLinkFormat, menuLink);
     setMenuLink(openMenuLink);
     setIsOpen(true);
+    setFormSuccess(false);
   };
 
   const closeModal = () => {
-    setMenuLink(menuLinkFormat);
-    setIsOpen(false);
     setFormError(false);
+    setFormSuccess(true);
   };
 
   const openModalDelete = (menuLink) => {
@@ -115,160 +126,158 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
     }
   };
 
-  const columns = [
-    {
-      name: 'Name',
-      key: 'name',
-      searchable: true,
-      classNameTd: 'font-bold',
-    },
-    {
-      name: 'Url',
-      key: 'url',
-      searchable: true,
-    },
-    {
-      name: 'Show on...',
-      key: 'onlyMobile_d',
-      searchable: false,
-    },
-    {
-      name: 'Status',
-      key: 'active_d',
-      searchable: false,
-    },
-    {
-      name: 'Updated',
-      key: 'updated',
-      classNameTd: 'w-44',
-    },
-  ];
+  const columns = ['name', 'url', 'status_d', 'category_d'];
 
   const newData = [];
   menuLinks?.results.map((item) => {
     const obj = { ...item };
-    obj.onlyMobile_d = !item.onlyMobile ? 'All Browsers' : 'Mobile only';
-    obj.active_d = <span className={item.active ? 'text-emerald-500 font-bold' : 'text-red-500 font-bold'}>{item.active ? 'Active' : 'Inactive'}</span>;
+    obj.status_d = obj.active ? 'Active' : 'Inactive';
+    obj.description = <>
+        <span className={obj.active ? 'text-emerald-500 font-bold' : 'text-red-500 font-bold'}>{obj.status_d}</span> [{obj.url}]
+      </>;
+    obj.category_d = !item.onlyMobile ? 'All Browsers' : 'Mobile only';
     obj.updated = moment(item.updatedAt || item.createdAt).from(moment());
     newData.push(obj);
   });
 
+  const title = (
+    <h1 className="grow flex items-center gap-2">
+      <Bars3Icon className="h-6 text-secondary-700 dark:text-secondary-600" />
+      <span>Menu link list</span>
+    </h1>
+  );
+
   if (session) {
     return (
       <AdminWrapper>
-        <AdminWrapper.Header>
-          <h1 className="text-2xl flex items-center gap-2">
-            <Bars3Icon className="h-6 text-secondary-700 dark:text-secondary-600" /> Menu link list
-          </h1>
-        </AdminWrapper.Header>
-        <Table
-          columns={columns}
-          data={newData}
-          format={menuLinkFormat}
-          editAction={openModal}
-          deleteAction={openModalDelete}
-          openAction={openModal}
-          openActionLabel="Add new menu link"
-        />
-        <AdminModal
-          title={menuLink.id ? 'Edit menu link' : 'Add new menu link'}
-          isOpen={isOpen}
-          closeModal={closeModal}
-          showButtons={true}
-          onSecondaryButtonClick={closeModal}
-          onPrimaryButtonClick={onPrimaryButtonClick}
-        >
-          <form ref={formRef} acceptCharset="UTF-8" method="POST" encType="multipart/form-data" onSubmit={onSubmitModal}>
-            {formError && (
-              <div className="bg-accent-100 border border-accent-400 text-accent-700 px-4 py-3 rounded relative mb-4" role="alert">
-                <strong className="font-bold">
-                  <ExclamationTriangleIcon className="inline-flex align-middle h-6 mr-4" />
-                  Invalid Form!{' '}
-                </strong>
-                <span className="block sm:inline">Some required fields are missing.</span>
-              </div>
-            )}
-            <div className="grid grid-cols-6 gap-6">
-              <div className="col-span-6">
-                <label htmlFor="name-form" className="input-label">
-                  Title <span className="text-secondary-700">*</span>
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  id="name-form"
-                  autoComplete="off"
-                  data-lpignore="true"
-                  data-form-type="other"
-                  className="mt-1 input-field"
-                  value={menuLink.name}
-                  onChange={handleChange}
-                  maxLength={191}
-                  required
-                />
-              </div>
-              <div className="col-span-6">
-                <label htmlFor="name-form" className="input-label">
-                  Url <span className="text-secondary-700">*</span>
-                </label>
-                <input
-                  type="text"
-                  name="url"
-                  id="url-form"
-                  autoComplete="off"
-                  data-lpignore="true"
-                  data-form-type="other"
-                  className="mt-1 input-field w-5/6"
-                  value={menuLink.url}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="col-span-3">
-                <label htmlFor="name-form" className="input-label">
-                  Show on...
-                </label>
-
-                <select name="onlyMobile" id="onlyMobile-form" className="mt-1 input-field" onChange={handleChange} value={menuLink.onlyMobile} required>
-                  <option value={false}>All Browsers</option>
-                  <option value={true}>Mobile only</option>
-                </select>
-              </div>
-              <div className="col-span-2">
-                <label htmlFor="name-form" className="input-label">
-                  Active link
-                </label>
-
-                <select name="active" id="active-form" className="mt-1 input-field" onChange={handleChange} value={menuLink.active} required>
-                  <option value={false}>No</option>
-                  <option value={true}>Yes</option>
-                </select>
-              </div>
-              <div className="col-span-1">
-                <label htmlFor="name-form" className="input-label">
-                  Order
-                </label>
-                <input
-                  type="number"
-                  name="order"
-                  id="order-form"
-                  autoComplete="off"
-                  data-lpignore="true"
-                  data-form-type="other"
-                  className="mt-1 input-field w-5/6"
-                  value={menuLink.order}
-                  onChange={handleChange}
-                />
-              </div>
+        <div className="h-full py-8 w-full w-1/4">
+          <List title={title} columns={columns} data={newData} format={menuLinkFormat} openAction={openModal} editAction={openModal} activeId={menuLink.id} />
+        </div>
+        <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6  ${isOpen ? '' : 'hidden'}`}>
+          <div className="flex items-center justify-between">
+            <h2 className="text-2xl flex items-center gap-2">
+              <Bars3Icon className="h-6 text-secondary-700 dark:text-secondary-600" /> {menuLink.id ? 'Edit menuLink' : 'Add new menuLink'}
+            </h2>
+            <div className="flex items-center gap-4">
+              <a
+                href="#"
+                className="text-sm text-red-500 font-semibold hover:underline"
+                onClick={() => openModalDelete(menuLink)}
+                role="menuitem"
+                tabIndex="-1"
+              >
+                <TrashIcon className="inline-flex align-text-bottom h-4 mr-1" />
+                Delete
+              </a>
+              <button onClick={onPrimaryButtonClick} type="button" className={'button-success'}>
+                Save
+              </button>
             </div>
-          </form>
-        </AdminModal>
+          </div>
+
+          <div className={'mt-8 mb-2'}>
+            <form ref={formRef} acceptCharset="UTF-8" method="POST" encType="multipart/form-data" onSubmit={onSubmitModal}>
+              {formError && (
+                <div className="bg-accent-100 border border-accent-400 text-accent-700 px-4 py-3 rounded relative mb-4" role="alert">
+                  <strong className="font-bold">
+                    <ExclamationTriangleIcon className="inline-flex align-middle h-6 mr-4" />
+                    Invalid Form!{' '}
+                  </strong>
+                  <span className="block sm:inline">Some required fields are missing.</span>
+                </div>
+              )}
+              {formSuccess && (
+                <div className="bg-emerald-100 border border-emerald-400 text-emerald-700 px-4 py-3 rounded relative mb-4" role="alert">
+                  <strong className="font-bold">
+                    <CheckIcon className="inline-flex align-middle h-6 mr-4" />
+                    Success!{' '}
+                  </strong>
+                  <span className="block sm:inline">This page was saved.</span>
+                </div>
+              )}
+              <div className="grid grid-cols-6 gap-6">
+                <div className="col-span-6">
+                  <label htmlFor="name-form" className="input-label">
+                    Title <span className="text-secondary-700">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    id="name-form"
+                    autoComplete="off"
+                    data-lpignore="true"
+                    data-form-type="other"
+                    className="mt-1 input-field"
+                    value={menuLink.name}
+                    onChange={handleChange}
+                    maxLength={191}
+                    required
+                  />
+                </div>
+                <div className="col-span-6">
+                  <label htmlFor="name-form" className="input-label">
+                    Url <span className="text-secondary-700">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="url"
+                    id="url-form"
+                    autoComplete="off"
+                    data-lpignore="true"
+                    data-form-type="other"
+                    className="mt-1 input-field w-5/6"
+                    value={menuLink.url}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div className="col-span-3">
+                  <label htmlFor="name-form" className="input-label">
+                    Show on...
+                  </label>
+
+                  <select name="onlyMobile" id="onlyMobile-form" className="mt-1 input-field" onChange={handleChange} value={menuLink.onlyMobile} required>
+                    <option value={false}>All Browsers</option>
+                    <option value={true}>Mobile only</option>
+                  </select>
+                </div>
+                <div className="col-span-2">
+                  <label htmlFor="name-form" className="input-label">
+                    Active link
+                  </label>
+
+                  <select name="active" id="active-form" className="mt-1 input-field" onChange={handleChange} value={menuLink.active} required>
+                    <option value={false}>No</option>
+                    <option value={true}>Yes</option>
+                  </select>
+                </div>
+                <div className="col-span-1">
+                  <label htmlFor="name-form" className="input-label">
+                    Order
+                  </label>
+                  <input
+                    type="number"
+                    name="order"
+                    id="order-form"
+                    autoComplete="off"
+                    data-lpignore="true"
+                    data-form-type="other"
+                    className="mt-1 input-field w-5/6"
+                    value={menuLink.order}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
         <AdminModal
           title="Delete menuLink"
           isOpen={isOpenDelete}
-          closeModal={closeModalDelete}
+          closeModal={() => setIsOpenDelete(false)}
           showButtons={true}
-          onSecondaryButtonClick={closeModalDelete}
+          onSecondaryButtonClick={() => setIsOpenDelete(false)}
           onPrimaryButtonClick={onPrimaryButtonClickDelete}
           primaryButtonLabel="Delete"
           primaryButtonClass="button-danger"
