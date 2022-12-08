@@ -7,10 +7,11 @@ import fs from 'fs';
 import path from 'path';
 import AdminModal from '@/components/admin/Modal';
 import AdminWrapper from '@/components/admin/Wrapper';
-import Table from '@/components/admin/Table';
 import mergeObj from '@/utils/mergeObj';
 import useStaleSWR from '@/utils/staleSWR';
 import moment from 'moment';
+import List from '@/components/admin/List';
+import { CheckIcon, TrashIcon } from '@heroicons/react/24/solid';
 
 const AdminCategoriesIndex = ({ formRef, images }) => {
   const { data: categories, error } = useStaleSWR('/api/admin/categories');
@@ -30,6 +31,7 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
   let [isOpenDelete, setIsOpenDelete] = useState(false);
   let [category, setCategory] = useState(categoryFormat);
   let [formError, setFormError] = useState(false);
+  let [formSuccess, setFormSuccess] = useState(false);
 
   const onSubmitModal = async (e) => {
     e.preventDefault();
@@ -57,8 +59,15 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
       headers: {
         'Content-Type': 'application/json',
       },
+    }).catch(function (error) {
+      // handle error
+      console.log(error);
+      setFormError(true);
+      setFormSuccess(false);
     }).then(({ data }) => {
       mutate('/api/admin/categories');
+      const mergedData = mergeObj(categoryFormat, data);
+      setCategory(mergedData)
       closeModal();
     });
   };
@@ -91,12 +100,12 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
     const openCategory = mergeObj(categoryFormat, category);
     setCategory(openCategory);
     setIsOpen(true);
+    setFormSuccess(false);
   };
 
   const closeModal = () => {
-    setCategory(categoryFormat);
-    setIsOpen(false);
     setFormError(false);
+    setFormSuccess(true);
   };
 
   const openModalDelete = (category) => {
@@ -118,59 +127,48 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
     }
   };
 
-  const columns = [
-    {
-      name: 'Name',
-      key: 'name',
-      searchable: true,
-      classNameTd: 'font-bold',
-    },
-    {
-      name: 'Type',
-      key: 'type',
-      searchable: true,
-    },
-    {
-      name: 'Updated',
-      key: 'updated',
-      classNameTd: 'w-44',
-    },
-  ];
+  const columns = ['name', 'type'];
 
   const newData = [];
   categories?.results.map((item) => {
     const obj = { ...item };
     obj.updated = moment(item.updatedAt || item.createdAt).from(moment());
+    obj.category_d = item.type;
     newData.push(obj);
   });
+
+  const title = (
+    <h1 className="grow flex items-center gap-2">
+      <TagIcon className="h-6 text-secondary-700 dark:text-secondary-600" />
+      <span>Categories</span>
+    </h1>
+  );
 
   if (session) {
     return (
       <AdminWrapper>
-        <AdminWrapper.Header>
-          <h1 className="text-2xl flex items-center gap-2">
-            <TagIcon className="h-6 text-secondary-700 dark:text-secondary-600" /> Categories list
-          </h1>
-        </AdminWrapper.Header>
-        <Table
-          columns={columns}
-          data={newData}
-          format={categoryFormat}
-          editAction={openModal}
-          deleteAction={openModalDelete}
-          openAction={openModal}
-          openActionLabel="Add new category"
-        />
-        <AdminModal
-          title={category.id ? 'Edit category' : 'Add new category'}
-          isOpen={isOpen}
-          closeModal={closeModal}
-          showButtons={true}
-          onSecondaryButtonClick={closeModal}
-          onPrimaryButtonClick={onPrimaryButtonClick}
-        >
-          <form ref={formRef} acceptCharset="UTF-8" method="POST" encType="multipart/form-data" onSubmit={onSubmitModal}>
-            {formError && (
+        <div className="h-full py-8 w-full w-1/4">
+          <List title={title} columns={columns} data={newData} format={categoryFormat} openAction={openModal} editAction={openModal} activeId={category.id} />
+        </div>
+        <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6  ${isOpen ? '' : 'hidden'}`}>
+          <div className="flex items-center justify-between">
+            <h2 className="text-2xl flex items-center gap-2">
+              <TagIcon className="h-6 text-secondary-700 dark:text-secondary-600" /> {category.id ? 'Edit category' : 'Add new category'}
+            </h2>
+            <div className="flex items-center gap-4">
+              <a href="#" className="text-sm text-red-500 font-semibold hover:underline" onClick={() => openModalDelete(category)} role="menuitem" tabIndex="-1">
+                <TrashIcon className="inline-flex align-text-bottom h-4 mr-1" />
+                Delete
+              </a>
+              <button onClick={onPrimaryButtonClick} type="button" className={'button-success'}>
+                Save
+              </button>
+            </div>
+          </div>
+
+          <div className={'mt-8 mb-2'}>
+            <form ref={formRef} acceptCharset="UTF-8" method="POST" encType="multipart/form-data" onSubmit={onSubmitModal}>
+              {formError && (
               <div className="bg-accent-100 border border-accent-400 text-accent-700 px-4 py-3 rounded relative mb-4" role="alert">
                 <strong className="font-bold">
                   <ExclamationTriangleIcon className="inline-flex align-middle h-6 mr-4" />
@@ -178,48 +176,59 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
                 </strong>
                 <span className="block sm:inline">Some required fields are missing.</span>
               </div>
-            )}
-            <div className="grid grid-cols-6 gap-6">
-              <div className="col-span-6">
-                <label htmlFor="name-form" className="input-label">
-                  Title <span className="text-secondary-700">*</span>
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  id="name-form"
-                  autoComplete="off"
-                  data-lpignore="true"
-                  data-form-type="other"
-                  className="mt-1 input-field"
-                  value={category.name}
-                  onChange={handleChange}
-                  maxLength={191}
-                  required
-                />
+              )}
+              {formSuccess && (
+               <div className="bg-emerald-100 border border-emerald-400 text-emerald-700 px-4 py-3 rounded relative mb-4" role="alert">
+                  <strong className="font-bold">
+                  <CheckIcon className="inline-flex align-middle h-6 mr-4" />
+                  Success!{' '}
+                </strong>
+                <span className="block sm:inline">This page was saved.</span>
               </div>
-              <div className="col-span-6">
-                <label htmlFor="type-form" className="input-label">
-                  Type <span className="text-secondary-700">*</span>
-                </label>
-                <select name="type" id="type-form" className="mt-1 input-field" onChange={handleChange} value={category.type} required>
-                  <option value="">Select type</option>
-                  {types.map((item) => (
-                    <option key={item} value={item}>
-                      {item}
-                    </option>
-                  ))}
-                </select>
+              )}
+              <div className="grid grid-cols-6 gap-6">
+                <div className="col-span-6">
+                  <label htmlFor="name-form" className="input-label">
+                    Title <span className="text-secondary-700">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    id="name-form"
+                    autoComplete="off"
+                    data-lpignore="true"
+                    data-form-type="other"
+                    className="mt-1 input-field"
+                    value={category.name}
+                    onChange={handleChange}
+                    maxLength={191}
+                    required
+                  />
+                </div>
+                <div className="col-span-6">
+                  <label htmlFor="type-form" className="input-label">
+                    Type <span className="text-secondary-700">*</span>
+                  </label>
+                  <select name="type" id="type-form" className="mt-1 input-field" onChange={handleChange} value={category.type} required>
+                    <option value="">Select type</option>
+                    {types.map((item) => (
+                      <option key={item} value={item}>
+                        {item}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
-            </div>
-          </form>
-        </AdminModal>
+            </form>
+          </div>
+        </div>
+
         <AdminModal
           title="Delete category"
           isOpen={isOpenDelete}
-          closeModal={closeModalDelete}
+          closeModal={() => setIsOpenDelete(false)}
           showButtons={true}
-          onSecondaryButtonClick={closeModalDelete}
+          onSecondaryButtonClick={() => setIsOpenDelete(false)}
           onPrimaryButtonClick={onPrimaryButtonClickDelete}
           primaryButtonLabel="Delete"
           primaryButtonClass="button-danger"
