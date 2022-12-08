@@ -29,10 +29,13 @@ const handler = async (req, res) => {
         });
         const { id, startDate, endDate, ...data } = fields;
         const job = await prisma.job.create({
-          data: { ...data,
+          data: {
+            ...data,
             startDate: startDate ? moment(startDate).toISOString() : null,
             endDate: endDate ? moment(endDate).toISOString() : null,
-            logo: newName, createdAt: new Date() },
+            logo: newName,
+            createdAt: new Date(),
+          },
         });
         res.status(200).json({ ...job });
       });

@@ -62,17 +62,19 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
       headers: {
         'Content-Type': 'application/json',
       },
-    }).catch(function (error) {
-      // handle error
-      console.log(error);
-      setFormError(true);
-      setFormSuccess(false);
-    }).then(({ data }) => {
-      mutate('/api/portfolio/bookmarks');
-      const mergedData = mergeObj(bookmarkFormat, data);
-      setBookmark(mergedData);
-      closeModal();
-    });
+    })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+        setFormError(true);
+        setFormSuccess(false);
+      })
+      .then(({ data }) => {
+        mutate('/api/portfolio/bookmarks');
+        const mergedData = mergeObj(bookmarkFormat, data);
+        setBookmark(mergedData);
+        closeModal();
+      });
   };
 
   const isFormValid = (form) => {
@@ -158,7 +160,7 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
         //trim the string to the maximum length
         var trimmedString = bookmark.description.substr(0, maxLength);
         //re-trim if we are in the middle of a word
-        trimmedString = trimmedString.substr(0, Math.min(trimmedString.length, trimmedString.lastIndexOf(" "))) + '...'
+        trimmedString = trimmedString.substr(0, Math.min(trimmedString.length, trimmedString.lastIndexOf(' '))) + '...';
         bookmark.description = trimmedString;
       }
 
@@ -176,7 +178,6 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
     obj.category_d = item.category ? item.category.name : 'N/A';
     newData.push(obj);
   });
-
 
   const title = (
     <h1 className="grow flex items-center gap-2">
@@ -197,7 +198,13 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
               <BookmarkIcon className="h-6 text-secondary-700 dark:text-secondary-600" /> {bookmark.id ? 'Edit bookmark' : 'Add new bookmark'}
             </h2>
             <div className="flex items-center gap-4">
-              <a href="#" className="text-sm text-red-500 font-semibold hover:underline" onClick={() => openModalDelete(bookmark)} role="menuitem" tabIndex="-1">
+              <a
+                href="#"
+                className="text-sm text-red-500 font-semibold hover:underline"
+                onClick={() => openModalDelete(bookmark)}
+                role="menuitem"
+                tabIndex="-1"
+              >
                 <TrashIcon className="inline-flex align-text-bottom h-4 mr-1" />
                 Delete
               </a>
@@ -210,22 +217,22 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
           <div className={'mt-8 mb-2'}>
             <form ref={formRef} acceptCharset="UTF-8" method="POST" encType="multipart/form-data" onSubmit={onSubmitModal}>
               {formError && (
-              <div className="bg-accent-100 border border-accent-400 text-accent-700 px-4 py-3 rounded relative mb-4" role="alert">
-                <strong className="font-bold">
-                  <ExclamationTriangleIcon className="inline-flex align-middle h-6 mr-4" />
-                  Invalid Form!{' '}
-                </strong>
-                <span className="block sm:inline">Some required fields are missing.</span>
-              </div>
+                <div className="bg-accent-100 border border-accent-400 text-accent-700 px-4 py-3 rounded relative mb-4" role="alert">
+                  <strong className="font-bold">
+                    <ExclamationTriangleIcon className="inline-flex align-middle h-6 mr-4" />
+                    Invalid Form!{' '}
+                  </strong>
+                  <span className="block sm:inline">Some required fields are missing.</span>
+                </div>
               )}
               {formSuccess && (
-               <div className="bg-emerald-100 border border-emerald-400 text-emerald-700 px-4 py-3 rounded relative mb-4" role="alert">
+                <div className="bg-emerald-100 border border-emerald-400 text-emerald-700 px-4 py-3 rounded relative mb-4" role="alert">
                   <strong className="font-bold">
-                  <CheckIcon className="inline-flex align-middle h-6 mr-4" />
-                  Success!{' '}
-                </strong>
-                <span className="block sm:inline">This page was saved.</span>
-              </div>
+                    <CheckIcon className="inline-flex align-middle h-6 mr-4" />
+                    Success!{' '}
+                  </strong>
+                  <span className="block sm:inline">This page was saved.</span>
+                </div>
               )}
               <div className="grid grid-cols-6 gap-6">
                 <div className="col-span-6">

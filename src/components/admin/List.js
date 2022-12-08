@@ -10,7 +10,6 @@ export default function List({ title = () => null, columns = [], data = [], form
     setFilteredData(data);
   }, [data]);
 
-
   useEffect(() => {
     setActiveMenu(activeId);
   }, [activeId]);
@@ -88,17 +87,11 @@ export default function List({ title = () => null, columns = [], data = [], form
                 role="menuitem"
                 tabIndex="-1"
               >
-                { item.image_d ? (
-                  <div className="w-16 h-16 rounded overflow-hidden hidden xl:block relative">{item.image_d}</div>
-                ) : ""}
+                {item.image_d ? <div className="w-16 h-16 rounded overflow-hidden hidden xl:block relative">{item.image_d}</div> : ''}
                 <div className="grow flex flex-col gap-1">
                   <div className="flex justify-between items-center gap-2">
                     <h4 className="text-lg group-hover:text-secondary-700">{item.name}</h4>
-                    { item.category_d ? (
-                      <div className="text-xs rounded px-2 py-1 bg-secondary-800 gap-2">
-                        { item.category_d }
-                      </div>
-                    ) : ""}
+                    {item.category_d ? <div className="text-xs rounded px-2 py-1 bg-secondary-800 gap-2">{item.category_d}</div> : ''}
                   </div>
                   <div className="flex items-center gap-4">
                     <p className="text-sm w-48 grow opacity-50 truncate">{item.description}</p>

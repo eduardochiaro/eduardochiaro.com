@@ -15,4 +15,7 @@
   .hide-when-closed {
     @apply hidden;
   }
+  .sidebar-link {
+    @apply pl-0;
+  }
 }
