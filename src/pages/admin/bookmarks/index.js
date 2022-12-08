@@ -69,8 +69,8 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
       setFormSuccess(false);
     }).then(({ data }) => {
       mutate('/api/portfolio/bookmarks');
-      const openApp = mergeObj(bookmarkFormat, data);
-      setBookmark(openApp);
+      const mergedData = mergeObj(bookmarkFormat, data);
+      setBookmark(mergedData);
       closeModal();
     });
   };
@@ -309,9 +309,9 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
         <AdminModal
           title="Delete bookmark"
           isOpen={isOpenDelete}
-          closeModal={closeModalDelete}
+          closeModal={() => setIsOpenDelete(false)}
           showButtons={true}
-          onSecondaryButtonClick={closeModalDelete}
+          onSecondaryButtonClick={() => setIsOpenDelete(false)}
           onPrimaryButtonClick={onPrimaryButtonClickDelete}
           primaryButtonLabel="Delete"
           primaryButtonClass="button-danger"

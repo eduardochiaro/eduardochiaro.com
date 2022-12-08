@@ -65,8 +65,8 @@ const AdminAppsIndex = ({ formRef }) => {
       setFormSuccess(false);
     }).then(({ data }) => {
       mutate('/api/portfolio/apps');
-      const openApp = mergeObj(appFormat, data);
-      setApp(openApp);
+      const mergedData = mergeObj(appFormat, data);
+      setApp(mergedData);
       closeModal();
     });
   };
@@ -285,9 +285,9 @@ const AdminAppsIndex = ({ formRef }) => {
         <AdminModal
           title="Delete app"
           isOpen={isOpenDelete}
-          closeModal={closeModalDelete}
+          closeModal={() => setIsOpenDelete(false)}
           showButtons={true}
-          onSecondaryButtonClick={closeModalDelete}
+          onSecondaryButtonClick={() => setIsOpenDelete(false)}
           onPrimaryButtonClick={onPrimaryButtonClickDelete}
           primaryButtonLabel="Delete"
           primaryButtonClass="button-danger"
