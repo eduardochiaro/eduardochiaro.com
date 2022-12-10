@@ -1,5 +1,5 @@
 describe('Homepage', () => {
-  before(() => {
+  beforeEach(() => {
     // Start from the index page
     cy.visit('/');
   });
