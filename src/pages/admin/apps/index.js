@@ -13,10 +13,8 @@ import Image from 'next/image';
 import { CheckIcon, TrashIcon } from '@heroicons/react/24/solid';
 
 const AdminAppsIndex = ({ formRef }) => {
-  const { data: apps } = useStaleSWR('/api/portfolio/apps');
+  const { mutate, data: apps } = useStaleSWR('/api/portfolio/apps');
   const { data: session } = useSession();
-
-  const { mutate } = useSWRConfig();
 
   const appFormat = {
     id: null,
@@ -68,7 +66,7 @@ const AdminAppsIndex = ({ formRef }) => {
       })
       .then(({ data }) => {
         inputFileRef.current.value = '';
-        mutate('/api/portfolio/apps');
+        mutate();
         const mergedData = mergeObj(appFormat, data);
         setApp(mergedData);
         closeModal();
@@ -96,7 +94,7 @@ const AdminAppsIndex = ({ formRef }) => {
       },
     });
     inputFileRef.current.value = '';
-    mutate('/api/portfolio/apps');
+    mutate();
     closeModalDelete();
   };
 

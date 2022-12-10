@@ -15,12 +15,10 @@ import List from '@/components/admin/List';
 import { CheckIcon, TrashIcon } from '@heroicons/react/24/solid';
 
 const AdminBookmarksIndex = ({ formRef, images }) => {
-  const { data: bookmarks, error } = useStaleSWR('/api/portfolio/bookmarks');
+  const { mutate, data: bookmarks, error } = useStaleSWR('/api/portfolio/bookmarks');
   const { data: categories, error: categoriesError } = useStaleSWR('/api/admin/categories');
   const { data: session } = useSession();
   const [currentStatus, setCurrentStatus] = useState(null);
-
-  const { mutate } = useSWRConfig();
 
   const bookmarkFormat = {
     id: null,
@@ -70,7 +68,7 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
         setFormSuccess(false);
       })
       .then(({ data }) => {
-        mutate('/api/portfolio/bookmarks');
+        mutate();
         const mergedData = mergeObj(bookmarkFormat, data);
         setBookmark(mergedData);
         closeModal();
@@ -97,7 +95,7 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
         'Content-Type': 'application/json',
       },
     });
-    mutate('/api/portfolio/bookmarks');
+    mutate();
     closeModalDelete();
   };
 

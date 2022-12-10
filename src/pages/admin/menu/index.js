@@ -14,10 +14,8 @@ import List from '@/components/admin/List';
 import { CheckIcon, TrashIcon } from '@heroicons/react/24/solid';
 
 const AdminCategoriesIndex = ({ formRef, images }) => {
-  const { data: menuLinks, error } = useStaleSWR('/api/site/menu');
+  const { mutate, data: menuLinks, error } = useStaleSWR('/api/site/menu');
   const { data: session } = useSession();
-
-  const { mutate } = useSWRConfig();
 
   const menuLinkFormat = {
     id: null,
@@ -64,7 +62,7 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
         setFormSuccess(false);
       })
       .then(({ data }) => {
-        mutate('/api/site/menu');
+        mutate();
         const mergedData = mergeObj(menuLinkFormat, data);
         setMenuLink(mergedData);
         closeModal();
@@ -91,7 +89,7 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
         'Content-Type': 'application/json',
       },
     });
-    mutate('/api/site/menu');
+    mutate();
     closeModalDelete();
   };
 

@@ -87,7 +87,7 @@ export default function List({ title = () => null, columns = [], data = [], form
               role="menuitem"
               tabIndex="-1"
             >
-              {item.image_d ? <div className="w-16 rounded overflow-hidden hidden xl:block relative">{item.image_d}</div> : ''}
+              {item.image_d ? <div className="w-16 h-14 rounded overflow-hidden hidden xl:block relative">{item.image_d}</div> : ''}
               <div className="grow flex flex-col gap-1">
                 <div className="flex justify-between items-center gap-2">
                   <h4 className="text-lg group-hover:text-secondary-700">{item.name}</h4>
