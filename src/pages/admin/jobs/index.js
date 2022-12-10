@@ -13,10 +13,8 @@ import { CheckIcon, TrashIcon } from '@heroicons/react/24/solid';
 import List from '@/components/admin/List';
 
 const AdminJobsIndex = ({ formRef }) => {
-  const { data: jobs, error } = useStaleSWR('/api/portfolio/jobs');
+  const { mutate, data: jobs, error } = useStaleSWR('/api/portfolio/jobs');
   const { data: session } = useSession();
-
-  const { mutate } = useSWRConfig();
 
   const jobFormat = {
     id: null,
@@ -69,7 +67,7 @@ const AdminJobsIndex = ({ formRef }) => {
       })
       .then(({ data }) => {
         inputFileRef.current.value = '';
-        mutate('/api/portfolio/jobs');
+        mutate();
         const mergedData = mergeObj(jobFormat, data);
         setJob(mergedData);
         closeModal();
@@ -97,7 +95,7 @@ const AdminJobsIndex = ({ formRef }) => {
       },
     });
     inputFileRef.current.value = '';
-    mutate('/api/portfolio/jobs');
+    mutate();
     closeModalDelete();
   };
 

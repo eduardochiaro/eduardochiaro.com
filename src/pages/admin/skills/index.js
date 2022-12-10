@@ -15,10 +15,8 @@ import List from '@/components/admin/List';
 import { CheckIcon, TrashIcon } from '@heroicons/react/24/solid';
 
 const AdminSkillsIndex = ({ formRef, images }) => {
-  const { data: skills, error } = useStaleSWR('/api/portfolio/skills');
+  const { mutate, data: skills, error } = useStaleSWR('/api/portfolio/skills');
   const { data: session } = useSession();
-
-  const { mutate } = useSWRConfig();
 
   const skillFormat = {
     id: null,
@@ -68,7 +66,7 @@ const AdminSkillsIndex = ({ formRef, images }) => {
         setFormSuccess(false);
       })
       .then(({ data }) => {
-        mutate('/api/portfolio/skills');
+        mutate();
         const mergedData = mergeObj(skillFormat, data);
         setSkill(mergedData);
         closeModal();
@@ -95,7 +93,7 @@ const AdminSkillsIndex = ({ formRef, images }) => {
         'Content-Type': 'application/json',
       },
     });
-    mutate('/api/portfolio/skills');
+    mutate();
     closeModalDelete();
   };
 
