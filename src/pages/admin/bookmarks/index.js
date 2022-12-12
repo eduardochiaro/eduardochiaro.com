@@ -187,7 +187,7 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
   if (session) {
     return (
       <AdminWrapper>
-        <div className="h-full py-8 w-full w-1/4">
+        <div className="h-full py-8 w-1/4">
           <List title={title} columns={columns} data={newData} format={bookmarkFormat} openAction={openModal} editAction={openModal} activeId={bookmark.id} />
         </div>
         <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6  ${isOpen ? '' : 'hidden'}`}>
