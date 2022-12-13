@@ -136,7 +136,7 @@ const AdminAppsIndex = ({ formRef }) => {
   const newData = [];
   apps?.results.map((item) => {
     const obj = { ...item };
-    obj.updated = moment(item.updatedAt || item.createdAt).from(moment());
+    obj.updated = moment(item.updatedAt || item.createdAt). fromNow();
     obj.image_d = (
       <Image src={`/uploads/${item.image}`} fill sizes="33vw" alt={item.name} title={item.name} className="bg-transparent object-cover" priority="false" />
     );

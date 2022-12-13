@@ -18,7 +18,7 @@ export default function LatestPosts() {
                 <div key={`article-${index}`} className="mb-6 relative">
                   <Link
                     href={article.permalink}
-                    className="group block border-l-8 pb-2 border-primary-50 dark:border-primary-800 hover:border-secondary-700 dark:hover:border-secondary-600 pl-4"
+                    className="group block hover:border-l-8 ml-2 hover:ml-0 pb-2 hover:border-secondary-700 dark:hover:border-secondary-600 pl-4"
                   >
                     <div className="flex flex-row items-top">
                       <h4 className="grow-0 font-medium text-lg tracking-wide">{article.title}</h4>

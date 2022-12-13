@@ -136,7 +136,7 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
       </>
     );
     obj.category_d = !item.onlyMobile ? 'All Browsers' : 'Mobile only';
-    obj.updated = moment(item.updatedAt || item.createdAt).from(moment());
+    obj.updated = moment(item.updatedAt || item.createdAt). fromNow();
     newData.push(obj);
   });
 
