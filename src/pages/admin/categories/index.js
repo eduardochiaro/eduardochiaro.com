@@ -132,7 +132,7 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
   const newData = [];
   categories?.results.map((item) => {
     const obj = { ...item };
-    obj.updated = moment(item.updatedAt || item.createdAt).from(moment());
+    obj.updated = moment(item.updatedAt || item.createdAt). fromNow();
     obj.category_d = item.type;
     newData.push(obj);
   });

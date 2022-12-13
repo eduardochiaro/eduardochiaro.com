@@ -49,13 +49,13 @@ export default function Home() {
             <span id="bio" className="anchor" />
           </div>
           <Bio />
-          <hr className="mt-10 max-w-5xl mx-auto border-t border-solid border-secondary-700 dark:border-secondary-600" />
+          <hr className="mt-10 max-w-5xl mx-auto border-t border-solid opacity-30" />
           <Jobs />
           <div className="relative">
             <span id="skills" className="anchor" />
           </div>
           <Skills />
-          <hr className="mt-10 max-w-5xl mx-auto border-t border-solid border-secondary-700 dark:border-secondary-600" />
+          <hr className="mt-10 max-w-5xl mx-auto border-t border-solid opacity-30" />
           <div className="relative">
             <span id="articles" className="anchor" />
           </div>
