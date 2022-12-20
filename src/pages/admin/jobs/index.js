@@ -136,7 +136,7 @@ const AdminJobsIndex = ({ formRef }) => {
   const newData = [];
   jobs?.results.map((item) => {
     const obj = { ...item };
-    obj.updated = moment(item.updatedAt || item.createdAt). fromNow();
+    obj.updated = moment(item.updatedAt || item.createdAt).fromNow();
     obj.category_d =
       (item.startDate ? moment(item.startDate).format('YYYY-MM') : 'N/A') + ' - ' + (item.endDate ? moment(item.endDate).format('YYYY-MM') : 'Current');
     obj.image_d = <SVG alt={item.name} className={'object-cover w-16 fill-primary-700 dark:fill-primary-200'} src={`/uploads/${item.logo}`} height={25} />;

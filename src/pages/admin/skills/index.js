@@ -134,7 +134,7 @@ const AdminSkillsIndex = ({ formRef, images }) => {
   skills?.results.map((item) => {
     const obj = { ...item };
     obj.category_d = obj.type;
-    obj.updated = moment(item.updatedAt || item.createdAt). fromNow();
+    obj.updated = moment(item.updatedAt || item.createdAt).fromNow();
     obj.image_d = (
       <SVG alt={item.name} className={'object-cover w-full fill-primary-700 dark:fill-primary-200'} src={`/images/svg-icons/${item.logo}`} height={50} />
     );

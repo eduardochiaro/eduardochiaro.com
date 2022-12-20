@@ -33,7 +33,7 @@ export default function GitHub() {
           <h4 className="mt-2 text-lg font-semibold font-header tracking-wider ">{repo.name}</h4>
           <p className="mt-4 mb-2 text-xs antialiased">{repo.description}</p>
           <p className="text-xs opacity-60 absolute top-2 right-4 flex items-center">
-            <ClockIcon alt="last updated" className="h-3 mr-2" /> {moment(repo.pushedAt). fromNow()}
+            <ClockIcon alt="last updated" className="h-3 mr-2" /> {moment(repo.pushedAt).fromNow()}
           </p>
           {repo.languages.slice(0, 2).map((language, index) => (
             <div key={index} className="inline-block mr-4 text-xs antialiased">
