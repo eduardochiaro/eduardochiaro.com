@@ -1,5 +1,4 @@
 const categoriesSeed = require('./categories.js');
-const jobsSeed = require('./jobs.js');
 const skillsSeed = require('./skills.js');
 const menuSeed = require('./menu.js');
 const appsSeed = require('./apps.js');
@@ -10,7 +9,6 @@ const prisma = new PrismaClient();
 const load = async () => {
   try {
     await categoriesSeed();
-    await jobsSeed();
     await skillsSeed();
     await menuSeed();
     await appsSeed();

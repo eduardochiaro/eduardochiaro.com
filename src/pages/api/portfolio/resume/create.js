@@ -28,7 +28,7 @@ const handler = async (req, res) => {
           console.error(err);
         });
         const { id, startDate, endDate, ...data } = fields;
-        const job = await prisma.job.create({
+        const resume = await prisma.resume.create({
           data: {
             ...data,
             startDate: startDate ? moment(startDate).toISOString() : null,
@@ -37,7 +37,7 @@ const handler = async (req, res) => {
             createdAt: new Date(),
           },
         });
-        res.status(200).json({ ...job });
+        res.status(200).json({ ...resume });
       });
     });
   } else {

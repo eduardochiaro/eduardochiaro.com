@@ -12,14 +12,14 @@ import moment from 'moment';
 import { CheckIcon, TrashIcon } from '@heroicons/react/24/solid';
 import List from '@/components/admin/List';
 
-const AdminJobsIndex = ({ formRef }) => {
-  const { mutate, data: jobs, error } = useStaleSWR('/api/portfolio/jobs');
+const AdminResumeIndex = ({ formRef }) => {
+  const { mutate, data: resumes, error } = useStaleSWR('/api/portfolio/resume');
   const { data: session } = useSession();
 
-  const jobFormat = {
+  const resumeFormat = {
     id: null,
     name: '',
-    disclaimer: '',
+    description: '',
     logo: '',
     startDate: null,
     endDate: null,
@@ -27,7 +27,7 @@ const AdminJobsIndex = ({ formRef }) => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenDelete, setIsOpenDelete] = useState(false);
-  const [job, setJob] = useState(jobFormat);
+  const [resume, setResume] = useState(resumeFormat);
   const [formError, setFormError] = useState(false);
   const [formSuccess, setFormSuccess] = useState(false);
   const inputFileRef = useRef(null);
@@ -35,14 +35,14 @@ const AdminJobsIndex = ({ formRef }) => {
   const onSubmitModal = async (e) => {
     e.preventDefault();
     setFormError(false);
-    if (!isFormValid(job)) {
+    if (!isFormValid(resume)) {
       setFormError(true);
       return;
     }
 
     const formData = new FormData();
 
-    for (const [key, value] of Object.entries(job)) {
+    for (const [key, value] of Object.entries(resume)) {
       if (key == 'logo') {
         formData.append(key, value);
       } else {
@@ -52,8 +52,8 @@ const AdminJobsIndex = ({ formRef }) => {
 
     //replace with axios
     axios({
-      method: job.id ? 'PUT' : 'POST',
-      url: job.id ? `/api/portfolio/jobs/${job.id}` : '/api/portfolio/jobs/create',
+      method: resume.id ? 'PUT' : 'POST',
+      url: resume.id ? `/api/portfolio/resume/${resume.id}` : '/api/portfolio/resume/create',
       data: formData,
       headers: {
         'Content-Type': `multipart/form-data; boundary=${formData._boundary}`,
@@ -68,8 +68,8 @@ const AdminJobsIndex = ({ formRef }) => {
       .then(({ data }) => {
         inputFileRef.current.value = '';
         mutate();
-        const mergedData = mergeObj(jobFormat, data);
-        setJob(mergedData);
+        const mergedData = mergeObj(resumeFormat, data);
+        setResume(mergedData);
         closeModal();
       });
   };
@@ -86,7 +86,7 @@ const AdminJobsIndex = ({ formRef }) => {
   };
 
   const onPrimaryButtonClickDelete = async () => {
-    const urlDelete = `/api/portfolio/jobs/${job.id}`;
+    const urlDelete = `/api/portfolio/resume/${resume.id}`;
     await axios({
       url: urlDelete,
       method: 'DELETE',
@@ -99,9 +99,9 @@ const AdminJobsIndex = ({ formRef }) => {
     closeModalDelete();
   };
 
-  const openModal = (job) => {
-    const openJob = mergeObj(jobFormat, job);
-    setJob(openJob);
+  const openModal = (resume) => {
+    const openResume = mergeObj(resumeFormat, resume);
+    setResume(openResume);
     setIsOpen(true);
     setFormSuccess(false);
   };
@@ -112,43 +112,42 @@ const AdminJobsIndex = ({ formRef }) => {
     setFormSuccess(false);
   };
 
-  const openModalDelete = (job) => {
-    const openJob = mergeObj(jobFormat, job);
-    setJob(openJob);
+  const openModalDelete = (resume) => {
+    const openResume = mergeObj(resumeFormat, resume);
+    setResume(openResume);
     setIsOpenDelete(true);
   };
 
   const closeModalDelete = () => {
-    setJob(jobFormat);
+    setResume(resumeFormat);
     setIsOpenDelete(false);
   };
 
-  const columns = ['name', 'disclaimer'];
+  const columns = ['name', 'description'];
 
   const handleChange = (e) => {
     if (e.target.files) {
-      setJob({ ...job, [e.target.name]: e.target.files[0] });
+      setResume({ ...resume, [e.target.name]: e.target.files[0] });
     } else {
-      setJob({ ...job, [e.target.name]: e.target.value });
+      setResume({ ...resume, [e.target.name]: e.target.value });
     }
   };
 
   const newData = [];
-  jobs?.results.map((item) => {
+  resumes?.results.map((item) => {
     const obj = { ...item };
     obj.updated = moment(item.updatedAt || item.createdAt).fromNow();
     obj.category_d =
       (item.startDate ? moment(item.startDate).format('YYYY-MM') : 'N/A') + ' - ' + (item.endDate ? moment(item.endDate).format('YYYY-MM') : 'Current');
     obj.image_d = <SVG alt={item.name} className={'object-cover w-16 fill-primary-700 dark:fill-primary-200'} src={`/uploads/${item.logo}`} height={25} />;
     obj.size = item.style + 'px';
-    obj.description = obj.disclaimer;
     newData.push(obj);
   });
 
   const title = (
     <h1 className="grow flex items-center gap-2">
       <BriefcaseIcon className="h-6 text-secondary-700 dark:text-secondary-600" />
-      <span>Jobs list</span>
+      <span>Resume list</span>
     </h1>
   );
 
@@ -156,15 +155,15 @@ const AdminJobsIndex = ({ formRef }) => {
     return (
       <AdminWrapper>
         <div className="h-full py-8 w-1/4">
-          <List title={title} columns={columns} data={newData} format={jobFormat} openAction={openModal} editAction={openModal} activeId={job.id} />
+          <List title={title} columns={columns} data={newData} format={resumeFormat} openAction={openModal} editAction={openModal} activeId={resume.id} />
         </div>
         <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6 ${isOpen ? '' : 'hidden'}`}>
           <div className="flex items-center justify-between">
             <h2 className="text-2xl flex items-center gap-2">
-              <BriefcaseIcon className="h-6 text-secondary-700 dark:text-secondary-600" /> {job.id ? 'Edit job' : 'Add new job'}
+              <BriefcaseIcon className="h-6 text-secondary-700 dark:text-secondary-600" /> {resume.id ? 'Edit resume' : 'Add new resume'}
             </h2>
             <div className="flex items-center gap-4">
-              <a href="#" className="text-sm text-red-500 font-semibold hover:underline" onClick={() => openModalDelete(job)} role="menuitem" tabIndex="-1">
+              <a href="#" className="text-sm text-red-500 font-semibold hover:underline" onClick={() => openModalDelete(resume)} role="menuitem" tabIndex="-1">
                 <TrashIcon className="inline-flex align-text-bottom h-4 mr-1" />
                 Delete
               </a>
@@ -207,7 +206,7 @@ const AdminJobsIndex = ({ formRef }) => {
                     data-lpignore="true"
                     data-form-type="other"
                     className="mt-1 input-field"
-                    value={job.name}
+                    value={resume.name}
                     onChange={handleChange}
                     maxLength={191}
                     required
@@ -215,7 +214,7 @@ const AdminJobsIndex = ({ formRef }) => {
                 </div>
                 <div className="col-span-5 sm:col-span-4">
                   <label htmlFor="logo-url-form" className="input-label">
-                    Logo {!job.id && <span className="text-secondary-700">*</span>}
+                    Logo {!resume.id && <span className="text-secondary-700">*</span>}
                   </label>
                   <input
                     ref={inputFileRef}
@@ -231,13 +230,13 @@ const AdminJobsIndex = ({ formRef }) => {
                   />
                 </div>
                 <div className="col-span-2">
-                  {job.id > 0 && job.logo && (
+                  {resume.id > 0 && resume.logo && (
                     <>
                       <label htmlFor="style-form" className="input-label">
                         Current
                       </label>
                       <div className="mt-4 w-32 m-auto relative">
-                        <SVG alt={job.name} className={'w-32 fill-primary-700 dark:fill-primary-200'} src={`/uploads/${job.logo}`} height={50} />
+                        <SVG alt={resume.name} className={'w-32 fill-primary-700 dark:fill-primary-200'} src={`/uploads/${resume.logo}`} height={50} />
                       </div>
                     </>
                   )}
@@ -254,7 +253,7 @@ const AdminJobsIndex = ({ formRef }) => {
                     data-lpignore="true"
                     data-form-type="other"
                     className="mt-1 input-field"
-                    value={job.startDate ? moment(job.startDate).format('YYYY-MM-DD') : ''}
+                    value={resume.startDate ? moment(resume.startDate).format('YYYY-MM-DD') : ''}
                     onChange={handleChange}
                   />
                 </div>
@@ -270,21 +269,21 @@ const AdminJobsIndex = ({ formRef }) => {
                     data-lpignore="true"
                     data-form-type="other"
                     className="mt-1 input-field"
-                    value={job.endDate ? moment(job.endDate).format('YYYY-MM-DD') : ''}
+                    value={resume.endDate ? moment(resume.endDate).format('YYYY-MM-DD') : ''}
                     onChange={handleChange}
                   />
                 </div>
                 <div className="col-span-6">
-                  <label htmlFor="disclaimer-form" className="input-label">
-                    Disclaimer
+                  <label htmlFor="description-form" className="input-label">
+                    Description
                   </label>
                   <textarea
-                    name="disclaimer"
-                    id="disclaimer-form"
+                    name="description"
+                    id="description-form"
+                    rows={6}
                     className="mt-1 input-field"
-                    value={job.disclaimer}
+                    value={resume.description}
                     onChange={handleChange}
-                    maxLength={191}
                   />
                 </div>
               </div>
@@ -293,7 +292,7 @@ const AdminJobsIndex = ({ formRef }) => {
         </div>
 
         <AdminModal
-          title="Delete job"
+          title="Delete resume"
           isOpen={isOpenDelete}
           closeModal={() => setIsOpenDelete(false)}
           showButtons={true}
@@ -303,7 +302,7 @@ const AdminJobsIndex = ({ formRef }) => {
           primaryButtonClass="button-danger"
           fullSize={false}
         >
-          <p>Are you sure you want to delete job &quot;{job.name}&quot;?</p>
+          <p>Are you sure you want to delete resume &quot;{resume.name}&quot;?</p>
         </AdminModal>
       </AdminWrapper>
     );
@@ -317,4 +316,4 @@ export async function getStaticProps() {
   };
 }
 
-export default AdminJobsIndex;
+export default AdminResumeIndex;

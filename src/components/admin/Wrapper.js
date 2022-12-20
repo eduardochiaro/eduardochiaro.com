@@ -20,10 +20,10 @@ const menuList = [
     classColor: 'bg-cyan-700',
   },
   {
-    title: 'Jobs',
+    title: 'Resume',
     icon: <BriefcaseIcon className={classForIcon} />,
-    href: '/admin/jobs',
-    description: 'Manage entries on Jobs section in Homepage',
+    href: '/admin/resume',
+    description: 'Manage entries on Resume section in Homepage',
     classColor: 'bg-emerald-700',
   },
   {
