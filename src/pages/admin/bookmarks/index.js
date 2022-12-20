@@ -172,7 +172,7 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
   const newData = [];
   bookmarks?.results.map((item) => {
     const obj = { ...item };
-    obj.updated = moment(item.updatedAt || item.createdAt). fromNow();
+    obj.updated = moment(item.updatedAt || item.createdAt).fromNow();
     obj.category_d = item.category ? item.category.name : 'N/A';
     newData.push(obj);
   });

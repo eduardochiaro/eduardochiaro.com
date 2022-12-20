@@ -74,6 +74,62 @@ model Category {
   @@map("categories")
 }
 
+model MenuLink {
+  id            Int    @id @default(autoincrement())
+  name          String?
+  url           String?
+  onlyMobile    Boolean @default(false)
+  active        Boolean @default(true)
+  order         Int @default(0)
+  createdAt     DateTime? @default(now()) @map("created_at")
+  updatedAt     DateTime? @map("updated_at")
+  deletedAt     DateTime? @map("deleted_at")
+
+  @@map("menu_links")
+}
+
+model Resume {
+  id          Int       @id @default(autoincrement())
+  name        String
+  company     String? 
+  location    String?
+  logo        String?
+  description String?   @db.Text
+  startDate   DateTime?
+  endDate     DateTime?
+  createdAt   DateTime? @default(now()) @map("created_at")
+  updatedAt   DateTime? @map("updated_at")
+  deletedAt   DateTime? @map("deleted_at")
+  projects       ResumeProject[]
+  tags        ResumeTag[]
+
+  @@map("resume")
+}
+
+model ResumeTag {
+  id          Int       @id @default(autoincrement())
+  name        String    @unique  // change
+  resume      Resume[]
+
+  @@map("resume_tags")
+}
+
+model ResumeProject {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String?
+  logo        String
+  createdAt   DateTime? @default(now()) @map("created_at")
+  updatedAt   DateTime? @map("updated_at")
+  deletedAt   DateTime? @map("deleted_at")
+  resumeId    Int       @map("resume_id")
+  resume      Resume  @relation(fields: [resumeId], references: [id])
+
+  @@index([resumeId], map: "resume_projects_resume_id_fkey")
+
+  @@map("resume_projects")
+}
+
 model UserAccess {
   id    Int    @id @default(autoincrement())
   email String
@@ -134,18 +190,4 @@ model VerificationToken {
 
   @@unique([identifier, token])
   @@map("verification_tokens")
-}
-
-model MenuLink {
-  id            Int    @id @default(autoincrement())
-  name          String?
-  url           String?
-  onlyMobile    Boolean @default(false)
-  active        Boolean @default(true)
-  order         Int @default(0)
-  createdAt     DateTime? @default(now()) @map("created_at")
-  updatedAt     DateTime? @map("updated_at")
-  deletedAt     DateTime? @map("deleted_at")
-
-  @@map("menu_links")
 }
