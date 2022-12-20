@@ -18,13 +18,13 @@ const handler = async (req, res) => {
   await cors(req, res);
   const { pid } = req.query;
 
-  const jobReturn = await prisma.job.findFirst({
+  const resumeReturn = await prisma.resume.findFirst({
     where: {
       id: parseInt(pid),
       deletedAt: null,
     },
   });
-  if (!jobReturn) {
+  if (!resumeReturn) {
     res.status(200).json({ error: 'Record doesnt exist' });
   }
   switch (req.method) {
@@ -42,8 +42,8 @@ const handler = async (req, res) => {
             mv(oldPath, newPath, function (err) {
               console.error(err);
             });
-            await rmFile(`${uploadPath}${jobReturn.logo}`);
-            const job = await prisma.job.update({
+            await rmFile(`${uploadPath}${resumeReturn.logo}`);
+            const resume = await prisma.resume.update({
               where: { id: parseInt(id) },
               data: {
                 ...data,
@@ -53,9 +53,9 @@ const handler = async (req, res) => {
                 updatedAt: new Date(),
               },
             });
-            res.status(200).json({ ...job });
+            res.status(200).json({ ...resume });
           } else {
-            const job = await prisma.job.update({
+            const resume = await prisma.resume.update({
               where: { id: parseInt(id) },
               data: {
                 ...data,
@@ -64,21 +64,21 @@ const handler = async (req, res) => {
                 updatedAt: new Date(),
               },
             });
-            res.status(200).json({ ...job });
+            res.status(200).json({ ...resume });
           }
         });
       });
       break;
     case 'DELETE':
-      await prisma.job.update({
+      await prisma.resume.update({
         where: { id: parseInt(pid) },
         data: { deletedAt: new Date() },
       });
-      await rmFile(`${uploadPath}${jobReturn.logo}`);
-      res.status(200).json({ action: 'job deleted' });
+      await rmFile(`${uploadPath}${resumeReturn.logo}`);
+      res.status(200).json({ action: 'resume deleted' });
       break;
     default:
-      res.status(200).json({ ...jobReturn });
+      res.status(200).json({ ...resumeReturn });
       break;
   }
 };
