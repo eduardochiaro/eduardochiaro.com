@@ -4,8 +4,8 @@ const prisma = new PrismaClient();
 const apps = [
   {
     id: 1,
-    name: 'Impact',
-    description: 'Ghost blog theme',
+    name: 'Impact (v2.0.0)',
+    description: 'Ghost blog theme using TailwindCSS',
     url: "https://github.com/eduardochiaro/Impact",
     image: 'impact.png',
   },

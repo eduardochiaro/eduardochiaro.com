@@ -3,12 +3,18 @@
 }
 .sidebar-open {
   @apply w-28 xl:w-64;
+  > div {
+    @apply w-28 xl:w-64;
+  }
   svg {
     @apply mx-auto xl:mx-0
   }
 }
 .sidebar-closed {
   @apply w-28;
+  > div {
+    @apply w-28;
+  }
   svg {
     @apply mx-auto
   }

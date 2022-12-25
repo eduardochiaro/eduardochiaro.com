@@ -62,7 +62,7 @@ export default function Jobs() {
             I&apos;ve <span className="overlay-color">worked</span> for...
           </span>
           <Link href={'/resume'} className="overlay-color text-sm flex items-center gap-1">
-            <span>view full list</span>
+            <span>view resume</span>
             <ChevronDoubleRightIcon className="h-3 text-secondary-700 dark:text-secondary-600" />
           </Link>
         </h3>

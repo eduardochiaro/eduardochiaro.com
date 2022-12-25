@@ -23,6 +23,8 @@ const AdminResumeIndex = ({ formRef }) => {
     logo: '',
     startDate: null,
     endDate: null,
+    tags: [],
+    projects: []
   };
 
   const [isOpen, setIsOpen] = useState(false);
@@ -100,7 +102,7 @@ const AdminResumeIndex = ({ formRef }) => {
   };
 
   const openModal = (resume) => {
-    const openResume = mergeObj(resumeFormat, resume);
+    const openResume = {...resumeFormat, ...resume};
     setResume(openResume);
     setIsOpen(true);
     setFormSuccess(false);
@@ -139,8 +141,7 @@ const AdminResumeIndex = ({ formRef }) => {
     obj.updated = moment(item.updatedAt || item.createdAt).fromNow();
     obj.category_d =
       (item.startDate ? moment(item.startDate).format('YYYY-MM') : 'N/A') + ' - ' + (item.endDate ? moment(item.endDate).format('YYYY-MM') : 'Current');
-    obj.image_d = <SVG alt={item.name} className={'object-cover w-16 fill-primary-700 dark:fill-primary-200'} src={`/uploads/${item.logo}`} height={25} />;
-    obj.size = item.style + 'px';
+    obj.image_d = item.logo ? <SVG alt={item.name} className={'object-cover w-16 fill-primary-700 dark:fill-primary-200'} src={`/uploads/${item.logo}`} height={25} /> : null;
     newData.push(obj);
   });
 
@@ -285,6 +286,17 @@ const AdminResumeIndex = ({ formRef }) => {
                     value={resume.description}
                     onChange={handleChange}
                   />
+                </div>
+                <div className="col-span-6">
+                  <label htmlFor="tags-form" className="input-label">
+                    Tags {resume.tags.length}
+                  </label>
+                  <div className="input-field flex items-center gap-2 p-2">
+                    {resume.tags?.map(tag => (
+                      <span key={`tag-${tag.id}`} className="text-xs rounded px-2 py-1 bg-secondary-800 text-primary-100">{tag.name}</span>
+                    ))}
+                    <input type="text" className="bg-transparent border-0 focus:border-0 py-0" placeholder="add new tag..."/>
+                  </div>
                 </div>
               </div>
             </form>
