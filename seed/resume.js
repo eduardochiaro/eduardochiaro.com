@@ -14,7 +14,7 @@ const resumes = [
     tags: ['Node.JS', 'GraphQL', 'PostgreSQL']
   },
   {
-    company: 'Application Developer',
+    company: 'Getty Images',
     location: 'Greater Seattle Area, USA',
     name: 'Software Developer',
     logo: 'Getty_Images_logo.svg',
@@ -27,10 +27,10 @@ const resumes = [
     company: 'Flixmedia LTD',
     location: 'London, UK',
     name: 'Senior PHP Developer',
-    description: 'Create and develop a new version of content solutions provider software, and variety of other new products for Brands like HP, Samsung, LG and retailers like BestBuy, FNAC, Amazon and Dixon. Develop web applications with Zend Framework/CodeIgniter. Partner on Javascript and CSS3/HTML5 integration. Leverage a variety of technologies, including: PHP 5, API,, Zend, CodeIgniter, MySql Linux Mac, HTML5, CSS3, and Javascript. Contributed software development expertise in the development of an updated version of content solutions provider software through the software lifecycle covering phases like requirement gathering, analysis, coding, testing, deployment, bug fixing, troubleshooting, documentation, deployment. Developed new features for websites, and assisted in developing and customizing software systems.',
+    description: 'Create and develop a new version of the content provider application and many other products for Brands like HP, Samsung, LG, and retailers like BestBuy, FNAC, Amazon, and Dixon. Contributed software development expertise in the development of an updated version of content solutions provider software through the software lifecycle covering phases like requirement gathering, analysis, coding, testing, deployment, bug fixing, troubleshooting, documentation, and deployment.',
     startDate: moment('2011-06-01').toISOString(),
     endDate: moment('2016-03-01').toISOString(),
-    tags: ['PHP', 'MySQL', 'JS'],
+    tags: ['PHP', 'MySQL', 'JS', 'Zend'],
     projects: [
       {
         name: 'Microsoft',
@@ -57,7 +57,7 @@ const resumes = [
     description: 'Developed a new CMS framework based on Zend, designed and created of a number of projects, primarily aimed at travel agents and vacation blogs. Led the development of websites, e-commerce, WordPress blogs, mobile sites, and web applications. Managed all aspects of client support, including communication, problem resolution, and relationship building.',
     startDate: moment('2010-03-01').toISOString(),
     endDate: moment('2011-02-01').toISOString(),
-    tags: ['PHP', 'MySQL', 'HTML', 'JS']
+    tags: ['PHP', 'MySQL', 'HTML', 'JS', 'Zend']
   },
   {
     company: 'Infocube SRL',

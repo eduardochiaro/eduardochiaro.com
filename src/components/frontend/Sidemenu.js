@@ -10,7 +10,7 @@ export default function Sidemenu({ menuData }) {
           {menuData.map(function (item, i) {
             return (
               <li key={`menu-link-${i}`} className="my-2">
-                <Link href={item.link} className="flex items-center gap-2 transition hover:underline">
+                <Link href={item.link} className="flex items-center gap-2 transition hover:text-secondary-600">
                   {item.pre}
                   {item.text}
                 </Link>
