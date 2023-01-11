@@ -49,7 +49,7 @@ export default function List({ title = () => null, columns = [], data = [], form
   };
 
   return (
-    <>
+    <div className="overflow-auto h-screen py-8">
       <div className="text-2xl flex items-center gap-2 px-6">
         {title}
         <button className="font-bold p-2" onClick={() => clickOnAdd(format)} title="Add new app">
@@ -106,6 +106,6 @@ export default function List({ title = () => null, columns = [], data = [], form
           <div className="text-center text-base opacity-50">...nothing here</div>
         )}
       </div>
-    </>
+    </div>
   );
 }

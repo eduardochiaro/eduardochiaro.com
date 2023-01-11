@@ -95,10 +95,10 @@ const AdminAppsIndex = ({ formRef }) => {
     });
     inputFileRef.current.value = '';
     mutate();
-    closeModalDelete();
+    closeDeleteModal();
   };
 
-  const openModal = (app) => {
+  const openElement = (app) => {
     const openApp = mergeObj(appFormat, app);
     setApp(openApp);
     setIsOpen(true);
@@ -111,25 +111,27 @@ const AdminAppsIndex = ({ formRef }) => {
     setFormSuccess(true);
   };
 
-  const openModalDelete = (app) => {
+  const openDeleteModal = (app) => {
     const openApp = mergeObj(appFormat, app);
     setApp(openApp);
     setIsOpenDelete(true);
   };
 
-  const closeModalDelete = () => {
+  const closeDeleteModal = () => {
     setApp(appFormat);
     setIsOpenDelete(false);
     setIsOpen(false);
   };
 
-  const handleChange = (e) => {
-    if (e.target.files) {
-      setApp({ ...app, [e.target.name]: e.target.files[0] });
-    } else {
-      setApp({ ...app, [e.target.name]: e.target.value });
-    }
+  const closeElement = () => {
+    setApp(appFormat);
+    setIsOpen(false);
   };
+
+  const handleChange = (e) => {
+    setApp({ ...app, [e.target.name]: e.target.files ? e.target.files[0] : e.target.value });
+  };
+
 
   const columns = ['name', 'description', 'github_url'];
 
@@ -153,8 +155,8 @@ const AdminAppsIndex = ({ formRef }) => {
   if (session) {
     return (
       <AdminWrapper>
-        <div className="h-full py-8 w-1/4">
-          <List title={title} columns={columns} data={newData} format={appFormat} openAction={openModal} editAction={openModal} activeId={app.id} />
+        <div className={`h-full ${isOpen ? 'w-1/4' : 'grow'}`}>
+          <List title={title} columns={columns} data={newData} format={appFormat} openAction={openElement} editAction={openElement} activeId={app.id} />
         </div>
         <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6 ${isOpen ? '' : 'hidden'}`}>
           <div className="flex items-center justify-between">
@@ -162,7 +164,10 @@ const AdminAppsIndex = ({ formRef }) => {
               <CpuChipIcon className="h-6 text-secondary-700 dark:text-secondary-600" /> {app.id ? 'Edit app' : 'Add new app'}
             </h2>
             <div className="flex items-center gap-4">
-              <a href="#" className="text-sm text-red-500 font-semibold hover:underline" onClick={() => openModalDelete(app)} role="menuitem" tabIndex="-1">
+              <a href="#" className="text-sm opacity-50 font-semibold hover:underline" onClick={() => closeElement()} role="menuitem" tabIndex="-1">
+                close
+              </a>
+              <a href="#" className="text-sm text-red-500 font-semibold hover:underline" onClick={() => openDeleteModal(app)} role="menuitem" tabIndex="-1">
                 <TrashIcon className="inline-flex align-text-bottom h-4 mr-1" />
                 Delete
               </a>

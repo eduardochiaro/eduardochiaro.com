@@ -98,10 +98,10 @@ const AdminResumeIndex = ({ formRef }) => {
     });
     inputFileRef.current.value = '';
     mutate();
-    closeModalDelete();
+    closeDeleteModal();
   };
 
-  const openModal = (resume) => {
+  const openElement = (resume) => {
     const openResume = {...resumeFormat, ...resume};
     setResume(openResume);
     setIsOpen(true);
@@ -114,25 +114,26 @@ const AdminResumeIndex = ({ formRef }) => {
     setFormSuccess(false);
   };
 
-  const openModalDelete = (resume) => {
+  const openDeleteModal = (resume) => {
     const openResume = mergeObj(resumeFormat, resume);
     setResume(openResume);
     setIsOpenDelete(true);
   };
 
-  const closeModalDelete = () => {
+  const closeDeleteModal = () => {
     setResume(resumeFormat);
     setIsOpenDelete(false);
+  };
+
+  const closeElement = () => {
+    setResume(resumeFormat);
+    setIsOpen(false);
   };
 
   const columns = ['name', 'description'];
 
   const handleChange = (e) => {
-    if (e.target.files) {
-      setResume({ ...resume, [e.target.name]: e.target.files[0] });
-    } else {
-      setResume({ ...resume, [e.target.name]: e.target.value });
-    }
+    setResume({ ...resume, [e.target.name]: e.target.files ? e.target.files[0] : e.target.value });
   };
 
   const newData = [];
@@ -155,8 +156,8 @@ const AdminResumeIndex = ({ formRef }) => {
   if (session) {
     return (
       <AdminWrapper>
-        <div className="h-full py-8 w-1/4">
-          <List title={title} columns={columns} data={newData} format={resumeFormat} openAction={openModal} editAction={openModal} activeId={resume.id} />
+        <div className={`h-full ${isOpen ? 'w-1/4' : 'grow'}`}>
+          <List title={title} columns={columns} data={newData} format={resumeFormat} openAction={openElement} editAction={openElement} activeId={resume.id} />
         </div>
         <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6 ${isOpen ? '' : 'hidden'}`}>
           <div className="flex items-center justify-between">
@@ -164,7 +165,10 @@ const AdminResumeIndex = ({ formRef }) => {
               <BriefcaseIcon className="h-6 text-secondary-700 dark:text-secondary-600" /> {resume.id ? 'Edit resume' : 'Add new resume'}
             </h2>
             <div className="flex items-center gap-4">
-              <a href="#" className="text-sm text-red-500 font-semibold hover:underline" onClick={() => openModalDelete(resume)} role="menuitem" tabIndex="-1">
+              <a href="#" className="text-sm opacity-50 font-semibold hover:underline" onClick={() => closeElement()} role="menuitem" tabIndex="-1">
+                close
+              </a>
+              <a href="#" className="text-sm text-red-500 font-semibold hover:underline" onClick={() => openDeleteModal(resume)} role="menuitem" tabIndex="-1">
                 <TrashIcon className="inline-flex align-text-bottom h-4 mr-1" />
                 Delete
               </a>

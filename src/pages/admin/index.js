@@ -12,11 +12,11 @@ const AdminIndex = () => {
         <Head>
           <title>Eduardo Chiaro | Admin</title>
         </Head>
-        <div className="h-full py-8 px-6 w-full">
+        <div className="h-full py-8 px-6 grow">
           <h1 className="text-2xl flex items-center gap-2 pb-4 border-b border-primary-200 dark:border-primary-600">
             <ComputerDesktopIcon className="h-6 text-secondary-700 dark:text-secondary-600" /> Dashboard
           </h1>
-          <div className="mx-auto mt-10 grid grid-cols-3 gap-12">
+          <div className="mx-auto mt-10 grid grid-cols-2 xl:grid-cols-3 gap-12">
             {menuList.map((item) => (
               <Link key={item.title} href={item.href} className={'flex gap-6'}>
                 <div className={`${item.classColor} p-4 rounded-full h-fit`}>{item.icon}</div>
