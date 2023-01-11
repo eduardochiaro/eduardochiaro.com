@@ -93,10 +93,10 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
       },
     });
     mutate();
-    closeModalDelete();
+    closeDeleteModal();
   };
 
-  const openModal = (category) => {
+  const openElement = (category) => {
     const openCategory = mergeObj(categoryFormat, category);
     setCategory(openCategory);
     setIsOpen(true);
@@ -108,23 +108,24 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
     setFormSuccess(true);
   };
 
-  const openModalDelete = (category) => {
+  const openDeleteModal = (category) => {
     const openCategory = mergeObj(categoryFormat, category);
     setCategory(openCategory);
     setIsOpenDelete(true);
   };
 
-  const closeModalDelete = () => {
+  const closeDeleteModal = () => {
     setCategory(categoryFormat);
     setIsOpenDelete(false);
   };
 
+  const closeElement = () => {
+    setCategory(categoryFormat);
+    setIsOpen(false);
+  };
+  
   const handleChange = (e) => {
-    if (e.target.files) {
-      setCategory({ ...category, [e.target.name]: e.target.files[0] });
-    } else {
-      setCategory({ ...category, [e.target.name]: e.target.value });
-    }
+    setCategory({ ...category, [e.target.name]: e.target.files ? e.target.files[0] : e.target.value });
   };
 
   const columns = ['name', 'type'];
@@ -147,8 +148,8 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
   if (session) {
     return (
       <AdminWrapper>
-        <div className="h-full py-8 w-1/4">
-          <List title={title} columns={columns} data={newData} format={categoryFormat} openAction={openModal} editAction={openModal} activeId={category.id} />
+        <div className={`h-full ${isOpen ? 'w-1/4' : 'grow'}`}>
+          <List title={title} columns={columns} data={newData} format={categoryFormat} openAction={openElement} editAction={openElement} activeId={category.id} />
         </div>
         <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6  ${isOpen ? '' : 'hidden'}`}>
           <div className="flex items-center justify-between">
@@ -156,10 +157,13 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
               <TagIcon className="h-6 text-secondary-700 dark:text-secondary-600" /> {category.id ? 'Edit category' : 'Add new category'}
             </h2>
             <div className="flex items-center gap-4">
+              <a href="#" className="text-sm opacity-50 font-semibold hover:underline" onClick={() => closeElement()} role="menuitem" tabIndex="-1">
+                close
+              </a>
               <a
                 href="#"
                 className="text-sm text-red-500 font-semibold hover:underline"
-                onClick={() => openModalDelete(category)}
+                onClick={() => openDeleteModal(category)}
                 role="menuitem"
                 tabIndex="-1"
               >

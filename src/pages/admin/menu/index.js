@@ -90,10 +90,10 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
       },
     });
     mutate();
-    closeModalDelete();
+    closeDeleteModal();
   };
 
-  const openModal = (menuLink) => {
+  const openElement = (menuLink) => {
     const openMenuLink = mergeObj(menuLinkFormat, menuLink);
     setMenuLink(openMenuLink);
     setIsOpen(true);
@@ -105,23 +105,24 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
     setFormSuccess(true);
   };
 
-  const openModalDelete = (menuLink) => {
+  const openDeleteModal = (menuLink) => {
     const openMenuLink = mergeObj(menuLinkFormat, menuLink);
     setMenuLink(openMenuLink);
     setIsOpenDelete(true);
   };
 
-  const closeModalDelete = () => {
+  const closeDeleteModal = () => {
     setMenuLink(menuLinkFormat);
     setIsOpenDelete(false);
   };
 
+  const closeElement = () => {
+    setMenuLink(menuLinkFormat);
+    setIsOpen(false);
+  };
+
   const handleChange = (e) => {
-    if (e.target.files) {
-      setMenuLink({ ...menuLink, [e.target.name]: e.target.files[0] });
-    } else {
-      setMenuLink({ ...menuLink, [e.target.name]: e.target.value });
-    }
+    setMenuLink({ ...menuLink, [e.target.name]: e.target.files ? e.target.files[0] : e.target.value });
   };
 
   const columns = ['name', 'url', 'status_d', 'category_d'];
@@ -150,8 +151,8 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
   if (session) {
     return (
       <AdminWrapper>
-        <div className="h-full py-8 w-1/4">
-          <List title={title} columns={columns} data={newData} format={menuLinkFormat} openAction={openModal} editAction={openModal} activeId={menuLink.id} />
+        <div className={`h-full ${isOpen ? 'w-1/4' : 'grow'}`}>
+          <List title={title} columns={columns} data={newData} format={menuLinkFormat} openAction={openElement} editAction={openElement} activeId={menuLink.id} />
         </div>
         <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6  ${isOpen ? '' : 'hidden'}`}>
           <div className="flex items-center justify-between">
@@ -159,10 +160,13 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
               <Bars3Icon className="h-6 text-secondary-700 dark:text-secondary-600" /> {menuLink.id ? 'Edit menuLink' : 'Add new menuLink'}
             </h2>
             <div className="flex items-center gap-4">
+              <a href="#" className="text-sm opacity-50 font-semibold hover:underline" onClick={() => closeElement()} role="menuitem" tabIndex="-1">
+                close
+              </a>
               <a
                 href="#"
                 className="text-sm text-red-500 font-semibold hover:underline"
-                onClick={() => openModalDelete(menuLink)}
+                onClick={() => openDeleteModal(menuLink)}
                 role="menuitem"
                 tabIndex="-1"
               >

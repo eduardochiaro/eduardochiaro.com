@@ -94,10 +94,10 @@ const AdminSkillsIndex = ({ formRef, images }) => {
       },
     });
     mutate();
-    closeModalDelete();
+    closeDeleteModal();
   };
 
-  const openModal = (skill) => {
+  const openElement = (skill) => {
     const openSkill = mergeObj(skillFormat, skill);
     setSkill(openSkill);
     setIsOpen(true);
@@ -109,23 +109,24 @@ const AdminSkillsIndex = ({ formRef, images }) => {
     setFormSuccess(true);
   };
 
-  const openModalDelete = (skill) => {
+  const openDeleteModal = (skill) => {
     const openSkill = mergeObj(skillFormat, skill);
     setSkill(openSkill);
     setIsOpenDelete(true);
   };
 
-  const closeModalDelete = () => {
+  const closeDeleteModal = () => {
     setSkill(skillFormat);
     setIsOpenDelete(false);
   };
 
+  const closeElement = () => {
+    setSkill(skillFormat);
+    setIsOpen(false);
+  };
+
   const handleChange = (e) => {
-    if (e.target.files) {
-      setSkill({ ...skill, [e.target.name]: e.target.files[0] });
-    } else {
-      setSkill({ ...skill, [e.target.name]: e.target.value });
-    }
+    setSkill({ ...skill, [e.target.name]: e.target.files ? e.target.files[0] : e.target.value });
   };
 
   const columns = ['name', 'description', 'category_d'];
@@ -152,8 +153,8 @@ const AdminSkillsIndex = ({ formRef, images }) => {
   if (session) {
     return (
       <AdminWrapper>
-        <div className="h-full py-8 w-1/4">
-          <List title={title} columns={columns} data={newData} format={skillFormat} openAction={openModal} editAction={openModal} activeId={skill.id} />
+        <div className={`h-full ${isOpen ? 'w-1/4' : 'grow'}`}>
+          <List title={title} columns={columns} data={newData} format={skillFormat} openAction={openElement} editAction={openElement} activeId={skill.id} />
         </div>
         <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6 ${isOpen ? '' : 'hidden'}`}>
           <div className="flex items-center justify-between">
@@ -161,7 +162,10 @@ const AdminSkillsIndex = ({ formRef, images }) => {
               <CommandLineIcon className="h-6 text-secondary-700 dark:text-secondary-600" /> {skill.id ? 'Edit skill' : 'Add new skill'}
             </h2>
             <div className="flex items-center gap-4">
-              <a href="#" className="text-sm text-red-500 font-semibold hover:underline" onClick={() => openModalDelete(skill)} role="menuitem" tabIndex="-1">
+              <a href="#" className="text-sm opacity-50 font-semibold hover:underline" onClick={() => closeElement()} role="menuitem" tabIndex="-1">
+                close
+              </a>
+              <a href="#" className="text-sm text-red-500 font-semibold hover:underline" onClick={() => openDeleteModal(skill)} role="menuitem" tabIndex="-1">
                 <TrashIcon className="inline-flex align-text-bottom h-4 mr-1" />
                 Delete
               </a>

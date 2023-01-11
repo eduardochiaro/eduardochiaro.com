@@ -96,10 +96,10 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
       },
     });
     mutate();
-    closeModalDelete();
+    closeDeleteModal();
   };
 
-  const openModal = (bookmark) => {
+  const openElement = (bookmark) => {
     setCurrentStatus(null);
     const openBookmark = mergeObj(bookmarkFormat, bookmark);
     setBookmark(openBookmark);
@@ -113,24 +113,25 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
     setFormSuccess(true);
   };
 
-  const openModalDelete = (bookmark) => {
+  const openDeleteModal = (bookmark) => {
     const openBookmark = mergeObj(bookmarkFormat, bookmark);
     setBookmark(openBookmark);
     setIsOpenDelete(true);
   };
 
-  const closeModalDelete = () => {
+  const closeDeleteModal = () => {
     setBookmark(bookmarkFormat);
     setIsOpenDelete(false);
     setIsOpen(false);
   };
 
+  const closeElement = () => {
+    setBookmark(bookmarkFormat);
+    setIsOpen(false);
+  };
+  
   const handleChange = (e) => {
-    if (e.target.files) {
-      setBookmark({ ...bookmark, [e.target.name]: e.target.files[0] });
-    } else {
-      setBookmark({ ...bookmark, [e.target.name]: e.target.value });
-    }
+    setBookmark({ ...bookmark, [e.target.name]: e.target.files ? e.target.files[0] : e.target.value });
   };
 
   const fetchUrlData = async (bookmark) => {
@@ -187,8 +188,8 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
   if (session) {
     return (
       <AdminWrapper>
-        <div className="h-full py-8 w-1/4">
-          <List title={title} columns={columns} data={newData} format={bookmarkFormat} openAction={openModal} editAction={openModal} activeId={bookmark.id} />
+        <div className={`h-full ${isOpen ? 'w-1/4' : 'grow'}`}>
+          <List title={title} columns={columns} data={newData} format={bookmarkFormat} openAction={openElement} editAction={openElement} activeId={bookmark.id} />
         </div>
         <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6  ${isOpen ? '' : 'hidden'}`}>
           <div className="flex items-center justify-between">
@@ -196,10 +197,13 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
               <BookmarkIcon className="h-6 text-secondary-700 dark:text-secondary-600" /> {bookmark.id ? 'Edit bookmark' : 'Add new bookmark'}
             </h2>
             <div className="flex items-center gap-4">
+              <a href="#" className="text-sm opacity-50 font-semibold hover:underline" onClick={() => closeElement()} role="menuitem" tabIndex="-1">
+                close
+              </a>
               <a
                 href="#"
                 className="text-sm text-red-500 font-semibold hover:underline"
-                onClick={() => openModalDelete(bookmark)}
+                onClick={() => openDeleteModal(bookmark)}
                 role="menuitem"
                 tabIndex="-1"
               >
