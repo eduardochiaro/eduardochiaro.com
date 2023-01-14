@@ -41,13 +41,13 @@ export default function Resume() {
                 </div>
                 <div className="flex-1 group-last:pb-0">
                   <div className="relative box-card p-4 my-5">
-                    <h3 className="text-2xl font-header break-words mb-2">{job.name}</h3>
+                    <h3 className="text-3xl font-header break-words mb-2">{job.name}</h3>
                     {job.logo ? (
                       <SVG alt={job.company} className={' fill-primary-700 dark:fill-primary-200 mb-4'} src={`/uploads/${job.logo}`} height={20} />
                     ) : (
                       <h4 className="text-xl font-header break-words mb-4">{job.company}</h4>
                     )}
-                    <div className={'font-mono text-xs md:text-normal flex items-center gap-2 whitespace-nowrap'}>
+                    <div className={'text-sm md:text-normal flex items-center gap-2 whitespace-nowrap'}>
                       {moment(job.startDate).format('MMMM YYYY')}
                       <ChevronDoubleRightIcon className="h-5" />
                       {job.endDate ? moment(job.endDate).format('MMMM YYYY') : 'Now'}
