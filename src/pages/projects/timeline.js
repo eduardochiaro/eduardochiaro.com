@@ -49,7 +49,7 @@ function Timeline({ episodes }) {
                 </Link>{' '}
                 / Timeline {type ? '' : '(variation)'}
               </h1>
-              <div className="flex justify-end">
+              <div className="hidden md:flex justify-end ">
                 <label htmlFor="toggle-example" className="flex items-center cursor-pointer relative mb-4">
                   <input type="checkbox" id="toggle-example" className="sr-only" onChange={() => setType(!type)} />
                   <div className="toggle-bg"></div>
