@@ -132,7 +132,6 @@ const AdminAppsIndex = ({ formRef }) => {
     setApp({ ...app, [e.target.name]: e.target.files ? e.target.files[0] : e.target.value });
   };
 
-
   const columns = ['name', 'description', 'github_url'];
 
   const newData = [];

@@ -4,7 +4,7 @@ import Parser from 'rss-parser';
 import fsCache from '@/utils/fsCache';
 
 const url = 'https://blog.eduardochiaro.com/rss/';
-const hours = 1;
+const hours = 5;
 
 const handler = async (req, res) => {
   await cors(req, res);
