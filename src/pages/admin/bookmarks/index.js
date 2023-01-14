@@ -129,7 +129,7 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
     setBookmark(bookmarkFormat);
     setIsOpen(false);
   };
-  
+
   const handleChange = (e) => {
     setBookmark({ ...bookmark, [e.target.name]: e.target.files ? e.target.files[0] : e.target.value });
   };
@@ -189,7 +189,15 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
     return (
       <AdminWrapper>
         <div className={`h-full ${isOpen ? 'w-1/4' : 'grow'}`}>
-          <List title={title} columns={columns} data={newData} format={bookmarkFormat} openAction={openElement} editAction={openElement} activeId={bookmark.id} />
+          <List
+            title={title}
+            columns={columns}
+            data={newData}
+            format={bookmarkFormat}
+            openAction={openElement}
+            editAction={openElement}
+            activeId={bookmark.id}
+          />
         </div>
         <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6  ${isOpen ? '' : 'hidden'}`}>
           <div className="flex items-center justify-between">

@@ -15,11 +15,7 @@ const AdminSidebar = ({ menuList }) => {
   const { data: session } = useSession();
   const [openMenu, setOpenMenu] = useState(true);
   return (
-    <div
-      className={`transition-all ease-in-out relative duration-300 sm:relative md:h-full ${
-        openMenu ? styles['sidebar-open'] : styles['sidebar-closed']
-      }`}
-    >
+    <div className={`transition-all ease-in-out relative duration-300 sm:relative md:h-full ${openMenu ? styles['sidebar-open'] : styles['sidebar-closed']}`}>
       <div className="flex flex-col justify-between min-h-screen bg-primary-200 dark:bg-primary-700">
         <div className="grow p-3 pr-0 relative">
           <div className="flex items-center gap-4 h-14 my-3 border-b border-primary-300 dark:border-primary-500 px-3 mr-3">
