@@ -26,7 +26,7 @@ export default function Resume() {
                 <div className="flex-1"></div>
                 <div className="flex-none w-4 md:w-8 relative mx-2 md:mx-4 h-10">
                   <div className="mx-auto w-0.5 h-full bg-secondary-500 z-10"></div>
-                  <span className="hidden group-first:block absolute top-0 left-1/2 transform -translate-x-1/2 rounded-full w-4 h-4 bg-primary-200 border-2 border-primary-800 z-20 group-first:bg-emerald-500 group-first:w-6 group-first:h-6"></span>
+                  <span className="hidden group-first:block absolute top-0 left-1/2 transform -translate-x-1/2 rounded-full ring-2 ring-primary-100 dark:ring-primary-800 z-20 bg-emerald-500 w-5 h-5"></span>
                 </div>
                 <div className="flex-1"></div>
               </div>
@@ -94,7 +94,7 @@ export default function Resume() {
                 <div className="flex-1"></div>
                 <div className="flex-none w-4 md:w-8 relative mx-2 md:mx-4 h-10">
                   <div className="mx-auto w-0.5 h-full bg-secondary-500 z-10"></div>
-                  <span className="hidden group-last:block absolute bottom-0 left-1/2 transform -translate-x-1/2 rounded-full w-4 h-4 bg-primary-200 border-2 border-primary-800 z-20 group-last:bg-red-500 group-last:w-6 group-last:h-6"></span>
+                  <span className="hidden group-last:block absolute bottom-0 left-1/2 transform -translate-x-1/2 rounded-full ring-2 ring-primary-200 dark:ring-primary-900 z-20 bg-red-500 w-5 h-5"></span>
                 </div>
                 <div className="flex-1"></div>
               </div>
