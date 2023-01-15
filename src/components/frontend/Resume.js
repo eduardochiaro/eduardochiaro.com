@@ -31,7 +31,7 @@ export default function Resume() {
                 <div className="flex-1"></div>
               </div>
               <div className="hidden group-first:md:block flex-none w-full relative font-mono text-xl md:text-2xl text-center my-4">
-                Now
+                Today
               </div>
               <div className="flex">
                 <div className="hidden md:block flex-1 md:w-36 font-mono text-right group-odd:hidden">
@@ -40,17 +40,17 @@ export default function Resume() {
                   <div className="mx-auto w-0.5 h-full bg-secondary-500 z-10"></div>
                 </div>
                 <div className="flex-1 group-last:pb-0">
-                  <div className="relative box-card p-4 my-5">
+                  <div className="relative box-card p-4 my-2 md:my-5">
                     <h3 className="text-3xl font-header break-words mb-2">{job.name}</h3>
                     {job.logo ? (
-                      <SVG alt={job.company} className={' fill-primary-700 dark:fill-primary-200 mb-4'} src={`/uploads/${job.logo}`} height={20} />
+                      <SVG alt={job.company} className={'fill-primary-700 dark:fill-primary-200 mb-4'} src={`/uploads/${job.logo}`} height={20} />
                     ) : (
                       <h4 className="text-xl font-header break-words mb-4">{job.company}</h4>
                     )}
                     <div className={'text-sm md:text-normal flex items-center gap-2 whitespace-nowrap'}>
-                      {moment(job.startDate).format('MMMM YYYY')}
-                      <ChevronDoubleRightIcon className="h-5" />
-                      {job.endDate ? moment(job.endDate).format('MMMM YYYY') : 'Now'}
+                      <span>{ !job.endDate && 'Since '}{moment(job.startDate).format('MMMM YYYY')}</span>
+                      { job.endDate && <ChevronDoubleRightIcon className="h-5" />}
+                      <span>{ job.endDate && moment(job.endDate).format('MMMM YYYY')}</span>
                     </div>
                     {job.description && <div className="text-sm text-primary-700 dark:text-primary-200 mt-4">{job.description}</div>}
                     <div className="flex items-center gap-4 mt-6">
@@ -63,7 +63,7 @@ export default function Resume() {
                     {job.projects.length > 0 ? (
                       <>
                         <h5 className="mt-6 mb-2 text-lg">Projects</h5>
-                        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                           {job.projects?.map((project) => (
                             <SVG
                               key={`resume_project_${project.id}`}
@@ -81,7 +81,7 @@ export default function Resume() {
                   </div>
                 </div>
                 <div className="hidden md:block flex-none w-4 md:w-8 relative mx-2 md:mx-4 group-even:hidden">
-                  <div className="mx-auto w-0.5 h-full bg-secondary-500  z-10"></div>
+                  <div className="mx-auto w-0.5 h-full bg-secondary-500 z-10"></div>
                 </div>
                 <div className="hidden md:block flex-1 md:w-36 font-mono text-right group-even:hidden">
 
