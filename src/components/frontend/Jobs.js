@@ -61,10 +61,12 @@ export default function Jobs() {
           <span className="grow">
             I&apos;ve <span className="overlay-color">worked</span> for...
           </span>
+          {/*
           <Link href={'/resume'} className="overlay-color text-sm flex items-center gap-1">
             <span>view resume</span>
             <ChevronDoubleRightIcon className="h-3 text-secondary-700 dark:text-secondary-600" />
           </Link>
+          */}
         </h3>
         <div id="work-list" className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-8 mt-4">
           {works.map((job, index) => (
