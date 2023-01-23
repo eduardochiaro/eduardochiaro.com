@@ -187,8 +187,8 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
 
   if (session) {
     return (
-      <AdminWrapper>
-        <div className={`h-full ${isOpen ? 'w-1/4' : 'grow'}`}>
+      <AdminWrapper isPageOpen={isOpen}>
+        <div className={`h-full ${isOpen ? 'hidden' : 'grow'}`}>
           <List
             title={title}
             columns={columns}

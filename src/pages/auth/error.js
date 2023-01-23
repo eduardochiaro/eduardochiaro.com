@@ -2,37 +2,37 @@ import * as React from 'react';
 import { useRouter } from 'next/router';
 import Logo from '@/components/icons/logo';
 import ThemeIcon from '@/components/ThemeIcon';
-import Link from "next/link";
+import Link from 'next/link';
 
 const getError = (error) => {
-  switch(error) {
+  switch (error) {
     case 'AccessDenied':
       return {
         title: 'Access Denied',
         content: 'You do not have permission to sign in.',
-        showButton: true
-      }
+        showButton: true,
+      };
     case 'Configuration':
       return {
         title: 'Server error',
         content: 'There is a problem with the server configuration. Check the server logs for more information.',
-        showButton: false
-      }
+        showButton: false,
+      };
     case 'Verification':
       return {
         title: 'Unable to sign in',
         content: 'The sign in link is no longer valid. It may have been used already or it may have expired.',
-        showButton: true
-      }
+        showButton: true,
+      };
     default:
     case 'Default':
       return {
         title: 'Error',
         content: '',
-        showButton: false
-      }
+        showButton: false,
+      };
   }
-}
+};
 
 export default function SignIn({ providers }) {
   const router = useRouter();
@@ -51,14 +51,14 @@ export default function SignIn({ providers }) {
               <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={'w-20 h-20 mx-auto'} />
               <h1 className="font-header my-6 text-3xl">{errorContent.title}</h1>
               <p className="mb-10">{errorContent.content}</p>
-              {errorContent.showButton &&
+              {errorContent.showButton && (
                 <Link
                   className="mx-auto bg-primary-500 dark:bg-primary-800 text-primary-200 dark:text-primary-50 drop-shadow p-3 px-4 rounded text-xl transition duration-200 ease-in-out hover:ring-2 ring-offset-2 ring-primary-500"
                   href={'/api/auth/signin'}
                 >
                   Sign in
                 </Link>
-              }
+              )}
             </div>
           </div>
         </div>
