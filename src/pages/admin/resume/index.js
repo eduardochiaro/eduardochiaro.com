@@ -157,8 +157,8 @@ const AdminResumeIndex = ({ formRef }) => {
 
   if (session) {
     return (
-      <AdminWrapper>
-        <div className={`h-full ${isOpen ? 'w-1/4' : 'grow'}`}>
+      <AdminWrapper isPageOpen={isOpen}>
+        <div className={`h-full ${isOpen ? 'hidden' : 'grow'}`}>
           <List title={title} columns={columns} data={newData} format={resumeFormat} openAction={openElement} editAction={openElement} activeId={resume.id} />
         </div>
         <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6 ${isOpen ? '' : 'hidden'}`}>

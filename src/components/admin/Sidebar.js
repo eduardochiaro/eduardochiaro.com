@@ -11,16 +11,16 @@ import ThemeIcon from '../ThemeIcon';
 import Image from 'next/image';
 import classNames from '@/utils/classNames';
 
-const AdminSidebar = ({ menuList }) => {
+const AdminSidebar = ({ menuList, isPageOpen }) => {
   const { data: session } = useSession();
   const [openMenu, setOpenMenu] = useState(true);
   return (
-    <div className={`transition-all ease-in-out relative duration-300 sm:relative md:h-full ${openMenu ? styles['sidebar-open'] : styles['sidebar-closed']}`}>
+    <div className={`transition-all ease-in-out relative duration-300 sm:relative md:h-full ${openMenu && !isPageOpen ? styles['sidebar-open'] : styles['sidebar-closed']}`}>
       <div className="flex flex-col justify-between min-h-screen bg-primary-200 dark:bg-primary-700">
         <div className="grow p-3 pr-0 relative">
           <div className="flex items-center gap-4 h-14 my-3 border-b border-primary-300 dark:border-primary-500 px-3 mr-3">
             <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className="h-6 text-secondary-700" />
-            <div className={`grow font-bold font-header hidden xl:block ${openMenu ? '' : styles['hide-when-closed']}`}>Eduardo Chiaro</div>
+            <div className={`grow font-bold font-header hidden xl:block ${openMenu && !isPageOpen ? '' : styles['hide-when-closed']}`}>Eduardo Chiaro</div>
           </div>
           <button onClick={() => setOpenMenu(!openMenu)} className="absolute top-4 right-4">
             <Bars3BottomRightIcon className="w-5" />
@@ -34,7 +34,7 @@ const AdminSidebar = ({ menuList }) => {
                 title="Website"
               >
                 <HomeIcon className="w-5 group-hover:text-secondary-700 dark:group-hover:text-secondary-600" />
-                <span className={`text-sm tracking-wide truncate group-hover:hunderline hidden xl:block ${openMenu ? '' : styles['hide-when-closed']}`}>
+                <span className={`text-sm tracking-wide truncate group-hover:hunderline hidden xl:block ${openMenu && !isPageOpen ? '' : styles['hide-when-closed']}`}>
                   Website
                 </span>
               </Link>
@@ -42,7 +42,7 @@ const AdminSidebar = ({ menuList }) => {
             <li>
               <div className="flex flex-row items-center h-8 mr-3">
                 <span className="w-10 border-t border-secondary-700 dark:border-secondary-600 border-dashed shrink"></span>
-                <div className={`text-sm font-light tracking-wide mx-3 ${openMenu ? '' : styles['hide-when-closed']}`}>Menu</div>
+                <div className={`text-sm font-light tracking-wide mx-3 ${openMenu && !isPageOpen ? '' : styles['hide-when-closed']}`}>Menu</div>
                 <span className="w-full border-t border-secondary-700 dark:border-secondary-600 border-dashed shrink"></span>
               </div>
             </li>
@@ -56,7 +56,7 @@ const AdminSidebar = ({ menuList }) => {
                 >
                   <a className="flex items-center gap-2" alt={item.title} title={item.title}>
                     {item.icon}
-                    <span className={`text-sm tracking-wide truncate group-hover:hunderline hidden xl:block ${openMenu ? '' : styles['hide-when-closed']}`}>
+                    <span className={`text-sm tracking-wide truncate group-hover:hunderline hidden xl:block ${openMenu && !isPageOpen ? '' : styles['hide-when-closed']}`}>
                       {item.title}
                     </span>
                   </a>

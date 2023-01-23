@@ -51,11 +51,11 @@ const menuList = [
 
 export { menuList };
 
-const AdminWrapper = ({ children }) => {
+const AdminWrapper = ({ children, isPageOpen }) => {
   return (
     <div className="w-full h-full antialiased bg-primary-100 dark:bg-primary-800">
       <div className="flex flex-no-wrap">
-        <AdminSidebar menuList={menuList} />
+        <AdminSidebar menuList={menuList} isPageOpen={isPageOpen} />
         {React.Children.map(children, (child) => {
           if (child.type !== AdminWrapprerHeader) {
             return React.cloneElement(child);
