@@ -15,8 +15,10 @@
   > div {
     @apply w-28;
   }
-  svg {
-    @apply mx-auto
+  .sidebar-link {
+    svg {
+      @apply mx-auto
+    }
   }
   .hide-when-closed {
     @apply hidden;

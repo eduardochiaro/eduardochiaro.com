@@ -28,17 +28,17 @@ export default function ThemeIcon({ orientation }) {
       {
         name: 'light',
         className: '',
-        icon: <SunIcon className="w-5 h-5 block mr-2" />,
+        icon: <SunIcon className="flex-none w-5 h-5 block mr-2" />,
       },
       {
         name: 'dark',
         className: '',
-        icon: <MoonIcon className="w-5 h-5 block mr-2" />,
+        icon: <MoonIcon className="flex-none w-5 h-5 block mr-2" />,
       },
       {
         name: 'system',
         className: '',
-        icon: <ComputerDesktopIcon className="w-5 h-5 block mr-2" />,
+        icon: <ComputerDesktopIcon className="flex-none w-5 h-5 block mr-2" />,
       },
     ];
 

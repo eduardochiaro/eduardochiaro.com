@@ -1,7 +1,6 @@
-import { CommandLineIcon, ExclamationTriangleIcon } from '@heroicons/react/24/outline';
+import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 import { useSession } from 'next-auth/react';
 import { useState, createRef } from 'react';
-import { useSWRConfig } from 'swr';
 import axios from 'axios';
 import fs from 'fs';
 import path from 'path';
@@ -12,7 +11,7 @@ import mergeObj from '@/utils/mergeObj';
 import useStaleSWR from '@/utils/staleSWR';
 import moment from 'moment';
 import List from '@/components/admin/List';
-import { CheckIcon, TrashIcon } from '@heroicons/react/24/solid';
+import { CheckIcon, ChevronLeftIcon, TrashIcon } from '@heroicons/react/24/solid';
 
 const AdminSkillsIndex = ({ formRef, images }) => {
   const { mutate, data: skills, error } = useStaleSWR('/api/portfolio/skills');
@@ -143,28 +142,24 @@ const AdminSkillsIndex = ({ formRef, images }) => {
     newData.push(obj);
   });
 
-  const title = (
-    <h1 className="grow flex items-center gap-2">
-      <CommandLineIcon className="h-6 text-secondary-700 dark:text-secondary-600" />
-      <span>Skills list</span>
-    </h1>
-  );
+  const title = "Skills";
+  const single = "skill";
 
   if (session) {
     return (
       <AdminWrapper isPageOpen={isOpen}>
         <div className={`h-full ${isOpen ? 'hidden' : 'grow'}`}>
-          <List title={title} columns={columns} data={newData} format={skillFormat} openAction={openElement} editAction={openElement} activeId={skill.id} />
+          <List title={title} single={single} columns={columns} data={newData} format={skillFormat} openAction={openElement} editAction={openElement} activeId={skill.id} />
         </div>
         <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6 ${isOpen ? '' : 'hidden'}`}>
           <div className="flex items-center justify-between">
+            <a href="#" className="text-sm opacity-70 font-semibold hover:underline flex items-center gap-2" onClick={() => closeElement()} role="menuitem" tabIndex="-1">
+              <ChevronLeftIcon className='h-3'/> skills
+            </a>
             <h2 className="text-2xl flex items-center gap-2">
-              <CommandLineIcon className="h-6 text-secondary-700 dark:text-secondary-600" /> {skill.id ? 'Edit skill' : 'Add new skill'}
+              {skill.id ? 'Edit skill' : 'Add new skill'}
             </h2>
             <div className="flex items-center gap-4">
-              <a href="#" className="text-sm opacity-50 font-semibold hover:underline" onClick={() => closeElement()} role="menuitem" tabIndex="-1">
-                close
-              </a>
               <a href="#" className="text-sm text-red-500 font-semibold hover:underline" onClick={() => openDeleteModal(skill)} role="menuitem" tabIndex="-1">
                 <TrashIcon className="inline-flex align-text-bottom h-4 mr-1" />
                 Delete
@@ -175,7 +170,7 @@ const AdminSkillsIndex = ({ formRef, images }) => {
             </div>
           </div>
 
-          <div className={'mt-8 mb-2'}>
+          <div className={'mt-8 mb-2 max-w-5xl mx-auto'}>
             <form ref={formRef} acceptCharset="UTF-8" method="POST" encType="multipart/form-data" onSubmit={onSubmitModal}>
               {formError && (
                 <div className="bg-accent-100 border border-accent-400 text-accent-700 px-4 py-3 rounded relative mb-4" role="alert">

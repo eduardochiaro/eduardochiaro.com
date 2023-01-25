@@ -1,7 +1,7 @@
 import { PlusIcon, TagIcon, XMarkIcon } from '@heroicons/react/24/solid';
 import React, { useEffect, useState } from 'react';
 
-export default function List({ title = () => null, columns = [], data = [], format = {}, openAction = () => null, editAction = () => null, activeId = null }) {
+export default function List({ title = '', single = '', columns = [], data = [], format = {}, openAction = () => null, editAction = () => null, activeId = null }) {
   const [filteredData, setFilteredData] = useState([]);
   const [search, setSearch] = useState('');
   const [activeMenu, setActiveMenu] = useState();
@@ -51,9 +51,11 @@ export default function List({ title = () => null, columns = [], data = [], form
   return (
     <div className="overflow-auto h-screen py-8">
       <div className="text-2xl flex items-center gap-2 px-6">
-        {title}
-        <button className="font-bold p-2" onClick={() => clickOnAdd(format)} title="Add new app">
-          <PlusIcon className="h-6 text-primary-50" />
+        <h1 className="grow">
+          {title}
+        </h1>
+        <button className="bg-primary-500 dark:bg-primary-50 text-primary-50 dark:text-primary-900 rounded text-xs p-2 flex items-center gap-1" onClick={() => clickOnAdd(format)} title={`New ${single}`}>
+          <PlusIcon className="h-4" /> New {single}
         </button>
       </div>
       <div className="mt-8 mb-2 px-6">

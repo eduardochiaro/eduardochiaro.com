@@ -1,4 +1,4 @@
-import { CpuChipIcon, ExclamationTriangleIcon } from '@heroicons/react/24/outline';
+import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 import { useSession } from 'next-auth/react';
 import { useState, createRef, useRef } from 'react';
 import { useSWRConfig } from 'swr';
@@ -10,7 +10,7 @@ import mergeObj from '@/utils/mergeObj';
 import useStaleSWR from '@/utils/staleSWR';
 import moment from 'moment';
 import Image from 'next/image';
-import { CheckIcon, TrashIcon } from '@heroicons/react/24/solid';
+import { CheckIcon, ChevronLeftIcon, TrashIcon } from '@heroicons/react/24/solid';
 
 const AdminAppsIndex = ({ formRef }) => {
   const { mutate, data: apps } = useStaleSWR('/api/portfolio/apps');
@@ -144,28 +144,24 @@ const AdminAppsIndex = ({ formRef }) => {
     newData.push(obj);
   });
 
-  const title = (
-    <h1 className="grow flex items-center gap-2">
-      <CpuChipIcon className="h-6 text-secondary-700 dark:text-secondary-600" />
-      <span>Apps list</span>
-    </h1>
-  );
+  const title = "Apps";
+  const single = "app";
 
   if (session) {
     return (
       <AdminWrapper isPageOpen={isOpen}>
         <div className={`h-full ${isOpen ? 'hidden' : 'grow'}`}>
-          <List title={title} columns={columns} data={newData} format={appFormat} openAction={openElement} editAction={openElement} activeId={app.id} />
+          <List title={title} single={single} columns={columns} data={newData} format={appFormat} openAction={openElement} editAction={openElement} activeId={app.id} />
         </div>
         <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6 ${isOpen ? '' : 'hidden'}`}>
           <div className="flex items-center justify-between">
+            <a href="#" className="text-sm opacity-70 font-semibold hover:underline flex items-center gap-2" onClick={() => closeElement()} role="menuitem" tabIndex="-1">
+              <ChevronLeftIcon className='h-3'/> apps
+            </a>
             <h2 className="text-2xl flex items-center gap-2">
-              <CpuChipIcon className="h-6 text-secondary-700 dark:text-secondary-600" /> {app.id ? 'Edit app' : 'Add new app'}
+              {app.id ? 'Edit app' : 'Add new app'}
             </h2>
             <div className="flex items-center gap-4">
-              <a href="#" className="text-sm opacity-50 font-semibold hover:underline" onClick={() => closeElement()} role="menuitem" tabIndex="-1">
-                close
-              </a>
               <a href="#" className="text-sm text-red-500 font-semibold hover:underline" onClick={() => openDeleteModal(app)} role="menuitem" tabIndex="-1">
                 <TrashIcon className="inline-flex align-text-bottom h-4 mr-1" />
                 Delete
@@ -176,7 +172,7 @@ const AdminAppsIndex = ({ formRef }) => {
             </div>
           </div>
 
-          <div className={'mt-8 mb-2'}>
+          <div className={'mt-8 mb-2 max-w-5xl mx-auto'}>
             <form ref={formRef} acceptCharset="UTF-8" method="POST" encType="multipart/form-data" onSubmit={onSubmitModal}>
               {formError && (
                 <div className="bg-accent-100 border border-accent-400 text-accent-700 px-4 py-3 rounded relative mb-4" role="alert">

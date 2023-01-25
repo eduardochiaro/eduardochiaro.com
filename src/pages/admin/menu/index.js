@@ -1,7 +1,6 @@
-import { Bars3Icon, ExclamationTriangleIcon } from '@heroicons/react/24/outline';
+import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 import { useSession } from 'next-auth/react';
 import { useState, createRef } from 'react';
-import { useSWRConfig } from 'swr';
 import axios from 'axios';
 import fs from 'fs';
 import path from 'path';
@@ -11,7 +10,7 @@ import mergeObj from '@/utils/mergeObj';
 import useStaleSWR from '@/utils/staleSWR';
 import moment from 'moment';
 import List from '@/components/admin/List';
-import { CheckIcon, TrashIcon } from '@heroicons/react/24/solid';
+import { CheckIcon, ChevronLeftIcon, TrashIcon } from '@heroicons/react/24/solid';
 
 const AdminCategoriesIndex = ({ formRef, images }) => {
   const { mutate, data: menuLinks, error } = useStaleSWR('/api/site/menu');
@@ -141,12 +140,8 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
     newData.push(obj);
   });
 
-  const title = (
-    <h1 className="grow flex items-center gap-2">
-      <Bars3Icon className="h-6 text-secondary-700 dark:text-secondary-600" />
-      <span>Menu link list</span>
-    </h1>
-  );
+  const title = "Menu links";
+  const single = "link";
 
   if (session) {
     return (
@@ -154,6 +149,7 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
         <div className={`h-full ${isOpen ? 'hidden' : 'grow'}`}>
           <List
             title={title}
+            single={single}
             columns={columns}
             data={newData}
             format={menuLinkFormat}
@@ -162,15 +158,15 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
             activeId={menuLink.id}
           />
         </div>
-        <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6  ${isOpen ? '' : 'hidden'}`}>
+        <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6 ${isOpen ? '' : 'hidden'}`}>
           <div className="flex items-center justify-between">
+            <a href="#" className="text-sm opacity-70 font-semibold hover:underline flex items-center gap-2" onClick={() => closeElement()} role="menuitem" tabIndex="-1">
+              <ChevronLeftIcon className='h-3'/> menu links
+            </a>
             <h2 className="text-2xl flex items-center gap-2">
-              <Bars3Icon className="h-6 text-secondary-700 dark:text-secondary-600" /> {menuLink.id ? 'Edit menuLink' : 'Add new menuLink'}
+              {menuLink.id ? 'Edit menuLink' : 'Add new menuLink'}
             </h2>
             <div className="flex items-center gap-4">
-              <a href="#" className="text-sm opacity-50 font-semibold hover:underline" onClick={() => closeElement()} role="menuitem" tabIndex="-1">
-                close
-              </a>
               <a
                 href="#"
                 className="text-sm text-red-500 font-semibold hover:underline"
@@ -187,7 +183,7 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
             </div>
           </div>
 
-          <div className={'mt-8 mb-2'}>
+          <div className={'mt-8 mb-2 max-w-5xl mx-auto'}>
             <form ref={formRef} acceptCharset="UTF-8" method="POST" encType="multipart/form-data" onSubmit={onSubmitModal}>
               {formError && (
                 <div className="bg-accent-100 border border-accent-400 text-accent-700 px-4 py-3 rounded relative mb-4" role="alert">
