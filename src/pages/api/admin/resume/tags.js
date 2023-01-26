@@ -8,8 +8,8 @@ const handler = async (req, res) => {
   const tags = await prisma.resumeTag.findMany({
     where: {
       name: {
-        contains: search
-      }
+        contains: search,
+      },
     },
   });
   res.status(200).json({ results: tags });

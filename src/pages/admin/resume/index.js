@@ -11,6 +11,7 @@ import List from '@/components/admin/List';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 import { CheckIcon, ChevronLeftIcon, TrashIcon } from '@heroicons/react/24/solid';
 import { Menu } from '@headlessui/react';
+import pluck from '@/utils/pluck';
 
 const AdminResumeIndex = ({ formRef }) => {
   const { mutate, data: resumes, error } = useStaleSWR('/api/portfolio/resume');
@@ -33,6 +34,7 @@ const AdminResumeIndex = ({ formRef }) => {
   const [formError, setFormError] = useState(false);
   const [formSuccess, setFormSuccess] = useState(false);
   const inputFileRef = useRef(null);
+  const inputSearchRef = useRef(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [openMenu, setOpenMenu] = useState(false);
@@ -44,12 +46,16 @@ const AdminResumeIndex = ({ formRef }) => {
       if (searchTerm.length >= 3) {
         const res = await fetch(`/api/admin/resume/tags?search=${searchTerm}`);
         const tagSearch = await res.json();
-        setOpenMenu(true);
-        setSearchResults(tagSearch.results || []);
+        const currentTags = pluck(resume.tags, 'id');
+        const tags = tagSearch.results.length > 0 ? tagSearch.results.filter((x) => !currentTags.includes(x.id)) : [];
+        if (tags.length > 0) {
+          setOpenMenu(true);
+          setSearchResults(tags);
+        }
       }
     }, 500);
 
-    return () => clearTimeout(delayDebounceFn)
+    return () => clearTimeout(delayDebounceFn);
   }, [searchTerm]);
 
   const onSubmitModal = async (e) => {
@@ -128,8 +134,11 @@ const AdminResumeIndex = ({ formRef }) => {
 
   const closeModal = () => {
     inputFileRef.current.value = '';
+    inputSearchRef.current.value = '';
     setFormError(false);
     setFormSuccess(false);
+    setOpenMenu(false);
+    setSearchResults([]);
   };
 
   const openDeleteModal = (resume) => {
@@ -144,6 +153,8 @@ const AdminResumeIndex = ({ formRef }) => {
   };
 
   const closeElement = () => {
+    mutate();
+    closeModal();
     setResume(resumeFormat);
     setIsOpen(false);
   };
@@ -166,23 +177,45 @@ const AdminResumeIndex = ({ formRef }) => {
     newData.push(obj);
   });
 
-  const title = "Resume";
-  const single = "role";
+  const title = 'Resume';
+  const single = 'role';
+
+  const addTag = (tag) => {
+    setOpenMenu(false);
+    setSearchResults([]);
+    inputSearchRef.current.value = '';
+
+    resume.tags.push({ ...tag, new: true });
+    setResume({ ...resume });
+  };
 
   if (session) {
     return (
       <AdminWrapper isPageOpen={isOpen}>
         <div className={`h-full ${isOpen ? 'hidden' : 'grow'}`}>
-          <List title={title} single={single} columns={columns} data={newData} format={resumeFormat} openAction={openElement} editAction={openElement} activeId={resume.id} />
+          <List
+            title={title}
+            single={single}
+            columns={columns}
+            data={newData}
+            format={resumeFormat}
+            openAction={openElement}
+            editAction={openElement}
+            activeId={resume.id}
+          />
         </div>
         <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6 ${isOpen ? '' : 'hidden'}`}>
           <div className="flex items-center justify-between">
-            <a href="#" className="text-sm opacity-70 font-semibold hover:underline flex items-center gap-2" onClick={() => closeElement()} role="menuitem" tabIndex="-1">
-              <ChevronLeftIcon className='h-3'/> resume
+            <a
+              href="#"
+              className="text-sm opacity-70 font-semibold hover:underline flex items-center gap-2"
+              onClick={() => closeElement()}
+              role="menuitem"
+              tabIndex="-1"
+            >
+              <ChevronLeftIcon className="h-3" /> resume
             </a>
-            <h2 className="text-2xl flex items-center gap-2">
-              {resume.id ? 'Edit role' : 'Add new role'}
-            </h2>
+            <h2 className="text-2xl flex items-center gap-2">{resume.id ? 'Edit role' : 'Add new role'}</h2>
             <div className="flex items-center gap-4">
               <a href="#" className="text-sm text-red-500 font-semibold hover:underline" onClick={() => openDeleteModal(resume)} role="menuitem" tabIndex="-1">
                 <TrashIcon className="inline-flex align-text-bottom h-4 mr-1" />
@@ -303,32 +336,36 @@ const AdminResumeIndex = ({ formRef }) => {
                   <label htmlFor="tags-form" className="input-label">
                     Tags {resume.tags.length}
                   </label>
-                  <div className="input-field flex items-center gap-2 p-2 relative">
+                  <div className="input-field flex flex-wrap items-center gap-2 p-2 relative">
                     {resume.tags?.map((tag) => (
-                      <span key={`tag-${tag.id}`} className="text-xs rounded px-2 py-1 bg-secondary-800 text-primary-100">
+                      <span key={`tag-${tag.id}`} className={`text-xs rounded px-2 py-1 text-primary-100 ${tag.new ? 'bg-emerald-700' : 'bg-secondary-800'}`}>
                         {tag.name}
                       </span>
                     ))}
                     <Menu as="div" className="relative grow inline-block text-left">
-                    <input type="text"
-      autoComplete='off' className="w-full bg-transparent border-0 focus:border-0 py-0" placeholder="add new tag..." onChange={(e) => setSearchTerm(e.target.value)} />
-                    {openMenu && (
-                      <Menu.Items static className="absolute left-0 top-8 w-56 divide-y divide-primary-500 box-card">
-                        {searchResults.map((result, key) => (
-                        <div className="px-1 py-1" key={key}>
-                          <Menu.Item>
-                            {({ active }) => (
-                              <button
-                                className={`flex w-full p-2 ${active && 'bg-blue-500'}`}
-                              >
-                                {result.name}
-                              </button>
-                            )}
-                          </Menu.Item>
-                        </div>
-                        ))}
-                      </Menu.Items>
-                    )}
+                      <input
+                        ref={inputSearchRef}
+                        type="text"
+                        autoComplete="off"
+                        className="w-full bg-transparent border-0 py-0 focus:ring-0 min-w-fit"
+                        placeholder="add new tag..."
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                      />
+                      {openMenu && (
+                        <Menu.Items static className="absolute left-0 top-8 w-56 divide-y divide-primary-500 box-card">
+                          {searchResults.map((tag, key) => (
+                            <div className="px-1 py-1" key={key}>
+                              <Menu.Item>
+                                {({ active }) => (
+                                  <button className={`flex w-full p-2 ${active && 'bg-blue-500'}`} onClick={() => addTag(tag)}>
+                                    {tag.name}
+                                  </button>
+                                )}
+                              </Menu.Item>
+                            </div>
+                          ))}
+                        </Menu.Items>
+                      )}
                     </Menu>
                   </div>
                 </div>

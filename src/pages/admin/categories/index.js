@@ -137,8 +137,8 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
     newData.push(obj);
   });
 
-  const title = "Categories";
-  const single = "category";
+  const title = 'Categories';
+  const single = 'category';
 
   if (session) {
     return (
@@ -157,12 +157,16 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
         </div>
         <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6 ${isOpen ? '' : 'hidden'}`}>
           <div className="flex items-center gap-8 justify-between">
-            <a href="#" className="text-sm opacity-70 font-semibold hover:underline flex items-center gap-2" onClick={() => closeElement()} role="menuitem" tabIndex="-1">
-              <ChevronLeftIcon className='h-3'/> categories
+            <a
+              href="#"
+              className="text-sm opacity-70 font-semibold hover:underline flex items-center gap-2"
+              onClick={() => closeElement()}
+              role="menuitem"
+              tabIndex="-1"
+            >
+              <ChevronLeftIcon className="h-3" /> categories
             </a>
-            <h2 className="text-2xl flex items-center gap-2">
-              {category.id ? 'Edit category' : 'Add new category'}
-            </h2>
+            <h2 className="text-2xl flex items-center gap-2">{category.id ? 'Edit category' : 'Add new category'}</h2>
             <div className="flex items-center gap-4">
               <a
                 href="#"

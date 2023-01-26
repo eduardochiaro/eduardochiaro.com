@@ -47,13 +47,13 @@ export default function SignIn({ providers }) {
         </div>
         <div className="w-full px-10 py-8 mx-auto">
           <div className="max-w-sm mx-auto space-y-6">
-            <div className="bg-primary-100 dark:bg-primary-700 rounded drop-shadow px-4 py-6 text-center">
+            <div className="box-card px-4 py-6 text-center">
               <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={'w-20 h-20 mx-auto'} />
               <h1 className="font-header my-6 text-3xl">{errorContent.title}</h1>
               <p className="mb-10">{errorContent.content}</p>
               {errorContent.showButton && (
                 <Link
-                  className="mx-auto bg-primary-500 dark:bg-primary-800 text-primary-200 dark:text-primary-50 drop-shadow p-3 px-4 rounded text-xl transition duration-200 ease-in-out hover:ring-2 ring-offset-2 ring-primary-500"
+                  className="flex items-center gap-3 mx-auto bg-primary-300 dark:bg-primary-800 text-primary-700 dark:text-primary-50 drop-shadow p-3 px-4 rounded text-xl transition duration-200 ease-in-out hover:ring-2 ring-offset-2 ring-primary-300 dark:ring-primary-700 ring-offset-primary-100 dark:ring-offset-primary-600"
                   href={'/api/auth/signin'}
                 >
                   Sign in

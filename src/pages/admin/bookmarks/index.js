@@ -177,8 +177,8 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
     newData.push(obj);
   });
 
-  const title = "Bookmarks";
-  const single = "bookmark";
+  const title = 'Bookmarks';
+  const single = 'bookmark';
 
   if (session) {
     return (
@@ -197,12 +197,16 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
         </div>
         <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6 ${isOpen ? '' : 'hidden'}`}>
           <div className="flex items-center justify-between">
-            <a href="#" className="text-sm opacity-70 font-semibold hover:underline flex items-center gap-2" onClick={() => closeElement()} role="menuitem" tabIndex="-1">
-              <ChevronLeftIcon className='h-3'/> bookmarks
+            <a
+              href="#"
+              className="text-sm opacity-70 font-semibold hover:underline flex items-center gap-2"
+              onClick={() => closeElement()}
+              role="menuitem"
+              tabIndex="-1"
+            >
+              <ChevronLeftIcon className="h-3" /> bookmarks
             </a>
-            <h2 className="text-2xl flex items-center gap-2">
-              {bookmark.id ? 'Edit bookmark' : 'Add new bookmark'}
-            </h2>
+            <h2 className="text-2xl flex items-center gap-2">{bookmark.id ? 'Edit bookmark' : 'Add new bookmark'}</h2>
             <div className="flex items-center gap-4">
               <a
                 href="#"

@@ -144,23 +144,36 @@ const AdminAppsIndex = ({ formRef }) => {
     newData.push(obj);
   });
 
-  const title = "Apps";
-  const single = "app";
+  const title = 'Apps';
+  const single = 'app';
 
   if (session) {
     return (
       <AdminWrapper isPageOpen={isOpen}>
         <div className={`h-full ${isOpen ? 'hidden' : 'grow'}`}>
-          <List title={title} single={single} columns={columns} data={newData} format={appFormat} openAction={openElement} editAction={openElement} activeId={app.id} />
+          <List
+            title={title}
+            single={single}
+            columns={columns}
+            data={newData}
+            format={appFormat}
+            openAction={openElement}
+            editAction={openElement}
+            activeId={app.id}
+          />
         </div>
         <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6 ${isOpen ? '' : 'hidden'}`}>
           <div className="flex items-center justify-between">
-            <a href="#" className="text-sm opacity-70 font-semibold hover:underline flex items-center gap-2" onClick={() => closeElement()} role="menuitem" tabIndex="-1">
-              <ChevronLeftIcon className='h-3'/> apps
+            <a
+              href="#"
+              className="text-sm opacity-70 font-semibold hover:underline flex items-center gap-2"
+              onClick={() => closeElement()}
+              role="menuitem"
+              tabIndex="-1"
+            >
+              <ChevronLeftIcon className="h-3" /> apps
             </a>
-            <h2 className="text-2xl flex items-center gap-2">
-              {app.id ? 'Edit app' : 'Add new app'}
-            </h2>
+            <h2 className="text-2xl flex items-center gap-2">{app.id ? 'Edit app' : 'Add new app'}</h2>
             <div className="flex items-center gap-4">
               <a href="#" className="text-sm text-red-500 font-semibold hover:underline" onClick={() => openDeleteModal(app)} role="menuitem" tabIndex="-1">
                 <TrashIcon className="inline-flex align-text-bottom h-4 mr-1" />

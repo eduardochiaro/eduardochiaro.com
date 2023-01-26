@@ -142,23 +142,36 @@ const AdminSkillsIndex = ({ formRef, images }) => {
     newData.push(obj);
   });
 
-  const title = "Skills";
-  const single = "skill";
+  const title = 'Skills';
+  const single = 'skill';
 
   if (session) {
     return (
       <AdminWrapper isPageOpen={isOpen}>
         <div className={`h-full ${isOpen ? 'hidden' : 'grow'}`}>
-          <List title={title} single={single} columns={columns} data={newData} format={skillFormat} openAction={openElement} editAction={openElement} activeId={skill.id} />
+          <List
+            title={title}
+            single={single}
+            columns={columns}
+            data={newData}
+            format={skillFormat}
+            openAction={openElement}
+            editAction={openElement}
+            activeId={skill.id}
+          />
         </div>
         <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6 ${isOpen ? '' : 'hidden'}`}>
           <div className="flex items-center justify-between">
-            <a href="#" className="text-sm opacity-70 font-semibold hover:underline flex items-center gap-2" onClick={() => closeElement()} role="menuitem" tabIndex="-1">
-              <ChevronLeftIcon className='h-3'/> skills
+            <a
+              href="#"
+              className="text-sm opacity-70 font-semibold hover:underline flex items-center gap-2"
+              onClick={() => closeElement()}
+              role="menuitem"
+              tabIndex="-1"
+            >
+              <ChevronLeftIcon className="h-3" /> skills
             </a>
-            <h2 className="text-2xl flex items-center gap-2">
-              {skill.id ? 'Edit skill' : 'Add new skill'}
-            </h2>
+            <h2 className="text-2xl flex items-center gap-2">{skill.id ? 'Edit skill' : 'Add new skill'}</h2>
             <div className="flex items-center gap-4">
               <a href="#" className="text-sm text-red-500 font-semibold hover:underline" onClick={() => openDeleteModal(skill)} role="menuitem" tabIndex="-1">
                 <TrashIcon className="inline-flex align-text-bottom h-4 mr-1" />
