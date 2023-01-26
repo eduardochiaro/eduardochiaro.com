@@ -1,10 +1,9 @@
-import { HomeIcon } from '@heroicons/react/24/outline';
+import { Fragment, useState } from 'react';
 import Link from 'next/link';
 import NavLink from '@/components/NavLink';
 import styles from '@/styles/Admin.Sidebar.module.scss';
 import Logo from '@/components/icons/logo';
-import { Fragment, useState } from 'react';
-import { ArrowLeftCircleIcon, Bars3BottomRightIcon } from '@heroicons/react/24/solid';
+import { ArrowLeftCircleIcon, Bars3BottomRightIcon, HomeIcon } from '@heroicons/react/24/solid';
 import { Menu, Transition } from '@headlessui/react';
 import { useSession, signOut } from 'next-auth/react';
 import ThemeIcon from '../ThemeIcon';
@@ -22,7 +21,7 @@ const AdminSidebar = ({ menuList, isPageOpen }) => {
     >
       <div className="flex flex-col justify-between min-h-screen bg-primary-200 dark:bg-primary-700">
         <div className="grow p-3 pr-0 relative">
-          <div className="flex items-center gap-4 h-14 my-3 border-b border-primary-300 dark:border-primary-500 px-3 mr-3">
+          <div className={`flex items-center gap-4 h-14 my-3 border-b border-primary-300 dark:border-primary-500 px-3 mr-3 ${styles['sidebar-logo']}`}>
             <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className="h-6 text-secondary-700" />
             <div className={`grow font-bold font-header hidden xl:block ${openMenu && !isPageOpen ? '' : styles['hide-when-closed']}`}>Eduardo Chiaro</div>
           </div>
@@ -77,7 +76,7 @@ const AdminSidebar = ({ menuList, isPageOpen }) => {
             ))}
           </ul>
         </div>
-        <div className="p-6 border-t border-primary-300 dark:border-primary-600 flex items-center justify-between">
+        <div className={`p-6 border-t border-primary-300 dark:border-primary-600 flex items-center justify-between gap-6 ${openMenu && !isPageOpen ? 'flex-row' : 'flex-col'}`}>
           <Menu as="div" className="relative flex item-center">
             <Menu.Button className="h-7 w-7 relative rounded-full border-2 border-primary-800 dark:border-primary-400">
               <Image

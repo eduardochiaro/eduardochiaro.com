@@ -15,7 +15,8 @@
   > div {
     @apply w-28;
   }
-  .sidebar-link {
+  .sidebar-link,
+  .sidebar-logo {
     svg {
       @apply mx-auto
     }

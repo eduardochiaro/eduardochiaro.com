@@ -19,7 +19,7 @@ const AdminIndex = () => {
           <div className="mx-auto mt-10 grid grid-cols-2 xl:grid-cols-3 gap-12">
             {menuList.map((item) => (
               <Link key={item.title} href={item.href} className={'flex gap-6'}>
-                <div className={`${item.classColor} p-4 rounded-full h-fit`}>{item.icon}</div>
+                <div className={`${item.classColor} p-4 rounded-full h-fit text-primary-50`}>{item.icon}</div>
                 <div className="hover:text-secondary-700">
                   <span className={'text-lg'}>{item.title}</span>
                   <p className="opacity-50 text-sm ">{item.description}</p>
