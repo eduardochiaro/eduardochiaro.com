@@ -33,11 +33,11 @@ export default function Projects() {
           <h1 className="font-header leading-tight tracking-wide text-2xl lg:text-3xl font-light h-10">Projects</h1>
           <div className="grid grid-cols-1 gap-8 mt-5">
             {data?.results.map((app, index) => (
-              <div className={'flex flex-wrap p-8 box-card'} key={`app-${index}`}>
+              <div className={'flex flex-wrap p-4 box-card'} key={`app-${index}`}>
                 <div className={'basis-full md:basis-1/3 relative'}>
                   <Image src={`/uploads/${app.image}`} fill sizes="30vw" alt={app.name} className="bg-transparent object-contain" priority="false" />
                 </div>
-                <div className={'basis-full md:basis-2/3 px-8'}>
+                <div className={'basis-full md:basis-2/3 px-8 py-4'}>
                   <h3 className="text-2xl font-header tracking-wide">{app.name}</h3>
                   <p className="text-normal mt-2">{app.description}</p>
                   <Link

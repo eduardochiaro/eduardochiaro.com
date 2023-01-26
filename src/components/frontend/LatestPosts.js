@@ -24,12 +24,12 @@ export default function LatestPosts() {
                       <h4 className="grow-0 font-medium text-lg tracking-wide">{article.title}</h4>
                       <div className="grow ml-4 mt-1">
                         <div className="flex flex-row items-center">
-                          <span className="w-full border-t border-secondary-700 dark:border-secondary-600 border-dashed shrink"></span>
-                          <span className="w-4 border-t border-secondary-700 dark:border-secondary-600 border-dashed shrink"></span>
+                          <span className="w-full border-t border-secondary-800 dark:border-secondary-600 border-dashed shrink"></span>
+                          <span className="w-4 border-t border-secondary-800 dark:border-secondary-600 border-dashed shrink"></span>
                           <span className="text-sm font-mono whitespace-nowrap bg-primary-50 dark:bg-primary-800 px-4 overlay-color">
                             {moment(article.published).format('MM/DD/YYYY')}
                           </span>
-                          <span className="flex-none w-12 border-t border-secondary-700 dark:border-secondary-600 border-dashed"></span>
+                          <span className="flex-none w-12 border-t border-secondary-800 dark:border-secondary-600 border-dashed"></span>
                         </div>
                       </div>
                     </div>
