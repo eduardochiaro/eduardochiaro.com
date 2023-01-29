@@ -12,6 +12,7 @@ import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 import { CheckIcon, ChevronLeftIcon, TrashIcon } from '@heroicons/react/24/solid';
 import { Menu } from '@headlessui/react';
 import pluck from '@/utils/pluck';
+import { Input } from "@/components/form";
 
 const AdminResumeIndex = ({ formRef }) => {
   const { mutate, data: resumes, error } = useStaleSWR('/api/portfolio/resume');
@@ -122,7 +123,7 @@ const AdminResumeIndex = ({ formRef }) => {
     });
     inputFileRef.current.value = '';
     mutate();
-    closeDeleteModal();
+    closeElement();
   };
 
   const openElement = (resume) => {
@@ -147,15 +148,11 @@ const AdminResumeIndex = ({ formRef }) => {
     setIsOpenDelete(true);
   };
 
-  const closeDeleteModal = () => {
-    setResume(resumeFormat);
-    setIsOpenDelete(false);
-  };
-
   const closeElement = () => {
     mutate();
     closeModal();
     setResume(resumeFormat);
+    setIsOpenDelete(false);
     setIsOpen(false);
   };
 
@@ -204,7 +201,7 @@ const AdminResumeIndex = ({ formRef }) => {
             activeId={resume.id}
           />
         </div>
-        <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6 ${isOpen ? '' : 'hidden'}`}>
+        <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6 min-h-screen ${isOpen ? '' : 'hidden'}`}>
           <div className="flex items-center justify-between">
             <a
               href="#"
@@ -248,22 +245,7 @@ const AdminResumeIndex = ({ formRef }) => {
               )}
               <div className="grid grid-cols-6 gap-6">
                 <div className="col-span-6">
-                  <label htmlFor="name-form" className="input-label">
-                    Title <span className="text-secondary-700 align-super">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    id="name-form"
-                    autoComplete="off"
-                    data-lpignore="true"
-                    data-form-type="other"
-                    className="mt-1 input-field"
-                    value={resume.name}
-                    onChange={handleChange}
-                    maxLength={191}
-                    required
-                  />
+                  <Input label="Title" name="name" value={resume.name} onChange={handleChange} required={true} />
                 </div>
                 <div className="col-span-5 sm:col-span-4">
                   <label htmlFor="logo-url-form" className="input-label">
@@ -285,9 +267,6 @@ const AdminResumeIndex = ({ formRef }) => {
                 <div className="col-span-2">
                   {resume.id > 0 && resume.logo && (
                     <>
-                      <label htmlFor="style-form" className="input-label">
-                        Current
-                      </label>
                       <div className="mt-4 w-32 m-auto relative">
                         <SVG alt={resume.name} className={'w-32 fill-primary-700 dark:fill-primary-200'} src={`/uploads/${resume.logo}`} height={50} />
                       </div>
@@ -368,6 +347,17 @@ const AdminResumeIndex = ({ formRef }) => {
                       )}
                     </Menu>
                   </div>
+                </div>
+                <div className="col-span-6">
+                  <h3 className="text-lg font-bold border-b border-primary-700 pb-2 mb-5">Projects</h3>
+                  { resume.projects.map(project => (
+                    <div className="flex items-center gap-4 h-14 px-4">
+                      <div className="w-48">
+                        <SVG alt={project.name} className={' fill-primary-700 dark:fill-primary-200'} src={`/uploads/${project.logo}`} height={30} />
+                      </div>
+                      <span>{project.name}</span>
+                    </div>
+                  )) }
                 </div>
               </div>
             </form>

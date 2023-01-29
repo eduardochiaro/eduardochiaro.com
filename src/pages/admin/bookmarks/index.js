@@ -12,6 +12,7 @@ import moment from 'moment';
 import * as cheerio from 'cheerio';
 import List from '@/components/admin/List';
 import { CheckIcon, ChevronLeftIcon, TrashIcon } from '@heroicons/react/24/solid';
+import { Input, Select, Textarea } from "@/components/form";
 
 const AdminBookmarksIndex = ({ formRef, images }) => {
   const { mutate, data: bookmarks, error } = useStaleSWR('/api/portfolio/bookmarks');
@@ -95,7 +96,7 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
       },
     });
     mutate();
-    closeDeleteModal();
+    closeElement();
   };
 
   const openElement = (bookmark) => {
@@ -118,14 +119,11 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
     setIsOpenDelete(true);
   };
 
-  const closeDeleteModal = () => {
+  const closeElement = () => {
+    mutate();
+    closeModal();
     setBookmark(bookmarkFormat);
     setIsOpenDelete(false);
-    setIsOpen(false);
-  };
-
-  const closeElement = () => {
-    setBookmark(bookmarkFormat);
     setIsOpen(false);
   };
 
@@ -195,7 +193,7 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
             activeId={bookmark.id}
           />
         </div>
-        <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6 ${isOpen ? '' : 'hidden'}`}>
+        <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6 min-h-screen ${isOpen ? '' : 'hidden'}`}>
           <div className="flex items-center justify-between">
             <a
               href="#"
@@ -245,11 +243,22 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
                 </div>
               )}
               <div className="grid grid-cols-6 gap-6">
-                <div className="col-span-6">
-                  <label htmlFor="category-form" className="input-label">
-                    Category <span className="text-secondary-700">*</span>
-                  </label>
-                  <select name="categoryId" id="category-form" className="mt-1 input-field" onChange={handleChange} value={bookmark.categoryId} required>
+                <div className="col-span-5">
+                  <Input type="url" name="url" label="URL" value={bookmark.url} onChange={handleChange} required={true} />
+                </div>
+                <div className="col-span-1 flex items-end">
+                  <button type="button" onClick={() => fetchUrlData(bookmark)} className="button-success mb-1 w-full">
+                    Fetch
+                  </button>
+                </div>
+                {currentStatus && <p className="text-secondary-800 col-span-6">{currentStatus}</p>}
+                <div className="col-span-4">
+                  <Input name="name" label="Title" value={bookmark.name} onChange={handleChange} required={true} />
+                </div>
+
+                <div className="col-span-2">
+                  <Select name="categoryId" label="Category" required={true} onChange={handleChange} value={bookmark.categoryId}>
+                    <>
                     <option value="">Select category</option>
                     {categories?.results
                       .filter((x) => x.type == 'BOOKMARK')
@@ -258,65 +267,11 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
                           {item.name}
                         </option>
                       ))}
-                  </select>
+                    </>
+                  </Select>
                 </div>
                 <div className="col-span-6">
-                  <label htmlFor="url-form" className="input-label">
-                    URL <span className="text-secondary-700">*</span>
-                  </label>
-                  <div className="flex gap-4 items-center">
-                    <input
-                      type="url"
-                      name="url"
-                      id="url-form"
-                      autoComplete="off"
-                      data-lpignore="true"
-                      data-form-type="other"
-                      className="mt-1 input-field w-5/6"
-                      value={bookmark.url}
-                      onChange={handleChange}
-                      required
-                    />
-                    <button type="button" onClick={() => fetchUrlData(bookmark)} className="button-success">
-                      Fetch
-                    </button>
-                  </div>
-                </div>
-                {currentStatus && <p className="text-secondary-800 col-span-6">{currentStatus}</p>}
-                <div className="col-span-6">
-                  <label htmlFor="name-form" className="input-label">
-                    Title <span className="text-secondary-700">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    id="name-form"
-                    autoComplete="off"
-                    data-lpignore="true"
-                    data-form-type="other"
-                    className="mt-1 input-field"
-                    value={bookmark.name}
-                    onChange={handleChange}
-                    maxLength={191}
-                    required
-                  />
-                </div>
-                <div className="col-span-6">
-                  <label htmlFor="description-form" className="input-label">
-                    Description ({bookmark.description.length}/191)
-                  </label>
-                  <input
-                    type="text"
-                    name="description"
-                    id="description-form"
-                    autoComplete="off"
-                    data-lpignore="true"
-                    data-form-type="other"
-                    className="mt-1 input-field"
-                    value={bookmark.description}
-                    onChange={handleChange}
-                    maxLength={191}
-                  />
+                  <Textarea name="description" label="Description" value={bookmark.description} onChange={handleChange} rows={1} />
                 </div>
               </div>
             </form>

@@ -11,6 +11,7 @@ import useStaleSWR from '@/utils/staleSWR';
 import moment from 'moment';
 import Image from 'next/image';
 import { CheckIcon, ChevronLeftIcon, TrashIcon } from '@heroicons/react/24/solid';
+import { Input, Textarea } from "@/components/form";
 
 const AdminAppsIndex = ({ formRef }) => {
   const { mutate, data: apps } = useStaleSWR('/api/portfolio/apps');
@@ -95,7 +96,7 @@ const AdminAppsIndex = ({ formRef }) => {
     });
     inputFileRef.current.value = '';
     mutate();
-    closeDeleteModal();
+    closeElement();
   };
 
   const openElement = (app) => {
@@ -117,14 +118,11 @@ const AdminAppsIndex = ({ formRef }) => {
     setIsOpenDelete(true);
   };
 
-  const closeDeleteModal = () => {
+  const closeElement = () => {
+    mutate();
+    closeModal();
     setApp(appFormat);
     setIsOpenDelete(false);
-    setIsOpen(false);
-  };
-
-  const closeElement = () => {
-    setApp(appFormat);
     setIsOpen(false);
   };
 
@@ -162,7 +160,7 @@ const AdminAppsIndex = ({ formRef }) => {
             activeId={app.id}
           />
         </div>
-        <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6 ${isOpen ? '' : 'hidden'}`}>
+        <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6 min-h-screen ${isOpen ? '' : 'hidden'}`}>
           <div className="flex items-center justify-between">
             <a
               href="#"
@@ -207,47 +205,15 @@ const AdminAppsIndex = ({ formRef }) => {
               )}
               <div className="grid grid-cols-6 gap-6">
                 <div className="col-span-6">
-                  <label htmlFor="name-form" className="input-label">
-                    Title <span className="text-secondary-700">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    id="name-form"
-                    autoComplete="off"
-                    data-lpignore="true"
-                    data-form-type="other"
-                    className="mt-1 input-field"
-                    value={app.name}
-                    onChange={handleChange}
-                    maxLength={191}
-                    required
-                  />
+                  <Input label="Title" name="name" value={app.name} onChange={handleChange} required={true} />
                 </div>
                 <div className="col-span-4">
-                  <label htmlFor="image-url-form" className="input-label">
-                    Image {!app.id && <span className="text-secondary-700">*</span>}
-                  </label>
-                  <input
-                    ref={inputFileRef}
-                    type="file"
-                    name="image"
-                    id="image-url-form"
-                    className="input-field
-                      mt-1
-                      py-1.5 px-2
-                      focus:outline-none
-                      "
-                    onChange={handleChange}
-                  />
+                  <Input type="file" label="Image" name="image-url" onChange={handleChange} required={true} ref={inputFileRef} />
                 </div>
                 <div className="col-span-2">
                   {app.id > 0 && app.image && (
                     <>
-                      <label htmlFor="style-form" className="input-label">
-                        Current
-                      </label>
-                      <div className="mt-4 w-32 h-20 m-auto  relative">
+                      <div className="mt-4 w-32 h-20 m-auto relative">
                         <Image
                           src={`/uploads/${app.image}`}
                           fill
@@ -262,36 +228,10 @@ const AdminAppsIndex = ({ formRef }) => {
                   )}
                 </div>
                 <div className="col-span-6">
-                  <label htmlFor="url-form" className="input-label">
-                    GitHub URL <span className="text-secondary-700">*</span>
-                  </label>
-                  <input
-                    type="url"
-                    name="url"
-                    id="url-form"
-                    autoComplete="off"
-                    data-lpignore="true"
-                    data-form-type="other"
-                    className="mt-1 input-field"
-                    value={app.url}
-                    onChange={handleChange}
-                    maxLength={191}
-                    required
-                  />
+                  <Input type="url" label="GitHub URL" name="url" value={app.url} onChange={handleChange} required={true} />
                 </div>
                 <div className="col-span-6">
-                  <label htmlFor="description-form" className="input-label">
-                    Description ({app.description.length}/191)
-                  </label>
-                  <textarea
-                    name="description"
-                    id="description-form"
-                    className="mt-1 input-field"
-                    rows={5}
-                    value={app.description}
-                    onChange={handleChange}
-                    maxLength={191}
-                  />
+                  <Textarea label="Description" name="description" value={app.description} onChange={handleChange} />
                 </div>
               </div>
             </form>

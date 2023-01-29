@@ -58,7 +58,7 @@ export default function List({
   };
 
   return (
-    <div className="overflow-auto h-screen py-8">
+    <div className="overflow-auto h-screen py-8 bg-primary-100 dark:bg-primary-800">
       <div className="text-2xl flex items-center gap-2 px-6">
         <h1 className="grow">{title}</h1>
         <button

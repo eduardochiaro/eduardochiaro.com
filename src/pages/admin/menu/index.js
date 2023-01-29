@@ -89,7 +89,7 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
       },
     });
     mutate();
-    closeDeleteModal();
+    closeElement();
   };
 
   const openElement = (menuLink) => {
@@ -110,13 +110,11 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
     setIsOpenDelete(true);
   };
 
-  const closeDeleteModal = () => {
+  const closeElement = () => {
+    mutate();
+    closeModal();
     setMenuLink(menuLinkFormat);
     setIsOpenDelete(false);
-  };
-
-  const closeElement = () => {
-    setMenuLink(menuLinkFormat);
     setIsOpen(false);
   };
 
@@ -158,7 +156,7 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
             activeId={menuLink.id}
           />
         </div>
-        <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6 ${isOpen ? '' : 'hidden'}`}>
+        <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6 min-h-screen ${isOpen ? '' : 'hidden'}`}>
           <div className="flex items-center justify-between">
             <a
               href="#"

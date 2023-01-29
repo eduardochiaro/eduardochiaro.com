@@ -18,7 +18,7 @@ const AdminSidebar = ({ menuList, isPageOpen }) => {
   }, [isPageOpen]);
   return (
     <div className={`transition-all ease-in-out relative duration-300 sm:relative md:h-full ${openMenu ? styles['sidebar-open'] : styles['sidebar-closed']}`}>
-      <div className="flex flex-col justify-between min-h-screen bg-primary-200 dark:bg-primary-700">
+      <div className="flex flex-col justify-between min-h-screen bg-primary-200 dark:bg-primary-700 fixed">
         <div className="grow p-3 relative">
           <div className={`flex items-center gap-4 h-14 my-3 border-b border-primary-300 dark:border-primary-500 px-3 ${styles['sidebar-logo']}`}>
             <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className="h-6 text-secondary-700" />

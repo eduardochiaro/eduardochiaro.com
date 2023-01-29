@@ -12,7 +12,7 @@ const AdminIndex = () => {
         <Head>
           <title>Eduardo Chiaro | Admin</title>
         </Head>
-        <div className="h-full py-8 px-6 grow">
+        <div className="h-full py-8 px-6 grow min-h-screen">
           <h1 className="text-2xl flex items-center gap-2 pb-4 border-b border-primary-200 dark:border-primary-600">
             <ComputerDesktopIcon className="h-6 text-secondary-700 dark:text-secondary-600" /> Dashboard
           </h1>

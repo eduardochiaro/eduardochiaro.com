@@ -11,6 +11,7 @@ import useStaleSWR from '@/utils/staleSWR';
 import moment from 'moment';
 import List from '@/components/admin/List';
 import { CheckIcon, ChevronLeftIcon, TrashIcon } from '@heroicons/react/24/solid';
+import { Input, Select } from "@/components/form";
 
 const AdminCategoriesIndex = ({ formRef, images }) => {
   const { mutate, data: categories, error } = useStaleSWR('/api/admin/categories');
@@ -92,7 +93,7 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
       },
     });
     mutate();
-    closeDeleteModal();
+    closeElement();
   };
 
   const openElement = (category) => {
@@ -113,13 +114,11 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
     setIsOpenDelete(true);
   };
 
-  const closeDeleteModal = () => {
+  const closeElement = () => {
+    mutate();
+    closeModal();
     setCategory(categoryFormat);
     setIsOpenDelete(false);
-  };
-
-  const closeElement = () => {
-    setCategory(categoryFormat);
     setIsOpen(false);
   };
 
@@ -155,7 +154,7 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
             activeId={category.id}
           />
         </div>
-        <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6 ${isOpen ? '' : 'hidden'}`}>
+        <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6 min-h-screen ${isOpen ? '' : 'hidden'}`}>
           <div className="flex items-center gap-8 justify-between">
             <a
               href="#"
@@ -206,35 +205,19 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
               )}
               <div className="grid grid-cols-6 gap-6">
                 <div className="col-span-6">
-                  <label htmlFor="name-form" className="input-label">
-                    Title <span className="text-secondary-700">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    id="name-form"
-                    autoComplete="off"
-                    data-lpignore="true"
-                    data-form-type="other"
-                    className="mt-1 input-field"
-                    value={category.name}
-                    onChange={handleChange}
-                    maxLength={191}
-                    required
-                  />
+                  <Input label="Title" name="name" value={category.name} onChange={handleChange} required={true} />
                 </div>
                 <div className="col-span-6">
-                  <label htmlFor="type-form" className="input-label">
-                    Type <span className="text-secondary-700">*</span>
-                  </label>
-                  <select name="type" id="type-form" className="mt-1 input-field" onChange={handleChange} value={category.type} required>
+                  <Select name="type" label="Type" required onChange={handleChange} value={category.type}>
+                    <>
                     <option value="">Select type</option>
                     {types.map((item) => (
                       <option key={item} value={item}>
                         {item}
                       </option>
                     ))}
-                  </select>
+                    </>
+                  </Select>
                 </div>
               </div>
             </form>
