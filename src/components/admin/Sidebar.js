@@ -18,7 +18,7 @@ const AdminSidebar = ({ menuList, isPageOpen }) => {
   }, [isPageOpen]);
   return (
     <div className={`transition-all ease-in-out relative duration-300 sm:relative md:h-full ${openMenu ? styles['sidebar-open'] : styles['sidebar-closed']}`}>
-      <div className="flex flex-col justify-between min-h-screen bg-primary-200 dark:bg-primary-700 fixed">
+      <div className="flex flex-col justify-between min-h-screen bg-primary-200 dark:bg-primary-600 fixed">
         <div className="grow p-3 relative">
           <div className={`flex items-center gap-4 h-14 my-3 border-b border-primary-300 dark:border-primary-500 px-3 ${styles['sidebar-logo']}`}>
             <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className="h-6 text-secondary-700" />
@@ -68,7 +68,7 @@ const AdminSidebar = ({ menuList, isPageOpen }) => {
           </ul>
         </div>
         <div
-          className={`p-6 border-t border-primary-300 dark:border-primary-600 flex items-center justify-between gap-6 ${openMenu ? 'flex-row' : 'flex-col'}`}
+          className={`p-6 border-t border-primary-300 dark:border-primary-500 flex items-center justify-between gap-6 ${openMenu ? 'flex-row' : 'flex-col'}`}
         >
           <Menu as="div" className="relative flex item-center">
             <Menu.Button className="h-7 w-7 relative rounded-full border-2 border-primary-800 dark:border-primary-400">
@@ -92,7 +92,7 @@ const AdminSidebar = ({ menuList, isPageOpen }) => {
             >
               <Menu.Items
                 data-cy="user-settings-container"
-                className="transform absolute left-0 bottom-0 mb-10 z-10 w-56 rounded-md shadow-lg ring-1 ring-primary-900 ring-opacity-10 focus:outline-none bg-primary-100 dark:bg-primary-700 divide-y divide-primary-200 dark:divide-primary-600"
+                className="transform absolute left-0 bottom-0 mb-10 z-10 w-56 rounded-md shadow-lg ring-1 ring-primary-900 ring-opacity-10 focus:outline-none bg-primary-100 dark:bg-primary-700 divide-y divide-primary-200 dark:divide-primary-500"
                 role="menu"
                 aria-orientation="vertical"
                 aria-labelledby="user-button"

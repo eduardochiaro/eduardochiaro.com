@@ -1,17 +1,20 @@
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 import { useSession } from 'next-auth/react';
-import { useState, createRef } from 'react';
+import { useState, createRef, useReducer } from 'react';
 import axios from 'axios';
 import fs from 'fs';
 import path from 'path';
 import AdminModal from '@/components/admin/Modal';
 import AdminWrapper from '@/components/admin/Wrapper';
-import mergeObj from '@/utils/mergeObj';
 import useStaleSWR from '@/utils/staleSWR';
 import moment from 'moment';
 import List from '@/components/admin/List';
 import { CheckIcon, ChevronLeftIcon, TrashIcon } from '@heroicons/react/24/solid';
 import { Input, Select } from "@/components/form";
+
+function reducer(prev, next) {
+  return { ...prev, ...next};
+}
 
 const AdminCategoriesIndex = ({ formRef, images }) => {
   const { mutate, data: categories, error } = useStaleSWR('/api/admin/categories');
@@ -27,11 +30,11 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenDelete, setIsOpenDelete] = useState(false);
-  const [category, setCategory] = useState(categoryFormat);
+  const [category, updateCategory] = useReducer(reducer, categoryFormat);
   const [formError, setFormError] = useState(false);
   const [formSuccess, setFormSuccess] = useState(false);
 
-  const onSubmitModal = async (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     setFormError(false);
     if (!isFormValid(category)) {
@@ -42,11 +45,7 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
     const formData = new FormData();
 
     for (const [key, value] of Object.entries(category)) {
-      if (key == 'logo') {
-        formData.append(key, value);
-      } else {
-        formData.append(key, value);
-      }
+      formData.append(key, value);
     }
 
     //replace with axios
@@ -61,14 +60,14 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
       .catch(function (error) {
         // handle error
         console.log(error);
+        reset();
         setFormError(true);
-        setFormSuccess(false);
       })
       .then(({ data }) => {
         mutate();
-        const mergedData = mergeObj(categoryFormat, data);
-        setCategory(mergedData);
-        closeModal();
+        reset();
+        updateCategory(data);
+        setFormSuccess(true);
       });
   };
 
@@ -79,11 +78,7 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
     return true;
   };
 
-  const onPrimaryButtonClick = () => {
-    formRef.current.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
-  };
-
-  const onPrimaryButtonClickDelete = async () => {
+  const onClickDelete = async () => {
     const urlDelete = `/api/admin/categories/${category.id}`;
     await axios({
       url: urlDelete,
@@ -93,44 +88,40 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
       },
     });
     mutate();
-    closeElement();
+    closePage();
   };
 
+  const reset = () => {
+    setFormError(false);
+    setFormSuccess(false);
+  }
+
   const openElement = (category) => {
-    const openCategory = mergeObj(categoryFormat, category);
-    setCategory(openCategory);
+    updateCategory(category);
     setIsOpen(true);
     setFormSuccess(false);
   };
 
-  const closeModal = () => {
-    setFormError(false);
-    setFormSuccess(true);
-  };
-
-  const openDeleteModal = (category) => {
-    const openCategory = mergeObj(categoryFormat, category);
-    setCategory(openCategory);
-    setIsOpenDelete(true);
-  };
-
-  const closeElement = () => {
-    mutate();
-    closeModal();
-    setCategory(categoryFormat);
+  const closePage = () => {
+    reset();
     setIsOpenDelete(false);
     setIsOpen(false);
   };
 
+  const openDeleteModal = (category) => {
+    updateCategory(category);
+    setIsOpenDelete(true);
+  };
+
   const handleChange = (e) => {
-    setCategory({ ...category, [e.target.name]: e.target.files ? e.target.files[0] : e.target.value });
+    updateCategory({ [e.target.name]: e.target.files ? e.target.files[0] : e.target.value });
   };
 
   const columns = ['name', 'type'];
 
   const newData = [];
   categories?.results.map((item) => {
-    const obj = { ...item };
+    const obj = { ...item, original: item };
     obj.updated = moment(item.updatedAt || item.createdAt).fromNow();
     obj.category_d = item.type;
     newData.push(obj);
@@ -159,7 +150,7 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
             <a
               href="#"
               className="text-sm opacity-70 font-semibold hover:underline flex items-center gap-2"
-              onClick={() => closeElement()}
+              onClick={() => closePage()}
               role="menuitem"
               tabIndex="-1"
             >
@@ -177,14 +168,14 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
                 <TrashIcon className="inline-flex align-text-bottom h-4 mr-1" />
                 Delete
               </a>
-              <button onClick={onPrimaryButtonClick} type="button" className={'button-success'}>
+              <button onClick={onSubmit} type="button" className={'button-success'}>
                 Save
               </button>
             </div>
           </div>
 
           <div className={'mt-8 mb-2 max-w-5xl mx-auto'}>
-            <form ref={formRef} acceptCharset="UTF-8" method="POST" encType="multipart/form-data" onSubmit={onSubmitModal}>
+            <form ref={formRef} acceptCharset="UTF-8" method="POST" encType="multipart/form-data" onSubmit={onSubmit}>
               {formError && (
                 <div className="bg-accent-100 border border-accent-400 text-accent-700 px-4 py-3 rounded relative mb-4" role="alert">
                   <strong className="font-bold">
@@ -230,7 +221,7 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
           closeModal={() => setIsOpenDelete(false)}
           showButtons={true}
           onSecondaryButtonClick={() => setIsOpenDelete(false)}
-          onPrimaryButtonClick={onPrimaryButtonClickDelete}
+          onPrimaryButtonClick={onClickDelete}
           primaryButtonLabel="Delete"
           primaryButtonClass="button-danger"
           fullSize={false}

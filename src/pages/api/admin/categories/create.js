@@ -14,11 +14,11 @@ const handler = async (req, res) => {
   if (req.method === 'POST') {
     await new Promise((resolve, reject) => {
       const form = new IncomingForm();
-      form.parse(req, async (err, fields, files) => {
+      form.parse(req, async (err, fields) => {
         if (err) return reject(err);
-        const { id, ...data } = fields;
+        const { name, type } = fields ;
         const category = await prisma.category.create({
-          data: { ...data, createdAt: new Date() },
+          data: { name, type, createdAt: new Date() },
         });
         res.status(200).json({ ...category });
       });

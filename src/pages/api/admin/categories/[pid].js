@@ -24,14 +24,14 @@ const handler = async (req, res) => {
   }
   switch (req.method) {
     case 'PUT':
-      await new Promise((resolve, reject) => {
+      await new Promise((_, reject) => {
         const form = new IncomingForm();
         form.parse(req, async (err, fields) => {
           if (err) return reject(err);
-          const { id, ...data } = fields;
+          const { name, type } = fields;
           const category = await prisma.category.update({
-            where: { id: parseInt(id) },
-            data: { ...data, updatedAt: new Date() },
+            where: { id: parseInt(pid) },
+            data: { name, type, updatedAt: new Date() },
           });
           res.status(200).json({ ...category });
         });

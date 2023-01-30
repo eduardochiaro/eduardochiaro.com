@@ -13,15 +13,10 @@ export default function List({
 }) {
   const [filteredData, setFilteredData] = useState([]);
   const [search, setSearch] = useState('');
-  const [activeMenu, setActiveMenu] = useState();
 
   useEffect(() => {
     setFilteredData(data);
   }, [data]);
-
-  useEffect(() => {
-    setActiveMenu(activeId);
-  }, [activeId]);
 
   const typeSearch = (e) => {
     const search = e.target.value;
@@ -29,12 +24,10 @@ export default function List({
   };
 
   const clickOnEdit = (item) => {
-    //setActiveMenu(item.id);
     editAction(item);
   };
 
   const clickOnAdd = (item) => {
-    //setActiveMenu('');
     openAction(item);
   };
 
@@ -93,10 +86,8 @@ export default function List({
           filteredData.map((item) => (
             <div key={item.id} className="group">
               <div
-                className={`flex items-center gap-4 cursor-pointer group p-2 pl-4 pr-8 rounded-l-lg ${
-                  activeMenu == item.id ? 'bg-primary-50 dark:bg-primary-900' : ''
-                }`}
-                onClick={() => clickOnEdit(item)}
+                className={`flex items-center gap-4 cursor-pointer group p-2 pl-4 pr-8 rounded-l-lg`}
+                onClick={() => clickOnEdit(item.original || item)}
                 role="menuitem"
                 tabIndex="-1"
               >
