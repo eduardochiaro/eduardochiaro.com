@@ -11,22 +11,23 @@ import moment from 'moment';
 import List from '@/components/admin/List';
 import { CheckIcon, ChevronLeftIcon, TrashIcon } from '@heroicons/react/24/solid';
 import { Input, Select } from "@/components/form";
+import { findInvalidElement, isFormValid } from '@/utils/formValidation';
 
 function reducer(prev, next) {
   return { ...prev, ...next};
 }
 
+const types = ['BOOKMARK', 'JOB'];
+
+const categoryFormat = {
+  id: null,
+  name: '',
+  type: '',
+};
+
 const AdminCategoriesIndex = ({ formRef, images }) => {
   const { mutate, data: categories, error } = useStaleSWR('/api/admin/categories');
   const { data: session } = useSession();
-
-  const categoryFormat = {
-    id: null,
-    name: '',
-    type: '',
-  };
-
-  const types = ['BOOKMARK', 'JOB'];
 
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenDelete, setIsOpenDelete] = useState(false);
@@ -37,7 +38,10 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     setFormError(false);
-    if (!isFormValid(category)) {
+
+    if (!isFormValid(category, ['name', 'type'])) {
+      const listOfInvalidInputs = findInvalidElement(category, ['name', 'type']);
+      console.log(listOfInvalidInputs);
       setFormError(true);
       return;
     }
@@ -69,13 +73,6 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
         updateCategory(data);
         setFormSuccess(true);
       });
-  };
-
-  const isFormValid = (form) => {
-    if (form.name == '' || form.type == '') {
-      return false;
-    }
-    return true;
   };
 
   const onClickDelete = async () => {

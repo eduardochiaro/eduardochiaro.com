@@ -1,6 +1,6 @@
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 import { useSession } from 'next-auth/react';
-import { useState, createRef, useRef } from 'react';
+import { useState, createRef, useRef, useReducer } from 'react';
 import { useSWRConfig } from 'swr';
 import axios from 'axios';
 import AdminModal from '@/components/admin/Modal';
@@ -12,6 +12,8 @@ import moment from 'moment';
 import Image from 'next/image';
 import { CheckIcon, ChevronLeftIcon, TrashIcon } from '@heroicons/react/24/solid';
 import { Input, Textarea } from "@/components/form";
+import { findInvalidElement, isFormValid } from '@/utils/formValidation';
+import apiAdmin from '@/utils/apiAdmin';
 
 const AdminAppsIndex = ({ formRef }) => {
   const { mutate, data: apps } = useStaleSWR('/api/portfolio/apps');
@@ -25,64 +27,40 @@ const AdminAppsIndex = ({ formRef }) => {
     url: '',
   };
 
+  const formInitialState = {
+    error: false,
+    success: false, 
+    invalid: []
+  };
+
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenDelete, setIsOpenDelete] = useState(false);
-  const [app, setApp] = useState(appFormat);
-  const [formError, setFormError] = useState(false);
-  const [formSuccess, setFormSuccess] = useState(false);
+  const [app, updateApp] = useReducer((x, y) => { return {...x ,...y}}, appFormat);
+  const [form, setForm] = useReducer((x, y) => { return {...x ,...y}}, formInitialState);
   const inputFileRef = useRef(null);
+
+  const inputToValidate = app.id ? ['name', 'url'] : ['name', 'url', 'image'];
 
   const onSubmitModal = async (e) => {
     e.preventDefault();
-    setFormError(false);
-    if (!isFormValid(app)) {
-      setFormError(true);
+    setForm({ ...formInitialState });
+    if (!isFormValid(app,inputToValidate)) {
+      const listOfInvalidInputs = findInvalidElement(app, inputToValidate);
+      setForm({ invalid: listOfInvalidInputs, error: true });
       return;
     }
 
-    const formData = new FormData();
-
-    for (const [key, value] of Object.entries(app)) {
-      if (key == 'image') {
-        formData.append(key, value);
-      } else {
-        formData.append(key, value);
-      }
-    }
-
-    //replace with axios
-    axios({
-      method: app.id ? 'PUT' : 'POST',
-      url: app.id ? `/api/portfolio/apps/${app.id}` : '/api/portfolio/apps/create',
-      data: formData,
-      headers: {
-        'Content-Type': `multipart/form-data; boundary=${formData._boundary}`,
-      },
-    })
-      .catch(function (error) {
+    apiAdmin(`/api/portfolio/apps`, app, app.id).catch(function (error) {
         // handle error
         console.log(error);
-        setFormError(true);
-        setFormSuccess(false);
+        setForm({ ...formInitialState, error: true});
       })
       .then(({ data }) => {
         inputFileRef.current.value = '';
         mutate();
-        const mergedData = mergeObj(appFormat, data);
-        setApp(mergedData);
+        updateApp(data);
         closeModal();
       });
-  };
-
-  const isFormValid = (form) => {
-    if (form.name == '' || form.url == '' || (!form.id && !form.image)) {
-      return false;
-    }
-    return true;
-  };
-
-  const onPrimaryButtonClick = () => {
-    formRef.current.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
   };
 
   const onPrimaryButtonClickDelete = async () => {
@@ -100,34 +78,31 @@ const AdminAppsIndex = ({ formRef }) => {
   };
 
   const openElement = (app) => {
-    const openApp = mergeObj(appFormat, app);
-    setApp(openApp);
+    updateApp(app);
     setIsOpen(true);
-    setFormSuccess(false);
+    setForm({ ...formInitialState});
   };
 
   const closeModal = () => {
     inputFileRef.current.value = '';
-    setFormError(false);
-    setFormSuccess(true);
+    setForm({ ...formInitialState, success: true});
   };
 
   const openDeleteModal = (app) => {
-    const openApp = mergeObj(appFormat, app);
-    setApp(openApp);
+    updateApp(app);
     setIsOpenDelete(true);
   };
 
   const closeElement = () => {
     mutate();
     closeModal();
-    setApp(appFormat);
+    updateApp(appFormat);
     setIsOpenDelete(false);
     setIsOpen(false);
   };
 
   const handleChange = (e) => {
-    setApp({ ...app, [e.target.name]: e.target.files ? e.target.files[0] : e.target.value });
+    updateApp({ [e.target.name]: e.target.files ? e.target.files[0] : e.target.value });
   };
 
   const columns = ['name', 'description', 'github_url'];
@@ -177,7 +152,7 @@ const AdminAppsIndex = ({ formRef }) => {
                 <TrashIcon className="inline-flex align-text-bottom h-4 mr-1" />
                 Delete
               </a>
-              <button onClick={onPrimaryButtonClick} type="button" className={'button-success'}>
+              <button onClick={onSubmitModal} type="button" className={'button-success'}>
                 Save
               </button>
             </div>
@@ -185,7 +160,7 @@ const AdminAppsIndex = ({ formRef }) => {
 
           <div className={'mt-8 mb-2 max-w-5xl mx-auto'}>
             <form ref={formRef} acceptCharset="UTF-8" method="POST" encType="multipart/form-data" onSubmit={onSubmitModal}>
-              {formError && (
+              {form.error && (
                 <div className="bg-accent-100 border border-accent-400 text-accent-700 px-4 py-3 rounded relative mb-4" role="alert">
                   <strong className="font-bold">
                     <ExclamationTriangleIcon className="inline-flex align-middle h-6 mr-4" />
@@ -194,7 +169,7 @@ const AdminAppsIndex = ({ formRef }) => {
                   <span className="block sm:inline">Some required fields are missing.</span>
                 </div>
               )}
-              {formSuccess && (
+              {form.success && (
                 <div className="bg-emerald-100 border border-emerald-400 text-emerald-700 px-4 py-3 rounded relative mb-4" role="alert">
                   <strong className="font-bold">
                     <CheckIcon className="inline-flex align-middle h-6 mr-4" />
@@ -205,10 +180,10 @@ const AdminAppsIndex = ({ formRef }) => {
               )}
               <div className="grid grid-cols-6 gap-6">
                 <div className="col-span-6">
-                  <Input label="Title" name="name" value={app.name} onChange={handleChange} required={true} />
+                  <Input label="Title" name="name" value={app.name} onChange={handleChange} required={true} invalid={(form.invalid.includes('name'))} />
                 </div>
                 <div className="col-span-4">
-                  <Input type="file" label="Image" name="image-url" onChange={handleChange} required={true} ref={inputFileRef} />
+                  <Input type="file" label="Image" name="image" onChange={handleChange} required={app.id ? false : true} ref={inputFileRef} invalid={(form.invalid.includes('image'))} />
                 </div>
                 <div className="col-span-2">
                   {app.id > 0 && app.image && (
@@ -217,7 +192,7 @@ const AdminAppsIndex = ({ formRef }) => {
                         <Image
                           src={`/uploads/${app.image}`}
                           fill
-                          sizes="100vw"
+                          sizes="33vw"
                           alt={app.name}
                           title={app.name}
                           className="bg-transparent object-contain"
@@ -228,10 +203,10 @@ const AdminAppsIndex = ({ formRef }) => {
                   )}
                 </div>
                 <div className="col-span-6">
-                  <Input type="url" label="GitHub URL" name="url" value={app.url} onChange={handleChange} required={true} />
+                  <Input type="url" label="GitHub URL" name="url" value={app.url} onChange={handleChange} required={true} invalid={(form.invalid.includes('url'))} />
                 </div>
                 <div className="col-span-6">
-                  <Textarea label="Description" name="description" value={app.description} onChange={handleChange} />
+                  <Textarea label="Description" name="description" value={app.description} onChange={handleChange} invalid={(form.invalid.includes('description'))} />
                 </div>
               </div>
             </form>

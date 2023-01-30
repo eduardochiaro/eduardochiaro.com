@@ -1,4 +1,6 @@
-export default function input({ name='' , label = '', value = '', onChange = () => {}, maxLength = 191, required = false, rows = 5, ref = null}) {
+import { forwardRef } from "react";
+
+const Textarea = forwardRef(({ name='' , label = '', value = '', onChange = () => {}, maxLength = 191, required = false, rows = 5, invalid = false}, ref) => {
   return (
     <>
       <label htmlFor={`${name}-form`} className="input-label">
@@ -8,7 +10,7 @@ export default function input({ name='' , label = '', value = '', onChange = () 
         ref={ref}
         name={name}
         id={`${name}-form`}
-        className="mt-1 input-field py-1.5 px-2 focus:outline-none" 
+        className={`${invalid && (value.length <= 0 && value.length > maxLength)? 'ring-2 ring-red-500' : ''} mt-1 input-field py-1.5 px-2 focus:outline-none`}
         value={value}
         onChange={onChange}
         maxLength={maxLength}
@@ -17,4 +19,6 @@ export default function input({ name='' , label = '', value = '', onChange = () 
         />
     </>
   )
-}
+});
+
+export default Textarea;

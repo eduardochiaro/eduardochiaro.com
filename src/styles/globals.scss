@@ -7,7 +7,7 @@ body {
 }
 // Form styles 
 .input-label {
-  @apply block text-sm font-medium text-primary-900 dark:text-primary-100;
+  @apply text-sm font-medium text-primary-900 dark:text-primary-100;
 }
 .input-field {
   @apply transition ease-in-out bg-primary-100 dark:bg-primary-700 text-primary-900 dark:text-primary-100 focus:ring-secondary-500 focus:border-secondary-500  dark:focus:ring-secondary-500 dark:focus:border-secondary-500 w-full shadow-sm sm:text-sm border-2 border-primary-300 rounded-md;

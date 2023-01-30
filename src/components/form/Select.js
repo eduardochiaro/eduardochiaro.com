@@ -1,6 +1,7 @@
 import React from 'react';
+import { forwardRef } from "react";
 
-export default function input({ children, name='' , label = '', onChange = () => {}, required = false, value = '', ref = null}) {
+const Select = forwardRef(({ children, name='' , label = '', onChange = () => {}, required = false, value = '', invalid = false}, ref) => {
   return (
     <>
       <label htmlFor={`${name}-form`} className="input-label">
@@ -10,7 +11,7 @@ export default function input({ children, name='' , label = '', onChange = () =>
         ref={ref}
         name={name}
         id={`${name}-form`}
-        className="mt-1 input-field py-1.5 px-2 focus:outline-none" 
+        className={`${invalid && !value ? 'ring-2 ring-red-500' : ''} mt-1 input-field py-1.5 px-2 focus:outline-none`}
         value={value}
         onChange={onChange}
         required={required}
@@ -21,4 +22,6 @@ export default function input({ children, name='' , label = '', onChange = () =>
       </select>
     </>
   )
-}
+});
+
+export default Select;
