@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 const apiAdmin = (url, form, create = true) => {
-
   const formData = new FormData();
   for (const [key, value] of Object.entries(form)) {
     formData.append(key, value);
@@ -14,7 +13,7 @@ const apiAdmin = (url, form, create = true) => {
     headers: {
       'Content-Type': `multipart/form-data; boundary=${formData._boundary}`,
     },
-  })
-}
+  });
+};
 
 export default apiAdmin;

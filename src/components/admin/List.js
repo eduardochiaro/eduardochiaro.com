@@ -86,7 +86,7 @@ export default function List({
           filteredData.map((item) => (
             <div key={item.id} className="group">
               <div
-                className={`flex items-center gap-4 cursor-pointer group p-2 pl-4 pr-8 rounded-l-lg`}
+                className={'flex items-center gap-4 cursor-pointer group p-2 pl-4 pr-8 rounded-l-lg'}
                 onClick={() => clickOnEdit(item.original || item)}
                 role="menuitem"
                 tabIndex="-1"

@@ -11,7 +11,7 @@ import useStaleSWR from '@/utils/staleSWR';
 import moment from 'moment';
 import Image from 'next/image';
 import { CheckIcon, ChevronLeftIcon, TrashIcon } from '@heroicons/react/24/solid';
-import { Input, Textarea } from "@/components/form";
+import { Input, Textarea } from '@/components/form';
 import { findInvalidElement, isFormValid } from '@/utils/formValidation';
 import apiAdmin from '@/utils/apiAdmin';
 
@@ -29,14 +29,18 @@ const AdminAppsIndex = ({ formRef }) => {
 
   const formInitialState = {
     error: false,
-    success: false, 
-    invalid: []
+    success: false,
+    invalid: [],
   };
 
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenDelete, setIsOpenDelete] = useState(false);
-  const [app, updateApp] = useReducer((x, y) => { return {...x ,...y}}, appFormat);
-  const [form, setForm] = useReducer((x, y) => { return {...x ,...y}}, formInitialState);
+  const [app, updateApp] = useReducer((x, y) => {
+    return { ...x, ...y };
+  }, appFormat);
+  const [form, setForm] = useReducer((x, y) => {
+    return { ...x, ...y };
+  }, formInitialState);
   const inputFileRef = useRef(null);
 
   const inputToValidate = app.id ? ['name', 'url'] : ['name', 'url', 'image'];
@@ -44,16 +48,17 @@ const AdminAppsIndex = ({ formRef }) => {
   const onSubmitModal = async (e) => {
     e.preventDefault();
     setForm({ ...formInitialState });
-    if (!isFormValid(app,inputToValidate)) {
+    if (!isFormValid(app, inputToValidate)) {
       const listOfInvalidInputs = findInvalidElement(app, inputToValidate);
       setForm({ invalid: listOfInvalidInputs, error: true });
       return;
     }
 
-    apiAdmin(`/api/portfolio/apps`, app, app.id).catch(function (error) {
+    apiAdmin('/api/portfolio/apps', app, app.id)
+      .catch(function (error) {
         // handle error
         console.log(error);
-        setForm({ ...formInitialState, error: true});
+        setForm({ ...formInitialState, error: true });
       })
       .then(({ data }) => {
         inputFileRef.current.value = '';
@@ -80,12 +85,12 @@ const AdminAppsIndex = ({ formRef }) => {
   const openElement = (app) => {
     updateApp(app);
     setIsOpen(true);
-    setForm({ ...formInitialState});
+    setForm({ ...formInitialState });
   };
 
   const closeModal = () => {
     inputFileRef.current.value = '';
-    setForm({ ...formInitialState, success: true});
+    setForm({ ...formInitialState, success: true });
   };
 
   const openDeleteModal = (app) => {
@@ -180,10 +185,18 @@ const AdminAppsIndex = ({ formRef }) => {
               )}
               <div className="grid grid-cols-6 gap-6">
                 <div className="col-span-6">
-                  <Input label="Title" name="name" value={app.name} onChange={handleChange} required={true} invalid={(form.invalid.includes('name'))} />
+                  <Input label="Title" name="name" value={app.name} onChange={handleChange} required={true} invalid={form.invalid.includes('name')} />
                 </div>
                 <div className="col-span-4">
-                  <Input type="file" label="Image" name="image" onChange={handleChange} required={app.id ? false : true} ref={inputFileRef} invalid={(form.invalid.includes('image'))} />
+                  <Input
+                    type="file"
+                    label="Image"
+                    name="image"
+                    onChange={handleChange}
+                    required={app.id ? false : true}
+                    ref={inputFileRef}
+                    invalid={form.invalid.includes('image')}
+                  />
                 </div>
                 <div className="col-span-2">
                   {app.id > 0 && app.image && (
@@ -203,10 +216,24 @@ const AdminAppsIndex = ({ formRef }) => {
                   )}
                 </div>
                 <div className="col-span-6">
-                  <Input type="url" label="GitHub URL" name="url" value={app.url} onChange={handleChange} required={true} invalid={(form.invalid.includes('url'))} />
+                  <Input
+                    type="url"
+                    label="GitHub URL"
+                    name="url"
+                    value={app.url}
+                    onChange={handleChange}
+                    required={true}
+                    invalid={form.invalid.includes('url')}
+                  />
                 </div>
                 <div className="col-span-6">
-                  <Textarea label="Description" name="description" value={app.description} onChange={handleChange} invalid={(form.invalid.includes('description'))} />
+                  <Textarea
+                    label="Description"
+                    name="description"
+                    value={app.description}
+                    onChange={handleChange}
+                    invalid={form.invalid.includes('description')}
+                  />
                 </div>
               </div>
             </form>

@@ -10,11 +10,11 @@ import useStaleSWR from '@/utils/staleSWR';
 import moment from 'moment';
 import List from '@/components/admin/List';
 import { CheckIcon, ChevronLeftIcon, TrashIcon } from '@heroicons/react/24/solid';
-import { Input, Select } from "@/components/form";
+import { Input, Select } from '@/components/form';
 import { findInvalidElement, isFormValid } from '@/utils/formValidation';
 
 function reducer(prev, next) {
-  return { ...prev, ...next};
+  return { ...prev, ...next };
 }
 
 const types = ['BOOKMARK', 'JOB'];
@@ -91,7 +91,7 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
   const reset = () => {
     setFormError(false);
     setFormSuccess(false);
-  }
+  };
 
   const openElement = (category) => {
     updateCategory(category);
@@ -198,12 +198,12 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
                 <div className="col-span-6">
                   <Select name="type" label="Type" required onChange={handleChange} value={category.type}>
                     <>
-                    <option value="">Select type</option>
-                    {types.map((item) => (
-                      <option key={item} value={item}>
-                        {item}
-                      </option>
-                    ))}
+                      <option value="">Select type</option>
+                      {types.map((item) => (
+                        <option key={item} value={item}>
+                          {item}
+                        </option>
+                      ))}
                     </>
                   </Select>
                 </div>

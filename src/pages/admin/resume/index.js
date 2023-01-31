@@ -12,7 +12,7 @@ import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 import { CheckIcon, ChevronLeftIcon, TrashIcon } from '@heroicons/react/24/solid';
 import { Menu } from '@headlessui/react';
 import pluck from '@/utils/pluck';
-import { Input } from "@/components/form";
+import { Input } from '@/components/form';
 
 const AdminResumeIndex = ({ formRef }) => {
   const { mutate, data: resumes, error } = useStaleSWR('/api/portfolio/resume');
@@ -40,6 +40,7 @@ const AdminResumeIndex = ({ formRef }) => {
   const [searchResults, setSearchResults] = useState([]);
   const [openMenu, setOpenMenu] = useState(false);
 
+
   useEffect(() => {
     const delayDebounceFn = setTimeout(async () => {
       setOpenMenu(false);
@@ -57,7 +58,7 @@ const AdminResumeIndex = ({ formRef }) => {
     }, 500);
 
     return () => clearTimeout(delayDebounceFn);
-  }, [searchTerm]);
+  }, [searchTerm, resume.tags]);
 
   const onSubmitModal = async (e) => {
     e.preventDefault();
@@ -350,14 +351,14 @@ const AdminResumeIndex = ({ formRef }) => {
                 </div>
                 <div className="col-span-6">
                   <h3 className="text-lg font-bold border-b border-primary-700 pb-2 mb-5">Projects</h3>
-                  { resume.projects.map(project => (
-                    <div className="flex items-center gap-4 h-14 px-4">
+                  {resume.projects.map((project, key) => (
+                    <div className="flex items-center gap-4 h-14 px-4" key={key}>
                       <div className="w-48">
                         <SVG alt={project.name} className={' fill-primary-700 dark:fill-primary-200'} src={`/uploads/${project.logo}`} height={30} />
                       </div>
                       <span>{project.name}</span>
                     </div>
-                  )) }
+                  ))}
                 </div>
               </div>
             </form>

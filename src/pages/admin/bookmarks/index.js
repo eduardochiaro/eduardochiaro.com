@@ -12,7 +12,7 @@ import moment from 'moment';
 import * as cheerio from 'cheerio';
 import List from '@/components/admin/List';
 import { CheckIcon, ChevronLeftIcon, TrashIcon } from '@heroicons/react/24/solid';
-import { Input, Select, Textarea } from "@/components/form";
+import { Input, Select, Textarea } from '@/components/form';
 
 const AdminBookmarksIndex = ({ formRef, images }) => {
   const { mutate, data: bookmarks, error } = useStaleSWR('/api/portfolio/bookmarks');
@@ -259,14 +259,14 @@ const AdminBookmarksIndex = ({ formRef, images }) => {
                 <div className="col-span-2">
                   <Select name="categoryId" label="Category" required={true} onChange={handleChange} value={bookmark.categoryId}>
                     <>
-                    <option value="">Select category</option>
-                    {categories?.results
-                      .filter((x) => x.type == 'BOOKMARK')
-                      .map((item) => (
-                        <option key={item.id} value={item.id}>
-                          {item.name}
-                        </option>
-                      ))}
+                      <option value="">Select category</option>
+                      {categories?.results
+                        .filter((x) => x.type == 'BOOKMARK')
+                        .map((item) => (
+                          <option key={item.id} value={item.id}>
+                            {item.name}
+                          </option>
+                        ))}
                     </>
                   </Select>
                 </div>

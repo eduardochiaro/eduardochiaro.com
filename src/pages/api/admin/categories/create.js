@@ -16,7 +16,7 @@ const handler = async (req, res) => {
       const form = new IncomingForm();
       form.parse(req, async (err, fields) => {
         if (err) return reject(err);
-        const { name, type } = fields ;
+        const { name, type } = fields;
         const category = await prisma.category.create({
           data: { name, type, createdAt: new Date() },
         });
