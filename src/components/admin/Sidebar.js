@@ -21,7 +21,7 @@ const AdminSidebar = ({ menuList, isPageOpen }) => {
       <div className="flex flex-col justify-between min-h-screen bg-primary-200 dark:bg-primary-600 fixed">
         <div className="grow p-3 relative">
           <div className={`flex items-center gap-4 h-14 my-3 border-b border-primary-300 dark:border-primary-500 px-3 ${styles['sidebar-logo']}`}>
-            <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className="h-6 text-secondary-700" />
+            <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className="h-6" />
             <div className={`grow font-bold font-header hidden xl:block ${openMenu ? '' : styles['hide-when-closed']}`}>Eduardo Chiaro</div>
           </div>
           <button onClick={() => setOpenMenu(!openMenu)} className="absolute top-4 right-4">
@@ -31,11 +31,11 @@ const AdminSidebar = ({ menuList, isPageOpen }) => {
             <li>
               <Link
                 href="/"
-                className={`${styles['sidebar-link']} group border-transparent hover:border-secondary-700 dark:hover:border-secondary-600`}
+                className={`${styles['sidebar-link']} group border-transparent hover:border-secondary-600 dark:hover:border-secondary-600`}
                 alt="Website"
                 title="Website"
               >
-                <HomeIcon className="w-5 group-hover:text-secondary-700 dark:group-hover:text-secondary-600" />
+                <HomeIcon className="w-5 group-hover:text-secondary-600 dark:group-hover:text-secondary-600" />
                 <span className={`text-sm tracking-wide truncate group-hover:hunderline hidden xl:block ${openMenu ? '' : styles['hide-when-closed']}`}>
                   Website
                 </span>
@@ -43,9 +43,9 @@ const AdminSidebar = ({ menuList, isPageOpen }) => {
             </li>
             <li>
               <div className="flex flex-row items-center h-8">
-                <span className="w-10 border-t border-secondary-800 dark:border-secondary-600 border-dashed shrink"></span>
+                <span className="w-10 border-t border-accent-700 dark:border-accent-500 border-dashed shrink"></span>
                 <div className={`text-sm font-light tracking-wide mx-3 ${openMenu ? '' : styles['hide-when-closed']}`}>Menu</div>
-                <span className="w-full border-t border-secondary-800 dark:border-secondary-600 border-dashed shrink"></span>
+                <span className="w-full border-t border-accent-700 dark:border-accent-500 border-dashed shrink"></span>
               </div>
             </li>
             {menuList.map((item) => (

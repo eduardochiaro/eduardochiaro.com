@@ -250,7 +250,7 @@ const AdminResumeIndex = ({ formRef }) => {
                 </div>
                 <div className="col-span-5 sm:col-span-4">
                   <label htmlFor="logo-url-form" className="input-label">
-                    Logo {!resume.id && <span className="text-secondary-700">*</span>}
+                    Logo {!resume.id && <span className="text-secondary-600">*</span>}
                   </label>
                   <input
                     ref={inputFileRef}

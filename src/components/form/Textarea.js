@@ -7,7 +7,7 @@ const Textarea = forwardRef(({ name = '', label = '', value = '', onChange = () 
     <>
       <label htmlFor={`${name}-form`} className="input-label flex items-center">
         <span className="grow">
-          {label} {required && <span className="text-secondary-700">*</span>}
+          {label} {required && <span className="text-secondary-600">*</span>}
         </span>
         {isInvalid && <ExclamationTriangleIcon className="h-4 w-4 text-red-400" />}
       </label>

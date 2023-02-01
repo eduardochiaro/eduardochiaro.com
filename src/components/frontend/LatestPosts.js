@@ -10,7 +10,7 @@ export default function LatestPosts() {
     <section id="latest-posts-component" className={'px-4 lg:px-0 mt-10'}>
       <div className="max-w-5xl mx-auto">
         <h3 className="font-header leading-tight tracking-wide text-2xl lg:text-3xl font-light mb-2">
-          Recent <span className="overlay-color">articles</span> says...
+          What I <span className="overlay-color">wrote</span>...
         </h3>
         <div id="articles-list" className="mt-6 -ml-6">
           {cutReposene
@@ -18,18 +18,18 @@ export default function LatestPosts() {
                 <div key={`article-${index}`} className="mb-6 relative">
                   <Link
                     href={article.permalink}
-                    className="group block hover:border-l-8 ml-2 hover:ml-0 pb-2 hover:border-secondary-700 dark:hover:border-secondary-600 pl-4"
+                    className="group block hover:border-l-8 ml-2 hover:ml-0 pb-2 hover:border-secondary-600 dark:hover:border-secondary-600 pl-4"
                   >
                     <div className="flex flex-row items-top">
                       <h4 className="grow-0 font-medium text-lg tracking-wide">{article.title}</h4>
                       <div className="grow ml-4 mt-1">
                         <div className="flex flex-row items-center">
-                          <span className="w-full border-t border-secondary-800 dark:border-secondary-600 border-dashed shrink"></span>
-                          <span className="w-4 border-t border-secondary-800 dark:border-secondary-600 border-dashed shrink"></span>
-                          <span className="text-sm font-mono whitespace-nowrap bg-primary-50 dark:bg-primary-800 px-4 overlay-color">
+                          <span className="w-full border-t border-accent-700 dark:border-accent-500 border-dashed shrink"></span>
+                          <span className="w-4 border-t border-accent-700 dark:border-accent-500 border-dashed shrink"></span>
+                          <span className="text-sm font-mono whitespace-nowrap px-4">
                             {moment(article.published).format('MM/DD/YYYY')}
                           </span>
-                          <span className="flex-none w-12 border-t border-secondary-800 dark:border-secondary-600 border-dashed"></span>
+                          <span className="flex-none w-12 border-t border-accent-700 dark:border-accent-500 border-dashed"></span>
                         </div>
                       </div>
                     </div>

@@ -12,21 +12,21 @@ export default function Share() {
         <Link href="https://github.com/eduardochiaro" className="flex-none w-30" alt="GitHub" title="GitHub">
           <GitHubIcon
             className={
-              'inline-block h-6 transition-colors ease-out duration-500 fill-primary-900 dark:fill-primary-100 hover:fill-secondary-700 dark:hover:fill-secondary-600'
+              'inline-block h-6 transition-colors ease-out duration-500 fill-primary-900 dark:fill-primary-100 hover:fill-secondary-600 dark:hover:fill-secondary-600'
             }
           />
         </Link>
         <Link href="https://linkedin.com/in/eduardochiaro" className="flex-none w-30" alt="LinkedIn" title="LinkedIn">
           <LinkedInIcon
             className={
-              'inline-block h-6 transition-colors ease-out duration-500 fill-primary-900 dark:fill-primary-100 hover:fill-secondary-700 dark:hover:fill-secondary-600'
+              'inline-block h-6 transition-colors ease-out duration-500 fill-primary-900 dark:fill-primary-100 hover:fill-secondary-600 dark:hover:fill-secondary-600'
             }
           />
         </Link>
         <Link href="https://twitter.com/eduardo_chiaro" className="flex-none w-30" alt="Twitter" title="Twitter">
           <TwitterIcon
             className={
-              'inline-block h-6 transition-colors ease-out duration-500 fill-primary-900 dark:fill-primary-100 hover:fill-secondary-700 dark:hover:fill-secondary-600'
+              'inline-block h-6 transition-colors ease-out duration-500 fill-primary-900 dark:fill-primary-100 hover:fill-secondary-600 dark:hover:fill-secondary-600'
             }
           />
         </Link>

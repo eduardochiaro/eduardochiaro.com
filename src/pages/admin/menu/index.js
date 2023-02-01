@@ -208,7 +208,7 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
               <div className="grid grid-cols-6 gap-6">
                 <div className="col-span-6">
                   <label htmlFor="name-form" className="input-label">
-                    Title <span className="text-secondary-700">*</span>
+                    Title <span className="text-secondary-600">*</span>
                   </label>
                   <input
                     type="text"
@@ -226,7 +226,7 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
                 </div>
                 <div className="col-span-6">
                   <label htmlFor="name-form" className="input-label">
-                    Url <span className="text-secondary-700">*</span>
+                    Url <span className="text-secondary-600">*</span>
                   </label>
                   <input
                     type="text"

@@ -39,15 +39,15 @@ const groups = [
     class: 'col-span-4',
     text: (
       <div className="flex items-center">
-        <div className="flex-none border-dashed border-l border-secondary-800 dark:border-secondary-600 h-5"></div>
+        <div className="flex-none border-dashed border-l border-accent-700 dark:border-accent-500 h-5"></div>
         <div className="grow">
           <div className="flex flex-row items-center">
-            <span className="w-full border-t border-secondary-800 dark:border-secondary-600 border-dashed shrink"></span>
+            <span className="w-full border-t border-accent-700 dark:border-accent-500 border-dashed shrink"></span>
             <div className={'text-sm font-light tracking-wide whitespace-nowrap mx-3'}>Projects done through Flixmedia LTD</div>
-            <span className="w-full border-t border-secondary-800 dark:border-secondary-600 border-dashed shrink"></span>
+            <span className="w-full border-t border-accent-700 dark:border-accent-500 border-dashed shrink"></span>
           </div>
         </div>
-        <div className="flex-none border-dashed border-r border-secondary-800 dark:border-secondary-600 h-5"></div>
+        <div className="flex-none border-dashed border-r border-accent-700 dark:border-accent-500 h-5"></div>
       </div>
     ),
   },
@@ -64,7 +64,7 @@ export default function Jobs() {
           {/*
           <Link href={'/resume'} className="overlay-color text-sm flex items-center gap-1">
             <span>view resume</span>
-            <ChevronDoubleRightIcon className="h-3 text-secondary-700 dark:text-secondary-600" />
+            <ChevronDoubleRightIcon className="h-3 text-secondary-600 dark:text-secondary-600" />
           </Link>
           */}
         </h3>

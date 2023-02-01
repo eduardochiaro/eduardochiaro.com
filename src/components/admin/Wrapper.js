@@ -2,7 +2,7 @@ import AdminSidebar from './Sidebar';
 import { BriefcaseIcon, CpuChipIcon, CommandLineIcon, TagIcon, BookmarkIcon, Bars3Icon } from '@heroicons/react/24/solid';
 import React from 'react';
 
-const classForIcon = 'w-5 group-hover:text-secondary-700 dark:group-hover:text-secondary-600';
+const classForIcon = 'w-5 group-hover:text-secondary-600 dark:group-hover:text-secondary-600';
 
 const menuList = [
   {
@@ -10,7 +10,7 @@ const menuList = [
     icon: <Bars3Icon className={classForIcon} />,
     href: '/admin/menu',
     description: 'Set up primary navigation menu',
-    classColor: 'bg-secondary-700',
+    classColor: 'bg-secondary-600',
   },
   {
     title: 'Categories',

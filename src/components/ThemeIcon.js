@@ -50,7 +50,7 @@ export default function ThemeIcon({ orientation }) {
       setIconClass(
         resetClassColors.map((x) => {
           if (x.name === theme) {
-            x.className = 'text-secondary-700 dark:text-secondary-600';
+            x.className = 'text-secondary-600 dark:text-secondary-600 hover:text-primary-50 hover:dark:text-primary-50';
           }
           return x;
         }),
@@ -68,11 +68,11 @@ export default function ThemeIcon({ orientation }) {
         title="change theme"
         data-cy="change-mode"
         className={`rounded-full transition-all duration-300 group ease-in-out ${
-          inUseTheme === 'dark' ? 'hover:bg-primary-100' : 'bg-primary-300 hover:bg-secondary-500'
+          inUseTheme === 'dark' ? 'hover:bg-primary-100' : 'bg-primary-300 hover:bg-accent-200'
         }`}
       >
         {inUseTheme === 'dark' ? (
-          <MoonIcon className="w-6 text-secondary-600 cursor-pointer rounded-full group-hover:fill-primary-800 transition-all duration-300" />
+          <MoonIcon className="w-6 text-primary-50 cursor-pointer rounded-full group-hover:fill-primary-800 transition-all duration-300" />
         ) : (
           <SunIcon className="w-6 text-primary-800 cursor-pointer rounded-full group-hover:text-primary-900 transition-all duration-300" />
         )}

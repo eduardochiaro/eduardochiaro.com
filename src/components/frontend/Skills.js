@@ -16,7 +16,7 @@ export default function Skills() {
             ? data.results.map((skill, index) => (
                 <div key={`skill-${index}`} className="flex items-center gap-5 mt-1">
                   <span className="flex-none font-medium">{skill.name}</span>
-                  <span className="w-full border-t border-secondary-700 dark:border-secondary-600 border-dashed shrink"></span>
+                  <span className="w-full border-t border-accent-700 dark:border-accent-500 border-dashed shrink"></span>
                   <SVG
                     alt={skill.name}
                     className={`flex-none w-8 ${styles[`color-${skill.type}`]}  dark:fill-primary-200`}
@@ -38,7 +38,7 @@ export default function Skills() {
                   <span className="flex-none font-medium mr-5">
                     <div key={x} className="w-12 h-6 bg-primary-300 dark:bg-primary-600 rounded animate-pulse"></div>
                   </span>
-                  <span className="w-full border-t border-secondary-700 dark:border-secondary-600 border-dashed shrink mr-5"></span>
+                  <span className="w-full border-t border-accent-700 dark:border-accent-500 border-dashed shrink mr-5"></span>
                   <div key={x} className="flex-none w-6 h-6 bg-primary-300 dark:bg-primary-600 rounded animate-pulse"></div>
                   <div className="flex-none w-6/12">
                     <div className="w-full bg-primary-200 dark:bg-primary-700 h-4 rounded animate-pulse">

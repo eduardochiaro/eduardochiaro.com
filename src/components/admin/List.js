@@ -94,7 +94,7 @@ export default function List({
                 {item.image_d ? <div className="w-16 h-14 rounded overflow-hidden hidden xl:block relative">{item.image_d}</div> : ''}
                 <div className="grow flex flex-col gap-1">
                   <div className="flex justify-between items-center gap-2">
-                    <h4 className="text-lg group-hover:text-secondary-700">{item.name}</h4>
+                    <h4 className="text-lg group-hover:text-secondary-600">{item.name}</h4>
                     {item.category_d ? (
                       <div className="text-xs rounded px-2 py-1 bg-secondary-800 text-primary-100 gap-2 hidden xl:block">{item.category_d}</div>
                     ) : (

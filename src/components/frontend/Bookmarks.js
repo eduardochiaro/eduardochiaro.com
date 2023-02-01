@@ -39,11 +39,11 @@ export default function Bookmarks() {
           {uniqueCategories.map((category, index) => (
             <div key={index} className="group/list">
               <span className="anchor" id={`bookmarks-${index}`} />
-              <h4 className="text-secondary-700 dark:text-secondary-600 mt-14 group-first/list:mt-5 mb-5 flex items-center gap-2">
+              <h4 className="text-secondary-600 dark:text-secondary-600 mt-14 group-first/list:mt-5 mb-5 flex items-center gap-2">
                 <TagIcon className="none w-4 h-4" />
                 <span className="flex-none">{category.name}</span>
-                <span className="w-full border-t border-secondary-800 dark:border-secondary-600 border-dashed shrink"></span>
-                <Link href="#top" className="text-secondary-700 dark:text-secondary-600 flex items-center group-first/list:hidden">
+                <span className="w-full border-t border-accent-700 dark:border-accent-500 border-dashed shrink"></span>
+                <Link href="#top" className="text-secondary-600 dark:text-secondary-600 flex items-center group-first/list:hidden">
                   top
                   <ChevronUpIcon className="inline w-4" />
                 </Link>

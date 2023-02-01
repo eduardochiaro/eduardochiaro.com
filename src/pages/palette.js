@@ -13,7 +13,7 @@ export default function Projects() {
     {
       name: 'Secondary',
       main: 'bg-secondary-500',
-      scale: ['bg-secondary-900', 'bg-secondary-700', 'bg-secondary-300', 'bg-secondary-100'],
+      scale: ['bg-secondary-900', 'bg-secondary-600', 'bg-secondary-300', 'bg-secondary-100'],
     },
     {
       name: 'Accent',

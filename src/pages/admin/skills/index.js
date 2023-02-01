@@ -204,7 +204,7 @@ const AdminSkillsIndex = ({ formRef, images }) => {
               <div className="grid grid-cols-6 gap-6">
                 <div className="col-span-6">
                   <label htmlFor="name-form" className="input-label">
-                    Title <span className="text-secondary-700">*</span>
+                    Title <span className="text-secondary-600">*</span>
                   </label>
                   <input
                     type="text"
@@ -222,7 +222,7 @@ const AdminSkillsIndex = ({ formRef, images }) => {
                 </div>
                 <div className="col-span-5 sm:col-span-2">
                   <label htmlFor="logo-type-form" className="input-label">
-                    Logo <span className="text-secondary-700">*</span>
+                    Logo <span className="text-secondary-600">*</span>
                   </label>
                   <select name="logo" id="logo-type-form" className="mt-1 input-field" onChange={handleChange} value={skill.logo} required>
                     <option value="">Select logo</option>
@@ -243,7 +243,7 @@ const AdminSkillsIndex = ({ formRef, images }) => {
                 </div>
                 <div className="col-span-6 sm:col-span-3">
                   <label htmlFor="percentage-form" className="input-label">
-                    Percentage <span className="text-secondary-700">*</span>
+                    Percentage <span className="text-secondary-600">*</span>
                   </label>
                   <input
                     type="range"
@@ -261,7 +261,7 @@ const AdminSkillsIndex = ({ formRef, images }) => {
                 </div>
                 <div className="col-span-6">
                   <label htmlFor="type-form" className="input-label">
-                    Type <span className="text-secondary-700">*</span>
+                    Type <span className="text-secondary-600">*</span>
                   </label>
                   <input
                     type="text"
