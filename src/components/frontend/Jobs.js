@@ -1,5 +1,3 @@
-import { ChevronDoubleRightIcon } from '@heroicons/react/20/solid';
-import Link from 'next/link';
 import * as React from 'react';
 import SVG from 'react-inlinesvg';
 
@@ -38,12 +36,12 @@ const groups = [
   {
     class: 'col-span-4',
     text: (
-      <div className="flex items-center">
+      <div className="flex items-center mx-4">
         <div className="flex-none border-dashed border-l border-accent-700 dark:border-accent-500 h-5"></div>
         <div className="grow">
           <div className="flex flex-row items-center">
             <span className="w-full border-t border-accent-700 dark:border-accent-500 border-dashed shrink"></span>
-            <div className={'text-sm font-light tracking-wide whitespace-nowrap mx-3'}>Projects done through Flixmedia LTD</div>
+            <div className="text-sm font-normal tracking-wide whitespace-nowrap mx-3">Projects done through <strong>Flixmedia LTD</strong></div>
             <span className="w-full border-t border-accent-700 dark:border-accent-500 border-dashed shrink"></span>
           </div>
         </div>

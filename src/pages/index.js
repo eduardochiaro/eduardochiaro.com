@@ -55,7 +55,6 @@ export default function Home() {
             <span id="skills" className="anchor" />
           </div>
           <Skills />
-          <hr className="mt-10 max-w-5xl mx-auto border-t border-solid opacity-30" />
           <div className="relative">
             <span id="articles" className="anchor" />
           </div>
