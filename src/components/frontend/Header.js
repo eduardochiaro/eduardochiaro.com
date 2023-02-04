@@ -81,7 +81,7 @@ export default function Header() {
               </Transition>
             </Menu>
             <Link href="/" className="flex items-center gap-2 md:gap-3">
-              <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={'w-auto h-5 md:h-7 fill-secondary-600 text-secondary-600'} />
+              <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className="w-auto h-5 md:h-7 fill-secondary-600 text-secondary-600" />
               <div className="text-xl md:text-2xl font-semibold tracking-wide">Eduardo Chiaro</div>
             </Link>
           </div>
