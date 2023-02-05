@@ -20,9 +20,9 @@ export default function LatestPosts() {
                     href={article.permalink}
                     className="group block hover:border-l-8 ml-2 hover:ml-0 pb-2 hover:border-secondary-600 dark:hover:border-secondary-600 pl-4"
                   >
-                    <div className="flex flex-row items-top">
+                    <div className="flex flex-col md:flex-row items-top gap-4">
                       <h4 className="grow-0 font-medium text-lg tracking-wide">{article.title}</h4>
-                      <div className="grow ml-4 mt-1">
+                      <div className="grow mt-1">
                         <div className="flex flex-row items-center">
                           <span className="w-full dashed-border-t shrink"></span>
                           <span className="w-4 dashed-border-t shrink"></span>

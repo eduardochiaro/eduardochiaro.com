@@ -22,7 +22,7 @@ export default function Skills() {
                     className={`flex-none w-8 ${styles[`color-${skill.type}`]}  dark:fill-primary-200`}
                     src={`/images/svg-icons/${skill.logo}`}
                   />
-                  <div className="flex-none w-9/12">
+                  <div className="flex-none w-6/12 md:w-9/12">
                     <div className="w-full bg-primary-200 dark:bg-primary-700 h-4 rounded">
                       <div className={`${styles[`bar-${skill.type}`]} rounded h-4`} style={{ width: skill.percentage + '%' }}></div>
                     </div>
@@ -40,7 +40,7 @@ export default function Skills() {
                   </span>
                   <span className="w-full dashed-border-t shrink mr-5"></span>
                   <div key={x} className="flex-none w-6 h-6 bg-primary-300 dark:bg-primary-600 rounded animate-pulse"></div>
-                  <div className="flex-none w-6/12">
+                  <div className="flex-none w-6/12 md:w-9/12">
                     <div className="w-full bg-primary-200 dark:bg-primary-700 h-4 rounded animate-pulse">
                       <div className={`${styles['bar-node']} rounded h-4`} style={{ width: x * 10 + '%' }}></div>
                     </div>

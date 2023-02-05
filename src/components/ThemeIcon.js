@@ -68,13 +68,13 @@ export default function ThemeIcon({ orientation }) {
         title="change theme"
         data-cy="change-mode"
         className={`rounded-full transition-all duration-300 group ease-in-out ${
-          inUseTheme === 'dark' ? 'hover:bg-primary-100' : 'bg-primary-300 hover:bg-accent-200'
+          inUseTheme === 'dark' ? 'hover:bg-primary-100' : ''
         }`}
       >
         {inUseTheme === 'dark' ? (
           <MoonIcon className="w-6 text-primary-50 cursor-pointer rounded-full group-hover:fill-primary-800 transition-all duration-300" />
         ) : (
-          <SunIcon className="w-6 text-primary-800 cursor-pointer rounded-full group-hover:text-primary-900 transition-all duration-300" />
+          <SunIcon className="w-6 text-primary-800 cursor-pointer rounded-full group-hover:text-secondary-700 transition-all duration-300" />
         )}
       </Menu.Button>
       <Transition
