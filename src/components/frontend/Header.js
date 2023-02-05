@@ -83,7 +83,7 @@ export default function Header() {
                         href="https://blog.eduardochiaro.com"
                         className={`${styles.menuUrlMobile} text-primary-900 dark:text-primary-100`}
                       >
-                        <RssIcon className={'h-5 text-accent-600 dark:text-accent-500 mr-1'} aria-hidden="true" />
+                        <RssIcon className={'h-5 text-accent-600 dark:text-accent-500/80 mr-1'} aria-hidden="true" />
                         .dev
                       </Link>
                     </Menu.Item>
@@ -121,7 +121,7 @@ export default function Header() {
               href="https://blog.eduardochiaro.com"
               className="md:pr-0 pr-6 whitespace-nowrap text-base font-medium transition hover:underline flex items-center"
             >
-              <RssIcon className={'h-5 text-accent-600 dark:text-accent-500 mr-1'} aria-hidden="true" />
+              <RssIcon className={'h-5 text-accent-600 dark:text-accent-500/80 mr-1'} aria-hidden="true" />
               .dev
             </Link>
           </div>
