@@ -56,7 +56,7 @@ export default function Projects() {
         </div>
 
         <div className="basis-full md:basis-1/4 md:text-right mb-10">
-          <h2 className="font-header leading-tight tracking-wide text-xl font-light h-10 align-bottom flex flex-row-reverse">
+          <h2 className="font-header leading-tight tracking-wide text-xl font-light h-10 align-bottom flex md:flex-row-reverse">
             <span className="self-end">Lab</span>
           </h2>
           <ul className="mt-5 pl-0 md:pl-8">

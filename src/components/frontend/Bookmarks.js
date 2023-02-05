@@ -42,7 +42,7 @@ export default function Bookmarks() {
               <h4 className="text-secondary-600 dark:text-secondary-600 mt-14 group-first/list:mt-5 mb-5 flex items-center gap-2">
                 <TagIcon className="none w-4 h-4" />
                 <span className="flex-none">{category.name}</span>
-                <span className="w-full border-t border-accent-700 dark:border-accent-500 border-dashed shrink"></span>
+                <span className="w-full dashed-border-t shrink"></span>
                 <Link href="#top" className="text-secondary-600 dark:text-secondary-600 flex items-center group-first/list:hidden">
                   top
                   <ChevronUpIcon className="inline w-4" />

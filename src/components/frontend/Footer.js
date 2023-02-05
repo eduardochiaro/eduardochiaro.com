@@ -9,7 +9,7 @@ function LoginButton(props) {
   if (isLoggedIn) {
     return (
       <>
-        <Link href="/admin" className="relative text-sm mr-4 hover:underline">
+        <Link href="/admin" className="relative text-sm hover:underline">
           Admin
         </Link>
         <button className="relative text-sm hover:underline" onClick={() => signOut()}>
@@ -24,15 +24,17 @@ export default function Footer() {
   const { data: session } = useSession();
   return (
     <footer id="footer" className="mt-10 pb-4">
-      <div className="container mx-auto text-center py-4">
+      <div className="container mx-auto py-4">
         <div className="flex-wrap lg:flex-nowrap flex text-sm md:text-base">
-          <div className="hidden lg:block flex-none lg:w-60 text-sm"></div>
-          <div className="flex-1 text-center">
-            <span>© Copyright {moment().year()}</span>
-            <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={'inline w-auto h-7 mx-3 '} />
-            <span>Eduardo Chiaro</span>
+          <div className="hidden grow md:flex"></div>
+          <div className="flex-1">
+            <div className="flex items-center gap-3">
+              <span className="grow text-right">© Copyright {moment().year()}</span>
+              <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={'flex-none inline w-auto h-7 logo'} />
+              <span className="grow">Eduardo Chiaro</span>
+            </div>
           </div>
-          <div className="flex-none w-full lg:w-60 text-right align-baseline mt-5 md:mt-0 items-center">
+          <div className="hidden grow md:flex justify-end align-center items-center gap-4">
             <LoginButton isLoggedIn={session} />
           </div>
         </div>

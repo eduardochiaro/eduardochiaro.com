@@ -37,15 +37,15 @@ const groups = [
     class: 'col-span-4',
     text: (
       <div className="flex items-center mx-4">
-        <div className="flex-none border-dashed border-l border-accent-700 dark:border-accent-500 h-5"></div>
+        <div className="flex-none dashed-border-l h-5"></div>
         <div className="grow">
           <div className="flex flex-row items-center">
-            <span className="w-full border-t border-accent-700 dark:border-accent-500 border-dashed shrink"></span>
+            <span className="w-full dashed-border-t shrink"></span>
             <div className="text-sm font-normal tracking-wide whitespace-nowrap mx-3">Projects done through <strong>Flixmedia LTD</strong></div>
-            <span className="w-full border-t border-accent-700 dark:border-accent-500 border-dashed shrink"></span>
+            <span className="w-full dashed-border-t shrink"></span>
           </div>
         </div>
-        <div className="flex-none border-dashed border-r border-accent-700 dark:border-accent-500 h-5"></div>
+        <div className="flex-none dashed-border-r h-5"></div>
       </div>
     ),
   },

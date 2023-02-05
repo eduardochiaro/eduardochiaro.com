@@ -43,9 +43,9 @@ const AdminSidebar = ({ menuList, isPageOpen }) => {
             </li>
             <li>
               <div className="flex flex-row items-center h-8">
-                <span className="w-10 border-t border-accent-700 dark:border-accent-500 border-dashed shrink"></span>
+                <span className="w-10 dashed-border-t shrink"></span>
                 <div className={`text-sm font-light tracking-wide mx-3 ${openMenu ? '' : styles['hide-when-closed']}`}>Menu</div>
-                <span className="w-full border-t border-accent-700 dark:border-accent-500 border-dashed shrink"></span>
+                <span className="w-full dashed-border-t shrink"></span>
               </div>
             </li>
             {menuList.map((item) => (

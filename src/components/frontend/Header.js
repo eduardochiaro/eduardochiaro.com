@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { Menu, Transition } from '@headlessui/react';
 import ThemeIcon from '@/components/ThemeIcon';
 import NavLink from '@/components/NavLink';
-import Logo from '@/components/icons/logo';
+import HeaderLogo from '@/components/icons/headerLogo';
 import Link from 'next/link';
 import useStaleSWR from '@/utils/staleSWR';
 
@@ -37,7 +37,7 @@ export default function Header() {
   }
 
   return (
-    <header className={`${styles.header} bg-gradient-to-r from-primary-50/95 to-primary-100/95 dark:from-primary-700/95 dark:to-primary-800/95`}>
+    <header className={`${styles.header} bg-primary-50/95 dark:bg-primary-700/95`}>
       <nav className="w-full relative">
         <div className="px-4 md:px-8 flex items-center h-12">
           <div className="flex-none flex gap-4 font-header text-2xl">
@@ -54,15 +54,15 @@ export default function Header() {
                 leaveFrom="opacity-100 translate-y-0"
                 leaveTo="opacity-0 translate-y-1"
               >
-                <Menu.Items className="focus:outline-none absolute left-0 top-full w-full max-w-lg bg-primary-100 dark:bg-primary-700 shadow-lg ring-1 ring-primary-900 ring-opacity-10">
+                <Menu.Items className="focus:outline-none absolute left-0 top-full w-full max-w-lg bg-primary-100 dark:bg-primary-700 shadow-2xl shadow-primary-600 ring-1 ring-primary-900 ring-opacity-10  divide-y divide-primary-400">
                   {menuData
                     .filter((x) => x.active)
                     .map(function (item, i) {
                       return (
-                        <div key={`menu-link-${i}`} className="px-1 py-1 font-semibold text-secondary-700 dark:text-secondary-600 divide-y divide-primary-400">
+                        <div key={`menu-link-${i}`} className="px-1 py-1 font-semibold text-secondary-700 dark:text-secondary-600">
                           <Menu.Item>
                             {({ active }) => (
-                              <a
+                              <Link
                                 href={item.link}
                                 className={classNames(
                                   styles.menuUrlMobile,
@@ -71,18 +71,28 @@ export default function Header() {
                                 )}
                               >
                                 {item.text}
-                              </a>
+                              </Link>
                             )}
                           </Menu.Item>
                         </div>
                       );
                     })}
+                  <div className="px-1 py-1 font-semibold text-secondary-700 dark:text-secondary-600">
+                    <Menu.Item>
+                      <Link
+                        href="https://blog.eduardochiaro.com"
+                        className={`${styles.menuUrlMobile} text-primary-900 dark:text-primary-100`}
+                      >
+                        <RssIcon className={'h-5 text-accent-600 dark:text-accent-500 mr-1'} aria-hidden="true" />
+                        .dev
+                      </Link>
+                    </Menu.Item>
+                  </div>
                 </Menu.Items>
               </Transition>
             </Menu>
             <Link href="/" className="flex items-center gap-2 md:gap-3">
-              <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className="w-auto h-5 md:h-7 fill-secondary-600 text-secondary-600" />
-              <div className="text-xl md:text-2xl font-semibold tracking-wide">Eduardo Chiaro</div>
+              <HeaderLogo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={`w-auto h-7 md:h-10 logo `} />
             </Link>
           </div>
           <span className="flex-1"></span>
@@ -111,7 +121,7 @@ export default function Header() {
               href="https://blog.eduardochiaro.com"
               className="md:pr-0 pr-6 whitespace-nowrap text-base font-medium transition hover:underline flex items-center"
             >
-              <RssIcon className={'h-5 text-accent-600 mr-1'} aria-hidden="true" />
+              <RssIcon className={'h-5 text-accent-600 dark:text-accent-500 mr-1'} aria-hidden="true" />
               .dev
             </Link>
           </div>
