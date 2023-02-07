@@ -11,11 +11,11 @@ export default function Skills() {
         <h3 className="font-header leading-tight tracking-wide text-2xl lg:text-3xl font-light mb-2">
           What I&apos;m <span className="overlay-color">good</span> at...
         </h3>
-        <div id="skills-list">
+        <div id="skills-list" className="px-2">
           {data && data.results
             ? data.results.map((skill, index) => (
                 <div key={`skill-${index}`} className="flex items-center gap-5 mt-1">
-                  <span className="flex-none font-medium">{skill.name}</span>
+                  <span className="flex-none font-medium font-mono">{skill.name}</span>
                   <span className="w-full dashed-border-t shrink"></span>
                   <SVG
                     alt={skill.name}

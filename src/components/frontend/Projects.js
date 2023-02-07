@@ -12,7 +12,7 @@ export default function Projects() {
     {
       name: 'Stream',
       url: '/projects/stream',
-      description: 'Unified stream of images and text from different feeds',
+      description: 'Unified content stream from different feeds',
     },
     {
       name: 'Terminal',
@@ -31,7 +31,7 @@ export default function Projects() {
       <div className="max-w-5xl mx-auto flex flex-wrap">
         <div className="basis-full md:basis-3/4 mb-10">
           <h1 className="font-header leading-tight tracking-wide text-2xl lg:text-3xl font-light h-10">Projects</h1>
-          <div className="grid grid-cols-1 gap-8 mt-5">
+          <div className="grid grid-cols-1 gap-8 mt-5 pl-2">
             {data?.results.map((app, index) => (
               <div className={'flex flex-wrap p-4 box-card'} key={`app-${index}`}>
                 <div className={'basis-full md:basis-1/3 relative'}>
@@ -59,7 +59,7 @@ export default function Projects() {
           <h2 className="font-header leading-tight tracking-wide text-xl font-light h-10 align-bottom flex md:flex-row-reverse">
             <span className="self-end">Lab</span>
           </h2>
-          <ul className="mt-5 pl-0 md:pl-8">
+          <ul className="mt-5 pl-0 md:pl-8 pr-2">
             {projects.map((project, index) => (
               <li key={`project-${index}`} className="text-base mb-8 box-card p-4">
                 <Link href={project.url} className="group">

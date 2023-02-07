@@ -69,13 +69,10 @@ table.admin-table {
   top: -6rem;
   visibility: hidden;
 }
-.bar {
-  height: 5px;
-  width: 250px;
-  border-radius: 3px;
-  background: linear-gradient(90deg, red 0%, yellow 15%, lime 30%, cyan 50%, blue 65%, magenta 80%, red 100%);
-  background-size: 200%;
-  //animation: moveGradient 5s linear infinite;
+#nprogress {
+  .bar {
+    background: linear-gradient(90deg, red 0%, yellow 15%, lime 30%, cyan 50%, blue 65%, magenta 80%, red 100%) !important;
+  }
 }
 .box-card {
   @apply drop-shadow rounded-lg bg-primary-100 dark:bg-primary-600 transition hover:ring-4 ring-offset-1 ring-offset-primary-100 dark:ring-offset-primary-500 hover:ring-primary-200 dark:hover:ring-primary-600 ring-1 ring-primary-700 ring-opacity-5;
@@ -110,7 +107,7 @@ input:checked + .toggle-bg {
 }
 .logo {
   .accent path {
-    @apply fill-accent-600;
+    @apply fill-accent-600 dark:fill-accent-500;
   }
 }
 .dashed-border {

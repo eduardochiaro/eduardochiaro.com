@@ -32,7 +32,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
           <title>Eduardo Chiaro</title>
           <meta name="description" content="Eduardo Chiaro - Software Developer" />
         </Head>
-        <NextProgress height="5px" color={tailwindConfig.theme.colors.secondary[500]} options={{ showSpinner: false }} />
+        <NextProgress height="5px" default={tailwindConfig.theme.colors.secondary[500]} options={{ showSpinner: false }} />
         <Component {...pageProps} />
       </ThemeProvider>
     </SessionProvider>

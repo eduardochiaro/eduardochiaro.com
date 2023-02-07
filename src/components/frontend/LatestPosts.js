@@ -12,7 +12,7 @@ export default function LatestPosts() {
         <h3 className="font-header leading-tight tracking-wide text-2xl lg:text-3xl font-light mb-2">
           What I <span className="overlay-color">wrote</span>...
         </h3>
-        <div id="articles-list" className="mt-6 -ml-6">
+        <div id="articles-list" className="mt-6 -ml-6 px-2">
           {cutReposene
             ? cutReposene.map((article, index) => (
                 <div key={`article-${index}`} className="mb-6 relative">
