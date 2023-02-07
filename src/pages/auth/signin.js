@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { getProviders, signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
-import Logo from '@/components/icons/logo';
 import GitHub from '@/components/icons/github';
 import Google from '@/components/icons/google';
 import ThemeIcon from '@/components/ThemeIcon';
+import HeaderLogo from "@/components/icons/headerLogo";
 
 const LogoProvider = ({ id }) => {
   switch (id) {
@@ -26,7 +26,7 @@ export default function SignIn({ providers }) {
         <div className="w-full px-10 py-8 mx-auto">
           <div className="max-w-sm mx-auto space-y-6">
             <div className="box-card px-4 py-6 text-center">
-              <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={'w-20 h-20 mx-auto'} />
+              <HeaderLogo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={'h-12 my-10 mx-auto logo'} />
               <h1 className="font-header my-6 text-3xl">Not signed in</h1>
               {Object.values(providers).map((provider) => (
                 <div key={provider.name} className="py-4">

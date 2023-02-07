@@ -2,13 +2,13 @@ import { Fragment, useEffect, useState } from 'react';
 import Link from 'next/link';
 import NavLink from '@/components/NavLink';
 import styles from '@/styles/Admin.Sidebar.module.scss';
-import Logo from '@/components/icons/logo';
 import { ArrowLeftCircleIcon, Bars3BottomRightIcon, HomeIcon } from '@heroicons/react/24/solid';
 import { Menu, Transition } from '@headlessui/react';
 import { useSession, signOut } from 'next-auth/react';
 import ThemeIcon from '../ThemeIcon';
 import Image from 'next/image';
 import classNames from '@/utils/classNames';
+import HeaderLogo from "../icons/headerLogo";
 
 const AdminSidebar = ({ menuList, isPageOpen }) => {
   const { data: session } = useSession();
@@ -21,8 +21,9 @@ const AdminSidebar = ({ menuList, isPageOpen }) => {
       <div className="flex flex-col justify-between min-h-screen bg-primary-200 dark:bg-primary-600 fixed">
         <div className="grow p-3 relative">
           <div className={`flex items-center gap-4 h-14 my-3 border-b border-primary-300 dark:border-primary-500 px-3 ${styles['sidebar-logo']}`}>
-            <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className="h-6" />
-            <div className={`grow font-bold font-header hidden xl:block ${openMenu ? '' : styles['hide-when-closed']}`}>Eduardo Chiaro</div>
+
+            <HeaderLogo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={`h-7 logo ${!openMenu ? 'hidden' : 'block'}`} />
+            <div className={`text-5xl text-accent-600 font-mono mx-auto ${openMenu ? 'hidden' : 'block'}`}>•</div>
           </div>
           <button onClick={() => setOpenMenu(!openMenu)} className="absolute top-4 right-4">
             <Bars3BottomRightIcon className="w-5" />
@@ -54,7 +55,7 @@ const AdminSidebar = ({ menuList, isPageOpen }) => {
                   href={item.href}
                   as={item.href}
                   className={`${styles['sidebar-link']} group border-transparent `}
-                  activeClassName={`${styles['sidebar-link']} group text-secondary-800 dark:text-secondary-600 bg-primary-100 dark:bg-primary-800 rounded-md`}
+                  activeClassName={`${styles['sidebar-link']} group bg-primary-50 dark:bg-primary-800 rounded-md`}
                 >
                   <a className="flex items-center gap-2" alt={item.title} title={item.title}>
                     {item.icon}

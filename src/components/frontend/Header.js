@@ -92,7 +92,7 @@ export default function Header() {
               </Transition>
             </Menu>
             <Link href="/" className="flex items-center gap-2 md:gap-3">
-              <HeaderLogo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={`w-auto h-7 md:h-10 logo `} />
+              <HeaderLogo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={`w-auto h-4 md:h-7 logo `} />
             </Link>
           </div>
           <span className="flex-1"></span>
