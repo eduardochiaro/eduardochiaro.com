@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import { MoonIcon, ComputerDesktopIcon } from '@heroicons/react/24/solid';
+import { MoonIcon, ComputerDesktopIcon, SunIcon as SunIconSolid } from '@heroicons/react/24/solid';
 import { SunIcon } from '@heroicons/react/24/outline';
 import { useTheme } from 'next-themes';
 import { Menu, Transition } from '@headlessui/react';
@@ -50,7 +50,7 @@ export default function ThemeIcon({ orientation }) {
       setIconClass(
         resetClassColors.map((x) => {
           if (x.name === theme) {
-            x.className = 'text-secondary-600 dark:text-secondary-600 hover:text-primary-50 hover:dark:text-primary-50';
+            x.className = 'text-secondary-700 dark:text-secondary-600';
           }
           return x;
         }),
@@ -74,7 +74,10 @@ export default function ThemeIcon({ orientation }) {
         {inUseTheme === 'dark' ? (
           <MoonIcon className="w-6 text-primary-50 cursor-pointer rounded-full group-hover:fill-primary-800 transition-all duration-300" />
         ) : (
-          <SunIcon className="w-6 text-primary-800 cursor-pointer rounded-full group-hover:text-secondary-700 transition-all duration-300" />
+          <>
+          <SunIcon className="w-6 text-primary-800 cursor-pointer rounded-full group-hover:text-accent-500 transition-all duration-300 group-hover:hidden" />
+          <SunIconSolid className="w-6 text-primary-800 cursor-pointer rounded-full group-hover:text-accent-500 transition-all duration-300 hidden group-hover:block" />
+          </>
         )}
       </Menu.Button>
       <Transition
@@ -104,7 +107,7 @@ export default function ThemeIcon({ orientation }) {
                     data-cy={`change-mode-${item.name}`}
                     className={classNames(
                       `${item.className} py-2 px-4 cursor-pointer flex items-center gap-2 capitalize`,
-                      active ? 'bg-primary-300 dark:bg-primary-500' : '',
+                      active ? 'bg-primary-200 dark:bg-primary-500' : '',
                     )}
                     role="menuitem"
                     tabIndex="-1"
