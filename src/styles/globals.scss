@@ -122,3 +122,10 @@ input:checked + .toggle-bg {
 .dashed-border-r {
   @apply border-l dashed-border;
 }
+.active-url {
+  @apply relative;
+  &::after {
+    content: '';
+    @apply w-1/4 border-b-2 border-accent-600 dark:border-accent-500 absolute -bottom-1.5 left-1/2 transform -translate-x-1/2 -translate-y-1/2; 
+  }
+}

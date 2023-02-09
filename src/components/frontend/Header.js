@@ -105,8 +105,8 @@ export default function Header() {
                     <li key={`menu-link-${i}`}>
                       <NavLink
                         href={item.link}
-                        className={`${styles.menuUrl} hover:text-primary-900 dark:hover:text-primary-100 hover:underline opacity-60 hover:opacity-100`}
-                        activeClassName={`${styles.menuUrl} overlay-color`}
+                        className={`${styles.menuUrl}  hover:text-secondary-700 dark:hover:text-secondary-500`}
+                        activeClassName={`${styles.menuUrl} active-url`}
                         type="main"
                       >
                         <a>{item.text}</a>
