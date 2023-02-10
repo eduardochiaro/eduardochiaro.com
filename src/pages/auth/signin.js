@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import GitHub from '@/components/icons/github';
 import Google from '@/components/icons/google';
 import ThemeIcon from '@/components/ThemeIcon';
-import HeaderLogo from "@/components/icons/headerLogo";
+import HeaderLogo from '@/components/icons/headerLogo';
 
 const LogoProvider = ({ id }) => {
   switch (id) {

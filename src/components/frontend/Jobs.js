@@ -41,7 +41,9 @@ const groups = [
         <div className="grow">
           <div className="flex flex-row items-center">
             <span className="w-full dashed-border-t shrink"></span>
-            <div className="text-sm font-normal tracking-wide whitespace-nowrap mx-3">Projects done through <strong>Flixmedia LTD</strong></div>
+            <div className="text-sm font-normal tracking-wide whitespace-nowrap mx-3">
+              Projects done through <strong>Flixmedia LTD</strong>
+            </div>
             <span className="w-full dashed-border-t shrink"></span>
           </div>
         </div>

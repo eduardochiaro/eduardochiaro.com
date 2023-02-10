@@ -67,16 +67,14 @@ export default function ThemeIcon({ orientation }) {
       <Menu.Button
         title="change theme"
         data-cy="change-mode"
-        className={`rounded-full transition-all duration-300 group ease-in-out ${
-          inUseTheme === 'dark' ? 'hover:bg-primary-100' : ''
-        }`}
+        className={`rounded-full transition-all duration-300 group ease-in-out ${inUseTheme === 'dark' ? 'hover:bg-primary-100' : ''}`}
       >
         {inUseTheme === 'dark' ? (
           <MoonIcon className="w-6 text-primary-50 cursor-pointer rounded-full group-hover:fill-primary-800 transition-all duration-300" />
         ) : (
           <>
-          <SunIcon className="w-6 text-primary-800 cursor-pointer rounded-full group-hover:text-accent-500 transition-all duration-300 group-hover:hidden" />
-          <SunIconSolid className="w-6 text-primary-800 cursor-pointer rounded-full group-hover:text-accent-500 transition-all duration-300 hidden group-hover:block" />
+            <SunIcon className="w-6 text-primary-800 cursor-pointer rounded-full group-hover:text-accent-500 transition-all duration-300 group-hover:hidden" />
+            <SunIconSolid className="w-6 text-primary-800 cursor-pointer rounded-full group-hover:text-accent-500 transition-all duration-300 hidden group-hover:block" />
           </>
         )}
       </Menu.Button>
@@ -91,9 +89,7 @@ export default function ThemeIcon({ orientation }) {
       >
         <Menu.Items
           data-cy="change-mode-container"
-          className={`${orientationClass(
-            orientation,
-          )} transform absolute z-10 w-56 box-card divide-y divide-primary-200 dark:divide-primary-700`}
+          className={`${orientationClass(orientation)} transform absolute z-10 w-56 box-card divide-y divide-primary-200 dark:divide-primary-700`}
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="menu-button"

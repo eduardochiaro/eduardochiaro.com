@@ -40,7 +40,6 @@ const AdminResumeIndex = ({ formRef }) => {
   const [searchResults, setSearchResults] = useState([]);
   const [openMenu, setOpenMenu] = useState(false);
 
-
   useEffect(() => {
     const delayDebounceFn = setTimeout(async () => {
       setOpenMenu(false);

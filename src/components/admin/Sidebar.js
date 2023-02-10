@@ -8,7 +8,7 @@ import { useSession, signOut } from 'next-auth/react';
 import ThemeIcon from '../ThemeIcon';
 import Image from 'next/image';
 import classNames from '@/utils/classNames';
-import HeaderLogo from "../icons/headerLogo";
+import HeaderLogo from '../icons/headerLogo';
 
 const AdminSidebar = ({ menuList, isPageOpen }) => {
   const { data: session } = useSession();
@@ -21,7 +21,6 @@ const AdminSidebar = ({ menuList, isPageOpen }) => {
       <div className="flex flex-col justify-between min-h-screen bg-primary-200 dark:bg-primary-600 fixed">
         <div className="grow p-3 relative">
           <div className={`flex items-center gap-4 h-14 my-3 border-b border-primary-300 dark:border-primary-500 px-3 ${styles['sidebar-logo']}`}>
-
             <HeaderLogo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={`h-7 logo ${!openMenu ? 'hidden' : 'block'}`} />
             <div className={`text-5xl text-accent-600 font-mono mx-auto ${openMenu ? 'hidden' : 'block'}`}>•</div>
           </div>

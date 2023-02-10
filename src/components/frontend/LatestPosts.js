@@ -26,9 +26,7 @@ export default function LatestPosts() {
                         <div className="flex flex-row items-center">
                           <span className="w-full dashed-border-t shrink"></span>
                           <span className="w-4 dashed-border-t shrink"></span>
-                          <span className="text-sm font-mono whitespace-nowrap px-4">
-                            {moment(article.published).format('MM/DD/YYYY')}
-                          </span>
+                          <span className="text-sm font-mono whitespace-nowrap px-4">{moment(article.published).format('MM/DD/YYYY')}</span>
                           <span className="flex-none w-12 dashed-border-t"></span>
                         </div>
                       </div>

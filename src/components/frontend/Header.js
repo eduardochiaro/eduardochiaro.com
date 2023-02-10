@@ -79,10 +79,7 @@ export default function Header() {
                     })}
                   <div className="px-1 py-1 font-semibold text-secondary-700 dark:text-secondary-600">
                     <Menu.Item>
-                      <Link
-                        href="https://blog.eduardochiaro.com"
-                        className={`${styles.menuUrlMobile} text-primary-900 dark:text-primary-100`}
-                      >
+                      <Link href="https://blog.eduardochiaro.com" className={`${styles.menuUrlMobile} text-primary-900 dark:text-primary-100`}>
                         <RssIcon className={'h-5 text-accent-600 dark:text-accent-500 mr-1'} aria-hidden="true" />
                         .dev
                       </Link>
@@ -92,7 +89,7 @@ export default function Header() {
               </Transition>
             </Menu>
             <Link href="/" className="flex items-center gap-2 md:gap-3">
-              <HeaderLogo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={`w-auto h-4 md:h-7 logo `} />
+              <HeaderLogo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={'w-auto h-4 md:h-7 logo '} />
             </Link>
           </div>
           <span className="flex-1"></span>
