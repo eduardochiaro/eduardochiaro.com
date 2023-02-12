@@ -9,6 +9,7 @@ import ThemeIcon from '../ThemeIcon';
 import Image from 'next/image';
 import classNames from '@/utils/classNames';
 import HeaderLogo from '../icons/headerLogo';
+import Logo from "../icons/logo";
 
 const AdminSidebar = ({ menuList, isPageOpen }) => {
   const { data: session } = useSession();
@@ -22,9 +23,9 @@ const AdminSidebar = ({ menuList, isPageOpen }) => {
         <div className="grow p-3 relative">
           <div className={`flex items-center gap-4 h-14 my-3 border-b border-primary-300 dark:border-primary-500 px-3 ${styles['sidebar-logo']}`}>
             <HeaderLogo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={`h-7 logo ${!openMenu ? 'hidden' : 'block'}`} />
-            <div className={`text-5xl text-accent-600 font-mono mx-auto ${openMenu ? 'hidden' : 'block'}`}>•</div>
+            <Logo className={`h-8 mx-auto text-accent-600 dark:text-accent-500 ${openMenu ? 'hidden' : 'block'}`}/>
           </div>
-          <button onClick={() => setOpenMenu(!openMenu)} className="absolute top-4 right-4">
+          <button onClick={() => setOpenMenu(!openMenu)} className="absolute top-1 right-1">
             <Bars3BottomRightIcon className="w-5" />
           </button>
           <ul className="grow flex flex-col space-y-1 font-semibold tracking-wider">
@@ -68,7 +69,7 @@ const AdminSidebar = ({ menuList, isPageOpen }) => {
           </ul>
         </div>
         <div
-          className={`p-6 border-t border-primary-300 dark:border-primary-500 flex items-center justify-between gap-6 ${openMenu ? 'flex-row' : 'flex-col'}`}
+          className={`p-6 bg-primary-300 dark:bg-primary-500 flex items-center justify-between gap-6 ${openMenu ? 'flex-row' : 'flex-col'}`}
         >
           <Menu as="div" className="relative flex item-center">
             <Menu.Button className="h-7 w-7 relative rounded-full border-2 border-primary-800 dark:border-primary-400">

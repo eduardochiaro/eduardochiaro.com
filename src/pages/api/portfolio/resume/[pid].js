@@ -33,7 +33,25 @@ const handler = async (req, res) => {
         const form = new IncomingForm();
         form.parse(req, async (err, fields, files) => {
           if (err) return reject(err);
-          const { id, startDate, endDate, ...data } = fields;
+          const { id, company, name, description, startDate, endDate, tags, ...data } = fields;
+          const parsedTags = JSON.parse(tags);
+          const newTags = parsedTags.filter(x => x.new && x.id == null)?.map(x => { return { name: x.name }});
+          const appendTags = parsedTags.filter(x => x.new && x.id > 0)?.map(x => { return { id: x.id }});
+
+          const dataMap = {
+            name, 
+            company,
+            description,
+            startDate: startDate ? moment(startDate).toISOString() : null,
+            endDate: endDate ? moment(endDate).toISOString() : null,
+            updatedAt: new Date(),
+            tags: {
+              create: newTags,
+              connect: appendTags
+            }
+          }
+          //console.log(dataMap);
+          //return reject();
           if (files.logo) {
             const oldPath = files.logo.filepath;
             const extension = files.logo.originalFilename.split('.').pop();
@@ -43,29 +61,18 @@ const handler = async (req, res) => {
               console.error(err);
             });
             await rmFile(`${uploadPath}${resumeReturn.logo}`);
-            const resume = await prisma.resume.update({
-              where: { id: parseInt(id) },
-              data: {
-                ...data,
-                startDate: startDate ? moment(startDate).toISOString() : null,
-                endDate: endDate ? moment(endDate).toISOString() : null,
-                logo: newName,
-                updatedAt: new Date(),
-              },
-            });
-            res.status(200).json({ ...resume });
-          } else {
-            const resume = await prisma.resume.update({
-              where: { id: parseInt(id) },
-              data: {
-                ...data,
-                startDate: startDate ? moment(startDate).toISOString() : null,
-                endDate: endDate ? moment(endDate).toISOString() : null,
-                updatedAt: new Date(),
-              },
-            });
-            res.status(200).json({ ...resume });
+            dataMap.logo = newName;
           }
+
+          const resume = await prisma.resume.update({
+            where: { id: parseInt(id) },
+            data: dataMap,
+            include: {
+              tags: true,
+              projects: true
+            },
+          });
+          res.status(200).json({ ...resume });
         });
       });
       break;

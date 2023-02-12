@@ -24,11 +24,14 @@ body {
     @apply bg-emerald-500 dark:bg-secondary-500;
   }
 }
+.button {
+  @apply inline-flex justify-center py-1 px-2 border border-transparent shadow-sm text-sm font-medium rounded-md transition-colors ease-out duration-200 bg-primary-500 dark:bg-primary-50 text-primary-50 dark:text-primary-900
+}
 .button-success {
-  @apply inline-flex justify-center py-1 px-2 border border-transparent shadow-sm text-sm font-medium rounded-md transition-colors ease-out duration-200 bg-secondary-600 dark:bg-secondary-800 hover:bg-secondary-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-600 ring-offset-primary-50 dark:ring-offset-primary-800
+  @apply button text-primary-900 dark:text-primary-100 bg-secondary-600 dark:bg-secondary-800 hover:bg-secondary-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-600 ring-offset-primary-50 dark:ring-offset-primary-800
 }
 .button-danger {
-  @apply inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md transition-colors ease-out duration-200 text-primary-900 bg-accent-300 hover:bg-accent-500 focus:outline-none focus:ring-2 focus:ring-offset-2 ring-offset-primary-50 dark:ring-offset-primary-800 focus:ring-accent-500
+  @apply button text-primary-900 bg-accent-300 hover:bg-accent-500 focus:outline-none focus:ring-2 focus:ring-offset-2 ring-offset-primary-50 dark:ring-offset-primary-800 focus:ring-accent-500
 }
 //Admin tables
 table.admin-table {
@@ -108,6 +111,11 @@ input:checked + .toggle-bg {
 .logo {
   .accent path {
     @apply fill-accent-600 dark:fill-accent-500;
+  }
+}
+.logo-text {
+  .accent path {
+    @apply text-accent-600 dark:text-accent-500;
   }
 }
 .dashed-border {

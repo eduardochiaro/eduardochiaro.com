@@ -21,6 +21,7 @@ const AdminResumeIndex = ({ formRef }) => {
   const resumeFormat = {
     id: null,
     name: '',
+    company: '',
     description: '',
     logo: '',
     startDate: null,
@@ -49,8 +50,8 @@ const AdminResumeIndex = ({ formRef }) => {
         const tagSearch = await res.json();
         const currentTags = pluck(resume.tags, 'id');
         const tags = tagSearch.results.length > 0 ? tagSearch.results.filter((x) => !currentTags.includes(x.id)) : [];
+        setOpenMenu(true);
         if (tags.length > 0) {
-          setOpenMenu(true);
           setSearchResults(tags);
         }
       }
@@ -70,8 +71,8 @@ const AdminResumeIndex = ({ formRef }) => {
     const formData = new FormData();
 
     for (const [key, value] of Object.entries(resume)) {
-      if (key == 'logo') {
-        formData.append(key, value);
+      if (key == 'tags') {
+        formData.append(key, JSON.stringify(value));
       } else {
         formData.append(key, value);
       }
@@ -95,9 +96,9 @@ const AdminResumeIndex = ({ formRef }) => {
       .then(({ data }) => {
         inputFileRef.current.value = '';
         mutate();
-        const mergedData = mergeObj(resumeFormat, data);
-        setResume(mergedData);
-        closeModal();
+        setResume(data);
+        setFormSuccess(true);
+        //closeModal();
       });
   };
 
@@ -139,6 +140,7 @@ const AdminResumeIndex = ({ formRef }) => {
     setFormError(false);
     setFormSuccess(false);
     setOpenMenu(false);
+    setSearchTerm(false);
     setSearchResults([]);
   };
 
@@ -164,7 +166,7 @@ const AdminResumeIndex = ({ formRef }) => {
 
   const newData = [];
   resumes?.results.map((item) => {
-    const obj = { ...item };
+    const obj = { ...item, original: item };
     obj.updated = moment(item.updatedAt || item.createdAt).fromNow();
     obj.category_d =
       (item.startDate ? moment(item.startDate).format('YYYY-MM') : 'N/A') + ' - ' + (item.endDate ? moment(item.endDate).format('YYYY-MM') : 'Current');
@@ -244,8 +246,11 @@ const AdminResumeIndex = ({ formRef }) => {
                 </div>
               )}
               <div className="grid grid-cols-6 gap-6">
-                <div className="col-span-6">
-                  <Input label="Title" name="name" value={resume.name} onChange={handleChange} required={true} />
+                <div className="col-span-4">
+                  <Input label="Job Title" name="name" value={resume.name} onChange={handleChange} required={true} />
+                </div>
+                <div className="col-span-2">
+                  <Input label="Company" name="company" value={resume.company} onChange={handleChange} required={true} />
                 </div>
                 <div className="col-span-5 sm:col-span-4">
                   <label htmlFor="logo-url-form" className="input-label">
@@ -316,8 +321,8 @@ const AdminResumeIndex = ({ formRef }) => {
                     Tags {resume.tags.length}
                   </label>
                   <div className="input-field flex flex-wrap items-center gap-2 p-2 relative">
-                    {resume.tags?.map((tag) => (
-                      <span key={`tag-${tag.id}`} className={`text-xs rounded px-2 py-1 text-primary-100 ${tag.new ? 'bg-emerald-700' : 'bg-secondary-800'}`}>
+                    {resume.tags?.map((tag, key) => (
+                      <span key={`tag-${key}`} className={`text-xs rounded px-2 py-1 text-primary-100 ${tag.new ? 'bg-emerald-700' : 'bg-secondary-800'}`}>
                         {tag.name}
                       </span>
                     ))}
@@ -331,7 +336,7 @@ const AdminResumeIndex = ({ formRef }) => {
                         onChange={(e) => setSearchTerm(e.target.value)}
                       />
                       {openMenu && (
-                        <Menu.Items static className="absolute left-0 top-8 w-56 divide-y divide-primary-500 box-card">
+                        <Menu.Items static className="absolute left-0 top-8 w-56 divide-y divide-primary-300 dark:divide-primary-500 box-card">
                           {searchResults.map((tag, key) => (
                             <div className="px-1 py-1" key={key}>
                               <Menu.Item>
@@ -343,6 +348,16 @@ const AdminResumeIndex = ({ formRef }) => {
                               </Menu.Item>
                             </div>
                           ))}
+                          {searchResults.length ==0 && (
+                            <>
+                              <div className="px-1 py-5">
+                                <p className="text-center opacity-70">No results found</p>
+                              </div>
+                              <div className="p-3 text-center">
+                                <button type="button" className="button" onClick={() => addTag({ name: searchTerm, id: null})}>Add "<strong>{searchTerm}</strong>" as new tag</button>
+                              </div>
+                            </>
+                          )}
                         </Menu.Items>
                       )}
                     </Menu>
