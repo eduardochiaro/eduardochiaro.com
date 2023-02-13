@@ -102,11 +102,14 @@ export default function Header() {
                     <li key={`menu-link-${i}`}>
                       <NavLink
                         href={item.link}
-                        className={`${styles.menuUrl}  hover:text-secondary-700 dark:hover:text-secondary-500`}
+                        className={`${styles.menuUrl} hover:text-secondary-700 dark:hover:text-secondary-500`}
                         activeClassName={`${styles.menuUrl} active-url`}
                         type="main"
                       >
-                        <a>{item.text}</a>
+                        <a>
+                          {item.text}
+                          <span className="text-accent-600 dark:text-accent-500">.</span>
+                        </a>
                       </NavLink>
                     </li>
                   );
@@ -116,10 +119,10 @@ export default function Header() {
           <div className="hidden md:inline-block ml-12 mr-6 tracking-wider">
             <Link
               href="https://blog.eduardochiaro.com"
-              className="md:pr-0 pr-6 whitespace-nowrap text-base font-medium transition hover:underline flex items-center"
+              className="md:pr-0 pr-6 whitespace-nowrap text-base font-medium transition hover:underline flex items-center gap-1"
             >
-              <RssIcon className={'h-5 text-accent-600 dark:text-accent-500 mr-1'} aria-hidden="true" />
-              .dev
+              <span><span className="text-accent-600 dark:text-accent-500">.</span>dev</span>
+              <RssIcon className={'h-4 text-accent-600 dark:text-accent-500'} aria-hidden="true" />
             </Link>
           </div>
           <ThemeIcon />
