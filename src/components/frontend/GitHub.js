@@ -68,7 +68,7 @@ export default function GitHub() {
         <h3 className="font-header leading-tight tracking-wide text-2xl lg:text-3xl font-light">
           What I&apos;ve <span className="overlay-color">coded</span> recently...
         </h3>
-        <div id="github-list" className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-2 gap-4 xl:gap-8 mt-5 pb-10 px-2">
+        <div id="github-list" className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-2 gap-4 xl:gap-8 mt-5 pb-10">
           {items}
         </div>
       </div>

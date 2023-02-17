@@ -10,6 +10,7 @@ import useStaleSWR from '@/utils/staleSWR';
 
 import styles from '@/styles/Header.module.scss';
 import classNames from '@/utils/classNames';
+import Logo from "../icons/logo";
 
 export default function Header() {
   const router = useRouter();
@@ -39,60 +40,60 @@ export default function Header() {
   return (
     <header className={`${styles.header} bg-primary-50/95 dark:bg-primary-700/95`}>
       <nav className="w-full relative">
-        <div className="px-4 md:px-8 flex items-center h-12">
-          <div className="flex-none flex gap-4 font-header text-2xl">
-            <Menu as="div" className="inline-block md:hidden">
-              <Menu.Button title="open menu" className="inline-block md:hidden hover:cursor-pointer">
-                <Bars3BottomLeftIcon className={'w-7 inline-block transition hover:text-primary-900 dark:hover:text-primary-100'} />
-              </Menu.Button>
-              <Transition
-                as={Fragment}
-                enter="transition ease-out duration-200"
-                enterFrom="opacity-0 translate-y-1"
-                enterTo="opacity-100 translate-y-0"
-                leave="transition ease-in duration-150"
-                leaveFrom="opacity-100 translate-y-0"
-                leaveTo="opacity-0 translate-y-1"
-              >
-                <Menu.Items className="focus:outline-none absolute left-0 top-full w-full max-w-lg bg-primary-100 dark:bg-primary-700 shadow-2xl shadow-primary-600 ring-1 ring-primary-900 ring-opacity-10  divide-y divide-primary-400">
-                  {menuData
-                    .filter((x) => x.active)
-                    .map(function (item, i) {
-                      return (
-                        <div key={`menu-link-${i}`} className="px-1 py-1 font-semibold text-secondary-700 dark:text-secondary-600">
-                          <Menu.Item>
-                            {({ active }) => (
-                              <Link
-                                href={item.link}
-                                className={classNames(
-                                  styles.menuUrlMobile,
-                                  router.route == item.link ? '' : 'text-primary-900 dark:text-primary-100',
-                                  active ? 'bg-primary-300 dark:bg-primary-500' : '',
-                                )}
-                              >
-                                {item.text}
-                              </Link>
-                            )}
-                          </Menu.Item>
-                        </div>
-                      );
-                    })}
-                  <div className="px-1 py-1 font-semibold text-secondary-700 dark:text-secondary-600">
-                    <Menu.Item>
-                      <Link href="https://blog.eduardochiaro.com" className={`${styles.menuUrlMobile} text-primary-900 dark:text-primary-100`}>
-                        <RssIcon className={'h-5 text-accent-600 dark:text-accent-500 mr-1'} aria-hidden="true" />
-                        .dev
-                      </Link>
-                    </Menu.Item>
-                  </div>
-                </Menu.Items>
-              </Transition>
-            </Menu>
-            <Link href="/" className="flex items-center gap-2 md:gap-3">
-              <HeaderLogo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={'w-auto h-4 md:h-7 logo '} />
+        <div className="px-4 md:px-8 flex items-center gap-4 h-12">
+          <Menu as="div" className="inline-block md:hidden">
+            <Menu.Button title="open menu" className="inline-block md:hidden hover:cursor-pointer">
+              <Bars3BottomLeftIcon className={'w-7 inline-block transition hover:text-primary-900 dark:hover:text-primary-100'} />
+            </Menu.Button>
+            <Transition
+              as={Fragment}
+              enter="transition ease-out duration-200"
+              enterFrom="opacity-0 translate-y-1"
+              enterTo="opacity-100 translate-y-0"
+              leave="transition ease-in duration-150"
+              leaveFrom="opacity-100 translate-y-0"
+              leaveTo="opacity-0 translate-y-1"
+            >
+              <Menu.Items className="focus:outline-none absolute left-0 top-full w-full max-w-lg bg-primary-200 dark:bg-primary-600 shadow-2xl shadow-primary-600 ring-1 ring-primary-900 ring-opacity-10  divide-y divide-primary-400">
+                {menuData
+                  .filter((x) => x.active)
+                  .map(function (item, i) {
+                    return (
+                      <div key={`menu-link-${i}`} className="px-1 py-1 font-semibold text-secondary-700 dark:text-secondary-600">
+                        <Menu.Item>
+                          {({ active }) => (
+                            <Link
+                              href={item.link}
+                              className={classNames(
+                                styles.menuUrlMobile,
+                                router.route == item.link ? '' : 'text-primary-900 dark:text-primary-100',
+                                active ? 'bg-primary-300 dark:bg-primary-500' : '',
+                              )}
+                            >
+                              {item.text}
+                            </Link>
+                          )}
+                        </Menu.Item>
+                      </div>
+                    );
+                  })}
+                <div className="px-1 py-1 font-semibold text-secondary-700 dark:text-secondary-600">
+                  <Menu.Item>
+                    <Link href="https://blog.eduardochiaro.com" className={`${styles.menuUrlMobile} text-primary-900 dark:text-primary-100`}>
+                      <RssIcon className={'h-5 text-accent-600 dark:text-accent-500 mr-1'} aria-hidden="true" />
+                      .dev
+                    </Link>
+                  </Menu.Item>
+                </div>
+              </Menu.Items>
+            </Transition>
+          </Menu>
+          <span className="grow text-center md:text-left">
+            <Link href="/" className="inline-flex items-center gap-2 md:gap-3">
+              <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={`h-7  text-accent-600 dark:text-accent-500`}/>
+              <span className={`text-3xl font-header font-semibold hidden md:block`}>Eduardo Chiaro</span>
             </Link>
-          </div>
-          <span className="flex-1"></span>
+          </span>
           <div className="hidden md:flex items-center">
             <ul className="md:flex font-semibold tracking-wider mx-auto">
               {menuData
@@ -108,7 +109,6 @@ export default function Header() {
                       >
                         <a>
                           {item.text}
-                          <span className="text-accent-600 dark:text-accent-500">.</span>
                         </a>
                       </NavLink>
                     </li>

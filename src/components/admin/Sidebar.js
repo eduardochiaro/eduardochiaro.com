@@ -22,8 +22,8 @@ const AdminSidebar = ({ menuList, isPageOpen }) => {
       <div className="flex flex-col justify-between min-h-screen bg-primary-200 dark:bg-primary-600 fixed">
         <div className="grow p-3 relative">
           <div className={`flex items-center gap-4 h-14 my-3 border-b border-primary-300 dark:border-primary-500 px-3 ${styles['sidebar-logo']}`}>
-            <HeaderLogo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={`h-7 logo ${!openMenu ? 'hidden' : 'block'}`} />
-            <Logo className={`h-8 mx-auto text-accent-600 dark:text-accent-500 ${openMenu ? 'hidden' : 'block'}`}/>
+            <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={`h-8 mx-auto text-accent-600 dark:text-accent-500`}/>
+            <span className={`text-3xl font-header font-semibold ${!openMenu ? 'hidden' : 'block'}`}>Admin</span>
           </div>
           <button onClick={() => setOpenMenu(!openMenu)} className="absolute top-1 right-1">
             <Bars3BottomRightIcon className="w-5" />

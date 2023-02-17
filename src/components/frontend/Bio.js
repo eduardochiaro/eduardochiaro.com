@@ -2,19 +2,23 @@ import moment from 'moment';
 import * as React from 'react';
 import { CodeBracketIcon } from '@heroicons/react/24/solid';
 
+// pull bio from contentful api endpoint
+
+
+
 export default function Bio() {
   return (
     <section id="bio-component" className="px-4 lg:px-0 mt-8 md:mt-10">
       <span className="anchor" name="top" />
-      <div className="max-w-5xl mx-auto tracking-wide px-2">
-        <h1 className="font-header md:leading-loose tracking-wide text-3xl lg:text-5xl xl:text-8xl font-bold">
+      <div className="max-w-5xl mx-auto tracking-wide">
+        <h1 className="font-header md:leading-loose tracking-wide text-5xl xl:text-8xl font-bold">
           Hi!
           <br />
           I&apos;m Eduardo
         </h1>
-        <h2 className="font-header md:leading-loose tracking-wide text-3xl lg:text-5xl xl:text-6xl font-bold pt-4 pb-5 md:pb-8 flex items-center gap-4">
-          <CodeBracketIcon className="inline-block w-8 lg:w-16 text-emerald-400" />
-          <span className="bg-gradient-to-r from-blue-400 via-emerald-500 to-accent-600 dark:to-accent-500 bg-clip-text text-transparent">
+        <h2 className="font-header md:leading-loose tracking-wide text-2xl lg:text-5xl xl:text-6xl font-bold pt-4 pb-5 md:pb-8 flex items-center gap-4">
+          <CodeBracketIcon className="hidden md:inline-block w-8 lg:w-16 text-emerald-400" />
+          <span className="bg-gradient-to-r from-blue-400 via-emerald-500 dark:via-emerald-300 to-accent-600 dark:to-accent-500 bg-clip-text text-transparent">
             Software Developer since 2005
           </span>
         </h2>
