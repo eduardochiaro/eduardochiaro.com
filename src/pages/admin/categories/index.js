@@ -121,6 +121,7 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
     const obj = { ...item, original: item };
     obj.updated = moment(item.updatedAt || item.createdAt).fromNow();
     obj.category_d = item.type;
+    obj.description = `used in ${item.bookmarks?.length} bookmark(s)`;
     newData.push(obj);
   });
 
