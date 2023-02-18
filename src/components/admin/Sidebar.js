@@ -2,14 +2,23 @@ import { Fragment, useEffect, useState } from 'react';
 import Link from 'next/link';
 import NavLink from '@/components/NavLink';
 import styles from '@/styles/Admin.Sidebar.module.scss';
-import { ArrowLeftCircleIcon, Bars3BottomRightIcon, HomeIcon } from '@heroicons/react/24/solid';
+import { ArrowLeftCircleIcon, Bars3BottomRightIcon, CodeBracketIcon, HomeIcon } from '@heroicons/react/24/solid';
 import { Menu, Transition } from '@headlessui/react';
 import { useSession, signOut } from 'next-auth/react';
 import ThemeIcon from '../ThemeIcon';
 import Image from 'next/image';
 import classNames from '@/utils/classNames';
-import HeaderLogo from '../icons/headerLogo';
 import Logo from "../icons/logo";
+
+const SidebarDivider = ( {title, openMenu} ) => (
+  <li>
+    <div className="flex flex-row items-center h-8">
+      <span className="w-10 dashed-border-t shrink"></span>
+      <div className={`text-sm font-light tracking-wide mx-3 ${openMenu ? '' : styles['hide-when-closed']}`}>{title}</div>
+      <span className="w-full dashed-border-t shrink"></span>
+    </div>
+  </li>
+)
 
 const AdminSidebar = ({ menuList, isPageOpen }) => {
   const { data: session } = useSession();
@@ -31,40 +40,51 @@ const AdminSidebar = ({ menuList, isPageOpen }) => {
           <ul className="grow flex flex-col space-y-1 font-semibold tracking-wider">
             <li>
               <Link
-                href="/"
+                href="/admin"
                 className={`${styles['sidebar-link']} group border-transparent hover:border-secondary-600 dark:hover:border-secondary-600`}
                 alt="Website"
                 title="Website"
               >
                 <HomeIcon className="w-5 group-hover:text-secondary-600 dark:group-hover:text-secondary-600" />
                 <span className={`text-sm tracking-wide truncate group-hover:hunderline hidden xl:block ${openMenu ? '' : styles['hide-when-closed']}`}>
-                  Website
+                  Dashboard
                 </span>
               </Link>
             </li>
             <li>
-              <div className="flex flex-row items-center h-8">
-                <span className="w-10 dashed-border-t shrink"></span>
-                <div className={`text-sm font-light tracking-wide mx-3 ${openMenu ? '' : styles['hide-when-closed']}`}>Menu</div>
-                <span className="w-full dashed-border-t shrink"></span>
-              </div>
+              <Link
+                href="/"
+                className={`${styles['sidebar-link']} group border-transparent hover:border-secondary-600 dark:hover:border-secondary-600`}
+                alt="Website"
+                title="Website"
+              >
+                <CodeBracketIcon className="w-5 group-hover:text-secondary-600 dark:group-hover:text-secondary-600" />
+                <span className={`text-sm tracking-wide truncate group-hover:hunderline hidden xl:block ${openMenu ? '' : styles['hide-when-closed']}`}>
+                  Website
+                </span>
+              </Link>
             </li>
             {menuList.map((item) => (
-              <li key={item.title}>
-                <NavLink
-                  href={item.href}
-                  as={item.href}
-                  className={`${styles['sidebar-link']} group border-transparent `}
-                  activeClassName={`${styles['sidebar-link']} group bg-primary-50 dark:bg-primary-800 rounded-md`}
-                >
-                  <a className="flex items-center gap-2" alt={item.title} title={item.title}>
-                    {item.icon}
-                    <span className={`text-sm tracking-wide truncate group-hover:hunderline hidden xl:block ${openMenu ? '' : styles['hide-when-closed']}`}>
-                      {item.title}
-                    </span>
-                  </a>
-                </NavLink>
-              </li>
+            <>
+            <SidebarDivider title={item.title} openMenu={openMenu} />
+            {item.links.map((link) => (
+            <li key={item.title}>
+              <NavLink
+                href={link.href}
+                as={link.href}
+                className={`${styles['sidebar-link']} group border-transparent `}
+                activeClassName={`${styles['sidebar-link']} group bg-primary-50 dark:bg-primary-800 rounded-md`}
+              >
+                <a className="flex items-center gap-2" alt={link.title} title={link.title}>
+                  {link.icon}
+                  <span className={`text-sm tracking-wide truncate group-hover:hunderline hidden xl:block ${openMenu ? '' : styles['hide-when-closed']}`}>
+                    {link.title}
+                  </span>
+                </a>
+              </NavLink>
+            </li>
+            ))}
+            </>
             ))}
           </ul>
         </div>
