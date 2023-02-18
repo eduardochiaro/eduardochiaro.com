@@ -20,22 +20,41 @@ const handler = async (req, res) => {
       const form = new IncomingForm();
       form.parse(req, async (err, fields, files) => {
         if (err) return reject(err);
-        const oldPath = files.logo.filepath;
-        const extension = files.logo.originalFilename.split('.').pop();
-        const newName = files.logo.newFilename + '.' + extension;
-        const newPath = `${uploadPath}${newName}`;
-        mv(oldPath, newPath, function (err) {
-          console.error(err);
-        });
-        const { id, startDate, endDate, ...data } = fields;
+        const { id, company, name, description, startDate, endDate, tags, ...data } = fields;
+        const parsedTags = JSON.parse(tags);
+        const newTags = parsedTags.filter(x => x.new && !x.deleted && x.id == null)?.map(x => { return { name: x.name }});
+        const appendTags = parsedTags.filter(x => x.new && !x.deleted && x.id > 0)?.map(x => { return { id: x.id }});
+
+        const dataMap = {
+          name, 
+          company,
+          description,
+          startDate: startDate ? moment(startDate).toISOString() : null,
+          endDate: endDate ? moment(endDate).toISOString() : null,
+          updatedAt: new Date(),
+          tags: {
+            create: newTags,
+            connect: appendTags
+          }
+        }
+
+        if (files.logo) {
+          const oldPath = files.logo.filepath;
+          const extension = files.logo.originalFilename.split('.').pop();
+          const newName = files.logo.newFilename + '.' + extension;
+          const newPath = `${uploadPath}${newName}`;
+          mv(oldPath, newPath, function (err) {
+            console.error(err);
+          });
+          dataMap.logo = newName;
+        }
+
         const resume = await prisma.resume.create({
-          data: {
-            ...data,
-            startDate: startDate ? moment(startDate).toISOString() : null,
-            endDate: endDate ? moment(endDate).toISOString() : null,
-            logo: newName,
-            createdAt: new Date(),
-          },
+          data: dataMap,
+          include: {
+            tags: true,
+            projects: true
+          }
         });
         res.status(200).json({ ...resume });
       });

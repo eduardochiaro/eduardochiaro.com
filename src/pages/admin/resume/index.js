@@ -9,10 +9,11 @@ import useStaleSWR from '@/utils/staleSWR';
 import moment from 'moment';
 import List from '@/components/admin/List';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
-import { CheckIcon, ChevronLeftIcon, TrashIcon } from '@heroicons/react/24/solid';
+import { CheckIcon, ChevronLeftIcon, TrashIcon, XCircleIcon } from '@heroicons/react/24/solid';
 import { Menu } from '@headlessui/react';
 import pluck from '@/utils/pluck';
 import { Input } from '@/components/form';
+import React from 'react';
 
 const AdminResumeIndex = ({ formRef }) => {
   const { mutate, data: resumes, error } = useStaleSWR('/api/portfolio/resume');
@@ -188,6 +189,20 @@ const AdminResumeIndex = ({ formRef }) => {
     setResume({ ...resume });
   };
 
+  const removeTag = (key) => {
+    // remove tags from resume using index key
+    const tag = resume.tags[key];
+    if (tag.new) {
+      resume.tags.splice(key, 1);
+    } else {
+      tag.deleted = true;
+      resume.tags[key] = tag;
+    }
+
+    setResume({ ...resume });
+  };
+
+
   if (session) {
     return (
       <AdminWrapper isPageOpen={isOpen}>
@@ -318,14 +333,21 @@ const AdminResumeIndex = ({ formRef }) => {
                 </div>
                 <div className="col-span-6">
                   <label htmlFor="tags-form" className="input-label">
-                    Tags {resume.tags.length}
+                    Tags ({resume.tags.length})
                   </label>
                   <div className="input-field flex flex-wrap items-center gap-2 p-2 relative">
                     {resume.tags?.map((tag, key) => (
-                      <span key={`tag-${key}`} className={`text-xs rounded px-2 py-1 text-primary-100 ${tag.new ? 'bg-emerald-700' : 'bg-secondary-800'}`}>
-                        {tag.name}
+                      <React.Fragment key={`tag-${key}`}>
+                      { (!tag.deleted) && (
+                      <span className="relative group">
+                        <span className={`text-xs rounded px-2 py-1 text-primary-100 ${tag.new ? 'bg-emerald-700' : 'bg-secondary-800'}`}>
+                          {tag.name}
+                        </span>
+                        <XCircleIcon className="hidden group-hover:block h-4 w-4 absolute -top-2 -right-2 text-primary-100 cursor-pointer" onClick={() => removeTag(key)} />
                       </span>
-                    ))}
+                      )}
+                      </React.Fragment>
+                      ))}
                     <Menu as="div" className="relative grow inline-block text-left">
                       <input
                         ref={inputSearchRef}
