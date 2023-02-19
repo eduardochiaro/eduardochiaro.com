@@ -10,7 +10,7 @@ import useStaleSWR from '@/utils/staleSWR';
 
 import styles from '@/styles/Header.module.scss';
 import classNames from '@/utils/classNames';
-import Logo from "../icons/logo";
+import Logo from '../icons/logo';
 
 export default function Header() {
   const router = useRouter();
@@ -90,8 +90,8 @@ export default function Header() {
           </Menu>
           <span className="grow text-center md:text-left">
             <Link href="/" className="inline-flex items-center gap-2 md:gap-3">
-              <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={`h-7  text-accent-600 dark:text-accent-500`}/>
-              <span className={`text-3xl font-header font-semibold hidden md:block`}>Eduardo Chiaro</span>
+              <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={'h-7  text-accent-600 dark:text-accent-500'} />
+              <span className={'text-3xl font-header font-semibold hidden md:block'}>Eduardo Chiaro</span>
             </Link>
           </span>
           <div className="hidden md:flex items-center">
@@ -107,9 +107,7 @@ export default function Header() {
                         activeClassName={`${styles.menuUrl} active-url`}
                         type="main"
                       >
-                        <a>
-                          {item.text}
-                        </a>
+                        <a>{item.text}</a>
                       </NavLink>
                     </li>
                   );
@@ -121,7 +119,9 @@ export default function Header() {
               href="https://blog.eduardochiaro.com"
               className="md:pr-0 pr-6 whitespace-nowrap text-base font-medium transition hover:underline flex items-center gap-1"
             >
-              <span><span className="text-accent-600 dark:text-accent-500">.</span>dev</span>
+              <span>
+                <span className="text-accent-600 dark:text-accent-500">.</span>dev
+              </span>
               <RssIcon className={'h-4 text-accent-600 dark:text-accent-500'} aria-hidden="true" />
             </Link>
           </div>

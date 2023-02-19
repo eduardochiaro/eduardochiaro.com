@@ -12,8 +12,8 @@ const handler = async (req, res) => {
       jobs: {
         where: {
           deletedAt: null,
-        }
-      }
+        },
+      },
     },
   });
   res.status(200).json({ results: tags });

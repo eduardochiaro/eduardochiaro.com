@@ -9,7 +9,7 @@ const handler = async (req, res) => {
       deletedAt: null,
     },
     include: {
-      bookmarks: true
+      bookmarks: true,
     },
   });
   res.status(200).json({ results: categories });

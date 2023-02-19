@@ -8,9 +8,9 @@ import { useSession, signOut } from 'next-auth/react';
 import ThemeIcon from '../ThemeIcon';
 import Image from 'next/image';
 import classNames from '@/utils/classNames';
-import Logo from "../icons/logo";
+import Logo from '../icons/logo';
 
-const SidebarDivider = ( {title, openMenu} ) => (
+const SidebarDivider = ({ title, openMenu }) => (
   <li>
     <div className="flex flex-row items-center h-8">
       <span className="w-10 dashed-border-t shrink"></span>
@@ -18,7 +18,7 @@ const SidebarDivider = ( {title, openMenu} ) => (
       <span className="w-full dashed-border-t shrink"></span>
     </div>
   </li>
-)
+);
 
 const AdminSidebar = ({ menuList, isPageOpen }) => {
   const { data: session } = useSession();
@@ -31,7 +31,7 @@ const AdminSidebar = ({ menuList, isPageOpen }) => {
       <div className="flex flex-col justify-between min-h-screen bg-primary-200 dark:bg-primary-600 fixed">
         <div className="grow p-3 relative">
           <div className={`flex items-center gap-4 h-14 my-3 border-b border-primary-300 dark:border-primary-500 px-3 ${styles['sidebar-logo']}`}>
-            <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={`h-8 mx-auto text-accent-600 dark:text-accent-500`}/>
+            <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={'h-8 mx-auto text-accent-600 dark:text-accent-500'} />
             <span className={`text-3xl font-header font-semibold ${!openMenu ? 'hidden' : 'block'}`}>Admin</span>
           </div>
           <button onClick={() => setOpenMenu(!openMenu)} className="absolute top-1 right-1">
@@ -64,33 +64,31 @@ const AdminSidebar = ({ menuList, isPageOpen }) => {
                 </span>
               </Link>
             </li>
-            {menuList.map((item) => (
-            <>
-            <SidebarDivider title={item.title} openMenu={openMenu} />
-            {item.links.map((link) => (
-            <li key={item.title}>
-              <NavLink
-                href={link.href}
-                as={link.href}
-                className={`${styles['sidebar-link']} group border-transparent `}
-                activeClassName={`${styles['sidebar-link']} group bg-primary-50 dark:bg-primary-800 rounded-md`}
-              >
-                <a className="flex items-center gap-2" alt={link.title} title={link.title}>
-                  {link.icon}
-                  <span className={`text-sm tracking-wide truncate group-hover:hunderline hidden xl:block ${openMenu ? '' : styles['hide-when-closed']}`}>
-                    {link.title}
-                  </span>
-                </a>
-              </NavLink>
-            </li>
-            ))}
-            </>
+            {menuList.map((item, key) => (
+              <Fragment key={`group-${key}`}>
+                <SidebarDivider title={item.title} openMenu={openMenu} />
+                {item.links.map((link, index) => (
+                  <li key={`menu-${index}`}>
+                    <NavLink
+                      href={link.href}
+                      as={link.href}
+                      className={`${styles['sidebar-link']} group border-transparent `}
+                      activeClassName={`${styles['sidebar-link']} group bg-primary-50 dark:bg-primary-800 rounded-md`}
+                    >
+                      <a className="flex items-center gap-2" alt={link.title} title={link.title}>
+                        {link.icon}
+                        <span className={`text-sm tracking-wide truncate group-hover:hunderline hidden xl:block ${openMenu ? '' : styles['hide-when-closed']}`}>
+                          {link.title}
+                        </span>
+                      </a>
+                    </NavLink>
+                  </li>
+                ))}
+              </Fragment>
             ))}
           </ul>
         </div>
-        <div
-          className={`p-6 bg-primary-300 dark:bg-primary-500 flex items-center justify-between gap-6 ${openMenu ? 'flex-row' : 'flex-col'}`}
-        >
+        <div className={`p-6 bg-primary-300 dark:bg-primary-500 flex items-center justify-between gap-6 ${openMenu ? 'flex-row' : 'flex-col'}`}>
           <Menu as="div" className="relative flex item-center">
             <Menu.Button className="h-7 w-7 relative rounded-full border-2 border-primary-800 dark:border-primary-400">
               <Image

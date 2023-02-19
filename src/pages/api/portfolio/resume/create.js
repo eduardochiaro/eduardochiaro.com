@@ -22,11 +22,19 @@ const handler = async (req, res) => {
         if (err) return reject(err);
         const { id, company, name, description, startDate, endDate, tags, ...data } = fields;
         const parsedTags = JSON.parse(tags);
-        const newTags = parsedTags.filter(x => x.new && !x.deleted && x.id == null)?.map(x => { return { name: x.name }});
-        const appendTags = parsedTags.filter(x => x.new && !x.deleted && x.id > 0)?.map(x => { return { id: x.id }});
+        const newTags = parsedTags
+          .filter((x) => x.new && !x.deleted && x.id == null)
+          ?.map((x) => {
+            return { name: x.name };
+          });
+        const appendTags = parsedTags
+          .filter((x) => x.new && !x.deleted && x.id > 0)
+          ?.map((x) => {
+            return { id: x.id };
+          });
 
         const dataMap = {
-          name, 
+          name,
           company,
           description,
           startDate: startDate ? moment(startDate).toISOString() : null,
@@ -34,9 +42,9 @@ const handler = async (req, res) => {
           updatedAt: new Date(),
           tags: {
             create: newTags,
-            connect: appendTags
-          }
-        }
+            connect: appendTags,
+          },
+        };
 
         if (files.logo) {
           const oldPath = files.logo.filepath;
@@ -53,8 +61,8 @@ const handler = async (req, res) => {
           data: dataMap,
           include: {
             tags: true,
-            projects: true
-          }
+            projects: true,
+          },
         });
         res.status(200).json({ ...resume });
       });

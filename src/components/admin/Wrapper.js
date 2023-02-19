@@ -36,8 +36,8 @@ const menuList = [
         href: '/admin/resume',
         description: 'Manage entries on Resume section in Homepage',
         classColor: 'bg-emerald-700',
-      }
-    ]
+      },
+    ],
   },
   {
     title: 'Sytem',
@@ -62,9 +62,9 @@ const menuList = [
         href: '/admin/tags',
         description: 'Manage tags used in resume',
         classColor: 'bg-accent-700',
-      }
-    ]
-  }
+      },
+    ],
+  },
 ];
 
 export { menuList };
@@ -72,19 +72,19 @@ export { menuList };
 const AdminWrapper = ({ children, isPageOpen }) => {
   return (
     <>
-    <Head>
-      <title>Eduardo Chiaro | Admin</title>
-    </Head>
-    <div className="w-full h-full antialiased bg-primary-100 dark:bg-primary-800">
-      <div className="flex flex-no-wrap">
-        <AdminSidebar menuList={menuList} isPageOpen={isPageOpen} />
-        {React.Children.map(children, (child) => {
-          if (child.type !== AdminWrapprerHeader) {
-            return React.cloneElement(child);
-          }
-        })}
+      <Head>
+        <title>Eduardo Chiaro | Admin</title>
+      </Head>
+      <div className="w-full h-full antialiased bg-primary-100 dark:bg-primary-800">
+        <div className="flex flex-no-wrap">
+          <AdminSidebar menuList={menuList} isPageOpen={isPageOpen} />
+          {React.Children.map(children, (child) => {
+            if (child.type !== AdminWrapprerHeader) {
+              return React.cloneElement(child);
+            }
+          })}
+        </div>
       </div>
-    </div>
     </>
   );
 };

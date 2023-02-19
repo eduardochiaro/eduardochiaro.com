@@ -15,7 +15,7 @@ const handler = async (req, res) => {
 
   const resumeTagReturn = await prisma.resumeTag.findFirst({
     where: {
-      id: parseInt(pid)
+      id: parseInt(pid),
     },
   });
   if (!resumeTagReturn) {
@@ -38,7 +38,7 @@ const handler = async (req, res) => {
       break;
     case 'DELETE':
       await prisma.resumeTag.delete({
-        where: { id: parseInt(pid) }
+        where: { id: parseInt(pid) },
       });
       res.status(200).json({ action: 'resume tag deleted' });
       break;

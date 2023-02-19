@@ -169,10 +169,11 @@ const AdminResumeIndex = ({ formRef }) => {
   resumes?.results.map((item) => {
     const obj = { ...item, original: item };
     obj.updated = moment(item.updatedAt || item.createdAt).fromNow();
+    obj.startDateOrder = moment(item.startDate).unix();
     obj.category_d =
       (item.startDate ? moment(item.startDate).format('YYYY-MM') : 'N/A') + ' - ' + (item.endDate ? moment(item.endDate).format('YYYY-MM') : 'Current');
     obj.image_d = item.logo ? (
-      <SVG alt={item.name} className={'object-cover w-16 fill-primary-700 dark:fill-primary-200'} src={`/uploads/${item.logo}`} height={25} />
+      <SVG alt={item.name} className={'w-full fill-primary-700 dark:fill-primary-200'} src={`/uploads/${item.logo}`} height={25} />
     ) : null;
     newData.push(obj);
   });
@@ -202,6 +203,24 @@ const AdminResumeIndex = ({ formRef }) => {
     setResume({ ...resume });
   };
 
+  const sortType = [
+    {
+      id: 'startDateOrder',
+      name: 'Start date',
+    },
+    {
+      id: 'id',
+      name: 'ID',
+    },
+    {
+      id: 'name',
+      name: 'Role',
+    },
+    {
+      id: 'updatedAt',
+      name: 'Update date',
+    },
+  ];
 
   if (session) {
     return (
@@ -216,6 +235,9 @@ const AdminResumeIndex = ({ formRef }) => {
             openAction={openElement}
             editAction={openElement}
             activeId={resume.id}
+            sortDefault="startDateOrder"
+            sortList={sortType}
+            sortDirectionDefault="desc"
           />
         </div>
         <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6 min-h-screen ${isOpen ? '' : 'hidden'}`}>
@@ -338,16 +360,17 @@ const AdminResumeIndex = ({ formRef }) => {
                   <div className="input-field flex flex-wrap items-center gap-2 p-2 relative">
                     {resume.tags?.map((tag, key) => (
                       <React.Fragment key={`tag-${key}`}>
-                      { (!tag.deleted) && (
-                      <span className="relative group">
-                        <span className={`text-xs rounded px-2 py-1 text-primary-100 ${tag.new ? 'bg-emerald-700' : 'bg-secondary-800'}`}>
-                          {tag.name}
-                        </span>
-                        <XCircleIcon className="hidden group-hover:block h-4 w-4 absolute -top-2 -right-2 text-primary-100 cursor-pointer" onClick={() => removeTag(key)} />
-                      </span>
-                      )}
+                        {!tag.deleted && (
+                          <span className="relative group">
+                            <span className={`text-xs rounded px-2 py-1 text-primary-100 ${tag.new ? 'bg-emerald-700' : 'bg-secondary-800'}`}>{tag.name}</span>
+                            <XCircleIcon
+                              className="hidden group-hover:block h-4 w-4 absolute -top-2 -right-2 text-primary-100 cursor-pointer"
+                              onClick={() => removeTag(key)}
+                            />
+                          </span>
+                        )}
                       </React.Fragment>
-                      ))}
+                    ))}
                     <Menu as="div" className="relative grow inline-block text-left">
                       <input
                         ref={inputSearchRef}
@@ -370,13 +393,15 @@ const AdminResumeIndex = ({ formRef }) => {
                               </Menu.Item>
                             </div>
                           ))}
-                          {searchResults.length ==0 && (
+                          {searchResults.length == 0 && (
                             <>
                               <div className="px-1 py-5">
                                 <p className="text-center opacity-70">No results found</p>
                               </div>
                               <div className="p-3 text-center">
-                                <button type="button" className="button" onClick={() => addTag({ name: searchTerm, id: null})}>Add "<strong>{searchTerm}</strong>" as new tag</button>
+                                <button type="button" className="button" onClick={() => addTag({ name: searchTerm, id: null })}>
+                                  Add &quot;<strong>{searchTerm}</strong>&quot; as new tag
+                                </button>
                               </div>
                             </>
                           )}

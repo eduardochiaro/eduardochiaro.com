@@ -4,8 +4,6 @@ import { CodeBracketIcon } from '@heroicons/react/24/solid';
 
 // pull bio from contentful api endpoint
 
-
-
 export default function Bio() {
   return (
     <section id="bio-component" className="px-4 lg:px-0 mt-8 md:mt-10">

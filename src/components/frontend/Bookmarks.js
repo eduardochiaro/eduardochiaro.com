@@ -35,7 +35,7 @@ export default function Bookmarks() {
       <div className="grow"></div>
       <section id="work" className={'grow px-4 lg:px-0 mt-10 max-w-5xl mx-auto'}>
         <h1 className="font-header leading-tight tracking-wide text-2xl lg:text-3xl font-light">Bookmarks</h1>
-        <div >
+        <div>
           {uniqueCategories.map((category, index) => (
             <div key={index} className="group/list">
               <span className="anchor" id={`bookmarks-${index}`} />

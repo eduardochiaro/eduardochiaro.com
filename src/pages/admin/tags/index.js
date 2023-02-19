@@ -124,6 +124,17 @@ const AdminTagsIndex = ({ formRef, images }) => {
   const title = 'Tags';
   const single = 'tag';
 
+  const sortType = [
+    {
+      id: 'id',
+      name: 'ID',
+    },
+    {
+      id: 'name',
+      name: 'Name',
+    }
+  ];
+
   if (session) {
     return (
       <AdminWrapper isPageOpen={isOpen}>
@@ -137,6 +148,7 @@ const AdminTagsIndex = ({ formRef, images }) => {
             openAction={openElement}
             editAction={openElement}
             activeId={tag.id}
+            sortList={sortType}
           />
         </div>
         <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6 min-h-screen ${isOpen ? '' : 'hidden'}`}>
@@ -152,13 +164,7 @@ const AdminTagsIndex = ({ formRef, images }) => {
             </a>
             <h2 className="text-2xl flex items-center gap-2">{tag.id ? 'Edit tag' : 'Add new tag'}</h2>
             <div className="flex items-center gap-4">
-              <a
-                href="#"
-                className="text-sm text-red-500 font-semibold hover:underline"
-                onClick={() => openDeleteModal(tag)}
-                role="menuitem"
-                tabIndex="-1"
-              >
+              <a href="#" className="text-sm text-red-500 font-semibold hover:underline" onClick={() => openDeleteModal(tag)} role="menuitem" tabIndex="-1">
                 <TrashIcon className="inline-flex align-text-bottom h-4 mr-1" />
                 Delete
               </a>

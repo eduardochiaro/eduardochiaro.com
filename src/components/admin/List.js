@@ -1,5 +1,51 @@
-import { PlusIcon, TagIcon, XMarkIcon } from '@heroicons/react/24/solid';
+import { PlusIcon, XMarkIcon } from '@heroicons/react/24/solid';
 import React, { useEffect, useState } from 'react';
+
+const sortType = [
+  {
+    id: 'id',
+    name: 'ID',
+  },
+  {
+    id: 'name',
+    name: 'Name',
+  },
+  {
+    id: 'updatedAt',
+    name: 'Update date',
+  },
+];
+
+const sortDirectionType = [
+  {
+    id: 'asc',
+    name: 'Asc',
+  },
+  {
+    id: 'desc',
+    name: 'Desc',
+  },
+];
+
+function compare(key, order = 'asc') {
+  return function innerSort(a, b) {
+    if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+      // property doesn't exist on either object
+      return 0;
+    }
+
+    const varA = typeof a[key] === 'string' ? a[key].toUpperCase() : a[key];
+    const varB = typeof b[key] === 'string' ? b[key].toUpperCase() : b[key];
+
+    let comparison = 0;
+    if (varA > varB) {
+      comparison = 1;
+    } else if (varA < varB) {
+      comparison = -1;
+    }
+    return order === 'desc' ? comparison * -1 : comparison;
+  };
+}
 
 export default function List({
   title = '',
@@ -7,16 +53,38 @@ export default function List({
   columns = [],
   data = [],
   format = {},
+  sortList = sortType,
+  sortDefault = 'id',
+  sortDirectionDefault = 'asc',
   openAction = () => null,
   editAction = () => null,
-  activeId = null,
 }) {
   const [filteredData, setFilteredData] = useState([]);
   const [search, setSearch] = useState('');
+  const [sortByColumn, setSortByColumn] = useState(sortDefault);
+  const [sortDirection, setSortDirection] = useState(sortDirectionDefault);
 
   useEffect(() => {
-    setFilteredData(data);
+    if (data) {
+      setFilteredData(data);
+    }
   }, [data]);
+
+  const sortByClick = (sort) => {
+    setSortByColumn(sort);
+    sorting(sort, sortDirection);
+  };
+
+  const sortDirectionClick = (direction) => {
+    setSortDirection(direction);
+    sorting(sortByColumn, direction);
+  };
+
+  const sorting = (sortBy, sortDir) => {
+    console.log(sortBy, sortDir);
+    const sortedData = filteredData.sort(compare(sortBy, sortDir));
+    setFilteredData(sortedData);
+  };
 
   const typeSearch = (e) => {
     const search = e.target.value;
@@ -81,10 +149,36 @@ export default function List({
           {search && <XMarkIcon className="cursor-pointer absolute top-2 right-2 w-5" onClick={() => filterData('')} />}
         </div>
       </div>
-      <div className="flex flex-col gap-4 mt-10 pl-6" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabIndex="-1">
+      <div className="p-6 flex items-center gap-4">
+        <div className="grow text-right">Sort by</div>
+        <div className="flex items-center divide-x rounded overflow-hidden bg-primary-500 dark:bg-primary-50 text-primary-50 dark:text-primary-900">
+          {sortList.map((item, key) => (
+            <button
+              key={`sort-${key}`}
+              className={`text-xs font-bold px-4 py-2 flex-none ${item.id == sortByColumn ? 'bg-primary-300' : ''}`}
+              onClick={() => sortByClick(item.id)}
+            >
+              {item.name}
+            </button>
+          ))}
+        </div>
+        <div className="text-right">Direction</div>
+        <div className="flex items-center divide-x rounded overflow-hidden bg-primary-500 dark:bg-primary-50 text-primary-50 dark:text-primary-900">
+          {sortDirectionType.map((item, key) => (
+            <button
+              key={`direction-${key}`}
+              className={`text-xs font-bold px-4 py-2 flex-none ${item.id == sortDirection ? 'bg-primary-300' : ''}`}
+              onClick={() => sortDirectionClick(item.id)}
+            >
+              {item.name}
+            </button>
+          ))}
+        </div>
+      </div>
+      <div className="flex flex-col gap-4 mt-2 pl-6" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabIndex="-1">
         {filteredData.length > 0 ? (
           filteredData.map((item) => (
-            <div key={item.id} className="group">
+            <div key={`list-${item.id}`} className="group">
               <div
                 className={'flex items-center gap-4 cursor-pointer group p-2 pl-4 pr-8 rounded-l-lg'}
                 onClick={() => clickOnEdit(item.original || item)}

@@ -141,6 +141,25 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
   const title = 'Menu links';
   const single = 'link';
 
+  const sortType = [
+    {
+      id: 'id',
+      name: 'ID',
+    },
+    {
+      id: 'name',
+      name: 'Name',
+    },
+    {
+      id: 'status_d',
+      name: 'Status',
+    },
+    {
+      id: 'updatedAt',
+      name: 'Update date',
+    },
+  ];
+
   if (session) {
     return (
       <AdminWrapper isPageOpen={isOpen}>
@@ -154,6 +173,7 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
             openAction={openElement}
             editAction={openElement}
             activeId={menuLink.id}
+            sortList={sortType}
           />
         </div>
         <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6 min-h-screen ${isOpen ? '' : 'hidden'}`}>
