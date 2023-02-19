@@ -95,7 +95,7 @@ model Resume {
 model ResumeTag {
   id          Int       @id @default(autoincrement())
   name        String    @unique  // change
-  resume      Resume[]
+  jobs        Resume[]
 
   @@map("resume_tags")
 }

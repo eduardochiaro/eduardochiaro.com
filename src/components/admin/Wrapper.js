@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import AdminSidebar from './Sidebar';
 import { BriefcaseIcon, CpuChipIcon, CommandLineIcon, TagIcon, BookmarkIcon, Bars3Icon, HashtagIcon } from '@heroicons/react/24/solid';
 import React from 'react';
@@ -70,6 +71,10 @@ export { menuList };
 
 const AdminWrapper = ({ children, isPageOpen }) => {
   return (
+    <>
+    <Head>
+      <title>Eduardo Chiaro | Admin</title>
+    </Head>
     <div className="w-full h-full antialiased bg-primary-100 dark:bg-primary-800">
       <div className="flex flex-no-wrap">
         <AdminSidebar menuList={menuList} isPageOpen={isPageOpen} />
@@ -80,6 +85,7 @@ const AdminWrapper = ({ children, isPageOpen }) => {
         })}
       </div>
     </div>
+    </>
   );
 };
 const AdminWrapprerHeader = ({ children }) => children;
