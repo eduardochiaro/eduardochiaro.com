@@ -5,14 +5,15 @@ import { useRouter } from 'next/router';
 import { pageview } from '@/utils/ga';
 import NextProgress from 'next-progress';
 import tailwindConfig from '../../tailwind.config';
+import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import '@/styles/globals.scss';
 
-function MyApp({ Component, pageProps: { session, ...pageProps } }) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const router = useRouter();
 
   useEffect(() => {
-    const handleRouteChange = (url) => {
+    const handleRouteChange = (url: URL) => {
       pageview(url);
     };
     //When the component is mounted, subscribe to router changes
@@ -32,7 +33,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
           <title>Eduardo Chiaro</title>
           <meta name="description" content="Eduardo Chiaro - Software Developer" />
         </Head>
-        <NextProgress height="5px" default={tailwindConfig.theme.colors.secondary[500]} options={{ showSpinner: false }} />
+        <NextProgress height="5px" options={{ showSpinner: false, default: tailwindConfig.theme.colors.secondary[500] }} />
         <Component {...pageProps} />
       </ThemeProvider>
     </SessionProvider>

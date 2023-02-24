@@ -1,7 +1,7 @@
 import useSWR from 'swr';
-const fetcher = (url) => fetch(url).then((res) => res.json());
+const fetcher = (url: URL) => fetch(url).then((res) => res.json());
 
-const useStaleSWR = (dataKey, overrideRevalidation = {}) => {
+const useStaleSWR = (dataKey: any, overrideRevalidation = {}) => {
   const revalidationOptions = {
     revalidateIfStale: false,
     revalidateOnFocus: false,
