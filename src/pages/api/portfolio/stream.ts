@@ -1,15 +1,29 @@
+import type { NextApiRequest, NextApiResponse } from 'next';
 import moment from 'moment';
 import apiWithMiddleware from '@/utils/apiWithMiddleware';
 import cors from '@/middlewares/cors';
 import { getCachedFlickr, getCacheInstagram } from '@/utils/getCachedFeeds';
 
-const handler = async (req, res) => {
+type StreamItem = {
+  title: string;
+  permalink: string;
+  published: moment.MomentInput;
+  timestamp: number;
+  type: string;
+  image: string;
+};
+
+type Data = {
+  results: StreamItem[];
+};
+
+const handler = async (req:NextApiRequest, res: NextApiResponse<Data>) => {
   await cors(req, res);
-  const results = [];
+  const results: StreamItem[] = [];
 
   const flickr = await getCachedFlickr();
 
-  flickr.items.slice(0, 5).forEach((item) => {
+  flickr.items.slice(0, 5).forEach((item: { title: any; link: any; isoDate: moment.MomentInput; images: { [x: string]: { [x: string]: any; }; }[]; }) => {
     results.push({
       title: item.title,
       permalink: item.link,
@@ -22,7 +36,7 @@ const handler = async (req, res) => {
 
   const instagramImages = await getCacheInstagram();
 
-  instagramImages.slice(0, 5).forEach((item) => {
+  instagramImages.slice(0, 5).forEach((item: { caption: any; id: any; permalink: any; timestamp: moment.MomentInput; thumbnailUrl: any; mediaUrl: any; }) => {
     results.push({
       title: item.caption || item.id,
       permalink: item.permalink,

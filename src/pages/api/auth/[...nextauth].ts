@@ -1,21 +1,29 @@
-import NextAuth from 'next-auth';
+import NextAuth, { NextAuthOptions } from 'next-auth';
 import GithubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import prisma from '@/utils/prisma';
 
-export default NextAuth({
-  secret: process.env.NEXTAUTH_SECRET,
+const {
+  GITHUB_ID="",
+  GITHUB_SECRET="",
+  GOOGLE_CLIENT_ID="",
+  GOOGLE_CLIENT_SECRET="",
+  NEXTAUTH_SECRET="",
+} = process.env;
+
+export const authOptions: NextAuthOptions = {
+  secret: NEXTAUTH_SECRET,
   adapter: PrismaAdapter(prisma),
   // Configure one or more authentication providers
   providers: [
     GithubProvider({
-      clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET,
+      clientId: GITHUB_ID,
+      clientSecret: GITHUB_SECRET,
     }),
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      clientId: GOOGLE_CLIENT_ID,
+      clientSecret: GOOGLE_CLIENT_SECRET,
       authorization: {
         params: {
           prompt: 'consent',
@@ -36,13 +44,15 @@ export default NextAuth({
   },
   callbacks: {
     async signIn({ account, profile }) {
-      if (account && profile.email) {
+      if (account && profile && profile.email) {
         const userData = await prisma.userAccess.findFirst({
           where: {
             email: profile.email,
           },
         });
-        return userData && userData.role == 'ADMIN';
+        if (userData && userData.role == 'ADMIN') {
+          return true
+        }
       }
       return false; // Do different verification for other providers that don't have `email_verified`
     },
@@ -50,4 +60,6 @@ export default NextAuth({
       return new URL('/admin', baseUrl).toString();
     },
   },
-});
+};
+
+export default NextAuth(authOptions);

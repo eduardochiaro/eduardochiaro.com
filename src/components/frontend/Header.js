@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 import { Menu, Transition } from '@headlessui/react';
 import ThemeIcon from '@/components/ThemeIcon';
 import NavLink from '@/components/NavLink';
-import HeaderLogo from '@/components/icons/headerLogo';
 import Link from 'next/link';
 import useStaleSWR from '@/utils/staleSWR';
 
@@ -80,7 +79,7 @@ export default function Header() {
                 <div className="px-1 py-1 font-semibold text-secondary-700 dark:text-secondary-600">
                   <Menu.Item>
                     <Link href="https://blog.eduardochiaro.com" className={`${styles.menuUrlMobile} text-primary-900 dark:text-primary-100`}>
-                      <RssIcon className={'h-5 text-accent-600 dark:text-accent-500 mr-1'} aria-hidden="true" />
+                      <RssIcon className={'h-7 text-accent-600 dark:text-accent-500 mr-1'} aria-hidden="true" />
                       .dev
                     </Link>
                   </Menu.Item>
@@ -89,8 +88,8 @@ export default function Header() {
             </Transition>
           </Menu>
           <span className="grow text-center md:text-left">
-            <Link href="/" className="inline-flex items-center gap-2 md:gap-3">
-              <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={'h-7  text-accent-600 dark:text-accent-500'} />
+            <Link href="/" className="inline-flex items-center gap-2">
+              <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={'h-7 logo'} />
               <span className={'text-3xl font-header font-semibold hidden md:block'}>Eduardo Chiaro</span>
             </Link>
           </span>
@@ -122,7 +121,7 @@ export default function Header() {
               <span>
                 <span className="text-accent-600 dark:text-accent-500">.</span>dev
               </span>
-              <RssIcon className={'h-4 text-accent-600 dark:text-accent-500'} aria-hidden="true" />
+              <RssIcon className={'h-5 text-accent-600 dark:text-accent-500'} aria-hidden="true" />
             </Link>
           </div>
           <ThemeIcon />

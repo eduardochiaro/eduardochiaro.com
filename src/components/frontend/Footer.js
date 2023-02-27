@@ -30,7 +30,7 @@ export default function Footer() {
           <div className="flex-1">
             <div className="flex items-center gap-3">
               <span className="grow text-right">© Copyright {moment().year()}</span>
-              <Logo className="h-6 text-accent-600 dark:text-accent-500" />
+              <Logo className="h-6 text-secondary-500 dark:text-secondary-700" />
               <span className="grow">Eduardo Chiaro</span>
             </div>
           </div>

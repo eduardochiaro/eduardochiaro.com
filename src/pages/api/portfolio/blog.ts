@@ -1,3 +1,4 @@
+import type { NextApiRequest, NextApiResponse } from 'next';
 import apiWithMiddleware from '@/utils/apiWithMiddleware';
 import cors from '@/middlewares/cors';
 import Parser from 'rss-parser';
@@ -6,13 +7,25 @@ import fsCache from '@/utils/fsCache';
 const url = 'https://blog.eduardochiaro.com/rss/';
 const hours = 5;
 
-const handler = async (req, res) => {
+type RssFeedItem = {
+  title: string | undefined;
+  permalink: string  | undefined;
+  published: moment.MomentInput | undefined;
+  content: string | undefined;
+  categories: string[] | undefined;
+};
+
+type Data = {
+  results: RssFeedItem[];
+};
+
+const handler = async (req:NextApiRequest, res: NextApiResponse<Data>) => {
   await cors(req, res);
   const parser = new Parser();
 
   const results = await fsCache(url, hours, async () => {
     const feed = await parser.parseURL(url);
-    const results = [];
+    const results: RssFeedItem[] = [];
     feed.items.forEach((item) => {
       results.push({
         title: item.title,

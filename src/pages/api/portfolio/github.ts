@@ -1,3 +1,4 @@
+import type { NextApiRequest, NextApiResponse } from 'next';
 import apiWithMiddleware from '@/utils/apiWithMiddleware';
 import cors from '@/middlewares/cors';
 import { gql } from '@apollo/client';
@@ -7,7 +8,27 @@ import fsCache from '@/utils/fsCache';
 const base = 'https://api.github.com/users';
 const hours = 24;
 
-const cachedFetch = async (url) => {
+type GitHubItem = {
+  id: string;
+  name: string;
+  description: string;
+  openGraphImageUrl: string;
+  isArchived: boolean;
+  topics: string[];
+  pushedAt: string;
+  url: string;
+  languages: {
+    name: string;
+    color: string;
+  }[];
+  language: string;
+};
+
+type Data = {
+  results: GitHubItem[];
+};
+
+const cachedFetch = async (url: string) => {
   return fsCache(url, hours, async () => {
     const { data } = await client.query({
       query: gql`
@@ -46,14 +67,14 @@ const cachedFetch = async (url) => {
   });
 };
 
-const handler = async (req, res) => {
+const handler = async (req:NextApiRequest, res: NextApiResponse<Data>) => {
   await cors(req, res);
   const dataFetch = await cachedFetch(`${base}`);
 
-  const data = dataFetch.viewer.repositories.nodes.map((repo) => {
+  const data = dataFetch.viewer.repositories.nodes.map((repo: { languages?: any; id?: any; name?: any; description?: any; openGraphImageUrl?: any; isArchived?: any; repositoryTopics?: any; pushedAt?: any; url?: any; }) => {
     const { id, name, description, openGraphImageUrl, isArchived, repositoryTopics, pushedAt, url } = repo;
-    const topics = repositoryTopics.nodes.map((topic) => topic.topic.name);
-    const languages = repo.languages.nodes.map((language) => {
+    const topics = repositoryTopics.nodes.map((topic: { topic: { name: any; }; }) => topic.topic.name);
+    const languages = repo.languages.nodes.map((language: { name: any; color: any; }) => {
       const { name, color } = language;
       return { name, color };
     });

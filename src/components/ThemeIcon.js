@@ -14,7 +14,7 @@ export default function ThemeIcon({ orientation }) {
     setTheme(themeName);
   };
 
-  const orientationClass = (orientation) => {
+  const orientationClass = (orientation = null) => {
     switch (orientation) {
       case 'top':
         return 'left-0 bottom-0 mb-10';
