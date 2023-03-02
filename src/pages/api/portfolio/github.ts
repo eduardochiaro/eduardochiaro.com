@@ -6,7 +6,10 @@ import client from '@/utils/apolloClient';
 import fsCache from '@/utils/fsCache';
 
 const base = 'https://api.github.com/users';
-const hours = 24;
+
+const {
+  GITHUB_CACHE_HOURS=24,
+} = process.env;
 
 type GitHubItem = {
   id: string;
@@ -29,7 +32,7 @@ type Data = {
 };
 
 const cachedFetch = async (url: string) => {
-  return fsCache(url, hours, async () => {
+  return fsCache(url, GITHUB_CACHE_HOURS, async () => {
     const { data } = await client.query({
       query: gql`
         query REPOS {
