@@ -1,3 +1,4 @@
+import type { NextApiRequest, NextApiResponse } from 'next';
 import apiWithMiddleware from '@/utils/apiWithMiddleware';
 import prisma from '@/utils/prisma';
 import cors from '@/middlewares/cors';
@@ -9,9 +10,9 @@ export const config = {
   },
 };
 
-const handler = async (req, res) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await cors(req, res);
-  const { pid } = req.query;
+  const { pid } = req.query as { pid: string };
 
   const menuLinkReturn = await prisma.menuLink.findFirst({
     where: {
@@ -20,7 +21,7 @@ const handler = async (req, res) => {
     },
   });
   if (!menuLinkReturn) {
-    res.status(200).json({ error: 'Record doesnt exist' });
+    res.status(500).json({ error: 'Record doesnt exist' });
   }
   switch (req.method) {
     case 'PUT':
@@ -28,7 +29,7 @@ const handler = async (req, res) => {
         const form = new IncomingForm();
         form.parse(req, async (err, fields) => {
           if (err) return reject(err);
-          const { id, order, onlyMobile, active, ...data } = fields;
+          const { id, order, onlyMobile, active, ...data } = fields as { [key: string]: string };
           const menuLink = await prisma.menuLink.update({
             where: { id: parseInt(id) },
             data: { ...data, order: parseInt(order), onlyMobile: onlyMobile == 'true', active: active == 'true', updatedAt: new Date() },
@@ -45,7 +46,7 @@ const handler = async (req, res) => {
       res.status(200).json({ action: 'menu link deleted' });
       break;
     default:
-      res.status(200).json({ ...menuLinkReturn });
+      res.status(500).json({ error: 'invalid method' });
       break;
   }
 };

@@ -1,8 +1,14 @@
+import type { NextApiRequest, NextApiResponse } from 'next';
 import apiWithMiddleware from '@/utils/apiWithMiddleware';
 import prisma from '@/utils/prisma';
 import cors from '@/middlewares/cors';
+import type { Skill } from "@prisma/client";
 
-const handler = async (req, res) => {
+type Data = {
+  results: Skill[];
+};
+
+const handler = async (req:NextApiRequest, res: NextApiResponse<Data>) => {
   await cors(req, res);
   const skills = await prisma.skill.findMany({
     where: {

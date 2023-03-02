@@ -130,7 +130,7 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
     obj.status_d = obj.active ? 'Active' : 'Inactive';
     obj.description = (
       <>
-        <span className={obj.active ? 'text-emerald-500 font-bold' : 'text-red-500 font-bold'}>{obj.status_d}</span> [{obj.url}]
+        {obj.order}) <span className={obj.active ? 'text-emerald-500 font-bold' : 'text-red-500 font-bold'}>{obj.status_d}</span> [{obj.url}]
       </>
     );
     obj.category_d = !item.onlyMobile ? 'All Browsers' : 'Mobile only';
@@ -155,6 +155,10 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
       name: 'Status',
     },
     {
+      id: 'order',
+      name: 'Order',
+    },
+    {
       id: 'updatedAt',
       name: 'Update date',
     },
@@ -174,6 +178,7 @@ const AdminCategoriesIndex = ({ formRef, images }) => {
             editAction={openElement}
             activeId={menuLink.id}
             sortList={sortType}
+            sortDefault="order"
           />
         </div>
         <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6 min-h-screen ${isOpen ? '' : 'hidden'}`}>

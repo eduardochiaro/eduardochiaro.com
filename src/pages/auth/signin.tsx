@@ -26,7 +26,7 @@ export default function SignIn({ providers }: InferGetServerSidePropsType<typeof
     <div>
       <div className="flex items-center justify-center min-h-screen relative">
         <div className="absolute top-4 right-4">
-          <ThemeIcon orientation="right" />
+          <ThemeIcon orientation="bottom" />
         </div>
         <div className="w-full px-10 py-8 mx-auto">
           <div className="max-w-sm mx-auto space-y-6">

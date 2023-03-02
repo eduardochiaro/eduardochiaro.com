@@ -1,9 +1,13 @@
 import NotFound from '@/components/icons/404';
+import ThemeIcon from "@/components/ThemeIcon";
 import Link from 'next/link';
 
 export default function Custom404() {
   return (
-    <div className="h-screen justify-center">
+    <div className="min-h-screen relative">
+      <div className="absolute top-4 right-4">
+        <ThemeIcon orientation="bottom" />
+      </div>
       <center className="pt-24 m-auto">
         <div className="max-w-xl mx-auto">
           <NotFound className="w-full" />
@@ -13,7 +17,7 @@ export default function Custom404() {
         </div>
       </center>
       <center className="mt-6">
-        <Link href="/" className="text-primary-500 text-xl bg-secondary-300 p-3 rounded-md hover:shadow-md">
+        <Link href="/" className="bg-primary-500 dark:bg-primary-50 text-primary-50 dark:text-primary-900 rounded text-xl p-2">
           Go back
         </Link>
       </center>

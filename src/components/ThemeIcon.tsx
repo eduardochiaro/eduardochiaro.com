@@ -5,58 +5,59 @@ import { useTheme } from 'next-themes';
 import { Menu, Transition } from '@headlessui/react';
 import classNames from '@/utils/classNames';
 
-export default function ThemeIcon({ orientation }) {
-  const [iconClass, setIconClass] = useState(null);
+export default function ThemeIcon({ orientation } = { orientation: 'bottom' }) {
+  const [iconClass, setIconClass] = useState<{ name: string, className: string, icon: any }[]>([]);
   const [inUseTheme, setInUseTheme] = useState('dark');
-  const { systemTheme, theme, setTheme } = useTheme();
+  const { systemTheme, theme, setTheme } = useTheme() as { systemTheme: string; theme: string; setTheme: (theme: string) => void};
 
-  const setColorTheme = (themeName) => {
+  const setColorTheme = (themeName: string) => {
     setTheme(themeName);
   };
 
-  const orientationClass = (orientation = null) => {
+  const orientationClass = (orientation = 'bottom') => {
     switch (orientation) {
       case 'top':
         return 'left-0 bottom-0 mb-10';
+      case 'bottom':
       default:
         return 'right-0 mt-10';
     }
   };
 
-  useEffect(() => {
-    const classColors = [
-      {
-        name: 'light',
-        className: '',
-        icon: <SunIcon className="flex-none w-5 h-5 block mr-2" />,
-      },
-      {
-        name: 'dark',
-        className: '',
-        icon: <MoonIcon className="flex-none w-5 h-5 block mr-2" />,
-      },
-      {
-        name: 'system',
-        className: '',
-        icon: <ComputerDesktopIcon className="flex-none w-5 h-5 block mr-2" />,
-      },
-    ];
+  const classColors = [
+    {
+      name: 'light',
+      className: '',
+      icon: <SunIcon className="flex-none w-5 h-5 block mr-2" />,
+    },
+    {
+      name: 'dark',
+      className: '',
+      icon: <MoonIcon className="flex-none w-5 h-5 block mr-2" />,
+    },
+    {
+      name: 'system',
+      className: '',
+      icon: <ComputerDesktopIcon className="flex-none w-5 h-5 block mr-2" />,
+    },
+  ];
 
-    const resetColors = () => {
-      const resetClassColors = classColors.map((x) => {
-        x.className = '';
+  const resetColors = () => {
+    const resetClassColors = classColors.map((x) => {
+      x.className = '';
+      return x;
+    });
+    setIconClass(
+      resetClassColors.map((x) => {
+        if (x.name === theme) {
+          x.className = 'text-secondary-700 dark:text-secondary-600';
+        }
         return x;
-      });
-      setIconClass(
-        resetClassColors.map((x) => {
-          if (x.name === theme) {
-            x.className = 'text-secondary-700 dark:text-secondary-600';
-          }
-          return x;
-        }),
-      );
-    };
+      }),
+    );
+  };
 
+  useEffect(() => {
     const currentTheme = theme === 'system' ? systemTheme : theme;
     setInUseTheme(currentTheme);
     resetColors();
@@ -90,10 +91,8 @@ export default function ThemeIcon({ orientation }) {
         <Menu.Items
           data-cy="change-mode-container"
           className={`${orientationClass(orientation)} transform absolute z-10 w-56 box-card divide-y divide-primary-200 dark:divide-primary-700`}
-          role="menu"
           aria-orientation="vertical"
           aria-labelledby="menu-button"
-          tabIndex="-1"
         >
           {iconClass?.map((item, index) => (
             <div className="py-1 font-semibold" key={index}>
@@ -106,7 +105,6 @@ export default function ThemeIcon({ orientation }) {
                       active ? 'bg-primary-200 dark:bg-primary-500' : '',
                     )}
                     role="menuitem"
-                    tabIndex="-1"
                     id={`menu-item-${index}`}
                     onClick={() => setColorTheme(item.name)}
                   >
