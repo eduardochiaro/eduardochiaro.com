@@ -26,9 +26,9 @@ const handler = async (req, res) => {
         mv(oldPath, newPath, function (err) {
           console.error(err);
         });
-        const { id, ...data } = fields;
+        const { name, description, url } = fields;
         const app = await prisma.app.create({
-          data: { ...data, image: newName, createdAt: new Date() },
+          data: { name, description, url, image: newName, createdAt: new Date() },
         });
         res.status(200).json({ ...app });
       });

@@ -35,7 +35,7 @@ export default function Projects() {
             {data?.results.map((app, index) => (
               <div className={'flex flex-wrap p-4 box-card'} key={`app-${index}`}>
                 <div className={'basis-full md:basis-1/3 relative'}>
-                  <Image src={`/uploads/${app.image}`} fill sizes="30vw" alt={app.name} className="bg-transparent object-contain" priority="false" />
+                  <Image src={`/uploads/${app.image}`} fill sizes="30vw" alt={app.name} className="bg-transparent object-contain" priority={false} />
                 </div>
                 <div className={'basis-full md:basis-2/3 px-8 py-4'}>
                   <h3 className="text-2xl font-header tracking-wide">{app.name}</h3>

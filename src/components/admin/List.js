@@ -56,8 +56,8 @@ export default function List({
   sortList = sortType,
   sortDefault = 'id',
   sortDirectionDefault = 'asc',
-  openAction = () => null,
-  editAction = () => null,
+  openAction = (item) => {},
+  editAction = (item) => {},
 }) {
   const [filteredData, setFilteredData] = useState([]);
   const [search, setSearch] = useState('');

@@ -23,41 +23,41 @@ export default function ThemeIcon({ orientation } = { orientation: 'bottom' }) {
         return 'right-0 mt-10';
     }
   };
-
-  const classColors = [
-    {
-      name: 'light',
-      className: '',
-      icon: <SunIcon className="flex-none w-5 h-5 block mr-2" />,
-    },
-    {
-      name: 'dark',
-      className: '',
-      icon: <MoonIcon className="flex-none w-5 h-5 block mr-2" />,
-    },
-    {
-      name: 'system',
-      className: '',
-      icon: <ComputerDesktopIcon className="flex-none w-5 h-5 block mr-2" />,
-    },
-  ];
-
-  const resetColors = () => {
-    const resetClassColors = classColors.map((x) => {
-      x.className = '';
-      return x;
-    });
-    setIconClass(
-      resetClassColors.map((x) => {
-        if (x.name === theme) {
-          x.className = 'text-secondary-700 dark:text-secondary-600';
-        }
-        return x;
-      }),
-    );
-  };
-
+  
   useEffect(() => {
+    const classColors = [
+      {
+        name: 'light',
+        className: '',
+        icon: <SunIcon className="flex-none w-5 h-5 block mr-2" />,
+      },
+      {
+        name: 'dark',
+        className: '',
+        icon: <MoonIcon className="flex-none w-5 h-5 block mr-2" />,
+      },
+      {
+        name: 'system',
+        className: '',
+        icon: <ComputerDesktopIcon className="flex-none w-5 h-5 block mr-2" />,
+      },
+    ];
+
+    const resetColors = () => {
+      const resetClassColors = classColors.map((x) => {
+        x.className = '';
+        return x;
+      });
+      setIconClass(
+        resetClassColors.map((x) => {
+          if (x.name === theme) {
+            x.className = 'text-secondary-700 dark:text-secondary-600';
+          }
+          return x;
+        }),
+      );
+    };
+
     const currentTheme = theme === 'system' ? systemTheme : theme;
     setInUseTheme(currentTheme);
     resetColors();

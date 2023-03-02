@@ -1,8 +1,20 @@
 import { ExclamationTriangleIcon } from '@heroicons/react/24/solid';
 import React from 'react';
-import { forwardRef } from 'react';
+import { forwardRef, ChangeEvent, ReactNode } from 'react';
 
-const Select = forwardRef(({ children, name = '', label = '', onChange = () => {}, required = false, value = '', invalid = false }, ref) => {
+interface Props {
+  children?: ReactNode,
+  name?: string,
+  label?: string,
+  value?: string,
+  onChange?: (e: ChangeEvent<HTMLSelectElement>) => any
+  required?: boolean,
+  invalid?: boolean
+}
+
+export type Ref = HTMLSelectElement;
+
+const Select = forwardRef<Ref, Props>(({ children, name = '', label = '', onChange = () => {}, required = false, value = '', invalid = false }, ref) => {
   const isInvalid = invalid && !value;
   return (
     <>
@@ -21,9 +33,7 @@ const Select = forwardRef(({ children, name = '', label = '', onChange = () => {
         onChange={onChange}
         required={required}
       >
-        {React.Children.map(children, (child) => {
-          return React.cloneElement(child);
-        })}
+        {children}
       </select>
     </>
   );

@@ -32,7 +32,7 @@ const handler = async (req, res) => {
         const form = new IncomingForm();
         form.parse(req, async (err, fields, files) => {
           if (err) return reject(err);
-          const { id, style, ...data } = fields;
+          const { id, style, name, description, url } = fields;
           if (files.image) {
             const oldPath = files.image.filepath;
             const extension = files.image.originalFilename.split('.').pop();
@@ -41,10 +41,12 @@ const handler = async (req, res) => {
             mv(oldPath, newPath, function (err) {
               console.error(err);
             });
-            await rmFile(`${uploadPath}${appReturn.image}`);
+            if (appReturn.image) {
+              await rmFile(`${uploadPath}${appReturn.image}`);
+            }
             const app = await prisma.app.update({
               where: { id: parseInt(id) },
-              data: { ...data, image: newName, updatedAt: new Date() },
+              data: { name, description, url, image: newName, updatedAt: new Date() },
             });
             res.status(200).json({ ...app });
           } else {

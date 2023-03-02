@@ -133,9 +133,7 @@ const AdminSkillsIndex = ({ formRef, images }) => {
     const obj = { ...item };
     obj.category_d = obj.type;
     obj.updated = moment(item.updatedAt || item.createdAt).fromNow();
-    obj.image_d = (
-      <SVG alt={item.name} className={'w-full fill-primary-700 dark:fill-primary-200'} src={`/images/svg-icons/${item.logo}`} height={50} />
-    );
+    obj.image_d = <SVG alt={item.name} className={'w-full fill-primary-700 dark:fill-primary-200'} src={`/images/svg-icons/${item.logo}`} height={50} />;
     obj.description = item.percentage + '%';
     newData.push(obj);
   });

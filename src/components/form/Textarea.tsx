@@ -1,7 +1,20 @@
 import { ExclamationTriangleIcon } from '@heroicons/react/24/solid';
-import { forwardRef } from 'react';
+import { forwardRef, ChangeEvent } from 'react';
 
-const Textarea = forwardRef(({ name = '', label = '', value = '', onChange = () => {}, maxLength = 191, required = false, rows = 5, invalid = false }, ref) => {
+interface Props {
+  rows?: number,
+  name?: string,
+  label?: string,
+  value?: string,
+  onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => any
+  maxLength?: number,
+  required?: boolean,
+  invalid?: boolean
+}
+
+export type Ref = HTMLTextAreaElement;
+
+const Textarea = forwardRef<Ref, Props>(({ name = '', label = '', value = '', onChange = () => {}, maxLength = 191, required = false, rows = 5, invalid = false }, ref) => {
   const isInvalid = invalid && value.length <= 0 && value.length > maxLength;
   return (
     <>

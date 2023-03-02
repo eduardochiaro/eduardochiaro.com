@@ -132,7 +132,7 @@ const AdminTagsIndex = ({ formRef, images }) => {
     {
       id: 'name',
       name: 'Name',
-    }
+    },
   ];
 
   if (session) {

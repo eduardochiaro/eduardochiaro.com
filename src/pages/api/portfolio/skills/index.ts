@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import apiWithMiddleware from '@/utils/apiWithMiddleware';
 import prisma from '@/utils/prisma';
 import cors from '@/middlewares/cors';
-import type { Skill } from "@prisma/client";
+import type { Skill } from '@prisma/client';
 
 type Data = {
   results: Skill[];

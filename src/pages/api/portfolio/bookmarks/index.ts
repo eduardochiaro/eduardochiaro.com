@@ -3,7 +3,7 @@ import apiWithMiddleware from '@/utils/apiWithMiddleware';
 import prisma from '@/utils/prisma';
 import cors from '@/middlewares/cors';
 import { URL } from 'url';
-import type { Bookmark } from "@prisma/client";
+import type { Bookmark } from '@prisma/client';
 
 interface BookmarkType extends Bookmark {
   domain?: string;

@@ -1,8 +1,21 @@
 import { ExclamationTriangleIcon } from '@heroicons/react/24/solid';
-import { forwardRef } from 'react';
+import { forwardRef, ChangeEvent } from 'react';
 
-const Input = forwardRef(({ type = 'text', name = '', label = '', value = '', onChange = () => {}, maxLength = 191, required = false, invalid }, ref) => {
-  const isInvalid = type == 'file' ? invalid && ref.current.value == '' : invalid && value.length <= 0;
+interface Props {
+  type?: 'text' | 'file' | 'url',
+  name?: string,
+  label?: string,
+  value?: string,
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => any
+  maxLength?: number,
+  required?: boolean,
+  invalid?: boolean
+}
+
+export type Ref = HTMLInputElement;
+
+const Input = forwardRef<Ref, Props>(({ type = 'text', name = '', label = '', value = '', onChange = () => {}, maxLength = 191, required = false, invalid = false }, ref) => {
+  const isInvalid = type == 'file' ? invalid && ref != null && typeof ref !== 'function' && ref.current && ref.current.value == '' : invalid && value.length <= 0;
   return (
     <>
       <label htmlFor={`${name}-form`} className="input-label flex items-center">

@@ -1,12 +1,12 @@
-import type { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import type { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
 import { getProviders, signIn } from 'next-auth/react';
-import { getServerSession } from "next-auth/next";
+import { getServerSession } from 'next-auth/next';
 import { useRouter } from 'next/router';
-import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import GitHub from '@/components/icons/github';
 import Google from '@/components/icons/google';
 import ThemeIcon from '@/components/ThemeIcon';
-import Logo from "@/components/icons/logo";
+import Logo from '@/components/icons/logo';
 
 
 const LogoProvider = ({ id }: { id: string }) => {
@@ -63,7 +63,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   // Note: Make sure not to redirect to the same page
   // To avoid an infinite loop!
   if (session) {
-    return { redirect: { destination: "/" } };
+    return { redirect: { destination: '/' } };
   }
   const providers = await getProviders();
   return {

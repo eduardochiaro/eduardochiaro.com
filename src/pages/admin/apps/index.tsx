@@ -1,12 +1,10 @@
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 import { useSession } from 'next-auth/react';
 import { useState, createRef, useRef, useReducer } from 'react';
-import { useSWRConfig } from 'swr';
 import axios from 'axios';
 import AdminModal from '@/components/admin/Modal';
 import AdminWrapper from '@/components/admin/Wrapper';
 import List from '@/components/admin/List';
-import mergeObj from '@/utils/mergeObj';
 import useStaleSWR from '@/utils/staleSWR';
 import moment from 'moment';
 import Image from 'next/image';
@@ -14,8 +12,10 @@ import { CheckIcon, ChevronLeftIcon, TrashIcon } from '@heroicons/react/24/solid
 import { Input, Textarea } from '@/components/form';
 import { findInvalidElement, isFormValid } from '@/utils/formValidation';
 import apiAdmin from '@/utils/apiAdmin';
+import { App } from '@prisma/client';
 
-const AdminAppsIndex = ({ formRef }) => {
+const AdminAppsIndex = () => {
+  const formRef = createRef<HTMLFormElement>();
   const { mutate, data: apps } = useStaleSWR('/api/portfolio/apps');
   const { data: session } = useSession();
 
@@ -35,17 +35,17 @@ const AdminAppsIndex = ({ formRef }) => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenDelete, setIsOpenDelete] = useState(false);
-  const [app, updateApp] = useReducer((x, y) => {
+  const [app, updateApp] = useReducer((x: any, y: any) => {
     return { ...x, ...y };
   }, appFormat);
-  const [form, setForm] = useReducer((x, y) => {
+  const [form, setForm] = useReducer((x: any, y: any) => {
     return { ...x, ...y };
   }, formInitialState);
-  const inputFileRef = useRef(null);
+  const inputFileRef = useRef<HTMLInputElement | null>(null);
 
   const inputToValidate = app.id ? ['name', 'url'] : ['name', 'url', 'image'];
 
-  const onSubmitModal = async (e) => {
+  const onSubmitModal = async (e: Event) => {
     e.preventDefault();
     setForm({ ...formInitialState });
     if (!isFormValid(app, inputToValidate)) {
@@ -54,18 +54,20 @@ const AdminAppsIndex = ({ formRef }) => {
       return;
     }
 
-    apiAdmin('/api/portfolio/apps', app, app.id)
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-        setForm({ ...formInitialState, error: true });
-      })
-      .then(({ data }) => {
+    try {
+      const {data} = await apiAdmin<App>('/api/portfolio/apps', app, app.id)
+      if (inputFileRef.current) {
         inputFileRef.current.value = '';
-        mutate();
-        updateApp(data);
-        closeModal();
-      });
+      }
+      mutate();
+      updateApp(data);
+      closeModal();
+    } catch (error) {
+      // handle error
+      console.log(error);
+      setForm({ ...formInitialState, error: true });
+    }
+    return true;
   };
 
   const onPrimaryButtonClickDelete = async () => {
@@ -77,23 +79,27 @@ const AdminAppsIndex = ({ formRef }) => {
         'Content-Type': 'application/json',
       },
     });
-    inputFileRef.current.value = '';
+    if (inputFileRef.current) {
+      inputFileRef.current.value = '';
+    }
     mutate();
     closeElement();
   };
 
-  const openElement = (app) => {
+  const openElement = (app: App) => {
     updateApp(app);
     setIsOpen(true);
     setForm({ ...formInitialState });
   };
 
   const closeModal = () => {
-    inputFileRef.current.value = '';
+    if (inputFileRef.current) {
+      inputFileRef.current.value = '';
+    }
     setForm({ ...formInitialState, success: true });
   };
 
-  const openDeleteModal = (app) => {
+  const openDeleteModal = (app: App) => {
     updateApp(app);
     setIsOpenDelete(true);
   };
@@ -106,18 +112,18 @@ const AdminAppsIndex = ({ formRef }) => {
     setIsOpen(false);
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<any>) => {
     updateApp({ [e.target.name]: e.target.files ? e.target.files[0] : e.target.value });
   };
 
   const columns = ['name', 'description', 'github_url'];
 
-  const newData = [];
-  apps?.results.map((item) => {
-    const obj = { ...item };
+  const newData: any[] = [];
+  apps?.results.map((item: any) => {
+    const obj = { ...item, original: item };
     obj.updated = moment(item.updatedAt || item.createdAt).fromNow();
     obj.image_d = (
-      <Image src={`/uploads/${item.image}`} fill sizes="33vw" alt={item.name} title={item.name} className="bg-transparent object-cover" priority="false" />
+      <Image src={`/uploads/${item.image}`} fill sizes="33vw" alt={item.name} title={item.name} className="bg-transparent object-cover" priority={false} />
     );
     newData.push(obj);
   });
@@ -137,7 +143,6 @@ const AdminAppsIndex = ({ formRef }) => {
             format={appFormat}
             openAction={openElement}
             editAction={openElement}
-            activeId={app.id}
           />
         </div>
         <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6 min-h-screen ${isOpen ? '' : 'hidden'}`}>
@@ -147,24 +152,23 @@ const AdminAppsIndex = ({ formRef }) => {
               className="text-sm opacity-70 font-semibold hover:underline flex items-center gap-2"
               onClick={() => closeElement()}
               role="menuitem"
-              tabIndex="-1"
             >
               <ChevronLeftIcon className="h-3" /> apps
             </a>
             <h2 className="text-2xl flex items-center gap-2">{app.id ? 'Edit app' : 'Add new app'}</h2>
             <div className="flex items-center gap-4">
-              <a href="#" className="text-sm text-red-500 font-semibold hover:underline" onClick={() => openDeleteModal(app)} role="menuitem" tabIndex="-1">
+              <a href="#" className="text-sm text-red-500 font-semibold hover:underline" onClick={() => openDeleteModal(app)} role="menuitem">
                 <TrashIcon className="inline-flex align-text-bottom h-4 mr-1" />
                 Delete
               </a>
-              <button onClick={onSubmitModal} type="button" className={'button-success'}>
+              <button onClick={(e:any) => onSubmitModal(e)} type="button" className={'button-success'}>
                 Save
               </button>
             </div>
           </div>
 
           <div className={'mt-8 mb-2 max-w-5xl mx-auto'}>
-            <form ref={formRef} acceptCharset="UTF-8" method="POST" encType="multipart/form-data" onSubmit={onSubmitModal}>
+            <form ref={formRef} acceptCharset="UTF-8" method="POST" encType="multipart/form-data" onSubmit={(e:any) => onSubmitModal(e)}>
               {form.error && (
                 <div className="bg-accent-100 border border-accent-400 text-accent-700 px-4 py-3 rounded relative mb-4" role="alert">
                   <strong className="font-bold">
@@ -209,7 +213,7 @@ const AdminAppsIndex = ({ formRef }) => {
                           alt={app.name}
                           title={app.name}
                           className="bg-transparent object-contain"
-                          priority="false"
+                          priority={false}
                         />
                       </div>
                     </>
@@ -258,11 +262,5 @@ const AdminAppsIndex = ({ formRef }) => {
   }
   return null;
 };
-
-export async function getStaticProps() {
-  return {
-    props: { formRef: createRef() }, // will be passed to the page component as props
-  };
-}
 
 export default AdminAppsIndex;

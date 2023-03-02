@@ -33,7 +33,7 @@ const handler = async (req, res) => {
         const form = new IncomingForm();
         form.parse(req, async (err, fields, files) => {
           if (err) return reject(err);
-          const { id, company, name, description, startDate, endDate, tags, ...data } = fields;
+          const { id, company, name, description, startDate, endDate, tags } = fields;
           const parsedTags = JSON.parse(tags);
           const newTags = parsedTags
             .filter((x) => x.new && !x.deleted && x.id == null)

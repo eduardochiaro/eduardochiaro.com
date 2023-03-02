@@ -1,5 +1,5 @@
 import NotFound from '@/components/icons/404';
-import ThemeIcon from "@/components/ThemeIcon";
+import ThemeIcon from '@/components/ThemeIcon';
 import Link from 'next/link';
 
 export default function Custom404() {
