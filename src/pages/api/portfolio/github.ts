@@ -7,9 +7,7 @@ import fsCache from '@/utils/fsCache';
 
 const base = 'https://api.github.com/users';
 
-const {
-  GITHUB_CACHE_HOURS=24,
-} = process.env;
+const { GITHUB_CACHE_HOURS = 24 } = process.env;
 
 type GitHubItem = {
   id: string;
@@ -70,30 +68,42 @@ const cachedFetch = async (url: string) => {
   });
 };
 
-const handler = async (req:NextApiRequest, res: NextApiResponse<Data>) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   await cors(req, res);
   const dataFetch = await cachedFetch(`${base}`);
 
-  const data = dataFetch.viewer.repositories.nodes.map((repo: { languages?: any; id?: any; name?: any; description?: any; openGraphImageUrl?: any; isArchived?: any; repositoryTopics?: any; pushedAt?: any; url?: any; }) => {
-    const { id, name, description, openGraphImageUrl, isArchived, repositoryTopics, pushedAt, url } = repo;
-    const topics = repositoryTopics.nodes.map((topic: { topic: { name: any; }; }) => topic.topic.name);
-    const languages = repo.languages.nodes.map((language: { name: any; color: any; }) => {
-      const { name, color } = language;
-      return { name, color };
-    });
-    return {
-      id,
-      name,
-      description,
-      isArchived,
-      openGraphImageUrl,
-      topics,
-      pushedAt,
-      url,
-      languages,
-      language: languages[0]?.name,
-    };
-  });
+  const data = dataFetch.viewer.repositories.nodes.map(
+    (repo: {
+      languages?: any;
+      id?: any;
+      name?: any;
+      description?: any;
+      openGraphImageUrl?: any;
+      isArchived?: any;
+      repositoryTopics?: any;
+      pushedAt?: any;
+      url?: any;
+    }) => {
+      const { id, name, description, openGraphImageUrl, isArchived, repositoryTopics, pushedAt, url } = repo;
+      const topics = repositoryTopics.nodes.map((topic: { topic: { name: any } }) => topic.topic.name);
+      const languages = repo.languages.nodes.map((language: { name: any; color: any }) => {
+        const { name, color } = language;
+        return { name, color };
+      });
+      return {
+        id,
+        name,
+        description,
+        isArchived,
+        openGraphImageUrl,
+        topics,
+        pushedAt,
+        url,
+        languages,
+        language: languages[0]?.name,
+      };
+    },
+  );
 
   res.status(200).json({ results: data });
 };

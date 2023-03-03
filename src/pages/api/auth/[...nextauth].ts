@@ -4,13 +4,7 @@ import GoogleProvider from 'next-auth/providers/google';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import prisma from '@/utils/prisma';
 
-const {
-  GITHUB_ID='',
-  GITHUB_SECRET='',
-  GOOGLE_CLIENT_ID='',
-  GOOGLE_CLIENT_SECRET='',
-  NEXTAUTH_SECRET='',
-} = process.env;
+const { GITHUB_ID = '', GITHUB_SECRET = '', GOOGLE_CLIENT_ID = '', GOOGLE_CLIENT_SECRET = '', NEXTAUTH_SECRET = '' } = process.env;
 
 export const authOptions: NextAuthOptions = {
   secret: NEXTAUTH_SECRET,
@@ -51,7 +45,7 @@ export const authOptions: NextAuthOptions = {
           },
         });
         if (userData && userData.role == 'ADMIN') {
-          return true
+          return true;
         }
       }
       return false; // Do different verification for other providers that don't have `email_verified`

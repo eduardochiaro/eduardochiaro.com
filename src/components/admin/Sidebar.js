@@ -90,7 +90,7 @@ const AdminSidebar = ({ menuList, isPageOpen }) => {
         </div>
         <div className={`p-6 bg-primary-300 dark:bg-primary-500 flex items-center justify-between gap-6 ${openMenu ? 'flex-row' : 'flex-col'}`}>
           <Menu as="div" className="relative flex item-center">
-            <Menu.Button className="h-7 w-7 relative rounded-full border-2 border-primary-800 dark:border-primary-400">
+            <Menu.Button className="h-7 w-7 relative rounded-full border-2 border-secondary-600">
               <Image
                 src={session.user.image}
                 className="rounded-full z-40"

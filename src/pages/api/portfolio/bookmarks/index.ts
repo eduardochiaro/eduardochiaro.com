@@ -7,13 +7,13 @@ import type { Bookmark } from '@prisma/client';
 
 interface BookmarkType extends Bookmark {
   domain?: string;
-} ;
+}
 
 type Data = {
   results: BookmarkType[];
 };
 
-const handler = async (req:NextApiRequest, res: NextApiResponse<Data>) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   await cors(req, res);
   const bookmarks: BookmarkType[] = await prisma.bookmark.findMany({
     where: {

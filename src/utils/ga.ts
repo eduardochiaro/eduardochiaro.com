@@ -1,6 +1,6 @@
 declare global {
   interface Window {
-    gtag:any;
+    gtag: any;
   }
 }
 
@@ -12,13 +12,10 @@ export const pageview = (url: URL) => {
 };
 
 // log specific events happening.
-export const event = (
-  action: Gtag.EventNames,
-  { event_category, event_label, value }: Gtag.EventParams
-) => {
+export const event = (action: Gtag.EventNames, { event_category, event_label, value }: Gtag.EventParams) => {
   window.gtag('event', action, {
-      event_category,
-      event_label,
-      value
+    event_category,
+    event_label,
+    value,
   });
 };

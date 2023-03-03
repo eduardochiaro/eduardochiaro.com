@@ -5,10 +5,10 @@ import { useTheme } from 'next-themes';
 import { Menu, Transition } from '@headlessui/react';
 import classNames from '@/utils/classNames';
 
-export default function ThemeIcon({ orientation } = { orientation: 'bottom' }) {
-  const [iconClass, setIconClass] = useState<{ name: string, className: string, icon: any }[]>([]);
+export default function ThemeIcon({ orientation, size = 'h-7' } : { orientation: string, size ?: string }) {
+  const [iconClass, setIconClass] = useState<{ name: string; className: string; icon: any }[]>([]);
   const [inUseTheme, setInUseTheme] = useState('dark');
-  const { systemTheme, theme, setTheme } = useTheme() as { systemTheme: string; theme: string; setTheme: (theme: string) => void};
+  const { systemTheme, theme, setTheme } = useTheme() as { systemTheme: string; theme: string; setTheme: (theme: string) => void };
 
   const setColorTheme = (themeName: string) => {
     setTheme(themeName);
@@ -23,7 +23,7 @@ export default function ThemeIcon({ orientation } = { orientation: 'bottom' }) {
         return 'right-0 mt-10';
     }
   };
-  
+
   useEffect(() => {
     const classColors = [
       {
@@ -71,11 +71,11 @@ export default function ThemeIcon({ orientation } = { orientation: 'bottom' }) {
         className={`rounded-full transition-all duration-300 group ease-in-out ${inUseTheme === 'dark' ? 'hover:bg-primary-100' : ''}`}
       >
         {inUseTheme === 'dark' ? (
-          <MoonIcon className="w-6 text-primary-50 cursor-pointer rounded-full group-hover:fill-primary-800 transition-all duration-300" />
+          <MoonIcon className={`${size} text-primary-50 cursor-pointer rounded-full group-hover:fill-primary-800 transition-all duration-300`} />
         ) : (
           <>
-            <SunIcon className="w-6 text-primary-800 cursor-pointer rounded-full group-hover:text-accent-500 transition-all duration-300 group-hover:hidden" />
-            <SunIconSolid className="w-6 text-primary-800 cursor-pointer rounded-full group-hover:text-accent-500 transition-all duration-300 hidden group-hover:block" />
+            <SunIcon className={`${size} text-primary-800 cursor-pointer rounded-full group-hover:text-accent-500 transition-all duration-300 group-hover:hidden`} />
+            <SunIconSolid className={`${size} text-primary-800 cursor-pointer rounded-full group-hover:text-accent-500 transition-all duration-300 hidden group-hover:block`} />
           </>
         )}
       </Menu.Button>

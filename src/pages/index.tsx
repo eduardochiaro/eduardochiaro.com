@@ -43,7 +43,6 @@ export default function Home() {
       <Header />
       <Share />
       <div className="flex">
-        <div className="grow"></div>
         <div className="grow max-w-5xl mx-auto">
           <div className="relative">
             <span id="bio" className="anchor" />
@@ -64,7 +63,6 @@ export default function Home() {
           </div>
           <GitHub />
         </div>
-        <Sidemenu menuData={menuData} />
       </div>
       <Footer />
     </div>

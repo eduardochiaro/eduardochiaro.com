@@ -1,7 +1,7 @@
 .header {
   @apply md:sticky top-0 z-40 ;
   .menuUrl {
-    @apply px-3 block md:inline-block text-2xl md:text-base ;
+    @apply px-3 block md:inline-block text-2xl md:text-sm ;
   }
   .menuUrlMobile {
     @apply flex w-full items-center px-2 py-2;

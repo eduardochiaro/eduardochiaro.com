@@ -2,10 +2,10 @@ import moment from 'moment';
 import * as React from 'react';
 import { useSession, signOut } from 'next-auth/react';
 import Link from 'next/link';
-import Logo from '../icons/logo';
+import Logo from '@/components/icons/logo';
 
-function LoginButton(props) {
-  const isLoggedIn = props.isLoggedIn;
+function LoginButton(props: { isLoggedIn: boolean }) {
+  const { isLoggedIn } = props;
   if (isLoggedIn) {
     return (
       <>
@@ -17,6 +17,8 @@ function LoginButton(props) {
         </button>
       </>
     );
+  } else {
+    return <></>;
   }
 }
 
@@ -24,7 +26,7 @@ export default function Footer() {
   const { data: session } = useSession();
   return (
     <footer id="footer" className="mt-10 pb-4">
-      <div className="container mx-auto py-4">
+      <div className="max-w-5xl mx-auto py-4">
         <div className="flex-wrap lg:flex-nowrap flex text-sm md:text-base">
           <div className="hidden grow md:flex"></div>
           <div className="flex-1">
@@ -35,7 +37,7 @@ export default function Footer() {
             </div>
           </div>
           <div className="hidden grow md:flex justify-end align-center items-center gap-4">
-            <LoginButton isLoggedIn={session} />
+            <LoginButton isLoggedIn={session && session.user ? true : false} />
           </div>
         </div>
       </div>

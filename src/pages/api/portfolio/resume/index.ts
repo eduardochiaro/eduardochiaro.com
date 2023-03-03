@@ -8,7 +8,7 @@ type Data = {
   results: Resume[];
 };
 
-const handler = async (req:NextApiRequest, res: NextApiResponse<Data>) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   await cors(req, res);
   const jobs = await prisma.resume.findMany({
     where: {

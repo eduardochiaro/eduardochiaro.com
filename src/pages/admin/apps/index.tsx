@@ -55,7 +55,7 @@ const AdminAppsIndex = () => {
     }
 
     try {
-      const {data} = await apiAdmin<App>('/api/portfolio/apps', app, app.id)
+      const { data } = await apiAdmin<App>('/api/portfolio/apps', app, app.id);
       if (inputFileRef.current) {
         inputFileRef.current.value = '';
       }
@@ -135,24 +135,11 @@ const AdminAppsIndex = () => {
     return (
       <AdminWrapper isPageOpen={isOpen}>
         <div className={`h-full ${isOpen ? 'hidden' : 'grow'}`}>
-          <List
-            title={title}
-            single={single}
-            columns={columns}
-            data={newData}
-            format={appFormat}
-            openAction={openElement}
-            editAction={openElement}
-          />
+          <List title={title} single={single} columns={columns} data={newData} format={appFormat} openAction={openElement} editAction={openElement} />
         </div>
         <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6 min-h-screen ${isOpen ? '' : 'hidden'}`}>
           <div className="flex items-center justify-between">
-            <a
-              href="#"
-              className="text-sm opacity-70 font-semibold hover:underline flex items-center gap-2"
-              onClick={() => closeElement()}
-              role="menuitem"
-            >
+            <a href="#" className="text-sm opacity-70 font-semibold hover:underline flex items-center gap-2" onClick={() => closeElement()} role="menuitem">
               <ChevronLeftIcon className="h-3" /> apps
             </a>
             <h2 className="text-2xl flex items-center gap-2">{app.id ? 'Edit app' : 'Add new app'}</h2>
@@ -161,14 +148,14 @@ const AdminAppsIndex = () => {
                 <TrashIcon className="inline-flex align-text-bottom h-4 mr-1" />
                 Delete
               </a>
-              <button onClick={(e:any) => onSubmitModal(e)} type="button" className={'button-success'}>
+              <button onClick={(e: any) => onSubmitModal(e)} type="button" className={'button-success'}>
                 Save
               </button>
             </div>
           </div>
 
           <div className={'mt-8 mb-2 max-w-5xl mx-auto'}>
-            <form ref={formRef} acceptCharset="UTF-8" method="POST" encType="multipart/form-data" onSubmit={(e:any) => onSubmitModal(e)}>
+            <form ref={formRef} acceptCharset="UTF-8" method="POST" encType="multipart/form-data" onSubmit={(e: any) => onSubmitModal(e)}>
               {form.error && (
                 <div className="bg-accent-100 border border-accent-400 text-accent-700 px-4 py-3 rounded relative mb-4" role="alert">
                   <strong className="font-bold">

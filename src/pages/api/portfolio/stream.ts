@@ -17,13 +17,13 @@ type Data = {
   results: StreamItem[];
 };
 
-const handler = async (req:NextApiRequest, res: NextApiResponse<Data>) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   await cors(req, res);
   const results: StreamItem[] = [];
 
   const flickr = await getCachedFlickr();
 
-  flickr.items.slice(0, 5).forEach((item: { title: any; link: any; isoDate: moment.MomentInput; images: { [x: string]: { [x: string]: any; }; }[]; }) => {
+  flickr.items.slice(0, 5).forEach((item: { title: any; link: any; isoDate: moment.MomentInput; images: { [x: string]: { [x: string]: any } }[] }) => {
     results.push({
       title: item.title,
       permalink: item.link,
@@ -36,7 +36,7 @@ const handler = async (req:NextApiRequest, res: NextApiResponse<Data>) => {
 
   const instagramImages = await getCacheInstagram();
 
-  instagramImages.slice(0, 5).forEach((item: { caption: any; id: any; permalink: any; timestamp: moment.MomentInput; thumbnailUrl: any; mediaUrl: any; }) => {
+  instagramImages.slice(0, 5).forEach((item: { caption: any; id: any; permalink: any; timestamp: moment.MomentInput; thumbnailUrl: any; mediaUrl: any }) => {
     results.push({
       title: item.caption || item.id,
       permalink: item.permalink,

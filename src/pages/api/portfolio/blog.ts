@@ -6,13 +6,11 @@ import fsCache from '@/utils/fsCache';
 
 const url = 'https://blog.eduardochiaro.com/rss/';
 
-const {
-  RSS_CACHE_HOURS=5,
-} = process.env;
+const { RSS_CACHE_HOURS = 5 } = process.env;
 
 type RssFeedItem = {
   title: string | undefined;
-  permalink: string  | undefined;
+  permalink: string | undefined;
   published: moment.MomentInput | undefined;
   content: string | undefined;
   categories: string[] | undefined;
@@ -22,7 +20,7 @@ type Data = {
   results: RssFeedItem[];
 };
 
-const handler = async (req:NextApiRequest, res: NextApiResponse<Data>) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   await cors(req, res);
   const parser = new Parser();
 

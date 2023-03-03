@@ -8,7 +8,7 @@ type Data = {
   results: Skill[];
 };
 
-const handler = async (req:NextApiRequest, res: NextApiResponse<Data>) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   await cors(req, res);
   const skills = await prisma.skill.findMany({
     where: {

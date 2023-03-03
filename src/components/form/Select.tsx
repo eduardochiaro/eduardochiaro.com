@@ -3,13 +3,13 @@ import React from 'react';
 import { forwardRef, ChangeEvent, ReactNode } from 'react';
 
 interface Props {
-  children?: ReactNode,
-  name?: string,
-  label?: string,
-  value?: string,
-  onChange?: (e: ChangeEvent<HTMLSelectElement>) => any
-  required?: boolean,
-  invalid?: boolean
+  children?: ReactNode;
+  name?: string;
+  label?: string;
+  value?: string;
+  onChange?: (e: ChangeEvent<HTMLSelectElement>) => any;
+  required?: boolean;
+  invalid?: boolean;
 }
 
 export type Ref = HTMLSelectElement;
