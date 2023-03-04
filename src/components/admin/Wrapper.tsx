@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import AdminSidebar from './Sidebar';
 import { BriefcaseIcon, CpuChipIcon, CommandLineIcon, TagIcon, BookmarkIcon, Bars3Icon, HashtagIcon } from '@heroicons/react/24/solid';
-import React from 'react';
+import React, { ReactElement } from 'react';
 
 const classForIcon = 'w-5 group-hover:text-secondary-600 dark:group-hover:text-secondary-600';
 
@@ -69,7 +69,7 @@ const menuList = [
 
 export { menuList };
 
-const AdminWrapper = ({ children, isPageOpen }) => {
+const AdminWrapper = ({ children, isPageOpen } : { children: ReactElement|ReactElement[], isPageOpen: boolean }) => {
   return (
     <>
       <Head>
@@ -88,7 +88,7 @@ const AdminWrapper = ({ children, isPageOpen }) => {
     </>
   );
 };
-const AdminWrapprerHeader = ({ children }) => children;
+const AdminWrapprerHeader = ({ children } : { children: ReactElement }) => children;
 
 AdminWrapper.Header = AdminWrapprerHeader;
 

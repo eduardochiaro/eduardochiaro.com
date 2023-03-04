@@ -13,6 +13,7 @@ import { Input, Textarea } from '@/components/form';
 import { findInvalidElement, isFormValid } from '@/utils/formValidation';
 import apiAdmin from '@/utils/apiAdmin';
 import { App } from '@prisma/client';
+import adminSaving from "@/utils/adminSaving";
 
 const AdminAppsIndex = () => {
   const formRef = createRef<HTMLFormElement>();
@@ -33,6 +34,11 @@ const AdminAppsIndex = () => {
     invalid: [],
   };
 
+  const imagePreviewSet = {
+    file: {},
+    imagePreviewUrl: '',
+  };
+
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenDelete, setIsOpenDelete] = useState(false);
   const [app, updateApp] = useReducer((x: any, y: any) => {
@@ -41,6 +47,8 @@ const AdminAppsIndex = () => {
   const [form, setForm] = useReducer((x: any, y: any) => {
     return { ...x, ...y };
   }, formInitialState);
+  const [imagePreview , setImagePreview] = useState(imagePreviewSet);
+
   const inputFileRef = useRef<HTMLInputElement | null>(null);
 
   const inputToValidate = app.id ? ['name', 'url'] : ['name', 'url', 'image'];
@@ -89,6 +97,13 @@ const AdminAppsIndex = () => {
   const openElement = (app: App) => {
     updateApp(app);
     setIsOpen(true);
+    setImagePreview(imagePreviewSet);
+    if (app.image) {
+      setImagePreview({
+        file: {},
+        imagePreviewUrl: `/uploads/${app.image}`,
+      });
+    }
     setForm({ ...formInitialState });
   };
 
@@ -97,6 +112,7 @@ const AdminAppsIndex = () => {
       inputFileRef.current.value = '';
     }
     setForm({ ...formInitialState, success: true });
+    setImagePreview(imagePreviewSet);
   };
 
   const openDeleteModal = (app: App) => {
@@ -114,6 +130,17 @@ const AdminAppsIndex = () => {
 
   const handleChange = (e: React.ChangeEvent<any>) => {
     updateApp({ [e.target.name]: e.target.files ? e.target.files[0] : e.target.value });
+    if (e.target.files) {
+      const reader = new FileReader();
+      const file = e.target.files[0];
+      reader.onloadend = () => {
+        setImagePreview({
+          file,
+          imagePreviewUrl: reader.result as string,
+        });
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const columns = ['name', 'description', 'github_url'];
@@ -135,7 +162,7 @@ const AdminAppsIndex = () => {
     return (
       <AdminWrapper isPageOpen={isOpen}>
         <div className={`h-full ${isOpen ? 'hidden' : 'grow'}`}>
-          <List title={title} single={single} columns={columns} data={newData} format={appFormat} openAction={openElement} editAction={openElement} />
+          <List title={title} single={single} columns={columns} data={newData} format={appFormat} openAction={(e) => openElement(e)} editAction={(e) => openElement(e)} />
         </div>
         <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6 min-h-screen ${isOpen ? '' : 'hidden'}`}>
           <div className="flex items-center justify-between">
@@ -190,11 +217,11 @@ const AdminAppsIndex = () => {
                   />
                 </div>
                 <div className="col-span-2">
-                  {app.id > 0 && app.image && (
+                  {imagePreview && imagePreview.imagePreviewUrl && (
                     <>
                       <div className="mt-4 w-32 h-20 m-auto relative">
                         <Image
-                          src={`/uploads/${app.image}`}
+                          src={imagePreview.imagePreviewUrl}
                           fill
                           sizes="33vw"
                           alt={app.name}

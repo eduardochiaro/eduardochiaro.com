@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { Dialog } from '@headlessui/react';
 
@@ -14,6 +14,18 @@ const AdminModal = ({
   secondaryButtonLabel = 'Cancel',
   onPrimaryButtonClick,
   onSecondaryButtonClick,
+}: {
+  children: ReactElement;
+  title?: string;
+  isOpen: boolean;
+  closeModal: () => void;
+  showButtons?: boolean;
+  fullSize?: boolean;
+  primaryButtonClass?: string;
+  primaryButtonLabel?: string;
+  secondaryButtonLabel?: string;
+  onPrimaryButtonClick?: () => void;
+  onSecondaryButtonClick?: () => void;
 }) => {
   return (
     <Dialog open={isOpen} as="div" className="fixed inset-0 z-10 overflow-y-auto" onClose={closeModal}>

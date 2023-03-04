@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import Link, { LinkProps } from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -10,7 +10,7 @@ export default function NavLink({
   type = 'sub',
   children,
   ...props
-}: LinkProps & { activeClassName: string; className: string; type: string; children: any }) {
+}: LinkProps & { activeClassName: string; className: string; type: string; children: ReactElement }) {
   const { asPath } = useRouter();
 
   const child = React.Children.only(children);

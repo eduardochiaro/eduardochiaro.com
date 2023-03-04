@@ -59,16 +59,27 @@ type FilteredData = {
 }[];
 
 export default function List({
-  title = '',
-  single = '',
+  title,
+  single,
   columns = [],
   data = [],
-  format = {},
+  format,
   sortList = sortType,
   sortDefault = 'id',
   sortDirectionDefault = 'asc',
-  openAction = (e: void) => {},
-  editAction = (e: void) => {},
+  openAction = (e: any) => {},
+  editAction = (e: any) => {},
+}: {
+  title?: string;
+  single?: string;
+  columns?: string[];
+  data?: any[];
+  format?: any;
+  sortList?: any;
+  sortDefault?: string;
+  sortDirectionDefault?: string;
+  openAction?: (e: any) => void;
+  editAction?: (e: any) => void;
 }) {
   const [filteredData, setFilteredData] = useState<FilteredData>([]);
   const [search, setSearch] = useState('');
@@ -162,7 +173,7 @@ export default function List({
       <div className="p-6 flex items-center gap-4">
         <div className="grow text-right">Sort by</div>
         <div className="flex items-center divide-x rounded overflow-hidden bg-primary-500 dark:bg-primary-50 text-primary-50 dark:text-primary-900">
-          {sortList.map((item, key) => (
+          {sortList.map((item: { id: string, name: string }, key: number) => (
             <button
               key={`sort-${key}`}
               className={`text-xs font-bold px-4 py-2 flex-none ${item.id == sortByColumn ? 'bg-primary-300' : ''}`}

@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, ReactElement, useEffect, useState } from 'react';
 import Link from 'next/link';
 import NavLink from '@/components/NavLink';
 import styles from '@/styles/Admin.Sidebar.module.scss';
@@ -9,8 +9,9 @@ import ThemeIcon from '../ThemeIcon';
 import Image from 'next/image';
 import classNames from '@/utils/classNames';
 import Logo from '../icons/logo';
+import { MenuLink } from "@prisma/client";
 
-const SidebarDivider = ({ title, openMenu }) => (
+const SidebarDivider = ({ title, openMenu } : { title: string, openMenu: boolean }) => (
   <li>
     <div className="flex flex-row items-center h-8">
       <span className="w-10 dashed-border-t shrink"></span>
@@ -20,7 +21,7 @@ const SidebarDivider = ({ title, openMenu }) => (
   </li>
 );
 
-const AdminSidebar = ({ menuList, isPageOpen }) => {
+const AdminSidebar = ({ menuList, isPageOpen } : { menuList: any[], isPageOpen: boolean }) => {
   const { data: session } = useSession();
   const [openMenu, setOpenMenu] = useState(true);
   useEffect(() => {
@@ -42,7 +43,6 @@ const AdminSidebar = ({ menuList, isPageOpen }) => {
               <Link
                 href="/admin"
                 className={`${styles['sidebar-link']} group border-transparent hover:border-secondary-600 dark:hover:border-secondary-600`}
-                alt="Website"
                 title="Website"
               >
                 <HomeIcon className="w-5 group-hover:text-secondary-600 dark:group-hover:text-secondary-600" />
@@ -55,7 +55,6 @@ const AdminSidebar = ({ menuList, isPageOpen }) => {
               <Link
                 href="/"
                 className={`${styles['sidebar-link']} group border-transparent hover:border-secondary-600 dark:hover:border-secondary-600`}
-                alt="Website"
                 title="Website"
               >
                 <CodeBracketIcon className="w-5 group-hover:text-secondary-600 dark:group-hover:text-secondary-600" />
@@ -67,15 +66,16 @@ const AdminSidebar = ({ menuList, isPageOpen }) => {
             {menuList.map((item, key) => (
               <Fragment key={`group-${key}`}>
                 <SidebarDivider title={item.title} openMenu={openMenu} />
-                {item.links.map((link, index) => (
+                {item.links.map((link: { href: string, title: string, icon: ReactElement }, index: number) => (
                   <li key={`menu-${index}`}>
                     <NavLink
+                      type="sub"
                       href={link.href}
                       as={link.href}
                       className={`${styles['sidebar-link']} group border-transparent `}
                       activeClassName={`${styles['sidebar-link']} group bg-primary-50 dark:bg-primary-800 rounded-md`}
                     >
-                      <a className="flex items-center gap-2" alt={link.title} title={link.title}>
+                      <a className="flex items-center gap-2" title={link.title}>
                         {link.icon}
                         <span className={`text-sm tracking-wide truncate group-hover:hunderline hidden xl:block ${openMenu ? '' : styles['hide-when-closed']}`}>
                           {link.title}
@@ -91,14 +91,16 @@ const AdminSidebar = ({ menuList, isPageOpen }) => {
         <div className={`p-6 bg-primary-300 dark:bg-primary-500 flex items-center justify-between gap-6 ${openMenu ? 'flex-row' : 'flex-col'}`}>
           <Menu as="div" className="relative flex item-center">
             <Menu.Button className="h-7 w-7 relative rounded-full border-2 border-secondary-600">
-              <Image
-                src={session.user.image}
-                className="rounded-full z-40"
-                width={200}
-                height={200}
-                alt={`Logged as ${session.user.name}`}
-                title={`Logged as ${session.user.name}`}
-              />
+              {session && session.user && (
+                <Image
+                  src={session.user.image as string}
+                  className="rounded-full z-40"
+                  width={200}
+                  height={200}
+                  alt={`Logged as ${session.user.name}`}
+                  title={`Logged as ${session.user.name}`}
+                />
+              )}
             </Menu.Button>
             <Transition
               as={Fragment}
@@ -112,10 +114,8 @@ const AdminSidebar = ({ menuList, isPageOpen }) => {
               <Menu.Items
                 data-cy="user-settings-container"
                 className="transform absolute left-0 bottom-0 mb-10 z-10 w-56 rounded-md shadow-lg ring-1 ring-primary-900 ring-opacity-10 focus:outline-none bg-primary-100 dark:bg-primary-700 divide-y divide-primary-200 dark:divide-primary-500"
-                role="menu"
                 aria-orientation="vertical"
                 aria-labelledby="user-button"
-                tabIndex="-1"
               >
                 <div className="py-1 font-semibold">
                   <Menu.Item>
@@ -126,7 +126,6 @@ const AdminSidebar = ({ menuList, isPageOpen }) => {
                         className={classNames('py-2 px-4 cursor-pointer flex items-center gap-2', active ? 'bg-primary-300 dark:bg-primary-500' : '')}
                         role="menuitem"
                         id={'user-logout'}
-                        tabIndex="-1"
                       >
                         <ArrowLeftCircleIcon className="inline-flex h-4" />
                         <span>Logout</span>
