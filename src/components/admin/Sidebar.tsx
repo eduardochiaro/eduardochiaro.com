@@ -9,9 +9,9 @@ import ThemeIcon from '../ThemeIcon';
 import Image from 'next/image';
 import classNames from '@/utils/classNames';
 import Logo from '../icons/logo';
-import { MenuLink } from "@prisma/client";
+import { MenuLink } from '@prisma/client';
 
-const SidebarDivider = ({ title, openMenu } : { title: string, openMenu: boolean }) => (
+const SidebarDivider = ({ title, openMenu }: { title: string; openMenu: boolean }) => (
   <li>
     <div className="flex flex-row items-center h-8">
       <span className="w-10 dashed-border-t shrink"></span>
@@ -21,14 +21,14 @@ const SidebarDivider = ({ title, openMenu } : { title: string, openMenu: boolean
   </li>
 );
 
-const AdminSidebar = ({ menuList, isPageOpen } : { menuList: any[], isPageOpen: boolean }) => {
+const AdminSidebar = ({ menuList, isPageOpen }: { menuList: any[]; isPageOpen: boolean }) => {
   const { data: session } = useSession();
   const [openMenu, setOpenMenu] = useState(true);
   useEffect(() => {
     setOpenMenu(!isPageOpen);
   }, [isPageOpen]);
   return (
-    <div className={`transition-all ease-in-out relative duration-300 sm:relative md:h-full ${openMenu ? styles['sidebar-open'] : styles['sidebar-closed']}`}>
+    <div className={`relative sm:relative md:h-full ${openMenu ? styles['sidebar-open'] : styles['sidebar-closed']}`}>
       <div className="flex flex-col justify-between min-h-screen bg-primary-200 dark:bg-primary-600 fixed">
         <div className="grow p-3 relative">
           <div className={`flex items-center gap-4 h-14 my-3 border-b border-primary-300 dark:border-primary-500 px-3 ${styles['sidebar-logo']}`}>
@@ -66,7 +66,7 @@ const AdminSidebar = ({ menuList, isPageOpen } : { menuList: any[], isPageOpen: 
             {menuList.map((item, key) => (
               <Fragment key={`group-${key}`}>
                 <SidebarDivider title={item.title} openMenu={openMenu} />
-                {item.links.map((link: { href: string, title: string, icon: ReactElement }, index: number) => (
+                {item.links.map((link: { href: string; title: string; icon: ReactElement }, index: number) => (
                   <li key={`menu-${index}`}>
                     <NavLink
                       type="sub"

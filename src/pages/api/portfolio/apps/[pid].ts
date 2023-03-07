@@ -1,9 +1,11 @@
+import type { NextApiRequest, NextApiResponse } from 'next';
 import apiWithMiddleware from '@/utils/apiWithMiddleware';
 import prisma from '@/utils/prisma';
 import cors from '@/middlewares/cors';
-import { IncomingForm } from 'formidable';
-import mv from 'mv';
+import { File, IncomingForm } from 'formidable';
+import fs from 'fs';
 import { rmFile } from 'rm-file';
+import { join } from 'path';
 
 const uploadPath = './public/uploads/';
 
@@ -13,9 +15,9 @@ export const config = {
   },
 };
 
-const handler = async (req, res) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await cors(req, res);
-  const { pid } = req.query;
+  const { pid } = req.query as { pid: string };
 
   const appReturn = await prisma.app.findFirst({
     where: {
@@ -32,16 +34,20 @@ const handler = async (req, res) => {
         const form = new IncomingForm();
         form.parse(req, async (err, fields, files) => {
           if (err) return reject(err);
-          const { id, style, name, description, url } = fields;
+          const { id, name, description, url } = fields as { [key: string]: string };
           if (files.image) {
-            const oldPath = files.image.filepath;
-            const extension = files.image.originalFilename.split('.').pop();
-            const newName = files.image.newFilename + '.' + extension;
-            const newPath = `${uploadPath}${newName}`;
-            mv(oldPath, newPath, function (err) {
-              console.error(err);
-            });
-            if (appReturn.image) {
+            const file = files.image as File;
+            const oldPath = file.filepath;
+            const extension = file.originalFilename?.split('.').pop();
+            const newName = file.newFilename + '.' + extension;
+
+            try {
+              // renames the file in the directory
+              fs.renameSync(oldPath, join(uploadPath, newName));
+            } catch (error) {
+              console.log(error);
+            }
+            if (appReturn && appReturn.image) {
               await rmFile(`${uploadPath}${appReturn.image}`);
             }
             const app = await prisma.app.update({
@@ -52,7 +58,7 @@ const handler = async (req, res) => {
           } else {
             const app = await prisma.app.update({
               where: { id: parseInt(id) },
-              data: { ...data, updatedAt: new Date() },
+              data: { name, description, url, updatedAt: new Date() },
             });
             res.status(200).json({ ...app });
           }
@@ -64,7 +70,9 @@ const handler = async (req, res) => {
         where: { id: parseInt(pid) },
         data: { deletedAt: new Date() },
       });
-      await rmFile(`${uploadPath}${appReturn.image}`);
+      if (appReturn && appReturn.image) {
+        await rmFile(`${uploadPath}${appReturn.image}`);
+      }
       res.status(200).json({ action: 'app deleted' });
       break;
     default:

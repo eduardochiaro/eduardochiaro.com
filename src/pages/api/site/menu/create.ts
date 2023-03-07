@@ -18,9 +18,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       const form = new IncomingForm();
       form.parse(req, async (err, fields, files) => {
         if (err) return reject(err);
-        const { id, order, onlyMobile, active, ...data } = fields as { [key: string]: string };
+        const { id, order, onlyMobile, active, name, url } = fields as { [key: string]: string };
         const menuLink: MenuLink = await prisma.menuLink.create({
-          data: { ...data, order: parseInt(order || '0'), onlyMobile: onlyMobile == 'true', active: active == 'true', createdAt: new Date() },
+          data: { name, url, order: parseInt(order || '0'), onlyMobile: onlyMobile == 'true', active: active == 'true', createdAt: new Date() },
         });
         res.status(200).json({ ...menuLink });
       });

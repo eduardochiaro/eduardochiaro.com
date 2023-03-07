@@ -1,3 +1,4 @@
+import type { NextApiRequest, NextApiResponse } from 'next';
 import apiWithMiddleware from '@/utils/apiWithMiddleware';
 import prisma from '@/utils/prisma';
 import cors from '@/middlewares/cors';
@@ -9,17 +10,17 @@ export const config = {
   },
 };
 
-const handler = async (req, res) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await cors(req, res);
-  const { pid } = req.query;
+  const { pid } = req.query as { pid: string };
 
-  const skillReturn = await prisma.skill.findFirst({
+  const bookmarkReturn = await prisma.bookmark.findFirst({
     where: {
       id: parseInt(pid),
       deletedAt: null,
     },
   });
-  if (!skillReturn) {
+  if (!bookmarkReturn) {
     res.status(200).json({ error: 'Record doesnt exist' });
   }
   switch (req.method) {
@@ -28,24 +29,24 @@ const handler = async (req, res) => {
         const form = new IncomingForm();
         form.parse(req, async (err, fields) => {
           if (err) return reject(err);
-          const { id, percentage, ...data } = fields;
-          const skill = await prisma.skill.update({
+          const { id, categoryId, url, name, description } = fields as { [key: string]: string };
+          const bookmark = await prisma.bookmark.update({
             where: { id: parseInt(id) },
-            data: { ...data, percentage: parseInt(percentage), updatedAt: new Date() },
+            data: { url, name, description, categoryId: parseInt(categoryId), updatedAt: new Date() },
           });
-          res.status(200).json({ ...skill });
+          res.status(200).json({ ...bookmark });
         });
       });
       break;
     case 'DELETE':
-      await prisma.skill.update({
+      await prisma.bookmark.update({
         where: { id: parseInt(pid) },
         data: { deletedAt: new Date() },
       });
-      res.status(200).json({ action: 'skill deleted' });
+      res.status(200).json({ action: 'bookmark deleted' });
       break;
     default:
-      res.status(200).json({ ...skillReturn });
+      res.status(200).json({ ...bookmarkReturn });
       break;
   }
 };

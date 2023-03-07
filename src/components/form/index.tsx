@@ -1,5 +1,6 @@
-import Input from '@/components/form/Input';
-import Textarea from '@/components/form/Textarea';
-import Select from '@/components/form/Select';
+import Input from './Input';
+import Textarea from './Textarea';
+import Select from './Select';
+import Range from './Range';
 
-export { Input, Textarea, Select };
+export { Input, Textarea, Select, Range };

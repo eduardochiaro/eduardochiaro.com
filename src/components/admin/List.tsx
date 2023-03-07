@@ -141,17 +141,17 @@ export default function List({
 
   return (
     <div className="overflow-auto h-screen py-8 bg-primary-100 dark:bg-primary-800">
-      <div className="text-2xl flex items-center gap-2 px-6">
-        <h1 className="grow">{title}</h1>
+      <div className="text-2xl flex items-center gap-6 px-6">
+        <h1>{title}</h1>
         <button
           className="bg-primary-500 dark:bg-primary-50 text-primary-50 dark:text-primary-900 rounded text-xs p-2 flex items-center gap-1"
           onClick={() => clickOnAdd(format)}
           title={`New ${single}`}
         >
-          <PlusIcon className="h-4" /> New {single}
+          <PlusIcon className="h-4" /> add new
         </button>
       </div>
-      <div className="mt-8 mb-2 px-6">
+      <div className="mt-8 mb-2 px-6 flex items-center gap-4">
         <div className="flex relative">
           <label
             htmlFor="website-admin-search"
@@ -169,11 +169,10 @@ export default function List({
           />
           {search && <XMarkIcon className="cursor-pointer absolute top-2 right-2 w-5" onClick={() => filterData('')} />}
         </div>
-      </div>
-      <div className="p-6 flex items-center gap-4">
+
         <div className="grow text-right">Sort by</div>
         <div className="flex items-center divide-x rounded overflow-hidden bg-primary-500 dark:bg-primary-50 text-primary-50 dark:text-primary-900">
-          {sortList.map((item: { id: string, name: string }, key: number) => (
+          {sortList.map((item: { id: string; name: string }, key: number) => (
             <button
               key={`sort-${key}`}
               className={`text-xs font-bold px-4 py-2 flex-none ${item.id == sortByColumn ? 'bg-primary-300' : ''}`}
@@ -196,7 +195,7 @@ export default function List({
           ))}
         </div>
       </div>
-      <div className="flex flex-col gap-4 mt-2 pl-6" role="menu" aria-orientation="vertical" aria-labelledby="menu-button">
+      <div className="flex flex-col gap-4 mt-10 pl-6" role="menu" aria-orientation="vertical" aria-labelledby="menu-button">
         {filteredData.length > 0 ? (
           filteredData.map((item) => (
             <div key={`list-${item.id}`} className="group">

@@ -2,20 +2,25 @@ import { ExclamationTriangleIcon } from '@heroicons/react/24/solid';
 import { forwardRef, ChangeEvent } from 'react';
 
 interface Props {
-  type?: 'text' | 'file' | 'url';
+  type?: string;
   name?: string;
   label?: string;
   value?: string;
+  placeholder?: string;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => any;
   maxLength?: number;
   required?: boolean;
   invalid?: boolean;
+  accept?: string;
 }
 
 export type Ref = HTMLInputElement;
 
 const Input = forwardRef<Ref, Props>(
-  ({ type = 'text', name = '', label = '', value = '', onChange = () => {}, maxLength = 191, required = false, invalid = false }, ref) => {
+  (
+    { type = 'text', name = '', label = '', value = '', placeholder = '', onChange = () => {}, maxLength = 191, required = false, invalid = false, accept },
+    ref,
+  ) => {
     const isInvalid =
       type == 'file' ? invalid && ref != null && typeof ref !== 'function' && ref.current && ref.current.value == '' : invalid && value.length <= 0;
     return (
@@ -31,16 +36,19 @@ const Input = forwardRef<Ref, Props>(
             ref={ref}
             type={type}
             name={name}
+            placeholder={placeholder}
             id={`${name}-form`}
             className={`${isInvalid ? 'ring-2 ring-red-500' : ''} mt-1 input-field py-1.5 px-2 focus:outline-none`}
             onChange={onChange}
             required={required}
+            accept={accept}
           />
         ) : (
           <input
             ref={ref}
             type={type}
             name={name}
+            placeholder={placeholder}
             id={`${name}-form`}
             autoComplete="off"
             data-lpignore="true"

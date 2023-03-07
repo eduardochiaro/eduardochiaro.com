@@ -1,3 +1,4 @@
+import type { NextApiRequest, NextApiResponse } from 'next';
 import apiWithMiddleware from '@/utils/apiWithMiddleware';
 import prisma from '@/utils/prisma';
 import cors from '@/middlewares/cors';
@@ -9,17 +10,17 @@ export const config = {
   },
 };
 
-const handler = async (req, res) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await cors(req, res);
-  const { pid } = req.query;
+  const { pid } = req.query as { pid: string };
 
-  const bookmarkReturn = await prisma.bookmark.findFirst({
+  const skillReturn = await prisma.skill.findFirst({
     where: {
       id: parseInt(pid),
       deletedAt: null,
     },
   });
-  if (!bookmarkReturn) {
+  if (!skillReturn) {
     res.status(200).json({ error: 'Record doesnt exist' });
   }
   switch (req.method) {
@@ -28,24 +29,24 @@ const handler = async (req, res) => {
         const form = new IncomingForm();
         form.parse(req, async (err, fields) => {
           if (err) return reject(err);
-          const { id, categoryId, ...data } = fields;
-          const bookmark = await prisma.bookmark.update({
+          const { id, percentage, name, type, logo } = fields as { [key: string]: string };
+          const skill = await prisma.skill.update({
             where: { id: parseInt(id) },
-            data: { ...data, categoryId: parseInt(categoryId), updatedAt: new Date() },
+            data: { name, type, logo, percentage: parseInt(percentage), updatedAt: new Date() },
           });
-          res.status(200).json({ ...bookmark });
+          res.status(200).json({ ...skill });
         });
       });
       break;
     case 'DELETE':
-      await prisma.bookmark.update({
+      await prisma.skill.update({
         where: { id: parseInt(pid) },
         data: { deletedAt: new Date() },
       });
-      res.status(200).json({ action: 'bookmark deleted' });
+      res.status(200).json({ action: 'skill deleted' });
       break;
     default:
-      res.status(200).json({ ...bookmarkReturn });
+      res.status(200).json({ ...skillReturn });
       break;
   }
 };

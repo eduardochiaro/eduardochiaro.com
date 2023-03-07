@@ -69,7 +69,7 @@ const menuList = [
 
 export { menuList };
 
-const AdminWrapper = ({ children, isPageOpen } : { children: ReactElement|ReactElement[], isPageOpen: boolean }) => {
+const AdminWrapper = ({ children, isPageOpen }: { children: ReactElement | ReactElement[]; isPageOpen: boolean }) => {
   return (
     <>
       <Head>
@@ -88,7 +88,7 @@ const AdminWrapper = ({ children, isPageOpen } : { children: ReactElement|ReactE
     </>
   );
 };
-const AdminWrapprerHeader = ({ children } : { children: ReactElement }) => children;
+const AdminWrapprerHeader = ({ children }: { children: ReactElement }) => children;
 
 AdminWrapper.Header = AdminWrapprerHeader;
 

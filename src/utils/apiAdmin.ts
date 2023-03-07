@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const apiAdmin = <T>(url: string, form: { [key: string]: any }, create = true) => {
+const createEditItem = <T>(url: string, form: { [key: string]: any }, create = true) => {
   const formData = new FormData();
   for (const [key, value] of Object.entries(form)) {
     formData.append(key, value);
@@ -16,4 +16,11 @@ const apiAdmin = <T>(url: string, form: { [key: string]: any }, create = true) =
   });
 };
 
-export default apiAdmin;
+const deleteItem = <T>(url: string, id: number) => {
+  return axios<T>({
+    method: 'DELETE',
+    url: `${url}/${id}`,
+  });
+};
+
+export { createEditItem, deleteItem };
