@@ -3,8 +3,8 @@ import { getProviders, signIn } from 'next-auth/react';
 import { getServerSession } from 'next-auth/next';
 import { useRouter } from 'next/router';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
-import GitHub from '@/components/icons/github';
-import Google from '@/components/icons/google';
+import GitHub from '@/components/icons/Github';
+import Google from '@/components/icons/Google';
 import ThemeIcon from '@/components/ThemeIcon';
 import Logo from '@/components/icons/Logo';
 

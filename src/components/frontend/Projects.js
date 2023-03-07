@@ -1,5 +1,5 @@
 import * as React from 'react';
-import GitHubIcon from '@/components/icons/github';
+import GitHubIcon from '@/components/icons/Github';
 import styles from '@/styles/Projects.module.scss';
 import useStaleSWR from '@/utils/staleSWR';
 import Link from 'next/link';

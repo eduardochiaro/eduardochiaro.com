@@ -7,9 +7,8 @@ import Share from '@/components/frontend/Share';
 import Skills from '@/components/frontend/Skills';
 import GitHub from '@/components/frontend/GitHub';
 import Footer from '@/components/frontend/Footer';
-import Sidemenu from '@/components/frontend/Sidemenu';
 import LatestPosts from '@/components/frontend/LatestPosts';
-import GitHubIcon from '@/components/icons/github';
+import GitHubIcon from '@/components/icons/Github';
 
 export default function Home() {
   const menuData = [
