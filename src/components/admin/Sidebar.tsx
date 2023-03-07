@@ -8,7 +8,7 @@ import { useSession, signOut } from 'next-auth/react';
 import ThemeIcon from '../ThemeIcon';
 import Image from 'next/image';
 import classNames from '@/utils/classNames';
-import Logo from '../icons/logo';
+import Logo from '../icons/Logo';
 import { MenuLink } from '@prisma/client';
 
 const SidebarDivider = ({ title, openMenu }: { title: string; openMenu: boolean }) => (

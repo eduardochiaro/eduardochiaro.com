@@ -1,6 +1,6 @@
 import { useEffect, useReducer, useRef } from 'react';
 import moment from 'moment';
-import SpinnerIcon from '@/components/icons/spinner';
+import SpinnerIcon from '@/components/icons/Spinner';
 import * as commands from '@/utils/projects/terminal/commands';
 import classNames from '@/utils/classNames';
 

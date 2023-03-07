@@ -1,4 +1,4 @@
-const classNames = (...classes) => {
+const classNames = (...classes: any[]) => {
   return classes.filter(Boolean).join(' ');
 };
 

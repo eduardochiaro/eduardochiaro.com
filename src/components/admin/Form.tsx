@@ -227,7 +227,6 @@ const AdminForm = ({ apiURL, itemFormat, itemData, inputList, titleElement, inpu
 
   const onSubmitModal = async (e: Event) => {
     e.preventDefault();
-    console.log(item);
     setForm({ ...formInitialState });
     if (!isFormValid(item, inputToValidate)) {
       const listOfInvalidInputs = findInvalidElement(item, inputToValidate);

@@ -2,7 +2,7 @@ import moment from 'moment';
 import * as React from 'react';
 import { useSession, signOut } from 'next-auth/react';
 import Link from 'next/link';
-import Logo from '@/components/icons/logo';
+import Logo from '@/components/icons/Logo';
 
 function LoginButton(props: { isLoggedIn: boolean }) {
   const { isLoggedIn } = props;

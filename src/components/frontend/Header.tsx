@@ -9,6 +9,7 @@ import useStaleSWR from '@/utils/staleSWR';
 import styles from '@/styles/Header.module.scss';
 import classNames from '@/utils/classNames';
 import type { MenuLink } from '@prisma/client';
+import { FireIcon } from '@heroicons/react/20/solid';
 
 export default function Header() {
   const router = useRouter();
@@ -87,7 +88,8 @@ export default function Header() {
             </Transition>
           </Menu>
           <span className="grow text-center md:text-left">
-            <Link href="/" className="inline-flex items-baseline gap-2">
+            <Link href="/" className="inline-flex items-center gap-2 group">
+              <FireIcon className="h-7 group-hover:text-accent-600 dark:group-hover:text-accent-500" />
               <span className={'text-3xl font-header font-normal hidden md:block'}>
                 eduardo<span className="font-semibold overlay-color">chiaro</span>
               </span>

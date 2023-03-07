@@ -4,9 +4,15 @@ import Link from 'next/link';
 import * as React from 'react';
 import useStaleSWR from '@/utils/staleSWR';
 import Masonry from 'react-masonry-css';
-import Sidemenu from './Sidemenu';
 import ImageWithFallback from '../ImageWithFallback';
-import emptyIcon from '../icons/empty';
+import emptyIcon from '@/components/icons/Empty';
+import { Bookmark, Category, Prisma } from '@prisma/client';
+
+type BookmarkWithCategory = Prisma.BookmarkGetPayload<{
+  include: {
+    category: true
+  }
+}>
 
 const breakpointColumnsObj = {
   default: 2,
@@ -16,11 +22,11 @@ const breakpointColumnsObj = {
 export default function Bookmarks() {
   const { data } = useStaleSWR('/api/portfolio/bookmarks');
 
-  const categories = data && data.results ? data.results.map((bookmark) => bookmark.category) : [];
+  const categories = data && data.results ? data.results.map((bookmark: BookmarkWithCategory) => bookmark.category) : [];
   const uniqueCategories = categories
-    .filter((value, index, self) => index === self.findIndex((t) => t.id === value.id))
-    .sort((a, b) => (a.name > b.name ? 1 : -1));
-
+    .filter((value: any, index: number, self: any) => index === self.findIndex((t: any) => t.id === value.id))
+    .sort((a:any, b:any) => (a.name > b.name ? 1 : -1));
+  /*
   const menuData = uniqueCategories.map((item, index) => {
     return {
       id: `bookmarks-${index}`,
@@ -29,14 +35,13 @@ export default function Bookmarks() {
       pre: <TagIcon className="h-4" />,
     };
   });
-
+  */
   return (
     <div className="flex">
-      <div className="grow"></div>
       <section id="work" className={'grow px-4 lg:px-0 mt-10 max-w-5xl mx-auto'}>
         <h1 className="font-header leading-tight tracking-wide text-2xl lg:text-3xl font-light">Bookmarks</h1>
         <div>
-          {uniqueCategories.map((category, index) => (
+          {uniqueCategories.map((category: Category, index:number) => (
             <div key={index} className="group/list">
               <span className="anchor" id={`bookmarks-${index}`} />
               <h4 className="text-secondary-600 dark:text-secondary-600 mt-14 group-first/list:mt-5 mb-5 flex items-center gap-2">
@@ -50,8 +55,8 @@ export default function Bookmarks() {
               </h4>
               <Masonry breakpointCols={breakpointColumnsObj} className="flex gap-8 w-auto" columnClassName="bg-clip-padding flex flex-col gap-8">
                 {data?.results
-                  .filter((x) => x.categoryId == category.id)
-                  .map((bookmark, index) => (
+                  .filter((x: Bookmark) => x.categoryId == category.id)
+                  .map((bookmark: any, index: number) => (
                     <div key={`apps-${index}`} className={'group/card box-card'}>
                       <Link href={bookmark.url} as={bookmark.url} target="_blank" className="p-5 block" rel="noopener noreferrer">
                         <h3 className="text-xl tracking-wide flex justify-between">
@@ -80,7 +85,6 @@ export default function Bookmarks() {
           ))}
         </div>
       </section>
-      <Sidemenu menuData={menuData} />
     </div>
   );
 }

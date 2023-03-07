@@ -6,7 +6,7 @@ import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import GitHub from '@/components/icons/github';
 import Google from '@/components/icons/google';
 import ThemeIcon from '@/components/ThemeIcon';
-import Logo from '@/components/icons/logo';
+import Logo from '@/components/icons/Logo';
 
 const LogoProvider = ({ id }: { id: string }) => {
   switch (id) {

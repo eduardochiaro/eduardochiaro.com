@@ -6,8 +6,8 @@ import Masonry from 'react-masonry-css';
 import useStaleSWR from '@/utils/staleSWR';
 import moment from 'moment';
 import Link from 'next/link';
-import Flickr from '@/components/icons/flickr';
-import Instagram from '@/components/icons/instagram';
+import Flickr from '@/components/icons/Flickr';
+import Instagram from '@/components/icons/Instagram';
 import styles from '@/styles/Stream.module.scss';
 import NaturalImage from '@/components/NaturalImage';
 
