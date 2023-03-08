@@ -10,9 +10,9 @@ import { Bookmark, Category, Prisma } from '@prisma/client';
 
 type BookmarkWithCategory = Prisma.BookmarkGetPayload<{
   include: {
-    category: true
-  }
-}>
+    category: true;
+  };
+}>;
 
 const breakpointColumnsObj = {
   default: 2,
@@ -25,7 +25,7 @@ export default function Bookmarks() {
   const categories = data && data.results ? data.results.map((bookmark: BookmarkWithCategory) => bookmark.category) : [];
   const uniqueCategories = categories
     .filter((value: any, index: number, self: any) => index === self.findIndex((t: any) => t.id === value.id))
-    .sort((a:any, b:any) => (a.name > b.name ? 1 : -1));
+    .sort((a: any, b: any) => (a.name > b.name ? 1 : -1));
   /*
   const menuData = uniqueCategories.map((item, index) => {
     return {
@@ -41,7 +41,7 @@ export default function Bookmarks() {
       <section id="work" className={'grow px-4 lg:px-0 mt-10 max-w-5xl mx-auto'}>
         <h1 className="font-header leading-tight tracking-wide text-2xl lg:text-3xl font-light">Bookmarks</h1>
         <div>
-          {uniqueCategories.map((category: Category, index:number) => (
+          {uniqueCategories.map((category: Category, index: number) => (
             <div key={index} className="group/list">
               <span className="anchor" id={`bookmarks-${index}`} />
               <h4 className="text-secondary-600 dark:text-secondary-600 mt-14 group-first/list:mt-5 mb-5 flex items-center gap-2">

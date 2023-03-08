@@ -89,7 +89,7 @@ export default function Header() {
           </Menu>
           <span className="grow text-center md:text-left">
             <Link href="/" className="inline-flex items-center gap-2 group">
-              <FireIcon className="h-7 group-hover:text-accent-600 dark:group-hover:text-accent-500" />
+              <FireIcon className="h-7 group-hover:text-accent-600 dark:group-hover:text-accent-500 transition-colors ease-out duration-300" />
               <span className={'text-3xl font-header font-normal hidden md:block'}>
                 eduardo<span className="font-semibold overlay-color">chiaro</span>
               </span>

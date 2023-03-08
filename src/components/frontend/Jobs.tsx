@@ -71,7 +71,7 @@ export default function Jobs() {
         <div id="work-list" className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-8 mt-4">
           {works.map((job, index) => (
             <div className={'text-center z-10 mb-5 relative align-middle'} key={`job-image-${index}`}>
-              <SVG alt={job.name} className={'inline w-full fill-primary-700 dark:fill-primary-200'} src={`/works/${job.logo}`} height={30} />
+              <SVG title={job.name} className={'inline w-full fill-primary-700 dark:fill-primary-200'} src={`/works/${job.logo}`} height={30} />
             </div>
           ))}
         </div>

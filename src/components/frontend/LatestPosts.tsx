@@ -14,7 +14,7 @@ export default function LatestPosts() {
         </h3>
         <div id="articles-list" className="mt-6 -ml-6">
           {cutReposene
-            ? cutReposene.map((article, index) => (
+            ? cutReposene.map((article: any, index: number) => (
                 <div key={`article-${index}`} className="mb-6 relative">
                   <Link
                     href={article.permalink}
@@ -37,7 +37,7 @@ export default function LatestPosts() {
               ))
             : [
                 ...Array(3)
-                  .fill()
+                  .fill('')
                   .map((_, idx) => 0 + idx),
               ].map((x) => <div key={`article-${x}`} className="flex items-center mt-1"></div>)}
         </div>

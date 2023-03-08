@@ -46,7 +46,7 @@ export default function Projects() {
                     rel="noreferrer"
                     className="from-secondary-600 to-secondary-600 bg-gradient-to-r transition text-primary-100 shadow-lg px-4 py-2 text-base rounded-md mt-6 inline-flex items-center gap-4 hover:underline"
                   >
-                    <GitHubIcon className="w-6 transition-all duration-500 ease-in-out" />
+                    <GitHubIcon className="w-6 transition-all duration-300 ease-in-out" />
                     Download from GitHub
                   </Link>
                 </div>

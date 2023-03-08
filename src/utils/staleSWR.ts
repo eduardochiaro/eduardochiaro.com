@@ -11,5 +11,6 @@ const useStaleSWR = (dataKey: any, overrideRevalidation = {}) => {
 
   return useSWR(dataKey, fetcher, revalidationOptions);
 };
+export { fetcher };
 
 export default useStaleSWR;

@@ -32,7 +32,7 @@ class MyDocument extends Document {
             }}
           />
         </Head>
-        <body className="transition duration-500 ease-in-out">
+        <body className="transition duration-300 ease-in-out">
           <Main />
           <NextScript />
         </body>
