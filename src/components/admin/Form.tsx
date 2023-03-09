@@ -50,6 +50,7 @@ const InputType = ({ input, itemData, form, imagePreview, inputFileRef, handleCh
     case 'text':
     case 'url':
     case 'file':
+    case 'password':
     default:
       return (
         <Input
@@ -144,6 +145,8 @@ const InputType = ({ input, itemData, form, imagePreview, inputFileRef, handleCh
       } else {
         return <></>;
       }
+    case 'html':
+      return <>{input.html}</>;
   }
 };
 
@@ -358,18 +361,15 @@ const AdminForm = ({ apiURL, itemFormat, itemData, inputList, titleElement, inpu
           <div className="grid grid-cols-6 gap-6">
             {inputList.map((input: any, index: number) => (
               <div key={index} className={input.classNames}>
-                {input.html && <>{input.html}</>}
-                {!input.html && (
-                  <InputType
-                    input={input}
-                    form={form}
-                    itemData={item}
-                    imagePreview={imagePreview}
-                    inputFileRef={inputFileRef}
-                    handleChange={handleChange}
-                    fetchFunction={fetchUrlData}
-                  />
-                )}
+                <InputType
+                  input={input}
+                  form={form}
+                  itemData={item}
+                  imagePreview={imagePreview}
+                  inputFileRef={inputFileRef}
+                  handleChange={handleChange}
+                  fetchFunction={fetchUrlData}
+                />
               </div>
             ))}
           </div>

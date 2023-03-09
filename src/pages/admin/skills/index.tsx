@@ -75,6 +75,7 @@ const AdminSkillsIndex = ({ images }: { images: any[] }) => {
     },
     {
       classNames: 'col-span-1 text-center',
+      type: 'html',
       html: previewLogo && <SVG title="" className={'inline-block w-14 fill-primary-700 dark:fill-primary-200'} src={`/images/svg-icons/${previewLogo}`} />,
     },
     {

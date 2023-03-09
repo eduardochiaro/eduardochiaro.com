@@ -1,65 +1,47 @@
 import { ExclamationTriangleIcon } from '@heroicons/react/24/solid';
-import { forwardRef, ChangeEvent } from 'react';
+import { forwardRef, DetailedHTMLProps, InputHTMLAttributes } from 'react';
 
-interface Props {
-  type?: string;
-  name?: string;
-  label?: string;
+export type FormInputProps = {
+  id?: string;
+  name: string;
+  label: string;
   value?: string;
-  placeholder?: string;
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => any;
-  maxLength?: number;
-  required?: boolean;
+  type?: string;
+  className?: string;
   invalid?: boolean;
-  accept?: string;
-}
+} & DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
 
 export type Ref = HTMLInputElement;
 
-const Input = forwardRef<Ref, Props>(
+const Input = forwardRef<Ref, FormInputProps>(
   (
-    { type = 'text', name = '', label = '', value = '', placeholder = '', onChange = () => {}, maxLength = 191, required = false, invalid = false, accept },
+    { id = '', type = 'text', name = '', label = '', value = '', placeholder = '', invalid = false, accept, className, ...props },
     ref,
   ) => {
     const isInvalid =
       type == 'file' ? invalid && ref != null && typeof ref !== 'function' && ref.current && ref.current.value == '' : invalid && value.length <= 0;
     return (
       <>
-        <label htmlFor={`${name}-form`} className="input-label flex items-center">
+        <label htmlFor={id ? id : `${name}-form`} className="input-label flex items-center">
           <span className="grow">
-            {label} {required && <span className="text-secondary-600">*</span>}
+            {label} {props.required && <span className="text-secondary-600">*</span>}
           </span>
           {isInvalid && <ExclamationTriangleIcon className="h-4 w-4 text-red-400" />}
         </label>
-        {type == 'file' ? (
-          <input
-            ref={ref}
-            type={type}
-            name={name}
-            placeholder={placeholder}
-            id={`${name}-form`}
-            className={`${isInvalid ? 'ring-2 ring-red-500' : ''} mt-1 input-field py-1.5 px-2 focus:outline-none`}
-            onChange={onChange}
-            required={required}
-            accept={accept}
+
+        <input
+          ref={ref}
+          type={type}
+          name={name}
+          placeholder={placeholder}
+          id={id ? id : `${name}-form`}
+          autoComplete="off"
+          data-lpignore="true"
+          data-form-type="other"
+          className={`${isInvalid ? 'ring-2 ring-red-500' : ''} mt-1 input-field py-1.5 px-2 focus:outline-none ${className}`}
+          value={value}
+          {...props}
           />
-        ) : (
-          <input
-            ref={ref}
-            type={type}
-            name={name}
-            placeholder={placeholder}
-            id={`${name}-form`}
-            autoComplete="off"
-            data-lpignore="true"
-            data-form-type="other"
-            className={`${isInvalid ? 'ring-2 ring-red-500' : ''} mt-1 input-field py-1.5 px-2 focus:outline-none`}
-            value={value}
-            onChange={onChange}
-            maxLength={maxLength}
-            required={required}
-          />
-        )}
       </>
     );
   },
