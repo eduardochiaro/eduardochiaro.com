@@ -2,12 +2,24 @@ import useStaleSWR from '@/utils/staleSWR';
 import SVG from 'react-inlinesvg';
 import moment from 'moment';
 import { ChevronDoubleRightIcon } from '@heroicons/react/20/solid';
+import {Prisma, Resume, ResumeTag } from "@prisma/client";
 
-export default function Resume() {
+type JobWithExtra = Prisma.ResumeGetPayload<{
+  include: {
+    tags: true,
+    projects: true
+  };
+}> & {
+  startYear: string;
+  ednYear: string;
+};
+
+
+export default function ResumeComponent() {
   const { data } = useStaleSWR('/api/portfolio/resume');
   const mappedData =
     data && data.results
-      ? data.results.map((job) => {
+      ? data.results.map((job: Resume) => {
           return {
             ...job,
             startYear: moment(job.startDate).format('YYYY'),
@@ -20,7 +32,7 @@ export default function Resume() {
       <div className="max-w-5xl mx-auto">
         <h1 className="font-header leading-tight tracking-wide text-2xl lg:text-3xl font-light h-10">Resume</h1>
         <div className="mt-5 mx-auto">
-          {mappedData.map((job, index) => (
+          {mappedData.map((job: JobWithExtra, index: number) => (
             <div className="group" key={`job-image-${index}`}>
               <div className="hidden group-first:md:flex">
                 <div className="flex-1"></div>
@@ -40,7 +52,7 @@ export default function Resume() {
                   <div className="relative box-card p-4 my-2 md:my-5">
                     <h3 className="text-3xl font-header break-words mb-2">{job.name}</h3>
                     {job.logo ? (
-                      <SVG alt={job.company} className={'fill-primary-700 dark:fill-primary-200 mb-4'} src={`/uploads/${job.logo}`} height={20} />
+                      <SVG title={job.company} className={'fill-primary-700 dark:fill-primary-200 mb-4'} src={`/uploads/${job.logo}`} height={20} />
                     ) : (
                       <h4 className="text-xl font-header break-words mb-4">{job.company}</h4>
                     )}
@@ -53,21 +65,23 @@ export default function Resume() {
                       <span>{job.endDate && moment(job.endDate).format('MMMM YYYY')}</span>
                     </div>
                     {job.description && <div className="text-sm text-primary-700 dark:text-primary-200 mt-4">{job.description}</div>}
+                    {job.tags?.length > 0 && (
                     <div className="flex items-center gap-4 mt-6">
-                      {job.tags?.map((tag) => (
+                      {job.tags?.map((tag: ResumeTag) => (
                         <span key={`resume_tag_${tag.id}`} className="text-xs rounded px-2 py-1 bg-secondary-800 text-primary-100">
                           {tag.name}
                         </span>
                       ))}
                     </div>
-                    {job.projects.length > 0 ? (
+                    )}
+                    {job.projects.length > 0 && (
                       <>
                         <h5 className="mt-6 mb-2 text-lg">Projects</h5>
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                           {job.projects?.map((project) => (
                             <SVG
                               key={`resume_project_${project.id}`}
-                              alt={project.name}
+                              title={project.name}
                               className="fill-primary-700 dark:fill-primary-200 mx-auto"
                               src={`/uploads/${project.logo}`}
                               height={25}
@@ -75,8 +89,6 @@ export default function Resume() {
                           ))}
                         </div>
                       </>
-                    ) : (
-                      ''
                     )}
                   </div>
                 </div>
