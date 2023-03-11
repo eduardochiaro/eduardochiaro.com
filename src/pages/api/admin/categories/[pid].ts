@@ -1,3 +1,4 @@
+import type { NextApiRequest, NextApiResponse } from 'next';
 import apiWithMiddleware from '@/utils/apiWithMiddlewareAdmin';
 import prisma from '@/utils/prisma';
 import cors from '@/middlewares/cors';
@@ -9,9 +10,9 @@ export const config = {
   },
 };
 
-const handler = async (req, res) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await cors(req, res);
-  const { pid } = req.query;
+  const { pid } = req.query as { pid: string };
 
   const categoryReturn = await prisma.category.findFirst({
     where: {
@@ -28,7 +29,7 @@ const handler = async (req, res) => {
         const form = new IncomingForm();
         form.parse(req, async (err, fields) => {
           if (err) return reject(err);
-          const { name, type } = fields;
+          const { name, type } = fields as { [key: string]: string };
           const category = await prisma.category.update({
             where: { id: parseInt(pid) },
             data: { name, type, updatedAt: new Date() },

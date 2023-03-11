@@ -1,3 +1,4 @@
+import type { NextApiRequest, NextApiResponse } from 'next';
 import Cors from 'cors';
 
 //const origin = process.env.NODE_ENV == "production" ? [/eduardochiaro\.com$/] : "*";
@@ -10,9 +11,9 @@ const cors = Cors({
 
 // Helper method to wait for a middleware to execute before continuing
 // And to throw an error when an error happens in a middleware
-function runMiddleware(req, res) {
+function runMiddleware(req: NextApiRequest, res: NextApiResponse) {
   return new Promise((resolve, reject) => {
-    cors(req, res, (result) => {
+    cors(req, res, (result: any) => {
       if (result instanceof Error) {
         return reject(result);
       }

@@ -2,18 +2,17 @@ import useStaleSWR from '@/utils/staleSWR';
 import SVG from 'react-inlinesvg';
 import moment from 'moment';
 import { ChevronDoubleRightIcon } from '@heroicons/react/20/solid';
-import {Prisma, Resume, ResumeTag } from "@prisma/client";
+import { Prisma, Resume, ResumeTag } from '@prisma/client';
 
 type JobWithExtra = Prisma.ResumeGetPayload<{
   include: {
-    tags: true,
-    projects: true
+    tags: true;
+    projects: true;
   };
 }> & {
   startYear: string;
   ednYear: string;
 };
-
 
 export default function ResumeComponent() {
   const { data } = useStaleSWR('/api/portfolio/resume');
@@ -66,13 +65,13 @@ export default function ResumeComponent() {
                     </div>
                     {job.description && <div className="text-sm text-primary-700 dark:text-primary-200 mt-4">{job.description}</div>}
                     {job.tags?.length > 0 && (
-                    <div className="flex items-center gap-4 mt-6">
-                      {job.tags?.map((tag: ResumeTag) => (
-                        <span key={`resume_tag_${tag.id}`} className="text-xs rounded px-2 py-1 bg-secondary-800 text-primary-100">
-                          {tag.name}
-                        </span>
-                      ))}
-                    </div>
+                      <div className="flex items-center gap-4 mt-6">
+                        {job.tags?.map((tag: ResumeTag) => (
+                          <span key={`resume_tag_${tag.id}`} className="text-xs rounded px-2 py-1 bg-secondary-800 text-primary-100">
+                            {tag.name}
+                          </span>
+                        ))}
+                      </div>
                     )}
                     {job.projects.length > 0 && (
                       <>

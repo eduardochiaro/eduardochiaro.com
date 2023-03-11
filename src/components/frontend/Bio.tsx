@@ -14,7 +14,7 @@ export default function Bio() {
           I&apos;m Eduardo
         </h1>
         <h2 className="font-header md:leading-loose tracking-wide text-xl lg:text-5xl xl:text-6xl font-bold pt-4 pb-5 md:pb-8 flex items-center gap-4">
-            Software Developer since 2005
+          Software Developer since 2005
         </h2>
         <p className="mt-5 md:text-lg font-normal text-primary-600 dark:text-primary-400">
           I have extensive experience designing and developing bespoke web applications with {moment().diff('2005-09-01', 'years')} years experience working on

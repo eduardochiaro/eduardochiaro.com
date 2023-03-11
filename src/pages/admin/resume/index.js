@@ -47,7 +47,7 @@ const AdminResumeIndex = ({ formRef }) => {
       setOpenMenu(false);
       setSearchResults([]);
       if (searchTerm.length >= 3) {
-        const res = await fetch(`/api/admin/resume/tags?search=${searchTerm}`);
+        const res = await fetch(`/api/admin/tags/search?text=${searchTerm}`);
         const tagSearch = await res.json();
         const currentTags = pluck(resume.tags, 'id');
         const tags = tagSearch.results.length > 0 ? tagSearch.results.filter((x) => !currentTags.includes(x.id)) : [];

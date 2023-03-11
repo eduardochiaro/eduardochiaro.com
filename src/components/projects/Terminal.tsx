@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useRef } from 'react';
+import { KeyboardEvent, useEffect, useReducer, useRef } from 'react';
 import moment from 'moment';
 import SpinnerIcon from '@/components/icons/Spinner';
 import * as commands from '@/utils/projects/terminal/commands';
@@ -7,7 +7,10 @@ import classNames from '@/utils/classNames';
 const useFocus = () => {
   const htmlElRef = useRef(null);
   const setFocus = () => {
-    htmlElRef.current && htmlElRef.current.focus();
+    if (htmlElRef && htmlElRef.current) {
+      const el = htmlElRef.current as HTMLInputElement;
+      el.focus();
+    }
   };
   return [htmlElRef, setFocus];
 };
@@ -20,7 +23,7 @@ const initialState = {
   isLoading: false,
 };
 
-function reducer(state, action) {
+function reducer(state: any, action: any) {
   return { ...state, ...action };
 }
 
@@ -30,7 +33,7 @@ export default function Terminal() {
 
   const availableCommands = ['help', 'clear', ...Object.keys(commands)];
 
-  const callAction = async (command, commandArgs) => {
+  const callAction = async (command: string, commandArgs: string[]) => {
     dispatch({ historyIndex: 0 });
     let currentHistory = [...state.history];
     const time = moment().format('HH:mm');
@@ -51,7 +54,7 @@ export default function Terminal() {
           const output = `shell: command not found: ${command}`;
           currentHistory.push({ ...commandFormat, command: commandLine, time, output });
         } else {
-          const outputShell = await commands[command](commandArgs);
+          const outputShell = await commands[command as keyof typeof commands](commandArgs);
           currentHistory.push({ ...commandFormat, command: commandLine, time, output: outputShell });
         }
         break;
@@ -65,10 +68,10 @@ export default function Terminal() {
     time: '',
   };
 
-  const handleChange = async (e) => {
+  const handleChange = async (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' || e.code === '13') {
       e.preventDefault();
-      const { value } = e.target;
+      const { value } = e.target as HTMLInputElement;
       const args = value.split(' ');
       const command = args[0].toLowerCase();
       const commandArgs = args.slice(1);
@@ -100,16 +103,16 @@ export default function Terminal() {
   };
 
   const AlwaysScrollToBottom = () => {
-    const elementRef = useRef();
-    useEffect(() => elementRef.current.scrollIntoView());
+    const elementRef = useRef<null | HTMLDivElement>(null);
+    useEffect(() => elementRef.current?.scrollIntoView());
     return <div ref={elementRef} />;
   };
 
-  const isACommand = (command) => {
+  const isACommand = (command: string) => {
     return availableCommands.includes(command.split(' ')[0]);
   };
 
-  const Ps1Line = ({ time }) => (
+  const Ps1Line = ({ time }: { time: string }) => (
     <div className="flex items-center gap-1">
       <span>
         [<span className="text-red-300">{time}</span>]
@@ -124,14 +127,14 @@ export default function Terminal() {
   );
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-[500px]">
       <div className="flex-none h-6 rounded-t-lg bg-primary-300 flex items-center px-3 gap-2">
         <div className="w-3 h-3 rounded-full bg-red-500 border border-red-600"></div>
         <div className="w-3 h-3 rounded-full bg-secondary-500 border border-secondary-600"></div>
         <div className="w-3 h-3 rounded-full bg-emerald-500 border border-emerald-600"></div>
       </div>
-      <div className="bg-primary-900 text-primary-100 rounded-b-lg grow font-mono p-4 overflow-y-auto justify-end shadow-lg" onClick={setInputFocus}>
-        {state.history.map((line, index) => (
+      <div className="bg-primary-900 text-primary-100 rounded-b-lg grow font-mono p-4 overflow-y-auto justify-end shadow-lg" onClick={() => setInputFocus}>
+        {state.history.map((line: any, index: number) => (
           <div key={`history-${index}`} className="mb-1">
             <div className="flex flex-row space-x-2 items-center">
               <div className="flex-shrink">

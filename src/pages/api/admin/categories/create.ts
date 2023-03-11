@@ -1,3 +1,4 @@
+import type { NextApiRequest, NextApiResponse } from 'next';
 import apiWithMiddleware from '@/utils/apiWithMiddlewareAdmin';
 import prisma from '@/utils/prisma';
 import cors from '@/middlewares/cors';
@@ -9,14 +10,14 @@ export const config = {
   },
 };
 
-const handler = async (req, res) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await cors(req, res);
   if (req.method === 'POST') {
     await new Promise((resolve, reject) => {
       const form = new IncomingForm();
       form.parse(req, async (err, fields) => {
         if (err) return reject(err);
-        const { name, type } = fields;
+        const { name, type } = fields as { [key: string]: string };
         const category = await prisma.category.create({
           data: { name, type, createdAt: new Date() },
         });

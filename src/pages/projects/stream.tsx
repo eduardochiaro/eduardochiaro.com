@@ -13,7 +13,7 @@ import NaturalImage from '@/components/NaturalImage';
 
 export default function Projects() {
   const { data } = useStaleSWR('/api/portfolio/stream');
-  const items = data?.results.map(function (item, id) {
+  const items = data?.results.map(function (item: any, id: number) {
     return (
       <div key={id} className="shadow box-card p-1">
         <Link href={item.permalink} target="_blank">

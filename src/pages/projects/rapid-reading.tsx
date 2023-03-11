@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { SunIcon } from '@heroicons/react/24/solid';
 
-const replacer = (match) => {
+const replacer = (match: any) => {
   const length = match.length < 6 ? match.length + 1 : match.length;
   const slicePoint = Math.floor(length / 2);
   const wordStart = match.slice(0, slicePoint);
@@ -44,7 +44,7 @@ function RapidReading() {
                   <SunIcon className="w-4 h-4 inline align-middle" /> Light mode
                 </span>
               </div>
-              <textarea className="mb-8 input-field" rows={6} onChange={(event) => setText(event.target.value)} value={text} />
+              <textarea className="mb-8 input-field" rows={8} onChange={(event) => setText(event.target.value)} value={text} />
             </div>
             <div className="antialiased" dangerouslySetInnerHTML={{ __html: output }}></div>
           </div>

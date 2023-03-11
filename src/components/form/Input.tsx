@@ -14,10 +14,7 @@ export type FormInputProps = {
 export type Ref = HTMLInputElement;
 
 const Input = forwardRef<Ref, FormInputProps>(
-  (
-    { id = '', type = 'text', name = '', label = '', value = '', placeholder = '', invalid = false, accept, className, ...props },
-    ref,
-  ) => {
+  ({ id = '', type = 'text', name = '', label = '', value = '', placeholder = '', invalid = false, accept, className, ...props }, ref) => {
     const isInvalid =
       type == 'file' ? invalid && ref != null && typeof ref !== 'function' && ref.current && ref.current.value == '' : invalid && value.length <= 0;
     return (
@@ -41,7 +38,7 @@ const Input = forwardRef<Ref, FormInputProps>(
           className={`${isInvalid ? 'ring-2 ring-red-500' : ''} mt-1 input-field py-1.5 px-2 focus:outline-none ${className}`}
           value={value}
           {...props}
-          />
+        />
       </>
     );
   },

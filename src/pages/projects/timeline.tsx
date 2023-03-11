@@ -6,12 +6,12 @@ import Link from 'next/link';
 import { EvenTile, OddTile } from '@/components/projects/TimelineTile';
 import { useState } from 'react';
 
-const TimelineComponent = ({ episodes, type }) => {
+const TimelineComponent = ({ episodes, type }: { episodes: any[]; type: boolean }) => {
   if (type) {
     return (
       <div className="mt-5 w-2/3 mx-auto">
         {episodes?.map((episode, index) => (
-          <EvenTile key={`episode-${index}`} episode={episode} maxCharacters={6} type="full" />
+          <EvenTile key={`episode-${index}`} episode={episode} maxCharacters={6} type="large" />
         ))}
       </div>
     );
@@ -30,7 +30,7 @@ const TimelineComponent = ({ episodes, type }) => {
   }
 };
 
-function Timeline({ episodes }) {
+function Timeline({ episodes }: { episodes: any[] }) {
   const [type, setType] = useState(true);
   return (
     <div className="flex flex-col min-h-screen justify-between">
@@ -71,11 +71,11 @@ export async function getStaticProps() {
   const res = await fetch(url);
   const pageEpisodes = await res.json();
   const episodes = await Promise.all(
-    pageEpisodes.results.map(async (episode) => {
-      const characters = episode.characters.map((y) => y.replace('https://rickandmortyapi.com/api/character/', ''));
+    pageEpisodes.results.map(async (episode: any) => {
+      const characters = episode.characters.map((y: string) => y.replace('https://rickandmortyapi.com/api/character/', ''));
       const res = await fetch(`https://rickandmortyapi.com/api/character/${characters.join(',')}`);
       episode.characters = await res.json();
-      episode.characters = episode.characters.map((character) => {
+      episode.characters = episode.characters.map((character: any) => {
         return {
           id: character.id,
           name: character.name,

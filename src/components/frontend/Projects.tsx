@@ -4,7 +4,7 @@ import styles from '@/styles/Projects.module.scss';
 import useStaleSWR from '@/utils/staleSWR';
 import Link from 'next/link';
 import Image from 'next/image';
-import { App } from "@prisma/client";
+import { App } from '@prisma/client';
 
 export default function Projects() {
   const { data } = useStaleSWR('/api/portfolio/apps');

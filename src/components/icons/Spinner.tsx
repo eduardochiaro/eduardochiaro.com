@@ -1,9 +1,6 @@
 import React, { FunctionComponent } from 'react';
 
-type SVGProps = {
-  width: string;
-  height: string;
-};
+type SVGProps = React.SVGProps<SVGSVGElement> & React.ImgHTMLAttributes<HTMLImageElement>;
 
 const Spinner: FunctionComponent<SVGProps> = ({ width = '20', height = '20', ...props }) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox={`0 0 ${width} ${height}`} fill="currentColor" {...props}>

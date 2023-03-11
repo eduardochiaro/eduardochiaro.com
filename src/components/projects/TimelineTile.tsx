@@ -2,7 +2,13 @@ import classNames from '@/utils/classNames';
 import moment from 'moment';
 import Image from 'next/image';
 
-export const EvenTile = ({ episode, maxCharacters = 6, type = 'small' }) => (
+type TileType = {
+  episode: any;
+  maxCharacters?: number;
+  type?: 'small' | 'large';
+};
+
+export const EvenTile = ({ episode, maxCharacters = 6, type = 'small' }: TileType) => (
   <div className="flex group">
     <div className={classNames(type == 'small' ? 'flex-1' : 'flex-none w-12', 'hidden md:block md:w-24 font-mono text-right')}>
       <span className="text-xl md:text-3xl block">{moment(episode.air_date, 'MMM DD, YYYY').format('DD')}</span>
@@ -17,7 +23,7 @@ export const EvenTile = ({ episode, maxCharacters = 6, type = 'small' }) => (
         <h3 className="text-xl md:text-3xl font-header break-words">{episode.name}</h3>
         <p className="font-mono">{episode.episode}</p>
         <div className="grid grid-cols-2 gap-4 mt-4">
-          {episode.characters.slice(0, maxCharacters).map((y, index) => (
+          {episode.characters.slice(0, maxCharacters).map((y: any, index: number) => (
             <div key={`character-${index}`} className="flex items-center">
               <div className="hidden md:block relative pr-4">
                 <Image width={50} height={50} alt={y.name} src={y.image} className="rounded-full" />
@@ -39,14 +45,14 @@ export const EvenTile = ({ episode, maxCharacters = 6, type = 'small' }) => (
   </div>
 );
 
-export const OddTile = ({ episode, maxCharacters = 6, type = 'small' }) => (
+export const OddTile = ({ episode, maxCharacters = 6, type = 'small' }: TileType) => (
   <div className="flex group">
     <div className="pb-16 flex-1">
       <div className="box-card p-4 text-right">
         <h3 className="text-xl md:text-3xl font-header break-words">{episode.name}</h3>
         <p className="font-mono">{episode.episode}</p>
         <div className="grid grid-cols-2 gap-4 mt-4">
-          {episode.characters.slice(0, maxCharacters).map((y, index) => (
+          {episode.characters.slice(0, maxCharacters).map((y: any, index: number) => (
             <div key={`character-${index}`} className="flex items-center flex-row-reverse">
               <div className="hidden md:block relative pl-4">
                 <Image width={50} height={50} alt={y.name} src={y.image} className="rounded-full" />

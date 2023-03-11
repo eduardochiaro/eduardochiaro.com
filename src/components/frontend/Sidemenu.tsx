@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Link from 'next/link';
 
-export default function Sidemenu({ menuData }) {
+export default function Sidemenu({ menuData }: { menuData: { text: string; link: string; pre?: JSX.Element }[] }) {
   return (
     <div className="grow relative">
       <div className="fixed hidden xl:block text-sm font-semibold tracking-wider">

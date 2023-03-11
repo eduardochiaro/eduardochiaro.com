@@ -1,7 +1,6 @@
 import { ExclamationTriangleIcon } from '@heroicons/react/24/solid';
 import { forwardRef, DetailedHTMLProps, InputHTMLAttributes } from 'react';
 
-
 export type FormInputProps = {
   id?: string;
   name: string;
@@ -17,11 +16,15 @@ export type FormInputProps = {
 export type Ref = HTMLInputElement;
 
 const Range = forwardRef<Ref, FormInputProps>(
-  ({ id = '', name = '', label = '', value = '', min = 0, max = 100, step = 1, invalid = false, className='', ...props }, ref) => {
+  ({ id = '', name = '', label = '', value = '', min = 0, max = 100, step = 1, invalid = false, className = '', ...props }, ref) => {
     const isInvalid = invalid && value.length <= 0;
     const rows = [];
     for (let i = min; i <= max; i += 10) {
-      rows.push(<li className="flex justify-center relative" key={i}><span className="absolute">{i}</span></li>);
+      rows.push(
+        <li className="flex justify-center relative" key={i}>
+          <span className="absolute">{i}</span>
+        </li>,
+      );
     }
     return (
       <>
@@ -43,9 +46,7 @@ const Range = forwardRef<Ref, FormInputProps>(
           className={`${isInvalid ? 'ring-2 ring-red-500' : ''} mt-4 range-field ${className}`}
           {...props}
         />
-        <ul className="flex justify-between text-xs w-full px-2">
-          {rows}
-        </ul>
+        <ul className="flex justify-between text-xs w-full px-2">{rows}</ul>
       </>
     );
   },
