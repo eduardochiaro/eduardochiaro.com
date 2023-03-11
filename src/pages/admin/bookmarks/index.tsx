@@ -33,8 +33,6 @@ const AdminBookmarksIndex = () => {
     setIsOpen(false);
   };
 
-  const inputToValidate = ['name', 'url', 'categoryId'];
-
   const columns = ['name', 'url', 'category_d'];
 
   const newData: any[] = [];
@@ -104,7 +102,6 @@ const AdminBookmarksIndex = () => {
             itemFormat={bookmarkFormat}
             itemData={bookmark}
             inputList={inputList}
-            inputToValidate={inputToValidate}
             closeElement={closeElement}
           />
         </div>

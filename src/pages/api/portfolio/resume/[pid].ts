@@ -1,9 +1,11 @@
+import type { NextApiRequest, NextApiResponse } from 'next';
 import apiWithMiddleware from '@/utils/apiWithMiddleware';
 import prisma from '@/utils/prisma';
 import cors from '@/middlewares/cors';
-import { IncomingForm } from 'formidable';
-import mv from 'mv';
+import { File, IncomingForm } from 'formidable';
+import fs from 'fs';
 import { rmFile } from 'rm-file';
+import { join } from 'path';
 import moment from 'moment';
 
 const uploadPath = './public/uploads/';
@@ -14,9 +16,9 @@ export const config = {
   },
 };
 
-const handler = async (req, res) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await cors(req, res);
-  const { pid } = req.query;
+  const { pid } = req.query as { pid: string };
 
   const resumeReturn = await prisma.resume.findFirst({
     where: {
@@ -33,21 +35,21 @@ const handler = async (req, res) => {
         const form = new IncomingForm();
         form.parse(req, async (err, fields, files) => {
           if (err) return reject(err);
-          const { id, company, name, description, startDate, endDate, tags } = fields;
+          const { id, company, name, description, startDate, endDate, tags } = fields as { [key: string]: string };
           const parsedTags = JSON.parse(tags);
           const newTags = parsedTags
-            .filter((x) => x.new && !x.deleted && x.id == null)
-            ?.map((x) => {
+            .filter((x: any) => x.new && !x.deleted && x.id == null)
+            ?.map((x: any) => {
               return { name: x.name };
             });
           const appendTags = parsedTags
-            .filter((x) => x.new && !x.deleted && x.id > 0)
-            ?.map((x) => {
+            .filter((x: any) => x.new && !x.deleted && x.id > 0)
+            ?.map((x: any) => {
               return { id: x.id };
             });
           const deletedTags = parsedTags
-            .filter((x) => x.deleted && x.id > 0)
-            ?.map((x) => {
+            .filter((x: any) => x.deleted && x.id > 0)
+            ?.map((x: any) => {
               return { id: x.id };
             });
 
@@ -63,19 +65,25 @@ const handler = async (req, res) => {
               connect: appendTags,
               disconnect: deletedTags,
             },
+            image: resumeReturn?.image
           };
-          //console.log(dataMap);
-          //return reject();
-          if (files.logo) {
-            const oldPath = files.logo.filepath;
-            const extension = files.logo.originalFilename.split('.').pop();
-            const newName = files.logo.newFilename + '.' + extension;
-            const newPath = `${uploadPath}${newName}`;
-            mv(oldPath, newPath, function (err) {
-              console.error(err);
-            });
-            await rmFile(`${uploadPath}${resumeReturn.logo}`);
-            dataMap.logo = newName;
+
+          if (files.image) {
+            const file = files.image as File;
+            const oldPath = file.filepath;
+            const extension = file.originalFilename?.split('.').pop();
+            const newName = file.newFilename + '.' + extension;
+            
+            try {
+              // renames the file in the directory
+              fs.renameSync(oldPath, join(uploadPath, newName));
+            } catch (error) {
+              console.log(error);
+            }
+            if (resumeReturn && resumeReturn.image) {
+              await rmFile(`${uploadPath}${resumeReturn.image}`);
+            }
+            dataMap.image = newName;
           }
 
           const resume = await prisma.resume.update({
@@ -95,7 +103,9 @@ const handler = async (req, res) => {
         where: { id: parseInt(pid) },
         data: { deletedAt: new Date() },
       });
-      await rmFile(`${uploadPath}${resumeReturn.logo}`);
+      if (resumeReturn && resumeReturn.image) {
+        await rmFile(`${uploadPath}${resumeReturn.image}`);
+      }
       res.status(200).json({ action: 'resume deleted' });
       break;
     default:

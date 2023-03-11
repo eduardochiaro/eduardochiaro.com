@@ -36,8 +36,6 @@ const AdminSkillsIndex = ({ images }: { images: any[] }) => {
     setIsOpen(false);
   };
 
-  const inputToValidate = ['name', 'logo', 'percentage', 'type'];
-
   const columns = ['name', 'description', 'category_d'];
 
   const newData: any[] = [];
@@ -113,7 +111,6 @@ const AdminSkillsIndex = ({ images }: { images: any[] }) => {
             itemFormat={skillFormat}
             itemData={skill}
             inputList={inputList}
-            inputToValidate={inputToValidate}
             closeElement={closeElement}
           />
         </div>

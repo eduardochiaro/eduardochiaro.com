@@ -25,8 +25,6 @@ const AdminAppsIndex = () => {
     return { ...x, ...y };
   }, appFormat);
 
-  const inputToValidate = app.id ? ['name', 'url'] : ['name', 'url', 'image'];
-
   const openElement = (item: App) => {
     setApp(item);
     setIsOpen(true);
@@ -115,7 +113,6 @@ const AdminAppsIndex = () => {
             itemFormat={appFormat}
             itemData={app}
             inputList={inputList}
-            inputToValidate={inputToValidate}
             closeElement={closeElement}
           />
         </div>

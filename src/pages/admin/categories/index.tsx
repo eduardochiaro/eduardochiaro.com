@@ -31,8 +31,6 @@ const AdminCategoriesIndex = () => {
     setIsOpen(false);
   };
 
-  const inputToValidate = ['name', 'type'];
-
   const columns = ['name', 'type'];
 
   const newData: any[] = [];
@@ -109,7 +107,6 @@ const AdminCategoriesIndex = () => {
             itemFormat={categoryFormat}
             itemData={category}
             inputList={inputList}
-            inputToValidate={inputToValidate}
             closeElement={closeElement}
           />
         </div>

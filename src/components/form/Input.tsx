@@ -1,22 +1,25 @@
 import { ExclamationTriangleIcon } from '@heroicons/react/24/solid';
+import moment from 'moment';
 import { forwardRef, DetailedHTMLProps, InputHTMLAttributes } from 'react';
 
 export type FormInputProps = {
   id?: string;
   name: string;
   label: string;
-  value?: string;
+  value: string;
   type?: string;
   className?: string;
-  invalid?: boolean;
+  invalid: boolean;
 } & DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
 
 export type Ref = HTMLInputElement;
 
 const Input = forwardRef<Ref, FormInputProps>(
-  ({ id = '', type = 'text', name = '', label = '', value = '', placeholder = '', invalid = false, accept, className, ...props }, ref) => {
+  ({ id, type = 'text', name = '', label = '', value = '', placeholder = '', invalid = false, accept, className, ...props }, ref) => {
     const isInvalid =
       type == 'file' ? invalid && ref != null && typeof ref !== 'function' && ref.current && ref.current.value == '' : invalid && value.length <= 0;
+
+    value = type == 'date' && value && value != '' ? moment(value).format('YYYY-MM-DD') : value;
     return (
       <>
         <label htmlFor={id ? id : `${name}-form`} className="input-label flex items-center">
@@ -36,7 +39,7 @@ const Input = forwardRef<Ref, FormInputProps>(
           data-lpignore="true"
           data-form-type="other"
           className={`${isInvalid ? 'ring-2 ring-red-500' : ''} mt-1 input-field py-1.5 px-2 focus:outline-none ${className}`}
-          value={value}
+          value={value || ''}
           {...props}
         />
       </>

@@ -6,7 +6,7 @@ type FormInputProps = {
   id?: string;
   name: string;
   label: string;
-  value?: string;
+  value: string;
   className?: string;
   invalid?: boolean;
 } & DetailedHTMLProps<InputHTMLAttributes<HTMLSelectElement>, HTMLSelectElement>;

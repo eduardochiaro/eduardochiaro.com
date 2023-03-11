@@ -3,7 +3,11 @@ import axios from 'axios';
 const createEditItem = <T>(url: string, form: { [key: string]: any }, create = true) => {
   const formData = new FormData();
   for (const [key, value] of Object.entries(form)) {
-    formData.append(key, value);
+    if (typeof value === 'object' && value !== null && Array.isArray(value)) {
+      formData.append(key, JSON.stringify(value));
+    } else {
+      formData.append(key, value);
+    }
   }
 
   return axios<T>({

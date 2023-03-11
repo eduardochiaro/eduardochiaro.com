@@ -3,7 +3,7 @@ import { useState, useReducer, useRef, useEffect, ReactElement } from 'react';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 import { CheckIcon, ChevronLeftIcon, TrashIcon } from '@heroicons/react/24/solid';
 import { findInvalidElement, isFormValid } from '@/utils/formValidation';
-import { Input, Select, Textarea, Range } from '@/components/form';
+import { Input, Select, Textarea, Range, Tags } from '@/components/form';
 import Image from 'next/image';
 import { createEditItem, deleteItem } from '@/utils/apiAdmin';
 import AdminModal from '@/components/admin/Modal';
@@ -22,6 +22,7 @@ type InputTypeProps = {
     max?: number;
     step?: number;
     accept?: string;
+    rows?: number;
     selectOptions?: {
       id: string;
       name: string;
@@ -41,16 +42,19 @@ type InputTypeProps = {
     imagePreviewUrl: string;
   };
   handleChange: (e: any) => void;
+  updateItem: (e: any) => void;
   fetchFunction?: (url: string) => void;
   inputFileRef: any;
 };
 
-const InputType = ({ input, itemData, form, imagePreview, inputFileRef, handleChange, fetchFunction }: InputTypeProps) => {
+const InputType = ({ input, itemData, form, imagePreview, inputFileRef, handleChange, updateItem, fetchFunction }: InputTypeProps) => {
   switch (input.type) {
     case 'text':
     case 'url':
     case 'file':
     case 'password':
+    case 'date':
+    case 'datetime':
     default:
       return (
         <Input
@@ -81,6 +85,19 @@ const InputType = ({ input, itemData, form, imagePreview, inputFileRef, handleCh
           accept={input.accept}
         />
       );
+
+    case 'tags':
+      return (
+        <Tags
+          label={input.label}
+          name={input.name}
+          value={itemData[input.value]}
+          onChange={(e) => handleChange(e)}
+          required={input.required}
+          invalid={form.invalid.includes(input.name)}
+          updateItem={updateItem}
+        />
+      );
     case 'textarea':
       return (
         <Textarea
@@ -89,6 +106,7 @@ const InputType = ({ input, itemData, form, imagePreview, inputFileRef, handleCh
           value={itemData[input.value]}
           onChange={(e) => handleChange(e)}
           required={input.required}
+          rows={input.rows}
           invalid={form.invalid.includes(input.name)}
         />
       );
@@ -127,7 +145,7 @@ const InputType = ({ input, itemData, form, imagePreview, inputFileRef, handleCh
               sizes="33vw"
               alt={input.name}
               title={input.name}
-              className="bg-transparent object-contain"
+              className="bg-transparent object-contain fill-primary-700 dark:fill-primary-200"
               priority={false}
             />
           </div>
@@ -156,11 +174,6 @@ type AdminFormType = {
   itemData: any;
   inputList: any[];
   titleElement: string;
-  imagePreviewOriginal?: {
-    file: any;
-    imagePreviewUrl: string;
-  };
-  inputToValidate: string[];
   closeElement: () => void;
 };
 
@@ -170,7 +183,12 @@ type ItemType = {
   [key: string]: any;
 };
 
-const AdminForm = ({ apiURL, itemFormat, itemData, inputList, titleElement, inputToValidate, closeElement }: AdminFormType) => {
+const imagePreviewSet = {
+  file: {},
+  imagePreviewUrl: '',
+};
+
+const AdminForm = ({ apiURL, itemFormat, itemData, inputList, titleElement, closeElement }: AdminFormType) => {
   const formRef = useRef<HTMLFormElement>(null);
   const inputFileRef = useRef<HTMLInputElement | null>(null);
 
@@ -181,11 +199,6 @@ const AdminForm = ({ apiURL, itemFormat, itemData, inputList, titleElement, inpu
     invalid: [],
   };
 
-  const imagePreviewSet = {
-    file: {},
-    imagePreviewUrl: '',
-  };
-
   const [item, updateItem] = useReducer((x: any, y: any) => {
     return { ...x, ...y };
   }, itemFormat);
@@ -194,6 +207,12 @@ const AdminForm = ({ apiURL, itemFormat, itemData, inputList, titleElement, inpu
   }, formInitialState);
   const [imagePreview, setImagePreview] = useState(imagePreviewSet);
   const [isOpenDelete, setIsOpenDelete] = useState(false);
+
+  const [inputToValidate, setInputToValidate] = useState<any[]>([]);
+
+  useEffect(() => {
+    setInputToValidate(inputList.filter((item) => item.required).map((item) => item.name));
+  }, [inputList]);
 
   const handleChange = (e: React.ChangeEvent<any>) => {
     updateItem({ [e.target.name]: e.target.files ? e.target.files[0] : e.target.value });
@@ -212,7 +231,6 @@ const AdminForm = ({ apiURL, itemFormat, itemData, inputList, titleElement, inpu
 
   const resetForm = () => {
     setForm({ ...formInitialState });
-    setImagePreview(imagePreviewSet);
     if (inputFileRef.current) {
       inputFileRef.current.value = '';
     }
@@ -225,6 +243,8 @@ const AdminForm = ({ apiURL, itemFormat, itemData, inputList, titleElement, inpu
         file: {},
         imagePreviewUrl: `/uploads/${itemData.image}`,
       });
+    } else {
+      setImagePreview(imagePreviewSet);
     }
   }, [itemData]);
 
@@ -233,7 +253,6 @@ const AdminForm = ({ apiURL, itemFormat, itemData, inputList, titleElement, inpu
     setForm({ ...formInitialState });
     if (!isFormValid(item, inputToValidate)) {
       const listOfInvalidInputs = findInvalidElement(item, inputToValidate);
-      console.log(listOfInvalidInputs);
       setForm({ invalid: listOfInvalidInputs, error: true });
       return;
     }
@@ -368,6 +387,7 @@ const AdminForm = ({ apiURL, itemFormat, itemData, inputList, titleElement, inpu
                   imagePreview={imagePreview}
                   inputFileRef={inputFileRef}
                   handleChange={handleChange}
+                  updateItem={updateItem}
                   fetchFunction={fetchUrlData}
                 />
               </div>

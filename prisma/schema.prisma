@@ -79,7 +79,7 @@ model Resume {
   name        String
   company     String? 
   location    String?
-  logo        String?
+  image       String?
   description String?   @db.Text
   startDate   DateTime?
   endDate     DateTime?

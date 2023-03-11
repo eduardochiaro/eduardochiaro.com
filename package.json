@@ -18,7 +18,7 @@
     "prisma:migrate-prod": "dotenv -e .env.local prisma migrate deploy",
     "prisma:migrate-empty-dev": "dotenv -e .env.local prisma migrate dev --create-only",
     "prisma:version": "prisma -v",
-    "prisma:seed": "dotenv -e .env.local node seed/seeder.js"
+    "prisma:seed": "dotenv -e .env.local node prisma/seed/seeder.js"
   },
   "author": {
     "name": "Eduardo Chiaro",

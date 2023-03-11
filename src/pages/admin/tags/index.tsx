@@ -28,8 +28,6 @@ const AdminTagsIndex = () => {
     setIsOpen(false);
   };
 
-  const inputToValidate = ['name'];
-
   const columns = ['name'];
 
   const newData: any[] = [];
@@ -62,15 +60,7 @@ const AdminTagsIndex = () => {
           <List title={title} single={single} columns={columns} data={newData} format={tagFormat} openAction={openElement} editAction={openElement} />
         </div>
         <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6 min-h-screen ${isOpen ? '' : 'hidden'}`}>
-          <AdminForm
-            apiURL="/api/admin/tags"
-            titleElement={single}
-            itemFormat={tagFormat}
-            itemData={tag}
-            inputList={inputList}
-            inputToValidate={inputToValidate}
-            closeElement={closeElement}
-          />
+          <AdminForm apiURL="/api/admin/tags" titleElement={single} itemFormat={tagFormat} itemData={tag} inputList={inputList} closeElement={closeElement} />
         </div>
       </AdminWrapper>
     );
