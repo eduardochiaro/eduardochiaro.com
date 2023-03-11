@@ -65,7 +65,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
               connect: appendTags,
               disconnect: deletedTags,
             },
-            image: resumeReturn?.image
+            image: resumeReturn?.image,
           };
 
           if (files.image) {
@@ -73,7 +73,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
             const oldPath = file.filepath;
             const extension = file.originalFilename?.split('.').pop();
             const newName = file.newFilename + '.' + extension;
-            
+
             try {
               // renames the file in the directory
               fs.renameSync(oldPath, join(uploadPath, newName));
