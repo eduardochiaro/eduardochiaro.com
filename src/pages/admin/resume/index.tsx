@@ -7,6 +7,7 @@ import moment from 'moment';
 import List from '@/components/admin/List';
 import React from 'react';
 import AdminForm from '@/components/admin/Form';
+import type { ResumeProject } from "@prisma/client";
 
 const AdminResumeIndex = () => {
   const { mutate, data: resumes } = useStaleSWR('/api/portfolio/resume');
@@ -119,6 +120,23 @@ const AdminResumeIndex = () => {
       type: 'tags',
       value: 'tags',
     },
+    {
+      classNames: 'col-span-6',
+      type: 'html',
+      html: (
+        <>
+        <h3 className="text-lg font-bold border-b border-primary-700 pb-2 mb-5">Projects</h3>
+        {resume.projects.map((project: ResumeProject, key) => (
+          <div className="flex items-center gap-4 h-14 px-4" key={key}>
+            <div className="w-48">
+              <SVG title={project.name} className={' fill-primary-700 dark:fill-primary-200'} src={`/uploads/${project.logo}`} height={30} />
+            </div>
+            <span>{project.name}</span>
+          </div>
+        ))}
+        </>
+      ) 
+    }
   ];
 
   const sortType = [
