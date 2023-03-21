@@ -1,4 +1,5 @@
-import { PlusIcon, XMarkIcon } from '@heroicons/react/24/solid';
+import { PlusIcon } from '@heroicons/react/20/solid';
+import { XMarkIcon } from '@heroicons/react/24/solid';
 import React, { useEffect, useState, ChangeEvent } from 'react';
 
 const sortType = [
@@ -144,11 +145,11 @@ export default function List({
       <div className="text-2xl flex items-center gap-6 px-6">
         <h1>{title}</h1>
         <button
-          className="bg-primary-500 dark:bg-primary-50 text-primary-50 dark:text-primary-900 rounded text-xs p-2 flex items-center gap-1"
+          className="bg-primary-500 dark:bg-primary-50 text-primary-50 dark:text-primary-900 rounded text-sm p-2 flex items-center gap-1 hover:underline"
           onClick={() => clickOnAdd(format)}
           title={`New ${single}`}
         >
-          <PlusIcon className="h-4" /> add new
+          <PlusIcon className="h-5" /> add new
         </button>
       </div>
       <div className="mt-8 mb-2 px-6 flex items-center gap-4">
@@ -175,7 +176,7 @@ export default function List({
           {sortList.map((item: { id: string; name: string }, key: number) => (
             <button
               key={`sort-${key}`}
-              className={`text-xs font-bold px-4 py-2 flex-none ${item.id == sortByColumn ? 'bg-primary-300' : ''}`}
+              className={`text-xs font-bold px-4 py-2 flex-none hover:underline ${item.id == sortByColumn ? 'bg-secondary-600 dark:bg-secondary-700 text-primary-50' : ''}`}
               onClick={() => sortByClick(item.id)}
             >
               {item.name}
@@ -187,7 +188,7 @@ export default function List({
           {sortDirectionType.map((item, key) => (
             <button
               key={`direction-${key}`}
-              className={`text-xs font-bold px-4 py-2 flex-none ${item.id == sortDirection ? 'bg-primary-300' : ''}`}
+              className={`text-xs font-bold px-4 py-2 flex-none ${item.id == sortDirection ? 'bg-secondary-600 dark:bg-secondary-700 text-primary-50' : ''}`}
               onClick={() => sortDirectionClick(item.id)}
             >
               {item.name}

@@ -156,7 +156,7 @@ const InputType = ({ input, itemData, form, imagePreview, inputFileRef, handleCh
     case 'fetchButton':
       if (fetchFunction) {
         return (
-          <button type="button" className="button-success mb-1 w-full" onClick={() => fetchFunction(itemData[input.value])}>
+          <button type="button" className="button-success mb-1 !px-4" onClick={() => fetchFunction(itemData[input.value])}>
             Fetch
           </button>
         );
