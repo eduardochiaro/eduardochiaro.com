@@ -50,8 +50,8 @@ export default function ResumeComponent() {
                 <div className="flex-1 group-last:pb-0">
                   <div className="relative box-card p-4 my-2 md:my-5">
                     <h3 className="text-3xl font-header break-words mb-2">{job.name}</h3>
-                    {job.logo ? (
-                      <SVG title={job.company} className={'fill-primary-700 dark:fill-primary-200 mb-4'} src={`/uploads/${job.logo}`} height={20} />
+                    {job.image ? (
+                      <SVG title={job.company} className={'fill-primary-700 dark:fill-primary-200 mb-4'} src={`/uploads/${job.image}`} height={20} />
                     ) : (
                       <h4 className="text-xl font-header break-words mb-4">{job.company}</h4>
                     )}

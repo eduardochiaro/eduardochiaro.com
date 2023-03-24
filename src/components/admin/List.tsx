@@ -112,7 +112,7 @@ export default function List({
     const search = e.target.value;
     filterData(search);
   };
-  
+
   const filterData = (search: string) => {
     setSearch(search);
     if (search.length > 0) {
@@ -168,7 +168,9 @@ export default function List({
           {sortList.map((item: { id: string; name: string }, key: number) => (
             <button
               key={`sort-${key}`}
-              className={`text-xs font-bold px-4 py-2 flex-none hover:underline ${item.id == sortByColumn ? 'bg-secondary-600 dark:bg-secondary-700 text-primary-50' : ''}`}
+              className={`text-xs font-bold px-4 py-2 flex-none hover:underline ${
+                item.id == sortByColumn ? 'bg-secondary-600 dark:bg-secondary-700 text-primary-50' : ''
+              }`}
               onClick={() => sortByClick(item.id)}
             >
               {item.name}

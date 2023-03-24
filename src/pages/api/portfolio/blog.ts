@@ -6,7 +6,7 @@ import fsCache from '@/utils/fsCache';
 
 const url = 'https://blog.eduardochiaro.com/rss/';
 
-const { RSS_CACHE_HOURS = 5 } = process.env;
+const { RSS_CACHE_HOURS = '5' } = process.env;
 
 type RssFeedItem = {
   title: string | undefined;
@@ -24,7 +24,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   await cors(req, res);
   const parser = new Parser();
 
-  const results = await fsCache(url, RSS_CACHE_HOURS, async () => {
+  const results = await fsCache(url, parseInt(RSS_CACHE_HOURS), async () => {
     const feed = await parser.parseURL(url);
     const results: RssFeedItem[] = [];
     feed.items.forEach((item) => {

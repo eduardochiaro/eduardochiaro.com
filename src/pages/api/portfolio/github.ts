@@ -7,7 +7,7 @@ import fsCache from '@/utils/fsCache';
 
 const base = 'https://api.github.com/users';
 
-const { GITHUB_CACHE_HOURS = 24 } = process.env;
+const { GITHUB_CACHE_HOURS = '24' } = process.env;
 
 type GitHubItem = {
   id: string;
@@ -30,7 +30,7 @@ type Data = {
 };
 
 const cachedFetch = async (url: string) => {
-  return fsCache(url, GITHUB_CACHE_HOURS, async () => {
+  return fsCache(url, parseInt(GITHUB_CACHE_HOURS), async () => {
     const { data } = await client.query({
       query: gql`
         query REPOS {

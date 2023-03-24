@@ -30,7 +30,11 @@ const AdminSidebar = ({ menuList, isPageOpen }: { menuList: any[]; isPageOpen: b
     <div className={`relative sm:relative md:h-full ${openMenu ? styles['sidebar-open'] : styles['sidebar-closed']}`}>
       <div className="flex flex-col justify-between min-h-screen bg-primary-200 dark:bg-primary-600 fixed">
         <div className="grow p-3 relative">
-          <div className={`flex items-center gap-4 h-14 my-3 border-b border-primary-300 dark:border-primary-500 ${openMenu ? 'px-3' : ''} ${styles['sidebar-logo']}`}>
+          <div
+            className={`flex items-center gap-4 h-14 my-3 border-b border-primary-300 dark:border-primary-500 ${openMenu ? 'px-3' : ''} ${
+              styles['sidebar-logo']
+            }`}
+          >
             <div className={`bg-secondary-600 dark:bg-secondary-700 p-2 rounded-lg ${openMenu ? '' : 'mx-auto'}`}>
               <Logo title="Eduardo Chiaro" className={'h-6 text-primary-50'} />
             </div>
