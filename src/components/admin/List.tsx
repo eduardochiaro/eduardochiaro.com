@@ -112,15 +112,7 @@ export default function List({
     const search = e.target.value;
     filterData(search);
   };
-
-  const clickOnEdit = (item: any) => {
-    editAction(item);
-  };
-
-  const clickOnAdd = (item: any) => {
-    openAction(item);
-  };
-
+  
   const filterData = (search: string) => {
     setSearch(search);
     if (search.length > 0) {
@@ -146,7 +138,7 @@ export default function List({
         <h1>{title}</h1>
         <button
           className="bg-primary-500 dark:bg-primary-50 text-primary-50 dark:text-primary-900 rounded text-sm p-2 flex items-center gap-1 hover:underline"
-          onClick={() => clickOnAdd(format)}
+          onClick={() => openAction(format)}
           title={`New ${single}`}
         >
           <PlusIcon className="h-5" /> add new
@@ -202,7 +194,7 @@ export default function List({
             <div key={`list-${item.id}`} className="group">
               <div
                 className={'flex items-center gap-4 cursor-pointer group p-2 pl-4 pr-8 rounded-l-lg'}
-                onClick={() => clickOnEdit(item.original || item)}
+                onClick={() => editAction(item.original || item)}
                 role="menuitem"
               >
                 {item.image_d ? <div className="w-16 h-14 rounded overflow-hidden hidden xl:block relative">{item.image_d}</div> : ''}
