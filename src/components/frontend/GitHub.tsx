@@ -64,7 +64,7 @@ export default function GitHub() {
   return (
     <section id="github-component" className={'px-4 lg:px-0 mt-10'}>
       <div className="max-w-5xl mx-auto">
-        <h3 className="font-header leading-tight tracking-wide text-2xl lg:text-3xl font-light">
+        <h3 className="font-header leading-tight tracking-wide text-3xl lg:text-4xl font-light">
           What I&apos;ve <span className="overlay-color">coded</span> recently...
         </h3>
         <div id="github-list" className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-2 gap-4 xl:gap-8 mt-5 pb-10">

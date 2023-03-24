@@ -9,7 +9,7 @@ export default function Skills() {
   return (
     <section id="skills-component" className={'px-4 lg:px-0 mt-10 relative'}>
       <div className="max-w-5xl mx-auto">
-        <h3 className="font-header leading-tight tracking-wide text-2xl lg:text-3xl font-light mb-2">
+        <h3 className="font-header leading-tight tracking-wide text-3xl lg:text-4xl font-light mb-2">
           What I&apos;m <span className="overlay-color">good</span> at...
         </h3>
         <div id="skills-list">

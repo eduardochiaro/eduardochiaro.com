@@ -57,7 +57,7 @@ export default function Jobs() {
   return (
     <section id="work-component" className={'px-4 lg:px-0 mt-10'}>
       <div className="max-w-5xl mx-auto">
-        <h3 className="font-header leading-tight tracking-wide text-2xl lg:text-3xl font-light flex items-center gap-4">
+        <h3 className="font-header leading-tight tracking-wide text-3xl lg:text-4xl font-light flex items-center gap-4">
           <span className="grow">
             I&apos;ve <span className="overlay-color">worked</span> for...
           </span>

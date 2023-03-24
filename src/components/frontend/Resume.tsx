@@ -29,7 +29,7 @@ export default function ResumeComponent() {
   return (
     <section className={'px-4 lg:px-0 mt-10'}>
       <div className="max-w-5xl mx-auto">
-        <h1 className="font-header leading-tight tracking-wide text-2xl lg:text-3xl font-light h-10">Resume</h1>
+        <h1 className="font-header leading-tight tracking-wide text-3xl lg:text-4xl font-light h-10">Resume</h1>
         <div className="mt-5 mx-auto">
           {mappedData.map((job: JobWithExtra, index: number) => (
             <div className="group" key={`job-image-${index}`}>

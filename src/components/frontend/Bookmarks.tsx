@@ -39,7 +39,7 @@ export default function Bookmarks() {
   return (
     <div className="flex">
       <section id="work" className={'grow px-4 lg:px-0 mt-10 max-w-5xl mx-auto'}>
-        <h1 className="font-header leading-tight tracking-wide text-2xl lg:text-3xl font-light">Bookmarks</h1>
+        <h1 className="font-header leading-tight tracking-wide text-3xl lg:text-4xl font-light">Bookmarks</h1>
         <div>
           {uniqueCategories.map((category: Category, index: number) => (
             <div key={index} className="group/list">

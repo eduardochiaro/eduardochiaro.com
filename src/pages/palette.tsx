@@ -32,7 +32,7 @@ export default function Projects() {
       <div className="grow">
         <section className={'px-4 lg:px-0 mt-10'}>
           <div className="max-w-3xl mx-auto">
-            <h1 className="font-header leading-tight tracking-wide text-2xl lg:text-3xl font-light h-10">Palette</h1>
+            <h1 className="font-header leading-tight tracking-wide text-3xl lg:text-4xl font-light h-10">Palette</h1>
             <div className="grid grid-cols-3 gap-10 mt-10">
               {palette.map((color, key) => (
                 <div key={key} className="w-full rounded overflow-hidden drop-shadow">

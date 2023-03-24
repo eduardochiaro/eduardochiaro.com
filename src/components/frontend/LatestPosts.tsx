@@ -9,7 +9,7 @@ export default function LatestPosts() {
   return (
     <section id="latest-posts-component" className={'px-4 lg:px-0 mt-10'}>
       <div className="max-w-5xl mx-auto">
-        <h3 className="font-header leading-tight tracking-wide text-2xl lg:text-3xl font-light mb-2">
+        <h3 className="font-header leading-tight tracking-wide text-3xl lg:text-4xl font-light mb-2">
           What I <span className="overlay-color">wrote</span>...
         </h3>
         <div id="articles-list" className="mt-6 -ml-6">

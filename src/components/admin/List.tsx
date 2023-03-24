@@ -190,10 +190,13 @@ export default function List({
           ))}
         </div>
       </div>
-      <div className="flex flex-col gap-4 mt-10 pl-6" role="menu" aria-orientation="vertical" aria-labelledby="menu-button">
+      <div className=" mx-6  mt-10 mb-2 border-b border-primary-500/border:bg-primary-50 px-6 py-3 font-bold text-left uppercase text-sm tracking-none whitespace-nowrap opacity-50">
+          Records
+      </div>
+      <div className="flex flex-col gap-2 px-6" role="menu" aria-orientation="vertical" aria-labelledby="menu-button">
         {filteredData.length > 0 ? (
           filteredData.map((item) => (
-            <div key={`list-${item.id}`} className="group">
+            <div key={`list-${item.id}`} className="group border-b border-primary-500/50 border:bg-primary-50/50">
               <div
                 className={'flex items-center gap-4 cursor-pointer group p-2 pl-4 pr-8 rounded-l-lg'}
                 onClick={() => editAction(item.original || item)}
@@ -215,7 +218,6 @@ export default function List({
                   </div>
                 </div>
               </div>
-              <hr className="mt-4 opacity-30 mx-4 group-last:hidden" />
             </div>
           ))
         ) : (

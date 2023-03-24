@@ -31,7 +31,7 @@ export default function Projects() {
     <section className={`${styles.apps} px-4 lg:px-0 mt-10`}>
       <div className="max-w-5xl mx-auto flex flex-wrap">
         <div className="basis-full md:basis-3/4 mb-10">
-          <h1 className="font-header leading-tight tracking-wide text-2xl lg:text-3xl font-light h-10">Projects</h1>
+          <h1 className="font-header leading-tight tracking-wide text-3xl lg:text-4xl font-light h-10">Projects</h1>
           <div className="grid grid-cols-1 gap-8 mt-5 pl-2">
             {data?.results.map((app: App, index: number) => (
               <div className={'flex flex-wrap p-4 box-card'} key={`app-${index}`}>
