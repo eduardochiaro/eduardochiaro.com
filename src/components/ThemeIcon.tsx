@@ -94,7 +94,7 @@ export default function ThemeIcon({ orientation, size = 'h-7' }: { orientation: 
       >
         <Menu.Items
           data-cy="change-mode-container"
-          className={`${orientationClass(orientation)} transform absolute z-10 w-56 box-card divide-y divide-primary-200 dark:divide-primary-700`}
+          className={`${orientationClass(orientation)} transform absolute w-56 box-card divide-y divide-primary-200 dark:divide-primary-700`}
           aria-orientation="vertical"
           aria-labelledby="menu-button"
         >

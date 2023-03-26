@@ -43,7 +43,7 @@ export default function Projects() {
         <title>Projects &gt; Stream | Eduardo Chiaro</title>
       </Head>
       <Header />
-      <div className={`${styles.stream} grow flex flex-col`}>
+      <div className={`${styles.stream} bg-fixed grow flex flex-col`}>
         <div className={'mb-auto pb-10 grow'}>
           <Share />
           <section className={'px-4 lg:px-0 mt-10'}>
