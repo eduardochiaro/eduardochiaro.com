@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-fixed bg-gradient-to-br from-primary-50 via-primary-50 to-primary-200 dark:from-primary-700 dark:via-primary-700 dark:to-primary-800 text-primary-900 dark:text-primary-100;
+  @apply bg-gradient-to-br from-primary-50 via-primary-50 to-primary-200 dark:from-primary-700 dark:via-primary-700 dark:to-primary-800 text-primary-900 dark:text-primary-100;
 }
 // Form styles 
 .input-label {

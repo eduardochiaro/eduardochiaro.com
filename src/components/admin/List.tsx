@@ -191,7 +191,7 @@ export default function List({
         </div>
       </div>
       <div className=" mx-6  mt-10 mb-2 border-b border-primary-500/border:bg-primary-50 px-6 py-3 font-bold text-left uppercase text-sm tracking-none whitespace-nowrap opacity-50">
-          Records
+        Records
       </div>
       <div className="flex flex-col gap-2 px-6" role="menu" aria-orientation="vertical" aria-labelledby="menu-button">
         {filteredData.length > 0 ? (
