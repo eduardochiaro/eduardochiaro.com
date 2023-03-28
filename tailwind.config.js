@@ -1,4 +1,5 @@
 const colors = require('tailwindcss/colors');
+const plugin = require('tailwindcss/plugin');
 
 module.exports = {
   content: ['./src/pages/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}', './src/utils/**/*.{js,ts,jsx,tsx}'],
@@ -59,6 +60,11 @@ module.exports = {
         width: 'width',
         height: 'height',
       },
+      textShadow: {
+        sm: '0 0 2px var(--tw-shadow-color)',
+        DEFAULT: '0 0 4px var(--tw-shadow-color)',
+        lg: '0 0 16px var(--tw-shadow-color)',
+      },
     },
   },
   plugins: [
@@ -66,5 +72,16 @@ module.exports = {
     require('@tailwindcss/forms'),
     require('@tailwindcss/line-clamp'),
     require('@tailwindcss/aspect-ratio'),
+
+    plugin(function ({ matchUtilities, theme }) {
+      matchUtilities(
+        {
+          'text-shadow': (value) => ({
+            textShadow: value,
+          }),
+        },
+        { values: theme('textShadow') }
+      )
+    }),
   ],
 };

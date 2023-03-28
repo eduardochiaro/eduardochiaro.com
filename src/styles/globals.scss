@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-gradient-to-br from-primary-50 via-primary-50 to-primary-200 dark:from-primary-700 dark:via-primary-700 dark:to-primary-800 text-primary-900 dark:text-primary-100;
+  @apply bg-fixed bg-gradient-to-br from-primary-50 via-primary-50 to-primary-200 dark:from-primary-700 dark:via-primary-700 dark:to-primary-800 text-primary-900 dark:text-primary-100;
 }
 // Form styles 
 .input-label {
@@ -138,5 +138,8 @@ input:checked + .toggle-bg {
   }
 }
 .download-button {
-  @apply bg-secondary-600 hover:bg-primary-800 transition-all ease-in-out duration-300 text-primary-100 shadow-lg px-4 py-2 text-base rounded-md;
+  @apply bg-primary-800 transition-all ease-in-out duration-300 text-primary-100 px-4 py-2 text-base rounded-md text-shadow-sm shadow-primary-800;
+  &:hover {
+    background-image: url(/images/starfield.svg);
+  }
 }
