@@ -3,170 +3,11 @@ import { useState, useReducer, useRef, useEffect, ReactElement } from 'react';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 import { CheckIcon, ChevronLeftIcon, TrashIcon } from '@heroicons/react/24/solid';
 import { findInvalidElement, isFormValid } from '@/utils/formValidation';
-import { Input, Select, Textarea, Range, Tags } from '@/components/form';
-import Image from 'next/image';
 import { createEditItem, deleteItem } from '@/utils/apiAdmin';
 import AdminModal from '@/components/admin/Modal';
 import axios from 'axios';
 import * as cheerio from 'cheerio';
-
-type InputTypeProps = {
-  input: {
-    type: string;
-    label: string;
-    name: string;
-    value: string;
-    required: boolean;
-    placeholder?: string;
-    min?: number;
-    max?: number;
-    step?: number;
-    accept?: string;
-    rows?: number;
-    selectOptions?: {
-      id: string;
-      name: string;
-    }[];
-    selectOnChange?: (e: any) => void;
-    selectEmptyOption?: boolean;
-    html: ReactElement;
-  };
-  itemData: any;
-  form: {
-    error: boolean;
-    success: boolean;
-    invalid: string[];
-  };
-  imagePreview?: {
-    file: any;
-    imagePreviewUrl: string;
-  };
-  handleChange: (e: any) => void;
-  updateItem: (e: any) => void;
-  fetchFunction?: (url: string) => void;
-  inputFileRef: any;
-};
-
-const InputType = ({ input, itemData, form, imagePreview, inputFileRef, handleChange, updateItem, fetchFunction }: InputTypeProps) => {
-  switch (input.type) {
-    case 'text':
-    case 'url':
-    case 'file':
-    case 'password':
-    case 'date':
-    case 'datetime':
-    default:
-      return (
-        <Input
-          ref={input.type == 'file' ? inputFileRef : null}
-          type={input.type}
-          label={input.label}
-          name={input.name}
-          value={itemData[input.value]}
-          placeholder={input.placeholder}
-          onChange={(e) => handleChange(e)}
-          required={input.required}
-          invalid={form.invalid.includes(input.name)}
-          accept={input.accept}
-        />
-      );
-    case 'range':
-      return (
-        <Range
-          label={input.label}
-          name={input.name}
-          min={input.min}
-          max={input.max}
-          step={input.step}
-          value={itemData[input.value]}
-          onChange={(e) => handleChange(e)}
-          required={input.required}
-          invalid={form.invalid.includes(input.name)}
-          accept={input.accept}
-        />
-      );
-
-    case 'tags':
-      return (
-        <Tags
-          label={input.label}
-          name={input.name}
-          value={itemData[input.value]}
-          onChange={(e) => handleChange(e)}
-          required={input.required}
-          invalid={form.invalid.includes(input.name)}
-          updateItem={updateItem}
-        />
-      );
-    case 'textarea':
-      return (
-        <Textarea
-          label={input.label}
-          name={input.name}
-          value={itemData[input.value]}
-          onChange={(e) => handleChange(e)}
-          required={input.required}
-          rows={input.rows}
-          invalid={form.invalid.includes(input.name)}
-        />
-      );
-    case 'select':
-      return (
-        <Select
-          label={input.label}
-          name={input.name}
-          value={itemData[input.value]}
-          onChange={(e) => {
-            handleChange(e);
-            if (input.selectOnChange) {
-              input.selectOnChange(e);
-            }
-          }}
-          required={input.required}
-          invalid={form.invalid.includes(input.name)}
-        >
-          <>
-            {!input.selectEmptyOption && <option value=""> - select - </option>}
-            {input.selectOptions?.map((option) => (
-              <option key={option.id} value={option.id}>
-                {option.name}
-              </option>
-            ))}
-          </>
-        </Select>
-      );
-    case 'imagePreview':
-      if (imagePreview && imagePreview.imagePreviewUrl) {
-        return (
-          <div className="mt-4 w-32 h-20 m-auto relative box-card">
-            <Image
-              src={imagePreview.imagePreviewUrl}
-              fill
-              sizes="33vw"
-              alt={input.name}
-              title={input.name}
-              className="bg-transparent object-contain fill-primary-700 dark:fill-primary-200"
-              priority={false}
-            />
-          </div>
-        );
-      } else {
-        return <></>;
-      }
-    case 'fetchButton':
-      if (fetchFunction) {
-        return (
-          <button type="button" className="button-success mb-1 !px-4" onClick={() => fetchFunction(itemData[input.value])}>
-            Fetch
-          </button>
-        );
-      } else {
-        return <></>;
-      }
-    case 'html':
-      return <>{input.html}</>;
-  }
-};
+import InputType from './inputType';
 
 type AdminFormType = {
   apiURL: string;
@@ -238,7 +79,7 @@ const AdminForm = ({ apiURL, itemFormat, itemData, inputList, titleElement, clos
 
   useEffect(() => {
     updateItem(itemData);
-    if (itemData.image) {
+    if (itemData?.image) {
       setImagePreview({
         file: {},
         imagePreviewUrl: `/uploads/${itemData.image}`,
