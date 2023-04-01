@@ -37,7 +37,7 @@ export default function Header() {
   }
 
   return (
-    <header className={`${styles.header} bg-primary-50/95 dark:bg-primary-700/95 border-b border-primary-200/50 dark:border-primary-600/50`}>
+    <header className={`${styles.header} bg-primary-50/95 dark:bg-primary-800/95 border-b border-primary-200/50 dark:border-primary-700/50`}>
       <nav className="max-w-5xl mx-auto relative">
         <div className="px-4 md:px-0 py-3 flex items-center gap-6">
           <Menu as="div" className="inline-block md:hidden">
@@ -115,7 +115,7 @@ export default function Header() {
                 })}
             </ul>
           </div>
-          <div className="hidden md:block tracking-wider pl-6 border-l border-primary-200 dark:border-primary-600">
+          <div className="hidden md:block tracking-wider pl-6 border-l border-primary-200 dark:border-primary-700">
             <Link
               href="https://blog.eduardochiaro.com"
               className="md:pr-0 pr-6 whitespace-nowrap text-sm font-medium transition hover:underline flex items-center gap-1"

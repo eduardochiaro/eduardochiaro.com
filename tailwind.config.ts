@@ -1,7 +1,8 @@
-const colors = require('tailwindcss/colors');
-const plugin = require('tailwindcss/plugin');
+import type { Config } from 'tailwindcss';
+import colors from 'tailwindcss/colors'; 
+import plugin from "tailwindcss/plugin";
 
-module.exports = {
+export default {
   content: ['./src/pages/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}', './src/utils/**/*.{js,ts,jsx,tsx}'],
   darkMode: 'class',
   theme: {
@@ -70,7 +71,6 @@ module.exports = {
   plugins: [
     require('@tailwindcss/typography'),
     require('@tailwindcss/forms'),
-    require('@tailwindcss/line-clamp'),
     require('@tailwindcss/aspect-ratio'),
 
     plugin(function ({ matchUtilities, theme }) {
@@ -84,4 +84,5 @@ module.exports = {
       )
     }),
   ],
-};
+} satisfies Config
+
