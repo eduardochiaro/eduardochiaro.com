@@ -6,7 +6,7 @@ const AdminPreviewIndex = () => {
 
   if (session) {
     return (
-      <AdminWrapper isPageOpen={true}>
+      <AdminWrapper isPageOpen={false}>
         <iframe 
           className="h-screen w-full" 
           src="/"

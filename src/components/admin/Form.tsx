@@ -1,5 +1,5 @@
 // React component form for admin to save data using axios
-import { useState, useReducer, useRef, useEffect, ReactElement } from 'react';
+import React, { useState, useReducer, useRef, useEffect, ReactElement } from 'react';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 import { CheckIcon, ChevronLeftIcon, TrashIcon } from '@heroicons/react/24/solid';
 import { findInvalidElement, isFormValid } from '@/utils/formValidation';
@@ -7,9 +7,10 @@ import { createEditItem, deleteItem } from '@/utils/apiAdmin';
 import AdminModal from '@/components/admin/Modal';
 import axios from 'axios';
 import * as cheerio from 'cheerio';
-import InputType from './inputType';
+import InputType from './InputType';
 
 type AdminFormType = {
+  children?: ReactElement;
   apiURL: string;
   itemFormat: any;
   itemData: any;
@@ -29,7 +30,7 @@ const imagePreviewSet = {
   imagePreviewUrl: '',
 };
 
-const AdminForm = ({ apiURL, itemFormat, itemData, inputList, titleElement, closeElement }: AdminFormType) => {
+const AdminForm = ({ children, apiURL, itemFormat, itemData, inputList, titleElement, closeElement }: AdminFormType) => {
   const formRef = useRef<HTMLFormElement>(null);
   const inputFileRef = useRef<HTMLInputElement | null>(null);
 
@@ -235,6 +236,12 @@ const AdminForm = ({ apiURL, itemFormat, itemData, inputList, titleElement, clos
             ))}
           </div>
         </form>
+
+        {React.Children.map(children, (child) => {
+          if (React.isValidElement(child)) {
+            return React.cloneElement(child);
+          }
+        })}
       </div>
 
       <AdminModal

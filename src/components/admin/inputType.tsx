@@ -77,7 +77,6 @@ const InputType = ({ input, itemData, form, imagePreview, inputFileRef, handleCh
           accept={input.accept}
         />
       );
-
     case 'tags':
       return (
         <Tags

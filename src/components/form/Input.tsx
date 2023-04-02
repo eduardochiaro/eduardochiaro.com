@@ -9,7 +9,7 @@ export type FormInputProps = {
   value: string;
   type?: string;
   className?: string;
-  invalid: boolean;
+  invalid?: boolean;
 } & DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
 
 export type Ref = HTMLInputElement;
