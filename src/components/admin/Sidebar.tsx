@@ -54,13 +54,13 @@ const AdminSidebar = ({ menuList, isPageOpen }: { menuList: any[]; isPageOpen: b
             </li>
             <li>
               <Link
-                href="/"
+                href="/admin/preview"
                 className={`${styles['sidebar-link']} group border-transparent hover:border-secondary-600 dark:hover:border-secondary-600`}
                 title="Website"
               >
                 <CodeBracketIcon className="w-5 group-hover:text-secondary-600 dark:group-hover:text-secondary-600" />
                 <span className={`text-sm tracking-wide truncate group-hover:hunderline hidden xl:block ${openMenu ? '' : styles['hide-when-closed']}`}>
-                  Website
+                  Preview
                 </span>
               </Link>
             </li>
