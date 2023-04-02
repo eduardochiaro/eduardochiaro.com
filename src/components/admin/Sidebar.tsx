@@ -41,28 +41,36 @@ const AdminSidebar = ({ menuList, isPageOpen }: { menuList: any[]; isPageOpen: b
           </button>
           <ul className="grow flex flex-col space-y-1 font-semibold tracking-wider">
             <li>
-              <Link
-                href="/admin"
-                className={`${styles['sidebar-link']} group border-transparent hover:border-secondary-600 dark:hover:border-secondary-600`}
-                title="Website"
-              >
-                <HomeIcon className="w-5 group-hover:text-secondary-600 dark:group-hover:text-secondary-600" />
-                <span className={`text-sm tracking-wide truncate group-hover:hunderline hidden xl:block ${openMenu ? '' : styles['hide-when-closed']}`}>
-                  Dashboard
-                </span>
-              </Link>
+              <NavLink
+                  type="sub"
+                  href="/admin"
+                  as="/admin"
+                  className={`${styles['sidebar-link']} group border-transparent `}
+                  activeClassName={`${styles['sidebar-link']} group bg-primary-50 dark:bg-primary-800 rounded-md`}
+                >
+                <a className="flex items-center gap-2" title="Dashboard">
+                  <HomeIcon className="w-5 group-hover:text-secondary-600 dark:group-hover:text-secondary-600" />
+                  <span className={`text-sm tracking-wide truncate group-hover:hunderline hidden xl:block ${openMenu ? '' : styles['hide-when-closed']}`}>
+                    Dashboard
+                  </span>
+                </a>
+              </NavLink>
             </li>
             <li>
-              <Link
-                href="/admin/preview"
-                className={`${styles['sidebar-link']} group border-transparent hover:border-secondary-600 dark:hover:border-secondary-600`}
-                title="Website"
-              >
-                <CodeBracketIcon className="w-5 group-hover:text-secondary-600 dark:group-hover:text-secondary-600" />
-                <span className={`text-sm tracking-wide truncate group-hover:hunderline hidden xl:block ${openMenu ? '' : styles['hide-when-closed']}`}>
-                  Preview
-                </span>
-              </Link>
+              <NavLink
+                  type="sub"
+                  href="/admin/preview"
+                  as="/admin/preview"
+                  className={`${styles['sidebar-link']} group border-transparent `}
+                  activeClassName={`${styles['sidebar-link']} group bg-primary-50 dark:bg-primary-800 rounded-md`}
+                >
+                <a className="flex items-center gap-2" title="preview">
+                  <CodeBracketIcon className="w-5 group-hover:text-secondary-600 dark:group-hover:text-secondary-600" />
+                  <span className={`text-sm tracking-wide truncate group-hover:hunderline hidden xl:block ${openMenu ? '' : styles['hide-when-closed']}`}>
+                    Preview
+                  </span>
+                </a>
+              </NavLink>
             </li>
             {menuList.map((item, key) => (
               <Fragment key={`group-${key}`}>
