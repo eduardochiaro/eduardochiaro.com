@@ -72,7 +72,7 @@ const AdminSkillsIndex = ({ images }: { images: any[] }) => {
       selectOnChange: (e: any) => setPreviewLogo(e.target.value),
     },
     {
-      classNames: 'col-span-1 text-center',
+      classNames: 'col-span-1 pt-3 text-center',
       type: 'html',
       html: previewLogo && <SVG title="" className={'inline-block w-14 fill-primary-700 dark:fill-primary-200'} src={`/images/svg-icons/${previewLogo}`} />,
     },

@@ -1,6 +1,7 @@
 import { useSession } from 'next-auth/react';
 import AdminWrapper, { menuList } from '@/components/admin/Wrapper';
 import Link from 'next/link';
+import * as React from 'react';
 
 const AdminIndex = () => {
   const { data: session } = useSession();
@@ -9,8 +10,8 @@ const AdminIndex = () => {
       <AdminWrapper isPageOpen={false}>
         <div className="h-full py-8 px-6 grow min-h-screen">
           <h1 className="text-2xl flex items-center gap-2 pb-4 border-b border-primary-200 dark:border-primary-600">Dashboard</h1>
-          {menuList.map((item) => (
-            <>
+          {menuList.map((item, i) => (
+            <React.Fragment key={i}>
               <h3
                 className="mt-8
              text-2xl"
@@ -18,8 +19,8 @@ const AdminIndex = () => {
                 {item.title}
               </h3>
               <div className="mx-auto mt-10 grid grid-cols-2 xl:grid-cols-3 gap-12">
-                {item.links.map((link) => (
-                  <Link key={link.title} href={link.href} className={'flex items-center gap-4'}>
+                {item.links.map((link, key) => (
+                  <Link key={key} href={link.href} className={'flex items-center gap-4'}>
                     <div className={`${link.classColor} p-3 rounded-full h-fit text-primary-50`}>{link.icon}</div>
                     <div className="hover:text-secondary-600">
                       <span className={'text-lg'}>{link.title}</span>
@@ -28,7 +29,7 @@ const AdminIndex = () => {
                   </Link>
                 ))}
               </div>
-            </>
+            </React.Fragment>
           ))}
         </div>
       </AdminWrapper>

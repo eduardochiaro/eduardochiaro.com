@@ -7,7 +7,7 @@ const skills = [
     name: 'Node.js',
     logo: 'node.svg',
     type: 'node',
-    percentage: 80,
+    percentage: 85,
   },
   {
     id: 2,
@@ -35,14 +35,14 @@ const skills = [
     name: 'SQL',
     logo: 'mysql.svg',
     type: 'mysql',
-    percentage: 75,
+    percentage: 80,
   },
   {
     id: 6,
     name: 'AWS',
     logo: 'aws.svg',
     type: 'aws',
-    percentage: 70,
+    percentage: 75,
   },
 ];
 

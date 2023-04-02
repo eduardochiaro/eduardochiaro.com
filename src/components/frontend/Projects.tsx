@@ -41,12 +41,7 @@ export default function Projects() {
                 <div className={'basis-full md:basis-2/3 px-8 py-4'}>
                   <h3 className="text-2xl font-header tracking-wide">{app.name}</h3>
                   <p className="text-normal mt-2">{app.description}</p>
-                  <Link
-                    href={app.url || '#'}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="download-button mt-6 inline-flex items-center gap-4"
-                  >
+                  <Link href={app.url || '#'} target="_blank" rel="noreferrer" className="download-button mt-6 inline-flex items-center gap-4">
                     <GitHubIcon className="w-6" />
                     Download from GitHub
                   </Link>

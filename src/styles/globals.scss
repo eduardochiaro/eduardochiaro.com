@@ -78,7 +78,7 @@ table.admin-table {
   }
 }
 .box-card {
-  @apply drop-shadow rounded-lg bg-primary-100 dark:bg-primary-600 transition hover:ring-4 ring-offset-1 ring-offset-primary-100 dark:ring-offset-primary-500 hover:ring-primary-200 dark:hover:ring-primary-600 ring-1 ring-primary-700 ring-opacity-5;
+  @apply drop-shadow rounded-lg bg-primary-100 dark:bg-primary-600 transition hover:ring-4 ring-offset-1 ring-offset-primary-100 dark:ring-offset-primary-500 hover:ring-primary-200/50 dark:hover:ring-primary-600/50 ring-1 ring-primary-700 ring-opacity-5;
 }
 .custom-img {
   object-fit: contain;
