@@ -15,7 +15,7 @@ export type FormInputProps = {
 export type Ref = HTMLInputElement;
 
 const Input = forwardRef<Ref, FormInputProps>(
-  ({ id, type = 'text', name = '', label = '', value = '', placeholder = '', invalid = false, accept, className, ...props }, ref) => {
+  ({ id, type = 'text', name = '', label = '', value = '', placeholder = '', invalid = false, className, ...props }, ref) => {
     const isInvalid =
       type == 'file' ? invalid && ref != null && typeof ref !== 'function' && ref.current && ref.current.value == '' : invalid && value.length <= 0;
 

@@ -13,9 +13,9 @@ import Logo from '../icons/Logo';
 const SidebarDivider = ({ title, openMenu }: { title: string; openMenu: boolean }) => (
   <li>
     <div className="flex flex-row items-center h-8">
-      <span className="w-10 dashed-border-t shrink"></span>
+      <span className={`w-10 dashed-border-t shrink  ${openMenu ? '' : 'hidden'}`}></span>
       <div className={`text-sm font-light tracking-wide mx-3 ${openMenu ? '' : styles['hide-when-closed']}`}>{title}</div>
-      <span className="w-full dashed-border-t shrink"></span>
+      <span className={`w-full dashed-border-t shrink`}></span>
     </div>
   </li>
 );
