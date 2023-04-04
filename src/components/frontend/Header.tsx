@@ -41,8 +41,8 @@ export default function Header() {
       <nav className="max-w-5xl mx-auto relative">
         <div className="px-4 md:px-0 py-3 flex items-center gap-6">
           <Menu as="div" className="inline-block md:hidden">
-            <Menu.Button title="open menu" className="inline-block md:hidden hover:cursor-pointer">
-              <Bars3BottomLeftIcon className={'w-7 inline-block transition hover:text-primary-900 dark:hover:text-primary-100'} />
+            <Menu.Button title="open menu" className="flex items-center md:hidden hover:cursor-pointer">
+              <Bars3BottomLeftIcon className={'w-7 transition hover:text-primary-900 dark:hover:text-primary-100'} />
             </Menu.Button>
             <Transition
               as={Fragment}
@@ -53,7 +53,7 @@ export default function Header() {
               leaveFrom="opacity-100 translate-y-0"
               leaveTo="opacity-0 translate-y-1"
             >
-              <Menu.Items className="focus:outline-none absolute left-0 top-full w-full max-w-lg bg-primary-200 dark:bg-primary-600 shadow-2xl shadow-primary-600 ring-1 ring-primary-900 ring-opacity-10  divide-y divide-primary-400">
+              <Menu.Items className="focus:outline-none absolute left-0 top-full w-full max-w-lg bg-primary-100 dark:bg-primary-800 shadow-2xl shadow-primary-600 dark:shadow-primary-900 divide-y divide-primary-400/50">
                 {menuData
                   .filter((x: MenuLink) => x.active)
                   .map(function (item: { link: string; text: string }, i: number) {
@@ -78,9 +78,14 @@ export default function Header() {
                   })}
                 <div className="px-1 py-1 font-semibold text-secondary-700 dark:text-secondary-600">
                   <Menu.Item>
-                    <Link href="https://blog.eduardochiaro.com" className={`${styles.menuUrlMobile} text-primary-900 dark:text-primary-100`}>
-                      <RssIcon className={'h-7 text-accent-600 dark:text-accent-500 mr-1'} aria-hidden="true" />
-                      .dev
+                    <Link
+                      href="https://blog.eduardochiaro.com"
+                      className={`${styles.menuUrlMobile} text-primary-900 dark:text-primary-100 !gap-1`}
+                    >
+                      <span>
+                        <span className="text-accent-600 dark:text-accent-500">.</span>dev
+                      </span>
+                      <RssIcon className={'h-4 text-accent-600 dark:text-accent-500'} aria-hidden="true" />
                     </Link>
                   </Menu.Item>
                 </div>
@@ -88,9 +93,9 @@ export default function Header() {
             </Transition>
           </Menu>
           <span className="grow text-center md:text-left">
-            <Link href="/" className="inline-flex items-center gap-2 group">
-              <FireIcon className="h-7 group-hover:text-accent-600 dark:group-hover:text-accent-500 transition-colors ease-out duration-300" />
-              <span className={'text-3xl font-header font-normal hidden md:block'}>
+            <Link href="/" className="flex items-end gap-2 group md:-ml-10">
+              <FireIcon className=" hidden md:block h-8 group-hover:text-accent-600 dark:group-hover:text-accent-500 transition-all ease-out duration-300 opacity-0 group-hover:opacity-100" />
+              <span className={'text-3xl font-header font-normal'}>
                 eduardo<span className="font-semibold overlay-color">chiaro</span>
               </span>
             </Link>

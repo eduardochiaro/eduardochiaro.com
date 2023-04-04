@@ -48,14 +48,14 @@ const Logo: FunctionComponent<SVGProps> = ({ width = '1000', height = '1000', ..
       d="M163.018 463.23C182.43 463.542 59.923 551.977 59.923 640.141C59.923 660.47 340.987 940.222 360.236 940.222C502.538 940.222 548.657 830.245 525.853 829.902C511.707 829.69 137.894 462.826 163.018 463.23Z"
       fill="url(#LinearGradient)"
       fillRule="nonzero"
-      opacity="1"
+      opacity="0.5"
       stroke="none"
     />
     <path
       d="M640.401 60.2281C590.449 60.2281 387.467 158.11 462.558 159.81C479.518 160.194 659.87 360.038 659.87 360.038L799.846 220.008C799.846 220.008 659.87 60.2281 640.401 60.2281Z"
       fill="url(#LinearGradient_2)"
       fillRule="nonzero"
-      opacity="1"
+      opacity="0.5"
       stroke="none"
     />
     <path
