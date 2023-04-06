@@ -7,7 +7,7 @@ describe('GitHub component', () => {
         name: 'repo1',
         description: 'description1',
         url: 'https://github.com/user1/repo1',
-        openGraphImageUrl: 'https://picsum.photos/200/300',
+        openGraphImageUrl: 'https://picsum.photos/300/200',
         pushedAt: '2022-01-01',
         languages: [
           { name: 'JavaScript', color: '#f1e05a' },
@@ -20,7 +20,7 @@ describe('GitHub component', () => {
         name: 'repo2',
         description: 'description2',
         url: 'https://github.com/user2/repo2',
-        openGraphImageUrl: 'https://picsum.photos/200/300',
+        openGraphImageUrl: 'https://picsum.photos/300/200',
         pushedAt: '2022-01-02',
         languages: [
           { name: 'Python', color: '#3572A5' },
