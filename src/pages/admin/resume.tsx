@@ -7,7 +7,7 @@ import moment from 'moment';
 import List from '@/components/admin/List';
 import React from 'react';
 import AdminForm from '@/components/admin/Form';
-import AdminProjects from "@/components/admin/Projects";
+import AdminProjects from '@/components/admin/Projects';
 
 const AdminResumeIndex = () => {
   const { mutate, data: resumes } = useStaleSWR('/api/portfolio/resume');
@@ -119,7 +119,7 @@ const AdminResumeIndex = () => {
       name: 'tags',
       type: 'tags',
       value: 'tags',
-    }
+    },
   ];
 
   const sortType = [
@@ -167,9 +167,7 @@ const AdminResumeIndex = () => {
             inputList={inputList}
             closeElement={closeElement}
           >
-            <>
-            {resume.id && <AdminProjects projects={resume.projects} resumeId={resume.id} />}
-            </>
+            <>{resume.id && <AdminProjects projects={resume.projects} resumeId={resume.id} />}</>
           </AdminForm>
         </div>
       </AdminWrapper>

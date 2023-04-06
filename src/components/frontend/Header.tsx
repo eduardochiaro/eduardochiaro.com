@@ -78,10 +78,7 @@ export default function Header() {
                   })}
                 <div className="px-1 py-1 font-semibold text-secondary-700 dark:text-secondary-600">
                   <Menu.Item>
-                    <Link
-                      href="https://blog.eduardochiaro.com"
-                      className={`${styles.menuUrlMobile} text-primary-900 dark:text-primary-100 !gap-1`}
-                    >
+                    <Link href="https://blog.eduardochiaro.com" className={`${styles.menuUrlMobile} text-primary-900 dark:text-primary-100 !gap-1`}>
                       <span>
                         <span className="text-accent-600 dark:text-accent-500">.</span>dev
                       </span>

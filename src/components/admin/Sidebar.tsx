@@ -15,7 +15,7 @@ const SidebarDivider = ({ title, openMenu }: { title: string; openMenu: boolean 
     <div className="flex flex-row items-center h-8">
       <span className={`w-10 dashed-border-t shrink  ${openMenu ? '' : 'hidden'}`}></span>
       <div className={`text-sm font-light tracking-wide mx-3 ${openMenu ? '' : styles['hide-when-closed']}`}>{title}</div>
-      <span className={`w-full dashed-border-t shrink`}></span>
+      <span className={'w-full dashed-border-t shrink'}></span>
     </div>
   </li>
 );
@@ -42,12 +42,12 @@ const AdminSidebar = ({ menuList, isPageOpen }: { menuList: any[]; isPageOpen: b
           <ul className="grow flex flex-col space-y-1 font-semibold tracking-wider">
             <li>
               <NavLink
-                  type="sub"
-                  href="/admin"
-                  as="/admin"
-                  className={`${styles['sidebar-link']} group border-transparent `}
-                  activeClassName={`${styles['sidebar-link']} group bg-primary-50 dark:bg-primary-800 rounded-md`}
-                >
+                type="sub"
+                href="/admin"
+                as="/admin"
+                className={`${styles['sidebar-link']} group border-transparent `}
+                activeClassName={`${styles['sidebar-link']} group bg-primary-50 dark:bg-primary-800 rounded-md`}
+              >
                 <a className="flex items-center gap-2" title="Dashboard">
                   <HomeIcon className="w-5 group-hover:text-secondary-600 dark:group-hover:text-secondary-600" />
                   <span className={`text-sm tracking-wide truncate group-hover:hunderline hidden xl:block ${openMenu ? '' : styles['hide-when-closed']}`}>
@@ -58,12 +58,12 @@ const AdminSidebar = ({ menuList, isPageOpen }: { menuList: any[]; isPageOpen: b
             </li>
             <li>
               <NavLink
-                  type="sub"
-                  href="/admin/preview"
-                  as="/admin/preview"
-                  className={`${styles['sidebar-link']} group border-transparent `}
-                  activeClassName={`${styles['sidebar-link']} group bg-primary-50 dark:bg-primary-800 rounded-md`}
-                >
+                type="sub"
+                href="/admin/preview"
+                as="/admin/preview"
+                className={`${styles['sidebar-link']} group border-transparent `}
+                activeClassName={`${styles['sidebar-link']} group bg-primary-50 dark:bg-primary-800 rounded-md`}
+              >
                 <a className="flex items-center gap-2" title="preview">
                   <CodeBracketIcon className="w-5 group-hover:text-secondary-600 dark:group-hover:text-secondary-600" />
                   <span className={`text-sm tracking-wide truncate group-hover:hunderline hidden xl:block ${openMenu ? '' : styles['hide-when-closed']}`}>
