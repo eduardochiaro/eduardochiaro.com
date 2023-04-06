@@ -1,17 +1,23 @@
 import type { ResumeProject } from '@prisma/client';
-import SVG from 'react-inlinesvg';
+import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
+import Image from 'next/image';
 import { Input } from '../form';
 import { useReducer, useRef, useState } from 'react';
-import Image from 'next/image';
+import { findInvalidElement, isFormValid } from '@/utils/formValidation';
+import { createEditItem } from '@/utils/apiAdmin';
+import useStaleSWR from '@/utils/staleSWR';
+import NaturalImage from '../NaturalImage';
 
 type Props = {
-  projects: ResumeProject[];
   resumeId?: number | null;
 };
 
-const AdminProjects = ({ projects, resumeId }: Props) => {
+const AdminResumeProjects = ({ resumeId }: Props) => {
+  const { mutate, data: projects } = useStaleSWR(`/api/portfolio/resume/${resumeId}/projects`);
   const formRef = useRef<HTMLFormElement>(null);
   const inputFileRef = useRef<HTMLInputElement | null>(null);
+
+  console.log(projects?.results);
 
   const imagePreviewSet = {
     file: {},
@@ -39,6 +45,9 @@ const AdminProjects = ({ projects, resumeId }: Props) => {
   }, formInitialState);
   const [imagePreview, setImagePreview] = useState(imagePreviewSet);
 
+  const inputToValidate = ['name', 'image'];
+  const apiURL = '/api/portfolio/resumeProjects'
+
   const handleChange = (e: React.ChangeEvent<any>) => {
     updateItem({ [e.target.name]: e.target.files ? e.target.files[0] : e.target.value });
     if (e.target.files && e.target.files[0]) {
@@ -52,16 +61,55 @@ const AdminProjects = ({ projects, resumeId }: Props) => {
       };
       reader.readAsDataURL(file);
     }
-    console.log(item);
+  };
+
+  const resetForm = () => {
+    setForm({ ...formInitialState });
+    if (inputFileRef.current) {
+      inputFileRef.current.value = '';
+    }
   };
 
   const onSubmitModal = async (e: Event) => {
     e.preventDefault();
+    setForm({ ...formInitialState });
+    if (!isFormValid(item, inputToValidate)) {
+      const listOfInvalidInputs = findInvalidElement(item, inputToValidate);
+      setForm({ invalid: listOfInvalidInputs, error: true });
+      return;
+    }
+    try {
+      const { data } = await createEditItem<ResumeProject>(apiURL, item, false);
+      resetForm();
+      updateItem(data);
+      if (data.image) {
+        setImagePreview({
+          file: {},
+          imagePreviewUrl: `/uploads/${data.image}`,
+        });
+      }
+      setForm({ ...formInitialState, success: true });
+      mutate();
+    } catch (error) {
+      // handle error
+      console.log(error);
+      setForm({ ...formInitialState, error: true });
+    }
+    return true;
   };
 
   return (
     <>
       <h3 className="text-lg font-bold border-b border-primary-700 pb-2 mb-5 mt-10">Projects</h3>
+      {form.error && (
+        <div className="bg-accent-100 border border-accent-400 text-accent-700 px-4 py-3 rounded relative mb-4" role="alert">
+          <strong className="font-bold">
+            <ExclamationTriangleIcon className="inline-flex align-middle h-6 mr-4" />
+            Invalid Form!{' '}
+          </strong>
+          <span className="block sm:inline">Some required fields are missing.</span>
+        </div>
+      )}
       <form ref={formRef} acceptCharset="UTF-8" method="POST" encType="multipart/form-data" onSubmit={(e: any) => onSubmitModal(e)}>
         <div className="flex items-center gap-6">
           <div className="grow">
@@ -74,7 +122,6 @@ const AdminProjects = ({ projects, resumeId }: Props) => {
               name="image"
               label="Logo"
               value=""
-              defaultValue={item.image}
               invalid={false}
               accept="image/*"
               onChange={(e) => handleChange(e)}
@@ -102,10 +149,10 @@ const AdminProjects = ({ projects, resumeId }: Props) => {
           </div>
         </div>
       </form>
-      {projects.map((project: ResumeProject, key) => (
-        <div className="flex items-center gap-4 h-14 px-4" key={key}>
-          <div className="w-48">
-            <SVG title={project.name} className={'fill-primary-700 dark:fill-primary-200'} src={`/uploads/${project.logo}`} height={30} />
+      {projects?.results.map((project: ResumeProject, key: any) => (
+        <div className="flex items-center gap-4 h-14 px-4 my-4" key={key}>
+          <div className="w-16 h-14 relative">
+            <Image alt={project.name} className={'bg-transparent object-cover'} fill src={`/uploads/${project.image}`} sizes="33vw" />
           </div>
           <span>{project.name}</span>
         </div>
@@ -114,4 +161,4 @@ const AdminProjects = ({ projects, resumeId }: Props) => {
   );
 };
 
-export default AdminProjects;
+export default AdminResumeProjects;

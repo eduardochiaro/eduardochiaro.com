@@ -82,7 +82,7 @@ export default function ResumeComponent() {
                               key={`resume_project_${project.id}`}
                               title={project.name}
                               className="fill-primary-700 dark:fill-primary-200 mx-auto"
-                              src={`/uploads/${project.logo}`}
+                              src={`/uploads/${project.image}`}
                               height={25}
                             />
                           ))}
