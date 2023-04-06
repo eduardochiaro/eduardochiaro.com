@@ -36,7 +36,7 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: '**.staticflickr.com',
-      },
+      }
     ],
   },
   webpack(config) {

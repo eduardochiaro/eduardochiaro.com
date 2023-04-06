@@ -14,6 +14,7 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
+import '../../src/styles/globals.scss';
 import './commands';
 
 // Alternatively you can use CommonJS syntax:
