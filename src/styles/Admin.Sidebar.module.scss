@@ -11,17 +11,20 @@
   }
 }
 .sidebar-closed {
-  @apply w-28;
+  @apply w-20;
   > div {
-    @apply w-28;
+    @apply w-20;
   }
-  svg {
-    @apply mx-auto
+  .sidebar-link,
+  .sidebar-logo {
+    svg {
+      @apply mx-auto
+    }
   }
   .hide-when-closed {
     @apply hidden;
   }
   .sidebar-link {
-    @apply pl-0;
+    @apply px-0;
   }
 }
