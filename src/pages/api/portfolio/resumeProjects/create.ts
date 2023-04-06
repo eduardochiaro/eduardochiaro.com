@@ -21,7 +21,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       form.parse(req, async (err, fields, files) => {
         if (err) return reject(err);
         const { name, resumeId } = fields as { [key: string]: string };
-    
+
         const dataMap = {
           name,
           resumeId: parseInt(resumeId),
@@ -35,7 +35,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         }
 
         const resume = await prisma.resumeProject.create({
-          data: dataMap
+          data: dataMap,
         });
         res.status(200).json({ ...resume });
       });

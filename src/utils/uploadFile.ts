@@ -13,6 +13,6 @@ const uploadFile = (files: Files, name = '', uploadPath = './public/uploads/') =
 
   fs.renameSync(oldPath, join(uploadPath, newName));
   return newName;
-}
+};
 
 export default uploadFile;

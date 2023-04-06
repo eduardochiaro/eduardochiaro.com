@@ -1,12 +1,13 @@
 import type { ResumeProject } from '@prisma/client';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
+import { PlusIcon } from '@heroicons/react/20/solid';
 import Image from 'next/image';
 import { Input } from '../form';
 import { useReducer, useRef, useState } from 'react';
 import { findInvalidElement, isFormValid } from '@/utils/formValidation';
 import { createEditItem } from '@/utils/apiAdmin';
 import useStaleSWR from '@/utils/staleSWR';
-import NaturalImage from '../NaturalImage';
+import AdminModal from '@/components/admin/Modal';
 
 type Props = {
   resumeId?: number | null;
@@ -16,8 +17,6 @@ const AdminResumeProjects = ({ resumeId }: Props) => {
   const { mutate, data: projects } = useStaleSWR(`/api/portfolio/resume/${resumeId}/projects`);
   const formRef = useRef<HTMLFormElement>(null);
   const inputFileRef = useRef<HTMLInputElement | null>(null);
-
-  console.log(projects?.results);
 
   const imagePreviewSet = {
     file: {},
@@ -44,9 +43,10 @@ const AdminResumeProjects = ({ resumeId }: Props) => {
     return { ...x, ...y };
   }, formInitialState);
   const [imagePreview, setImagePreview] = useState(imagePreviewSet);
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
   const inputToValidate = ['name', 'image'];
-  const apiURL = '/api/portfolio/resumeProjects'
+  const apiURL = '/api/portfolio/resumeProjects';
 
   const handleChange = (e: React.ChangeEvent<any>) => {
     updateItem({ [e.target.name]: e.target.files ? e.target.files[0] : e.target.value });
@@ -64,14 +64,25 @@ const AdminResumeProjects = ({ resumeId }: Props) => {
   };
 
   const resetForm = () => {
+    updateItem({ ...itemFormat });
     setForm({ ...formInitialState });
+    setImagePreview(imagePreviewSet);
     if (inputFileRef.current) {
       inputFileRef.current.value = '';
     }
   };
 
-  const onSubmitModal = async (e: Event) => {
-    e.preventDefault();
+  const openModal = (item: any) => {
+    resetForm();
+    setIsOpenModal(true);
+  };
+
+  const closeModal = () => {
+    resetForm();
+    setIsOpenModal(false);
+  };
+
+  const onPrimaryButtonClickModal = async () => {
     setForm({ ...formInitialState });
     if (!isFormValid(item, inputToValidate)) {
       const listOfInvalidInputs = findInvalidElement(item, inputToValidate);
@@ -90,73 +101,82 @@ const AdminResumeProjects = ({ resumeId }: Props) => {
       }
       setForm({ ...formInitialState, success: true });
       mutate();
+      closeModal();
     } catch (error) {
       // handle error
       console.log(error);
       setForm({ ...formInitialState, error: true });
     }
-    return true;
   };
 
   return (
     <>
-      <h3 className="text-lg font-bold border-b border-primary-700 pb-2 mb-5 mt-10">Projects</h3>
-      {form.error && (
-        <div className="bg-accent-100 border border-accent-400 text-accent-700 px-4 py-3 rounded relative mb-4" role="alert">
-          <strong className="font-bold">
-            <ExclamationTriangleIcon className="inline-flex align-middle h-6 mr-4" />
-            Invalid Form!{' '}
-          </strong>
-          <span className="block sm:inline">Some required fields are missing.</span>
-        </div>
-      )}
-      <form ref={formRef} acceptCharset="UTF-8" method="POST" encType="multipart/form-data" onSubmit={(e: any) => onSubmitModal(e)}>
-        <div className="flex items-center gap-6">
-          <div className="grow">
-            <Input type="text" name="name" label="Name" value={item.name} invalid={false} onChange={(e) => handleChange(e)} />
-          </div>
-          <div className="grow">
-            <Input
-              ref={inputFileRef}
-              type="file"
-              name="image"
-              label="Logo"
-              value=""
-              invalid={false}
-              accept="image/*"
-              onChange={(e) => handleChange(e)}
-            />
-          </div>
-          <div>
-            {imagePreview && imagePreview.imagePreviewUrl && (
-              <div className="mt-4 w-32 h-20 m-auto relative box-card">
-                <Image
-                  src={imagePreview.imagePreviewUrl}
-                  fill
-                  sizes="33vw"
-                  alt="preview"
-                  title="preview"
-                  className="bg-transparent object-contain fill-primary-700 dark:fill-primary-200"
-                  priority={false}
-                />
-              </div>
-            )}
-          </div>
-          <div className="flex-none">
-            <button className="button-success mb-1 !px-4 mt-7" type="submit">
-              add
-            </button>
-          </div>
-        </div>
-      </form>
+      <div className="flex items-center gap-4 border-b border-primary-700 pb-4 mb-5 mt-10">
+        <h3 className="text-lg font-bold grow">Projects</h3>
+        <button
+          className="bg-primary-500 dark:bg-primary-50 text-primary-50 dark:text-primary-900 rounded text-sm p-2 flex items-center gap-1 hover:underline"
+          onClick={() => openModal({})}
+          title={'New project'}
+        >
+          <PlusIcon className="h-5" /> add new
+        </button>
+      </div>
+
       {projects?.results.map((project: ResumeProject, key: any) => (
-        <div className="flex items-center gap-4 h-14 px-4 my-4" key={key}>
+        <div className="flex items-center gap-4 h-14 px-4 my-4 pb-4 border-b border-primary-500/50 border:bg-primary-50/50" key={key}>
           <div className="w-16 h-14 relative">
             <Image alt={project.name} className={'bg-transparent object-cover'} fill src={`/uploads/${project.image}`} sizes="33vw" />
           </div>
           <span>{project.name}</span>
         </div>
       ))}
+
+      <AdminModal
+        title={'Add project'}
+        isOpen={isOpenModal}
+        closeModal={closeModal}
+        showButtons={true}
+        onSecondaryButtonClick={closeModal}
+        onPrimaryButtonClick={onPrimaryButtonClickModal}
+        primaryButtonLabel="Add"
+        primaryButtonClass="button-success"
+        fullSize={false}
+      >
+        <>
+          {form.error && (
+            <div className="bg-accent-100 border border-accent-400 text-accent-700 px-4 py-3 rounded relative mb-4" role="alert">
+              <strong className="font-bold">
+                <ExclamationTriangleIcon className="inline-flex align-middle h-6 mr-4" />
+                Invalid Form!{' '}
+              </strong>
+              <span className="block sm:inline">Some required fields are missing.</span>
+            </div>
+          )}
+          <div className="grid grid-cols-6 gap-6">
+            <div className="col-span-6">
+              <Input type="text" name="name" label="Name" value={item.name} invalid={false} onChange={(e) => handleChange(e)} />
+            </div>
+            <div className="col-span-4">
+              <Input ref={inputFileRef} type="file" name="image" label="Logo" value="" invalid={false} accept="image/*" onChange={(e) => handleChange(e)} />
+            </div>
+            <div className="col-span-2">
+              {imagePreview && imagePreview.imagePreviewUrl && (
+                <div className="mt-4 w-32 h-20 m-auto relative box-card">
+                  <Image
+                    src={imagePreview.imagePreviewUrl}
+                    fill
+                    sizes="33vw"
+                    alt="preview"
+                    title="preview"
+                    className="bg-transparent object-contain fill-primary-700 dark:fill-primary-200"
+                    priority={false}
+                  />
+                </div>
+              )}
+            </div>
+          </div>
+        </>
+      </AdminModal>
     </>
   );
 };

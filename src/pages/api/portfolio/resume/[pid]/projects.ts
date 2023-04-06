@@ -14,8 +14,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   const projects = await prisma.resumeProject.findMany({
     where: {
       deletedAt: null,
-      resumeId: parseInt(pid)
-    }
+      resumeId: parseInt(pid),
+    },
   });
   res.status(200).json({ results: projects });
 };
