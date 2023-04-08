@@ -1,8 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import apiWithMiddleware from '@/utils/apiWithMiddleware';
 import cors from '@/middlewares/cors';
-import Parser from 'rss-parser';
+import { parse } from 'rss-to-json';
 import fsCache from '@/utils/fsCache';
+import stripTags from "@/utils/stripTags";
+import cutString from "@/utils/cutString";
 
 const url = 'https://blog.eduardochiaro.com/rss/';
 
@@ -22,17 +24,15 @@ type Data = {
 
 const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   await cors(req, res);
-  const parser = new Parser();
-
   const results = await fsCache(url, parseInt(RSS_CACHE_HOURS), async () => {
-    const feed = await parser.parseURL(url);
+    const feed = await parse(url);
     const results: RssFeedItem[] = [];
     feed.items.forEach((item) => {
       results.push({
         title: item.title,
         permalink: item.link,
-        published: item.isoDate,
-        content: item.contentSnippet + '...',
+        published: item.published,
+        content: cutString(stripTags(item.content), 400) + '...',
         categories: item.categories,
       });
     });
