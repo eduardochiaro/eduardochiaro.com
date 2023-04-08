@@ -5,9 +5,10 @@ import Image from 'next/image';
 import { Input } from '../form';
 import { useReducer, useRef, useState } from 'react';
 import { findInvalidElement, isFormValid } from '@/utils/formValidation';
-import { createEditItem } from '@/utils/apiAdmin';
+import { createEditItem, deleteItem } from '@/utils/apiAdmin';
 import useStaleSWR from '@/utils/staleSWR';
 import AdminModal from '@/components/admin/Modal';
+import { TrashIcon } from "@heroicons/react/24/solid";
 
 type Props = {
   resumeId?: number | null;
@@ -44,6 +45,8 @@ const AdminResumeProjects = ({ resumeId }: Props) => {
   }, formInitialState);
   const [imagePreview, setImagePreview] = useState(imagePreviewSet);
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isOpenDelete, setIsOpenDelete] = useState(false);
+  const [openDeleteItem, setOpenDeleteItem] = useState<ResumeProject | null>(null);
 
   const inputToValidate = ['name', 'image'];
   const apiURL = '/api/portfolio/resumeProjects';
@@ -109,6 +112,23 @@ const AdminResumeProjects = ({ resumeId }: Props) => {
     }
   };
 
+  const openDeleteModal = (itemId: any) => {
+    setOpenDeleteItem(itemId);
+    setIsOpenDelete(true);
+  };
+
+  const onPrimaryButtonClickDelete = async () => {
+    if (openDeleteItem) {
+      await deleteItem(apiURL, openDeleteItem.id);
+    }
+    if (inputFileRef.current) {
+      inputFileRef.current.value = '';
+    }
+    setIsOpenDelete(false);
+    mutate();
+    resetForm();
+  };
+
   return (
     <>
       <div className="flex items-center gap-4 border-b border-primary-700 pb-4 mb-5 mt-10">
@@ -127,7 +147,8 @@ const AdminResumeProjects = ({ resumeId }: Props) => {
           <div className="w-16 h-14 relative">
             <Image alt={project.name} className={'bg-transparent object-cover'} fill src={`/uploads/${project.image}`} sizes="33vw" />
           </div>
-          <span>{project.name}</span>
+          <span className="grow">{project.name}</span>
+          <button onClick={() => openDeleteModal(project)}><TrashIcon className="w-5" /></button>
         </div>
       ))}
 
@@ -176,6 +197,19 @@ const AdminResumeProjects = ({ resumeId }: Props) => {
             </div>
           </div>
         </>
+      </AdminModal>
+      <AdminModal
+        title={`Delete project`}
+        isOpen={isOpenDelete}
+        closeModal={() => setIsOpenDelete(false)}
+        showButtons={true}
+        onSecondaryButtonClick={() => setIsOpenDelete(false)}
+        onPrimaryButtonClick={onPrimaryButtonClickDelete}
+        primaryButtonLabel="Delete"
+        primaryButtonClass="button-danger"
+        fullSize={false}
+      >
+        <p>Are you sure you want to delete &quot;{openDeleteItem?.name}&quot;?</p>
       </AdminModal>
     </>
   );
