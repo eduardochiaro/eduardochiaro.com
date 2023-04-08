@@ -1,4 +1,4 @@
-import { ExclamationTriangleIcon } from '@heroicons/react/24/solid';
+import { ExclamationTriangleIcon } from '@heroicons/react/20/solid';
 import moment from 'moment';
 import { forwardRef, DetailedHTMLProps, InputHTMLAttributes } from 'react';
 
@@ -26,7 +26,6 @@ const Input = forwardRef<Ref, FormInputProps>(
           <span className="grow">
             {label} {props.required && <span className="text-secondary-600">*</span>}
           </span>
-          {isInvalid && <ExclamationTriangleIcon className="h-4 w-4 text-red-400" />}
         </label>
 
         <input
@@ -38,10 +37,15 @@ const Input = forwardRef<Ref, FormInputProps>(
           autoComplete="off"
           data-lpignore="true"
           data-form-type="other"
-          className={`${isInvalid ? 'ring-2 ring-red-500' : ''} mt-1 input-field py-1.5 px-2 focus:outline-none ${className}`}
+          className={`${isInvalid && '!border-red-400' } mt-1 input-field py-1.5 px-2 focus:outline-none ${className}`}
           value={value || ''}
           {...props}
         />
+        {isInvalid && 
+          <p className="text-xs flex items-center gap-1 mt-1 text-red-400">
+            <ExclamationTriangleIcon className="h-4" /> this field is required
+          </p>
+        }
       </>
     );
   },
