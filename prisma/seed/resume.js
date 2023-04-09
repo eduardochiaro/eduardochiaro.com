@@ -34,19 +34,19 @@ const resumes = [
     projects: [
       {
         name: 'Microsoft',
-        logo: 'Microsoft_logo.svg'
+        image: 'Microsoft_logo.svg'
       },
       {
         name: 'HP',
-        logo: 'HP_logo.svg'
+        image: 'HP_logo.svg'
       },
       {
         name: 'Samsung',
-        logo: 'Samsung_logo.svg'
+        image: 'Samsung_logo.svg'
       },
       {
         name: 'LG',
-        logo: 'LG_logo.svg'
+        image: 'LG_logo.svg'
       }
     ]
   },
