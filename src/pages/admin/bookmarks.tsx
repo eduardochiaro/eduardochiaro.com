@@ -1,6 +1,6 @@
 import { useSession } from 'next-auth/react';
 import { useState } from 'react';
-import AdminWrapper from '@/components/admin/Wrapper';
+import BackendLayout from '@/components/layouts/Backend';
 import useStaleSWR from '@/utils/staleSWR';
 import moment from 'moment';
 import List from '@/components/admin/List';
@@ -91,7 +91,7 @@ const AdminBookmarksIndex = () => {
 
   if (session) {
     return (
-      <AdminWrapper isPageOpen={isOpen}>
+      <BackendLayout isPageOpen={isOpen}>
         <div className={`h-full ${isOpen ? 'hidden' : 'grow'}`}>
           <List title={title} single={single} columns={columns} data={newData} format={bookmarkFormat} openAction={openElement} editAction={openElement} />
         </div>
@@ -105,7 +105,7 @@ const AdminBookmarksIndex = () => {
             closeElement={closeElement}
           />
         </div>
-      </AdminWrapper>
+      </BackendLayout>
     );
   }
   return null;

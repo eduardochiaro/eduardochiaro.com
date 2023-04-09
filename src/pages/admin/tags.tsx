@@ -1,6 +1,6 @@
 import { useSession } from 'next-auth/react';
 import { useState } from 'react';
-import AdminWrapper from '@/components/admin/Wrapper';
+import BackendLayout from '@/components/layouts/Backend';
 import useStaleSWR from '@/utils/staleSWR';
 import moment from 'moment';
 import List from '@/components/admin/List';
@@ -55,14 +55,14 @@ const AdminTagsIndex = () => {
 
   if (session) {
     return (
-      <AdminWrapper isPageOpen={isOpen}>
+      <BackendLayout isPageOpen={isOpen}>
         <div className={`h-full ${isOpen ? 'hidden' : 'grow'}`}>
           <List title={title} single={single} columns={columns} data={newData} format={tagFormat} openAction={openElement} editAction={openElement} />
         </div>
         <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6 min-h-screen ${isOpen ? '' : 'hidden'}`}>
           <AdminForm apiURL="/api/admin/tags" titleElement={single} itemFormat={tagFormat} itemData={tag} inputList={inputList} closeElement={closeElement} />
         </div>
-      </AdminWrapper>
+      </BackendLayout>
     );
   }
   return null;

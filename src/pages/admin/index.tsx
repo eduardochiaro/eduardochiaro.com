@@ -1,5 +1,5 @@
 import { useSession } from 'next-auth/react';
-import AdminWrapper, { menuList } from '@/components/admin/Wrapper';
+import BackendLayout, { menuList } from '@/components/layouts/Backend';
 import Link from 'next/link';
 import * as React from 'react';
 
@@ -7,7 +7,7 @@ const AdminIndex = () => {
   const { data: session } = useSession();
   if (session) {
     return (
-      <AdminWrapper isPageOpen={false}>
+      <BackendLayout isPageOpen={false}>
         <div className="h-full py-8 px-6 grow min-h-screen">
           <h1 className="text-2xl flex items-center gap-2 pb-4 border-b border-primary-200 dark:border-primary-600">Dashboard</h1>
           {menuList.map((item, i) => (
@@ -32,7 +32,7 @@ const AdminIndex = () => {
             </React.Fragment>
           ))}
         </div>
-      </AdminWrapper>
+      </BackendLayout>
     );
   }
   return null;

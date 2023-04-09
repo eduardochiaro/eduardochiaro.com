@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import AdminSidebar from './Sidebar';
+import AdminSidebar from '../admin/Sidebar';
 import { BriefcaseIcon, CpuChipIcon, CommandLineIcon, TagIcon, BookmarkIcon, Bars3Icon, HashtagIcon } from '@heroicons/react/24/solid';
 import React, { ReactElement } from 'react';
 
@@ -69,27 +69,26 @@ const menuList = [
 
 export { menuList };
 
-const AdminWrapper = ({ children, isPageOpen }: { children: ReactElement | ReactElement[]; isPageOpen: boolean }) => {
+const BackendLayout = ({ children, isPageOpen }: { children: ReactElement | ReactElement[]; isPageOpen: boolean }) => {
   return (
-    <>
+    <div className="w-full h-full antialiased bg-primary-100 dark:bg-primary-800">
       <Head>
         <title>Eduardo Chiaro | Admin</title>
       </Head>
-      <div className="w-full h-full antialiased bg-primary-100 dark:bg-primary-800">
-        <div className="flex flex-no-wrap">
-          <AdminSidebar menuList={menuList} isPageOpen={isPageOpen} />
-          {React.Children.map(children, (child) => {
-            if (child.type !== AdminWrapprerHeader) {
-              return React.cloneElement(child);
-            }
-          })}
-        </div>
+      <div className="flex flex-no-wrap">
+        <AdminSidebar menuList={menuList} isPageOpen={isPageOpen} />
+        {React.Children.map(children, (child) => {
+          if (child.type !== BackendLayoutHeader) {
+            return React.cloneElement(child);
+          }
+        })}
       </div>
-    </>
+    </div>
   );
 };
-const AdminWrapprerHeader = ({ children }: { children: ReactElement }) => children;
 
-AdminWrapper.Header = AdminWrapprerHeader;
+const BackendLayoutHeader = ({ children }: { children: ReactElement }) => children;
 
-export default AdminWrapper;
+BackendLayout.Header = BackendLayoutHeader;
+
+export default BackendLayout;

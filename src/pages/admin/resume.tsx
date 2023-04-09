@@ -1,6 +1,6 @@
 import { useSession } from 'next-auth/react';
 import { useState, createRef } from 'react';
-import AdminWrapper from '@/components/admin/Wrapper';
+import BackendLayout from '@/components/layouts/Backend';
 import SVG from 'react-inlinesvg';
 import useStaleSWR from '@/utils/staleSWR';
 import moment from 'moment';
@@ -143,7 +143,7 @@ const AdminResumeIndex = () => {
 
   if (session) {
     return (
-      <AdminWrapper isPageOpen={isOpen}>
+      <BackendLayout isPageOpen={isOpen}>
         <div className={`h-full ${isOpen ? 'hidden' : 'grow'}`}>
           <List
             title={title}
@@ -170,7 +170,7 @@ const AdminResumeIndex = () => {
             <>{resume.id && <AdminResumeProjects resumeId={resume.id} />}</>
           </AdminForm>
         </div>
-      </AdminWrapper>
+      </BackendLayout>
     );
   }
   return null;

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import fs from 'fs';
 import path from 'path';
 import SVG from 'react-inlinesvg';
-import AdminWrapper from '@/components/admin/Wrapper';
+import BackendLayout from '@/components/layouts/Backend';
 import useStaleSWR from '@/utils/staleSWR';
 import moment from 'moment';
 import List from '@/components/admin/List';
@@ -100,7 +100,7 @@ const AdminSkillsIndex = ({ images }: { images: any[] }) => {
 
   if (session) {
     return (
-      <AdminWrapper isPageOpen={isOpen}>
+      <BackendLayout isPageOpen={isOpen}>
         <div className={`h-full ${isOpen ? 'hidden' : 'grow'}`}>
           <List title={title} single={single} columns={columns} data={newData} format={skillFormat} openAction={openElement} editAction={openElement} />
         </div>
@@ -114,7 +114,7 @@ const AdminSkillsIndex = ({ images }: { images: any[] }) => {
             closeElement={closeElement}
           />
         </div>
-      </AdminWrapper>
+      </BackendLayout>
     );
   }
   return null;
