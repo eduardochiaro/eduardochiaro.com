@@ -77,18 +77,10 @@ const BackendLayout = ({ children, isPageOpen }: { children: ReactElement | Reac
       </Head>
       <div className="flex flex-no-wrap">
         <AdminSidebar menuList={menuList} isPageOpen={isPageOpen} />
-        {React.Children.map(children, (child) => {
-          if (child.type !== BackendLayoutHeader) {
-            return React.cloneElement(child);
-          }
-        })}
+        {children}
       </div>
     </div>
   );
 };
-
-const BackendLayoutHeader = ({ children }: { children: ReactElement }) => children;
-
-BackendLayout.Header = BackendLayoutHeader;
 
 export default BackendLayout;
