@@ -40,7 +40,7 @@ const menuList = [
     ],
   },
   {
-    title: 'Sytem',
+    title: 'System',
     links: [
       {
         title: 'Menu links',
