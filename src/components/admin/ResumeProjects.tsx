@@ -134,7 +134,7 @@ const AdminResumeProjects = ({ resumeId }: Props) => {
       <div className="flex items-center gap-4 border-b border-primary-700 pb-4 mb-5 mt-10">
         <h3 className="text-lg font-bold grow">Projects</h3>
         <button
-          className="bg-primary-500 dark:bg-primary-50 text-primary-50 dark:text-primary-900 rounded text-sm p-2 flex items-center gap-1 hover:underline"
+          className="button flex items-center gap-1"
           onClick={() => openModal({})}
           title={'New project'}
         >
