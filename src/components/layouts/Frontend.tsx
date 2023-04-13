@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Head from 'next/head';
 import Header from '@/components/frontend/Header';
-import Share from '@/components/frontend/Share';
 import Footer from '@/components/frontend/Footer';
 import classNames from '../../utils/classNames';
 
@@ -12,7 +11,6 @@ export default function FrontendLayout({ children, title = "Eduardo Chiaro", cla
         <title>{title}</title>
       </Head>
       <Header />
-      <Share />
       <div className={classNames('grow', className)}>
         {children}
       </div>
