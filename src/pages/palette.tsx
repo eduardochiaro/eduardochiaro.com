@@ -22,11 +22,11 @@ export default function Projects() {
   return (
     <FrontendLayout title="Palette | Eduardo Chiaro">
       <section className={'px-4 lg:px-0 mt-10'}>
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <h1 className="font-header leading-tight tracking-wide text-3xl lg:text-4xl font-light h-10">Palette</h1>
-          <div className="grid grid-cols-3 gap-10 mt-10">
+          <div className="grid md:grid-cols-3 gap-10 mt-10">
             {palette.map((color, key) => (
-              <div key={key} className="w-full rounded overflow-hidden drop-shadow">
+              <div key={key} className="w-full rounded overflow-hidden drop-shadow-xl">
                 <div className={`w-full h-48 ${color.main} p-4 font-header text-2xl text-primary-100`}>{color.name}</div>
                 <div className="grid grid-cols-4">
                   {color.scale.map((shade, k) => (
@@ -36,9 +36,9 @@ export default function Projects() {
               </div>
             ))}
           </div>
-          <div className="grid grid-cols-6 gap-10 mt-10">
+          <div className="grid grid-cols-3 md:grid-cols-6 gap-10 mt-10">
             {secondaryPalette.map((color, key) => (
-              <div key={key} className={`w-12 h-12 ${color} m-auto rounded`}></div>
+              <div key={key} className={`w-12 h-12 ${color} m-auto drop-shadow-xl rounded`}></div>
             ))}
           </div>
         </div>
