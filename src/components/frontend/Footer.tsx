@@ -39,28 +39,28 @@ export default function Footer() {
           </div>
     
           <div className="text-center text-sm">
-          © Copyright {moment().year()}
+            © Copyright {moment().year()}
           </div>
 
           <div className="md:text-right space-x-2">
             <Link href="https://linkedin.com/in/eduardochiaro" className="inline-flex justify-center items-center w-8 h-8 text-center rounded-full focus:outline-none focus:ring-2 focus:ring-secondary-600 focus:ring-offset-2 focus:ring-offset-primary-50 dark:focus:ring-offset-primary-900" title="LinkedIn">
               <LinkedInIcon
                 className={
-                  'inline-block h-4 transition-colors ease-out duration-300 fill-primary-900 dark:fill-primary-100 hover:fill-secondary-600 dark:hover:fill-secondary-600'
+                  'h-4 transition-colors ease-out duration-300 hover:text-secondary-600'
                 }
               />
             </Link>
             <Link href="https://twitter.com/eduardochiaro" className="inline-flex justify-center items-center w-8 h-8 text-center rounded-full focus:outline-none focus:ring-2 focus:ring-secondary-600 focus:ring-offset-2 focus:ring-offset-primary-50 dark:focus:ring-offset-primary-900" title="Twitter">
               <TwitterIcon
                 className={
-                  'inline-block h-4 transition-colors ease-out duration-300 fill-primary-900 dark:fill-primary-100 hover:fill-secondary-600 dark:hover:fill-secondary-600'
+                  'h-4 transition-colors ease-out duration-300 hover:text-secondary-600'
                 }
               />
             </Link>
             <Link href="https://github.com/eduardochiaro" className="inline-flex justify-center items-center w-8 h-8 text-center rounded-full focus:outline-none focus:ring-2 focus:ring-secondary-600 focus:ring-offset-2 focus:ring-offset-primary-50 dark:focus:ring-offset-primary-900" title="GitHub">
               <GitHubIcon
                 className={
-                  'inline-block h-4 transition-colors ease-out duration-300 fill-primary-900 dark:fill-primary-100 hover:fill-secondary-600 dark:hover:fill-secondary-600'
+                  'h-4 transition-colors ease-out duration-300 hover:text-secondary-600'
                 }
               />
             </Link>
