@@ -1,14 +1,14 @@
 import { useSession } from 'next-auth/react';
-import AdminWrapper from '@/components/admin/Wrapper';
+import BackendLayout from '@/components/layouts/Backend';
 
 const AdminPreviewIndex = () => {
   const { data: session } = useSession();
 
   if (session) {
     return (
-      <AdminWrapper isPageOpen={false}>
+      <BackendLayout isPageOpen={false}>
         <iframe className="h-screen w-full" src="/" allowTransparency={true}></iframe>
-      </AdminWrapper>
+      </BackendLayout>
     );
   }
   return null;

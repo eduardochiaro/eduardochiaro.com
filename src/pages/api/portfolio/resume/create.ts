@@ -41,7 +41,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
           description,
           startDate: startDate ? moment(startDate).toISOString() : null,
           endDate: endDate ? moment(endDate).toISOString() : null,
-          updatedAt: new Date(),
+          createdAt: new Date(),
           tags: {
             create: newTags,
             connect: appendTags,

@@ -79,10 +79,9 @@ const Tags = forwardRef<Ref, FormInputProps>(
           <span className="grow">
             {label} {props.required && <span className="text-secondary-600">*</span>} ({value.length})
           </span>
-          {isInvalid && <ExclamationTriangleIcon className="h-4 w-4 text-red-400" />}
         </label>
 
-        <div className="input-field flex flex-wrap items-center gap-2 p-2 relative mt-1">
+        <div className={`${isInvalid && '!border-red-400'} input-field flex flex-wrap items-center gap-2 p-2 relative mt-1`}>
           {value?.map((tag, key) => (
             <Fragment key={`tag-${key}`}>
               {!tag.deleted && (
@@ -133,6 +132,11 @@ const Tags = forwardRef<Ref, FormInputProps>(
               </Menu.Items>
             )}
           </Menu>
+          {isInvalid && (
+            <p className="text-xs flex items-center gap-1 mt-1 text-red-400">
+              <ExclamationTriangleIcon className="h-4" /> this field is required
+            </p>
+          )}
         </div>
       </>
     );

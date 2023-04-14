@@ -25,10 +25,13 @@ body {
   }
 }
 .button {
-  @apply inline-flex justify-center py-1 px-2 border border-transparent shadow-sm text-sm font-medium rounded-md transition-colors ease-out duration-200 bg-primary-500 dark:bg-primary-50 text-primary-50 dark:text-primary-900
+  @apply inline-flex justify-center py-1 px-2 border border-transparent shadow-sm text-sm font-medium rounded-md transition-colors ease-out duration-200;
+  @apply bg-primary-700 dark:bg-primary-50 text-primary-50 dark:text-primary-900 hover:bg-primary-500 hover:dark:bg-primary-300;
+  @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-500;
 }
 .button-success {
-  @apply button text-primary-900 dark:text-primary-100 bg-secondary-600 dark:bg-secondary-800 hover:bg-secondary-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-600 ring-offset-primary-50 dark:ring-offset-primary-800
+  @apply button text-primary-900 dark:text-primary-100 bg-secondary-600 dark:bg-secondary-800 hover:bg-secondary-900;
+  @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-600 ring-offset-primary-50 dark:ring-offset-primary-800;
 }
 .button-danger {
   @apply button text-primary-900 bg-accent-300 hover:bg-accent-500 focus:outline-none focus:ring-2 focus:ring-offset-2 ring-offset-primary-50 dark:ring-offset-primary-800 focus:ring-accent-500

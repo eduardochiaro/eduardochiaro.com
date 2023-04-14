@@ -21,18 +21,22 @@ const Select = forwardRef<Ref, FormInputProps>(({ children, name = '', label = '
         <span className="grow">
           {label} {props.required && <span className="text-secondary-600">*</span>}
         </span>
-        {isInvalid && <ExclamationTriangleIcon className="h-4 w-4 text-red-400" />}
       </label>
       <select
         ref={ref}
         name={name}
         id={`${name}-form`}
-        className={`${isInvalid ? 'ring-2 ring-red-500' : ''} mt-1 input-field py-1.5 px-2 focus:outline-none ${className}`}
+        className={`${isInvalid && '!border-red-400'} mt-1 input-field py-1.5 px-2 focus:outline-none ${className}`}
         value={value}
         {...props}
       >
         {children}
       </select>
+      {isInvalid && (
+        <p className="text-xs flex items-center gap-1 mt-1 text-red-400">
+          <ExclamationTriangleIcon className="h-4" /> this field is required
+        </p>
+      )}
     </>
   );
 });

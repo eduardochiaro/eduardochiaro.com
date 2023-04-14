@@ -1,6 +1,6 @@
 import { useSession } from 'next-auth/react';
 import { useState, useReducer } from 'react';
-import AdminWrapper from '@/components/admin/Wrapper';
+import BackendLayout from '@/components/layouts/Backend';
 import List from '@/components/admin/List';
 import useStaleSWR from '@/utils/staleSWR';
 import moment from 'moment';
@@ -94,7 +94,7 @@ const AdminAppsIndex = () => {
 
   if (session) {
     return (
-      <AdminWrapper isPageOpen={isOpen}>
+      <BackendLayout isPageOpen={isOpen}>
         <div className={`h-full ${isOpen ? 'hidden' : 'grow'}`}>
           <List
             title={title}
@@ -116,7 +116,7 @@ const AdminAppsIndex = () => {
             closeElement={closeElement}
           />
         </div>
-      </AdminWrapper>
+      </BackendLayout>
     );
   }
   return null;
