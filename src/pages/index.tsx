@@ -1,5 +1,5 @@
 import * as React from 'react';
-import FrontendLayout from "@/components/layouts/Frontend";
+import FrontendLayout from '@/components/layouts/Frontend';
 import Bio from '@/components/frontend/Bio';
 import Jobs from '@/components/frontend/Jobs';
 import Skills from '@/components/frontend/Skills';

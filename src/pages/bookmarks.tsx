@@ -1,5 +1,5 @@
 import Bookmarks from '@/components/frontend/Bookmarks';
-import FrontendLayout from "@/components/layouts/Frontend";
+import FrontendLayout from '@/components/layouts/Frontend';
 
 export default function Projects() {
   return (

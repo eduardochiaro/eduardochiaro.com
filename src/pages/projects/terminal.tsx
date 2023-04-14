@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import TerminalComponent from '@/components/projects/Terminal';
-import FrontendLayout from "@/components/layouts/Frontend";
+import FrontendLayout from '@/components/layouts/Frontend';
 
 function Terminal() {
   return (

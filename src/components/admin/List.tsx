@@ -136,11 +136,7 @@ export default function List({
     <div className="overflow-auto h-screen py-8 bg-primary-100 dark:bg-primary-800">
       <div className="text-2xl flex items-center gap-6 px-6">
         <h1>{title}</h1>
-        <button
-          className="button flex items-center gap-1"
-          onClick={() => openAction(format)}
-          title={`New ${single}`}
-        >
+        <button className="button flex items-center gap-1" onClick={() => openAction(format)} title={`New ${single}`}>
           <PlusIcon className="h-5" /> add new
         </button>
       </div>

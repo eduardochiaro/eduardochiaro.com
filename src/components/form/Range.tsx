@@ -42,14 +42,14 @@ const Range = forwardRef<Ref, FormInputProps>(
           step={step}
           value={value}
           id={id ? id : `${name}-form`}
-          className={`${isInvalid && '!border-red-400' } mt-4 range-field ${className}`}
+          className={`${isInvalid && '!border-red-400'} mt-4 range-field ${className}`}
           {...props}
         />
-        {isInvalid && 
+        {isInvalid && (
           <p className="text-xs flex items-center gap-1 mt-1 text-red-400">
             <ExclamationTriangleIcon className="h-4" /> this field is required
           </p>
-        }
+        )}
         <ul className="flex justify-between text-xs w-full px-2">{rows}</ul>
       </>
     );

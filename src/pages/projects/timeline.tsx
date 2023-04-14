@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { EvenTile, OddTile } from '@/components/projects/TimelineTile';
-import FrontendLayout from "@/components/layouts/Frontend";
+import FrontendLayout from '@/components/layouts/Frontend';
 import { useState } from 'react';
 
 const TimelineComponent = ({ episodes, type }: { episodes: any[]; type: boolean }) => {

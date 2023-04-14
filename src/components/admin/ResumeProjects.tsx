@@ -8,7 +8,7 @@ import { findInvalidElement, isFormValid } from '@/utils/formValidation';
 import { createEditItem, deleteItem } from '@/utils/apiAdmin';
 import useStaleSWR from '@/utils/staleSWR';
 import AdminModal from '@/components/admin/Modal';
-import { TrashIcon } from "@heroicons/react/24/solid";
+import { TrashIcon } from '@heroicons/react/24/solid';
 
 type Props = {
   resumeId?: number | null;
@@ -133,11 +133,7 @@ const AdminResumeProjects = ({ resumeId }: Props) => {
     <>
       <div className="flex items-center gap-4 border-b border-primary-700 pb-4 mb-5 mt-10">
         <h3 className="text-lg font-bold grow">Projects</h3>
-        <button
-          className="button flex items-center gap-1"
-          onClick={() => openModal({})}
-          title={'New project'}
-        >
+        <button className="button flex items-center gap-1" onClick={() => openModal({})} title={'New project'}>
           <PlusIcon className="h-5" /> add new
         </button>
       </div>
@@ -148,7 +144,9 @@ const AdminResumeProjects = ({ resumeId }: Props) => {
             <Image alt={project.name} className={'bg-transparent object-cover'} fill src={`/uploads/${project.image}`} sizes="33vw" />
           </div>
           <span className="grow">{project.name}</span>
-          <button onClick={() => openDeleteModal(project)}><TrashIcon className="w-5" /></button>
+          <button onClick={() => openDeleteModal(project)}>
+            <TrashIcon className="w-5" />
+          </button>
         </div>
       ))}
 
@@ -199,7 +197,7 @@ const AdminResumeProjects = ({ resumeId }: Props) => {
         </>
       </AdminModal>
       <AdminModal
-        title={`Delete project`}
+        title={'Delete project'}
         isOpen={isOpenDelete}
         closeModal={() => setIsOpenDelete(false)}
         showButtons={true}

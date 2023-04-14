@@ -1,4 +1,4 @@
-import FrontendLayout from "@/components/layouts/Frontend";
+import FrontendLayout from '@/components/layouts/Frontend';
 
 export default function Projects() {
   const palette = [

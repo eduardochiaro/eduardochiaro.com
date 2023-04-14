@@ -1,5 +1,5 @@
 import ResumeComponent from '@/components/frontend/Resume';
-import FrontendLayout from "@/components/layouts/Frontend";
+import FrontendLayout from '@/components/layouts/Frontend';
 
 export default function Resume() {
   return (

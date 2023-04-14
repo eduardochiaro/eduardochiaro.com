@@ -3,8 +3,8 @@ import apiWithMiddleware from '@/utils/apiWithMiddleware';
 import cors from '@/middlewares/cors';
 import { parse } from 'rss-to-json';
 import fsCache from '@/utils/fsCache';
-import stripTags from "@/utils/stripTags";
-import cutString from "@/utils/cutString";
+import stripTags from '@/utils/stripTags';
+import cutString from '@/utils/cutString';
 
 const url = 'https://blog.eduardochiaro.com/rss/';
 
