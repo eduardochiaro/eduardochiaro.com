@@ -22,7 +22,7 @@ const seed = async () => {
   await prisma.app.deleteMany();
   console.log('Deleted records in apps table');
 
-  await prisma.$queryRaw`ALTER TABLE menu_links AUTO_INCREMENT = 1`;
+  await prisma.$queryRaw`ALTER TABLE apps AUTO_INCREMENT = 1`;
   console.log('reset apps auto increment to 1');
 
   await prisma.app.createMany({
