@@ -6,6 +6,8 @@ import Logo from '@/components/icons/Logo';
 import TwitterIcon from '@/components/icons/Twitter';
 import LinkedInIcon from '@/components/icons/Linkedin';
 import GitHubIcon from '@/components/icons/Github';
+import Copyright from '../icons/Copyright';
+import classNames from '@/utils/classNames';
 
 function LoginButton(props: { isLoggedIn: boolean }) {
   const { isLoggedIn } = props;
@@ -38,7 +40,9 @@ export default function Footer() {
             <LoginButton isLoggedIn={!!session} />
           </div>
 
-          <div className="text-center text-sm">© Copyright {moment().year()}</div>
+          <div className="text-center text-sm flex items-center gap-2">
+            <Copyright className="w-4" /> Copyright {moment().year()}
+          </div>
 
           <div className="flex justify-center md:justify-end gap-4">
             <Link

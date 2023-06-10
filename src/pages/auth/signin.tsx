@@ -35,7 +35,7 @@ export default function SignIn({ providers }: InferGetServerSidePropsType<typeof
               {Object.values(providers).map((provider) => (
                 <div key={provider.name} className="py-4">
                   <button
-                    className="flex items-center gap-3 mx-auto bg-primary-300 dark:bg-primary-800 text-primary-700 dark:text-primary-50 drop-shadow p-3 px-4 rounded text-xl transition duration-200 ease-in-out hover:ring-2 ring-offset-2 ring-primary-300 dark:ring-primary-700 ring-offset-primary-100 dark:ring-offset-primary-600"
+                    className="flex items-center gap-3 mx-auto bg-primary-300 dark:bg-primary-800 text-primary-700 dark:text-primary-50 drop-shadow p-3 px-4 rounded text-xl transition duration-300 ease-in-out hover:ring-2 ring-offset-2 ring-primary-300 dark:ring-primary-700 ring-offset-primary-100 dark:ring-offset-primary-600"
                     onClick={() =>
                       signIn(provider.id, {
                         callbackUrl: router.query.callbackUrl as string,

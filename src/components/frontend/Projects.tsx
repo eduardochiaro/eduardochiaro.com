@@ -34,12 +34,14 @@ export default function Projects() {
           <h1 className="font-header leading-tight tracking-wide text-3xl lg:text-4xl font-light h-10">Projects</h1>
           <div className="grid grid-cols-1 gap-8 mt-5 pl-2">
             {data?.results.map((app: App, index: number) => (
-              <div className={'flex flex-wrap p-4 box-card'} key={`app-${index}`}>
+              <div className={'flex flex-wrap p-4 box-card group'} key={`app-${index}`}>
                 <div className={'basis-full md:basis-1/3 relative'}>
                   <Image src={`/uploads/${app.image}`} fill sizes="30vw" alt={app.name} className="bg-transparent object-contain" priority={false} />
                 </div>
                 <div className={'basis-full md:basis-2/3 px-8 py-4'}>
-                  <h3 className="text-2xl font-header tracking-wide">{app.name}</h3>
+                  <h3 className="text-2xl font-header tracking-wide transition-colors ease-out duration-300 group-hover:text-secondary-600 dark:group-hover:text-secondary-600">
+                    {app.name}
+                  </h3>
                   <p className="text-normal mt-2">{app.description}</p>
                   <Link href={app.url || '#'} target="_blank" rel="noreferrer" className="download-button mt-6 inline-flex items-center gap-4">
                     <GitHubIcon className="w-6" />
@@ -59,7 +61,9 @@ export default function Projects() {
             {projects.map((project, index) => (
               <li key={`project-${index}`} className="text-base mb-8 box-card p-4">
                 <Link href={project.url} className="group">
-                  <h3 className="group-hover:underline text-lg tracking-wide">{project.name}</h3>
+                  <h3 className="group-hover:text-secondary-600 dark:group-hover:text-secondary-600 transition-colors ease-out duration-300 text-lg tracking-wide">
+                    {project.name}
+                  </h3>
                   <p className="text-sm mt-2 opacity-50">{project.description}</p>
                 </Link>
               </li>
