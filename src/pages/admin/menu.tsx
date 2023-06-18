@@ -41,7 +41,10 @@ const AdminCategoriesIndex = () => {
     obj.status_d = obj.active ? 'show' : 'hidden';
     obj.name = (
       <div className="flex items-center gap-2">
-      {obj.name} <span className={classNames('font-bold text-sm', obj.active ? 'text-emerald-600 dark:text-emerald-400' : 'text-red-600 dark:text-red-400')}>[{obj.status_d}]</span>
+        {obj.name}{' '}
+        <span className={classNames('font-bold text-sm', obj.active ? 'text-emerald-600 dark:text-emerald-400' : 'text-red-600 dark:text-red-400')}>
+          [{obj.status_d}]
+        </span>
       </div>
     );
     obj.description = (
