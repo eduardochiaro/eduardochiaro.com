@@ -17,7 +17,12 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": ["**/*.d.ts", "**/*.ts", "**/*.tsx", "**/*.js"],
   "exclude": ["node_modules"]

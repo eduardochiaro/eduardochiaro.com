@@ -5,6 +5,7 @@ import useStaleSWR from '@/utils/staleSWR';
 import moment from 'moment';
 import List from '@/components/admin/List';
 import AdminForm from '@/components/admin/Form';
+import classNames from '@/utils/classNames';
 
 const AdminCategoriesIndex = () => {
   const { mutate, data: menuLinks } = useStaleSWR('/api/site/menu');
@@ -37,10 +38,15 @@ const AdminCategoriesIndex = () => {
   const newData: any[] = [];
   menuLinks?.results.map((item: any) => {
     const obj = { ...item, original: item };
-    obj.status_d = obj.active ? 'Active' : 'Inactive';
+    obj.status_d = obj.active ? 'show' : 'hidden';
+    obj.name = (
+      <div className="flex items-center gap-2">
+      {obj.name} <span className={classNames('font-bold text-sm', obj.active ? 'text-emerald-600 dark:text-emerald-400' : 'text-red-600 dark:text-red-400')}>[{obj.status_d}]</span>
+      </div>
+    );
     obj.description = (
       <>
-        {obj.order}) <span className={obj.active ? 'text-emerald-500 font-bold' : 'text-red-500 font-bold'}>{obj.status_d}</span> [{obj.url}]
+        {obj.order}. [{obj.url}]
       </>
     );
     obj.category_d = !item.onlyMobile ? 'All Browsers' : 'Mobile only';
@@ -99,11 +105,11 @@ const AdminCategoriesIndex = () => {
       selectOptions: [
         {
           id: true,
-          name: 'Active',
+          name: 'Show',
         },
         {
           id: false,
-          name: 'Inactive',
+          name: 'Hidden',
         },
       ],
       selectEmptyOption: true,

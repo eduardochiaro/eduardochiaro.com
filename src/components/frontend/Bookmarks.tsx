@@ -1,5 +1,6 @@
 import { ChevronUpIcon, TagIcon } from '@heroicons/react/24/solid';
 import { BookmarkIcon } from '@heroicons/react/24/outline';
+import { BookmarkIcon as BookmarkFullIcon } from '@heroicons/react/24/solid';
 import Link from 'next/link';
 import * as React from 'react';
 import useStaleSWR from '@/utils/staleSWR';
@@ -61,7 +62,8 @@ export default function Bookmarks() {
                       <Link href={bookmark.url} as={bookmark.url} target="_blank" className="p-5 block" rel="noopener noreferrer">
                         <h3 className="text-xl tracking-wide flex justify-between">
                           {bookmark.name}
-                          <BookmarkIcon className="w-5 group-hover/card:text-secondary-600" />
+                          <BookmarkIcon className="w-5 group-hover/card:hidden" />
+                          <BookmarkFullIcon className="w-5 hidden text-secondary-600 group-hover/card:block" />
                         </h3>
                         <p className="text-sm opacity-80 tracking-wide flex items-center gap-2">
                           <span className="block w-5">
