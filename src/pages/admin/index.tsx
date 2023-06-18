@@ -22,7 +22,7 @@ const AdminIndex = () => {
               <div className="mx-auto mt-4 flex flex-wrap gap-12">
                 {item.links.map((link, key) => (
                   <Link key={key} href={link.href} className={`w-72 h-52 flex flex-col group drop-shadow rounded-lg transition duration-300 hover:scale-110 ${link.classColor} text-primary-50 p-4`}>
-                    <link.icon className={`w-10 h-10`}/>
+                    <link.icon className={`w-12 h-12`}/>
                     <div className="flex-1 "></div>
                     <div className="">
                       <span className={'text-lg'}>{link.title}</span>
