@@ -1,5 +1,4 @@
 import { Fragment, ReactElement, useEffect, useState } from 'react';
-import Link from 'next/link';
 import NavLink from '@/components/NavLink';
 import styles from '@/styles/Admin.Sidebar.module.scss';
 import { ArrowLeftCircleIcon, Bars3BottomRightIcon, CodeBracketIcon, HomeIcon } from '@heroicons/react/24/solid';
@@ -9,6 +8,7 @@ import ThemeIcon from '../ThemeIcon';
 import Image from 'next/image';
 import classNames from '@/utils/classNames';
 import Logo from '../icons/Logo';
+import { menuList } from '@/components/layouts/Backend';
 
 const SidebarDivider = ({ title, openMenu }: { title: string; openMenu: boolean }) => (
   <li>
@@ -20,7 +20,7 @@ const SidebarDivider = ({ title, openMenu }: { title: string; openMenu: boolean 
   </li>
 );
 
-const AdminSidebar = ({ menuList, isPageOpen }: { menuList: any[]; isPageOpen: boolean }) => {
+const AdminSidebar = ({ isPageOpen }: { isPageOpen: boolean }) => {
   const { data: session } = useSession();
   const [openMenu, setOpenMenu] = useState(true);
   useEffect(() => {
@@ -75,7 +75,7 @@ const AdminSidebar = ({ menuList, isPageOpen }: { menuList: any[]; isPageOpen: b
             {menuList.map((item, key) => (
               <Fragment key={`group-${key}`}>
                 <SidebarDivider title={item.title} openMenu={openMenu} />
-                {item.links.map((link: { href: string; title: string; icon: ReactElement }, index: number) => (
+                {item.links.map((link, index: number) => (
                   <li key={`menu-${index}`}>
                     <NavLink
                       type="sub"
@@ -85,7 +85,7 @@ const AdminSidebar = ({ menuList, isPageOpen }: { menuList: any[]; isPageOpen: b
                       activeClassName={`${styles['sidebar-link']} group bg-primary-50 dark:bg-primary-800 rounded-md`}
                     >
                       <a className="flex items-center gap-2" title={link.title}>
-                        {link.icon}
+                        <link.icon className="w-5 group-hover:text-secondary-600 dark:group-hover:text-secondary-600" />
                         <span className={`text-sm tracking-wide truncate group-hover:hunderline hidden xl:block ${openMenu ? '' : styles['hide-when-closed']}`}>
                           {link.title}
                         </span>
