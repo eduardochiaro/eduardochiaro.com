@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import apiWithMiddleware from '@/utils/apiWithMiddleware';
 import prisma from '@/utils/prisma';
 import cors from '@/middlewares/cors';
-import { IncomingForm } from 'formidable';
+import getFromForm, { FieldTypes } from "@/utils/getFromForm";
 
 export const config = {
   api: {
@@ -25,18 +25,12 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
   switch (req.method) {
     case 'PUT':
-      await new Promise((resolve, reject) => {
-        const form = new IncomingForm();
-        form.parse(req, async (err, fields) => {
-          if (err) return reject(err);
-          const { id, order, onlyMobile, active, name, url } = fields as { [key: string]: string };
-          const menuLink = await prisma.menuLink.update({
-            where: { id: parseInt(id) },
-            data: { name, url, order: parseInt(order), onlyMobile: onlyMobile == 'true', active: active == 'true', updatedAt: new Date() },
-          });
-          res.status(200).json({ ...menuLink });
-        });
+      const { fields: { order, onlyMobile, active, name, url } } = await getFromForm(req) as FieldTypes;
+      const menuLink = await prisma.menuLink.update({
+        where: { id: parseInt(pid) },
+        data: { name, url, order: parseInt(order), onlyMobile: onlyMobile == 'true', active: active == 'true', updatedAt: new Date() },
       });
+      res.status(200).json({ ...menuLink });
       break;
     case 'DELETE':
       await prisma.menuLink.update({

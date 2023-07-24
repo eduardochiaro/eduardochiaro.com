@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import apiWithMiddleware from '@/utils/apiWithMiddleware';
 import prisma from '@/utils/prisma';
 import cors from '@/middlewares/cors';
-import { IncomingForm } from 'formidable';
+import getFromForm, { FieldTypes } from "@/utils/getFromForm";
 
 export const config = {
   api: {
@@ -25,18 +25,13 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
   switch (req.method) {
     case 'PUT':
-      await new Promise((resolve, reject) => {
-        const form = new IncomingForm();
-        form.parse(req, async (err, fields) => {
-          if (err) return reject(err);
-          const { id, categoryId, url, name, description } = fields as { [key: string]: string };
-          const bookmark = await prisma.bookmark.update({
-            where: { id: parseInt(id) },
-            data: { url, name, description, categoryId: parseInt(categoryId), updatedAt: new Date() },
-          });
-          res.status(200).json({ ...bookmark });
-        });
+      const { fields: { categoryId, url, name, description } } = await getFromForm(req) as FieldTypes;
+
+      const bookmark = await prisma.bookmark.update({
+        where: { id: parseInt(pid) },
+        data: { url, name, description, categoryId: parseInt(categoryId), updatedAt: new Date() },
       });
+      res.status(200).json({ ...bookmark });
       break;
     case 'DELETE':
       await prisma.bookmark.update({

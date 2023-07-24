@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import apiWithMiddleware from '@/utils/apiWithMiddleware';
 import prisma from '@/utils/prisma';
 import cors from '@/middlewares/cors';
-import { IncomingForm } from 'formidable';
+import getFromForm, { FieldTypes } from "@/utils/getFromForm";
 
 export const config = {
   api: {
@@ -25,18 +25,12 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
   switch (req.method) {
     case 'PUT':
-      await new Promise((resolve, reject) => {
-        const form = new IncomingForm();
-        form.parse(req, async (err, fields) => {
-          if (err) return reject(err);
-          const { id, percentage, name, type, logo } = fields as { [key: string]: string };
-          const skill = await prisma.skill.update({
-            where: { id: parseInt(id) },
-            data: { name, type, logo, percentage: parseInt(percentage), updatedAt: new Date() },
-          });
-          res.status(200).json({ ...skill });
-        });
+      const { fields: { percentage, name, type, logo } } = await getFromForm(req) as FieldTypes;
+      const skill = await prisma.skill.update({
+        where: { id: parseInt(pid) },
+        data: { name, type, logo, percentage: parseInt(percentage), updatedAt: new Date() },
       });
+      res.status(200).json({ ...skill });
       break;
     case 'DELETE':
       await prisma.skill.update({
