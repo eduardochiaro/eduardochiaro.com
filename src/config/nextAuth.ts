@@ -1,4 +1,4 @@
-import NextAuth, { NextAuthOptions } from 'next-auth';
+import { NextAuthOptions } from 'next-auth';
 import GithubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
@@ -6,10 +6,9 @@ import prisma from '@/utils/prisma';
 
 const { GITHUB_ID = '', GITHUB_SECRET = '', GOOGLE_CLIENT_ID = '', GOOGLE_CLIENT_SECRET = '', NEXTAUTH_SECRET = '' } = process.env;
 
-export const authOptions: NextAuthOptions = {
+const authOptions: NextAuthOptions = {
   secret: NEXTAUTH_SECRET,
   adapter: PrismaAdapter(prisma),
-  // Configure one or more authentication providers
   providers: [
     GithubProvider({
       clientId: GITHUB_ID,
@@ -32,10 +31,6 @@ export const authOptions: NextAuthOptions = {
     strategy: 'jwt',
     maxAge: 5 * 60 * 60, // 30 days
   },
-  pages: {
-    signIn: '/auth/signin',
-    error: '/auth/error',
-  },
   callbacks: {
     async signIn({ account, profile }) {
       if (account && profile && profile.email) {
@@ -54,6 +49,10 @@ export const authOptions: NextAuthOptions = {
       return new URL('/admin', baseUrl).toString();
     },
   },
+  pages: {
+    signIn: '/auth/signin',
+    error: '/auth/error',
+  },
 };
 
-export default NextAuth(authOptions);
+export default authOptions;

@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useEffect, Fragment } from 'react';
 import { MoonIcon, ComputerDesktopIcon, SunIcon as SunIconSolid } from '@heroicons/react/24/solid';
 import { SunIcon } from '@heroicons/react/24/outline';

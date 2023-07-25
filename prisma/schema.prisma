@@ -120,6 +120,7 @@ model UserAccess {
   id    Int    @id @default(autoincrement())
   email String
   role  String
+  user  User   @relation(fields: [email], references: [email])
 
   @@map("user_access")
 }
@@ -165,6 +166,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  access        UserAccess[]
 
   @@map("users")
 }

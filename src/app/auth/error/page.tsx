@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useRouter } from 'next/router';
 import Logo from '@/components/icons/Logo';
 import ThemeIcon from '@/components/ThemeIcon';
 import Link from 'next/link';
@@ -34,9 +33,8 @@ const getError = (error: string) => {
   }
 };
 
-export default function SignIn() {
-  const router = useRouter();
-  const { error } = router.query as { error: string };
+export default async function Error({ searchParams }: { searchParams: any }) {
+  const { error } = searchParams;
   const errorContent = getError(error);
 
   return (
@@ -52,7 +50,7 @@ export default function SignIn() {
             <p className="mb-10">{errorContent.content}</p>
             {errorContent.showButton && (
               <Link
-                className="flex items-center gap-3 mx-auto bg-primary-300 dark:bg-primary-800 text-primary-700 dark:text-primary-50 drop-shadow p-3 px-4 rounded text-xl transition duration-300 ease-in-out hover:ring-2 ring-offset-2 ring-primary-300 dark:ring-primary-700 ring-offset-primary-100 dark:ring-offset-primary-600"
+                className="inline-flex items-center gap-3 mx-auto bg-primary-300 dark:bg-primary-800 text-primary-700 dark:text-primary-50 drop-shadow p-3 px-4 rounded text-xl transition duration-300 ease-in-out hover:ring-2 ring-offset-2 ring-primary-300 dark:ring-primary-700 ring-offset-primary-100 dark:ring-offset-primary-600"
                 href={'/api/auth/signin'}
               >
                 Sign in
