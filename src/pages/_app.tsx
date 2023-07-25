@@ -2,12 +2,27 @@ import { useEffect } from 'react';
 import { SessionProvider } from 'next-auth/react';
 import { ThemeProvider } from 'next-themes';
 import { useRouter } from 'next/router';
+import { Titillium_Web, Roboto_Mono, Inter } from 'next/font/google';
 import { pageview } from '@/utils/ga';
 import NextProgress from 'next-progress';
 import tailwindConfig from '../../tailwind.config';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import '@/styles/globals.scss';
+
+const header = Titillium_Web({
+  weight: ['400', '600', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-header',
+});
+
+const mono = Roboto_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-mono',
+});
+
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const router = useRouter();
@@ -27,16 +42,18 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
     };
   }, [router.events]);
   return (
-    <SessionProvider session={session} refetchInterval={5 * 60}>
-      <ThemeProvider enableSystem={true} attribute="class">
-        <Head>
-          <title>Eduardo Chiaro</title>
-          <meta name="description" content="Eduardo Chiaro - Software Developer" />
-        </Head>
-        <NextProgress height="5px" options={{ showSpinner: false, default: tailwindConfig.theme.colors.secondary[500] }} />
-        <Component {...pageProps} />
-      </ThemeProvider>
-    </SessionProvider>
+    <main className={`${header.variable} ${mono.variable}`}>
+      <SessionProvider session={session} refetchInterval={5 * 60}>
+        <ThemeProvider enableSystem={true} attribute="class">
+          <Head>
+            <title>Eduardo Chiaro</title>
+            <meta name="description" content="Eduardo Chiaro - Software Developer" />
+          </Head>
+          <NextProgress height="5px" options={{ showSpinner: false, default: tailwindConfig.theme.colors.secondary[500] }} />
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </SessionProvider>
+    </main>
   );
 }
 

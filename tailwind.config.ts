@@ -53,8 +53,8 @@ export default {
       },
     },
     fontFamily: {
-      header: ['Titillium Web', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', 'Arial', 'sans-serif'],
-      mono: ['Roboto Mono', 'Courier New', 'monospace'],
+      header: ['var(--font-header)', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', 'Arial', 'sans-serif'],
+      mono: ['var(--font-mono)', 'Courier New', 'monospace'],
     },
     extend: {
       transitionProperty: {

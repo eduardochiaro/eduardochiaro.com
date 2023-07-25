@@ -3,17 +3,17 @@ import AuthProvider from './auth-provider';
 import '../styles/globals.scss';
 import { Titillium_Web, Roboto_Mono } from 'next/font/google';
 
-const inter = Titillium_Web({
-  weight: ['400', '600'],
+const header = Titillium_Web({
+  weight: ['400', '600', '700'],
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-inter',
+  variable: '--font-header',
 });
 
 const mono = Roboto_Mono({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-noto-mono',
+  variable: '--font-mono',
 });
 
 export const metadata = {
@@ -23,7 +23,7 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html suppressHydrationWarning lang="en" className={`${inter.variable} ${mono.variable}`}>
+    <html suppressHydrationWarning lang="en" className={`${header.variable} ${mono.variable}`}>
       <body>
         <ThemeProviders>
           <AuthProvider>{children}</AuthProvider>

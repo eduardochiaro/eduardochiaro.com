@@ -14,10 +14,6 @@ class MyDocument extends Document {
           <meta name="msapplication-TileColor" content={tailwind.theme.colors.secondary[200]} />
           <meta name="theme-color" content={tailwind.theme.colors.primary[50]} media="(prefers-color-scheme: light)" key="dark-system" />
           <meta name="theme-color" content={tailwind.theme.colors.primary[700]} media="(prefers-color-scheme: dark)" key="light-system" />
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="use-credentials" />
-          <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700&display=swap" rel="stylesheet" />
-          <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet" />
           <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`} />
           <script
             dangerouslySetInnerHTML={{
