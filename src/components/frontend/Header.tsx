@@ -43,7 +43,7 @@ export default function Header() {
       <nav className="max-w-5xl mx-auto relative">
         <div className="px-4 md:px-0 py-3 flex items-center gap-6">
           <Menu as="div" className="inline-block md:hidden">
-            <Menu.Button title="open menu" className="flex items-center md:hidden hover:cursor-pointer">
+            <Menu.Button id="menu-short" title="open menu" className="flex items-center md:hidden hover:cursor-pointer">
               <Bars3BottomLeftIcon className={'w-7 transition hover:text-primary-900 dark:hover:text-primary-100'} />
             </Menu.Button>
             <Transition

@@ -1,5 +1,3 @@
-"use client";
-
 import moment from 'moment';
 import * as React from 'react';
 import { useSession, signOut } from 'next-auth/react';
@@ -41,7 +39,7 @@ export default function Footer() {
             <LoginButton isLoggedIn={!!session} />
           </div>
 
-          <div className="text-center text-sm flex items-center gap-2">
+          <div className="justify-center text-sm flex items-center gap-2">
             <Copyright className="w-4" /> Copyright {moment().year()}
           </div>
 

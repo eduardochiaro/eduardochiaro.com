@@ -7,6 +7,16 @@ import { useTheme } from 'next-themes';
 import { Menu, Transition } from '@headlessui/react';
 import classNames from '@/utils/classNames';
 
+const orientationClass = (orientation = 'bottom') => {
+	switch (orientation) {
+		case 'top':
+			return 'left-0 bottom-0 mb-10';
+		case 'bottom':
+		default:
+			return 'right-0 mt-10';
+	}
+};
+
 export default function ThemeIcon({ orientation, size = 'h-7' }: { orientation: string; size?: string }) {
   const [iconClass, setIconClass] = useState<{ name: string; className: string; icon: any }[]>([]);
   const [inUseTheme, setInUseTheme] = useState('dark');
@@ -14,16 +24,6 @@ export default function ThemeIcon({ orientation, size = 'h-7' }: { orientation: 
 
   const setColorTheme = (themeName: string) => {
     setTheme(themeName);
-  };
-
-  const orientationClass = (orientation = 'bottom') => {
-    switch (orientation) {
-      case 'top':
-        return 'left-0 bottom-0 mb-10';
-      case 'bottom':
-      default:
-        return 'right-0 mt-10';
-    }
   };
 
   useEffect(() => {
@@ -68,6 +68,7 @@ export default function ThemeIcon({ orientation, size = 'h-7' }: { orientation: 
   return (
     <Menu as="div" className="relative flex item-center">
       <Menu.Button
+				id="menu-change-mode"
         title="change theme"
         data-cy="change-mode"
         className={`rounded-full transition-all duration-300 group ease-in-out ${inUseTheme === 'dark' ? 'hover:bg-primary-100' : ''}`}
@@ -96,7 +97,7 @@ export default function ThemeIcon({ orientation, size = 'h-7' }: { orientation: 
       >
         <Menu.Items
           data-cy="change-mode-container"
-          className={`${orientationClass(orientation)} transform absolute w-56 box-card divide-y divide-primary-200 dark:divide-primary-700`}
+          className={classNames(orientationClass(orientation), `transform absolute w-56 box-card divide-y divide-primary-200 dark:divide-primary-700`)}
           aria-orientation="vertical"
           aria-labelledby="menu-button"
         >
@@ -106,12 +107,12 @@ export default function ThemeIcon({ orientation, size = 'h-7' }: { orientation: 
                 {({ active }) => (
                   <div
                     data-cy={`change-mode-${item.name}`}
-                    className={classNames(
-                      `${item.className} py-2 px-4 cursor-pointer flex items-center gap-2 capitalize`,
+                    className={classNames(item.className, 
+                      `py-2 px-4 cursor-pointer flex items-center gap-2 capitalize`,
                       active ? 'bg-primary-200 dark:bg-primary-500' : '',
                     )}
                     role="menuitem"
-                    id={`menu-item-${index}`}
+                    id={`menu-theme-${index}`}
                     onClick={() => setColorTheme(item.name)}
                   >
                     {item.icon} {item.name}

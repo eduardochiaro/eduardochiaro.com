@@ -4,8 +4,10 @@ import Jobs from '@/components/frontend/Jobs';
 import Skills from '@/components/frontend/Skills';
 import GitHub from '@/components/frontend/GitHub';
 import LatestPosts from '@/components/frontend/LatestPosts';
+import prisma from '@/utils/prisma';
 
-export default function Home() {
+export default async function Home() {
+  const skills = await getSkills();
   return (
     <FrontendLayout>
       <div className="grow max-w-5xl mx-auto">
@@ -18,7 +20,7 @@ export default function Home() {
         <div className="relative">
           <span id="skills" className="anchor" />
         </div>
-        <Skills />
+        <Skills data={skills} />
         <div className="relative">
           <span id="articles" className="anchor" />
         </div>
@@ -29,5 +31,17 @@ export default function Home() {
         <GitHub />
       </div>
     </FrontendLayout>
+	)
+}
+
+async function getSkills() {
+	return prisma.skill.findMany({
+			where: {
+				deletedAt: null,
+			},
+			orderBy: {
+				createdAt: 'desc',
+			},
+		}
 	)
 }

@@ -1,13 +1,11 @@
 "use client";
 
 import * as React from 'react';
-import useStaleSWR from '@/utils/staleSWR';
 import SVG from 'react-inlinesvg';
 import styles from '@/styles/Skills.module.scss';
 import { Skill } from '@prisma/client';
 
-export default function Skills() {
-  const { data } = useStaleSWR('/api/portfolio/skills');
+export default function Skills({ data }: { data: Skill[] }) {
   return (
     <section id="skills-component" className={'px-4 lg:px-0 mt-10 relative'}>
       <div className="max-w-5xl mx-auto">
@@ -15,8 +13,7 @@ export default function Skills() {
           What I&apos;m <span className="overlay-color">good</span> at...
         </h3>
         <div id="skills-list">
-          {data && data.results
-            ? data.results.map((skill: Skill, index: number) => (
+          {data ? data.map((skill: Skill, index: number) => (
                 <div key={`skill-${index}`} className="flex items-center gap-5 mt-1">
                   <span className="flex-none font-medium font-mono">{skill.name}</span>
                   <span className="w-full dashed-border-t shrink"></span>
