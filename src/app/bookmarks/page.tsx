@@ -1,6 +1,7 @@
 import BookmarksComponent from '@/components/frontend/Bookmarks';
 import FrontendLayout from '@/components/layouts/Frontend';
 import { Category, Bookmark } from '@prisma/client';
+import { Metadata } from 'next';
 
 interface BookmarkType extends Bookmark{
   domain?: string,
@@ -10,10 +11,14 @@ interface BookmarkType extends Bookmark{
 export default async function Bookmarks() {
 	const bookmarks = await getBookmarks();
   return (
-    <FrontendLayout title="Bookmarks | Eduardo Chiaro">
+    <FrontendLayout>
       <BookmarksComponent data={bookmarks} />
     </FrontendLayout>
   );
+}
+
+export const metadata: Metadata = {
+  title: 'Bookmarks | Eduardo Chiaro'
 }
 
 async function getBookmarks() {

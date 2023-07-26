@@ -7,20 +7,17 @@ import { Menu, Transition } from '@headlessui/react';
 import ThemeIcon from '@/components/ThemeIcon';
 import NavLink from '@/components/NavLink';
 import Link from 'next/link';
-import useStaleSWR from '@/utils/staleSWR';
 import styles from '@/styles/Header.module.scss';
 import classNames from '@/utils/classNames';
 import type { MenuLink } from '@prisma/client';
 import { FireIcon } from '@heroicons/react/20/solid';
 
-export default function Header() {
+export default async function Header({ data }: {data: MenuLink[]}) {
 	const pathname = usePathname();
-  const { data } = useStaleSWR('/api/site/menu');
 
   const menuData =
-    data && data.results
-      ? data.results.map((menuLink: MenuLink) => {
-          return { text: menuLink.name, link: menuLink.url, current: false, ...menuLink };
+    data ? data.map((menuLink: MenuLink) => {
+          return { text: (<>{menuLink.name}</>), link: menuLink.url, current: false, onlyMobile: menuLink.onlyMobile, active: menuLink.active };
         })
       : [];
 
@@ -35,6 +32,7 @@ export default function Header() {
       link: 'https://blog.eduardochiaro.com',
       current: false,
       onlyMobile: true,
+			active: true
     });
   }
 
@@ -57,8 +55,8 @@ export default function Header() {
             >
               <Menu.Items className="focus:outline-none absolute left-0 top-full w-full max-w-lg bg-primary-100 dark:bg-primary-800 shadow-2xl shadow-primary-600 dark:shadow-primary-900 divide-y divide-primary-400/50">
                 {menuData
-                  .filter((x: MenuLink) => x.active)
-                  .map(function (item: { link: string; text: string }, i: number) {
+                  .filter((x: any) => x.active)
+                  .map( (item: any, i: number) => {
                     return (
                       <div key={`menu-link-${i}`} className="px-1 py-1 font-semibold text-secondary-700 dark:text-secondary-600">
                         <Menu.Item>
@@ -102,8 +100,8 @@ export default function Header() {
           <div className="hidden md:flex items-center">
             <ul className="md:flex font-semibold tracking-wider mx-auto">
               {menuData
-                .filter((x: MenuLink) => !x.onlyMobile && x.active)
-                .map(function (item: { link: string; text: string }, i: number) {
+                .filter((x: any) => !x.onlyMobile && x.active)
+                .map( (item: any, i: number) => {
                   return (
                     <li key={`menu-link-${i}`}>
                       <NavLink

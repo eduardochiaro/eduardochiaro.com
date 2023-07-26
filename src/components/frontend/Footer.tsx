@@ -1,3 +1,5 @@
+"use client";
+
 import moment from 'moment';
 import * as React from 'react';
 import { useSession, signOut } from 'next-auth/react';
