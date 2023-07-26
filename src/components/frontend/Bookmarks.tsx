@@ -1,3 +1,5 @@
+"use client";
+
 import { ChevronUpIcon, TagIcon } from '@heroicons/react/24/solid';
 import { BookmarkIcon } from '@heroicons/react/24/outline';
 import { BookmarkIcon as BookmarkFullIcon } from '@heroicons/react/24/solid';

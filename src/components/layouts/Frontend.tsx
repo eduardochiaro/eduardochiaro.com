@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from 'react';
 import Head from 'next/head';
 import Header from '@/components/frontend/Header';

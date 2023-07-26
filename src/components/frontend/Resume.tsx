@@ -1,3 +1,5 @@
+"use client";
+
 import useStaleSWR from '@/utils/staleSWR';
 import SVG from 'react-inlinesvg';
 import moment from 'moment';

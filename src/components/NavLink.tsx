@@ -1,6 +1,8 @@
+"use client";
+
 import React, { ReactElement, useEffect, useState } from 'react';
 import Link, { LinkProps } from 'next/link';
-import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
 
 export default function NavLink({
   href,
@@ -11,10 +13,10 @@ export default function NavLink({
   children,
   ...props
 }: LinkProps & { activeClassName: string; className: string; type: string; children: ReactElement }) {
-  const { asPath } = useRouter();
+  const asPath = usePathname();
 
   const child = React.Children.only(children);
-  const asPathInitial = type == 'main' ? '/' + asPath.split('#')[0].split('/')[1] : asPath;
+  const asPathInitial = type == 'main' ? '/' + asPath?.split('#')[0].split('/')[1] : asPath;
 
   const [classInUse, setClassInUse] = useState(className);
 

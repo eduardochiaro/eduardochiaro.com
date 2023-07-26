@@ -1,4 +1,3 @@
-import * as React from 'react';
 import FrontendLayout from '@/components/layouts/Frontend';
 import Bio from '@/components/frontend/Bio';
 import Jobs from '@/components/frontend/Jobs';
@@ -30,5 +29,5 @@ export default function Home() {
         <GitHub />
       </div>
     </FrontendLayout>
-  );
+	)
 }

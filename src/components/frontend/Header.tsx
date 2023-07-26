@@ -1,6 +1,8 @@
+"use client";
+
 import React, { Fragment } from 'react';
 import { RssIcon, Bars3BottomLeftIcon } from '@heroicons/react/24/solid';
-import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
 import { Menu, Transition } from '@headlessui/react';
 import ThemeIcon from '@/components/ThemeIcon';
 import NavLink from '@/components/NavLink';
@@ -12,7 +14,7 @@ import type { MenuLink } from '@prisma/client';
 import { FireIcon } from '@heroicons/react/20/solid';
 
 export default function Header() {
-  const router = useRouter();
+	const pathname = usePathname();
   const { data } = useStaleSWR('/api/site/menu');
 
   const menuData =
@@ -65,7 +67,7 @@ export default function Header() {
                               href={item.link}
                               className={classNames(
                                 styles.menuUrlMobile,
-                                router.route == item.link ? '' : 'text-primary-900 dark:text-primary-100',
+                                pathname == item.link ? '' : 'text-primary-900 dark:text-primary-100',
                                 active ? 'bg-primary-300 dark:bg-primary-500' : '',
                               )}
                             >

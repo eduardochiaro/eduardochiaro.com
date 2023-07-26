@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from 'react';
 import GitHubIcon from '@/components/icons/Github';
 import styles from '@/styles/Projects.module.scss';

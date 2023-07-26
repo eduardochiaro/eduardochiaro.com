@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from 'react';
 import useSWR from 'swr';
 import { HashtagIcon } from '@heroicons/react/24/solid';

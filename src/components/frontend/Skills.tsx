@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from 'react';
 import useStaleSWR from '@/utils/staleSWR';
 import SVG from 'react-inlinesvg';
