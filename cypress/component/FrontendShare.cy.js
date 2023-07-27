@@ -10,7 +10,7 @@ describe('Share Component', () => {
     cy.get('#share').within(() => {
       cy.get('[title="GitHub"]').should('have.attr', 'href', 'https://github.com/eduardochiaro');
       cy.get('[title="LinkedIn"]').should('have.attr', 'href', 'https://linkedin.com/in/eduardochiaro');
-      cy.get('[title="Twitter"]').should('have.attr', 'href', 'https://twitter.com/eduardo_chiaro');
+      cy.get('[title="Threads"]').should('have.attr', 'href', 'https://threads.net/eduardochiaro');
     });
   });
 });

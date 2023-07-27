@@ -1,10 +1,11 @@
 import Link from 'next/link';
 import TerminalComponent from '@/components/projects/Terminal';
 import FrontendLayout from '@/components/layouts/Frontend';
+import { Metadata } from "next";
 
-function Terminal() {
+export default function Terminal() {
   return (
-    <FrontendLayout title="Projects &gt; Terminal | Eduardo Chiaro">
+    <FrontendLayout>
       <section className={'px-4 lg:px-0 mt-10'}>
         <div className="max-w-5xl mx-auto">
           <h1 className="font-header leading-tight tracking-wide text-3xl lg:text-4xl font-light">
@@ -22,4 +23,6 @@ function Terminal() {
   );
 }
 
-export default Terminal;
+export const metadata: Metadata = {
+  title: 'Projects > Terminal | Eduardo Chiaro',
+}

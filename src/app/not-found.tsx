@@ -1,4 +1,3 @@
-import NotFound from '@/components/icons/404';
 import ThemeIcon from '@/components/ThemeIcon';
 import { ArrowLeftIcon } from '@heroicons/react/24/solid';
 import Link from 'next/link';

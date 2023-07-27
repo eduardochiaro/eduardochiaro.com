@@ -24,7 +24,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   const flickr = await getCachedFlickr();
 
   flickr.items.slice(0, 5).forEach((item: { title: any; link: any; isoDate: moment.MomentInput; images: { [x: string]: { [x: string]: any } }[] }) => {
-    console.log(item);
     results.push({
       title: item.title,
       permalink: item.link[0]['href'],

@@ -4,7 +4,7 @@ import Footer from '@/components/frontend/Footer';
 import classNames from '@/utils/classNames';
 import prisma from '@/utils/prisma';
 
-export default async function FrontendLayout({ children, className }: { children: React.ReactNode; title?: string; className?: string }) {
+export default async function FrontendLayout({ children, className }: { children: React.ReactNode; className?: string }) {
 
   const menuLinks = await getMenuLinks();
 

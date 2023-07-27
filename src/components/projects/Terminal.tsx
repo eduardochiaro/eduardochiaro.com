@@ -1,3 +1,5 @@
+"use client";
+
 import { KeyboardEvent, useEffect, useReducer, useRef } from 'react';
 import moment from 'moment';
 import SpinnerIcon from '@/components/icons/Spinner';
@@ -161,7 +163,7 @@ export default function Terminal() {
               data-lpignore="true"
               data-form-type="other"
               className={classNames(
-                'border-0 p-0 bg-transparent focus:outline-none w-full',
+                'border-0 p-0 bg-transparent border-transparent focus:border-transparent focus:ring-0 w-full',
                 !isACommand(state.command) && state.command != '' ? 'text-red-400' : 'text-emerald-500',
               )}
               onKeyDown={handleChange}
