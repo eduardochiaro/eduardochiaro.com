@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
 import { ReactElement } from 'react';
 import { Input, Select, Textarea, Range, Tags } from '@/components/form';
 import Image from 'next/image';
-import SVG from "@/utils/svg";
+import SVG from '@/utils/svg';
 
 type InputTypeProps = {
   input: {
@@ -44,7 +44,8 @@ type InputTypeProps = {
 };
 
 const InputType = ({ input, itemData, form, imagePreview, inputFileRef, handleChange, updateItem, fetchFunction }: InputTypeProps) => {
-  const required = input.required &&  (!input.requiredCondition ||  (input.requiredCondition && itemData[input.requiredCondition[0]] == input.requiredCondition[1]));
+  const required =
+    input.required && (!input.requiredCondition || (input.requiredCondition && itemData[input.requiredCondition[0]] == input.requiredCondition[1]));
   switch (input.type) {
     case 'text':
     case 'url':
@@ -151,7 +152,7 @@ const InputType = ({ input, itemData, form, imagePreview, inputFileRef, handleCh
       }
     case 'svgPreview':
       if (itemData[input.name]) {
-        return <SVG title="" className={'inline-block w-14 fill-primary-700 dark:fill-primary-200'} src={`/images/svg-icons/${itemData[input.name]}`} />
+        return <SVG title="" className={'inline-block w-14 fill-primary-700 dark:fill-primary-200'} src={`/images/svg-icons/${itemData[input.name]}`} />;
       } else {
         return <></>;
       }

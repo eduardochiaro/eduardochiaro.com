@@ -1,9 +1,9 @@
 import SVG from '@/utils/svg';
 import moment from 'moment';
 import { getServerSession } from 'next-auth';
-import { Metadata } from "next";
-import authOptions from "@/config/nextAuth";
-import AdminPage from "@/components/admin/Page";
+import { Metadata } from 'next';
+import authOptions from '@/config/nextAuth';
+import AdminPage from '@/components/admin/Page';
 import prisma from '@/utils/prisma';
 import fs from 'fs';
 import path from 'path';
@@ -87,22 +87,12 @@ export default async function AdminSkillsIndex() {
   ];
 
   if (session) {
-    return (
-        <AdminPage
-          title={title}
-          single={single}
-          columns={columns}
-          data={newData}
-          format={format}
-          inputList={inputList}
-          apiURL="/api/portfolio/skills"
-        />
-    );
+    return <AdminPage title={title} single={single} columns={columns} data={newData} format={format} inputList={inputList} apiURL="/api/portfolio/skills" />;
   }
   return null;
-};
+}
 
-async function getSkills () {
+async function getSkills() {
   return prisma.skill.findMany({
     orderBy: {
       createdAt: 'desc',

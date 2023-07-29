@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
 import { useState, useReducer } from 'react';
 import AdminForm from '@/components/admin/Form';
 import List from '@/components/admin/List';
-import BackendLayout from "@/components/layouts/Backend";
+import BackendLayout from '@/components/layouts/Backend';
 import { useRouter } from 'next/navigation';
 
 type AdminAppsIndexProps = {
@@ -14,10 +14,26 @@ type AdminAppsIndexProps = {
   data: any;
   inputList: any[];
   apiURL: string;
+  sortList?: any;
+  sortDefault?: string;
 };
 
-export default function AdminPage ({ format, columns, title, single, data, inputList, apiURL }: AdminAppsIndexProps) {
+const sortType = [
+  {
+    id: 'id',
+    name: 'ID',
+  },
+  {
+    id: 'name',
+    name: 'Name',
+  },
+  {
+    id: 'updatedAt',
+    name: 'Update date',
+  },
+];
 
+export default function AdminPage({ format, columns, title, single, data, inputList, apiURL, sortList = sortType, sortDefault = 'id' }: AdminAppsIndexProps) {
   const router = useRouter();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -37,7 +53,7 @@ export default function AdminPage ({ format, columns, title, single, data, input
 
   return (
     <BackendLayout isPageOpen={isOpen}>
-     <div className={`h-full ${isOpen ? 'hidden' : 'grow'}`}>
+      <div className={`h-full ${isOpen ? 'hidden' : 'grow'}`}>
         <List
           title={title}
           single={single}
@@ -46,18 +62,13 @@ export default function AdminPage ({ format, columns, title, single, data, input
           format={format}
           openAction={(e) => openElement(e)}
           editAction={(e) => openElement(e)}
+          sortList={sortList}
+          sortDefault={sortDefault}
         />
       </div>
       <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6 min-h-screen ${isOpen ? '' : 'hidden'}`}>
-        <AdminForm
-          apiURL={apiURL}
-          titleElement={single}
-          itemFormat={format}
-          itemData={app}
-          inputList={inputList}
-          closeElement={closeElement}
-        />
+        <AdminForm apiURL={apiURL} titleElement={single} itemFormat={format} itemData={app} inputList={inputList} closeElement={closeElement} />
       </div>
     </BackendLayout>
-  )
-} 
+  );
+}

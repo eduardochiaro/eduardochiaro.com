@@ -12,15 +12,15 @@ export async function PUT(
 ) {
   const { pid } = params;
 
-  const { name, type, logo, percentage } = await getFieldsFromForm(request, ['name', 'type', 'logo', 'percentage']);
+  const { order, onlyMobile, active, name, url } = await getFieldsFromForm(request, ['order', 'onlyMobile', 'active', 'name', 'url']);
 
-  const skill = await prisma.skill.update({
+  const menuLink = await prisma.menuLink.update({
     where: { id: parseInt(pid) },
-    data: { name, type, logo, percentage: parseInt(percentage), updatedAt: new Date() },
+    data: { name, url, order: parseInt(order || '0'), onlyMobile: onlyMobile == 'true', active: active == 'true', createdAt: new Date() },
   });
 
-  if (skill) {
-    return NextResponse.json(skill);
+  if (menuLink) {
+    return NextResponse.json(menuLink);
   }
   return new Response(null, {
     status: 400,
@@ -36,8 +36,8 @@ export async function DELETE(
   },
 ) {
   const { pid } = params;
-  await prisma.skill.delete({
+  await prisma.menuLink.delete({
     where: { id: parseInt(pid) },
   });
-  return NextResponse.json({ action: 'skill deleted' });
+  return NextResponse.json({ action: 'menuLink deleted' });
 }

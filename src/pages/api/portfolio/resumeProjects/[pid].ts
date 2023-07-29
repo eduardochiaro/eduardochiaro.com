@@ -18,7 +18,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   const projectReturn = await prisma.resumeProject.findFirst({
     where: {
-      id: parseInt(pid)
+      id: parseInt(pid),
     },
   });
   if (!projectReturn) {
@@ -27,7 +27,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {
     case 'DELETE':
       await prisma.resumeProject.delete({
-        where: { id: parseInt(pid) }
+        where: { id: parseInt(pid) },
       });
       if (projectReturn && projectReturn.image) {
         await rmFile(`${uploadPath}${projectReturn.image}`);

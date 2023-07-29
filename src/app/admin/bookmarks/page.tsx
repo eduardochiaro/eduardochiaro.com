@@ -1,8 +1,8 @@
 import moment from 'moment';
 import { getServerSession } from 'next-auth';
-import { Metadata } from "next";
-import authOptions from "@/config/nextAuth";
-import AdminPage from "@/components/admin/Page";
+import { Metadata } from 'next';
+import authOptions from '@/config/nextAuth';
+import AdminPage from '@/components/admin/Page';
 import prisma from '@/utils/prisma';
 
 export const metadata: Metadata = {
@@ -79,24 +79,13 @@ export default async function AdminBookmarksIndex() {
   ];
 
   if (session) {
-    return (
-        <AdminPage
-          title={title}
-          single={single}
-          columns={columns}
-          data={newData}
-          format={format}
-          inputList={inputList}
-          apiURL="/api/portfolio/bookmarks"
-        />
-    );
+    return <AdminPage title={title} single={single} columns={columns} data={newData} format={format} inputList={inputList} apiURL="/api/portfolio/bookmarks" />;
   }
   return null;
-};
+}
 
-async function getBookmarks () {
+async function getBookmarks() {
   return prisma.bookmark.findMany({
-
     include: {
       category: true,
     },
@@ -110,7 +99,7 @@ async function getCategories() {
   return prisma.category.findMany({
     where: {
       deletedAt: null,
-      type: 'BOOKMARK'
+      type: 'BOOKMARK',
     },
     orderBy: {
       createdAt: 'desc',

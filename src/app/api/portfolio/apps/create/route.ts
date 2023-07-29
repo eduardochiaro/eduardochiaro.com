@@ -8,8 +8,6 @@ import getFieldsFromForm from '@/utils/getFieldsFromForm';
 const uploadPath = './public/uploads/';
 
 export async function POST(request: NextRequest, response: NextResponse) {
-
-
   const { name, description, url, image } = await getFieldsFromForm(request, ['name', 'description', 'url'], ['image']);
 
   //const file = formData.get("image") as Blob | null;

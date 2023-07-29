@@ -1,23 +1,8 @@
-"use client";
+'use client';
 
 import { PlusIcon } from '@heroicons/react/20/solid';
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import React, { useEffect, useState, ChangeEvent } from 'react';
-
-const sortType = [
-  {
-    id: 'id',
-    name: 'ID',
-  },
-  {
-    id: 'name',
-    name: 'Name',
-  },
-  {
-    id: 'updatedAt',
-    name: 'Update date',
-  },
-];
 
 const sortDirectionType = [
   {
@@ -67,8 +52,8 @@ export default function List({
   columns = [],
   data = [],
   format,
-  sortList = sortType,
-  sortDefault = 'id',
+  sortList,
+  sortDefault,
   sortDirectionDefault = 'asc',
   openAction = (e: any) => {},
   editAction = (e: any) => {},
@@ -78,8 +63,8 @@ export default function List({
   columns?: string[];
   data?: any[];
   format?: any;
-  sortList?: any;
-  sortDefault?: string;
+  sortList: any;
+  sortDefault: string;
   sortDirectionDefault?: string;
   openAction?: (e: any) => void;
   editAction?: (e: any) => void;

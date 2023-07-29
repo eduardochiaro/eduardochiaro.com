@@ -4,7 +4,7 @@ import * as React from 'react';
 import getFirstName from '@/utils/getFirstName';
 import authOptions from '@/config/nextAuth';
 import { getServerSession } from 'next-auth';
-import { Metadata } from "next";
+import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Admin | Eduardo Chiaro',
@@ -50,4 +50,4 @@ export default async function AdminIndex() {
     );
   }
   return null;
-};
+}

@@ -19,7 +19,7 @@ export async function PUT(
   const { pid } = params;
   const appReturn = await prisma.app.findFirst({
     where: {
-      id: parseInt(pid)
+      id: parseInt(pid),
     },
   });
   if (!appReturn) {
@@ -30,7 +30,6 @@ export async function PUT(
       },
     );
   }
-
 
   const { name, description, url, image } = await getFieldsFromForm(request, ['name', 'description', 'url'], ['image']);
 
@@ -75,7 +74,7 @@ export async function DELETE(
   const { pid } = params;
   const appReturn = await prisma.app.findFirst({
     where: {
-      id: parseInt(pid)
+      id: parseInt(pid),
     },
   });
   await prisma.app.delete({

@@ -21,21 +21,6 @@ export default function Header({ data }: { data: MenuLink[] }) {
       })
     : [];
 
-  if (menuData.length > 0) {
-    menuData.push({
-      text: (
-        <>
-          <RssIcon className={'h-5 text-accent-500 mr-2 inline-block'} aria-hidden="true" />
-          .dev
-        </>
-      ),
-      link: 'https://blog.eduardochiaro.com',
-      current: false,
-      onlyMobile: true,
-      active: true,
-    });
-  }
-
   return (
     <header className={`${styles.header} bg-primary-50/95 dark:bg-primary-800/95 border-b border-primary-200/50 dark:border-primary-700/50`}>
       <nav className="max-w-5xl mx-auto relative">

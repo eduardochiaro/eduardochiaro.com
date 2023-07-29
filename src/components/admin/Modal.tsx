@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import React, { ReactElement } from 'react';
 import { XMarkIcon } from '@heroicons/react/24/outline';

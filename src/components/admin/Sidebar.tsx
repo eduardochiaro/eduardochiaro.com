@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { Fragment, ReactElement, useEffect, useState } from 'react';
 import NavLink from '@/components/NavLink';

@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import type { ResumeProject } from '@prisma/client';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';

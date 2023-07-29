@@ -16,7 +16,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   const categoryReturn = await prisma.category.findFirst({
     where: {
-      id: parseInt(pid)
+      id: parseInt(pid),
     },
   });
   if (!categoryReturn) {

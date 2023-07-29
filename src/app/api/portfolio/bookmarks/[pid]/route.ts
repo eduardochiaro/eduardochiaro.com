@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/utils/prisma';
-import getFieldsFromForm from "@/utils/getFieldsFromForm";
+import getFieldsFromForm from '@/utils/getFieldsFromForm';
 
 export async function PUT(
   request: NextRequest,
@@ -37,7 +37,7 @@ export async function DELETE(
 ) {
   const { pid } = params;
   await prisma.bookmark.delete({
-    where: { id: parseInt(pid) }
+    where: { id: parseInt(pid) },
   });
   return NextResponse.json({ action: 'bookmark deleted' });
 }

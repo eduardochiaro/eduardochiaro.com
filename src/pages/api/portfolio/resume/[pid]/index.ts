@@ -22,7 +22,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   const resumeReturn = await prisma.resume.findFirst({
     where: {
-      id: parseInt(pid)
+      id: parseInt(pid),
     },
   });
   if (!resumeReturn) {
@@ -95,7 +95,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       break;
     case 'DELETE':
       await prisma.resume.delete({
-        where: { id: parseInt(pid) }
+        where: { id: parseInt(pid) },
       });
       if (resumeReturn && resumeReturn.image) {
         await rmFile(`${uploadPath}${resumeReturn.image}`);

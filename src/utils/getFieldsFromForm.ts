@@ -1,4 +1,4 @@
-import { NextRequest } from "next/server";
+import { NextRequest } from 'next/server';
 
 const getFieldsFromForm = async (request: NextRequest, fields: string[], files?: string[]) => {
   const formData = await request.formData();
