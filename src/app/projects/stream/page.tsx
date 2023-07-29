@@ -36,9 +36,6 @@ export default async function Stream() {
 
 async function getMenuLinks() {
   return prisma.menuLink.findMany({
-    where: {
-      deletedAt: null,
-    },
     orderBy: {
       order: 'asc',
     },

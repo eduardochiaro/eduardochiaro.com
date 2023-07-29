@@ -11,9 +11,6 @@ type Data = {
 const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   await cors(req, res);
   const jobs = await prisma.resume.findMany({
-    where: {
-      deletedAt: null,
-    },
     orderBy: {
       startDate: 'desc',
     },

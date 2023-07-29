@@ -11,9 +11,6 @@ type Data = {
 const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   await cors(req, res);
   const categories = await prisma.category.findMany({
-    where: {
-      deletedAt: null,
-    },
     include: {
       bookmarks: true,
     },

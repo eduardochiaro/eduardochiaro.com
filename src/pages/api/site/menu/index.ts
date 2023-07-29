@@ -11,9 +11,6 @@ type Data = {
 const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   await cors(req, res);
   const menuLinks = await prisma.menuLink.findMany({
-    where: {
-      deletedAt: null,
-    },
     orderBy: {
       order: 'asc',
     },

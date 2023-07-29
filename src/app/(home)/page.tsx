@@ -36,9 +36,6 @@ export default async function Home() {
 
 async function getSkills() {
   return prisma.skill.findMany({
-    where: {
-      deletedAt: null,
-    },
     orderBy: {
       createdAt: 'desc',
     },

@@ -15,7 +15,6 @@ model Skill {
   percentage Int
   createdAt  DateTime? @default(now()) @map("created_at")
   updatedAt  DateTime? @map("updated_at")
-  deletedAt  DateTime? @map("deleted_at")
 
   @@map("skills")
 }
@@ -27,7 +26,6 @@ model App {
   url         String?
   createdAt   DateTime? @default(now()) @map("created_at")
   updatedAt   DateTime? @map("updated_at")
-  deletedAt   DateTime? @map("deleted_at")
   description String?
 
   @@map("apps")
@@ -40,7 +38,6 @@ model Bookmark {
   url         String
   createdAt   DateTime? @default(now()) @map("created_at")
   updatedAt   DateTime? @map("updated_at")
-  deletedAt   DateTime? @map("deleted_at")
   categoryId  Int       @map("category_id")
   category    Category  @relation(fields: [categoryId], references: [id])
 
@@ -69,7 +66,6 @@ model MenuLink {
   order         Int @default(0)
   createdAt     DateTime? @default(now()) @map("created_at")
   updatedAt     DateTime? @map("updated_at")
-  deletedAt     DateTime? @map("deleted_at")
 
   @@map("menu_links")
 }
@@ -85,7 +81,6 @@ model Resume {
   endDate     DateTime?
   createdAt   DateTime? @default(now()) @map("created_at")
   updatedAt   DateTime? @map("updated_at")
-  deletedAt   DateTime? @map("deleted_at")
   projects       ResumeProject[]
   tags        ResumeTag[]
 
@@ -107,7 +102,6 @@ model ResumeProject {
   image        String
   createdAt   DateTime? @default(now()) @map("created_at")
   updatedAt   DateTime? @map("updated_at")
-  deletedAt   DateTime? @map("deleted_at")
   resumeId    Int       @map("resume_id")
   resume      Resume  @relation(fields: [resumeId], references: [id])
 

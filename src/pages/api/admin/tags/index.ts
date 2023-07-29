@@ -15,11 +15,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
       name: 'asc',
     },
     include: {
-      jobs: {
-        where: {
-          deletedAt: null,
-        },
-      },
+      jobs: true,
     },
   });
   res.status(200).json({ results: tags });

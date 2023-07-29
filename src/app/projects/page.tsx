@@ -18,9 +18,6 @@ export const metadata: Metadata = {
 
 async function getApps() {
   return prisma.app.findMany({
-    where: {
-      deletedAt: null,
-    },
     orderBy: {
       createdAt: 'desc',
     },

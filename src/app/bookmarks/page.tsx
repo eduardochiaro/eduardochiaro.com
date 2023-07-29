@@ -23,9 +23,6 @@ export const metadata: Metadata = {
 
 async function getBookmarks() {
   const bookmarks: BookmarkType[] = await prisma.bookmark.findMany({
-    where: {
-      deletedAt: null,
-    },
     include: {
       category: true,
     },

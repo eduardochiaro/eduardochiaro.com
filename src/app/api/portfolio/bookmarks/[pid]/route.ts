@@ -36,9 +36,8 @@ export async function DELETE(
   },
 ) {
   const { pid } = params;
-  await prisma.bookmark.update({
-    where: { id: parseInt(pid) },
-    data: { deletedAt: new Date() },
+  await prisma.bookmark.delete({
+    where: { id: parseInt(pid) }
   });
   return NextResponse.json({ action: 'bookmark deleted' });
 }

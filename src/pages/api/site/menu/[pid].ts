@@ -16,8 +16,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   const menuLinkReturn = await prisma.menuLink.findFirst({
     where: {
-      id: parseInt(pid),
-      deletedAt: null,
+      id: parseInt(pid)
     },
   });
   if (!menuLinkReturn) {
@@ -35,9 +34,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       res.status(200).json({ ...menuLink });
       break;
     case 'DELETE':
-      await prisma.menuLink.update({
-        where: { id: parseInt(pid) },
-        data: { deletedAt: new Date() },
+      await prisma.menuLink.delete({
+        where: { id: parseInt(pid) }
       });
       res.status(200).json({ action: 'menu link deleted' });
       break;

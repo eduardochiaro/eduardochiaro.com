@@ -19,8 +19,7 @@ export async function PUT(
   const { pid } = params;
   const appReturn = await prisma.app.findFirst({
     where: {
-      id: parseInt(pid),
-      deletedAt: null,
+      id: parseInt(pid)
     },
   });
   if (!appReturn) {
@@ -76,13 +75,11 @@ export async function DELETE(
   const { pid } = params;
   const appReturn = await prisma.app.findFirst({
     where: {
-      id: parseInt(pid),
-      deletedAt: null,
+      id: parseInt(pid)
     },
   });
-  await prisma.app.update({
+  await prisma.app.delete({
     where: { id: parseInt(pid) },
-    data: { deletedAt: new Date() },
   });
   if (appReturn && appReturn.image) {
     await rmFile(`${uploadPath}${appReturn.image}`);

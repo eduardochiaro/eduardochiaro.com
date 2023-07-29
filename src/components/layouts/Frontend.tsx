@@ -18,9 +18,6 @@ export default async function FrontendLayout({ children, className }: { children
 
 async function getMenuLinks() {
   return prisma.menuLink.findMany({
-    where: {
-      deletedAt: null,
-    },
     orderBy: {
       order: 'asc',
     },

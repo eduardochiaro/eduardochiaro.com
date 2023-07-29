@@ -96,9 +96,7 @@ export default async function AdminBookmarksIndex() {
 
 async function getBookmarks () {
   return prisma.bookmark.findMany({
-    where: {
-      deletedAt: null,
-    },
+
     include: {
       category: true,
     },

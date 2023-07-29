@@ -11,9 +11,6 @@ type Data = {
 
 export async function GET(request: NextRequest, response: NextResponse) {
   const bookmarks: BookmarkType[] = await prisma.bookmark.findMany({
-    where: {
-      deletedAt: null,
-    },
     include: {
       category: true,
     },
