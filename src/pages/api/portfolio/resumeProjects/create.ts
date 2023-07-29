@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import apiWithMiddleware from '@/utils/apiWithMiddleware';
 import prisma from '@/utils/prisma';
 import cors from '@/middlewares/cors';
-import getFromForm, { FieldTypes } from "@/utils/getFromForm";
+import getFromForm, { FieldTypes } from '@/utils/getFromForm';
 import uploadFile from '@/utils/uploadFile';
 
 const uploadPath = './public/uploads/';
@@ -16,7 +16,10 @@ export const config = {
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await cors(req, res);
   if (req.method === 'POST') {
-    const { fields: { name, resumeId }, files } = await getFromForm(req) as FieldTypes;
+    const {
+      fields: { name, resumeId },
+      files,
+    } = (await getFromForm(req)) as FieldTypes;
 
     const dataMap = {
       name,

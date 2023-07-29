@@ -3,12 +3,12 @@ import Header from '@/components/frontend/Header';
 import Share from '@/components/frontend/Share';
 import Link from 'next/link';
 import styles from '@/styles/Stream.module.scss';
-import StreamComponent from "@/components/projects/Stream";
-import { Metadata } from "next";
+import StreamComponent from '@/components/projects/Stream';
+import { Metadata } from 'next';
 
 export default async function Stream() {
   const menuLinks = await getMenuLinks();
-  
+
   return (
     <div className="flex flex-col min-h-screen justify-between">
       <Header data={menuLinks} />
@@ -35,7 +35,7 @@ export default async function Stream() {
 }
 
 async function getMenuLinks() {
-	return prisma.menuLink.findMany({
+  return prisma.menuLink.findMany({
     where: {
       deletedAt: null,
     },
@@ -47,4 +47,4 @@ async function getMenuLinks() {
 
 export const metadata: Metadata = {
   title: 'Projects > Stream | Eduardo Chiaro',
-}
+};

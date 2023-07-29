@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import React, { Fragment } from 'react';
 import { RssIcon, Bars3BottomLeftIcon } from '@heroicons/react/24/solid';
@@ -12,14 +12,14 @@ import classNames from '@/utils/classNames';
 import type { MenuLink } from '@prisma/client';
 import { FireIcon } from '@heroicons/react/20/solid';
 
-export default async function Header({ data }: {data: MenuLink[]}) {
-	const pathname = usePathname();
+export default function Header({ data }: { data: MenuLink[] }) {
+  const pathname = usePathname();
 
-  const menuData =
-    data ? data.map((menuLink: MenuLink) => {
-          return { text: (<>{menuLink.name}</>), link: menuLink.url, current: false, onlyMobile: menuLink.onlyMobile, active: menuLink.active };
-        })
-      : [];
+  const menuData = data
+    ? data.map((menuLink: MenuLink) => {
+        return { text: <>{menuLink.name}</>, link: menuLink.url, current: false, onlyMobile: menuLink.onlyMobile, active: menuLink.active };
+      })
+    : [];
 
   if (menuData.length > 0) {
     menuData.push({
@@ -32,7 +32,7 @@ export default async function Header({ data }: {data: MenuLink[]}) {
       link: 'https://blog.eduardochiaro.com',
       current: false,
       onlyMobile: true,
-			active: true
+      active: true,
     });
   }
 
@@ -56,7 +56,7 @@ export default async function Header({ data }: {data: MenuLink[]}) {
               <Menu.Items className="focus:outline-none absolute left-0 top-full w-full max-w-lg bg-primary-100 dark:bg-primary-800 shadow-2xl shadow-primary-600 dark:shadow-primary-900 divide-y divide-primary-400/50">
                 {menuData
                   .filter((x: any) => x.active)
-                  .map( (item: any, i: number) => {
+                  .map((item: any, i: number) => {
                     return (
                       <div key={`menu-link-${i}`} className="px-1 py-1 font-semibold text-secondary-700 dark:text-secondary-600">
                         <Menu.Item>
@@ -101,7 +101,7 @@ export default async function Header({ data }: {data: MenuLink[]}) {
             <ul className="md:flex font-semibold tracking-wider mx-auto">
               {menuData
                 .filter((x: any) => !x.onlyMobile && x.active)
-                .map( (item: any, i: number) => {
+                .map((item: any, i: number) => {
                   return (
                     <li key={`menu-link-${i}`}>
                       <NavLink

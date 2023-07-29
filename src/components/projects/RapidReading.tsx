@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import { useEffect, useState } from 'react';
 import { SunIcon } from '@heroicons/react/24/solid';
 
@@ -31,7 +31,7 @@ export default function RapidReading() {
   }, [text]);
 
   const irt = 50;
-  const length = simulationText.length-1;
+  const length = simulationText.length - 1;
 
   const write = (text: string) => {
     const currentText = text;
@@ -41,15 +41,19 @@ export default function RapidReading() {
     setText(newText);
 
     if (currentLength < length) {
-      setTimeout(function(){write(newText)},irt);
+      setTimeout(function () {
+        write(newText);
+      }, irt);
     }
-  }
+  };
 
   const startSimulation = () => {
     setText('');
 
-    setTimeout(function(){write('')},irt);
-  }
+    setTimeout(function () {
+      write('');
+    }, irt);
+  };
   return (
     <>
       <div className="mt-8">
@@ -60,12 +64,21 @@ export default function RapidReading() {
           </span>
         </div>
         <div className="flex items-center justify-end gap-6 mb-4">
-          <button className="button button-success" onClick={() => startSimulation()}>Try Demo!</button>
-          <button className="button" onClick={() => setText('')}>Clear</button>
+          <button className="button button-success" onClick={() => startSimulation()}>
+            Try Demo!
+          </button>
+          <button className="button" onClick={() => setText('')}>
+            Clear
+          </button>
         </div>
-        <textarea className="mb-8 transition ease-in-out bg-primary-100 text-primary-900 focus:ring-secondary-500 focus:border-secondary-500 w-full shadow-sm sm:text-sm border-2 border-primary-300 rounded-md" rows={10} onChange={(event) => setText(event.target.value)} value={text} />
+        <textarea
+          className="mb-8 transition ease-in-out bg-primary-100 text-primary-900 focus:ring-secondary-500 focus:border-secondary-500 w-full shadow-sm sm:text-sm border-2 border-primary-300 rounded-md"
+          rows={10}
+          onChange={(event) => setText(event.target.value)}
+          value={text}
+        />
       </div>
       {output && <div className="antialiased bg-primary-200 text-primary-900 p-4 rounded-md" dangerouslySetInnerHTML={{ __html: output }}></div>}
     </>
-  )
+  );
 }

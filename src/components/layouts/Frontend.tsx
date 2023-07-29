@@ -5,7 +5,6 @@ import classNames from '@/utils/classNames';
 import prisma from '@/utils/prisma';
 
 export default async function FrontendLayout({ children, className }: { children: React.ReactNode; className?: string }) {
-
   const menuLinks = await getMenuLinks();
 
   return (
@@ -18,7 +17,7 @@ export default async function FrontendLayout({ children, className }: { children
 }
 
 async function getMenuLinks() {
-	return prisma.menuLink.findMany({
+  return prisma.menuLink.findMany({
     where: {
       deletedAt: null,
     },

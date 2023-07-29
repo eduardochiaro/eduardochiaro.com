@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import * as React from 'react';
 import SVG from 'react-inlinesvg';
@@ -13,7 +13,8 @@ export default function Skills({ data }: { data: Skill[] }) {
           What I&apos;m <span className="overlay-color">good</span> at...
         </h3>
         <div id="skills-list">
-          {data ? data.map((skill: Skill, index: number) => (
+          {data
+            ? data.map((skill: Skill, index: number) => (
                 <div key={`skill-${index}`} className="flex items-center gap-5 mt-1">
                   <span className="flex-none font-medium font-mono">{skill.name}</span>
                   <span className="w-full dashed-border-t shrink"></span>

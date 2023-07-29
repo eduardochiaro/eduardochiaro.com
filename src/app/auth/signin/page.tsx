@@ -2,8 +2,8 @@ import authOptions from '@/config/nextAuth';
 import ShowProviders from '@/components/ShowProviders';
 import { redirect } from 'next/navigation';
 import { getServerSession } from 'next-auth';
-import ThemeIcon from "@/components/ThemeIcon";
-import Logo from "@/components/icons/Logo";
+import ThemeIcon from '@/components/ThemeIcon';
+import Logo from '@/components/icons/Logo';
 
 export default async function SignIn({ searchParams }: { searchParams: any }) {
   const session = await getServerSession(authOptions);

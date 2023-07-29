@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import ThemeIcon from '@/components/ThemeIcon';
 import { ArrowLeftIcon } from '@heroicons/react/24/solid';

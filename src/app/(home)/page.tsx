@@ -31,17 +31,16 @@ export default async function Home() {
         <GitHub />
       </div>
     </FrontendLayout>
-	)
+  );
 }
 
 async function getSkills() {
-	return prisma.skill.findMany({
-			where: {
-				deletedAt: null,
-			},
-			orderBy: {
-				createdAt: 'desc',
-			},
-		}
-	)
+  return prisma.skill.findMany({
+    where: {
+      deletedAt: null,
+    },
+    orderBy: {
+      createdAt: 'desc',
+    },
+  });
 }

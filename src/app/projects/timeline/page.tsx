@@ -1,16 +1,16 @@
-import { Metadata } from "next";
+import { Metadata } from 'next';
 import TimelineComponent from '@/components/projects/Timeline';
 import FrontendLayout from '@/components/layouts/Frontend';
 
 export const metadata: Metadata = {
   title: 'Projects > Timeline | Eduardo Chiaro',
-}
+};
 
 export default async function Timeline() {
   const episodes = await getData();
   return (
     <FrontendLayout>
-     <TimelineComponent data={episodes} />
+      <TimelineComponent data={episodes} />
     </FrontendLayout>
   );
 }
@@ -39,4 +39,3 @@ async function getData() {
 
   return episodes;
 }
-

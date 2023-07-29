@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import Link from 'next/link';
 import moment from 'moment';
@@ -7,7 +7,6 @@ import Flickr from '@/components/icons/Flickr';
 import Instagram from '@/components/icons/Instagram';
 import Masonry from 'react-masonry-css';
 import useStaleSWR from '@/utils/staleSWR';
-
 
 export default function Stream() {
   const { data } = useStaleSWR('/api/portfolio/stream');
@@ -39,5 +38,5 @@ export default function Stream() {
     <Masonry breakpointCols={breakpointColumnsObj} className="flex gap-8 w-auto" columnClassName="bg-clip-padding flex flex-col gap-8">
       {items}
     </Masonry>
-  )
+  );
 }

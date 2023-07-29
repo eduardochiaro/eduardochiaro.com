@@ -22,7 +22,10 @@ const ShowProviders = async function ShowProviders() {
       {providers &&
         Object.values(providers).map((provider) => (
           <div key={provider.name} className="py-4">
-            <button onClick={() => signIn(provider.id)} className="flex items-center gap-3 mx-auto bg-primary-300 dark:bg-primary-800 text-primary-700 dark:text-primary-50 drop-shadow p-3 px-4 rounded text-xl transition duration-300 ease-in-out hover:ring-2 ring-offset-2 ring-primary-300 dark:ring-primary-700 ring-offset-primary-100 dark:ring-offset-primary-600">
+            <button
+              onClick={() => signIn(provider.id)}
+              className="flex items-center gap-3 mx-auto bg-primary-300 dark:bg-primary-800 text-primary-700 dark:text-primary-50 drop-shadow p-3 px-4 rounded text-xl transition duration-300 ease-in-out hover:ring-2 ring-offset-2 ring-primary-300 dark:ring-primary-700 ring-offset-primary-100 dark:ring-offset-primary-600"
+            >
               <LogoProvider id={provider.id} />
               Sign in with {provider.name}
             </button>

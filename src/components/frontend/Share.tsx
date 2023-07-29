@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import * as React from 'react';
 import ThreadsIcon from '@/components/icons/Threads';
@@ -25,7 +25,7 @@ export default function Share() {
             }
           />
         </Link>
-				
+
         <Link href="https://threads.net/eduardochiaro" className="flex-none w-30" title="Threads">
           <ThreadsIcon
             className={
@@ -33,7 +33,6 @@ export default function Share() {
             }
           />
         </Link>
-				
       </div>
     </section>
   );

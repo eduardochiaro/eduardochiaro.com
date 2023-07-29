@@ -1,13 +1,11 @@
-import { NextApiRequest } from "next";
-import formidable, { File } from "formidable";
+import { NextApiRequest } from 'next';
+import formidable, { File } from 'formidable';
 import { firstValues } from 'formidable/src/helpers/firstValues.js';
 import { readBooleans } from 'formidable/src/helpers/readBooleans.js';
-import { NextRequest } from "next/server";
 
-export type FieldTypes = { fields: { [key: string]: string }, files: { [key: string]: File } }
+export type FieldTypes = { fields: { [key: string]: string }; files: { [key: string]: File } };
 
-const getFromForm = (req: NextApiRequest|NextRequest, exceptions: string[] = [], booleanFields: string[] = []) => {
-
+const getFromForm = (req: NextApiRequest, exceptions: string[] = [], booleanFields: string[] = []) => {
   const form = formidable({});
   return new Promise((resolve, reject) => {
     form.parse(req, async (err, fieldsMultiple, filesMultiple) => {
@@ -15,7 +13,7 @@ const getFromForm = (req: NextApiRequest|NextRequest, exceptions: string[] = [],
       const fieldsSingle = firstValues(form, fieldsMultiple, exceptions);
       const fields = readBooleans(fieldsSingle, booleanFields);
       const files = firstValues(form, filesMultiple, exceptions);
-      resolve ({ fields, files });
+      resolve({ fields, files });
     });
   });
 };

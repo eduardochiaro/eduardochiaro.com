@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(request: NextRequest, response: NextResponse) {
-  const skills = await prisma.skill.findMany({
+  const apps = await prisma.app.findMany({
     where: {
       deletedAt: null,
     },
@@ -9,8 +9,8 @@ export async function GET(request: NextRequest, response: NextResponse) {
       createdAt: 'desc',
     },
   });
-  if (skills) {
-    return NextResponse.json({ results: skills });
+  if (apps) {
+    return NextResponse.json({ results: apps });
   }
   return new Response(null, {
     status: 400,

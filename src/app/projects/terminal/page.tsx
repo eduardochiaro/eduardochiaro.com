@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import TerminalComponent from '@/components/projects/Terminal';
 import FrontendLayout from '@/components/layouts/Frontend';
-import { Metadata } from "next";
+import { Metadata } from 'next';
 
 export default function Terminal() {
   return (
@@ -25,4 +25,4 @@ export default function Terminal() {
 
 export const metadata: Metadata = {
   title: 'Projects > Terminal | Eduardo Chiaro',
-}
+};

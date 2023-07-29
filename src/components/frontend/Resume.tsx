@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import useStaleSWR from '@/utils/staleSWR';
 import SVG from 'react-inlinesvg';

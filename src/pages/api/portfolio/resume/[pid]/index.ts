@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import apiWithMiddleware from '@/utils/apiWithMiddleware';
 import prisma from '@/utils/prisma';
 import cors from '@/middlewares/cors';
-import getFromForm, { FieldTypes } from "@/utils/getFromForm";
+import getFromForm, { FieldTypes } from '@/utils/getFromForm';
 import fs from 'fs';
 import { rmFile } from 'rm-file';
 import { join } from 'path';
@@ -31,7 +31,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
   switch (req.method) {
     case 'PUT':
-      const { fields: { company, name, description, startDate, endDate, tags, ...data }, files: { image } } = await getFromForm(req) as FieldTypes;
+      const {
+        fields: { company, name, description, startDate, endDate, tags, ...data },
+        files: { image },
+      } = (await getFromForm(req)) as FieldTypes;
       const parsedTags = JSON.parse(tags);
       const newTags = parsedTags
         .filter((x: any) => x.new && !x.deleted && x.id == null)

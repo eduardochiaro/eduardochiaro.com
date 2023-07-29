@@ -4,7 +4,7 @@ import prisma from '@/utils/prisma';
 import { Metadata } from 'next';
 
 export default async function Projects() {
-	const apps = await getApps();
+  const apps = await getApps();
   return (
     <FrontendLayout>
       <ProjectsComponent data={apps} />
@@ -13,11 +13,11 @@ export default async function Projects() {
 }
 
 export const metadata: Metadata = {
-  title: 'Projects | Eduardo Chiaro'
-}
+  title: 'Projects | Eduardo Chiaro',
+};
 
 async function getApps() {
-	return prisma.app.findMany({
+  return prisma.app.findMany({
     where: {
       deletedAt: null,
     },

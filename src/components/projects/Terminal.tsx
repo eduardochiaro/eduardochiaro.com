@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { KeyboardEvent, useEffect, useReducer, useRef } from 'react';
 import moment from 'moment';

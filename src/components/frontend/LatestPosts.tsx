@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import moment from 'moment';
 import Link from 'next/link';

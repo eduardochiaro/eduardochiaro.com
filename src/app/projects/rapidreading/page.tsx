@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import RapidReadingComponent from '@/components/projects/RapidReading';
 import FrontendLayout from '@/components/layouts/Frontend';
-import { Metadata } from "next";
+import { Metadata } from 'next';
 
 export default function RapidReading() {
   return (
@@ -25,4 +25,4 @@ export default function RapidReading() {
 
 export const metadata: Metadata = {
   title: 'Projects > Rapid Reading | Eduardo Chiaro',
-}
+};

@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import Link from 'next/link';
 import { EvenTile, OddTile } from '@/components/projects/TimelineTile';
@@ -8,9 +8,7 @@ const Tile = ({ episodes, type }: { episodes: any[]; type: boolean }) => {
   if (type) {
     return (
       <div className="mt-5 w-2/3 mx-auto">
-        {episodes?.map((episode, index) => (
-          <EvenTile key={`episode-${index}`} episode={episode} maxCharacters={6} type="large" />
-        ))}
+        {episodes?.map((episode, index) => <EvenTile key={`episode-${index}`} episode={episode} maxCharacters={6} type="large" />)}
       </div>
     );
   } else {
@@ -29,7 +27,6 @@ const Tile = ({ episodes, type }: { episodes: any[]; type: boolean }) => {
 };
 
 export default function Timeline({ data }: { data: any }) {
-
   const [type, setType] = useState(true);
 
   return (
@@ -53,5 +50,5 @@ export default function Timeline({ data }: { data: any }) {
         <Tile type={type} episodes={data} />
       </div>
     </section>
-  )
+  );
 }

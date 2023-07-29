@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import moment from 'moment';
 import * as React from 'react';

@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import * as React from 'react';
 import GitHubIcon from '@/components/icons/Github';
@@ -7,8 +7,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { App } from '@prisma/client';
 
-export default function Projects({ data }: {data: App[]}) {
-
+export default function Projects({ data }: { data: App[] }) {
   const projects = [
     {
       name: 'Stream',

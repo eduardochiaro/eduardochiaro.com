@@ -23,7 +23,6 @@ const mono = Roboto_Mono({
   variable: '--font-mono',
 });
 
-
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const router = useRouter();
 

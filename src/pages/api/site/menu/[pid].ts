@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import apiWithMiddleware from '@/utils/apiWithMiddleware';
 import prisma from '@/utils/prisma';
 import cors from '@/middlewares/cors';
-import getFromForm, { FieldTypes } from "@/utils/getFromForm";
+import getFromForm, { FieldTypes } from '@/utils/getFromForm';
 
 export const config = {
   api: {
@@ -25,7 +25,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
   switch (req.method) {
     case 'PUT':
-      const { fields: { order, onlyMobile, active, name, url } } = await getFromForm(req) as FieldTypes;
+      const {
+        fields: { order, onlyMobile, active, name, url },
+      } = (await getFromForm(req)) as FieldTypes;
       const menuLink = await prisma.menuLink.update({
         where: { id: parseInt(pid) },
         data: { name, url, order: parseInt(order), onlyMobile: onlyMobile == 'true', active: active == 'true', updatedAt: new Date() },
