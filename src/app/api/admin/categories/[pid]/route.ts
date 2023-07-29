@@ -12,15 +12,15 @@ export async function PUT(
 ) {
   const { pid } = params;
 
-  const { order, onlyMobile, active, name, url } = await getFieldsFromForm(request, ['order', 'onlyMobile', 'active', 'name', 'url']);
+  const { name, type } = await getFieldsFromForm(request, ['name', 'type']);
 
-  const menuLink = await prisma.menuLink.update({
+  const category = await prisma.category.update({
     where: { id: parseInt(pid) },
-    data: { name, url, order: parseInt(order || '0'), onlyMobile: onlyMobile == 'true', active: active == 'true', updatedAt: new Date() },
+    data: { name, type, updatedAt: new Date() },
   });
 
-  if (menuLink) {
-    return NextResponse.json(menuLink);
+  if (category) {
+    return NextResponse.json(category);
   }
   return new Response(null, {
     status: 400,
@@ -36,8 +36,8 @@ export async function DELETE(
   },
 ) {
   const { pid } = params;
-  await prisma.menuLink.delete({
+  await prisma.category.delete({
     where: { id: parseInt(pid) },
   });
-  return NextResponse.json({ action: 'menuLink deleted' });
+  return NextResponse.json({ action: 'category deleted' });
 }
