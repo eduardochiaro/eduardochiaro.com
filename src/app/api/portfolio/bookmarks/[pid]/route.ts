@@ -12,15 +12,15 @@ export async function PUT(
 ) {
   const { pid } = params;
 
-  const { name, type, logo, percentage } = await getFieldsFromForm(request, ['name', 'type', 'logo', 'percentage']);
+  const { url, name, description, categoryId } = await getFieldsFromForm(request, ['url', 'name', 'description', 'categoryId']);
 
-  const skill = await prisma.skill.update({
+  const bookmark = await prisma.bookmark.update({
     where: { id: parseInt(pid) },
-    data: { name, type, logo, percentage: parseInt(percentage), updatedAt: new Date() },
+    data: { url, name, description, categoryId: parseInt(categoryId), updatedAt: new Date() },
   });
 
-  if (skill) {
-    return NextResponse.json(skill);
+  if (bookmark) {
+    return NextResponse.json(bookmark);
   }
   return new Response(null, {
     status: 400,
@@ -36,9 +36,9 @@ export async function DELETE(
   },
 ) {
   const { pid } = params;
-  await prisma.skill.update({
+  await prisma.bookmark.update({
     where: { id: parseInt(pid) },
     data: { deletedAt: new Date() },
   });
-  return NextResponse.json({ action: 'skill deleted' });
+  return NextResponse.json({ action: 'bookmark deleted' });
 }

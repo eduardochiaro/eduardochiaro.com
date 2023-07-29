@@ -1,8 +1,4 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
-import apiWithMiddleware from '@/utils/apiWithMiddleware';
-import prisma from '@/utils/prisma';
-import cors from '@/middlewares/cors';
-import { URL } from 'url';
+import { NextRequest, NextResponse } from 'next/server';
 import type { Bookmark } from '@prisma/client';
 
 interface BookmarkType extends Bookmark {
@@ -13,8 +9,7 @@ type Data = {
   results: BookmarkType[];
 };
 
-const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
-  await cors(req, res);
+export async function GET(request: NextRequest, response: NextResponse) {
   const bookmarks: BookmarkType[] = await prisma.bookmark.findMany({
     where: {
       deletedAt: null,
@@ -31,6 +26,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     bookmark.domain = myURL.hostname;
     return bookmark;
   });
-  res.status(200).json({ results: bookmarks });
-};
-export default apiWithMiddleware(handler);
+  if (bookmarks) {
+    return NextResponse.json({ results: bookmarks });
+  }
+  return new Response(null, {
+    status: 400,
+  });
+}

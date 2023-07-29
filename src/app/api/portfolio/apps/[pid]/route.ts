@@ -31,9 +31,9 @@ export async function PUT(
       },
     );
   }
-  const formData = await request.formData();
 
-  const { name, description, url, image } = getFieldsFromForm(formData, ['name', 'description', 'url'], ['image']);
+
+  const { name, description, url, image } = await getFieldsFromForm(request, ['name', 'description', 'url'], ['image']);
 
   const data: { [key: string]: any } = { name, description, url, updatedAt: new Date() };
 

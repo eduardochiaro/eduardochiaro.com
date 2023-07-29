@@ -2,7 +2,7 @@ import { useSession } from 'next-auth/react';
 import BackendLayout, { menuList } from '@/components/layouts/Backend';
 import Link from 'next/link';
 import * as React from 'react';
-import getFirstName from '../../utils/getFirstName';
+import getFirstName from '@/utils/getFirstName';
 
 const AdminIndex = () => {
   const { data: session } = useSession();

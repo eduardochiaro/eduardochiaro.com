@@ -1,3 +1,5 @@
+"use client";
+
 // React component form for admin to save data using axios
 import React, { useState, useReducer, useRef, useEffect, ReactElement } from 'react';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
@@ -53,8 +55,12 @@ const AdminForm = ({ children, apiURL, itemFormat, itemData, inputList, titleEle
   const [inputToValidate, setInputToValidate] = useState<any[]>([]);
 
   useEffect(() => {
-    setInputToValidate(inputList.filter((item) => item.required).map((item) => item.name));
-  }, [inputList]);
+    setInputToValidate(inputList.filter((item) => item.required && 
+        (!item.requiredCondition || 
+          (item.requiredCondition && itemData[item.requiredCondition[0]] == item.requiredCondition[1])
+        )
+    ).map((item) => item.name));
+  }, [inputList, itemData]);
 
   const handleChange = (e: React.ChangeEvent<any>) => {
     updateItem({ [e.target.name]: e.target.files ? e.target.files[0] : e.target.value });

@@ -8,9 +8,9 @@ import getFieldsFromForm from '@/utils/getFieldsFromForm';
 const uploadPath = './public/uploads/';
 
 export async function POST(request: NextRequest, response: NextResponse) {
-  const formData = await request.formData();
 
-  const { name, description, url, image } = getFieldsFromForm(formData, ['name', 'description', 'url'], ['image']);
+
+  const { name, description, url, image } = await getFieldsFromForm(request, ['name', 'description', 'url'], ['image']);
 
   //const file = formData.get("image") as Blob | null;
   if (!image) {

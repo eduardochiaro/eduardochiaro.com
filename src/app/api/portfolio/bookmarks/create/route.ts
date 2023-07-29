@@ -5,14 +5,13 @@ import getFieldsFromForm from "@/utils/getFieldsFromForm";
 
 export async function POST(request: NextRequest, response: NextResponse) {
 
+  const { url, name, description, categoryId } = await getFieldsFromForm(request, ['url', 'name', 'description', 'categoryId']);
 
-  const { name, type, logo, percentage } = await getFieldsFromForm(request, ['name', 'type', 'logo', 'percentage']);
-
-  const skill = await prisma.skill.create({
-    data: { name, type, logo, percentage: parseInt(percentage || '0'), createdAt: new Date() },
+  const bookmark = await prisma.bookmark.create({
+    data: { url, name, description, categoryId: parseInt(categoryId), createdAt: new Date() },
   });
-  if (skill) {
-    return NextResponse.json(skill);
+  if (bookmark) {
+    return NextResponse.json(bookmark);
   }
   return new Response(null, {
     status: 400,
