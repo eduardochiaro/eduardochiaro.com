@@ -1,6 +1,7 @@
 import FrontendLayout from '@/components/layouts/Frontend';
+import { Metadata } from "next";
 
-export default function Projects() {
+export default async function Resume() {
   const palette = [
     {
       name: 'Primary',
@@ -20,7 +21,7 @@ export default function Projects() {
   ];
   const secondaryPalette = ['bg-blue-500', 'bg-red-500', 'bg-cyan-500', 'bg-emerald-500', 'bg-indigo-500', 'bg-amber-500'];
   return (
-    <FrontendLayout title="Palette | Eduardo Chiaro">
+    <FrontendLayout>
       <section className={'px-4 lg:px-0 mt-10'}>
         <div className="max-w-5xl mx-auto">
           <h1 className="font-header leading-tight tracking-wide text-3xl lg:text-4xl font-light h-10">Palette</h1>
@@ -46,3 +47,7 @@ export default function Projects() {
     </FrontendLayout>
   );
 }
+
+export const metadata: Metadata = {
+  title: 'Palette | Eduardo Chiaro',
+};

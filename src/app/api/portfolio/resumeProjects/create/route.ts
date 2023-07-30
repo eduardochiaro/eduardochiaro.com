@@ -9,7 +9,7 @@ import mime from "mime-types";
 const uploadPath = './public/uploads/';
 
 export async function POST(request: NextRequest, response: NextResponse) {
-  const { name, description, url, image } = await getFieldsFromForm(request, ['name', 'description', 'url'], ['image']);
+  const { name, resumeId, image } = await getFieldsFromForm(request, ['name', 'resumeId'], ['image']);
 
   //const file = formData.get("image") as Blob | null;
   if (!image) {
@@ -32,11 +32,11 @@ export async function POST(request: NextRequest, response: NextResponse) {
     console.log(error);
   }
 
-  const app = await prisma.app.create({
-    data: { name, description, url, image: newName, createdAt: new Date() },
+  const resumeProject = await prisma.resumeProject.create({
+    data: { name, resumeId: parseInt(resumeId), image: newName, createdAt: new Date() },
   });
-  if (app) {
-    return NextResponse.json(app);
+  if (resumeProject) {
+    return NextResponse.json(resumeProject);
   }
   return new Response(null, {
     status: 400,

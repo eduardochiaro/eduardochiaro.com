@@ -1,19 +1,20 @@
-import { useSession } from 'next-auth/react';
-import { useState, createRef } from 'react';
-import BackendLayout from '@/components/layouts/Backend';
-import SVG from 'react-inlinesvg';
-import useStaleSWR from '@/utils/staleSWR';
 import moment from 'moment';
-import List from '@/components/admin/List';
-import React from 'react';
-import AdminForm from '@/components/admin/Form';
-import AdminResumeProjects from '@/components/admin/ResumeProjects';
+import { getServerSession } from 'next-auth';
+import { Metadata } from 'next';
+import authOptions from '@/config/nextAuth';
+import AdminPage from '@/components/admin/Page';
+import prisma from '@/utils/prisma';
+import SVG from '@/utils/svg';
 
-const AdminResumeIndex = () => {
-  const { mutate, data: resumes } = useStaleSWR('/api/portfolio/resume');
-  const { data: session } = useSession();
+export const metadata: Metadata = {
+  title: 'Admin > Resume | Eduardo Chiaro',
+};
 
-  const resumeFormat = {
+export default async function AdminResumeIndex() {
+  const session = await getServerSession(authOptions);
+  const resumes = await getResume();
+
+  const format = {
     id: null,
     name: '',
     company: '',
@@ -25,23 +26,10 @@ const AdminResumeIndex = () => {
     projects: [],
   };
 
-  const [isOpen, setIsOpen] = useState(false);
-  const [resume, setResume] = useState(resumeFormat);
-
-  const openElement = (item: any) => {
-    setResume(item);
-    setIsOpen(true);
-  };
-
-  const closeElement = () => {
-    mutate();
-    setIsOpen(false);
-  };
-
   const columns = ['name', 'description'];
 
   const newData: any[] = [];
-  resumes?.results.map((item: any) => {
+  resumes?.map((item: any) => {
     const obj = { ...item, original: item };
     obj.updated = moment(item.updatedAt || item.createdAt).fromNow();
     obj.startDateOrder = moment(item.startDate).unix();
@@ -141,45 +129,21 @@ const AdminResumeIndex = () => {
     },
   ];
 
+
   if (session) {
-    return (
-      <BackendLayout isPageOpen={isOpen}>
-        <div className={`h-full ${isOpen ? 'hidden' : 'grow'}`}>
-          <List
-            title={title}
-            single={single}
-            columns={columns}
-            data={newData}
-            format={resumeFormat}
-            openAction={openElement}
-            editAction={openElement}
-            sortDefault="startDateOrder"
-            sortList={sortType}
-            sortDirectionDefault="desc"
-          />
-        </div>
-        <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6 min-h-screen ${isOpen ? '' : 'hidden'}`}>
-          <AdminForm
-            apiURL="/api/portfolio/resume"
-            titleElement={single}
-            itemFormat={resumeFormat}
-            itemData={resume}
-            inputList={inputList}
-            closeElement={closeElement}
-          >
-            <>{resume.id && <AdminResumeProjects resumeId={resume.id} />}</>
-          </AdminForm>
-        </div>
-      </BackendLayout>
-    );
+    return <AdminPage title={title} single={single} columns={columns} data={newData} format={format} inputList={inputList} sortList={sortType} apiURL="/api/portfolio/resume" />;
   }
   return null;
-};
-
-export async function getStaticProps() {
-  return {
-    props: { formRef: createRef() }, // will be passed to the page component as props
-  };
 }
 
-export default AdminResumeIndex;
+async function getResume() {
+  return prisma.resume.findMany({
+    orderBy: {
+      startDate: 'desc',
+    },
+    include: {
+      tags: true,
+      projects: true,
+    },
+  });
+}

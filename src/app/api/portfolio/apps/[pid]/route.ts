@@ -5,6 +5,7 @@ import { join } from 'path';
 import { v4 as uuid } from 'uuid';
 import { rmFile } from 'rm-file';
 import getFieldsFromForm from '@/utils/getFieldsFromForm';
+import mime from "mime-types";
 
 const uploadPath = './public/uploads/';
 
@@ -37,8 +38,7 @@ export async function PUT(
 
   if (typeof image == 'object') {
     const mimeType = image.type;
-    const extension = mimeType.split('/')[1];
-    const newName = uuid() + '.' + extension;
+    const newName = uuid() + '.' + mime.extension(mimeType);
 
     try {
       // renames the file in the directory
