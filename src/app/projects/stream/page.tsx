@@ -1,10 +1,10 @@
 import Footer from '@/components/frontend/Footer';
 import Header from '@/components/frontend/Header';
-import Share from '@/components/frontend/Share';
 import Link from 'next/link';
 import styles from '@/styles/Stream.module.scss';
 import StreamComponent from '@/components/projects/Stream';
 import { Metadata } from 'next';
+import prisma from '@/utils/prisma';
 
 export default async function Stream() {
   const menuLinks = await getMenuLinks();

@@ -1,5 +1,6 @@
 import ResumeComponent from '@/components/frontend/Resume';
 import FrontendLayout from '@/components/layouts/Frontend';
+import prisma from '@/utils/prisma';
 import { Metadata } from 'next';
 
 export default async function Resume() {

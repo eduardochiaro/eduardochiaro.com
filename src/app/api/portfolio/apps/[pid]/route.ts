@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/utils/prisma';
 import fs from 'fs';
 import { join } from 'path';
-import { v4 as uuid } from 'uuid';
+import { nanoid } from 'nanoid';
 import { rmFile } from 'rm-file';
 import getFieldsFromForm from '@/utils/getFieldsFromForm';
 import mime from 'mime-types';
@@ -38,7 +38,7 @@ export async function PUT(
 
   if (typeof image == 'object') {
     const mimeType = image.type;
-    const newName = uuid() + '.' + mime.extension(mimeType);
+    const newName = nanoid() + '.' + mime.extension(mimeType);
 
     try {
       // renames the file in the directory

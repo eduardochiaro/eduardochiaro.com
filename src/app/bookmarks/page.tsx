@@ -2,6 +2,7 @@ import BookmarksComponent from '@/components/frontend/Bookmarks';
 import FrontendLayout from '@/components/layouts/Frontend';
 import { Category, Bookmark } from '@prisma/client';
 import { Metadata } from 'next';
+import prisma from '@/utils/prisma';
 
 interface BookmarkType extends Bookmark {
   domain?: string;

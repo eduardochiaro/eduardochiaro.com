@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import prisma from '@/utils/prisma';
 import type { Bookmark } from '@prisma/client';
 
 interface BookmarkType extends Bookmark {
