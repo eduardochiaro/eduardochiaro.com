@@ -1,6 +1,4 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
-import apiWithMiddleware from '@/utils/apiWithMiddleware';
-import cors from '@/middlewares/cors';
+import { NextRequest, NextResponse } from "next/server";
 import { gql } from '@apollo/client';
 import client from '@/utils/apolloClient';
 import fsCache from '@/utils/fsCache';
@@ -23,10 +21,6 @@ type GitHubItem = {
     color: string;
   }[];
   language: string;
-};
-
-type Data = {
-  results: GitHubItem[];
 };
 
 const cachedFetch = async (url: string) => {
@@ -68,8 +62,7 @@ const cachedFetch = async (url: string) => {
   });
 };
 
-const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
-  await cors(req, res);
+export async function GET(request: NextRequest, response: NextResponse) {
   const dataFetch = await cachedFetch(`${base}`);
 
   const data = dataFetch.viewer.repositories.nodes.map(
@@ -105,6 +98,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     },
   );
 
-  res.status(200).json({ results: data });
-};
-export default apiWithMiddleware(handler);
+  if (data) {
+    return NextResponse.json({ results: data });
+  }
+  return new Response(null, {
+    status: 400,
+  });
+}

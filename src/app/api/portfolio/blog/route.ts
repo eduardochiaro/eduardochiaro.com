@@ -1,6 +1,4 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
-import apiWithMiddleware from '@/utils/apiWithMiddleware';
-import cors from '@/middlewares/cors';
+import { NextRequest, NextResponse } from "next/server";
 import { parse } from 'rss-to-json';
 import fsCache from '@/utils/fsCache';
 import stripTags from '@/utils/stripTags';
@@ -18,12 +16,7 @@ type RssFeedItem = {
   categories: string[] | undefined;
 };
 
-type Data = {
-  results: RssFeedItem[];
-};
-
-const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
-  await cors(req, res);
+export async function GET(request: NextRequest, response: NextResponse) {
   const results = await fsCache(url, parseInt(RSS_CACHE_HOURS), async () => {
     const feed = await parse(url);
     const results: RssFeedItem[] = [];
@@ -39,6 +32,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     return results;
   });
 
-  res.status(200).json({ results });
-};
-export default apiWithMiddleware(handler);
+  if (results) {
+    return NextResponse.json({ results });
+  }
+  return new Response(null, {
+    status: 400,
+  });
+}

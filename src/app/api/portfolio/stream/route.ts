@@ -1,8 +1,6 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
-import moment from 'moment';
-import apiWithMiddleware from '@/utils/apiWithMiddleware';
-import cors from '@/middlewares/cors';
+import { NextRequest, NextResponse } from "next/server";
 import { getCachedFlickr, getCacheInstagram } from '@/utils/getCachedFeeds';
+import moment from 'moment';
 
 type StreamItem = {
   title: string;
@@ -13,12 +11,7 @@ type StreamItem = {
   image: string;
 };
 
-type Data = {
-  results: StreamItem[];
-};
-
-const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
-  await cors(req, res);
+export async function GET(request: NextRequest, response: NextResponse) {
   const results: StreamItem[] = [];
 
   const flickr = await getCachedFlickr();
@@ -51,6 +44,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     return y.timestamp - x.timestamp;
   });
 
-  res.status(200).json({ results });
-};
-export default apiWithMiddleware(handler);
+  if (results) {
+    return NextResponse.json({ results });
+  }
+  return new Response(null, {
+    status: 400,
+  });
+}
