@@ -3,7 +3,7 @@ import colors from 'tailwindcss/colors';
 import plugin from "tailwindcss/plugin";
 
 export default {
-  content: ['./src/pages/**/*.{js,ts,jsx,tsx}', './src/app/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}', './src/utils/**/*.{js,ts,jsx,tsx}'],
+  content: ['./src/app/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}', './src/utils/**/*.{js,ts,jsx,tsx}'],
   darkMode: 'class',
   theme: {
     screens: {

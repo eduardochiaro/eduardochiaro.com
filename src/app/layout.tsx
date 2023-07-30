@@ -1,5 +1,5 @@
-import ThemeProviders from './theme-provider';
-import AuthProvider from './auth-provider';
+import ThemeProviders from '@/providers/ThemeProvider';
+import AuthProvider from '@/providers/AuthProvider';
 import '../styles/globals.scss';
 import { Titillium_Web, Roboto_Mono } from 'next/font/google';
 
