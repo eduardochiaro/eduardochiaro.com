@@ -1,3 +1,5 @@
+'use client';
+
 import type { ResumeProject } from '@prisma/client';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 import { PlusIcon } from '@heroicons/react/20/solid';

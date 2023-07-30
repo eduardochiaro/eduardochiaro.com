@@ -1,3 +1,5 @@
+'use client';
+
 import { Fragment, ReactElement, useEffect, useState } from 'react';
 import NavLink from '@/components/NavLink';
 import styles from '@/styles/Admin.Sidebar.module.scss';
@@ -99,7 +101,7 @@ const AdminSidebar = ({ isPageOpen }: { isPageOpen: boolean }) => {
         </div>
         <div className={`p-6 bg-primary-300 dark:bg-primary-500 flex items-center justify-between gap-6 ${openMenu ? 'flex-row' : 'flex-col'}`}>
           <Menu as="div" className="relative flex item-center">
-            <Menu.Button className="h-7 w-7 rounded-full ring-2 ring-primary-300 dark:ring-primary-500">
+            <Menu.Button id="admin-menu-short" className="h-7 w-7 rounded-full ring-2 ring-primary-300 dark:ring-primary-500">
               {session && session.user && (
                 <Image
                   src={session.user.image as string}

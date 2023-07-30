@@ -1,47 +1,32 @@
+'use client';
+
 import React, { Fragment } from 'react';
 import { RssIcon, Bars3BottomLeftIcon } from '@heroicons/react/24/solid';
-import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
 import { Menu, Transition } from '@headlessui/react';
 import ThemeIcon from '@/components/ThemeIcon';
 import NavLink from '@/components/NavLink';
 import Link from 'next/link';
-import useStaleSWR from '@/utils/staleSWR';
 import styles from '@/styles/Header.module.scss';
 import classNames from '@/utils/classNames';
 import type { MenuLink } from '@prisma/client';
 import { FireIcon } from '@heroicons/react/20/solid';
 
-export default function Header() {
-  const router = useRouter();
-  const { data } = useStaleSWR('/api/site/menu');
+export default function Header({ data }: { data: MenuLink[] }) {
+  const pathname = usePathname();
 
-  const menuData =
-    data && data.results
-      ? data.results.map((menuLink: MenuLink) => {
-          return { text: menuLink.name, link: menuLink.url, current: false, ...menuLink };
-        })
-      : [];
-
-  if (menuData.length > 0) {
-    menuData.push({
-      text: (
-        <>
-          <RssIcon className={'h-5 text-accent-500 mr-2 inline-block'} aria-hidden="true" />
-          .dev
-        </>
-      ),
-      link: 'https://blog.eduardochiaro.com',
-      current: false,
-      onlyMobile: true,
-    });
-  }
+  const menuData = data
+    ? data.map((menuLink: MenuLink) => {
+        return { text: <>{menuLink.name}</>, link: menuLink.url, current: false, onlyMobile: menuLink.onlyMobile, active: menuLink.active };
+      })
+    : [];
 
   return (
     <header className={`${styles.header} bg-primary-50/95 dark:bg-primary-800/95 border-b border-primary-200/50 dark:border-primary-700/50`}>
       <nav className="max-w-5xl mx-auto relative">
         <div className="px-4 md:px-0 py-3 flex items-center gap-6">
           <Menu as="div" className="inline-block md:hidden">
-            <Menu.Button title="open menu" className="flex items-center md:hidden hover:cursor-pointer">
+            <Menu.Button id="menu-short" title="open menu" className="flex items-center md:hidden hover:cursor-pointer">
               <Bars3BottomLeftIcon className={'w-7 transition hover:text-primary-900 dark:hover:text-primary-100'} />
             </Menu.Button>
             <Transition
@@ -55,8 +40,8 @@ export default function Header() {
             >
               <Menu.Items className="focus:outline-none absolute left-0 top-full w-full max-w-lg bg-primary-100 dark:bg-primary-800 shadow-2xl shadow-primary-600 dark:shadow-primary-900 divide-y divide-primary-400/50">
                 {menuData
-                  .filter((x: MenuLink) => x.active)
-                  .map(function (item: { link: string; text: string }, i: number) {
+                  .filter((x: any) => x.active)
+                  .map((item: any, i: number) => {
                     return (
                       <div key={`menu-link-${i}`} className="px-1 py-1 font-semibold text-secondary-700 dark:text-secondary-600">
                         <Menu.Item>
@@ -65,7 +50,7 @@ export default function Header() {
                               href={item.link}
                               className={classNames(
                                 styles.menuUrlMobile,
-                                router.route == item.link ? '' : 'text-primary-900 dark:text-primary-100',
+                                pathname == item.link ? '' : 'text-primary-900 dark:text-primary-100',
                                 active ? 'bg-primary-300 dark:bg-primary-500' : '',
                               )}
                             >
@@ -100,8 +85,8 @@ export default function Header() {
           <div className="hidden md:flex items-center">
             <ul className="md:flex font-semibold tracking-wider mx-auto">
               {menuData
-                .filter((x: MenuLink) => !x.onlyMobile && x.active)
-                .map(function (item: { link: string; text: string }, i: number) {
+                .filter((x: any) => !x.onlyMobile && x.active)
+                .map((item: any, i: number) => {
                   return (
                     <li key={`menu-link-${i}`}>
                       <NavLink

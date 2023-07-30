@@ -1,3 +1,5 @@
+'use client';
+
 import { ChevronUpIcon, TagIcon } from '@heroicons/react/24/solid';
 import { BookmarkIcon } from '@heroicons/react/24/outline';
 import { BookmarkIcon as BookmarkFullIcon } from '@heroicons/react/24/solid';
@@ -20,10 +22,8 @@ const breakpointColumnsObj = {
   640: 1,
 };
 
-export default function Bookmarks() {
-  const { data } = useStaleSWR('/api/portfolio/bookmarks');
-
-  const categories = data && data.results ? data.results.map((bookmark: BookmarkWithCategory) => bookmark.category) : [];
+export default function Bookmarks({ data }: { data: BookmarkWithCategory[] }) {
+  const categories = data && data ? data.map((bookmark: BookmarkWithCategory) => bookmark.category) : [];
   const uniqueCategories = categories
     .filter((value: any, index: number, self: any) => index === self.findIndex((t: any) => t.id === value.id))
     .sort((a: any, b: any) => (a.name > b.name ? 1 : -1));
@@ -55,8 +55,8 @@ export default function Bookmarks() {
                 </Link>
               </h4>
               <Masonry breakpointCols={breakpointColumnsObj} className="flex gap-8 w-auto" columnClassName="bg-clip-padding flex flex-col gap-8">
-                {data?.results
-                  .filter((x: Bookmark) => x.categoryId == category.id)
+                {data
+                  ?.filter((x: Bookmark) => x.categoryId == category.id)
                   .map((bookmark: any, index: number) => (
                     <div key={`apps-${index}`} className={'group/card box-card'}>
                       <Link href={bookmark.url} as={bookmark.url} target="_blank" className="p-5 block" rel="noopener noreferrer">

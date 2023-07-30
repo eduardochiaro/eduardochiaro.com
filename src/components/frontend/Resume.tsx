@@ -1,37 +1,26 @@
-import useStaleSWR from '@/utils/staleSWR';
+'use client';
+
 import SVG from 'react-inlinesvg';
 import moment from 'moment';
 import { ChevronDoubleRightIcon } from '@heroicons/react/20/solid';
-import { Prisma, Resume, ResumeTag } from '@prisma/client';
+import { Prisma, Resume, ResumeProject, ResumeTag } from '@prisma/client';
 
-type JobWithExtra = Prisma.ResumeGetPayload<{
-  include: {
-    tags: true;
-    projects: true;
-  };
-}> & {
-  startYear: string;
-  ednYear: string;
-};
-
-export default function ResumeComponent() {
-  const { data } = useStaleSWR('/api/portfolio/resume');
-  const mappedData =
-    data && data.results
-      ? data.results.map((job: Resume) => {
-          return {
-            ...job,
-            startYear: moment(job.startDate).format('YYYY'),
-            endYear: job.endDate ? moment(job.endDate).format('YYYY') : 'Now',
-          };
-        })
-      : [];
+export default function ResumeComponent({ data }: { data: any[] }) {
+  const mappedData = data
+    ? data.map((job: Resume) => {
+        return {
+          ...job,
+          startYear: moment(job.startDate).format('YYYY'),
+          endYear: job.endDate ? moment(job.endDate).format('YYYY') : 'Now',
+        };
+      })
+    : [];
   return (
     <section className={'px-4 lg:px-0 mt-10'}>
       <div className="max-w-5xl mx-auto">
         <h1 className="font-header leading-tight tracking-wide text-3xl lg:text-4xl font-light h-10">Resume</h1>
         <div className="mt-5 mx-auto">
-          {mappedData.map((job: JobWithExtra, index: number) => (
+          {mappedData.map((job: any, index: number) => (
             <div className="group" key={`job-image-${index}`}>
               <div className="hidden group-first:md:flex">
                 <div className="flex-1"></div>
@@ -77,7 +66,7 @@ export default function ResumeComponent() {
                       <>
                         <h5 className="mt-6 mb-2 text-lg">Projects</h5>
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                          {job.projects?.map((project) => (
+                          {job.projects?.map((project: ResumeProject) => (
                             <SVG
                               key={`resume_project_${project.id}`}
                               title={project.name}

@@ -1,14 +1,13 @@
+'use client';
+
 import * as React from 'react';
 import GitHubIcon from '@/components/icons/Github';
 import styles from '@/styles/Projects.module.scss';
-import useStaleSWR from '@/utils/staleSWR';
 import Link from 'next/link';
 import Image from 'next/image';
 import { App } from '@prisma/client';
 
-export default function Projects() {
-  const { data } = useStaleSWR('/api/portfolio/apps');
-
+export default function Projects({ data }: { data: App[] }) {
   const projects = [
     {
       name: 'Stream',
@@ -33,7 +32,7 @@ export default function Projects() {
         <div className="basis-full md:basis-3/4 mb-10">
           <h1 className="font-header leading-tight tracking-wide text-3xl lg:text-4xl font-light h-10">Projects</h1>
           <div className="grid grid-cols-1 gap-8 mt-5 pl-2">
-            {data?.results.map((app: App, index: number) => (
+            {data?.map((app: App, index: number) => (
               <div className={'flex flex-wrap p-4 box-card group'} key={`app-${index}`}>
                 <div className={'basis-full md:basis-1/3 relative'}>
                   <Image src={`/uploads/${app.image}`} fill sizes="30vw" alt={app.name} className="bg-transparent object-contain" priority={false} />

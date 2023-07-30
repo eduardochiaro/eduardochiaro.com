@@ -3,7 +3,7 @@ import colors from 'tailwindcss/colors';
 import plugin from "tailwindcss/plugin";
 
 export default {
-  content: ['./src/pages/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}', './src/utils/**/*.{js,ts,jsx,tsx}'],
+  content: ['./src/pages/**/*.{js,ts,jsx,tsx}', './src/app/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}', './src/utils/**/*.{js,ts,jsx,tsx}'],
   darkMode: 'class',
   theme: {
     screens: {
@@ -53,8 +53,8 @@ export default {
       },
     },
     fontFamily: {
-      header: ['Titillium Web', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', 'Arial', 'sans-serif'],
-      mono: ['Roboto Mono', 'Courier New', 'monospace'],
+      header: ['var(--font-header)', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', 'Arial', 'sans-serif'],
+      mono: ['var(--font-mono)', 'Courier New', 'monospace'],
     },
     extend: {
       transitionProperty: {

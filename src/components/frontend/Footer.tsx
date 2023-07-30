@@ -1,13 +1,14 @@
+'use client';
+
 import moment from 'moment';
 import * as React from 'react';
 import { useSession, signOut } from 'next-auth/react';
 import Link from 'next/link';
 import Logo from '@/components/icons/Logo';
-import TwitterIcon from '@/components/icons/Twitter';
 import LinkedInIcon from '@/components/icons/Linkedin';
 import GitHubIcon from '@/components/icons/Github';
-import Copyright from '../icons/Copyright';
-import classNames from '@/utils/classNames';
+import ThreadsIcon from '@/components/icons/Threads';
+import Copyright from '@/components/icons/Copyright';
 
 function LoginButton(props: { isLoggedIn: boolean }) {
   const { isLoggedIn } = props;
@@ -40,7 +41,7 @@ export default function Footer() {
             <LoginButton isLoggedIn={!!session} />
           </div>
 
-          <div className="text-center text-sm flex items-center gap-2">
+          <div className="justify-center text-sm flex items-center gap-2">
             <Copyright className="w-4" /> Copyright {moment().year()}
           </div>
 
@@ -52,13 +53,15 @@ export default function Footer() {
             >
               <LinkedInIcon className={'h-4 transition-colors ease-out duration-300 hover:text-secondary-600'} />
             </Link>
+
             <Link
-              href="https://twitter.com/eduardochiaro"
+              href="https://threads.net/eduardochiaro"
               className="inline-flex justify-center items-center w-8 h-8 text-center rounded-full focus:outline-none focus:ring-2 focus:ring-secondary-600 focus:ring-offset-2 focus:ring-offset-primary-50 dark:focus:ring-offset-primary-900"
-              title="Twitter"
+              title="Threads"
             >
-              <TwitterIcon className={'h-4 transition-colors ease-out duration-300 hover:text-secondary-600'} />
+              <ThreadsIcon className={'h-4 transition-colors ease-out duration-300 hover:text-secondary-600'} />
             </Link>
+
             <Link
               href="https://github.com/eduardochiaro"
               className="inline-flex justify-center items-center w-8 h-8 text-center rounded-full focus:outline-none focus:ring-2 focus:ring-secondary-600 focus:ring-offset-2 focus:ring-offset-primary-50 dark:focus:ring-offset-primary-900"

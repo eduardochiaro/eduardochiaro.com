@@ -1,3 +1,5 @@
+'use client';
+
 import moment from 'moment';
 import Link from 'next/link';
 import * as React from 'react';

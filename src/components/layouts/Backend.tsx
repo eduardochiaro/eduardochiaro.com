@@ -1,5 +1,4 @@
-import Head from 'next/head';
-import AdminSidebar from '../admin/Sidebar';
+import AdminSidebar from '@/components/admin/Sidebar';
 import { BriefcaseIcon, CpuChipIcon, CommandLineIcon, TagIcon, BookmarkIcon, Bars3Icon, HashtagIcon } from '@heroicons/react/24/solid';
 import React, { ReactElement } from 'react';
 
@@ -70,9 +69,6 @@ export { menuList };
 const BackendLayout = ({ children, isPageOpen }: { children: ReactElement | ReactElement[]; isPageOpen: boolean }) => {
   return (
     <div className="w-full h-full antialiased bg-primary-100 dark:bg-primary-800">
-      <Head>
-        <title>Eduardo Chiaro | Admin</title>
-      </Head>
       <div className="flex flex-no-wrap">
         <AdminSidebar isPageOpen={isPageOpen} />
         {children}
