@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from 'next/server';
 import { gql } from '@apollo/client';
 import client from '@/utils/apolloClient';
 import fsCache from '@/utils/fsCache';

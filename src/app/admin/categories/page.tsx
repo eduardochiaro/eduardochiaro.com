@@ -75,7 +75,18 @@ export default async function AdminCategoriesIndex() {
   ];
 
   if (session) {
-    return <AdminPage title={title} single={single} columns={columns} data={newData} format={format} inputList={inputList} sortList={sortType} apiURL="/api/admin/categories" />;
+    return (
+      <AdminPage
+        title={title}
+        single={single}
+        columns={columns}
+        data={newData}
+        format={format}
+        inputList={inputList}
+        sortList={sortType}
+        apiURL="/api/admin/categories"
+      />
+    );
   }
   return null;
 }
@@ -84,7 +95,7 @@ async function getCategories() {
   return prisma.category.findMany({
     where: {
       deletedAt: null,
-    },  
+    },
     include: {
       _count: {
         select: { bookmarks: true },

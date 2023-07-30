@@ -5,18 +5,16 @@ import moment from 'moment';
 import { ChevronDoubleRightIcon } from '@heroicons/react/20/solid';
 import { Prisma, Resume, ResumeProject, ResumeTag } from '@prisma/client';
 
-
 export default function ResumeComponent({ data }: { data: any[] }) {
-  const mappedData =
-    data
-      ? data.map((job: Resume) => {
-          return {
-            ...job,
-            startYear: moment(job.startDate).format('YYYY'),
-            endYear: job.endDate ? moment(job.endDate).format('YYYY') : 'Now',
-          };
-        })
-      : [];
+  const mappedData = data
+    ? data.map((job: Resume) => {
+        return {
+          ...job,
+          startYear: moment(job.startDate).format('YYYY'),
+          endYear: job.endDate ? moment(job.endDate).format('YYYY') : 'Now',
+        };
+      })
+    : [];
   return (
     <section className={'px-4 lg:px-0 mt-10'}>
       <div className="max-w-5xl mx-auto">

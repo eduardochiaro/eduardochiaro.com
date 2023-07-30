@@ -5,7 +5,7 @@ import { join } from 'path';
 import { v4 as uuid } from 'uuid';
 import { rmFile } from 'rm-file';
 import getFieldsFromForm from '@/utils/getFieldsFromForm';
-import mime from "mime-types";
+import mime from 'mime-types';
 
 const uploadPath = './public/uploads/';
 

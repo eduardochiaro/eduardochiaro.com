@@ -4,13 +4,17 @@ import fs from 'fs';
 import { join } from 'path';
 import { v4 as uuid } from 'uuid';
 import getFieldsFromForm from '@/utils/getFieldsFromForm';
-import moment from "moment";
-import mime from "mime-types";
+import moment from 'moment';
+import mime from 'mime-types';
 
 const uploadPath = './public/uploads/';
 
 export async function POST(request: NextRequest, response: NextResponse) {
-  const { company, name, description, startDate, endDate, tags, image } = await getFieldsFromForm(request, ['company', 'name', 'description', 'startDate', 'endDate', 'tags'], ['image']);
+  const { company, name, description, startDate, endDate, tags, image } = await getFieldsFromForm(
+    request,
+    ['company', 'name', 'description', 'startDate', 'endDate', 'tags'],
+    ['image'],
+  );
 
   //const file = formData.get("image") as Blob | null;
   if (!image) {

@@ -129,9 +129,19 @@ export default async function AdminResumeIndex() {
     },
   ];
 
-
   if (session) {
-    return <AdminPage title={title} single={single} columns={columns} data={newData} format={format} inputList={inputList} sortList={sortType} apiURL="/api/portfolio/resume" />;
+    return (
+      <AdminPage
+        title={title}
+        single={single}
+        columns={columns}
+        data={newData}
+        format={format}
+        inputList={inputList}
+        sortList={sortType}
+        apiURL="/api/portfolio/resume"
+      />
+    );
   }
   return null;
 }

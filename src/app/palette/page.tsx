@@ -1,5 +1,5 @@
 import FrontendLayout from '@/components/layouts/Frontend';
-import { Metadata } from "next";
+import { Metadata } from 'next';
 
 export default async function Resume() {
   const palette = [

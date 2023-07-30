@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from 'next/server';
 import { getCachedFlickr, getCacheInstagram } from '@/utils/getCachedFeeds';
 import moment from 'moment';
 

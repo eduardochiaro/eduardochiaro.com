@@ -5,8 +5,8 @@ import { join } from 'path';
 import { v4 as uuid } from 'uuid';
 import { rmFile } from 'rm-file';
 import getFieldsFromForm from '@/utils/getFieldsFromForm';
-import moment from "moment";
-import mime from "mime-types";
+import moment from 'moment';
+import mime from 'mime-types';
 
 const uploadPath = './public/uploads/';
 
@@ -33,7 +33,11 @@ export async function PUT(
     );
   }
 
-  const { company, name, description, startDate, endDate, tags, image } = await getFieldsFromForm(request, ['company', 'name', 'description', 'startDate', 'endDate', 'tags'], ['image']);
+  const { company, name, description, startDate, endDate, tags, image } = await getFieldsFromForm(
+    request,
+    ['company', 'name', 'description', 'startDate', 'endDate', 'tags'],
+    ['image'],
+  );
 
   const parsedTags = JSON.parse(tags);
   const newTags = parsedTags
@@ -52,7 +56,8 @@ export async function PUT(
       return { id: x.id };
     });
 
-  const data: { [key: string]: any } = { name,
+  const data: { [key: string]: any } = {
+    name,
     company,
     description,
     startDate: startDate ? moment(startDate).toISOString() : null,
@@ -63,7 +68,7 @@ export async function PUT(
       connect: appendTags,
       disconnect: deletedTags,
     },
-    image: resumeReturn?.image
+    image: resumeReturn?.image,
   };
 
   if (typeof image == 'object') {

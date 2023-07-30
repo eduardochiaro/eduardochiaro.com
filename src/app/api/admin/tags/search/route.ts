@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function GET(request: NextRequest, response: NextResponse) {
   const { searchParams } = new URL(request.url);
   const text = searchParams.get('text') as string;
-  
+
   const resumeTags = await prisma.resumeTag.findMany({
     where: {
       name: {

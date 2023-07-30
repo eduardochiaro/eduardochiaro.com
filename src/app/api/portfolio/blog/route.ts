@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from 'next/server';
 import { parse } from 'rss-to-json';
 import fsCache from '@/utils/fsCache';
 import stripTags from '@/utils/stripTags';
