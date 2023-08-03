@@ -2,6 +2,8 @@ import ThemeProviders from '@/providers/ThemeProvider';
 import AuthProvider from '@/providers/AuthProvider';
 import '../styles/globals.scss';
 import { Titillium_Web, Roboto_Mono } from 'next/font/google';
+import GAProvider from "@/providers/GAProvider";
+import Script from "next/script";
 
 const header = Titillium_Web({
   weight: ['400', '600', '700'],
@@ -27,9 +29,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html suppressHydrationWarning lang="en" className={`${header.variable} ${mono.variable}`}>
       <body>
-        <ThemeProviders>
-          <AuthProvider>{children}</AuthProvider>
-        </ThemeProviders>
+        <GAProvider>
+          <ThemeProviders>
+            <AuthProvider>{children}</AuthProvider>
+          </ThemeProviders>
+        </GAProvider>
       </body>
     </html>
   );
