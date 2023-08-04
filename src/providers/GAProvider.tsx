@@ -20,7 +20,8 @@ export default function GAProvider({ children }: ContextProps) {
     <>
       {children}
       <Script id="ga-script" async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`} />
-      <Script id="ga-starter"
+      <Script
+        id="ga-starter"
         dangerouslySetInnerHTML={{
           __html: `
           window.dataLayer = window.dataLayer || [];
