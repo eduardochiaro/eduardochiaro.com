@@ -97,12 +97,12 @@ export default function ThemeIcon({ orientation, size = 'h-7' }: { orientation: 
       >
         <Menu.Items
           data-cy="change-mode-container"
-          className={classNames(orientationClass(orientation), 'transform absolute w-56 box-card divide-y divide-primary-200 dark:divide-primary-700')}
+          className={classNames(orientationClass(orientation), 'transform absolute w-40 box-card overflow-auto')}
           aria-orientation="vertical"
           aria-labelledby="menu-button"
         >
           {iconClass?.map((item, index) => (
-            <div className="py-1 font-semibold" key={index}>
+            <div className="font-semibold" key={index}>
               <Menu.Item>
                 {({ active }) => (
                   <div
