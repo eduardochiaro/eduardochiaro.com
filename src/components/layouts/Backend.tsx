@@ -69,7 +69,7 @@ export { menuList };
 const BackendLayout = ({ children, isPageOpen }: { children: ReactElement | ReactElement[]; isPageOpen: boolean }) => {
   return (
     <div className="w-full h-full antialiased bg-primary-100 dark:bg-primary-800">
-      <div className="flex flex-no-wrap">
+      <div className="md:flex flex-no-wrap">
         <AdminSidebar isPageOpen={isPageOpen} />
         {children}
       </div>
