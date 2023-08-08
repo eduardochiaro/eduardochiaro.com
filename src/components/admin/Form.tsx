@@ -200,8 +200,9 @@ const AdminForm = ({ children, apiURL, itemFormat, itemData, inputList, titleEle
           </button>
         </div>
       </div>
-      <h2 className="text-2xl md:absolute my-3 md:my-0 top-7 left-1/2 flex items-center gap-2">{item.id ? `Edit ${titleElement}` : `Add new ${titleElement}`}</h2>
-
+      <h2 className="text-2xl md:absolute my-3 md:my-0 top-7 left-1/2 flex items-center gap-2">
+        {item.id ? `Edit ${titleElement}` : `Add new ${titleElement}`}
+      </h2>
       <div className={'mt-8 mb-2 max-w-5xl mx-auto'}>
         <form ref={formRef} acceptCharset="UTF-8" method="POST" encType="multipart/form-data" onSubmit={(e: any) => onSubmitModal(e)}>
           {form.error && (
@@ -229,7 +230,7 @@ const AdminForm = ({ children, apiURL, itemFormat, itemData, inputList, titleEle
           )}
           <div className="grid grid-cols-6 gap-6">
             {inputList.map((input: any, index: number) => (
-              <div key={index} className={`col-span-6 md:${input.classNames}`}>
+              <div key={index} className={`max-md:col-span-6 ${input.classNames}`}>
                 <InputType
                   input={input}
                   form={form}

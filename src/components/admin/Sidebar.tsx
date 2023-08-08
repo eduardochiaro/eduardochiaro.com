@@ -11,7 +11,7 @@ import Image from 'next/image';
 import classNames from '@/utils/classNames';
 import Logo from '../icons/Logo';
 import { menuList } from '@/components/layouts/Backend';
-import Link from "next/link";
+import Link from 'next/link';
 
 const SidebarDivider = ({ title, openMenu }: { title: string; openMenu: boolean }) => (
   <li>
@@ -100,7 +100,9 @@ const AdminSidebar = ({ isPageOpen }: { isPageOpen: boolean }) => {
             ))}
           </ul>
         </div>
-        <div className={`px-3 md:p-6 md:bg-primary-300 dark:md:bg-primary-500 flex items-center justify-between gap-6 ${openMenu ? 'flex-row' : 'md:flex-col'}`}>
+        <div
+          className={`px-3 md:p-6 md:bg-primary-300 dark:md:bg-primary-500 flex items-center justify-between gap-6 ${openMenu ? 'flex-row' : 'md:flex-col'}`}
+        >
           <Menu as="div" className="relative flex item-center">
             <Menu.Button id="admin-menu-short" className="h-7 w-7 rounded-full ring-2 ring-primary-300 dark:ring-primary-500">
               {session && session.user && (

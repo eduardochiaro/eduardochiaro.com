@@ -27,15 +27,15 @@ export default async function AdminIndex() {
               >
                 {item.title}
               </h3>
-              <div className="mx-auto mt-4 flex flex-wrap gap-12">
+              <div className="mx-auto mt-4 flex flex-wrap gap-6 md:gap-12">
                 {item.links.map((link, key) => (
                   <Link
                     key={key}
                     href={link.href}
-                    className={`w-72 h-52 flex flex-col group drop-shadow rounded-lg transition duration-300 hover:scale-110 ${link.classColor} text-primary-50 p-4`}
+                    className={`w-full md:w-72 md:h-52 flex md:flex-col items-start gap-2 group drop-shadow rounded-lg transition duration-300 hover:scale-110 ${link.classColor} text-primary-50 p-4`}
                   >
-                    <link.icon className={'w-12 h-12'} />
-                    <div className="flex-1 "></div>
+                    <link.icon className={'w-10 md:w-12'} />
+                    <div className="md:flex-1 "></div>
                     <div className="">
                       <span className={'text-lg'}>{link.title}</span>
                       <p className="opacity-50 text-sm ">{link.description}</p>
