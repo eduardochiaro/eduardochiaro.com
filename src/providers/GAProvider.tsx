@@ -8,7 +8,7 @@ export interface ContextProps {
   children: React.ReactNode;
 }
 
-export default function GAProvider({ children }: ContextProps) {
+export default function Provider({ children }: ContextProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 

@@ -20,7 +20,7 @@ export default function Skills({ data }: { data: Skill[] }) {
                   <span className="w-full dashed-border-t shrink"></span>
                   <SVG
                     title={skill.name}
-                    className={`flex-none w-8 ${styles[`color-${skill.type}`]}  dark:fill-primary-200`}
+                    className={`flex-none w-8 fill-primary-700 dark:fill-primary-200`}
                     src={`/images/svg-icons/${skill.logo}`}
                   />
                   <div className="flex-none w-6/12 md:w-9/12">

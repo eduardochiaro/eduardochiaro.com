@@ -1,8 +1,8 @@
 import ThemeProvider from '@/providers/ThemeProvider';
 import AuthProvider from '@/providers/AuthProvider';
 import GAProvider from '@/providers/GAProvider';
-import '../styles/globals.scss';
 import { Titillium_Web, Roboto_Mono } from 'next/font/google';
+import '../styles/globals.scss';
 
 const header = Titillium_Web({
   weight: ['400', '600', '700'],

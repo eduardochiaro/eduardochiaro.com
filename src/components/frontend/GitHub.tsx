@@ -5,8 +5,8 @@ import useSWR from 'swr';
 import { HashtagIcon } from '@heroicons/react/24/solid';
 import { ClockIcon } from '@heroicons/react/24/outline';
 import moment from 'moment';
-import Image from 'next/image';
 import { fetcher } from '@/utils/staleSWR';
+import ImageWithFallback from "@/components/ImageWithFallback";
 
 function randomIntFromInterval(min: number, max: number) {
   // min and max included
@@ -21,7 +21,7 @@ export default function GitHub() {
   const LoadImage = ({ src, alt }: { src: string; alt: string }) => {
     const pick = randomIntFromInterval(1, 4);
     const replaceSrc = src.includes('githubusercontent.com') ? src : `/images/random/${pick}.jpg`;
-    return <Image src={replaceSrc} fill sizes="33vw" className="z-10 object-cover grayscale hover:grayscale-0" alt={alt} />;
+    return <ImageWithFallback fallbackSrc={`/images/random/${pick}.jpg`} src={replaceSrc} fill sizes="33vw" className="z-10 object-cover grayscale hover:grayscale-0" alt={alt} />;
   };
 
   const items = cutReposene.map((repo: any, index: number) => (

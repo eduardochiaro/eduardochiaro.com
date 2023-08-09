@@ -1,6 +1,6 @@
 'use client';
 
-import { ThemeProvider } from 'next-themes';
+import CacheProvider from 'react-inlinesvg/provider';
 
 export interface AuthContextProps {
   children: React.ReactNode;
@@ -8,8 +8,8 @@ export interface AuthContextProps {
 
 export default function Provider({ children }: AuthContextProps) {
   return (
-    <ThemeProvider enableSystem={true} attribute="class">
+    <CacheProvider>
       {children}
-    </ThemeProvider>
+    </CacheProvider>
   );
 }
