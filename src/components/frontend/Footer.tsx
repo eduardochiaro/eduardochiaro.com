@@ -55,14 +55,6 @@ export default function Footer() {
             </Link>
 
             <Link
-              href="https://threads.net/eduardochiaro"
-              className="inline-flex justify-center items-center w-8 h-8 text-center rounded-full focus:outline-none focus:ring-2 focus:ring-secondary-600 focus:ring-offset-2 focus:ring-offset-primary-50 dark:focus:ring-offset-primary-900"
-              title="Threads"
-            >
-              <ThreadsIcon className={'h-4 transition-colors ease-out duration-300 hover:text-secondary-600'} />
-            </Link>
-
-            <Link
               href="https://github.com/eduardochiaro"
               className="inline-flex justify-center items-center w-8 h-8 text-center rounded-full focus:outline-none focus:ring-2 focus:ring-secondary-600 focus:ring-offset-2 focus:ring-offset-primary-50 dark:focus:ring-offset-primary-900"
               title="GitHub"
