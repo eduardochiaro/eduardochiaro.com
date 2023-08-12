@@ -42,10 +42,10 @@ export default function LatestPosts() {
                   .fill('')
                   .map((_, idx) => 0 + idx),
               ].map((x) => (
-              <div key={`article-${x}`} className="flex flex-col  gap-4 mb-6">
-                <div className="ml-6 flex-grow h-6 bg-primary-300 dark:bg-primary-600 rounded animate-pulse "></div>
-                <div className="ml-6 flex-grow h-20 bg-primary-300 dark:bg-primary-600 rounded animate-pulse "></div>
-              </div>
+                <div key={`article-${x}`} className="flex flex-col  gap-4 mb-6">
+                  <div className="ml-6 flex-grow h-6 bg-primary-300 dark:bg-primary-600 rounded animate-pulse "></div>
+                  <div className="ml-6 flex-grow h-20 bg-primary-300 dark:bg-primary-600 rounded animate-pulse "></div>
+                </div>
               ))}
         </div>
       </div>

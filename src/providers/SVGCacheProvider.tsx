@@ -7,9 +7,5 @@ export interface AuthContextProps {
 }
 
 export default function Provider({ children }: AuthContextProps) {
-  return (
-    <CacheProvider>
-      {children}
-    </CacheProvider>
-  );
+  return <CacheProvider>{children}</CacheProvider>;
 }
