@@ -7,7 +7,7 @@ import useStaleSWR from '@/utils/staleSWR';
 
 export default function LatestPosts() {
   const { data } = useStaleSWR('/api/portfolio/blog');
-  const cutReposene = data ? data.results.slice(0, 3) : [];
+  const cutResponse = data ? data.results.slice(0, 3) : [];
   return (
     <section id="latest-posts-component" className={'px-4 lg:px-0 mt-10'}>
       <div className="max-w-5xl mx-auto">
@@ -15,8 +15,8 @@ export default function LatestPosts() {
           What I <span className="overlay-color">wrote</span>...
         </h3>
         <div id="articles-list" className="mt-6 -ml-6">
-          {cutReposene
-            ? cutReposene.map((article: any, index: number) => (
+          {cutResponse && cutResponse.length > 0
+            ? cutResponse.map((article: any, index: number) => (
                 <div key={`article-${index}`} className="mb-6 relative">
                   <Link
                     href={article.permalink}
@@ -41,7 +41,12 @@ export default function LatestPosts() {
                 ...Array(3)
                   .fill('')
                   .map((_, idx) => 0 + idx),
-              ].map((x) => <div key={`article-${x}`} className="flex items-center mt-1"></div>)}
+              ].map((x) => (
+              <div key={`article-${x}`} className="flex flex-col  gap-4 mb-6">
+                <div className="ml-6 flex-grow h-6 bg-primary-300 dark:bg-primary-600 rounded animate-pulse "></div>
+                <div className="ml-6 flex-grow h-20 bg-primary-300 dark:bg-primary-600 rounded animate-pulse "></div>
+              </div>
+              ))}
         </div>
       </div>
     </section>

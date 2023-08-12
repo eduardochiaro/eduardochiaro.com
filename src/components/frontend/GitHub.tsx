@@ -16,7 +16,7 @@ function randomIntFromInterval(min: number, max: number) {
 export default function GitHub() {
   const { data } = useSWR('/api/portfolio/github', fetcher);
 
-  const cutReposene = data ? data.results.filter((x: any) => !x.isArchived).slice(0, 6) : [];
+  const cutResponse = data ? data.results.filter((x: any) => !x.isArchived).slice(0, 6) : [];
 
   const LoadImage = ({ src, alt }: { src: string; alt: string }) => {
     const pick = randomIntFromInterval(1, 4);
@@ -24,7 +24,7 @@ export default function GitHub() {
     return <ImageWithFallback fallbackSrc={`/images/random/${pick}.jpg`} src={replaceSrc} fill sizes="33vw" className="z-10 object-cover grayscale hover:grayscale-0" alt={alt} />;
   };
 
-  const items = cutReposene.map((repo: any, index: number) => (
+  const items = cutResponse.length > 0 ? cutResponse.map((repo: any, index: number) => (
     <div className="overflow-hidden box-card max-h-min" key={`repo-${index}`}>
       <a href={repo.url} className="flex flew-wrap w-full text-decoration-none overflow-hidden h-full">
         <div className="relative transition-width ease-in-out duration-300 flex-none peer w-1/3 md:hidden lg:block lg:w-1/3 hover:w-2/3">
@@ -61,6 +61,14 @@ export default function GitHub() {
         </div>
       </a>
     </div>
+  )) : [
+    ...Array(6)
+      .fill('')
+      .map((_, idx) => 0 + idx),
+  ].map((x) => ( 
+    <div className="overflow-hidden box-card max-h-min h-40 animate-pulse" key={`repo-${x}`}>
+
+    </div>
   ));
 
   return (
@@ -70,7 +78,7 @@ export default function GitHub() {
           What I&apos;ve <span className="overlay-color">coded</span> recently...
         </h3>
         <div id="github-list" className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-2 gap-4 xl:gap-8 mt-5 pb-10">
-          {items}
+          { items }
         </div>
       </div>
     </section>
