@@ -122,12 +122,12 @@ export default function List({
   return (
     <div className="overflow-auto h-screen py-8 bg-primary-100 dark:bg-primary-800">
       <div className="text-3xl flex items-center gap-6 px-6">
-        <h1 className="font-semibold">{title}</h1>
+        <h1 className="font-semibold grow md:flex-grow-0">{title}</h1>
         <button className="button flex items-center gap-1" onClick={() => openAction(format)} title={`New ${single}`}>
           <PlusIcon className="h-5" /> add new
         </button>
       </div>
-      <div className="mt-8 mb-2 px-6 flex items-center gap-4">
+      <div className="mt-8 mb-2 px-6 flex flex-col md:flex-row items-start md:items-center gap-4">
         <div className="flex relative">
           <label
             htmlFor="website-admin-search"

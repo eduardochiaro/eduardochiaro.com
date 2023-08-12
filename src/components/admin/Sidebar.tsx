@@ -11,6 +11,7 @@ import Image from 'next/image';
 import classNames from '@/utils/classNames';
 import Logo from '../icons/Logo';
 import { menuList } from '@/components/layouts/Backend';
+import Link from 'next/link';
 
 const SidebarDivider = ({ title, openMenu }: { title: string; openMenu: boolean }) => (
   <li>
@@ -29,19 +30,19 @@ const AdminSidebar = ({ isPageOpen }: { isPageOpen: boolean }) => {
     setOpenMenu(!isPageOpen);
   }, [isPageOpen]);
   return (
-    <div className={`relative sm:relative md:h-full ${openMenu ? styles['sidebar-open'] : styles['sidebar-closed']}`}>
-      <div className="flex flex-col justify-between min-h-screen bg-primary-200 dark:bg-primary-600 fixed">
-        <div className="grow p-3 relative">
-          <div className={`flex items-center gap-4 h-14 my-3 ${styles['sidebar-logo']}`}>
-            <div className={`bg-secondary-600 dark:bg-secondary-700 p-2 rounded-full ${openMenu ? '' : 'mx-auto'}`}>
-              <Logo title="Eduardo Chiaro" className={'h-6 text-primary-50'} />
+    <div className={`relative sm:relative z-40 md:h-full ${openMenu ? styles['sidebar-open'] : styles['sidebar-closed']}`}>
+      <div className="flex md:flex-col justify-between md:min-h-screen bg-primary-200 dark:bg-primary-600 md:fixed">
+        <div className="grow px-3 md:p-3 relative">
+          <Link href="/admin" className={`flex items-center gap-4 h-14 md:my-3 ${styles['sidebar-logo']}`}>
+            <div className={`${openMenu ? '' : 'md:mx-auto'}`}>
+              <Logo title="Eduardo Chiaro" className={'h-6 logo'} />
             </div>
-            <span className={`text-3xl font-header font-semibold ${!openMenu ? 'hidden' : 'block'}`}>Admin</span>
-          </div>
-          <button onClick={() => setOpenMenu(!openMenu)} className="absolute top-1 right-1">
+            <span className={`text-3xl font-header font-semibold ${!openMenu ? 'md:hidden' : 'block'}`}>Admin</span>
+          </Link>
+          <button onClick={() => setOpenMenu(!openMenu)} className="absolute top-1 right-1 hidden md:block">
             <Bars3BottomRightIcon className="w-5" />
           </button>
-          <ul className="grow flex flex-col space-y-1 font-semibold tracking-wider">
+          <ul className="grow hidden md:flex flex-col space-y-1 font-semibold tracking-wider ">
             <li>
               <NavLink
                 type="sub"
@@ -99,7 +100,9 @@ const AdminSidebar = ({ isPageOpen }: { isPageOpen: boolean }) => {
             ))}
           </ul>
         </div>
-        <div className={`p-6 bg-primary-300 dark:bg-primary-500 flex items-center justify-between gap-6 ${openMenu ? 'flex-row' : 'flex-col'}`}>
+        <div
+          className={`px-3 md:p-6 md:bg-primary-300 dark:md:bg-primary-500 flex items-center justify-between gap-6 ${openMenu ? 'flex-row' : 'md:flex-col'}`}
+        >
           <Menu as="div" className="relative flex item-center">
             <Menu.Button id="admin-menu-short" className="h-7 w-7 rounded-full ring-2 ring-primary-300 dark:ring-primary-500">
               {session && session.user && (
@@ -124,7 +127,7 @@ const AdminSidebar = ({ isPageOpen }: { isPageOpen: boolean }) => {
             >
               <Menu.Items
                 data-cy="user-settings-container"
-                className="transform absolute left-0 bottom-0 mb-10 z-10 w-56 rounded-md shadow-lg ring-1 ring-primary-900 ring-opacity-10 focus:outline-none bg-primary-100 dark:bg-primary-700 divide-y divide-primary-200 dark:divide-primary-500"
+                className="transform absolute md:left-0 md:bottom-0 md:mb-10 right-0 mt-10 z-10 w-36 rounded-md shadow-lg ring-1 ring-primary-900 ring-opacity-10 focus:outline-none bg-primary-100 dark:bg-primary-700 divide-y divide-primary-200 dark:divide-primary-500"
                 aria-orientation="vertical"
                 aria-labelledby="user-button"
               >

@@ -10,7 +10,7 @@ import classNames from '@/utils/classNames';
 const orientationClass = (orientation = 'bottom') => {
   switch (orientation) {
     case 'top':
-      return 'left-0 bottom-0 mb-10';
+      return 'md:left-0 md:bottom-0 md:mb-10 right-0 mt-10';
     case 'bottom':
     default:
       return 'right-0 mt-10';

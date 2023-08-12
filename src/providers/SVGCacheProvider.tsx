@@ -1,11 +1,11 @@
 'use client';
 
-import { SessionProvider } from 'next-auth/react';
+import CacheProvider from 'react-inlinesvg/provider';
 
 export interface AuthContextProps {
   children: React.ReactNode;
 }
 
 export default function Provider({ children }: AuthContextProps) {
-  return <SessionProvider>{children}</SessionProvider>;
+  return <CacheProvider>{children}</CacheProvider>;
 }

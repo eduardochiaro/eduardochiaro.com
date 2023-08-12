@@ -6,7 +6,7 @@ export interface AuthContextProps {
   children: React.ReactNode;
 }
 
-export default function ThemeProviders({ children }: AuthContextProps) {
+export default function Provider({ children }: AuthContextProps) {
   return (
     <ThemeProvider enableSystem={true} attribute="class">
       {children}
