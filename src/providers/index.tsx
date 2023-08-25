@@ -6,7 +6,7 @@ import AuthProvider from '@/providers/AuthProvider';
 import { AppProgressBar as ProgressBar } from 'next-nprogress-bar';
 import tailwindConfig from '../../tailwind.config';
 
-export default function Providers ({ children } : { children: React.ReactNode })  {
+export default function Providers({ children }: { children: React.ReactNode }) {
   return (
     <GAProvider>
       <ThemeProvider>
