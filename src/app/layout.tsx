@@ -1,6 +1,4 @@
-import ThemeProvider from '@/providers/ThemeProvider';
-import AuthProvider from '@/providers/AuthProvider';
-import GAProvider from '@/providers/GAProvider';
+import Providers from '@/providers';
 import { Titillium_Web, Roboto_Mono } from 'next/font/google';
 import '../styles/globals.scss';
 
@@ -28,11 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html suppressHydrationWarning lang="en" className={`${header.variable} ${mono.variable}`}>
       <body>
-        <GAProvider>
-          <ThemeProvider>
-            <AuthProvider>{children}</AuthProvider>
-          </ThemeProvider>
-        </GAProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
