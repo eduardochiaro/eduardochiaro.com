@@ -4,11 +4,7 @@ import * as ga from '../utils/ga';
 import { usePathname, useSearchParams } from 'next/navigation';
 import Script from 'next/script';
 
-export interface ContextProps {
-  children: React.ReactNode;
-}
-
-export default function Provider({ children }: ContextProps) {
+export default function Provider() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -19,7 +15,6 @@ export default function Provider({ children }: ContextProps) {
   }, [pathname, searchParams]);
   return (
     <>
-      {children}
       {pathname.startsWith('/admin') || !process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ? null : (
         <>
           <Script id="ga-script" async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`} />

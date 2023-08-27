@@ -1,8 +1,5 @@
-'use client';
-
 import moment from 'moment';
 import * as React from 'react';
-import { CodeBracketIcon } from '@heroicons/react/24/solid';
 import Coffee from '../icons/Coffee';
 
 // pull bio from contentful api endpoint

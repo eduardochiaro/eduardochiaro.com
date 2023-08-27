@@ -1,7 +1,7 @@
 import FrontendLayout from '@/components/layouts/Frontend';
 import { Metadata } from 'next';
 
-export default async function Resume() {
+export default async function Palette() {
   const palette = [
     {
       name: 'Primary',

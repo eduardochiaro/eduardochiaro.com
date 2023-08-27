@@ -7,7 +7,6 @@ import Link from 'next/link';
 import Logo from '@/components/icons/Logo';
 import LinkedInIcon from '@/components/icons/Linkedin';
 import GitHubIcon from '@/components/icons/Github';
-import ThreadsIcon from '@/components/icons/Threads';
 import Copyright from '@/components/icons/Copyright';
 
 function LoginButton(props: { isLoggedIn: boolean }) {
