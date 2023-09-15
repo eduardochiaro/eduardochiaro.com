@@ -4,7 +4,7 @@ import Link from 'next/link';
 import styles from '@/styles/Stream.module.scss';
 import StreamComponent from '@/components/projects/Stream';
 import { Metadata } from 'next';
-import prisma from '@/utils/prisma';
+import getMenuLinks from '@/utils/getMenuLinks';
 
 export default async function Stream() {
   const menuLinks = await getMenuLinks();
@@ -32,14 +32,6 @@ export default async function Stream() {
       </div>
     </div>
   );
-}
-
-async function getMenuLinks() {
-  return prisma.menuLink.findMany({
-    orderBy: {
-      order: 'asc',
-    },
-  });
 }
 
 export const metadata: Metadata = {

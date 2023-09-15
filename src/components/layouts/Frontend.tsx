@@ -2,7 +2,7 @@ import * as React from 'react';
 import Header from '@/components/frontend/Header';
 import Footer from '@/components/frontend/Footer';
 import classNames from '@/utils/classNames';
-import prisma from '@/utils/prisma';
+import getMenuLinks from '@/utils/getMenuLinks';
 
 export default async function FrontendLayout({ children, className }: { children: React.ReactNode; className?: string }) {
   const menuLinks = await getMenuLinks();
@@ -14,12 +14,4 @@ export default async function FrontendLayout({ children, className }: { children
       <Footer />
     </div>
   );
-}
-
-async function getMenuLinks() {
-  return prisma.menuLink.findMany({
-    orderBy: {
-      order: 'asc',
-    },
-  });
 }

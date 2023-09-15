@@ -113,7 +113,7 @@ export default function Header({ data }: { data: MenuLink[] }) {
               <RssIcon className={'h-4 text-accent-600 dark:text-accent-500'} aria-hidden="true" />
             </Link>
           </div>
-          <ThemeIcon orientation="right" size="h-5" />
+          <ThemeIcon orientation="right" size="h-6" />
         </div>
       </nav>
     </header>
