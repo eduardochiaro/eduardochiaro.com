@@ -136,14 +136,14 @@ const InputType = ({ input, itemData, form, imagePreview, inputFileRef, handleCh
     case 'imagePreview':
       if (imagePreview && imagePreview.imagePreviewUrl) {
         return (
-          <div className="mt-4 w-full h-20 relative box-card ">
+          <div className="box-card relative mt-4 h-20 w-full ">
             <Image
               src={imagePreview.imagePreviewUrl}
               fill
               sizes="33vw"
               alt={input.name}
               title={input.name}
-              className="bg-transparent object-contain fill-primary-700 dark:fill-primary-200"
+              className="bg-transparent fill-primary-700 object-contain dark:fill-primary-200"
               priority={false}
             />
           </div>

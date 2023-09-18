@@ -79,7 +79,9 @@ export default async function AdminBookmarksIndex() {
   ];
 
   if (session) {
-    return <AdminViewer title={title} single={single} columns={columns} data={newData} format={format} inputList={inputList} apiURL="/api/portfolio/bookmarks" />;
+    return (
+      <AdminViewer title={title} single={single} columns={columns} data={newData} format={format} inputList={inputList} apiURL="/api/portfolio/bookmarks" />
+    );
   }
   return null;
 }

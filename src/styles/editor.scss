@@ -90,3 +90,7 @@
     @apply h-10 w-10;
   }
 }
+
+.cdx-notify {
+	@apply bg-primary-100 dark:bg-primary-800 #{!important};
+}

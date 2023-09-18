@@ -11,10 +11,10 @@ export default async function Resume() {
   const menuLinks = await getMenuLinks();
 
   return (
-    <div className="flex flex-col min-h-screen justify-between">
+    <div className="flex min-h-screen flex-col justify-between">
       <Header data={menuLinks} />
-      <div className={`${styles.resume} bg-fixed grow flex flex-col`}>
-        <div className={'mb-auto pb-10 grow'}>
+      <div className={`${styles.resume} flex grow flex-col bg-fixed`}>
+        <div className={'mb-auto grow pb-10'}>
           <ResumeComponent data={resume} />
         </div>
         <Footer />

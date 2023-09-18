@@ -41,8 +41,8 @@ export const logo = () => {
 
 export const fetch = () => {
   return (
-    <div className="ml-4 my-4">
-      <div className="border-b border-dashed  w-1/3 mb-2">user@eduardochiaro.com</div>
+    <div className="my-4 ml-4">
+      <div className="mb-2 w-1/3  border-b border-dashed">user@eduardochiaro.com</div>
       <div className="flex w-1/3">
         <span className="grow text-emerald-500">OS</span>
         <span className="mx-2 text-red-500">-&gt;</span>
@@ -66,13 +66,13 @@ export const fetch = () => {
       <div className="mt-4">
         color scheme:
         <div className="flex gap-1">
-          <span className="flex-none w-6 h-6 bg-secondary-500 border border-secondary-500"></span>
-          <span className="flex-none w-6 h-6 bg-accent-500 border border-accent-500"></span>
-          <span className="flex-none w-6 h-6 bg-red-500 border border-red-500"></span>
-          <span className="flex-none w-6 h-6 bg-emerald-500 border border-emerald-500"></span>
-          <span className="flex-none w-6 h-6 bg-blue-500 border border-blue-500"></span>
-          <span className="flex-none w-6 h-6 bg-primary-900 border border-primary-700"></span>
-          <span className="flex-none w-6 h-6 bg-primary-100 border border-primary-300"></span>
+          <span className="h-6 w-6 flex-none border border-secondary-500 bg-secondary-500"></span>
+          <span className="h-6 w-6 flex-none border border-accent-500 bg-accent-500"></span>
+          <span className="h-6 w-6 flex-none border border-red-500 bg-red-500"></span>
+          <span className="h-6 w-6 flex-none border border-emerald-500 bg-emerald-500"></span>
+          <span className="h-6 w-6 flex-none border border-blue-500 bg-blue-500"></span>
+          <span className="h-6 w-6 flex-none border border-primary-700 bg-primary-900"></span>
+          <span className="h-6 w-6 flex-none border border-primary-300 bg-primary-100"></span>
         </div>
       </div>
     </div>

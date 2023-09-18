@@ -15,8 +15,8 @@ export default async function AdminIndex() {
   if (session) {
     return (
       <BackendLayout isPageOpen={false}>
-        <div className="h-full py-8 px-6 grow min-h-screen">
-          <h1 className="text-3xl font-semibold flex items-center gap-2 pb-4">
+        <div className="h-full min-h-screen grow px-6 py-8">
+          <h1 className="flex items-center gap-2 pb-4 text-3xl font-semibold">
             Welcome back{session.user ? ', ' + getFirstName(session.user.name as string) : ''}
           </h1>
           {menuList.map((item, i) => (
@@ -32,13 +32,13 @@ export default async function AdminIndex() {
                   <Link
                     key={key}
                     href={link.href}
-                    className={`w-full md:w-72 md:h-52 flex md:flex-col items-start gap-2 group drop-shadow rounded-lg transition duration-300 hover:scale-110 ${link.classColor} text-primary-50 p-4`}
+                    className={`group flex w-full items-start gap-2 rounded-lg drop-shadow transition duration-300 hover:scale-110 md:h-52 md:w-72 md:flex-col ${link.classColor} p-4 text-primary-50`}
                   >
                     <link.icon className={'w-10 md:w-12'} />
                     <div className="md:flex-1 "></div>
                     <div className="">
                       <span className={'text-lg'}>{link.title}</span>
-                      <p className="opacity-50 text-sm ">{link.description}</p>
+                      <p className="text-sm opacity-50 ">{link.description}</p>
                     </div>
                   </Link>
                 ))}

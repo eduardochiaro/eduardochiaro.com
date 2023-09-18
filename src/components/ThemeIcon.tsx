@@ -31,17 +31,17 @@ export default function ThemeIcon({ orientation, size = 'h-7' }: { orientation: 
       {
         name: 'light',
         className: '',
-        icon: <SunIcon className="flex-none w-5 h-5 block mr-2" />,
+        icon: <SunIcon className="mr-2 block h-5 w-5 flex-none" />,
       },
       {
         name: 'dark',
         className: '',
-        icon: <MoonIcon className="flex-none w-5 h-5 block mr-2" />,
+        icon: <MoonIcon className="mr-2 block h-5 w-5 flex-none" />,
       },
       {
         name: 'system',
         className: '',
-        icon: <ComputerDesktopIcon className="flex-none w-5 h-5 block mr-2" />,
+        icon: <ComputerDesktopIcon className="mr-2 block h-5 w-5 flex-none" />,
       },
     ];
 
@@ -66,22 +66,22 @@ export default function ThemeIcon({ orientation, size = 'h-7' }: { orientation: 
   }, [theme, systemTheme]);
 
   return (
-    <Menu as="div" className="relative flex item-center">
+    <Menu as="div" className="item-center relative flex">
       <Menu.Button
         id="menu-change-mode"
         title="change theme"
         data-cy="change-mode"
-        className={`rounded-full transition-all duration-300 group ease-in-out ${inUseTheme === 'dark' ? 'hover:bg-primary-100' : ''}`}
+        className={`group rounded-full transition-all duration-300 ease-in-out ${inUseTheme === 'dark' ? 'hover:bg-primary-100' : ''}`}
       >
         {inUseTheme === 'dark' ? (
-          <MoonIcon className={`${size} text-primary-50 cursor-pointer rounded-full group-hover:fill-primary-800 transition-all duration-300`} />
+          <MoonIcon className={`${size} cursor-pointer rounded-full text-primary-50 transition-all duration-300 group-hover:fill-primary-800`} />
         ) : (
           <>
             <SunIcon
-              className={`${size} text-primary-800 cursor-pointer rounded-full group-hover:text-accent-500 transition-all duration-300 group-hover:hidden`}
+              className={`${size} cursor-pointer rounded-full text-primary-800 transition-all duration-300 group-hover:hidden group-hover:text-accent-500`}
             />
             <SunIconSolid
-              className={`${size} text-primary-800 cursor-pointer rounded-full group-hover:text-accent-500 transition-all duration-300 hidden group-hover:block`}
+              className={`${size} hidden cursor-pointer rounded-full text-primary-800 transition-all duration-300 group-hover:block group-hover:text-accent-500`}
             />
           </>
         )}
@@ -97,7 +97,7 @@ export default function ThemeIcon({ orientation, size = 'h-7' }: { orientation: 
       >
         <Menu.Items
           data-cy="change-mode-container"
-          className={classNames(orientationClass(orientation), 'transform absolute w-40 box-card overflow-auto')}
+          className={classNames(orientationClass(orientation), 'box-card absolute w-40 transform overflow-auto')}
           aria-orientation="vertical"
           aria-labelledby="menu-button"
         >
@@ -109,7 +109,7 @@ export default function ThemeIcon({ orientation, size = 'h-7' }: { orientation: 
                     data-cy={`change-mode-${item.name}`}
                     className={classNames(
                       item.className,
-                      'py-2 px-4 cursor-pointer flex items-center gap-2 capitalize',
+                      'flex cursor-pointer items-center gap-2 px-4 py-2 capitalize',
                       active ? 'bg-primary-200 dark:bg-primary-500' : '',
                     )}
                     role="menuitem"

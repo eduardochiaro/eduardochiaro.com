@@ -133,16 +133,16 @@ const AdminResumeProjects = ({ resumeId }: Props) => {
 
   return (
     <>
-      <div className="flex items-center gap-4 border-b border-primary-700 pb-4 mb-5 mt-10">
-        <h3 className="text-lg font-bold grow">Projects</h3>
+      <div className="mb-5 mt-10 flex items-center gap-4 border-b border-primary-700 pb-4">
+        <h3 className="grow text-lg font-bold">Projects</h3>
         <button className="button flex items-center gap-1" onClick={() => openModal({})} title={'New project'}>
           <PlusIcon className="h-5" /> add new
         </button>
       </div>
 
       {projects?.results.map((project: ResumeProject, key: any) => (
-        <div className="flex items-center gap-4 h-14 px-4 my-4 pb-4 border-b border-primary-500/50 border:bg-primary-50/50" key={key}>
-          <div className="w-16 h-14 relative">
+        <div className="border:bg-primary-50/50 my-4 flex h-14 items-center gap-4 border-b border-primary-500/50 px-4 pb-4" key={key}>
+          <div className="relative h-14 w-16">
             <Image alt={project.name} className={'bg-transparent object-cover'} fill src={`/uploads/${project.image}`} sizes="33vw" />
           </div>
           <span className="grow">{project.name}</span>
@@ -165,9 +165,9 @@ const AdminResumeProjects = ({ resumeId }: Props) => {
       >
         <>
           {form.error && (
-            <div className="bg-accent-100 border border-accent-400 text-accent-700 px-4 py-3 rounded relative mb-4" role="alert">
+            <div className="relative mb-4 rounded border border-accent-400 bg-accent-100 px-4 py-3 text-accent-700" role="alert">
               <strong className="font-bold">
-                <ExclamationTriangleIcon className="inline-flex align-middle h-6 mr-4" />
+                <ExclamationTriangleIcon className="mr-4 inline-flex h-6 align-middle" />
                 Invalid Form!{' '}
               </strong>
               <span className="block sm:inline">Some required fields are missing.</span>
@@ -182,14 +182,14 @@ const AdminResumeProjects = ({ resumeId }: Props) => {
             </div>
             <div className="col-span-2">
               {imagePreview && imagePreview.imagePreviewUrl && (
-                <div className="mt-4 w-32 h-20 m-auto relative box-card">
+                <div className="box-card relative m-auto mt-4 h-20 w-32">
                   <Image
                     src={imagePreview.imagePreviewUrl}
                     fill
                     sizes="33vw"
                     alt="preview"
                     title="preview"
-                    className="bg-transparent object-contain fill-primary-700 dark:fill-primary-200"
+                    className="bg-transparent fill-primary-700 object-contain dark:fill-primary-200"
                     priority={false}
                   />
                 </div>

@@ -21,7 +21,7 @@ const Range = forwardRef<Ref, FormInputProps>(
     const rows = [];
     for (let i = min; i <= max; i += 10) {
       rows.push(
-        <li className="flex justify-center relative" key={i}>
+        <li className="relative flex justify-center" key={i}>
           <span className="absolute">{i}</span>
         </li>,
       );
@@ -42,15 +42,15 @@ const Range = forwardRef<Ref, FormInputProps>(
           step={step}
           value={value}
           id={id ? id : `${name}-form`}
-          className={`${isInvalid && '!border-red-400'} mt-4 range-field ${className}`}
+          className={`${isInvalid && '!border-red-400'} range-field mt-4 ${className}`}
           {...props}
         />
         {isInvalid && (
-          <p className="text-xs flex items-center gap-1 mt-1 text-red-400">
+          <p className="mt-1 flex items-center gap-1 text-xs text-red-400">
             <ExclamationTriangleIcon className="h-4" /> this field is required
           </p>
         )}
-        <ul className="flex justify-between text-xs w-full px-2">{rows}</ul>
+        <ul className="flex w-full justify-between px-2 text-xs">{rows}</ul>
       </>
     );
   },

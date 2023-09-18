@@ -57,13 +57,13 @@ export default function RapidReading() {
   return (
     <>
       <div className="mt-8">
-        <div className="p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800" role="alert">
+        <div className="mb-4 rounded-lg bg-blue-100 p-4 text-sm text-blue-700 dark:bg-blue-200 dark:text-blue-800" role="alert">
           <span className="font-medium">Info:</span> This project works better on{' '}
           <span className="font-bold">
-            <SunIcon className="w-4 h-4 inline align-middle" /> Light mode
+            <SunIcon className="inline h-4 w-4 align-middle" /> Light mode
           </span>
         </div>
-        <div className="flex items-center justify-end gap-6 mb-4">
+        <div className="mb-4 flex items-center justify-end gap-6">
           <button className="button button-success" onClick={() => startSimulation()}>
             Try Demo!
           </button>
@@ -72,13 +72,13 @@ export default function RapidReading() {
           </button>
         </div>
         <textarea
-          className="mb-8 transition ease-in-out bg-primary-100 text-primary-900 focus:ring-secondary-500 focus:border-secondary-500 w-full shadow-sm sm:text-sm border-2 border-primary-300 rounded-md"
+          className="mb-8 w-full rounded-md border-2 border-primary-300 bg-primary-100 text-primary-900 shadow-sm transition ease-in-out focus:border-secondary-500 focus:ring-secondary-500 sm:text-sm"
           rows={10}
           onChange={(event) => setText(event.target.value)}
           value={text}
         />
       </div>
-      {output && <div className="antialiased bg-primary-200 text-primary-900 p-4 rounded-md" dangerouslySetInnerHTML={{ __html: output }}></div>}
+      {output && <div className="rounded-md bg-primary-200 p-4 text-primary-900 antialiased" dangerouslySetInnerHTML={{ __html: output }}></div>}
     </>
   );
 }

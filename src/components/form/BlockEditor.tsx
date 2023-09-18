@@ -2,15 +2,15 @@
 
 import edjsHTML from 'editorjs-html';
 import EditorJS from '@editorjs/editorjs';
-import dynamic from "next/dynamic";
-import { useEffect, useRef, useState } from "react";
+import dynamic from 'next/dynamic';
+import { useEffect, useRef, useState } from 'react';
 
-const DEFAULT_INITIAL_DATA =  {
-  "time": new Date().getTime(),
-  "blocks": []
-}
+const DEFAULT_INITIAL_DATA = {
+  time: new Date().getTime(),
+  blocks: [],
+};
 
-const EditorBlock = dynamic(() => import("@/components/admin/CustomEditor"), {
+const EditorBlock = dynamic(() => import('@/components/admin/CustomEditor'), {
   ssr: false,
 });
 
@@ -22,8 +22,9 @@ type Props = {
 
 export default function BlockEditor({ name = 'editor', initialData = DEFAULT_INITIAL_DATA, onChange }: Props) {
   //add a reference to editor
-  const ref = useRef<EditorJS>(null);
+  const ref = useRef<EditorJS | null>(null);
 
+  const [imageArray, setImageArray] = useState([]); // to keep track of uploaded image
   const [data, setData] = useState<any>(DEFAULT_INITIAL_DATA);
 
   useEffect(() => {
@@ -38,11 +39,11 @@ export default function BlockEditor({ name = 'editor', initialData = DEFAULT_INI
     if (onChange) {
       onChange(data, name);
     }
-  }
-  
+  };
+
   return (
     <>
-      <EditorBlock holder="editorjs" data={data} onChange={(data) => handleChanges(data)} innerRef={ref} />
+      <EditorBlock holder="editorjs" data={data} imageArray={imageArray} onChange={(data) => handleChanges(data)} innerRef={ref} />
     </>
   );
 }

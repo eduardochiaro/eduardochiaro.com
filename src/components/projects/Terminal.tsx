@@ -129,31 +129,31 @@ export default function Terminal() {
   );
 
   return (
-    <div className="flex flex-col h-[500px]">
-      <div className="flex-none h-6 rounded-t-lg bg-primary-300 flex items-center px-3 gap-2">
-        <div className="w-3 h-3 rounded-full bg-red-500 border border-red-600"></div>
-        <div className="w-3 h-3 rounded-full bg-secondary-500 border border-secondary-600"></div>
-        <div className="w-3 h-3 rounded-full bg-emerald-500 border border-emerald-600"></div>
+    <div className="flex h-[500px] flex-col">
+      <div className="flex h-6 flex-none items-center gap-2 rounded-t-lg bg-primary-300 px-3">
+        <div className="h-3 w-3 rounded-full border border-red-600 bg-red-500"></div>
+        <div className="h-3 w-3 rounded-full border border-secondary-600 bg-secondary-500"></div>
+        <div className="h-3 w-3 rounded-full border border-emerald-600 bg-emerald-500"></div>
       </div>
-      <div className="bg-primary-900 text-primary-100 rounded-b-lg grow font-mono p-4 overflow-y-auto justify-end shadow-lg" onClick={() => setInputFocus}>
+      <div className="grow justify-end overflow-y-auto rounded-b-lg bg-primary-900 p-4 font-mono text-primary-100 shadow-lg" onClick={() => setInputFocus}>
         {state.history.map((line: any, index: number) => (
           <div key={`history-${index}`} className="mb-1">
-            <div className="flex flex-row space-x-2 items-center">
+            <div className="flex flex-row items-center space-x-2">
               <div className="flex-shrink">
                 <Ps1Line time={line.time} />
               </div>
-              <div className="flex-1 text-ellipsis overflow-hidden">
+              <div className="flex-1 overflow-hidden text-ellipsis">
                 <p>{line.command}</p>
               </div>
             </div>
             {line.output && <div className="whitespace-pre-wrap break-words text-secondary-100">{line.output}</div>}
           </div>
         ))}
-        <div className="flex flex-row space-x-2 items-center">
+        <div className="flex flex-row items-center space-x-2">
           <div className="flex-shrink">
             <Ps1Line time={state.time} />
           </div>
-          <div className="flex-1 relative">
+          <div className="relative flex-1">
             <input
               autoFocus
               ref={inputRef}
@@ -163,14 +163,14 @@ export default function Terminal() {
               data-lpignore="true"
               data-form-type="other"
               className={classNames(
-                'border-0 p-0 bg-transparent border-transparent focus:border-transparent focus:ring-0 w-full',
+                'w-full border-0 border-transparent bg-transparent p-0 focus:border-transparent focus:ring-0',
                 !isACommand(state.command) && state.command != '' ? 'text-red-400' : 'text-emerald-500',
               )}
               onKeyDown={handleChange}
               onChange={(e) => dispatch({ command: e.target.value })}
               value={state.command}
             />
-            {state.isLoading && <SpinnerIcon className="h-5 animate-spin absolute top-0 right-0" />}
+            {state.isLoading && <SpinnerIcon className="absolute right-0 top-0 h-5 animate-spin" />}
           </div>
         </div>
         <AlwaysScrollToBottom />

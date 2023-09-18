@@ -66,7 +66,7 @@ export default function AdminViewer({ format, columns, title, single, data, inpu
           sortDefault={sortDefault}
         />
       </div>
-      <div className={`bg-primary-50 dark:bg-primary-900 grow py-8 px-6 min-h-screen ${isOpen ? '' : 'hidden'}`}>
+      <div className={`min-h-screen grow bg-primary-50 px-6 py-8 dark:bg-primary-900 ${isOpen ? '' : 'hidden'}`}>
         <AdminForm apiURL={apiURL} titleElement={single} itemFormat={format} itemData={app} inputList={inputList} closeElement={closeElement} />
       </div>
     </BackendLayout>

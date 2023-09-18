@@ -22,11 +22,11 @@ export default function Header({ data }: { data: MenuLink[] }) {
     : [];
 
   return (
-    <header className={`${styles.header} bg-primary-50/95 dark:bg-primary-800/95 border-b border-primary-200/50 dark:border-primary-700/50`}>
-      <nav className="max-w-5xl mx-auto relative">
-        <div className="px-4 md:px-0 py-3 flex items-center gap-6">
+    <header className={`${styles.header} border-b border-primary-200/50 bg-primary-50/95 dark:border-primary-700/50 dark:bg-primary-800/95`}>
+      <nav className="relative mx-auto max-w-5xl">
+        <div className="flex items-center gap-6 px-4 py-3 md:px-0">
           <Menu as="div" className="inline-block md:hidden">
-            <Menu.Button id="menu-short" title="open menu" className="flex items-center md:hidden hover:cursor-pointer">
+            <Menu.Button id="menu-short" title="open menu" className="flex items-center hover:cursor-pointer md:hidden">
               <Bars3BottomLeftIcon className={'w-7 transition hover:text-primary-900 dark:hover:text-primary-100'} />
             </Menu.Button>
             <Transition
@@ -38,7 +38,7 @@ export default function Header({ data }: { data: MenuLink[] }) {
               leaveFrom="opacity-100 translate-y-0"
               leaveTo="opacity-0 translate-y-1"
             >
-              <Menu.Items className="focus:outline-none absolute left-0 top-full w-full max-w-lg bg-primary-100 dark:bg-primary-800 shadow-2xl shadow-primary-600 dark:shadow-primary-900 divide-y divide-primary-400/50">
+              <Menu.Items className="absolute left-0 top-full w-full max-w-lg divide-y divide-primary-400/50 bg-primary-100 shadow-2xl shadow-primary-600 focus:outline-none dark:bg-primary-800 dark:shadow-primary-900">
                 {menuData
                   .filter((x: any) => x.active)
                   .map((item: any, i: number) => {
@@ -63,7 +63,7 @@ export default function Header({ data }: { data: MenuLink[] }) {
                   })}
                 <div className="px-1 py-1 font-semibold text-secondary-700 dark:text-secondary-600">
                   <Menu.Item>
-                    <Link href="https://blog.eduardochiaro.com" className={`${styles.menuUrlMobile} text-primary-900 dark:text-primary-100 !gap-1`}>
+                    <Link href="https://blog.eduardochiaro.com" className={`${styles.menuUrlMobile} !gap-1 text-primary-900 dark:text-primary-100`}>
                       <span>
                         <span className="text-accent-600 dark:text-accent-500">.</span>dev
                       </span>
@@ -75,15 +75,15 @@ export default function Header({ data }: { data: MenuLink[] }) {
             </Transition>
           </Menu>
           <span className="grow text-center md:text-left">
-            <Link href="/" className="flex items-end gap-2 group md:-ml-10">
-              <FireIcon className=" hidden md:block h-8 group-hover:text-accent-600 dark:group-hover:text-accent-500 transition-all ease-out duration-300 opacity-0 group-hover:opacity-100 group-hover:animate-pulse" />
-              <span className={'text-3xl font-header font-normal'}>
-                eduardo<span className="font-semibold overlay-color">chiaro</span>
+            <Link href="/" className="group flex items-end gap-2 md:-ml-10">
+              <FireIcon className=" hidden h-8 opacity-0 transition-all duration-300 ease-out group-hover:animate-pulse group-hover:text-accent-600 group-hover:opacity-100 dark:group-hover:text-accent-500 md:block" />
+              <span className={'font-header text-3xl font-normal'}>
+                eduardo<span className="overlay-color font-semibold">chiaro</span>
               </span>
             </Link>
           </span>
-          <div className="hidden md:flex items-center">
-            <ul className="md:flex font-semibold tracking-wider mx-auto">
+          <div className="hidden items-center md:flex">
+            <ul className="mx-auto font-semibold tracking-wider md:flex">
               {menuData
                 .filter((x: any) => !x.onlyMobile && x.active)
                 .map((item: any, i: number) => {
@@ -102,10 +102,10 @@ export default function Header({ data }: { data: MenuLink[] }) {
                 })}
             </ul>
           </div>
-          <div className="hidden md:block tracking-wider pl-6 border-l border-primary-200 dark:border-primary-700">
+          <div className="hidden border-l border-primary-200 pl-6 tracking-wider dark:border-primary-700 md:block">
             <Link
               href="https://blog.eduardochiaro.com"
-              className="md:pr-0 pr-6 whitespace-nowrap text-sm font-medium transition hover:underline flex items-center gap-1"
+              className="flex items-center gap-1 whitespace-nowrap pr-6 text-sm font-medium transition hover:underline md:pr-0"
             >
               <span>
                 <span className="text-accent-600 dark:text-accent-500">.</span>dev

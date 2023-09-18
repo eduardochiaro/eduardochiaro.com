@@ -9,10 +9,10 @@ export const metadata: Metadata = {
   title: 'Admin > Pages | Eduardo Chiaro',
 };
 
-const DEFAULT_INITIAL_DATA =  {
-  "time": new Date().getTime(),
-  "blocks": []
-}
+const DEFAULT_INITIAL_DATA = {
+  time: new Date().getTime(),
+  blocks: [],
+};
 
 export default async function AdminPagesIndex() {
   const session = await getServerSession(authOptions);
@@ -62,7 +62,7 @@ export default async function AdminPagesIndex() {
       placeholder: '',
       value: 'slug',
       required: true,
-      subText: 'https://eduardochiaro.com/page/{slug}'
+      subText: 'https://eduardochiaro.com/page/{slug}',
     },
     {
       classNames: 'col-span-6',
@@ -79,12 +79,12 @@ export default async function AdminPagesIndex() {
       name: 'blocks_tmp',
       type: 'blockEditor',
       placeholder: '',
-      value: 'blocks'
+      value: 'blocks',
     },
   ];
 
   if (session) {
-    return <AdminViewer title={title} single={single} columns={columns} data={newData} format={format} inputList={inputList} apiURL="/api/admin/pages"/>;
+    return <AdminViewer title={title} single={single} columns={columns} data={newData} format={format} inputList={inputList} apiURL="/api/admin/pages" />;
   }
   return null;
 }

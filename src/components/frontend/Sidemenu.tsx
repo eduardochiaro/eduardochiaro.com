@@ -5,9 +5,9 @@ import Link from 'next/link';
 
 export default function Sidemenu({ menuData }: { menuData: { text: string; link: string; pre?: JSX.Element }[] }) {
   return (
-    <div className="grow relative">
-      <div className="fixed hidden xl:block text-sm font-semibold tracking-wider">
-        <div className="mb-6 mt-10 ml-4">Quick nav</div>
+    <div className="relative grow">
+      <div className="fixed hidden text-sm font-semibold tracking-wider xl:block">
+        <div className="mb-6 ml-4 mt-10">Quick nav</div>
         <ul className="ml-4">
           {menuData.map(function (item, i) {
             return (
