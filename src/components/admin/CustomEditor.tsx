@@ -40,6 +40,7 @@ const EditorBlock = ({ data, onChange, imageArray, holder, innerRef }: Props) =>
     //initialize editor if we don't have a reference
     if (innerRef) {
       if (!innerRef.current) {
+        console.log('called editor')
         const editor = new EditorJS({
           holder: holder,
           tools: EDITOR_JS_TOOLS,
@@ -48,7 +49,6 @@ const EditorBlock = ({ data, onChange, imageArray, holder, innerRef }: Props) =>
           data,
           async onChange(api, event) {
             const data = await api.saver.save();
-            console.log(data);
             onChange(data);
           },
         });
@@ -62,7 +62,23 @@ const EditorBlock = ({ data, onChange, imageArray, holder, innerRef }: Props) =>
         }
       };
     }
-  }, []);
+  }, [innerRef]);
+
+  useEffect(() => {
+    const editor = innerRef.current;
+    if (data && editor && editor.render) { 
+      editor.isReady.then(() => {
+        console.log('data 1', data)
+        if (data.blocks.length === 0) {
+          editor.clear();       
+        }     
+        editor.render(data);            
+      })
+        .catch((reason) => {
+            console.log(`Editor.js initialization failed because of ${reason}`)
+        });
+    }
+  }, [data]);
 
   return <div id={holder} />;
 };
