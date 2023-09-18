@@ -1,7 +1,7 @@
 'use client';
 
 import { ReactElement } from 'react';
-import { Input, Select, Textarea, Range, Tags } from '@/components/form';
+import { Input, Select, Textarea, Range, Tags, BlockEditor } from '@/components/form';
 import Image from 'next/image';
 import SVG from '@/utils/svg';
 
@@ -38,12 +38,13 @@ type InputTypeProps = {
     imagePreviewUrl: string;
   };
   handleChange: (e: any) => void;
+  handleChangeSpecial: (e: any, name: string) => void;
   updateItem: (e: any) => void;
   fetchFunction?: (url: string) => void;
   inputFileRef: any;
 };
 
-const InputType = ({ input, itemData, form, imagePreview, inputFileRef, handleChange, updateItem, fetchFunction }: InputTypeProps) => {
+const InputType = ({ input, itemData, form, imagePreview, inputFileRef, handleChange, handleChangeSpecial, updateItem, fetchFunction }: InputTypeProps) => {
   const required =
     input.required && (!input.requiredCondition || (input.requiredCondition && itemData[input.requiredCondition[0]] == input.requiredCondition[1]));
   switch (input.type) {
@@ -60,7 +61,7 @@ const InputType = ({ input, itemData, form, imagePreview, inputFileRef, handleCh
           type={input.type}
           label={input.label}
           name={input.name}
-          value={itemData[input.value]}
+          value={itemData[input.value] || ''}
           placeholder={input.placeholder}
           onChange={(e) => handleChange(e)}
           required={required}
@@ -100,7 +101,7 @@ const InputType = ({ input, itemData, form, imagePreview, inputFileRef, handleCh
         <Textarea
           label={input.label}
           name={input.name}
-          value={itemData[input.value]}
+          value={itemData[input.value] || ''}
           onChange={(e) => handleChange(e)}
           required={required}
           rows={input.rows}
@@ -168,6 +169,8 @@ const InputType = ({ input, itemData, form, imagePreview, inputFileRef, handleCh
       }
     case 'html':
       return <>{input.html}</>;
+    case 'blockEditor':
+      return <BlockEditor name={input.name} initialData={itemData[input.value]} onChange={handleChangeSpecial} />;
   }
 };
 

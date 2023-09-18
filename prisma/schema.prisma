@@ -172,3 +172,19 @@ model VerificationToken {
   @@unique([identifier, token])
   @@map("verification_tokens")
 }
+
+model Page {
+  id          Int       @id @default(autoincrement())
+  title        String    @db.VarChar(2000)
+  slug        String    @unique @db.VarChar(191)
+  description String?
+  blocks      String?   @db.Text
+  content     String?   @db.Text
+  plaintext   String?   @db.Text
+  published   Boolean   @default(false)
+  createdAt   DateTime? @default(now()) @map("created_at")
+  updatedAt   DateTime? @map("updated_at")
+  deletedAt   DateTime?  @map("deleted_at")
+
+  @@map("pages")
+}

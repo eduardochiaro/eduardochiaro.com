@@ -1,0 +1,92 @@
+.ce-block--selected .ce-block__content,
+.ce-inline-toolbar,
+.codex-editor--narrow .ce-toolbox,
+.ce-conversion-toolbar,
+.ce-settings,
+.ce-settings__button,
+.ce-toolbar__settings-btn,
+.cdx-button,
+.ce-popover,
+.ce-toolbar__plus:hover {
+  @apply bg-primary-200 dark:bg-primary-700 text-inherit ;
+}
+.ce-popover-item {
+  @apply dark:text-primary-50;
+  .ce-popover-item__icon {
+    @apply dark:text-primary-800;
+  }
+  &:hover {
+    @apply bg-primary-100 dark:bg-primary-600;
+  }
+}
+
+.ce-inline-tool,
+.ce-conversion-toolbar__label,
+.ce-toolbox__button,
+.cdx-settings-button,
+.ce-toolbar__plus {
+  @apply text-inherit;
+}
+
+::selection {
+  @apply bg-primary-200 dark:bg-primary-500 ;
+}
+
+.cdx-settings-button:hover,
+.ce-settings__button:hover,
+.ce-toolbox__button--active,
+.ce-toolbox__button:hover,
+.cdx-button:hover,
+.ce-inline-toolbar__dropdown:hover,
+.ce-inline-tool:hover,
+.ce-popover__item:hover,
+.ce-toolbar__settings-btn:hover {
+  @apply bg-primary-200 dark:bg-primary-500 text-inherit;
+}
+
+.cdx-notify--error {
+  @apply bg-amber-600 #{!important};
+}
+
+.cdx-notify__cross::after,
+.cdx-notify__cross::before {
+  @apply bg-primary-50 ;
+}
+.cdx-notifies {
+  @apply z-50 #{!important};
+}
+
+.ce-block__content,
+.ce-toolbar__content {
+  max-width: unset;
+}
+
+.ce-block {
+  h1 {
+    @apply text-2xl font-bold;
+  }
+  h2 {
+    @apply text-xl font-bold;
+  }
+  h3 {
+    @apply text-lg font-bold;
+  }
+  h4 {
+    @apply text-base;
+  }
+  h5 {
+    @apply text-sm;
+  }
+  h6 {
+    @apply text-xs;
+  }
+  .ce-code {
+    @apply bg-primary-100 dark:bg-primary-800 border-2 border-primary-200 dark:border-primary-500;
+  }
+}
+
+.ce-toolbar__content {
+  svg {
+    @apply h-10 w-10;
+  }
+}

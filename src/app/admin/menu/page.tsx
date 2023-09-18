@@ -2,7 +2,7 @@ import moment from 'moment';
 import { getServerSession } from 'next-auth';
 import { Metadata } from 'next';
 import authOptions from '@/config/nextAuth';
-import AdminPage from '@/components/admin/Page';
+import AdminViewer from '@/components/admin/Viewer';
 import prisma from '@/utils/prisma';
 import classNames from '@/utils/classNames';
 
@@ -142,7 +142,7 @@ export default async function AdminMenuIndex() {
   ];
 
   if (session) {
-    return <AdminPage title={title} single={single} columns={columns} data={newData} format={format} inputList={inputList} apiURL="/api/admin/menu" />;
+    return <AdminViewer title={title} single={single} columns={columns} data={newData} format={format} inputList={inputList} apiURL="/api/admin/menu" />;
   }
   return null;
 }

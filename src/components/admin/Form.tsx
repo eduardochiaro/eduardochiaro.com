@@ -79,6 +79,10 @@ const AdminForm = ({ children, apiURL, itemFormat, itemData, inputList, titleEle
     }
   };
 
+  const handleChangeSpecial = (e: any, name: string) => {
+    updateItem({ [name]: JSON.stringify(e) });
+  };
+
   const resetForm = () => {
     setForm({ ...formInitialState });
     if (inputFileRef.current) {
@@ -238,9 +242,11 @@ const AdminForm = ({ children, apiURL, itemFormat, itemData, inputList, titleEle
                   imagePreview={imagePreview}
                   inputFileRef={inputFileRef}
                   handleChange={handleChange}
+                  handleChangeSpecial={handleChangeSpecial}
                   updateItem={updateItem}
                   fetchFunction={fetchUrlData}
                 />
+                {input.subText && <p className="text-sm mt-1 opacity-50">{input.subText.replace('{slug}',item[input.value])}</p>}
               </div>
             ))}
           </div>

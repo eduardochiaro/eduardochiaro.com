@@ -1,5 +1,5 @@
 import AdminSidebar from '@/components/admin/Sidebar';
-import { BriefcaseIcon, CpuChipIcon, CommandLineIcon, TagIcon, BookmarkIcon, Bars3Icon, HashtagIcon } from '@heroicons/react/24/solid';
+import { BriefcaseIcon, CpuChipIcon, CommandLineIcon, TagIcon, BookmarkIcon, Bars3Icon, HashtagIcon, DocumentTextIcon } from '@heroicons/react/24/solid';
 import React, { ReactElement } from 'react';
 
 const menuList = [
@@ -39,6 +39,13 @@ const menuList = [
   {
     title: 'System',
     links: [
+      {
+        title: 'Pages',
+        icon: DocumentTextIcon,
+        href: '/admin/pages',
+        description: 'Pages of the website',
+        classColor: 'bg-cyan-600',
+      },
       {
         title: 'Menu links',
         icon: Bars3Icon,

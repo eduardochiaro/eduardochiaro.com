@@ -6,7 +6,7 @@ import List from '@/components/admin/List';
 import BackendLayout from '@/components/layouts/Backend';
 import { useRouter } from 'next/navigation';
 
-type AdminAppsIndexProps = {
+type AdminViewerProps = {
   format: any;
   columns: string[];
   title: string;
@@ -33,7 +33,7 @@ const sortType = [
   },
 ];
 
-export default function AdminPage({ format, columns, title, single, data, inputList, apiURL, sortList = sortType, sortDefault = 'id' }: AdminAppsIndexProps) {
+export default function AdminViewer({ format, columns, title, single, data, inputList, apiURL, sortList = sortType, sortDefault = 'id' }: AdminViewerProps) {
   const router = useRouter();
 
   const [isOpen, setIsOpen] = useState(false);

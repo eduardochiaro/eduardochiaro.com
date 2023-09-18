@@ -2,7 +2,7 @@ import moment from 'moment';
 import { getServerSession } from 'next-auth';
 import { Metadata } from 'next';
 import authOptions from '@/config/nextAuth';
-import AdminPage from '@/components/admin/Page';
+import AdminViewer from '@/components/admin/Viewer';
 import prisma from '@/utils/prisma';
 import SVG from '@/utils/svg';
 
@@ -131,7 +131,7 @@ export default async function AdminResumeIndex() {
 
   if (session) {
     return (
-      <AdminPage
+      <AdminViewer
         title={title}
         single={single}
         columns={columns}

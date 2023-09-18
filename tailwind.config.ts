@@ -83,6 +83,6 @@ export default {
         { values: theme('textShadow') }
       )
     }),
-  ],
+  ]
 } satisfies Config
 
