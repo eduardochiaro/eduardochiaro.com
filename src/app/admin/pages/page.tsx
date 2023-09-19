@@ -39,8 +39,8 @@ export default async function AdminPagesIndex() {
     obj.updated = moment(item.updatedAt || item.createdAt).fromNow();
     obj.name = item.title;
     obj.description = (
-      <> 
-       https://www.eduardochiaro.com/p/<span className="font-bold">{item.slug}</span> 
+      <>
+        https://www.eduardochiaro.com/p/<span className="font-bold">{item.slug}</span>
       </>
     );
     obj.original.blocks = !obj.original.blocks ? format.blocks : obj.original.blocks;

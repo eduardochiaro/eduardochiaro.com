@@ -8,8 +8,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
       <section className={'mt-10 px-4 lg:px-0'}>
         <div className="mx-auto max-w-5xl">
           <h1 className="h-10 font-header text-3xl font-light leading-tight tracking-wide lg:text-4xl">{page.title}</h1>
-          <div className="page mt-10" dangerouslySetInnerHTML={{ __html: page.content as string }}>
-          </div>
+          <div className="page mt-10" dangerouslySetInnerHTML={{ __html: page.content as string }}></div>
         </div>
       </section>
     </FrontendLayout>
@@ -25,7 +24,7 @@ async function getData(slug: string) {
   const page = await prisma.page.findFirst({
     where: {
       slug,
-    }
+    },
   });
   if (!page) {
     throw new Error('Failed to fetch data');

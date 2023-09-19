@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/utils/prisma';
 import getFieldsFromForm from '@/utils/getFieldsFromForm';
-import fromEditorToHTML from "@/utils/fromEditorToHTML";
+import fromEditorToHTML from '@/utils/fromEditorToHTML';
 
 export async function PUT(
   request: NextRequest,

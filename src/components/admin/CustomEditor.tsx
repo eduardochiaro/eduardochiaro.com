@@ -20,17 +20,17 @@ const EditorBlock = ({ data, onChange, imageArray, holder, innerRef }: Props) =>
         let formData = new FormData();
         formData.append('file', file);
         // send image to server
-        
-				return sendToServer(formData, 'POST', '/api/admin/files').then((res: any) => {
-						// get the uploaded image path, pushing image path to image array
-					imageArray.push(res.data.data)
-					return {
-						success: 1,
-						file: {
-							url: res.data.data
-						}
-					}
-				})
+
+        return sendToServer(formData, 'POST', '/api/admin/files').then((res: any) => {
+          // get the uploaded image path, pushing image path to image array
+          imageArray.push(res.data.data);
+          return {
+            success: 1,
+            file: {
+              url: res.data.data,
+            },
+          };
+        });
       },
     },
   };
@@ -65,15 +65,16 @@ const EditorBlock = ({ data, onChange, imageArray, holder, innerRef }: Props) =>
 
   useEffect(() => {
     const editor = innerRef.current;
-    if (data && editor && editor.render) { 
-      editor.isReady.then(() => {
-        if (data.blocks.length === 0) {
-          editor.clear();       
-        }     
-        editor.render(data);            
-      })
+    if (data && editor && editor.render) {
+      editor.isReady
+        .then(() => {
+          if (data.blocks.length === 0) {
+            editor.clear();
+          }
+          editor.render(data);
+        })
         .catch((reason) => {
-          console.log(`Editor.js initialization failed because of ${reason}`)
+          console.log(`Editor.js initialization failed because of ${reason}`);
         });
     }
   }, [data]);

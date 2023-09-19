@@ -28,7 +28,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
     // renames the file in the directory
     const buffer = Buffer.from(await file.arrayBuffer());
     fs.writeFileSync(join(uploadPath, newName), buffer);
-    return NextResponse.json({data: uploadPath + newName});
+    return NextResponse.json({ data: uploadPath + newName });
   } catch (error) {
     console.log(error);
     return NextResponse.json(
@@ -37,5 +37,5 @@ export async function POST(request: NextRequest, response: NextResponse) {
         status: 400,
       },
     );
-	}
+  }
 }

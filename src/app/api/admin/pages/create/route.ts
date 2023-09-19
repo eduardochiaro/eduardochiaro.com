@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/utils/prisma';
 import getFieldsFromForm from '@/utils/getFieldsFromForm';
-import fromEditorToHTML from "@/utils/fromEditorToHTML";
+import fromEditorToHTML from '@/utils/fromEditorToHTML';
 
 export async function POST(request: NextRequest, response: NextResponse) {
   const { title, slug, description, blocks_tmp } = await getFieldsFromForm(request, ['title', 'slug', 'description', 'blocks_tmp']);
