@@ -2,6 +2,7 @@
 import React, { MutableRefObject, memo, useEffect } from 'react';
 import EditorJS, { OutputData } from '@editorjs/editorjs';
 import EDITOR_JS_TOOLS from '@/config/editorTools';
+import { sendToServer } from '@/utils/apiAdmin';
 
 //props
 export type Props = {
@@ -17,20 +18,19 @@ const EditorBlock = ({ data, onChange, imageArray, holder, innerRef }: Props) =>
     uploader: {
       uploadByFile(file: any) {
         let formData = new FormData();
-        formData.append('images', file);
+        formData.append('file', file);
         // send image to server
-        /*
-				return API.imageUpload(formData).then((res:) => {
-					// get the uploaded image path, pushing image path to image array
-				imageArray.push(res.data.data)
-				return {
+        
+				return sendToServer(formData, 'POST', '/api/admin/files').then((res: any) => {
+						// get the uploaded image path, pushing image path to image array
+					imageArray.push(res.data.data)
+					return {
 						success: 1,
 						file: {
 							url: res.data.data
 						}
 					}
 				})
-				*/
       },
     },
   };

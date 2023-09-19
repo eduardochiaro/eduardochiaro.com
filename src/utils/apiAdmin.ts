@@ -9,16 +9,20 @@ const createEditItem = <T>(url: string, form: { [key: string]: any }, isUpdate =
       formData.append(key, value);
     }
   }
+	return sendToServer<T>(formData, (isUpdate ? 'PUT' : 'POST'), (isUpdate ? `${url}/${form.id}` : `${url}/create`))
+};
+
+const sendToServer = <T>(data: FormData, method: string = "POST", url: string) => {
 
   return axios<T>({
-    method: isUpdate ? 'PUT' : 'POST',
-    url: isUpdate ? `${url}/${form.id}` : `${url}/create`,
-    data: formData,
+    method,
+    url,
+    data,
     headers: {
       'Content-Type': 'multipart/form-data;',
     },
   });
-};
+}
 
 const deleteItem = <T>(url: string, id: number) => {
   return axios<T>({
@@ -27,4 +31,4 @@ const deleteItem = <T>(url: string, id: number) => {
   });
 };
 
-export { createEditItem, deleteItem };
+export { createEditItem, deleteItem, sendToServer };
