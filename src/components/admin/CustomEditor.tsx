@@ -48,7 +48,6 @@ const EditorBlock = ({ data, onChange, imageArray, holder, innerRef }: Props) =>
           data,
           async onChange(api, event) {
             const data = await api.saver.save();
-            console.log(data);
             onChange(data);
           },
         });
@@ -62,7 +61,22 @@ const EditorBlock = ({ data, onChange, imageArray, holder, innerRef }: Props) =>
         }
       };
     }
-  }, []);
+  }, [innerRef]);
+
+  useEffect(() => {
+    const editor = innerRef.current;
+    if (data && editor && editor.render) { 
+      editor.isReady.then(() => {
+        if (data.blocks.length === 0) {
+          editor.clear();       
+        }     
+        editor.render(data);            
+      })
+        .catch((reason) => {
+          console.log(`Editor.js initialization failed because of ${reason}`)
+        });
+    }
+  }, [data]);
 
   return <div id={holder} />;
 };

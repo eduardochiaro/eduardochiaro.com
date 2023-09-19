@@ -5,6 +5,8 @@ import authOptions from '@/config/nextAuth';
 import AdminViewer from '@/components/admin/Viewer';
 import prisma from '@/utils/prisma';
 
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: 'Admin > Pages | Eduardo Chiaro',
 };
@@ -36,7 +38,11 @@ export default async function AdminPagesIndex() {
     const obj = { ...item, original: item };
     obj.updated = moment(item.updatedAt || item.createdAt).fromNow();
     obj.name = item.title;
-    obj.description = item.slug;
+    obj.description = (
+      <> 
+       https://www.eduardochiaro.com/p/<span className="font-bold">{item.slug}</span> 
+      </>
+    );
     obj.original.blocks = !obj.original.blocks ? format.blocks : obj.original.blocks;
     newData.push(obj);
   });
@@ -62,7 +68,7 @@ export default async function AdminPagesIndex() {
       placeholder: '',
       value: 'slug',
       required: true,
-      subText: 'https://eduardochiaro.com/page/{slug}',
+      subText: 'https://eduardochiaro.com/p/{slug}',
     },
     {
       classNames: 'col-span-6',

@@ -1,6 +1,5 @@
 'use client';
 
-import edjsHTML from 'editorjs-html';
 import EditorJS from '@editorjs/editorjs';
 import dynamic from 'next/dynamic';
 import { useEffect, useRef, useState } from 'react';
@@ -43,7 +42,7 @@ export default function BlockEditor({ name = 'editor', initialData = DEFAULT_INI
 
   return (
     <>
-      <EditorBlock holder="editorjs" data={data} imageArray={imageArray} onChange={(data) => handleChanges(data)} innerRef={ref} />
+      <EditorBlock holder="editorjs" data={data} imageArray={imageArray} onChange={(d) => handleChanges(d)} innerRef={ref} />
     </>
   );
 }
