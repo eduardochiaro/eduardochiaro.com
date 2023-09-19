@@ -270,7 +270,7 @@ const AdminForm = ({ children, apiURL, itemFormat, itemData, inputList, titleEle
         primaryButtonClass="button-danger"
         fullSize={false}
       >
-        <p>Are you sure you want to delete &quot;{item.name}&quot;?</p>
+        <p>Are you sure you want to delete &quot;{item.name || item.title}&quot;?</p>
       </AdminModal>
     </>
   );

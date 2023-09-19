@@ -5,6 +5,8 @@ import authOptions from '@/config/nextAuth';
 import AdminViewer from '@/components/admin/Viewer';
 import prisma from '@/utils/prisma';
 
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: 'Admin > Pages | Eduardo Chiaro',
 };

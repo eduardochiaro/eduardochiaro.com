@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/utils/prisma';
 import getFieldsFromForm from '@/utils/getFieldsFromForm';
-import edjsHTML from 'editorjs-html';
-import stripTags from "@/utils/stripTags";
+import fromEditorToHTML from "@/utils/fromEditorToHTML";
 
 export async function PUT(
   request: NextRequest,
@@ -16,12 +15,11 @@ export async function PUT(
 
   const { title, slug, description, blocks_tmp } = await getFieldsFromForm(request, ['title', 'slug', 'description', 'blocks_tmp']);
 
-  const edjsParser = edjsHTML();
-  let content = edjsParser.parse(JSON.parse(blocks_tmp));
+  const { content, plaintext } = fromEditorToHTML(blocks_tmp);
 
   const page = await prisma.page.update({
     where: { id: parseInt(pid) },
-    data: { title, slug, description, blocks: blocks_tmp, content: content.join("\n"), plaintext: stripTags(content.join("\n\n")), updatedAt: new Date() },
+    data: { title, slug, description, blocks: blocks_tmp, content, plaintext, updatedAt: new Date() },
   });
 
   if (page) {
