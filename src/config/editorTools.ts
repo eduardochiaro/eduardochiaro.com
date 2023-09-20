@@ -12,7 +12,7 @@ import Marker from '@editorjs/marker';
 import Delimiter from '@editorjs/delimiter';
 import InlineCode from '@editorjs/inline-code';
 
-const EDITOR_JS_TOOLS = {
+export const editorJSTools = {
   // NOTE: Paragraph is default tool. Declare only when you want to change paragraph option.
   // paragraph: Paragraph,
   header: {
@@ -36,4 +36,3 @@ const EDITOR_JS_TOOLS = {
   delimiter: Delimiter,
   inlineCode: InlineCode,
 };
-export default EDITOR_JS_TOOLS;

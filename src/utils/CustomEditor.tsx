@@ -1,7 +1,8 @@
 'use client';
+
 import React, { MutableRefObject, memo, useEffect } from 'react';
 import EditorJS, { OutputData } from '@editorjs/editorjs';
-import EDITOR_JS_TOOLS from '@/config/editorTools';
+import { editorJSTools } from '@/config/editorTools';
 import { sendToServer } from '@/utils/apiAdmin';
 
 //props
@@ -14,7 +15,7 @@ export type Props = {
 };
 
 const EditorBlock = ({ data, onChange, imageArray, holder, innerRef }: Props) => {
-  EDITOR_JS_TOOLS.image.config = {
+  editorJSTools.image.config = {
     uploader: {
       uploadByFile(file: any) {
         let formData = new FormData();
@@ -42,10 +43,10 @@ const EditorBlock = ({ data, onChange, imageArray, holder, innerRef }: Props) =>
       if (!innerRef.current) {
         const editor = new EditorJS({
           holder: holder,
-          tools: EDITOR_JS_TOOLS,
+          tools: editorJSTools,
           inlineToolbar: true,
+					data: { blocks: []},
           placeholder: 'Let`s write an awesome story!',
-          data,
           async onChange(api, event) {
             const data = await api.saver.save();
             onChange(data);
@@ -61,23 +62,23 @@ const EditorBlock = ({ data, onChange, imageArray, holder, innerRef }: Props) =>
         }
       };
     }
-  }, [innerRef]);
+  }, [innerRef, holder]);
 
   useEffect(() => {
     const editor = innerRef.current;
     if (data && editor && editor.render) {
       editor.isReady
         .then(() => {
-          if (data.blocks.length === 0) {
-            editor.clear();
-          }
+					if (data.blocks.length === 0) {
+						editor.clear();
+					}
           editor.render(data);
         })
         .catch((reason) => {
           console.log(`Editor.js initialization failed because of ${reason}`);
         });
     }
-  }, [data]);
+  }, [data, innerRef]);
 
   return <div id={holder} />;
 };

@@ -4,12 +4,7 @@ import EditorJS from '@editorjs/editorjs';
 import dynamic from 'next/dynamic';
 import { useEffect, useRef, useState } from 'react';
 
-const DEFAULT_INITIAL_DATA = {
-  time: new Date().getTime(),
-  blocks: [],
-};
-
-const EditorBlock = dynamic(() => import('@/components/admin/CustomEditor'), {
+const EditorBlock = dynamic(() => import('@/utils/CustomEditor'), {
   ssr: false,
 });
 
@@ -19,12 +14,12 @@ type Props = {
   onChange?: (data: any, name: string) => void;
 };
 
-export default function BlockEditor({ name = 'editor', initialData = DEFAULT_INITIAL_DATA, onChange }: Props) {
+export default function BlockEditor({ name = 'editor', initialData = {}, onChange }: Props) {
   //add a reference to editor
   const ref = useRef<EditorJS | null>(null);
 
   const [imageArray, setImageArray] = useState([]); // to keep track of uploaded image
-  const [data, setData] = useState<any>(DEFAULT_INITIAL_DATA);
+  const [data, setData] = useState<any>(initialData);
 
   useEffect(() => {
     if (initialData) {

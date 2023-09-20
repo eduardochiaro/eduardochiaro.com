@@ -4,14 +4,13 @@ import { Metadata } from 'next';
 import authOptions from '@/config/nextAuth';
 import AdminViewer from '@/components/admin/Viewer';
 import prisma from '@/utils/prisma';
-
 export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: 'Admin > Pages | Eduardo Chiaro',
 };
 
-const DEFAULT_INITIAL_DATA = {
+const editorJSDefaultData = {
   time: new Date().getTime(),
   blocks: [],
 };
@@ -25,7 +24,7 @@ export default async function AdminPagesIndex() {
     title: '',
     description: '',
     slug: '',
-    blocks: JSON.stringify(DEFAULT_INITIAL_DATA),
+    blocks: JSON.stringify(editorJSDefaultData),
     content: '',
     plaintext: '',
     published: false,
@@ -43,7 +42,7 @@ export default async function AdminPagesIndex() {
         https://www.eduardochiaro.com/p/<span className="font-bold">{item.slug}</span>
       </>
     );
-    obj.original.blocks = !obj.original.blocks ? format.blocks : obj.original.blocks;
+    //obj.original.blocks = !obj.original.blocks ? format.blocks : obj.original.blocks;
     newData.push(obj);
   });
 
