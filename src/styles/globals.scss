@@ -191,6 +191,14 @@ input:checked + .toggle-bg {
   hr {
     @apply my-4 border-primary-300 dark:border-primary-500;
   }
+	.imageBlock {
+		&.withBorder {
+			@apply border-2 border-primary-300 dark:border-primary-500;
+		}
+		&.withBackground {
+			@apply bg-primary-200 dark:bg-primary-600;
+		}
+	}
 }
 
 @import 'editor.scss';
