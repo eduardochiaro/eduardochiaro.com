@@ -1,5 +1,11 @@
 import useSWR from 'swr';
-const fetcher = (url: URL) => fetch(url).then((res) => res.json());
+const fetcher = async (url: string): Promise<any> => {
+  const res = await fetch(url);
+  if (!res.ok) {
+    throw new Error('Failed to fetch data');
+  }
+  return res.json();
+};
 
 const useStaleSWR = (dataKey: any, overrideRevalidation = {}) => {
   const revalidationOptions = {
