@@ -4,6 +4,9 @@ const nextConfig = {
   swcMinify: true,
   images: {
     dangerouslyAllowSVG: true,
+    domains: [
+      'rickandmortyapi.com', 'picsum.photos'
+    ],
     remotePatterns: [
       {
         protocol: 'https',
@@ -23,23 +26,15 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: '**.cdninstagram.com',
-      },
-      {
-        protocol: 'https',
         hostname: '**.githubassets.com',
       },
       {
         protocol: 'https',
-        hostname: 'rickandmortyapi.com',
-      },
-      {
-        protocol: 'https',
         hostname: '**.staticflickr.com',
-      },
+      }, 
       {
         protocol: 'https',
-        hostname: 'picsum.photos',
+        hostname: '**.cdninstagram.com'
       }
     ],
   },
