@@ -10,14 +10,14 @@ export default async function Stream() {
   const menuLinks = await getMenuLinks();
 
   return (
-    <div className="flex flex-col min-h-screen justify-between">
+    <div className="flex min-h-screen flex-col justify-between">
       <Header data={menuLinks} />
-      <div className={`${styles.stream} bg-fixed grow flex flex-col`}>
-        <div className={'mb-auto pb-10 grow'}>
-          <section className={'px-4 lg:px-0 mt-10'}>
-            <div className="max-w-5xl mx-auto">
-              <h1 className="font-header leading-tight tracking-wide text-3xl lg:text-4xl font-light">
-                <Link href="/projects" className="hover:underline text-secondary-600 dark:text-secondary-600 font-semibold">
+      <div className={`${styles.stream} flex grow flex-col bg-fixed`}>
+        <div className={'mb-auto grow pb-10'}>
+          <section className={'mt-10 px-4 lg:px-0'}>
+            <div className="mx-auto max-w-5xl">
+              <h1 className="font-header text-3xl font-light leading-tight tracking-wide lg:text-4xl">
+                <Link href="/projects" className="font-semibold text-secondary-600 hover:underline dark:text-secondary-600">
                   Projects
                 </Link>{' '}
                 / Stream

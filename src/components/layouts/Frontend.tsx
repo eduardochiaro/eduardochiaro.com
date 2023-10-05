@@ -8,7 +8,7 @@ export default async function FrontendLayout({ children, className }: { children
   const menuLinks = await getMenuLinks();
 
   return (
-    <div className="flex flex-col min-h-screen justify-between">
+    <div className="flex min-h-screen flex-col justify-between">
       <Header data={menuLinks} />
       <div className={classNames('grow', className)}>{children}</div>
       <Footer />

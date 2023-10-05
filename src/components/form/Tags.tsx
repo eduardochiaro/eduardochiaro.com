@@ -81,31 +81,31 @@ const Tags = forwardRef<Ref, FormInputProps>(
           </span>
         </label>
 
-        <div className={`${isInvalid && '!border-red-400'} input-field flex flex-wrap items-center gap-2 p-2 relative mt-1`}>
+        <div className={`${isInvalid && '!border-red-400'} input-field relative mt-1 flex flex-wrap items-center gap-2 p-2`}>
           {value?.map((tag, key) => (
             <Fragment key={`tag-${key}`}>
               {!tag.deleted && (
-                <span className="relative group">
-                  <span className={`text-xs rounded px-2 py-1 text-primary-100 ${tag.new ? 'bg-emerald-700' : 'bg-secondary-800'}`}>{tag.name}</span>
+                <span className="group relative">
+                  <span className={`rounded px-2 py-1 text-xs text-primary-100 ${tag.new ? 'bg-emerald-700' : 'bg-secondary-800'}`}>{tag.name}</span>
                   <XCircleIcon
-                    className="hidden group-hover:block h-4 w-4 absolute -top-2 -right-2 text-primary-100 cursor-pointer"
+                    className="absolute -right-2 -top-2 hidden h-4 w-4 cursor-pointer text-primary-100 group-hover:block"
                     onClick={() => removeTag(key)}
                   />
                 </span>
               )}
             </Fragment>
           ))}
-          <Menu as="div" className="relative grow inline-block text-left">
+          <Menu as="div" className="relative inline-block grow text-left">
             <input
               ref={inputSearchRef}
               type="text"
               autoComplete="off"
-              className="w-full bg-transparent border-0 py-0 focus:ring-0 min-w-fit"
+              className="w-full min-w-fit border-0 bg-transparent py-0 focus:ring-0"
               placeholder="add new tag..."
               onChange={(e) => setSearchTerm(e.target.value)}
             />
             {openMenu && (
-              <Menu.Items static className="absolute left-0 top-8 w-56 divide-y divide-primary-300 dark:divide-primary-500 box-card">
+              <Menu.Items static className="box-card absolute left-0 top-8 w-56 divide-y divide-primary-300 dark:divide-primary-500">
                 {searchResults.map((tag: any, key: number) => (
                   <div className="px-1 py-1" key={key}>
                     <Menu.Item>
@@ -133,7 +133,7 @@ const Tags = forwardRef<Ref, FormInputProps>(
             )}
           </Menu>
           {isInvalid && (
-            <p className="text-xs flex items-center gap-1 mt-1 text-red-400">
+            <p className="mt-1 flex items-center gap-1 text-xs text-red-400">
               <ExclamationTriangleIcon className="h-4" /> this field is required
             </p>
           )}

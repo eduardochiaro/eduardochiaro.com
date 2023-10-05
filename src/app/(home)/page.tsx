@@ -10,12 +10,12 @@ export default async function Home() {
   const skills = await getSkills();
   return (
     <FrontendLayout>
-      <div className="grow max-w-5xl mx-auto">
+      <div className="mx-auto max-w-5xl grow">
         <div className="relative">
           <span id="bio" className="anchor" />
         </div>
         <Bio />
-        <hr className="mt-10 max-w-5xl mx-auto border-t border-solid opacity-30" />
+        <hr className="mx-auto mt-10 max-w-5xl border-t border-solid opacity-30" />
         <Jobs />
         <div className="relative">
           <span id="skills" className="anchor" />

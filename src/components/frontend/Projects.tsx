@@ -27,18 +27,18 @@ export default function Projects({ data }: { data: App[] }) {
   ];
 
   return (
-    <section className={`${styles.apps} px-4 lg:px-0 mt-10`}>
-      <div className="max-w-5xl mx-auto flex flex-wrap">
-        <div className="basis-full md:basis-3/4 mb-10">
-          <h1 className="font-header leading-tight tracking-wide text-3xl lg:text-4xl font-light h-10">Projects</h1>
-          <div className="grid grid-cols-1 gap-8 mt-5 pl-2">
+    <section className={`${styles.apps} mt-10 px-4 lg:px-0`}>
+      <div className="mx-auto flex max-w-5xl flex-wrap">
+        <div className="mb-10 basis-full md:basis-3/4">
+          <h1 className="h-10 font-header text-3xl font-light leading-tight tracking-wide lg:text-4xl">Projects</h1>
+          <div className="mt-5 grid grid-cols-1 gap-8 pl-2">
             {data?.map((app: App, index: number) => (
-              <div className={'flex flex-wrap p-4 box-card group'} key={`app-${index}`}>
-                <div className={'basis-full md:basis-1/3 relative'}>
+              <div className={'box-card group flex flex-wrap p-4'} key={`app-${index}`}>
+                <div className={'relative basis-full md:basis-1/3'}>
                   <Image src={`/uploads/${app.image}`} fill sizes="30vw" alt={app.name} className="bg-transparent object-contain" priority={false} />
                 </div>
-                <div className={'basis-full md:basis-2/3 px-8 py-4'}>
-                  <h3 className="text-2xl font-header tracking-wide transition-colors ease-out duration-300 group-hover:text-secondary-600 dark:group-hover:text-secondary-600">
+                <div className={'basis-full px-8 py-4 md:basis-2/3'}>
+                  <h3 className="font-header text-2xl tracking-wide transition-colors duration-300 ease-out group-hover:text-secondary-600 dark:group-hover:text-secondary-600">
                     {app.name}
                   </h3>
                   <p className="text-normal mt-2">{app.description}</p>
@@ -52,18 +52,18 @@ export default function Projects({ data }: { data: App[] }) {
           </div>
         </div>
 
-        <div className="basis-full md:basis-1/4 md:text-right mb-10">
-          <h2 className="font-header leading-tight tracking-wide text-xl font-light h-10 align-bottom flex md:flex-row-reverse">
+        <div className="mb-10 basis-full md:basis-1/4 md:text-right">
+          <h2 className="flex h-10 align-bottom font-header text-xl font-light leading-tight tracking-wide md:flex-row-reverse">
             <span className="self-end">Lab</span>
           </h2>
-          <ul className="mt-5 pl-0 md:pl-8 pr-2">
+          <ul className="mt-5 pl-0 pr-2 md:pl-8">
             {projects.map((project, index) => (
-              <li key={`project-${index}`} className="text-base mb-8 box-card p-4">
+              <li key={`project-${index}`} className="box-card mb-8 p-4 text-base">
                 <Link href={project.url} className="group">
-                  <h3 className="group-hover:text-secondary-600 dark:group-hover:text-secondary-600 transition-colors ease-out duration-300 text-lg tracking-wide">
+                  <h3 className="text-lg tracking-wide transition-colors duration-300 ease-out group-hover:text-secondary-600 dark:group-hover:text-secondary-600">
                     {project.name}
                   </h3>
-                  <p className="text-sm mt-2 opacity-50">{project.description}</p>
+                  <p className="mt-2 text-sm opacity-50">{project.description}</p>
                 </Link>
               </li>
             ))}

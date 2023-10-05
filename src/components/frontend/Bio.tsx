@@ -6,21 +6,21 @@ import Coffee from '../icons/Coffee';
 
 export default function Bio() {
   return (
-    <section id="bio-component" className="px-4 lg:px-0 mt-8 md:mt-10">
-      <div className="max-w-5xl mx-auto tracking-wide">
-        <h1 className="font-header md:leading-loose tracking-wide text-5xl xl:text-8xl font-bold">
+    <section id="bio-component" className="mt-8 px-4 md:mt-10 lg:px-0">
+      <div className="mx-auto max-w-5xl tracking-wide">
+        <h1 className="font-header text-5xl font-bold tracking-wide md:leading-loose xl:text-8xl">
           Hi! I&apos;m <span className="overlay-color">Eduardo</span>,
         </h1>
-        <h2 className="font-header md:leading-loose tracking-wide text-xl lg:text-5xl xl:text-6xl font-bold pt-4 pb-5 md:pb-6 flex items-center gap-4">
+        <h2 className="flex items-center gap-4 pb-5 pt-4 font-header text-xl font-bold tracking-wide md:pb-6 md:leading-loose lg:text-5xl xl:text-6xl">
           an application developer with over {moment().diff('2005-09-01', 'years')} years of experience.
         </h2>
-        <p className="mt-5 md:text-xl md:leading-relaxed font-normal text-primary-600 dark:text-primary-400">
+        <p className="mt-5 font-normal text-primary-600 dark:text-primary-400 md:text-xl md:leading-relaxed">
           I&lsquo;ve been tinkering with Node.js for the last few years, building SaaS applications that are scalable and flexible. I&lsquo;m a big believer in
           using the latest technologies and best practices to stay on the cutting edge of development.
         </p>
-        <p className="mt-5 md:text-xl md:leading-relaxed font-normal text-primary-600 dark:text-primary-400">
+        <p className="mt-5 font-normal text-primary-600 dark:text-primary-400 md:text-xl md:leading-relaxed">
           You&lsquo;ve stumbled onto my personal website, where you can learn more about me and check out some of my latest projects. So grab a{' '}
-          <Coffee className="h-6 inline align-text-bottom overlay-color" /> coffee, take a seat, and let&lsquo;s scroll down...
+          <Coffee className="overlay-color inline h-6 align-text-bottom" /> coffee, take a seat, and let&lsquo;s scroll down...
         </p>
       </div>
     </section>

@@ -36,21 +36,21 @@ export default function GitHub() {
   const items =
     cutResponse.length > 0
       ? cutResponse.map((repo: any, index: number) => (
-          <div className="overflow-hidden box-card max-h-min" key={`repo-${index}`}>
-            <a href={repo.url} className="flex flew-wrap w-full text-decoration-none overflow-hidden h-full">
-              <div className="relative transition-width ease-in-out duration-300 flex-none peer w-1/3 md:hidden lg:block lg:w-1/3 hover:w-2/3">
+          <div className="box-card max-h-min overflow-hidden" key={`repo-${index}`}>
+            <a href={repo.url} className="flew-wrap text-decoration-none flex h-full w-full overflow-hidden">
+              <div className="peer relative w-1/3 flex-none transition-width duration-300 ease-in-out hover:w-2/3 md:hidden lg:block lg:w-1/3">
                 <LoadImage src={repo.openGraphImageUrl} alt={repo.name} />
               </div>
-              <div className="w-full md:w-2/3 p-4 relative whitespace-nowrap min-h-min">
-                <h4 className="mt-2 text-lg font-semibold font-header tracking-wider ">{repo.name}</h4>
-                <p className="mt-4 mb-2 text-xs antialiased">{repo.description}</p>
-                <p className="text-xs opacity-60 absolute top-2 right-4 flex items-center">
-                  <ClockIcon title="last updated" className="h-3 mr-2" /> {moment(repo.pushedAt).fromNow()}
+              <div className="relative min-h-min w-full whitespace-nowrap p-4 md:w-2/3">
+                <h4 className="mt-2 font-header text-lg font-semibold tracking-wider ">{repo.name}</h4>
+                <p className="mb-2 mt-4 text-xs antialiased">{repo.description}</p>
+                <p className="absolute right-4 top-2 flex items-center text-xs opacity-60">
+                  <ClockIcon title="last updated" className="mr-2 h-3" /> {moment(repo.pushedAt).fromNow()}
                 </p>
                 {repo.languages.slice(0, 2).map((language: any, index: number) => (
-                  <div key={index} className="inline-block mr-4 text-xs antialiased">
+                  <div key={index} className="mr-4 inline-block text-xs antialiased">
                     <span
-                      className="inline-block w-3 h-3 align-middle mb-1 border border-primary-500 dark:border-primary-800 rounded-full mr-2"
+                      className="mb-1 mr-2 inline-block h-3 w-3 rounded-full border border-primary-500 align-middle dark:border-primary-800"
                       style={{ backgroundColor: language.color }}
                     ></span>
                     {language.name}
@@ -59,7 +59,7 @@ export default function GitHub() {
                 <div className="mt-4">
                   {repo.topics.slice(0, 2).map((topic: string) => (
                     <div
-                      className="bg-accent-300 dark:bg-accent-700 rounded-full px-3 py-1 text-xs antialiased font-semibold mr-2 mb-2 inline-block z-30 "
+                      className="z-30 mb-2 mr-2 inline-block rounded-full bg-accent-300 px-3 py-1 text-xs font-semibold antialiased dark:bg-accent-700 "
                       key={topic}
                     >
                       <div className="flex items-center">
@@ -77,15 +77,15 @@ export default function GitHub() {
           ...Array(6)
             .fill('')
             .map((_, idx) => 0 + idx),
-        ].map((x) => <div className="overflow-hidden box-card max-h-min h-40 animate-pulse" key={`repo-${x}`}></div>);
+        ].map((x) => <div className="box-card h-40 max-h-min animate-pulse overflow-hidden" key={`repo-${x}`}></div>);
 
   return (
-    <section id="github-component" className={'px-4 lg:px-0 mt-10'}>
-      <div className="max-w-5xl mx-auto">
-        <h3 className="font-header leading-tight tracking-wide text-3xl lg:text-4xl font-light">
+    <section id="github-component" className={'mt-10 px-4 lg:px-0'}>
+      <div className="mx-auto max-w-5xl">
+        <h3 className="font-header text-3xl font-light leading-tight tracking-wide lg:text-4xl">
           What I&apos;ve <span className="overlay-color">coded</span> recently...
         </h3>
-        <div id="github-list" className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-2 gap-4 xl:gap-8 mt-5 pb-10">
+        <div id="github-list" className="mt-5 grid grid-cols-1 gap-4 pb-10 md:grid-cols-3 lg:grid-cols-2 xl:gap-8">
           {items}
         </div>
       </div>

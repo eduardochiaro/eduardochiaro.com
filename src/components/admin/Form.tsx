@@ -185,13 +185,13 @@ const AdminForm = ({ children, apiURL, itemFormat, itemData, inputList, titleEle
   return (
     <>
       <div className="flex items-center justify-between">
-        <a href="#" className="text-sm opacity-70 font-semibold hover:underline flex items-center gap-2" onClick={() => clickBackToList()} role="menuitem">
+        <a href="#" className="flex items-center gap-2 text-sm font-semibold opacity-70 hover:underline" onClick={() => clickBackToList()} role="menuitem">
           <ChevronLeftIcon className="h-3" /> back to list
         </a>
         <div className="flex items-center gap-4">
           {item.id && (
-            <a href="#" className="text-sm text-red-500 font-semibold hover:underline" onClick={() => openDeleteModal(item)} role="menuitem">
-              <TrashIcon className="inline-flex align-text-bottom h-4 mr-1" />
+            <a href="#" className="text-sm font-semibold text-red-500 hover:underline" onClick={() => openDeleteModal(item)} role="menuitem">
+              <TrashIcon className="mr-1 inline-flex h-4 align-text-bottom" />
               Delete
             </a>
           )}
@@ -200,31 +200,31 @@ const AdminForm = ({ children, apiURL, itemFormat, itemData, inputList, titleEle
           </button>
         </div>
       </div>
-      <h2 className="text-2xl md:absolute my-3 md:my-0 top-7 left-1/2 flex items-center gap-2">
+      <h2 className="left-1/2 top-7 my-3 flex items-center gap-2 text-2xl md:absolute md:my-0">
         {item.id ? `Edit ${titleElement}` : `Add new ${titleElement}`}
       </h2>
-      <div className={'mt-8 mb-2 max-w-5xl mx-auto'}>
+      <div className={'mx-auto mb-2 mt-8 max-w-5xl'}>
         <form ref={formRef} acceptCharset="UTF-8" method="POST" encType="multipart/form-data" onSubmit={(e: any) => onSubmitModal(e)}>
           {form.error && (
-            <div className="bg-accent-100 border border-accent-400 text-accent-700 px-4 py-3 rounded relative mb-4" role="alert">
+            <div className="relative mb-4 rounded border border-accent-400 bg-accent-100 px-4 py-3 text-accent-700" role="alert">
               <strong className="font-bold">
-                <ExclamationTriangleIcon className="inline-flex align-middle h-6 mr-4" />
+                <ExclamationTriangleIcon className="mr-4 inline-flex h-6 align-middle" />
                 Invalid Form!{' '}
               </strong>
               <span className="block sm:inline">Some required fields are missing.</span>
             </div>
           )}
           {form.success && (
-            <div className="bg-emerald-100 border border-emerald-400 text-emerald-700 px-4 py-3 rounded relative mb-4" role="alert">
+            <div className="relative mb-4 rounded border border-emerald-400 bg-emerald-100 px-4 py-3 text-emerald-700" role="alert">
               <strong className="font-bold">
-                <CheckIcon className="inline-flex align-middle h-6 mr-4" />
+                <CheckIcon className="mr-4 inline-flex h-6 align-middle" />
                 Success!{' '}
               </strong>
               <span className="block sm:inline">This page was saved.</span>
             </div>
           )}
           {form.info && (
-            <div className="bg-blue-200 border border-blue-400 text-blue-700 px-4 py-3 rounded relative mb-4" role="alert">
+            <div className="relative mb-4 rounded border border-blue-400 bg-blue-200 px-4 py-3 text-blue-700" role="alert">
               <span className="block sm:inline">{form.info}</span>
             </div>
           )}

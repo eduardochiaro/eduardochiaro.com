@@ -16,41 +16,41 @@ export default function ResumeComponent({ data }: { data: any[] }) {
       })
     : [];
   return (
-    <section className={'px-4 lg:px-0 mt-10'}>
-      <div className="max-w-5xl mx-auto">
-        <h1 className="font-header leading-tight tracking-wide text-3xl lg:text-4xl font-light h-10">Resume</h1>
-        <div className="mt-5 mx-auto">
+    <section className={'mt-10 px-4 lg:px-0'}>
+      <div className="mx-auto max-w-5xl">
+        <h1 className="h-10 font-header text-3xl font-light leading-tight tracking-wide lg:text-4xl">Resume</h1>
+        <div className="mx-auto mt-5">
           {mappedData.map((job: any, index: number) => (
             <div className="group" key={`job-image-${index}`}>
               <div className="hidden group-first:md:flex">
                 <div className="flex-1"></div>
-                <div className="flex-none w-4 md:w-8 relative mx-2 md:mx-4 h-10">
-                  <div className="mx-auto w-0.5 h-full bg-secondary-500 z-10"></div>
-                  <span className="hidden group-first:block absolute top-0 left-1/2 transform -translate-x-1/2 rounded-full ring-2 ring-primary-100 dark:ring-primary-800 z-20 bg-emerald-500 w-5 h-5"></span>
+                <div className="relative mx-2 h-10 w-4 flex-none md:mx-4 md:w-8">
+                  <div className="z-10 mx-auto h-full w-0.5 bg-secondary-500"></div>
+                  <span className="absolute left-1/2 top-0 z-20 hidden h-5 w-5 -translate-x-1/2 transform rounded-full bg-emerald-500 ring-2 ring-primary-100 group-first:block dark:ring-primary-800"></span>
                 </div>
                 <div className="flex-1"></div>
               </div>
-              <div className="hidden group-first:md:block flex-none w-full relative font-mono text-xl md:text-2xl text-center my-4">Today</div>
+              <div className="relative my-4 hidden w-full flex-none text-center font-mono text-xl md:text-2xl group-first:md:block">Today</div>
               <div className="flex">
-                <div className="hidden md:block flex-1 md:w-36 font-mono text-right group-odd:hidden"></div>
-                <div className="hidden md:block flex-none w-4 md:w-8 relative mx-2 md:mx-4 group-odd:hidden">
-                  <div className="mx-auto w-0.5 h-full bg-secondary-500 z-10"></div>
-                  <span className="absolute top-12 left-1/2 transform -translate-x-1/2 rounded-full ring-2 ring-primary-100 dark:ring-primary-800 z-20 bg-blue-500 w-3 h-3"></span>
+                <div className="hidden flex-1 text-right font-mono group-odd:hidden md:block md:w-36"></div>
+                <div className="relative mx-2 hidden w-4 flex-none group-odd:hidden md:mx-4 md:block md:w-8">
+                  <div className="z-10 mx-auto h-full w-0.5 bg-secondary-500"></div>
+                  <span className="absolute left-1/2 top-12 z-20 h-3 w-3 -translate-x-1/2 transform rounded-full bg-blue-500 ring-2 ring-primary-100 dark:ring-primary-800"></span>
                 </div>
                 <div className="flex-1 group-last:pb-0">
-                  <div className="relative md:group-odd:text-right p-4 my-2 md:my-4">
-                    <h3 className="text-3xl font-header break-words mb-2">{job.name}</h3>
+                  <div className="relative my-2 p-4 md:my-4 md:group-odd:text-right">
+                    <h3 className="mb-2 break-words font-header text-3xl">{job.name}</h3>
                     {job.image ? (
                       <SVG
                         title={job.company}
-                        className={'fill-primary-700 dark:fill-primary-200 mb-4 inline-block'}
+                        className={'mb-4 inline-block fill-primary-700 dark:fill-primary-200'}
                         src={`/uploads/${job.image}`}
                         height={20}
                       />
                     ) : (
-                      <h4 className="text-xl font-bold font-header break-words mb-4">{job.company}</h4>
+                      <h4 className="mb-4 break-words font-header text-xl font-bold">{job.company}</h4>
                     )}
-                    <div className={'text-sm md:text-normal flex items-center md:group-odd:justify-end gap-2 whitespace-nowrap'}>
+                    <div className={'md:text-normal flex items-center gap-2 whitespace-nowrap text-sm md:group-odd:justify-end'}>
                       <span>
                         {!job.endDate && 'Since '}
                         {moment(job.startDate).format('MMMM YYYY')}
@@ -59,9 +59,9 @@ export default function ResumeComponent({ data }: { data: any[] }) {
                       <span>{job.endDate && moment(job.endDate).format('MMMM YYYY')}</span>
                     </div>
                     {job.tags?.length > 0 && (
-                      <div className="flex items-center md:group-odd:justify-end gap-4 mt-6">
+                      <div className="mt-6 flex items-center gap-4 md:group-odd:justify-end">
                         {job.tags?.map((tag: ResumeTag) => (
-                          <span key={`resume_tag_${tag.id}`} className="text-xs rounded px-2 py-1 bg-secondary-800 text-primary-100">
+                          <span key={`resume_tag_${tag.id}`} className="rounded bg-secondary-800 px-2 py-1 text-xs text-primary-100">
                             {tag.name}
                           </span>
                         ))}
@@ -69,8 +69,8 @@ export default function ResumeComponent({ data }: { data: any[] }) {
                     )}
                     {job.projects.length > 0 && (
                       <>
-                        <h5 className="mt-6 mb-2 text-lg font-header">Projects</h5>
-                        <div className="flex items-center group-odd:justify-end gap-8">
+                        <h5 className="mb-2 mt-6 font-header text-lg">Projects</h5>
+                        <div className="flex items-center gap-8 group-odd:justify-end">
                           {job.projects?.map((project: ResumeProject) => (
                             <SVG
                               key={`resume_project_${project.id}`}
@@ -85,18 +85,18 @@ export default function ResumeComponent({ data }: { data: any[] }) {
                     )}
                   </div>
                 </div>
-                <div className="hidden md:block flex-none w-4 md:w-8 relative mx-2 md:mx-4 group-even:hidden">
-                  <div className="mx-auto w-0.5 h-full bg-secondary-500 z-10"></div>
-                  <span className="absolute top-12 left-1/2 transform -translate-x-1/2 rounded-full ring-2 ring-primary-100 dark:ring-primary-800 z-20 bg-blue-500 w-3 h-3"></span>
+                <div className="relative mx-2 hidden w-4 flex-none group-even:hidden md:mx-4 md:block md:w-8">
+                  <div className="z-10 mx-auto h-full w-0.5 bg-secondary-500"></div>
+                  <span className="absolute left-1/2 top-12 z-20 h-3 w-3 -translate-x-1/2 transform rounded-full bg-blue-500 ring-2 ring-primary-100 dark:ring-primary-800"></span>
                 </div>
-                <div className="hidden md:block flex-1 md:w-36 font-mono text-right group-even:hidden"></div>
+                <div className="hidden flex-1 text-right font-mono group-even:hidden md:block md:w-36"></div>
               </div>
-              <div className="hidden md:block flex-none w-full relative font-mono text-xl md:text-2xl text-center my-4">{job.startYear}</div>
+              <div className="relative my-4 hidden w-full flex-none text-center font-mono text-xl md:block md:text-2xl">{job.startYear}</div>
               <div className="hidden group-last:md:flex">
                 <div className="flex-1"></div>
-                <div className="flex-none w-4 md:w-8 relative mx-2 md:mx-4 h-10">
-                  <div className="mx-auto w-0.5 h-full bg-secondary-500 z-10"></div>
-                  <span className="hidden group-last:block absolute bottom-0 left-1/2 transform -translate-x-1/2 rounded-full ring-2 ring-primary-200 dark:ring-primary-900 z-20 bg-red-500 w-5 h-5"></span>
+                <div className="relative mx-2 h-10 w-4 flex-none md:mx-4 md:w-8">
+                  <div className="z-10 mx-auto h-full w-0.5 bg-secondary-500"></div>
+                  <span className="absolute bottom-0 left-1/2 z-20 hidden h-5 w-5 -translate-x-1/2 transform rounded-full bg-red-500 ring-2 ring-primary-200 group-last:block dark:ring-primary-900"></span>
                 </div>
                 <div className="flex-1"></div>
               </div>

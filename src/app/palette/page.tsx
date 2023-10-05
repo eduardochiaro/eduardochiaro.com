@@ -22,13 +22,13 @@ export default async function Palette() {
   const secondaryPalette = ['bg-blue-500', 'bg-red-500', 'bg-cyan-500', 'bg-emerald-500', 'bg-indigo-500', 'bg-amber-500'];
   return (
     <FrontendLayout>
-      <section className={'px-4 lg:px-0 mt-10'}>
-        <div className="max-w-5xl mx-auto">
-          <h1 className="font-header leading-tight tracking-wide text-3xl lg:text-4xl font-light h-10">Palette</h1>
-          <div className="grid md:grid-cols-3 gap-10 mt-10">
+      <section className={'mt-10 px-4 lg:px-0'}>
+        <div className="mx-auto max-w-5xl">
+          <h1 className="h-10 font-header text-3xl font-light leading-tight tracking-wide lg:text-4xl">Palette</h1>
+          <div className="mt-10 grid gap-10 md:grid-cols-3">
             {palette.map((color, key) => (
-              <div key={key} className="w-full rounded overflow-hidden drop-shadow-xl">
-                <div className={`w-full h-48 ${color.main} p-4 font-header text-2xl text-primary-100`}>{color.name}</div>
+              <div key={key} className="w-full overflow-hidden rounded drop-shadow-xl">
+                <div className={`h-48 w-full ${color.main} p-4 font-header text-2xl text-primary-100`}>{color.name}</div>
                 <div className="grid grid-cols-4">
                   {color.scale.map((shade, k) => (
                     <div key={k} className={`h-10 ${shade}`}></div>
@@ -37,9 +37,9 @@ export default async function Palette() {
               </div>
             ))}
           </div>
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-10 mt-10">
+          <div className="mt-10 grid grid-cols-3 gap-10 md:grid-cols-6">
             {secondaryPalette.map((color, key) => (
-              <div key={key} className={`w-12 h-12 ${color} m-auto drop-shadow-xl rounded`}></div>
+              <div key={key} className={`h-12 w-12 ${color} m-auto rounded drop-shadow-xl`}></div>
             ))}
           </div>
         </div>

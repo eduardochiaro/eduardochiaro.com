@@ -7,7 +7,7 @@ import { useState } from 'react';
 const Tile = ({ episodes, type }: { episodes: any[]; type: boolean }) => {
   if (type) {
     return (
-      <div className="mt-5 w-2/3 mx-auto">
+      <div className="mx-auto mt-5 w-2/3">
         {episodes?.map((episode, index) => <EvenTile key={`episode-${index}`} episode={episode} maxCharacters={6} type="large" />)}
       </div>
     );
@@ -30,17 +30,17 @@ export default function Timeline({ data }: { data: any }) {
   const [type, setType] = useState(true);
 
   return (
-    <section className={'px-4 lg:px-0 mt-10'}>
-      <div className="max-w-5xl mx-auto">
+    <section className={'mt-10 px-4 lg:px-0'}>
+      <div className="mx-auto max-w-5xl">
         <div className="grid grid-cols-3">
-          <h1 className="font-header leading-tight tracking-wide text-3xl lg:text-4xl font-light col-span-2">
-            <Link href="/projects" className="hover:underline text-secondary-600 dark:text-secondary-600 font-semibold">
+          <h1 className="col-span-2 font-header text-3xl font-light leading-tight tracking-wide lg:text-4xl">
+            <Link href="/projects" className="font-semibold text-secondary-600 hover:underline dark:text-secondary-600">
               Projects
             </Link>{' '}
             / Timeline {type ? '' : '(variation)'}
           </h1>
-          <div className="hidden md:flex justify-end ">
-            <label htmlFor="toggle-example" className="flex items-center cursor-pointer relative mb-4">
+          <div className="hidden justify-end md:flex ">
+            <label htmlFor="toggle-example" className="relative mb-4 flex cursor-pointer items-center">
               <input type="checkbox" id="toggle-example" className="sr-only" onChange={() => setType(!type)} />
               <div className="toggle-bg"></div>
               <span className="ml-3 text-sm font-medium">View variation</span>

@@ -32,7 +32,7 @@ export default async function AdminMenuIndex() {
     obj.name = (
       <div className="flex items-center gap-2">
         {obj.name}{' '}
-        <span className={classNames('font-bold text-sm', obj.active ? 'text-emerald-600 dark:text-emerald-400' : 'text-red-600 dark:text-red-400')}>
+        <span className={classNames('text-sm font-bold', obj.active ? 'text-emerald-600 dark:text-emerald-400' : 'text-red-600 dark:text-red-400')}>
           [{obj.status_d}]
         </span>
       </div>

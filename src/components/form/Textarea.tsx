@@ -28,13 +28,13 @@ const Textarea = forwardRef<Ref, FormInputProps>(
           name={name}
           maxLength={maxLength}
           id={id ? id : `${name}-form`}
-          className={`${isInvalid && '!border-red-400'} mt-1 input-field py-1.5 px-2 focus:outline-none`}
+          className={`${isInvalid && '!border-red-400'} input-field mt-1 px-2 py-1.5 focus:outline-none`}
           value={value}
           rows={rows}
           {...props}
         />
         {isInvalid && (
-          <p className="text-xs flex items-center gap-1 mt-1 text-red-400">
+          <p className="mt-1 flex items-center gap-1 text-xs text-red-400">
             <ExclamationTriangleIcon className="h-4" /> this field is required
           </p>
         )}

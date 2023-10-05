@@ -39,33 +39,33 @@ export default function Bookmarks({ data }: { data: BookmarkWithCategory[] }) {
   */
   return (
     <div className="flex">
-      <section id="work" className={'grow px-4 lg:px-0 mt-10 max-w-5xl mx-auto'}>
-        <h1 className="font-header leading-tight tracking-wide text-3xl lg:text-4xl font-light">Bookmarks</h1>
+      <section id="work" className={'mx-auto mt-10 max-w-5xl grow px-4 lg:px-0'}>
+        <h1 className="font-header text-3xl font-light leading-tight tracking-wide lg:text-4xl">Bookmarks</h1>
         <div>
           {uniqueCategories.map((category: Category, index: number) => (
             <div key={index} className="group/list">
               <span className="anchor" id={`bookmarks-${index}`} />
-              <h4 className="text-secondary-600 dark:text-secondary-600 mt-14 group-first/list:mt-5 mb-5 flex items-center gap-2">
-                <TagIcon className="none w-4 h-4" />
+              <h4 className="mb-5 mt-14 flex items-center gap-2 text-secondary-600 group-first/list:mt-5 dark:text-secondary-600">
+                <TagIcon className="none h-4 w-4" />
                 <span className="flex-none">{category.name}</span>
-                <span className="w-full dashed-border-t shrink"></span>
-                <Link href="#top" className="text-secondary-600 dark:text-secondary-600 flex items-center group-first/list:hidden">
+                <span className="dashed-border-t w-full shrink"></span>
+                <Link href="#top" className="flex items-center text-secondary-600 group-first/list:hidden dark:text-secondary-600">
                   top
                   <ChevronUpIcon className="inline w-4" />
                 </Link>
               </h4>
-              <Masonry breakpointCols={breakpointColumnsObj} className="flex gap-8 w-auto" columnClassName="bg-clip-padding flex flex-col gap-8">
+              <Masonry breakpointCols={breakpointColumnsObj} className="flex w-auto gap-8" columnClassName="bg-clip-padding flex flex-col gap-8">
                 {data
                   ?.filter((x: Bookmark) => x.categoryId == category.id)
                   .map((bookmark: any, index: number) => (
                     <div key={`apps-${index}`} className={'group/card box-card'}>
-                      <Link href={bookmark.url} as={bookmark.url} target="_blank" className="p-5 block" rel="noopener noreferrer">
-                        <h3 className="text-xl tracking-wide flex justify-between">
+                      <Link href={bookmark.url} as={bookmark.url} target="_blank" className="block p-5" rel="noopener noreferrer">
+                        <h3 className="flex justify-between text-xl tracking-wide">
                           {bookmark.name}
                           <BookmarkIcon className="w-5 group-hover/card:hidden" />
-                          <BookmarkFullIcon className="w-5 hidden text-secondary-600 group-hover/card:block" />
+                          <BookmarkFullIcon className="hidden w-5 text-secondary-600 group-hover/card:block" />
                         </h3>
-                        <p className="text-sm opacity-80 tracking-wide flex items-center gap-2">
+                        <p className="flex items-center gap-2 text-sm tracking-wide opacity-80">
                           <span className="block w-5">
                             <ImageWithFallback
                               src={`https://www.google.com/s2/favicons?domain=${bookmark.domain}`}

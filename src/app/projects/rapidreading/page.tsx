@@ -6,10 +6,10 @@ import { Metadata } from 'next';
 export default function RapidReading() {
   return (
     <FrontendLayout>
-      <section className={'px-4 lg:px-0 mt-10'}>
-        <div className="max-w-5xl mx-auto">
-          <h1 className="font-header leading-tight tracking-wide text-3xl lg:text-4xl font-light">
-            <Link href="/projects" className="hover:underline text-secondary-600 dark:text-secondary-600 font-semibold">
+      <section className={'mt-10 px-4 lg:px-0'}>
+        <div className="mx-auto max-w-5xl">
+          <h1 className="font-header text-3xl font-light leading-tight tracking-wide lg:text-4xl">
+            <Link href="/projects" className="font-semibold text-secondary-600 hover:underline dark:text-secondary-600">
               Projects
             </Link>{' '}
             / Rapid Reading

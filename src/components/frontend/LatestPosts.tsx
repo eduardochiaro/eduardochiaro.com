@@ -9,31 +9,31 @@ export default function LatestPosts() {
   const { data } = useStaleSWR('/api/portfolio/blog');
   const cutResponse = data ? data.results.slice(0, 3) : [];
   return (
-    <section id="latest-posts-component" className={'px-4 lg:px-0 mt-10'}>
-      <div className="max-w-5xl mx-auto">
-        <h3 className="font-header leading-tight tracking-wide text-3xl lg:text-4xl font-light mb-2">
+    <section id="latest-posts-component" className={'mt-10 px-4 lg:px-0'}>
+      <div className="mx-auto max-w-5xl">
+        <h3 className="mb-2 font-header text-3xl font-light leading-tight tracking-wide lg:text-4xl">
           What I <span className="overlay-color">wrote</span>...
         </h3>
-        <div id="articles-list" className="mt-6 -ml-6">
+        <div id="articles-list" className="-ml-6 mt-6">
           {cutResponse && cutResponse.length > 0
             ? cutResponse.map((article: any, index: number) => (
-                <div key={`article-${index}`} className="mb-6 relative">
+                <div key={`article-${index}`} className="relative mb-6">
                   <Link
                     href={article.permalink}
-                    className="group block hover:border-l-8 ml-2 hover:ml-0 pb-2 hover:border-secondary-600 dark:hover:border-secondary-600 pl-4"
+                    className="group ml-2 block pb-2 pl-4 hover:ml-0 hover:border-l-8 hover:border-secondary-600 dark:hover:border-secondary-600"
                   >
-                    <div className="flex flex-col md:flex-row items-top gap-4">
-                      <h4 className="grow-0 font-medium text-lg tracking-wide">{article.title}</h4>
-                      <div className="grow mt-1">
+                    <div className="items-top flex flex-col gap-4 md:flex-row">
+                      <h4 className="grow-0 text-lg font-medium tracking-wide">{article.title}</h4>
+                      <div className="mt-1 grow">
                         <div className="flex flex-row items-center">
-                          <span className="w-full dashed-border-t shrink"></span>
-                          <span className="w-4 dashed-border-t shrink"></span>
-                          <span className="text-sm font-mono whitespace-nowrap px-4">{moment(article.published).format('MM/DD/YYYY')}</span>
-                          <span className="flex-none w-12 dashed-border-t"></span>
+                          <span className="dashed-border-t w-full shrink"></span>
+                          <span className="dashed-border-t w-4 shrink"></span>
+                          <span className="whitespace-nowrap px-4 font-mono text-sm">{moment(article.published).format('MM/DD/YYYY')}</span>
+                          <span className="dashed-border-t w-12 flex-none"></span>
                         </div>
                       </div>
                     </div>
-                    <p className="text-sm mt-2 text-primary-600 dark:text-primary-400">{article.content}</p>
+                    <p className="mt-2 text-sm text-primary-600 dark:text-primary-400">{article.content}</p>
                   </Link>
                 </div>
               ))
@@ -42,9 +42,9 @@ export default function LatestPosts() {
                   .fill('')
                   .map((_, idx) => 0 + idx),
               ].map((x) => (
-                <div key={`article-${x}`} className="flex flex-col  gap-4 mb-6">
-                  <div className="ml-6 flex-grow h-6 bg-primary-300 dark:bg-primary-600 rounded animate-pulse "></div>
-                  <div className="ml-6 flex-grow h-20 bg-primary-300 dark:bg-primary-600 rounded animate-pulse "></div>
+                <div key={`article-${x}`} className="mb-6 flex  flex-col gap-4">
+                  <div className="ml-6 h-6 flex-grow animate-pulse rounded bg-primary-300 dark:bg-primary-600 "></div>
+                  <div className="ml-6 h-20 flex-grow animate-pulse rounded bg-primary-300 dark:bg-primary-600 "></div>
                 </div>
               ))}
         </div>

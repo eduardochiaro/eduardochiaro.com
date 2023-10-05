@@ -4,17 +4,17 @@ import Link from 'next/link';
 
 export default function Custom404() {
   return (
-    <main className="flex items-center justify-center h-screen">
-      <div className="absolute top-4 right-4">
+    <main className="flex h-screen items-center justify-center">
+      <div className="absolute right-4 top-4">
         <ThemeIcon orientation="bottom" />
       </div>
-      <div className="px-4 py-16 mx-auto text-center lg:px-8 lg:py-48 max-w-7xl sm:px-6 sm:py-24">
-        <div className="justify-center w-full text-center lg:p-10 max-auto">
-          <div className="justify-center w-full mx-auto">
-            <p className="text-5xl tracking-tight lg:text-9xl font-mono">404</p>
-            <p className="max-w-xl mx-auto mt-4 text-lg tracking-tight font-mono">Please check the URL in the address bar and try again.</p>
+      <div className="mx-auto max-w-7xl px-4 py-16 text-center sm:px-6 sm:py-24 lg:px-8 lg:py-48">
+        <div className="max-auto w-full justify-center text-center lg:p-10">
+          <div className="mx-auto w-full justify-center">
+            <p className="font-mono text-5xl tracking-tight lg:text-9xl">404</p>
+            <p className="mx-auto mt-4 max-w-xl font-mono text-lg tracking-tight">Please check the URL in the address bar and try again.</p>
           </div>
-          <div className="flex justify-center gap-3 mt-10">
+          <div className="mt-10 flex justify-center gap-3">
             <Link href="/" className="button flex items-center gap-2 !text-xl">
               <ArrowLeftIcon className="h-6" />
               Back to Homepage

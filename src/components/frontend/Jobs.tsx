@@ -38,18 +38,18 @@ const groups = [
   {
     class: 'col-span-4',
     text: (
-      <div className="flex items-center mx-4">
-        <div className="flex-none dashed-border-l h-5"></div>
+      <div className="mx-4 flex items-center">
+        <div className="dashed-border-l h-5 flex-none"></div>
         <div className="grow">
           <div className="flex flex-row items-center">
-            <span className="w-full dashed-border-t shrink"></span>
-            <div className="text-sm font-normal tracking-wide whitespace-nowrap mx-3">
+            <span className="dashed-border-t w-full shrink"></span>
+            <div className="mx-3 whitespace-nowrap text-sm font-normal tracking-wide">
               Projects done through <strong>Flixmedia LTD</strong>
             </div>
-            <span className="w-full dashed-border-t shrink"></span>
+            <span className="dashed-border-t w-full shrink"></span>
           </div>
         </div>
-        <div className="flex-none dashed-border-r h-5"></div>
+        <div className="dashed-border-r h-5 flex-none"></div>
       </div>
     ),
   },
@@ -57,9 +57,9 @@ const groups = [
 
 export default function Jobs() {
   return (
-    <section id="work-component" className={'px-4 lg:px-0 mt-10'}>
-      <div className="max-w-5xl mx-auto">
-        <h3 className="font-header leading-tight tracking-wide text-3xl lg:text-4xl font-light flex items-center gap-4">
+    <section id="work-component" className={'mt-10 px-4 lg:px-0'}>
+      <div className="mx-auto max-w-5xl">
+        <h3 className="flex items-center gap-4 font-header text-3xl font-light leading-tight tracking-wide lg:text-4xl">
           <span className="grow">
             I&apos;ve <span className="overlay-color">worked</span> for...
           </span>
@@ -70,14 +70,14 @@ export default function Jobs() {
           </Link>
           */}
         </h3>
-        <div id="work-list" className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-8 mt-4">
+        <div id="work-list" className="mt-4 grid grid-cols-2 gap-8 md:grid-cols-3 xl:grid-cols-6">
           {works.map((job, index) => (
-            <div className={'text-center z-10 mb-5 relative align-middle'} key={`job-image-${index}`}>
+            <div className={'relative z-10 mb-5 text-center align-middle'} key={`job-image-${index}`}>
               <SVG title={job.name} className={'inline w-full fill-primary-700 dark:fill-primary-200'} src={`/works/${job.logo}`} height={30} />
             </div>
           ))}
         </div>
-        <div className="hidden xl:grid grid-cols-6 gap-8">
+        <div className="hidden grid-cols-6 gap-8 xl:grid">
           {groups.map((group, index) => (
             <div className={`${group.class} text-center`} key={`job-group-${index}`}>
               {group.text}
