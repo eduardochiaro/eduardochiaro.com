@@ -2,7 +2,7 @@ import BookmarksComponent from '@/components/frontend/Bookmarks';
 import FrontendLayout from '@/components/layouts/Frontend';
 import { Category, Bookmark } from '@prisma/client';
 import { Metadata } from 'next';
-import prisma from '@/utils/prisma';
+import getBookmarks from '@/utils/getBookmarks';
 
 interface BookmarkType extends Bookmark {
   domain?: string;
@@ -21,7 +21,7 @@ export default async function Bookmarks() {
 export const metadata: Metadata = {
   title: 'Bookmarks | Eduardo Chiaro',
 };
-
+/*
 async function getBookmarks() {
   const bookmarks: BookmarkType[] = await prisma.bookmark.findMany({
     include: {
@@ -38,3 +38,4 @@ async function getBookmarks() {
   });
   return bookmarks;
 }
+*/

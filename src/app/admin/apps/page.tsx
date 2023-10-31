@@ -6,8 +6,6 @@ import authOptions from '@/config/nextAuth';
 import AdminPage from '@/components/admin/Page';
 import prisma from '@/utils/prisma';
 
-
-
 export const metadata: Metadata = {
   title: 'Admin > Apps | Eduardo Chiaro',
 };

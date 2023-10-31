@@ -20,7 +20,7 @@ export const metadata = {
   description: 'Eduardo Chiaro - Software Developer',
 };
 
-export const revalidate = 60;
+//export const revalidate = 60;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
