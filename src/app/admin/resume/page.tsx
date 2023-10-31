@@ -36,7 +36,7 @@ export default async function AdminResumeIndex() {
     obj.category_d =
       (item.startDate ? moment(item.startDate).format('YYYY-MM') : 'N/A') + ' - ' + (item.endDate ? moment(item.endDate).format('YYYY-MM') : 'Current');
     obj.image_d = item.image ? (
-      <SVG title={item.name} className={'w-full fill-primary-700 dark:fill-primary-200'} src={`/uploads/${item.image}`} height={25} />
+      <SVG title={item.name} className={'w-full fill-primary-700 dark:fill-primary-200'} src={`${process.env.NEXT_PUBLIC_CDN_URL}/${item.image}`} height={25} />
     ) : null;
     newData.push(obj);
   });

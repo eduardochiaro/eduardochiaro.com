@@ -101,7 +101,7 @@ const AdminResumeProjects = ({ resumeId }: Props) => {
       if (data.image) {
         setImagePreview({
           file: {},
-          imagePreviewUrl: `/uploads/${data.image}`,
+          imagePreviewUrl: `${process.env.NEXT_PUBLIC_CDN_URL}/${data.image}`,
         });
       }
       setForm({ ...formInitialState, success: true });
@@ -139,11 +139,11 @@ const AdminResumeProjects = ({ resumeId }: Props) => {
           <PlusIcon className="h-5" /> add new
         </button>
       </div>
-
+      
       {projects?.results.map((project: ResumeProject, key: any) => (
         <div className="border:bg-primary-50/50 my-4 flex h-14 items-center gap-4 border-b border-primary-500/50 px-4 pb-4" key={key}>
           <div className="relative h-14 w-16">
-            <Image alt={project.name} className={'bg-transparent object-cover'} fill src={`/uploads/${project.image}`} sizes="33vw" />
+            <Image alt={project.name} className={'bg-transparent object-cover'} fill src={`${process.env.NEXT_PUBLIC_CDN_URL}/${project.image}`} sizes="33vw" />
           </div>
           <span className="grow">{project.name}</span>
           <button onClick={() => openDeleteModal(project)}>

@@ -6,6 +6,8 @@ import authOptions from '@/config/nextAuth';
 import AdminPage from '@/components/admin/Page';
 import prisma from '@/utils/prisma';
 
+
+
 export const metadata: Metadata = {
   title: 'Admin > Apps | Eduardo Chiaro',
 };
@@ -29,7 +31,7 @@ export default async function AdminAppsIndex() {
     const obj = { ...item, original: item };
     obj.updated = moment(item.updatedAt || item.createdAt).fromNow();
     obj.image_d = (
-      <Image src={`/uploads/${item.image}`} fill sizes="33vw" alt={item.name} title={item.name} className="bg-transparent object-cover" priority={false} />
+      <Image src={`${process.env.NEXT_PUBLIC_CDN_URL}/${item.image}`} fill sizes="33vw" alt={item.name} title={item.name} className="bg-transparent object-cover" priority={false} />
     );
     newData.push(obj);
   });

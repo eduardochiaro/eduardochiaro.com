@@ -7,6 +7,10 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: 'cdn.eduardochiaro.com',
+      },
+      {
+        protocol: 'https',
         hostname: 'rickandmortyapi.com',
       },
       {

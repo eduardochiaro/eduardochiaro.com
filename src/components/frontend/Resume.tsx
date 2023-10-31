@@ -3,7 +3,7 @@
 import SVG from 'react-inlinesvg';
 import moment from 'moment';
 import { ChevronDoubleRightIcon } from '@heroicons/react/20/solid';
-import { Prisma, Resume, ResumeProject, ResumeTag } from '@prisma/client';
+import { Resume, ResumeProject, ResumeTag } from '@prisma/client';
 
 export default function ResumeComponent({ data }: { data: any[] }) {
   const mappedData = data
@@ -44,7 +44,7 @@ export default function ResumeComponent({ data }: { data: any[] }) {
                       <SVG
                         title={job.company}
                         className={'mb-4 inline-block fill-primary-700 dark:fill-primary-200'}
-                        src={`/uploads/${job.image}`}
+                        src={`${process.env.NEXT_PUBLIC_CDN_URL}/${job.image}`}
                         height={20}
                       />
                     ) : (
@@ -76,7 +76,7 @@ export default function ResumeComponent({ data }: { data: any[] }) {
                               key={`resume_project_${project.id}`}
                               title={project.name}
                               className="fill-primary-700 dark:fill-primary-200"
-                              src={`/uploads/${project.image}`}
+                              src={`${process.env.NEXT_PUBLIC_CDN_URL}/${project.image}`}
                               height={25}
                             />
                           ))}

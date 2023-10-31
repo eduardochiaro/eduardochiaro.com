@@ -91,7 +91,7 @@ const AdminForm = ({ children, apiURL, itemFormat, itemData, inputList, titleEle
     if (itemData?.image) {
       setImagePreview({
         file: {},
-        imagePreviewUrl: `/uploads/${itemData.image}`,
+        imagePreviewUrl: `${process.env.NEXT_PUBLIC_CDN_URL}/${itemData.image}`,
       });
     } else {
       setImagePreview(imagePreviewSet);
@@ -113,7 +113,7 @@ const AdminForm = ({ children, apiURL, itemFormat, itemData, inputList, titleEle
       if (data.image) {
         setImagePreview({
           file: {},
-          imagePreviewUrl: `/uploads/${data.image}`,
+          imagePreviewUrl: `${process.env.NEXT_PUBLIC_CDN_URL}/${data.image}`,
         });
       }
       setForm({ ...formInitialState, success: true });
