@@ -4,10 +4,15 @@ const nextConfig = {
   swcMinify: true,
   images: {
     dangerouslyAllowSVG: true,
-    domains: [
-      'rickandmortyapi.com', 'picsum.photos'
-    ],
     remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'rickandmortyapi.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'picsum.photos',
+      },
       {
         protocol: 'https',
         hostname: '**.google.com',
@@ -37,15 +42,6 @@ const nextConfig = {
         hostname: '**.cdninstagram.com'
       }
     ],
-  },
-  webpack(config) {
-    config.resolve.fallback = {
-      ...config.resolve.fallback, // if you miss it, all the other options in fallback, specified
-      // by next.js will be dropped. Doesn't make much sense, but how it is
-      fs: false, // the solution
-    };
-
-    return config;
   }
 };
 
