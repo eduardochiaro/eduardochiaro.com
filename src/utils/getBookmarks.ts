@@ -2,7 +2,7 @@ import { cache } from 'react';
 import prisma from '@/utils/prisma';
 import { Category, Bookmark } from '@prisma/client';
 
-export const revalidate = 3600 // revalidate the data at most every hour
+export const revalidate = 60 // revalidate the data at most every hour
  
 interface BookmarkType extends Bookmark {
   domain?: string;
