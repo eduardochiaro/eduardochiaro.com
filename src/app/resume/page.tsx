@@ -5,7 +5,7 @@ import getMenuLinks from '@/utils/getMenuLinks';
 import prisma from '@/utils/prisma';
 import { Metadata } from 'next';
 import styles from '@/styles/Resume.module.scss';
-import { cache } from "react";
+import { cache } from 'react';
 
 export default async function Resume() {
   const resume = await getResume();

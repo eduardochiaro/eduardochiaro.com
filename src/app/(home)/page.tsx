@@ -5,6 +5,7 @@ import Skills from '@/components/frontend/Skills';
 import GitHub from '@/components/frontend/GitHub';
 import LatestPosts from '@/components/frontend/LatestPosts';
 import prisma from '@/utils/prisma';
+import { cache } from 'react';
 
 export default async function Home() {
   const skills = await getSkills();
@@ -34,10 +35,10 @@ export default async function Home() {
   );
 }
 
-async function getSkills() {
+const getSkills = cache(async () => {
   return prisma.skill.findMany({
     orderBy: {
       createdAt: 'desc',
     },
   });
-}
+});
