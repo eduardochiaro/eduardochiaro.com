@@ -1,9 +1,11 @@
 import prisma from '@/utils/prisma';
+import { cache } from 'react';
 
-export default async function getMenuLinks() {
+const getMenuLinks = cache(async () => {
   return prisma.menuLink.findMany({
     orderBy: {
       order: 'asc',
     },
   });
-}
+});
+export default getMenuLinks;

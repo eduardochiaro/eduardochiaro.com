@@ -5,6 +5,7 @@ import getMenuLinks from '@/utils/getMenuLinks';
 import prisma from '@/utils/prisma';
 import { Metadata } from 'next';
 import styles from '@/styles/Resume.module.scss';
+import { cache } from "react";
 
 export default async function Resume() {
   const resume = await getResume();
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
   title: 'Resume | Eduardo Chiaro',
 };
 
-async function getResume() {
+const getResume = cache(async () => {
   return prisma.resume.findMany({
     orderBy: {
       startDate: 'desc',
@@ -37,4 +38,4 @@ async function getResume() {
       projects: true,
     },
   });
-}
+});
