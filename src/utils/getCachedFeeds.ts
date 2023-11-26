@@ -17,7 +17,7 @@ const getCachedFlickr = async () => {
 const getCacheInstagram = async () => {
   return fsCache('instagram', hours, async () => {
     const url = `${instagram_base}/${instagram_username}`;
-    const instagram = await fetch(url);
+    const instagram = await fetch(url, { cache: 'no-store' });
     return instagram.json();
   });
 };

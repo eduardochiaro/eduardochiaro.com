@@ -12,23 +12,21 @@ type StreamItem = {
 };
 
 export async function GET(request: NextRequest, response: NextResponse) {
-  const results: StreamItem[] = [];
+  let results: StreamItem[] = [];
 
   const flickr = await getCachedFlickr();
-
-  flickr.items.slice(0, 5).forEach((item: { title: any; link: any; isoDate: moment.MomentInput; images: { [x: string]: { [x: string]: any } }[] }) => {
+  flickr.items.slice(0, 5).forEach((item: { title: any; link: any; created: number; images: { [x: string]: { [x: string]: any } }[] }) => {
     results.push({
       title: item.title,
       permalink: item.link[0]['href'],
-      published: item.isoDate,
-      timestamp: moment(item.isoDate).unix(),
+      published: moment(item.created).utc().toString(),
+      timestamp: moment(item.created).unix(),
       type: 'Flickr',
       image: item.link[1]['href'],
     });
   });
 
   const instagramImages = await getCacheInstagram();
-
   instagramImages.slice(0, 5).forEach((item: { caption: any; id: any; permalink: any; timestamp: moment.MomentInput; thumbnailUrl: any; mediaUrl: any }) => {
     results.push({
       title: item.caption || item.id,
@@ -40,7 +38,7 @@ export async function GET(request: NextRequest, response: NextResponse) {
     });
   });
 
-  results.sort(function (x, y) {
+  results = results.sort(function (x, y) {
     return y.timestamp - x.timestamp;
   });
 
