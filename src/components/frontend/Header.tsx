@@ -76,7 +76,7 @@ export default function Header({ data }: { data: MenuLink[] }) {
           </Menu>
           <span className="grow text-center md:text-left">
             <Link href="/" className="group flex items-end gap-2 md:-ml-10">
-              <FireIcon className=" hidden h-8 opacity-0 transition-all duration-300 ease-out group-hover:animate-pulse group-hover:text-accent-600 group-hover:opacity-100 dark:group-hover:text-accent-500 md:block" />
+              <FireIcon className=" hidden h-8 opacity-0 transition-all duration-300 ease-out group-hover:animate-pulse group-hover:text-accent-600 group-hover:opacity-100 md:block dark:group-hover:text-accent-500" />
               <span className={'font-header text-3xl font-normal'}>
                 eduardo<span className="overlay-color font-semibold">chiaro</span>
               </span>
@@ -102,7 +102,7 @@ export default function Header({ data }: { data: MenuLink[] }) {
                 })}
             </ul>
           </div>
-          <div className="hidden border-l border-primary-200 pl-6 tracking-wider dark:border-primary-700 md:block">
+          <div className="hidden border-l border-primary-200 pl-6 tracking-wider md:block dark:border-primary-700">
             <Link
               href="https://blog.eduardochiaro.com"
               className="flex items-center gap-1 whitespace-nowrap pr-6 text-sm font-medium transition hover:underline md:pr-0"

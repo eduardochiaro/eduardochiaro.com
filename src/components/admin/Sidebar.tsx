@@ -31,7 +31,7 @@ const AdminSidebar = ({ isPageOpen }: { isPageOpen: boolean }) => {
   }, [isPageOpen]);
   return (
     <div className={`relative z-40 sm:relative md:h-full ${openMenu ? styles['sidebar-open'] : styles['sidebar-closed']}`}>
-      <div className="flex justify-between bg-primary-200 dark:bg-primary-600 md:fixed md:min-h-screen md:flex-col">
+      <div className="flex justify-between bg-primary-200 md:fixed md:min-h-screen md:flex-col dark:bg-primary-600">
         <div className="relative grow px-3 md:p-3">
           <Link href="/admin" className={`flex h-14 items-center gap-4 md:my-3 ${styles['sidebar-logo']}`}>
             <div className={`${openMenu ? '' : 'md:mx-auto'}`}>
@@ -127,7 +127,7 @@ const AdminSidebar = ({ isPageOpen }: { isPageOpen: boolean }) => {
             >
               <Menu.Items
                 data-cy="user-settings-container"
-                className="absolute right-0 z-10 mt-10 w-36 transform divide-y divide-primary-200 rounded-md bg-primary-100 shadow-lg ring-1 ring-primary-900 ring-opacity-10 focus:outline-none dark:divide-primary-500 dark:bg-primary-700 md:bottom-0 md:left-0 md:mb-10"
+                className="absolute right-0 z-10 mt-10 w-36 transform divide-y divide-primary-200 rounded-md bg-primary-100 shadow-lg ring-1 ring-primary-900 ring-opacity-10 focus:outline-none md:bottom-0 md:left-0 md:mb-10 dark:divide-primary-500 dark:bg-primary-700"
                 aria-orientation="vertical"
                 aria-labelledby="user-button"
               >
