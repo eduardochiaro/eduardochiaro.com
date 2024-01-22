@@ -54,7 +54,7 @@ const AdminModal = ({
             })}
           </div>
           {showButtons && (
-            <div className="bg-primary-100 px-4 py-3 text-right sm:px-6 dark:bg-primary-900">
+            <div className="bg-primary-100 px-4 py-3 text-right dark:bg-primary-900 sm:px-6">
               <button onClick={onSecondaryButtonClick} type="button" className=" mr-10 focus:underline focus:outline-none">
                 {secondaryButtonLabel}
               </button>

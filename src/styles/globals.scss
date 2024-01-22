@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-fixed bg-gradient-to-br from-primary-50 from-50% to-primary-200 dark:from-primary-800 dark:from-50% dark:to-primary-900 text-primary-950 dark:text-primary-100;
+  @apply bg-primary-50 dark:bg-primary-900 text-primary-950 dark:text-primary-50;
 }
 // Form styles 
 .input-label {
@@ -81,10 +81,10 @@ table.admin-table {
   }
 }
 .box-card-unstyled {
-  @apply drop-shadow rounded-lg transition hover:ring-4 ring-offset-1 ring-offset-primary-100 dark:ring-offset-primary-500 hover:ring-primary-200/50 dark:hover:ring-primary-600/50 ring-1 ring-primary-700 ring-opacity-5;
+  @apply drop-shadow rounded-lg transition hover:ring-4 ring-offset-1 ring-offset-primary-100 dark:ring-offset-primary-700 hover:ring-primary-200/50 dark:hover:ring-primary-900/50 ring-1 ring-primary-800 ring-opacity-5;
 }
 .box-card {
-  @apply box-card-unstyled bg-primary-100 dark:bg-primary-600 ;
+  @apply box-card-unstyled bg-primary-100 dark:bg-primary-800 ;
 }
 .custom-img {
   object-fit: contain;
@@ -144,7 +144,7 @@ input:checked + .toggle-bg {
   }
 }
 .download-button {
-  @apply bg-primary-800 transition-all ease-in-out duration-300 text-primary-100 px-4 py-2 text-base rounded-md text-shadow-sm shadow-primary-800;
+  @apply bg-primary-900 transition-all ease-in-out duration-300 text-primary-100 px-4 py-2 text-base rounded-md text-shadow-sm shadow-primary-800;
   &:hover {
     background-image: url(/images/starfield.svg);
   }

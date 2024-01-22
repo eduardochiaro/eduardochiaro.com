@@ -14,11 +14,11 @@ export default function Bio() {
         <h2 className="flex items-center gap-4 pb-5 pt-4 font-header text-xl font-bold tracking-wide md:pb-6 md:leading-loose lg:text-5xl xl:text-6xl">
           an application developer with over {moment().diff('2005-09-01', 'years')} years of experience.
         </h2>
-        <p className="mt-5 font-normal text-primary-600 md:text-xl md:leading-relaxed dark:text-primary-400">
+        <p className="mt-5 font-normal text-primary-600 dark:text-primary-400 md:text-xl md:leading-relaxed">
           I&lsquo;ve been tinkering with Node.js for the last few years, building SaaS applications that are scalable and flexible. I&lsquo;m a big believer in
           using the latest technologies and best practices to stay on the cutting edge of development.
         </p>
-        <p className="mt-5 font-normal text-primary-600 md:text-xl md:leading-relaxed dark:text-primary-400">
+        <p className="mt-5 font-normal text-primary-600 dark:text-primary-400 md:text-xl md:leading-relaxed">
           You&lsquo;ve stumbled onto my personal website, where you can learn more about me and check out some of my latest projects. So grab a{' '}
           <Coffee className="overlay-color inline h-6 align-text-bottom" /> coffee, take a seat, and let&lsquo;s scroll down...
         </p>

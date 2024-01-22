@@ -53,7 +53,7 @@ export default function ThemeIcon({ orientation, size = 'h-7' }: { orientation: 
       setIconClass(
         resetClassColors.map((x) => {
           if (x.name === theme) {
-            x.className = 'text-secondary-700 dark:text-secondary-600';
+            x.className = 'text-accent-700 dark:text-accent-300';
           }
           return x;
         }),

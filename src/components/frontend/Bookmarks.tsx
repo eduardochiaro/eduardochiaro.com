@@ -45,11 +45,11 @@ export default function Bookmarks({ data }: { data: BookmarkWithCategory[] }) {
           {uniqueCategories.map((category: Category, index: number) => (
             <div key={index} className="group/list">
               <span className="anchor" id={`bookmarks-${index}`} />
-              <h4 className="mb-5 mt-14 flex items-center gap-2 text-secondary-600 group-first/list:mt-5 dark:text-secondary-600">
-                <TagIcon className="none h-4 w-4" />
-                <span className="flex-none">{category.name}</span>
+              <h4 className="mb-5 mt-14 flex items-center gap-2 group-first/list:mt-5">
+                <TagIcon className="none h-4 w-4 text-secondary-600 dark:text-secondary-600" />
+                <span className="flex-none text-secondary-600 dark:text-secondary-600">{category.name}</span>
                 <span className="dashed-border-t w-full shrink"></span>
-                <Link href="#top" className="flex items-center text-secondary-600 group-first/list:hidden dark:text-secondary-600">
+                <Link href="#top" className="flex items-center group-first/list:hidden">
                   top
                   <ChevronUpIcon className="inline w-4" />
                 </Link>
@@ -63,7 +63,7 @@ export default function Bookmarks({ data }: { data: BookmarkWithCategory[] }) {
                         <h3 className="flex justify-between text-xl tracking-wide">
                           {bookmark.name}
                           <BookmarkIcon className="w-5 group-hover/card:hidden" />
-                          <BookmarkFullIcon className="hidden w-5 text-secondary-600 group-hover/card:block" />
+                          <BookmarkFullIcon className="hidden w-5 text-accent-600 group-hover/card:block" />
                         </h3>
                         <p className="flex items-center gap-2 text-sm tracking-wide opacity-80">
                           <span className="block w-5">
