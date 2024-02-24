@@ -149,3 +149,12 @@ input:checked + .toggle-bg {
     background-image: url(/images/starfield.svg);
   }
 }
+.tabs {
+  @apply flex items-center divide-x overflow-hidden rounded bg-primary-300 text-primary-50 dark:bg-primary-50 dark:text-primary-900;
+  .tab {
+    @apply flex-none px-4 py-2 text-xs font-bold hover:underline text-primary-600;
+    &.active {
+      @apply bg-secondary-600 text-primary-50 dark:bg-secondary-700;
+    }
+  }
+}

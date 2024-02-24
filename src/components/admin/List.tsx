@@ -1,5 +1,6 @@
 'use client';
 
+import classNames from '@/utils/classNames';
 import { PlusIcon } from '@heroicons/react/20/solid';
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import React, { useEffect, useState, ChangeEvent } from 'react';
@@ -147,27 +148,17 @@ export default function List({
         </div>
 
         <div className="grow text-right">Sort by</div>
-        <div className="flex items-center divide-x overflow-hidden rounded bg-primary-500 text-primary-50 dark:bg-primary-50 dark:text-primary-900">
+        <div className="tabs">
           {sortList.map((item: { id: string; name: string }, key: number) => (
-            <button
-              key={`sort-${key}`}
-              className={`flex-none px-4 py-2 text-xs font-bold hover:underline ${
-                item.id == sortByColumn ? 'bg-secondary-600 text-primary-50 dark:bg-secondary-700' : ''
-              }`}
-              onClick={() => sortByClick(item.id)}
-            >
+            <button key={`sort-${key}`} className={classNames('tab', item.id == sortByColumn && 'active')} onClick={() => sortByClick(item.id)}>
               {item.name}
             </button>
           ))}
         </div>
         <div className="text-right">Direction</div>
-        <div className="flex items-center divide-x overflow-hidden rounded bg-primary-500 text-primary-50 dark:bg-primary-50 dark:text-primary-900">
+        <div className="tabs">
           {sortDirectionType.map((item, key) => (
-            <button
-              key={`direction-${key}`}
-              className={`flex-none px-4 py-2 text-xs font-bold ${item.id == sortDirection ? 'bg-secondary-600 text-primary-50 dark:bg-secondary-700' : ''}`}
-              onClick={() => sortDirectionClick(item.id)}
-            >
+            <button key={`direction-${key}`} className={classNames('tab', item.id == sortDirection && 'active')} onClick={() => sortDirectionClick(item.id)}>
               {item.name}
             </button>
           ))}
