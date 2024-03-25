@@ -164,7 +164,7 @@ export default function List({
           ))}
         </div>
       </div>
-      <div className=" border-primary-500/border:bg-primary-50  tracking-none mx-6 mb-2 mt-10 whitespace-nowrap border-b px-6 py-3 text-left text-sm font-bold uppercase opacity-50">
+      <div className="border-primary-500/border:bg-primary-50  tracking-none mx-6 mb-2 mt-10 whitespace-nowrap border-b px-6 py-3 text-left text-sm font-bold uppercase opacity-50">
         Records
       </div>
       <div className="flex flex-col gap-2 px-6" role="menu" aria-orientation="vertical" aria-labelledby="menu-button">

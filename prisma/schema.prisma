@@ -118,6 +118,18 @@ model UserAccess {
   @@map("user_access")
 }
 
+model Book {
+  id          Int       @id @default(autoincrement())
+  title       String
+  author      String?
+  image       String
+  isbn        String?
+  createdAt   DateTime? @default(now()) @map("created_at")
+  updatedAt   DateTime? @map("updated_at")
+
+  @@map("books")
+}
+
 model Account {
   id                 String  @id @default(cuid())
   userId             String  @map("user_id")
