@@ -109,6 +109,18 @@ model ResumeProject {
   @@map("resume_projects")
 }
 
+model Book {
+  id          Int       @id @default(autoincrement())
+  title       String
+  author      String?
+  image       String
+  isbn        String  @unique
+  createdAt   DateTime? @default(now()) @map("created_at")
+  updatedAt   DateTime? @map("updated_at")
+
+  @@map("books")
+}
+
 model UserAccess {
   id    Int    @id @default(autoincrement())
   email String
@@ -116,18 +128,6 @@ model UserAccess {
   user  User   @relation(fields: [email], references: [email])
 
   @@map("user_access")
-}
-
-model Book {
-  id          Int       @id @default(autoincrement())
-  title       String
-  author      String?
-  image       String
-  isbn        String?
-  createdAt   DateTime? @default(now()) @map("created_at")
-  updatedAt   DateTime? @map("updated_at")
-
-  @@map("books")
 }
 
 model Account {

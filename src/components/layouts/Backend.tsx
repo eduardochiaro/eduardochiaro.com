@@ -1,5 +1,5 @@
 import AdminSidebar from '@/components/admin/Sidebar';
-import { BriefcaseIcon, CpuChipIcon, CommandLineIcon, TagIcon, BookmarkIcon, Bars3Icon, HashtagIcon } from '@heroicons/react/24/solid';
+import { BriefcaseIcon, CpuChipIcon, CommandLineIcon, TagIcon, BookmarkIcon, Bars3Icon, HashtagIcon, BookOpenIcon } from '@heroicons/react/24/solid';
 import React, { ReactElement } from 'react';
 
 const menuList = [
@@ -33,6 +33,13 @@ const menuList = [
         href: '/admin/resume',
         description: 'Manage entries on Resume section in Homepage',
         classColor: 'bg-emerald-700',
+      },
+      {
+        title: 'Books',
+        icon: BookOpenIcon,
+        href: '/admin/books',
+        description: 'Manage entries on Books page',
+        classColor: 'bg-cyan-700',
       },
     ],
   },

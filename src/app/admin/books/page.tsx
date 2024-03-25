@@ -28,7 +28,7 @@ export default async function AdminBooksIndex() {
               <h1 className="grow font-semibold md:flex-grow-0">{title}</h1>
             </div>
             <div className="mb-2 mt-8 flex flex-col items-start gap-4 px-6 md:flex-row md:items-center">
-              <BookSearch />
+              <BookSearch books={books} />
             </div>
           </div>
         </div>
