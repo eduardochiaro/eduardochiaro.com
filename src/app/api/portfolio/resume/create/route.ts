@@ -60,7 +60,13 @@ export async function POST(request: NextRequest, response: NextResponse) {
       create: newTags,
       connect: appendTags,
     },
-    image: newName,
+    file: {
+      create: {
+        name: name,
+        path: newName,
+        type: mimeType,
+      },
+    },
   };
 
   const resume = await prisma.resume.create({

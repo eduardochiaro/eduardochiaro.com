@@ -47,7 +47,13 @@ export async function PUT(
     } catch (error) {
       console.log(error);
     }
-    data['image'] = newName;
+    data['file'] = {
+      create: {
+        name: name,
+        path: newName,
+        type: mimeType,
+      },
+    };
   }
 
   const app = await prisma.app.update({
@@ -72,16 +78,8 @@ export async function DELETE(
   },
 ) {
   const { pid } = params;
-  const appReturn = await prisma.app.findFirst({
-    where: {
-      id: parseInt(pid),
-    },
-  });
   await prisma.app.delete({
     where: { id: parseInt(pid) },
   });
-  if (appReturn && appReturn.image) {
-    await rmFile(`${uploadPath}${appReturn.image}`);
-  }
   return NextResponse.json({ action: 'app deleted' });
 }

@@ -33,7 +33,18 @@ export async function POST(request: NextRequest, response: NextResponse) {
   }
 
   const resumeProject = await prisma.resumeProject.create({
-    data: { name, resumeId: parseInt(resumeId), image: newName, createdAt: new Date() },
+    data: {
+      name,
+      resumeId: parseInt(resumeId),
+      file: {
+        create: {
+          name: name,
+          path: newName,
+          type: mimeType,
+        },
+      },
+      createdAt: new Date(),
+    },
   });
   if (resumeProject) {
     return NextResponse.json(resumeProject);

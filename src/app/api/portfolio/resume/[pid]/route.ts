@@ -68,7 +68,6 @@ export async function PUT(
       connect: appendTags,
       disconnect: deletedTags,
     },
-    image: resumeReturn?.image,
   };
 
   if (typeof image == 'object') {
@@ -82,7 +81,13 @@ export async function PUT(
     } catch (error) {
       console.log(error);
     }
-    data.image = newName;
+    data['file'] = {
+      create: {
+        name: name,
+        path: newName,
+        type: mimeType,
+      },
+    };
   }
 
   const resume = await prisma.resume.update({
@@ -111,16 +116,8 @@ export async function DELETE(
   },
 ) {
   const { pid } = params;
-  const resumeReturn = await prisma.resume.findFirst({
-    where: {
-      id: parseInt(pid),
-    },
-  });
   await prisma.resume.delete({
     where: { id: parseInt(pid) },
   });
-  if (resumeReturn && resumeReturn.image) {
-    await rmFile(`${uploadPath}${resumeReturn.image}`);
-  }
   return NextResponse.json({ action: 'resume deleted' });
 }

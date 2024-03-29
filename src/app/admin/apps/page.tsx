@@ -30,7 +30,7 @@ export default async function AdminAppsIndex() {
     obj.updated = moment(item.updatedAt || item.createdAt).fromNow();
     obj.image_d = (
       <Image
-        src={`${process.env.NEXT_PUBLIC_CDN_URL}/${item.image}`}
+        src={`${process.env.NEXT_PUBLIC_CDN_URL}/${item.file.path}`}
         fill
         sizes="33vw"
         alt={item.name}

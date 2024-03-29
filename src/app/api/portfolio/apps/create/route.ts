@@ -33,7 +33,19 @@ export async function POST(request: NextRequest, response: NextResponse) {
   }
 
   const app = await prisma.app.create({
-    data: { name, description, url, image: newName, createdAt: new Date() },
+    data: {
+      name,
+      description,
+      url,
+      file: {
+        create: {
+          name: name,
+          path: newName,
+          type: mimeType,
+        },
+      },
+      createdAt: new Date(),
+    },
   });
   if (app) {
     return NextResponse.json(app);
