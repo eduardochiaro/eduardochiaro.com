@@ -35,7 +35,12 @@ const getResume = cache(async () => {
     },
     include: {
       tags: true,
-      projects: true,
+      projects: {
+        include: {
+          file: true,
+        },
+      },
+      file: true,
     },
   });
 });

@@ -2,9 +2,10 @@
 import prisma from '@/utils/prisma';
 import { nanoid } from 'nanoid';
 import fs from 'fs';
-import { Book } from '@prisma/client';
+import { Book, Prisma } from '@prisma/client';
 
 const uploadPath = './public/uploads/';
+type BookExpanded = Prisma.BookGetPayload<{ include: { file: true } }>;
 
 const download = async (url: string, fileName: string) => {
   const response = await fetch(url);
@@ -14,37 +15,49 @@ const download = async (url: string, fileName: string) => {
   fs.writeFile(fileName, buffer, () => console.log('finished downloading!'));
 };
 
-const addBook = async (book: any) => {
-  const isbn = book.isbn ? book.isbn[0] : nanoid();
+const addBook = async (book: BookExpanded) => {
+  const isbn = book.isbn ? book.isbn : nanoid();
 
   //download image first and save local
-  const imageFile = book.cover_i ? `${isbn}.jpg` : '';
-  if (book.cover_i) {
-    await download(`https://covers.openlibrary.org/b/id/${book.cover_i}-L.jpg`, `${uploadPath}${imageFile}`);
+  const imageFile = book.file && book.file.path ? `${isbn}.jpg` : '';
+  let file = null;
+  if (book.file && book.file.path) {
+    await download(book.file.path, `${uploadPath}${imageFile}`);
+    file = await prisma.file.upsert({
+      where: {
+        path: imageFile,
+      },
+      update: {},
+      create: {
+        name: book.title,
+        type: 'image/jpeg',
+        path: imageFile,
+      },
+    });
   }
 
   await prisma.book.upsert({
     where: {
-      isbn: book.isbn ? book.isbn[0] : '',
+      isbn: book.isbn,
     },
     update: {
       title: book.title,
-      author: book.author_name ? book.author_name[0] : 'Unknown',
-      image: imageFile,
+      author: book.author,
+      fileId: file ? file.id : null,
     },
     create: {
       title: book.title,
-      author: book.author_name ? book.author_name[0] : 'Unknown',
-      image: imageFile,
-      isbn: book.isbn ? book.isbn[0] : '',
+      author: book.author,
+      isbn: book.isbn,
+      fileId: file ? file.id : null,
     },
   });
 };
 
-const deleteBook = async (book: Book) => {
+const deleteBook = async (book: BookExpanded) => {
   // delete image
-  if (book.image) {
-    fs.unlinkSync(`${uploadPath}${book.image}`);
+  if (book.file) {
+    fs.unlinkSync(`${uploadPath}${book.file.path}`);
   }
 
   await prisma.book.delete({
@@ -56,6 +69,9 @@ const deleteBook = async (book: Book) => {
 
 const getBooks = async () => {
   return prisma.book.findMany({
+    include: {
+      file: true,
+    },
     orderBy: {
       title: 'asc',
     },

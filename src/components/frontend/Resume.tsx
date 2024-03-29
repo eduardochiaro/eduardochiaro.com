@@ -3,11 +3,18 @@
 import SVG from 'react-inlinesvg';
 import moment from 'moment';
 import { ChevronDoubleRightIcon } from '@heroicons/react/20/solid';
-import { Resume, ResumeProject, ResumeTag } from '@prisma/client';
+import { Prisma, Resume, ResumeProject, ResumeTag } from '@prisma/client';
+
+type ResumeProjectExpanded = Prisma.ResumeProjectGetPayload<{ include: { file: true } }>;
+type ResumeExpanded = Prisma.ResumeGetPayload<{ include: { tags: true; projects: { include: { file: true } }; file: true } }> & {
+  startYear: string;
+  endYear: string;
+};
 
 export default function ResumeComponent({ data }: { data: any[] }) {
   const mappedData = data
-    ? data.map((job: Resume) => {
+    ? data.map((job: ResumeExpanded) => {
+        console.log(job.projects);
         return {
           ...job,
           startYear: moment(job.startDate).format('YYYY'),
@@ -20,7 +27,7 @@ export default function ResumeComponent({ data }: { data: any[] }) {
       <div className="mx-auto max-w-5xl">
         <h1 className="h-10 font-header text-3xl font-light leading-tight tracking-wide lg:text-4xl">Resume</h1>
         <div className="mx-auto mt-5">
-          {mappedData.map((job: any, index: number) => (
+          {mappedData.map((job: ResumeExpanded, index: number) => (
             <div className="group" key={`job-image-${index}`}>
               <div className="hidden group-first:md:flex">
                 <div className="flex-1"></div>
@@ -39,16 +46,16 @@ export default function ResumeComponent({ data }: { data: any[] }) {
                 </div>
                 <div className="flex-1 group-last:pb-0">
                   <div className="relative my-2 p-4 md:my-4 md:group-odd:text-right">
-                    <h3 className="mb-2 break-words font-header text-3xl">{job.name}</h3>
-                    {job.image ? (
+                    <h3 className="mb-2 break-words font-header text-2xl">{job.name}</h3>
+                    {job.file && job.file.path ? (
                       <SVG
                         title={job.company}
                         className={'mb-4 inline-block fill-primary-700 dark:fill-primary-200'}
-                        src={`${process.env.NEXT_PUBLIC_CDN_URL}/${job.image}`}
-                        height={20}
+                        src={`${process.env.NEXT_PUBLIC_CDN_URL}/${job.file.path}`}
+                        height={35}
                       />
                     ) : (
-                      <h4 className="mb-4 break-words font-header text-xl font-bold">{job.company}</h4>
+                      <h4 className="mb-4 break-words font-header text-3xl font-bold">{job.company}</h4>
                     )}
                     <div className={'md:text-normal flex items-center gap-2 whitespace-nowrap text-sm md:group-odd:justify-end'}>
                       <span>
@@ -71,14 +78,22 @@ export default function ResumeComponent({ data }: { data: any[] }) {
                       <>
                         <h5 className="mb-2 mt-6 font-header text-lg">Projects</h5>
                         <div className="flex items-center gap-8 group-odd:justify-end">
-                          {job.projects?.map((project: ResumeProject) => (
-                            <SVG
-                              key={`resume_project_${project.id}`}
-                              title={project.name}
-                              className="fill-primary-700 dark:fill-primary-200"
-                              src={`${process.env.NEXT_PUBLIC_CDN_URL}/${project.image}`}
-                              height={25}
-                            />
+                          {job.projects?.map((project: ResumeProjectExpanded) => (
+                            <>
+                              {(project.file && project.file.path && (
+                                <SVG
+                                  key={`resume_project_${project.id}`}
+                                  title={project.name}
+                                  className="fill-primary-700 dark:fill-primary-200"
+                                  src={`${process.env.NEXT_PUBLIC_CDN_URL}/${project.file.path}`}
+                                  height={25}
+                                />
+                              )) || (
+                                <h6 key={`resume_project_${project.id}`} className="mb-2 break-words font-header text-xl font-bold">
+                                  {project.name}
+                                </h6>
+                              )}
+                            </>
                           ))}
                         </div>
                       </>

@@ -22,7 +22,8 @@ model Skill {
 model App {
   id          Int       @id @default(autoincrement())
   name        String
-  image       String
+  fileId      Int?       @map("file_id")
+  file        File?     @relation(fields: [fileId], references: [id])
   url         String?
   createdAt   DateTime? @default(now()) @map("created_at")
   updatedAt   DateTime? @map("updated_at")
@@ -75,7 +76,8 @@ model Resume {
   name        String
   company     String?
   location    String?
-  image       String?
+  fileId      Int?             @map("file_id")
+  file        File?           @relation(fields: [fileId], references: [id])
   description String?         @db.Text
   startDate   DateTime?
   endDate     DateTime?
@@ -99,7 +101,8 @@ model ResumeProject {
   id          Int       @id @default(autoincrement())
   name        String
   description String?
-  image       String
+  fileId      Int?             @map("file_id")
+  file        File?           @relation(fields: [fileId], references: [id])
   createdAt   DateTime? @default(now()) @map("created_at")
   updatedAt   DateTime? @map("updated_at")
   resumeId    Int       @map("resume_id")
@@ -113,12 +116,29 @@ model Book {
   id          Int       @id @default(autoincrement())
   title       String
   author      String?
-  image       String
+  fileId      Int?             @map("file_id")
+  file        File?           @relation(fields: [fileId], references: [id])
   isbn        String  @unique
   createdAt   DateTime? @default(now()) @map("created_at")
   updatedAt   DateTime? @map("updated_at")
 
   @@map("books")
+}
+
+model File {
+  id          Int       @id @default(autoincrement())
+  name        String
+  type        String
+  path        String  @unique
+  createdAt   DateTime? @default(now()) @map("created_at")
+  updatedAt   DateTime? @map("updated_at")
+
+  books      Book[]
+  resumes    Resume[]
+  resumeProjects ResumeProject[]
+  apps       App[]
+  
+  @@map("files")
 }
 
 model UserAccess {

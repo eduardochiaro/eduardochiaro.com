@@ -5,9 +5,15 @@ import GitHubIcon from '@/components/icons/Github';
 import styles from '@/styles/Projects.module.scss';
 import Link from 'next/link';
 import Image from 'next/image';
-import { App } from '@prisma/client';
+import { App, Prisma } from '@prisma/client';
 
-export default function Projects({ data }: { data: App[] }) {
+type AppExpanded = Prisma.AppGetPayload<{ include: { file: true } }>;
+
+type Props = {
+  data: AppExpanded[];
+};
+
+export default function Projects({ data }: Props) {
   const projects = [
     {
       name: 'Stream',
@@ -32,18 +38,20 @@ export default function Projects({ data }: { data: App[] }) {
         <div className="mb-10 basis-full md:basis-3/4">
           <h1 className="h-10 font-header text-3xl font-light leading-tight tracking-wide lg:text-4xl">Projects</h1>
           <div className="mt-5 grid grid-cols-1 gap-8 pl-2">
-            {data?.map((app: App, index: number) => (
+            {data?.map((app: AppExpanded, index: number) => (
               <div className={'box-card group flex flex-wrap p-4'} key={`app-${index}`}>
-                <div className={'relative basis-full md:basis-1/3'}>
-                  <Image
-                    src={`${process.env.NEXT_PUBLIC_CDN_URL}/${app.image}`}
-                    fill
-                    sizes="30vw"
-                    alt={app.name}
-                    className="bg-transparent object-contain"
-                    priority={false}
-                  />
-                </div>
+                {app.file?.path && (
+                  <div className={'relative basis-full md:basis-1/3'}>
+                    <Image
+                      src={`${process.env.NEXT_PUBLIC_CDN_URL}/${app.file.path}`}
+                      fill
+                      sizes="30vw"
+                      alt={app.name}
+                      className="bg-transparent object-contain"
+                      priority={false}
+                    />
+                  </div>
+                )}
                 <div className={'basis-full px-8 py-4 md:basis-2/3'}>
                   <h3 className="font-header text-2xl tracking-wide transition-colors duration-300 ease-out group-hover:text-secondary-600 dark:group-hover:text-secondary-600">
                     {app.name}

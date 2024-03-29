@@ -4,13 +4,15 @@ import { useReducer, useState } from 'react';
 import { Input } from '../form';
 import SpinnerIcon from '@/components/icons/Spinner';
 import { addBook, deleteBook, getBooks } from '@/actions/books';
-import { Book } from '@prisma/client';
+import { Book, Prisma } from '@prisma/client';
 import classNames from '@/utils/classNames';
 
-export default function BookSearch({ books }: { books: Book[] }) {
+type BookExpanded = Prisma.BookGetPayload<{ include: { file: true } }>;
+
+export default function BookSearch({ books }: { books: BookExpanded[] }) {
   const [search, setSearch] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [results, setResults] = useState<Book[]>(books);
+  const [results, setResults] = useState<BookExpanded[]>(books);
 
   const responseData = {
     numFound: 0,
@@ -35,19 +37,28 @@ export default function BookSearch({ books }: { books: Book[] }) {
           numFound: data.numFound,
           start: data.start,
           offset: data.offset,
-          results: data.docs,
+          results: data.docs.map((book: any) => {
+            return {
+              title: book.title,
+              author: book.author_name ? book.author_name[0] : 'Unknown author',
+              file: {
+                path: book.cover_i ? 'https://covers.openlibrary.org/b/id/' + book.cover_i + '-L.jpg' : null,
+              },
+              isbn: book.isbn ? book.isbn[0] : '',
+            };
+          }),
         });
       })
       .catch((error) => console.error(error));
   };
 
-  const addBookAction = async (book: any) => {
+  const addBookAction = async (book: BookExpanded) => {
     await addBook(book);
     const books = await getBooks();
     setResults(books);
   };
 
-  const deleteBookAction = async (book: any) => {
+  const deleteBookAction = async (book: BookExpanded) => {
     await deleteBook(book);
     const books = await getBooks();
     setResults(books);
@@ -90,34 +101,37 @@ export default function BookSearch({ books }: { books: Book[] }) {
           </div>
           <div className="mt-10 max-w-screen-lg overflow-auto" role="menu" aria-orientation="horizontal" aria-labelledby="menu-button">
             <div className="flex items-end gap-8 pb-4">
-              {data.results.map((book: any, index: number) => (
+              {data.results.map((book: BookExpanded, index: number) => (
                 <div key={index} className="flex w-44 flex-col">
-                  <p className="text-gray-500 mb-1 line-clamp-2 text-center text-sm" title={book.author_name ? book.author_name[0] : 'Unknown author'}>
-                    {book.author_name ? book.author_name[0] : 'Unknown author'}
+                  <p className="text-gray-500 mb-1 line-clamp-2 text-center text-sm" title={book.author || ''}>
+                    {book.author}
                   </p>
 
                   <div
                     className={classNames(
-                      book.cover_i ? 'bg-emerald-600' : 'bg-accent-600',
+                      book.file && book.file.path ? 'bg-emerald-600' : 'bg-accent-600',
                       'relative mx-auto flex h-60 w-40 flex-col rounded-l-lg border border-primary-700 bg-cover bg-center bg-no-repeat drop-shadow-md',
                     )}
                     style={{
-                      backgroundImage: book.cover_i ? `url('https://covers.openlibrary.org/b/id/${book.cover_i}-L.jpg')` : '',
+                      backgroundImage: book.file?.path ? `url('${book.file.path}')` : '',
                       backgroundPosition: 'top center',
                     }}
                     title={book.title}
                   >
                     <div className="absolute left-0 top-0 h-60 w-2 border-r-2 border-primary-950 bg-secondary-900 opacity-50" />
-                    {!book.cover_i && (
+                    {(!book.file || !book.file.path) && (
                       <>
                         <h3 className="mt-5 line-clamp-5 grow px-3 text-center text-base font-semibold">{book.title}</h3>
-                        <p className="text-gray-500 mb-2 line-clamp-3 px-3 text-center text-xs">{book.author_name ? book.author_name[0] : 'Unknown author'}</p>
+                        <p className="text-gray-500 mb-2 line-clamp-3 px-3 text-center text-xs">{book.author}</p>
                       </>
                     )}
                   </div>
                   <h3 className="mt-2 line-clamp-2 text-center text-base font-semibold" title={book.title}>
                     {book.title}
                   </h3>
+                  <p className="text-gray-500 mb-1 line-clamp-2 text-center text-sm" title={book.isbn || ''}>
+                    {book.isbn}
+                  </p>
                   <button className="button mt-2" onClick={() => addBookAction(book)}>
                     Add
                   </button>
@@ -131,24 +145,24 @@ export default function BookSearch({ books }: { books: Book[] }) {
         <div className="mt-10">
           <h3 className="my-4 text-xl font-semibold">Saved Books</h3>
           <div className="grid grid-cols-6 items-end gap-4">
-            {results.map((book: any, index: number) => (
+            {results.map((book: BookExpanded, index: number) => (
               <div key={index} className="flex w-44 flex-col">
-                <p className="text-gray-500 mb-1 line-clamp-2 text-center text-sm" title={book.author}>
+                <p className="text-gray-500 mb-1 line-clamp-2 text-center text-sm" title={book.author || ''}>
                   {book.author}
                 </p>
                 <div
                   className={classNames(
-                    book.image ? 'bg-emerald-600' : 'bg-accent-600',
+                    book.file && book.file.path ? 'bg-emerald-600' : 'bg-accent-600',
                     'relative mx-auto flex h-60 w-40 flex-col rounded-l-lg border border-primary-700 bg-cover bg-center bg-no-repeat drop-shadow-md',
                   )}
-                  style={{ backgroundImage: book.image ? `url('/uploads/${book.image}')` : '', backgroundPosition: 'top center' }}
+                  style={{ backgroundImage: book.file && book.file.path ? `url('/uploads/${book.file.path}')` : '', backgroundPosition: 'top center' }}
                   title={book.title}
                 >
                   <div className="absolute left-0 top-0 h-60 w-2 border-r-2 border-primary-950 bg-secondary-900 opacity-50" />
-                  {book.image === '' && (
+                  {!book.file && (
                     <>
                       <h3 className="mt-5 line-clamp-5 grow px-3 text-center text-base font-semibold">{book.title}</h3>
-                      <p className="text-gray-500 mb-2 line-clamp-3 px-3 text-center text-xs">{book.author_name ? book.author_name[0] : 'Unknown author'}</p>
+                      <p className="text-gray-500 mb-2 line-clamp-3 px-3 text-center text-xs">{book.author}</p>
                     </>
                   )}
                 </div>

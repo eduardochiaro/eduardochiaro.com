@@ -40,6 +40,9 @@ export default async function AdminBooksIndex() {
 
 async function getBooks() {
   return prisma.book.findMany({
+    include: {
+      file: true,
+    },
     orderBy: {
       title: 'asc',
     },

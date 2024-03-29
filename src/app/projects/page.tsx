@@ -19,6 +19,9 @@ export const metadata: Metadata = {
 
 const getApps = cache(async () => {
   return prisma.app.findMany({
+    include: {
+      file: true,
+    },
     orderBy: {
       createdAt: 'desc',
     },

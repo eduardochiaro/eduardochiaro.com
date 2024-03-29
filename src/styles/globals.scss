@@ -25,7 +25,7 @@ body {
   }
 }
 .button {
-  @apply inline-flex justify-center py-1 px-2 border border-transparent shadow-sm text-sm font-medium rounded-md transition-colors ease-out duration-300;
+  @apply inline-flex justify-center py-1 px-2 border border-transparent shadow-sm text-sm font-medium rounded-md transition-all ease-out duration-300;
   @apply bg-primary-700 dark:bg-primary-50 text-primary-50 dark:text-primary-900 hover:bg-primary-500 hover:dark:bg-primary-300;
   @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-500;
 }
@@ -34,7 +34,7 @@ body {
   @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-600 ring-offset-primary-50 dark:ring-offset-primary-800;
 }
 .button-danger {
-  @apply button text-primary-900 bg-accent-300 hover:bg-accent-500 dark:hover:bg-accent-500 dark:hover:text-primary-50 focus:outline-none focus:ring-2 focus:ring-offset-2 ring-offset-primary-50 dark:ring-offset-primary-800 focus:ring-accent-500
+  @apply button text-primary-900 bg-accent-300 hover:bg-accent-500 dark:hover:bg-accent-500 hover:shadow-lg hover:shadow-accent-500 dark:hover:text-primary-50 focus:outline-none focus:ring-0
 }
 //Admin tables
 table.admin-table {
