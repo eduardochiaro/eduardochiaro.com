@@ -1,7 +1,5 @@
 import moment from 'moment';
-import { getServerSession } from 'next-auth';
 import { Metadata } from 'next';
-import authOptions from '@/config/nextAuth';
 import AdminPage from '@/components/admin/Page';
 import prisma from '@/utils/prisma';
 
@@ -10,7 +8,6 @@ export const metadata: Metadata = {
 };
 
 export default async function AdminBookmarksIndex() {
-  const session = await getServerSession(authOptions);
   const bookmarks = await getBookmarks();
   const categories = await getCategories();
 
@@ -78,10 +75,7 @@ export default async function AdminBookmarksIndex() {
     },
   ];
 
-  if (session) {
-    return <AdminPage title={title} single={single} columns={columns} data={newData} format={format} inputList={inputList} apiURL="/api/portfolio/bookmarks" />;
-  }
-  return null;
+  return <AdminPage title={title} single={single} columns={columns} data={newData} format={format} inputList={inputList} apiURL="/api/portfolio/bookmarks" />;
 }
 
 async function getBookmarks() {

@@ -1,25 +1,23 @@
-import BackendLayout, { menuList } from '@/components/layouts/Backend';
+import BackendLayout from '@/components/layouts/Backend';
 import Link from 'next/link';
 import * as React from 'react';
 import getFirstName from '@/utils/getFirstName';
-import authOptions from '@/config/nextAuth';
-import { getServerSession } from 'next-auth';
 import { Metadata } from 'next';
+import getUser from '@/utils/getUser';
+import { menuList } from '@/utils/menuList';
 
 export const metadata: Metadata = {
   title: 'Admin | Eduardo Chiaro',
 };
 
 export default async function AdminIndex() {
-  const session = await getServerSession(authOptions);
-  if (session) {
+  const user = await getUser();
+  if (user) {
     return (
       <BackendLayout isPageOpen={false}>
         <div className="h-full grow">
           <div className="h-screen overflow-auto px-6 py-8">
-            <h1 className="flex items-center gap-2 pb-4 text-3xl font-semibold">
-              Welcome back{session.user ? ', ' + getFirstName(session.user.name as string) : ''}
-            </h1>
+            <h1 className="flex items-center gap-2 pb-4 text-3xl font-semibold">Welcome back{user ? ', ' + getFirstName(user.name as string) : ''}</h1>
             {menuList.map((item, i) => (
               <React.Fragment key={i}>
                 <h3

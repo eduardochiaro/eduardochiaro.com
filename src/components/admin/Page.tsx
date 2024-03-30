@@ -37,12 +37,12 @@ export default function AdminPage({ format, columns, title, single, data, inputL
   const router = useRouter();
 
   const [isOpen, setIsOpen] = useState(false);
-  const [app, setApp] = useReducer((x: any, y: any) => {
+  const [item, setItem] = useReducer((x: any, y: any) => {
     return { ...x, ...y };
   }, format);
 
-  const openElement = (item: any) => {
-    setApp(item);
+  const openElement = (element: any) => {
+    setItem(element);
     setIsOpen(true);
   };
 
@@ -67,7 +67,7 @@ export default function AdminPage({ format, columns, title, single, data, inputL
         />
       </div>
       <div className={`min-h-screen grow bg-primary-50 px-6 py-8 dark:bg-primary-900 ${isOpen ? '' : 'hidden'}`}>
-        <AdminForm apiURL={apiURL} titleElement={single} itemFormat={format} itemData={app} inputList={inputList} closeElement={closeElement} />
+        <AdminForm apiURL={apiURL} titleElement={single} itemFormat={format} itemData={item} inputList={inputList} closeElement={closeElement} />
       </div>
     </BackendLayout>
   );

@@ -5,13 +5,16 @@ import NavLink from '@/components/NavLink';
 import styles from '@/styles/Admin.Sidebar.module.scss';
 import { ArrowLeftCircleIcon, Bars3BottomRightIcon, CodeBracketIcon, HomeIcon } from '@heroicons/react/24/solid';
 import { Menu, Transition } from '@headlessui/react';
-import { useSession, signOut } from 'next-auth/react';
 import ThemeIcon from '../ThemeIcon';
 import Image from 'next/image';
 import classNames from '@/utils/classNames';
 import Logo from '../icons/Logo';
-import { menuList } from '@/components/layouts/Backend';
+import { menuList } from '@/utils/menuList';
 import Link from 'next/link';
+import { User } from '@prisma/client';
+import { signOut } from '@/actions/access';
+import { redirect } from 'next/navigation';
+import useStaleSWR from '@/utils/staleSWR';
 
 const SidebarDivider = ({ title, openMenu }: { title: string; openMenu: boolean }) => (
   <li>
@@ -24,11 +27,18 @@ const SidebarDivider = ({ title, openMenu }: { title: string; openMenu: boolean 
 );
 
 const AdminSidebar = ({ isPageOpen }: { isPageOpen: boolean }) => {
-  const { data: session } = useSession();
   const [openMenu, setOpenMenu] = useState(true);
   useEffect(() => {
     setOpenMenu(!isPageOpen);
   }, [isPageOpen]);
+
+  const { data: user } = useStaleSWR('/api/me');
+
+  const signOutAction = () => {
+    signOut();
+    redirect('/admin');
+  };
+
   return (
     <div className={`relative z-40 sm:relative md:h-full ${openMenu ? styles['sidebar-open'] : styles['sidebar-closed']}`}>
       <div className="flex justify-between bg-primary-200 dark:bg-primary-600 md:fixed md:min-h-screen md:flex-col">
@@ -105,14 +115,14 @@ const AdminSidebar = ({ isPageOpen }: { isPageOpen: boolean }) => {
         >
           <Menu as="div" className="item-center relative flex">
             <Menu.Button id="admin-menu-short" className="h-7 w-7 rounded-full ring-2 ring-primary-300 dark:ring-primary-500">
-              {session && session.user && (
+              {user && (
                 <Image
-                  src={session.user.image as string}
+                  src={user.image as string}
                   className="z-40 rounded-full"
                   width={200}
                   height={200}
-                  alt={`Logged as ${session.user.name}`}
-                  title={`Logged as ${session.user.name}`}
+                  alt={`Logged as ${user.name}`}
+                  title={`Logged as ${user.name}`}
                 />
               )}
             </Menu.Button>
@@ -135,7 +145,7 @@ const AdminSidebar = ({ isPageOpen }: { isPageOpen: boolean }) => {
                   <Menu.Item>
                     {({ active }) => (
                       <div
-                        onClick={() => signOut()}
+                        onClick={() => signOutAction()}
                         title="logout"
                         className={classNames('flex cursor-pointer items-center gap-2 px-4 py-2', active ? 'bg-primary-300 dark:bg-primary-500' : '')}
                         role="menuitem"

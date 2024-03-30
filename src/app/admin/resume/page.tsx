@@ -1,7 +1,5 @@
 import moment from 'moment';
-import { getServerSession } from 'next-auth';
 import { Metadata } from 'next';
-import authOptions from '@/config/nextAuth';
 import AdminPage from '@/components/admin/Page';
 import prisma from '@/utils/prisma';
 import SVG from '@/utils/svg';
@@ -11,7 +9,6 @@ export const metadata: Metadata = {
 };
 
 export default async function AdminResumeIndex() {
-  const session = await getServerSession(authOptions);
   const resumes = await getResume();
 
   const format = {
@@ -31,13 +28,20 @@ export default async function AdminResumeIndex() {
   const newData: any[] = [];
   resumes?.map((item: any) => {
     const obj = { ...item, original: item };
+    obj.name = item.name + ' at ' + item.company;
     obj.updated = moment(item.updatedAt || item.createdAt).fromNow();
     obj.startDateOrder = moment(item.startDate).unix();
     obj.category_d =
       (item.startDate ? moment(item.startDate).format('YYYY-MM') : 'N/A') + ' - ' + (item.endDate ? moment(item.endDate).format('YYYY-MM') : 'Current');
-    obj.image_d = item.file && item.file.path ? (
-      <SVG title={item.name} className={'w-full fill-primary-700 dark:fill-primary-200'} src={`${process.env.NEXT_PUBLIC_CDN_URL}/${item.file.path}`} height={25} />
-    ) : null;
+    obj.image_d =
+      item.file && item.file.path ? (
+        <SVG
+          title={item.name}
+          className={'w-full fill-primary-700 dark:fill-primary-200'}
+          src={`${process.env.NEXT_PUBLIC_CDN_URL}/${item.file.path}`}
+          height={25}
+        />
+      ) : null;
     newData.push(obj);
   });
 
@@ -129,21 +133,18 @@ export default async function AdminResumeIndex() {
     },
   ];
 
-  if (session) {
-    return (
-      <AdminPage
-        title={title}
-        single={single}
-        columns={columns}
-        data={newData}
-        format={format}
-        inputList={inputList}
-        sortList={sortType}
-        apiURL="/api/portfolio/resume"
-      />
-    );
-  }
-  return null;
+  return (
+    <AdminPage
+      title={title}
+      single={single}
+      columns={columns}
+      data={newData}
+      format={format}
+      inputList={inputList}
+      sortList={sortType}
+      apiURL="/api/portfolio/resume"
+    />
+  );
 }
 
 async function getResume() {

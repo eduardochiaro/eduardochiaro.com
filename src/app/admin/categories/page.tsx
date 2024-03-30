@@ -1,7 +1,5 @@
 import moment from 'moment';
-import { getServerSession } from 'next-auth';
 import { Metadata } from 'next';
-import authOptions from '@/config/nextAuth';
 import AdminPage from '@/components/admin/Page';
 import prisma from '@/utils/prisma';
 
@@ -10,7 +8,6 @@ export const metadata: Metadata = {
 };
 
 export default async function AdminCategoriesIndex() {
-  const session = await getServerSession(authOptions);
   const categories = await getCategories();
   const types = ['BOOKMARK', 'JOB'];
 
@@ -74,21 +71,18 @@ export default async function AdminCategoriesIndex() {
     },
   ];
 
-  if (session) {
-    return (
-      <AdminPage
-        title={title}
-        single={single}
-        columns={columns}
-        data={newData}
-        format={format}
-        inputList={inputList}
-        sortList={sortType}
-        apiURL="/api/admin/categories"
-      />
-    );
-  }
-  return null;
+  return (
+    <AdminPage
+      title={title}
+      single={single}
+      columns={columns}
+      data={newData}
+      format={format}
+      inputList={inputList}
+      sortList={sortType}
+      apiURL="/api/admin/categories"
+    />
+  );
 }
 
 async function getCategories() {

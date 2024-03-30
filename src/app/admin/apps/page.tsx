@@ -1,8 +1,6 @@
 import moment from 'moment';
 import Image from 'next/image';
-import { getServerSession } from 'next-auth';
 import { Metadata } from 'next';
-import authOptions from '@/config/nextAuth';
 import AdminPage from '@/components/admin/Page';
 import prisma from '@/utils/prisma';
 
@@ -11,7 +9,6 @@ export const metadata: Metadata = {
 };
 
 export default async function AdminAppsIndex() {
-  const session = await getServerSession(authOptions);
   const apps = await getApps();
 
   const format = {
@@ -88,14 +85,14 @@ export default async function AdminAppsIndex() {
     },
   ];
 
-  if (session) {
-    return <AdminPage title={title} single={single} columns={columns} data={newData} format={format} inputList={inputList} apiURL="/api/portfolio/apps" />;
-  }
-  return null;
+  return <AdminPage title={title} single={single} columns={columns} data={newData} format={format} inputList={inputList} apiURL="/api/portfolio/apps" />;
 }
 
 async function getApps() {
   return prisma.app.findMany({
+    include: {
+      file: true,
+    },
     orderBy: {
       createdAt: 'desc',
     },

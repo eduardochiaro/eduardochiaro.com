@@ -1,8 +1,6 @@
 import SVG from '@/utils/svg';
 import moment from 'moment';
-import { getServerSession } from 'next-auth';
 import { Metadata } from 'next';
-import authOptions from '@/config/nextAuth';
 import AdminPage from '@/components/admin/Page';
 import prisma from '@/utils/prisma';
 import fs from 'fs';
@@ -13,7 +11,6 @@ export const metadata: Metadata = {
 };
 
 export default async function AdminSkillsIndex() {
-  const session = await getServerSession(authOptions);
   const skills = await getSkills();
   const images = await getImages();
 
@@ -86,10 +83,7 @@ export default async function AdminSkillsIndex() {
     },
   ];
 
-  if (session) {
-    return <AdminPage title={title} single={single} columns={columns} data={newData} format={format} inputList={inputList} apiURL="/api/portfolio/skills" />;
-  }
-  return null;
+  return <AdminPage title={title} single={single} columns={columns} data={newData} format={format} inputList={inputList} apiURL="/api/portfolio/skills" />;
 }
 
 async function getSkills() {

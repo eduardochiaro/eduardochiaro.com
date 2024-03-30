@@ -2,33 +2,13 @@
 
 import moment from 'moment';
 import * as React from 'react';
-import { useSession, signOut } from 'next-auth/react';
 import Link from 'next/link';
 import Logo from '@/components/icons/Logo';
 import LinkedInIcon from '@/components/icons/Linkedin';
 import GitHubIcon from '@/components/icons/Github';
 import Copyright from '@/components/icons/Copyright';
 
-function LoginButton(props: { isLoggedIn: boolean }) {
-  const { isLoggedIn } = props;
-  if (isLoggedIn) {
-    return (
-      <>
-        <Link href="/admin" className="relative text-sm hover:underline">
-          Admin
-        </Link>
-        <button className="relative text-sm hover:underline" onClick={() => signOut()}>
-          Sign out
-        </button>
-      </>
-    );
-  } else {
-    return <></>;
-  }
-}
-
 export default function Footer() {
-  const { data: session } = useSession();
   return (
     <footer id="footer" className="mt-10 pb-4">
       <div className="mx-auto max-w-5xl py-4">
@@ -37,7 +17,6 @@ export default function Footer() {
             <Link href="/">
               <Logo className="logo h-8" />
             </Link>
-            <LoginButton isLoggedIn={!!session} />
           </div>
 
           <div className="flex items-center justify-center gap-2 text-sm">

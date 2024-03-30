@@ -1,15 +1,14 @@
-import authOptions from '@/config/nextAuth';
-import ShowProviders from '@/components/ShowProviders';
+import GitHubIcon from '@/components/icons/Github';
 import { redirect } from 'next/navigation';
-import { getServerSession } from 'next-auth';
 import ThemeIcon from '@/components/ThemeIcon';
 import Logo from '@/components/icons/Logo';
+import getUser from '@/utils/getUser';
+import ShowProviders from '@/components/ShowProviders';
 
 export default async function SignIn({ searchParams }: { searchParams: any }) {
-  const session = await getServerSession(authOptions);
-  const { callbackUrl } = searchParams;
-  if (session && callbackUrl) {
-    redirect(callbackUrl);
+  const user = await getUser();
+  if (user) {
+    redirect('/admin');
   }
   return (
     <div>
