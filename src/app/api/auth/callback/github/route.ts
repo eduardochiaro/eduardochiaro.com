@@ -35,6 +35,14 @@ export async function GET(request: Request): Promise<Response> {
     });
 
     if (existingUser) {
+      await prisma.user.update({
+        where: {
+          id: existingUser.id,
+        },
+        data: {
+          image: githubUser.avatar_url,
+        },
+      });
       const session = await lucia.createSession(existingUser.id as unknown as string, {});
       const sessionCookie = lucia.createSessionCookie(session.id);
       cookies().set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);

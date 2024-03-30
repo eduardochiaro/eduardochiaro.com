@@ -30,7 +30,7 @@ const seed = async () => {
   await prisma.category.deleteMany();
   console.log('Deleted records in categories table');
 
-  await prisma.$queryRaw`ALTER TABLE categories AUTO_INCREMENT = 1`;
+  await prisma.$queryRaw`ALTER TABLE Category AUTO_INCREMENT = 1`;
   console.log('reset categories auto increment to 1');
 
   await prisma.category.createMany({

@@ -32,7 +32,7 @@ const seed = async () => {
   await prisma.menuLink.deleteMany();
   console.log('Deleted records in menu links table');
 
-  await prisma.$queryRaw`ALTER TABLE menu_links AUTO_INCREMENT = 1`;
+  await prisma.$queryRaw`ALTER TABLE MenuLink AUTO_INCREMENT = 1`;
   console.log('reset menu links auto increment to 1');
 
   await prisma.menuLink.createMany({

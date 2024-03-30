@@ -13,23 +13,19 @@ model Skill {
   type       String
   logo       String
   percentage Int
-  createdAt  DateTime? @default(now()) @map("created_at")
-  updatedAt  DateTime? @map("updated_at")
-
-  @@map("skills")
+  createdAt  DateTime? @default(now())
+  updatedAt  DateTime?
 }
 
 model App {
   id          Int       @id @default(autoincrement())
   name        String
-  fileId      Int?      @map("file_id")
+  description String?
+  fileId      Int?      
   file        File?     @relation(fields: [fileId], references: [id])
   url         String?
-  createdAt   DateTime? @default(now()) @map("created_at")
-  updatedAt   DateTime? @map("updated_at")
-  description String?
-
-  @@map("apps")
+  createdAt   DateTime? @default(now())
+  updatedAt   DateTime?
 }
 
 model Bookmark {
@@ -37,25 +33,22 @@ model Bookmark {
   name        String
   description String?
   url         String
-  createdAt   DateTime? @default(now()) @map("created_at")
-  updatedAt   DateTime? @map("updated_at")
-  categoryId  Int       @map("category_id")
+  categoryId  Int      
   category    Category  @relation(fields: [categoryId], references: [id])
+  createdAt   DateTime? @default(now())
+  updatedAt   DateTime? 
 
-  @@index([categoryId], map: "bookmarks_category_id_fkey")
-  @@map("bookmarks")
+  @@index([categoryId], map: "bookmarks_category_id")
 }
 
 model Category {
   id        Int        @id @default(autoincrement())
   name      String
   type      String
-  createdAt DateTime?  @default(now()) @map("created_at")
-  updatedAt DateTime?  @map("updated_at")
-  deletedAt DateTime?  @map("deleted_at")
+  createdAt DateTime?  @default(now())
+  updatedAt DateTime?  
+  deletedAt DateTime?
   bookmarks Bookmark[]
-
-  @@map("categories")
 }
 
 model MenuLink {
@@ -65,10 +58,8 @@ model MenuLink {
   onlyMobile Boolean   @default(false)
   active     Boolean   @default(true)
   order      Int       @default(0)
-  createdAt  DateTime? @default(now()) @map("created_at")
-  updatedAt  DateTime? @map("updated_at")
-
-  @@map("menu_links")
+  createdAt  DateTime? @default(now())
+  updatedAt  DateTime? 
 }
 
 model Resume {
@@ -76,53 +67,46 @@ model Resume {
   name        String
   company     String?
   location    String?
-  fileId      Int?            @map("file_id")
+  fileId      Int?            
   file        File?           @relation(fields: [fileId], references: [id])
   description String?         @db.Text
   startDate   DateTime?
   endDate     DateTime?
-  createdAt   DateTime?       @default(now()) @map("created_at")
-  updatedAt   DateTime?       @map("updated_at")
+  createdAt   DateTime?       @default(now())
+  updatedAt   DateTime?       
   projects    ResumeProject[]
   tags        ResumeTag[]
-
-  @@map("resume")
 }
 
 model ResumeTag {
   id   Int      @id @default(autoincrement())
   name String   @unique // change
   jobs Resume[]
-
-  @@map("resume_tags")
 }
 
 model ResumeProject {
   id          Int       @id @default(autoincrement())
   name        String
   description String?
-  fileId      Int?      @map("file_id")
+  fileId      Int?      
   file        File?     @relation(fields: [fileId], references: [id])
-  createdAt   DateTime? @default(now()) @map("created_at")
-  updatedAt   DateTime? @map("updated_at")
-  resumeId    Int       @map("resume_id")
+  createdAt   DateTime? @default(now())
+  updatedAt   DateTime? 
+  resumeId    Int       
   resume      Resume    @relation(fields: [resumeId], references: [id])
 
-  @@index([resumeId], map: "resume_projects_resume_id_fkey")
-  @@map("resume_projects")
+  @@index([resumeId], map: "project_resume_id")
 }
 
 model Book {
   id          Int       @id @default(autoincrement())
   title       String
   author      String?
-  fileId      Int?             @map("file_id")
+  fileId      Int?             
   file        File?           @relation(fields: [fileId], references: [id])
   isbn        String  @unique
-  createdAt   DateTime? @default(now()) @map("created_at")
-  updatedAt   DateTime? @map("updated_at")
-
-  @@map("books")
+  createdAt   DateTime? @default(now())
+  updatedAt   DateTime? 
 }
 
 model File {
@@ -130,15 +114,13 @@ model File {
   name        String
   type        String
   path        String  @unique
-  createdAt   DateTime? @default(now()) @map("created_at")
-  updatedAt   DateTime? @map("updated_at")
+  createdAt   DateTime? @default(now())
+  updatedAt   DateTime? 
 
   books      Book[]
   resumes    Resume[]
   resumeProjects ResumeProject[]
   apps       App[]
-  
-  @@map("files")
 }
 
 model Session {
@@ -152,10 +134,8 @@ model User {
   id            Int       @id @default(autoincrement())
   name          String?
   email         String?      @unique
-  emailVerified DateTime?    @map("email_verified")
+  emailVerified DateTime?    
   image         String?
   role          String?
   sessions      Session[]
-
-  @@map("users")
 }

@@ -116,14 +116,14 @@ const resumes = [
 ];
 
 const seed = async () => {
+  await prisma.resumeTag.deleteMany();
   await prisma.resumeProject.deleteMany();
   await prisma.resume.deleteMany();
-  await prisma.resumeTag.deleteMany();
   console.log('Deleted records in resumes table');
 
-  await prisma.$queryRaw`ALTER TABLE resume AUTO_INCREMENT = 1`;
-  await prisma.$queryRaw`ALTER TABLE resume_tags AUTO_INCREMENT = 1`;
-  await prisma.$queryRaw`ALTER TABLE resume_projects AUTO_INCREMENT = 1`;
+  await prisma.$queryRaw`ALTER TABLE Resume AUTO_INCREMENT = 1`;
+  await prisma.$queryRaw`ALTER TABLE ResumeProject AUTO_INCREMENT = 1`;
+  await prisma.$queryRaw`ALTER TABLE ResumeTag AUTO_INCREMENT = 1`;
   console.log('reset resumes auto increment to 1');
 
   let resumeTags = [];

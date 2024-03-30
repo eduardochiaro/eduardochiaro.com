@@ -50,7 +50,7 @@ const seed = async () => {
   await prisma.skill.deleteMany();
   console.log('Deleted records in skills table');
 
-  await prisma.$queryRaw`ALTER TABLE skills AUTO_INCREMENT = 1`;
+  await prisma.$queryRaw`ALTER TABLE Skill AUTO_INCREMENT = 1`;
   console.log('reset skills auto increment to 1');
 
   await prisma.skill.createMany({

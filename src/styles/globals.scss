@@ -34,7 +34,9 @@ body {
   @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-600 ring-offset-primary-50 dark:ring-offset-primary-800;
 }
 .button-danger {
-  @apply button text-primary-900 bg-accent-300 hover:bg-accent-500 dark:hover:bg-accent-500 hover:shadow-lg hover:shadow-accent-500 dark:hover:text-primary-50 focus:outline-none focus:ring-0
+  @apply button text-primary-900 bg-accent-300 hover:bg-accent-500 dark:hover:bg-accent-500 dark:hover:text-primary-50 focus:outline-none focus:ring-0;
+  @apply hover:shadow-[0px_0px_15px_0px_#D14542];
+
 }
 //Admin tables
 table.admin-table {

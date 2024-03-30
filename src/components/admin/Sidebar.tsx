@@ -11,7 +11,6 @@ import classNames from '@/utils/classNames';
 import Logo from '../icons/Logo';
 import { menuList } from '@/utils/menuList';
 import Link from 'next/link';
-import { User } from '@prisma/client';
 import { signOut } from '@/actions/access';
 import { redirect } from 'next/navigation';
 import useStaleSWR from '@/utils/staleSWR';
@@ -36,7 +35,6 @@ const AdminSidebar = ({ isPageOpen }: { isPageOpen: boolean }) => {
 
   const signOutAction = () => {
     signOut();
-    redirect('/admin');
   };
 
   return (
@@ -115,7 +113,7 @@ const AdminSidebar = ({ isPageOpen }: { isPageOpen: boolean }) => {
         >
           <Menu as="div" className="item-center relative flex">
             <Menu.Button id="admin-menu-short" className="h-7 w-7 rounded-full ring-2 ring-primary-300 dark:ring-primary-500">
-              {user && (
+              {user && user.image && (
                 <Image
                   src={user.image as string}
                   className="z-40 rounded-full"
@@ -124,6 +122,11 @@ const AdminSidebar = ({ isPageOpen }: { isPageOpen: boolean }) => {
                   alt={`Logged as ${user.name}`}
                   title={`Logged as ${user.name}`}
                 />
+              )}
+              {user && !user.image && (
+                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-accent-200 dark:bg-accent-500">
+                  <span className="text-sm font-semibold text-primary-900 dark:text-primary-100">{user?.name?.charAt(0)}</span>
+                </div>
               )}
             </Menu.Button>
             <Transition

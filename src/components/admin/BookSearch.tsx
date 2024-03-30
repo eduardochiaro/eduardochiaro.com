@@ -25,6 +25,10 @@ export default function BookSearch({ books }: { books: BookExpanded[] }) {
     return { ...x, ...y };
   }, responseData);
 
+  const checkIfBookIsSaved = (book: BookExpanded) => {
+    return results.some((b) => b.isbn === book.isbn);
+  };
+
   const handleSearch = () => {
     //fetch data from https://openlibrary.org/search.json
     setIsLoading(true);
@@ -42,7 +46,7 @@ export default function BookSearch({ books }: { books: BookExpanded[] }) {
               title: book.title,
               author: book.author_name ? book.author_name[0] : 'Unknown author',
               file: {
-                path: book.cover_i ? 'https://covers.openlibrary.org/b/id/' + book.cover_i + '-L.jpg' : null,
+                path: book.cover_i ? 'https://covers.openlibrary.org/b/id/' + book.cover_i + '-M.jpg' : null,
               },
               isbn: book.isbn ? book.isbn[0] : '',
             };
@@ -100,7 +104,7 @@ export default function BookSearch({ books }: { books: BookExpanded[] }) {
             </label>
           </div>
           <div className="mt-10 max-w-screen-lg overflow-auto" role="menu" aria-orientation="horizontal" aria-labelledby="menu-button">
-            <div className="flex items-end gap-8 pb-4">
+            <div className="flex items-start gap-8 pb-4">
               {data.results.map((book: BookExpanded, index: number) => (
                 <div key={index} className="flex w-44 flex-col">
                   <p className="text-gray-500 mb-1 line-clamp-2 text-center text-sm" title={book.author || ''}>
@@ -110,7 +114,7 @@ export default function BookSearch({ books }: { books: BookExpanded[] }) {
                   <div
                     className={classNames(
                       book.file && book.file.path ? 'bg-emerald-600' : 'bg-accent-600',
-                      'relative mx-auto flex h-60 w-40 flex-col rounded-l-lg border border-primary-700 bg-cover bg-center bg-no-repeat drop-shadow-md',
+                      'relative mx-auto flex h-60 w-40 flex-col overflow-hidden rounded-l-md border border-primary-700 bg-cover bg-center bg-no-repeat drop-shadow-md',
                     )}
                     style={{
                       backgroundImage: book.file?.path ? `url('${book.file.path}')` : '',
@@ -118,7 +122,7 @@ export default function BookSearch({ books }: { books: BookExpanded[] }) {
                     }}
                     title={book.title}
                   >
-                    <div className="absolute left-0 top-0 h-60 w-2 border-r-2 border-primary-950 bg-secondary-900 opacity-50" />
+                    <div className="absolute left-1 top-0 h-60 w-1 border-r-2 border-primary-950 bg-secondary-900 opacity-30" />
                     {(!book.file || !book.file.path) && (
                       <>
                         <h3 className="mt-5 line-clamp-5 grow px-3 text-center text-base font-semibold">{book.title}</h3>
@@ -132,9 +136,11 @@ export default function BookSearch({ books }: { books: BookExpanded[] }) {
                   <p className="text-gray-500 mb-1 line-clamp-2 text-center text-sm" title={book.isbn || ''}>
                     {book.isbn}
                   </p>
-                  <button className="button mt-2" onClick={() => addBookAction(book)}>
-                    Add
-                  </button>
+                  {!checkIfBookIsSaved(book) && (
+                    <button className="button mt-2" onClick={() => addBookAction(book)}>
+                      Add
+                    </button>
+                  )}
                 </div>
               ))}
             </div>
@@ -144,21 +150,18 @@ export default function BookSearch({ books }: { books: BookExpanded[] }) {
       {results.length > 0 && (
         <div className="mt-10">
           <h3 className="my-4 text-xl font-semibold">Saved Books</h3>
-          <div className="grid grid-cols-6 items-end gap-4">
+          <div className="grid grid-cols-4 items-end gap-6">
             {results.map((book: BookExpanded, index: number) => (
-              <div key={index} className="flex w-44 flex-col">
-                <p className="text-gray-500 mb-1 line-clamp-2 text-center text-sm" title={book.author || ''}>
-                  {book.author}
-                </p>
+              <div key={index} className="flex flex-col">
                 <div
                   className={classNames(
                     book.file && book.file.path ? 'bg-emerald-600' : 'bg-accent-600',
-                    'relative mx-auto flex h-60 w-40 flex-col rounded-l-lg border border-primary-700 bg-cover bg-center bg-no-repeat drop-shadow-md',
+                    'relative mx-auto flex h-60 w-40 flex-col overflow-hidden rounded-l-md border border-primary-700 bg-cover bg-center bg-no-repeat drop-shadow-md',
                   )}
                   style={{ backgroundImage: book.file && book.file.path ? `url('/uploads/${book.file.path}')` : '', backgroundPosition: 'top center' }}
                   title={book.title}
                 >
-                  <div className="absolute left-0 top-0 h-60 w-2 border-r-2 border-primary-950 bg-secondary-900 opacity-50" />
+                  <div className="absolute left-1 top-0 h-60 w-1 border-r-2 border-primary-950 bg-secondary-900 opacity-30" />
                   {!book.file && (
                     <>
                       <h3 className="mt-5 line-clamp-5 grow px-3 text-center text-base font-semibold">{book.title}</h3>
@@ -166,12 +169,14 @@ export default function BookSearch({ books }: { books: BookExpanded[] }) {
                     </>
                   )}
                 </div>
-                <h3 className="mt-2 line-clamp-2 text-center text-base font-semibold" title={book.title}>
-                  {book.title}
-                </h3>
-                <button className="button-danger mt-2" onClick={() => deleteBookAction(book)}>
-                  Delete
-                </button>
+                <p className="text-gray-500 mt-2 line-clamp-2 text-center text-xs" title={book.author || ''}>
+                  {book.author}
+                </p>
+                <div className="flex items-center justify-center">
+                  <button className="button-danger mt-2 !px-4" onClick={() => deleteBookAction(book)}>
+                    Delete
+                  </button>
+                </div>
               </div>
             ))}
           </div>
