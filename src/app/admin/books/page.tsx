@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
-import prisma from '@/utils/prisma';
 import BackendLayout from '@/components/layouts/Backend';
 import BookSearch from '@/components/admin/BookSearch';
+import { getBookTags, getBooks } from '@/actions/books';
 
 export const metadata: Metadata = {
   title: 'Admin > Apps | Eduardo Chiaro',
@@ -9,6 +9,7 @@ export const metadata: Metadata = {
 
 export default async function AdminBooksIndex() {
   const books = await getBooks();
+  const tags = await getBookTags();
 
   const title = 'Books';
   const single = 'book';
@@ -21,21 +22,10 @@ export default async function AdminBooksIndex() {
             <h1 className="grow font-semibold md:flex-grow-0">{title}</h1>
           </div>
           <div className="mb-2 mt-8 flex flex-col items-start gap-4 px-6 md:flex-row md:items-center">
-            <BookSearch books={books} />
+            <BookSearch books={books} tags={tags} />
           </div>
         </div>
       </div>
     </BackendLayout>
   );
-}
-
-async function getBooks() {
-  return prisma.book.findMany({
-    include: {
-      file: true,
-    },
-    orderBy: {
-      title: 'asc',
-    },
-  });
 }

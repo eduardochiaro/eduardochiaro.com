@@ -5,7 +5,7 @@ import fs from 'fs';
 import { Book, Prisma } from '@prisma/client';
 
 const uploadPath = './public/uploads/';
-type BookExpanded = Prisma.BookGetPayload<{ include: { file: true } }>;
+type BookExpanded = Prisma.BookGetPayload<{ include: { file: true; tags: true } }>;
 
 const download = async (url: string, fileName: string) => {
   const response = await fetch(url);
@@ -36,7 +36,7 @@ const addBook = async (book: BookExpanded) => {
     });
   }
 
-  await prisma.book.upsert({
+  const bookData = await prisma.book.upsert({
     where: {
       isbn: book.isbn,
     },
@@ -52,6 +52,39 @@ const addBook = async (book: BookExpanded) => {
       fileId: file ? file.id : null,
     },
   });
+
+  if (book.tags && book.tags.length > 0) {
+    //get or create tags
+    const tags = await Promise.all(
+      book.tags.map(async (tag: any) => {
+        return await prisma.bookTag.upsert({
+          where: {
+            name: tag.name,
+          },
+          update: {},
+          create: {
+            name: tag.name,
+          },
+        });
+      }),
+    );
+
+    //update book tags
+    await prisma.book.update({
+      where: {
+        id: bookData.id,
+      },
+      data: {
+        tags: {
+          set: tags.map((tag) => {
+            return {
+              name: tag.name,
+            };
+          }),
+        },
+      },
+    });
+  }
 };
 
 const deleteBook = async (book: BookExpanded) => {
@@ -71,6 +104,7 @@ const getBooks = async () => {
   return prisma.book.findMany({
     include: {
       file: true,
+      tags: true,
     },
     orderBy: {
       title: 'asc',
@@ -78,4 +112,19 @@ const getBooks = async () => {
   });
 };
 
-export { addBook, getBooks, deleteBook };
+const getBookTags = async () => {
+  return prisma.bookTag.findMany({
+    include: {
+      _count: {
+        select: { books: true },
+      },
+    },
+    orderBy: {
+      books: {
+        _count: 'desc',
+      },
+    },
+  });
+};
+
+export { addBook, getBooks, deleteBook, getBookTags };

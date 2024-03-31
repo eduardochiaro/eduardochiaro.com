@@ -3,16 +3,18 @@
 import { useReducer, useState } from 'react';
 import { Input } from '../form';
 import SpinnerIcon from '@/components/icons/Spinner';
-import { addBook, deleteBook, getBooks } from '@/actions/books';
-import { Book, Prisma } from '@prisma/client';
+import { addBook, deleteBook, getBookTags, getBooks } from '@/actions/books';
+import { Prisma } from '@prisma/client';
 import classNames from '@/utils/classNames';
+import { Disclosure } from '@headlessui/react';
 
-type BookExpanded = Prisma.BookGetPayload<{ include: { file: true } }>;
+type BookExpanded = Prisma.BookGetPayload<{ include: { file: true; tags: true } }>;
 
-export default function BookSearch({ books }: { books: BookExpanded[] }) {
+export default function BookSearch({ books, tags }: { books: BookExpanded[]; tags: any[] }) {
   const [search, setSearch] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState<BookExpanded[]>(books);
+  const [tagResults, setTags] = useState<any[]>(tags);
 
   const responseData = {
     numFound: 0,
@@ -33,7 +35,7 @@ export default function BookSearch({ books }: { books: BookExpanded[] }) {
     //fetch data from https://openlibrary.org/search.json
     setIsLoading(true);
 
-    const response = fetch(`https://openlibrary.org/search.json?q=${search}&fields=title,author_name,cover_i,isbn&limit=100&offset=0`)
+    const response = fetch(`https://openlibrary.org/search.json?q=${search}&fields=title,author_name,cover_i,isbn,subject&limit=100&offset=0`)
       .then((response) => response.json())
       .then((data) => {
         setIsLoading(false);
@@ -49,6 +51,11 @@ export default function BookSearch({ books }: { books: BookExpanded[] }) {
                 path: book.cover_i ? 'https://covers.openlibrary.org/b/id/' + book.cover_i + '-M.jpg' : null,
               },
               isbn: book.isbn ? book.isbn[0] : '',
+              tags: book.subject
+                ? book.subject.map((tag: string) => {
+                    return { name: tag };
+                  })
+                : [],
             };
           }),
         });
@@ -56,16 +63,22 @@ export default function BookSearch({ books }: { books: BookExpanded[] }) {
       .catch((error) => console.error(error));
   };
 
-  const addBookAction = async (book: BookExpanded) => {
-    await addBook(book);
+  const updateSavedBooks = async () => {
     const books = await getBooks();
     setResults(books);
+
+    const tags = await getBookTags();
+    setTags(tags);
+  };
+
+  const addBookAction = async (book: BookExpanded) => {
+    await addBook(book);
+    return updateSavedBooks();
   };
 
   const deleteBookAction = async (book: BookExpanded) => {
     await deleteBook(book);
-    const books = await getBooks();
-    setResults(books);
+    return updateSavedBooks();
   };
 
   return (
@@ -114,7 +127,7 @@ export default function BookSearch({ books }: { books: BookExpanded[] }) {
                   <div
                     className={classNames(
                       book.file && book.file.path ? 'bg-emerald-600' : 'bg-accent-600',
-                      'relative mx-auto flex h-60 w-40 flex-col overflow-hidden rounded-l-md border border-primary-700 bg-cover bg-center bg-no-repeat drop-shadow-md',
+                      'relative mx-auto flex h-60 w-40 flex-col overflow-hidden rounded-l-md border border-primary-700 bg-cover bg-center bg-no-repeat shadow',
                     )}
                     style={{
                       backgroundImage: book.file?.path ? `url('${book.file.path}')` : '',
@@ -147,6 +160,22 @@ export default function BookSearch({ books }: { books: BookExpanded[] }) {
           </div>
         </div>
       )}
+      {tagResults.length > 0 && (
+        <div className="box-card mt-10 px-4">
+          <Disclosure>
+            <Disclosure.Button className="py-2">Tags ({tagResults.length})</Disclosure.Button>
+            <Disclosure.Panel className="my-4 grid grid-cols-4 items-center gap-6">
+              {tagResults.map((tag: any, index: number) => (
+                <div key={index} className="flex flex-col">
+                  <p className="text-gray-500 mb-1 line-clamp-2 text-sm" title={tag.name || ''}>
+                    {tag.name} {tag._count ? `(${tag._count.books})` : ''}
+                  </p>
+                </div>
+              ))}
+            </Disclosure.Panel>
+          </Disclosure>
+        </div>
+      )}
       {results.length > 0 && (
         <div className="mt-10">
           <h3 className="my-4 text-xl font-semibold">Saved Books</h3>
@@ -156,7 +185,7 @@ export default function BookSearch({ books }: { books: BookExpanded[] }) {
                 <div
                   className={classNames(
                     book.file && book.file.path ? 'bg-emerald-600' : 'bg-accent-600',
-                    'relative mx-auto flex h-60 w-40 flex-col overflow-hidden rounded-l-md border border-primary-700 bg-cover bg-center bg-no-repeat drop-shadow-md',
+                    'relative mx-auto flex h-60 w-40 flex-col overflow-hidden rounded-l-md rounded-r border border-primary-700 bg-cover bg-center bg-no-repeat shadow',
                   )}
                   style={{ backgroundImage: book.file && book.file.path ? `url('/uploads/${book.file.path}')` : '', backgroundPosition: 'top center' }}
                   title={book.title}

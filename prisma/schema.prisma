@@ -107,6 +107,14 @@ model Book {
   isbn        String  @unique
   createdAt   DateTime? @default(now())
   updatedAt   DateTime? 
+  tags        BookTag[]
+}
+
+model BookTag {
+  id   Int      @id @default(autoincrement())
+  name String   @unique // change
+  published Boolean @default(false)
+  books Book[]
 }
 
 model File {
