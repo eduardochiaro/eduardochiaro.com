@@ -3,10 +3,11 @@
 import { useReducer, useState } from 'react';
 import { Input } from '../form';
 import SpinnerIcon from '@/components/icons/Spinner';
-import { addBook, deleteBook, getBookTags, getBooks } from '@/actions/books';
-import { Prisma } from '@prisma/client';
+import { addBook, deleteBook, deleteBookTag, getBookTags, getBooks, updateBookTagPublished } from '@/actions/books';
+import { BookTag, Prisma } from '@prisma/client';
 import classNames from '@/utils/classNames';
 import { Disclosure } from '@headlessui/react';
+import { CheckIcon, TrashIcon } from '@heroicons/react/16/solid';
 
 type BookExpanded = Prisma.BookGetPayload<{ include: { file: true; tags: true } }>;
 
@@ -29,6 +30,18 @@ export default function BookSearch({ books, tags }: { books: BookExpanded[]; tag
 
   const checkIfBookIsSaved = (book: BookExpanded) => {
     return results.some((b) => b.isbn === book.isbn);
+  };
+
+  const changePublishedStatus = (tag: BookTag) => {
+    return async () => {
+      await updateBookTagPublished(tag);
+      return updateSavedBooks();
+    };
+  };
+
+  const handleDeleteTag = async (tag: BookTag) => {
+    await deleteBookTag(tag);
+    return updateSavedBooks();
   };
 
   const handleSearch = () => {
@@ -127,7 +140,8 @@ export default function BookSearch({ books, tags }: { books: BookExpanded[]; tag
                   <div
                     className={classNames(
                       book.file && book.file.path ? 'bg-emerald-600' : 'bg-accent-600',
-                      'relative mx-auto flex h-60 w-40 flex-col overflow-hidden rounded-l-md border border-primary-700 bg-cover bg-center bg-no-repeat shadow',
+                      'relative mx-auto flex h-60 w-40 flex-col overflow-hidden rounded-l-md rounded-r border border-primary-700 bg-cover bg-center bg-no-repeat',
+                      'shadow shadow-primary-950',
                     )}
                     style={{
                       backgroundImage: book.file?.path ? `url('${book.file.path}')` : '',
@@ -163,13 +177,19 @@ export default function BookSearch({ books, tags }: { books: BookExpanded[]; tag
       {tagResults.length > 0 && (
         <div className="box-card mt-10 px-4">
           <Disclosure>
-            <Disclosure.Button className="py-2">Tags ({tagResults.length})</Disclosure.Button>
-            <Disclosure.Panel className="my-4 grid grid-cols-4 items-center gap-6">
+            <Disclosure.Button className="py-2 font-semibold">Tags ({tagResults.length})</Disclosure.Button>
+            <Disclosure.Panel className="grid grid-cols-4 items-center gap-6 py-4">
               {tagResults.map((tag: any, index: number) => (
-                <div key={index} className="flex flex-col">
-                  <p className="text-gray-500 mb-1 line-clamp-2 text-sm" title={tag.name || ''}>
+                <div key={index} className="group line-clamp-2 flex items-center gap-2 text-sm" title={tag.name || ''}>
+                  <button className="h-4 w-4 rounded bg-primary-400" onClick={changePublishedStatus(tag)}>
+                    {tag.published && <CheckIcon className="h-4 text-primary-950" />}
+                  </button>
+                  <div className="grow gap-2">
                     {tag.name} {tag._count ? `(${tag._count.books})` : ''}
-                  </p>
+                  </div>
+                  <button className="hidden group-hover:block" onClick={() => handleDeleteTag(tag)}>
+                    <TrashIcon className="w-5" />
+                  </button>
                 </div>
               ))}
             </Disclosure.Panel>
@@ -185,7 +205,8 @@ export default function BookSearch({ books, tags }: { books: BookExpanded[]; tag
                 <div
                   className={classNames(
                     book.file && book.file.path ? 'bg-emerald-600' : 'bg-accent-600',
-                    'relative mx-auto flex h-60 w-40 flex-col overflow-hidden rounded-l-md rounded-r border border-primary-700 bg-cover bg-center bg-no-repeat shadow',
+                    'relative mx-auto flex h-60 w-40 flex-col overflow-hidden rounded-l-md rounded-r border border-primary-700 bg-cover bg-center bg-no-repeat',
+                    'shadow shadow-primary-950',
                   )}
                   style={{ backgroundImage: book.file && book.file.path ? `url('/uploads/${book.file.path}')` : '', backgroundPosition: 'top center' }}
                   title={book.title}
@@ -198,8 +219,8 @@ export default function BookSearch({ books, tags }: { books: BookExpanded[]; tag
                     </>
                   )}
                 </div>
-                <p className="text-gray-500 mt-2 line-clamp-2 text-center text-xs" title={book.author || ''}>
-                  {book.author}
+                <p className="text-gray-500 mt-2 line-clamp-2 text-center text-xs" title={book.title || ''}>
+                  {book.title}
                 </p>
                 <div className="flex items-center justify-center">
                   <button className="button-danger mt-2 !px-4" onClick={() => deleteBookAction(book)}>

@@ -2,7 +2,7 @@
 import prisma from '@/utils/prisma';
 import { nanoid } from 'nanoid';
 import fs from 'fs';
-import { Book, Prisma } from '@prisma/client';
+import { Book, BookTag, Prisma } from '@prisma/client';
 
 const uploadPath = './public/uploads/';
 type BookExpanded = Prisma.BookGetPayload<{ include: { file: true; tags: true } }>;
@@ -119,12 +119,36 @@ const getBookTags = async () => {
         select: { books: true },
       },
     },
-    orderBy: {
-      books: {
-        _count: 'desc',
+    orderBy: [
+      {
+        books: {
+          _count: 'desc',
+        },
       },
+      {
+        name: 'asc',
+      },
+    ],
+  });
+};
+
+const updateBookTagPublished = async (book: BookTag) => {
+  await prisma.bookTag.update({
+    where: {
+      id: book.id,
+    },
+    data: {
+      published: !book.published,
     },
   });
 };
 
-export { addBook, getBooks, deleteBook, getBookTags };
+const deleteBookTag = async (tag: BookTag) => {
+  await prisma.bookTag.delete({
+    where: {
+      id: tag.id,
+    },
+  });
+};
+
+export { addBook, getBooks, deleteBook, getBookTags, updateBookTagPublished, deleteBookTag };
