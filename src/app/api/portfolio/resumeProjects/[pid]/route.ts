@@ -13,16 +13,8 @@ export async function DELETE(
   },
 ) {
   const { pid } = params;
-  const resumeProjectReturn = await prisma.resumeProject.findFirst({
-    where: {
-      id: parseInt(pid),
-    },
-  });
   await prisma.resumeProject.delete({
     where: { id: parseInt(pid) },
   });
-  if (resumeProjectReturn && resumeProjectReturn.image) {
-    await rmFile(`${uploadPath}${resumeProjectReturn.image}`);
-  }
   return NextResponse.json({ action: 'resumeProject deleted' });
 }

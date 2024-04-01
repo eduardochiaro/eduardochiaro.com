@@ -1,6 +1,6 @@
 'use client';
 
-import type { ResumeProject } from '@prisma/client';
+import type { Prisma, ResumeProject } from '@prisma/client';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 import { PlusIcon } from '@heroicons/react/20/solid';
 import Image from 'next/image';
@@ -15,6 +15,8 @@ import { TrashIcon } from '@heroicons/react/24/solid';
 type Props = {
   resumeId?: number | null;
 };
+
+type ResumeProjectExpanded = Prisma.ResumeProjectGetPayload<{ include: { file: true } }>;
 
 const AdminResumeProjects = ({ resumeId }: Props) => {
   const { mutate, data: projects } = useStaleSWR(`/api/portfolio/resume/${resumeId}/projects`);
@@ -48,7 +50,7 @@ const AdminResumeProjects = ({ resumeId }: Props) => {
   const [imagePreview, setImagePreview] = useState(imagePreviewSet);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isOpenDelete, setIsOpenDelete] = useState(false);
-  const [openDeleteItem, setOpenDeleteItem] = useState<ResumeProject | null>(null);
+  const [openDeleteItem, setOpenDeleteItem] = useState<ResumeProjectExpanded | null>(null);
 
   const inputToValidate = ['name', 'image'];
   const apiURL = '/api/portfolio/resumeProjects';
@@ -95,13 +97,13 @@ const AdminResumeProjects = ({ resumeId }: Props) => {
       return;
     }
     try {
-      const { data } = await createEditItem<ResumeProject>(apiURL, item, false);
+      const { data } = await createEditItem<ResumeProjectExpanded>(apiURL, item, false);
       resetForm();
       updateItem(data);
-      if (data.image) {
+      if (data.file) {
         setImagePreview({
           file: {},
-          imagePreviewUrl: `${process.env.NEXT_PUBLIC_CDN_URL}/${data.image}`,
+          imagePreviewUrl: `${process.env.NEXT_PUBLIC_CDN_URL}/${data.file.path}`,
         });
       }
       setForm({ ...formInitialState, success: true });
@@ -140,10 +142,18 @@ const AdminResumeProjects = ({ resumeId }: Props) => {
         </button>
       </div>
 
-      {projects?.results.map((project: ResumeProject, key: any) => (
+      {projects?.results.map((project: ResumeProjectExpanded, key: any) => (
         <div className="border:bg-primary-50/50 my-4 flex h-14 items-center gap-4 border-b border-primary-500/50 px-4 pb-4" key={key}>
           <div className="relative h-14 w-16">
-            <Image alt={project.name} className={'bg-transparent object-cover'} fill src={`${process.env.NEXT_PUBLIC_CDN_URL}/${project.image}`} sizes="33vw" />
+            {project.file && (
+              <Image
+                alt={project.name}
+                className={'bg-transparent object-cover'}
+                fill
+                src={`${process.env.NEXT_PUBLIC_CDN_URL}/${project.file.path}`}
+                sizes="33vw"
+              />
+            )}
           </div>
           <span className="grow">{project.name}</span>
           <button onClick={() => openDeleteModal(project)}>

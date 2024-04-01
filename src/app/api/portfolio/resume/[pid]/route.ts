@@ -96,6 +96,7 @@ export async function PUT(
     include: {
       tags: true,
       projects: true,
+      file: true,
     },
   });
 

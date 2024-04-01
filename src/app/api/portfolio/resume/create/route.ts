@@ -74,6 +74,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
     include: {
       tags: true,
       projects: true,
+      file: true,
     },
   });
   if (resume) {
