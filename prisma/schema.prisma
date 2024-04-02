@@ -88,12 +88,12 @@ model ResumeProject {
   id          Int       @id @default(autoincrement())
   name        String
   description String?
+  resumeId    Int       
+  resume      Resume    @relation(fields: [resumeId], references: [id])
   fileId      Int?      
   file        File?     @relation(fields: [fileId], references: [id])
   createdAt   DateTime? @default(now())
   updatedAt   DateTime? 
-  resumeId    Int       
-  resume      Resume    @relation(fields: [resumeId], references: [id])
 
   @@index([resumeId], map: "project_resume_id")
 }

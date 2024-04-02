@@ -32,22 +32,23 @@ export async function POST(request: NextRequest, response: NextResponse) {
     console.log(error);
   }
 
-  const resumeProject = await prisma.resumeProject.create({
+  const file = await prisma.file.create({
+    data: {
+      name: name,
+      path: newName,
+      type: mimeType,
+    },
+  });
+
+  const project = await prisma.resumeProject.create({
     data: {
       name,
       resumeId: parseInt(resumeId),
-      file: {
-        create: {
-          name: name,
-          path: newName,
-          type: mimeType,
-        },
-      },
-      createdAt: new Date(),
+      fileId: file.id,
     },
   });
-  if (resumeProject) {
-    return NextResponse.json(resumeProject);
+  if (project) {
+    return NextResponse.json(project);
   }
   return new Response(null, {
     status: 400,

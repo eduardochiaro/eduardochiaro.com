@@ -55,7 +55,6 @@ export async function POST(request: NextRequest, response: NextResponse) {
     description,
     startDate: startDate ? moment(startDate).toISOString() : null,
     endDate: endDate ? moment(endDate).toISOString() : null,
-    createdAt: new Date(),
     tags: {
       create: newTags,
       connect: appendTags,

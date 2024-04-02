@@ -44,7 +44,6 @@ export async function POST(request: NextRequest, response: NextResponse) {
           type: mimeType,
         },
       },
-      createdAt: new Date(),
     },
   });
   if (app) {

@@ -6,7 +6,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
   const { url, name, description, categoryId } = await getFieldsFromForm(request, ['url', 'name', 'description', 'categoryId']);
 
   const bookmark = await prisma.bookmark.create({
-    data: { url, name, description, categoryId: parseInt(categoryId), createdAt: new Date() },
+    data: { url, name, description, categoryId: parseInt(categoryId) },
   });
   if (bookmark) {
     return NextResponse.json(bookmark);
