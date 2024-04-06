@@ -8,6 +8,7 @@ import { BookTag, Prisma } from '@prisma/client';
 import classNames from '@/utils/classNames';
 import { Disclosure } from '@headlessui/react';
 import { CheckIcon, TrashIcon } from '@heroicons/react/16/solid';
+import styles from '@/styles/Book.module.scss';
 
 type BookExpanded = Prisma.BookGetPayload<{ include: { file: true; tags: true } }>;
 
@@ -120,7 +121,7 @@ export default function BookSearch({ books, tags }: { books: BookExpanded[]; tag
         </p>
       )}
       {!isLoading && data.numFound > 0 && (
-        <div className="mt-10">
+        <div className="mt-10 flex flex-col gap-10">
           <div className="relative flex">
             <label className="flex items-center gap-2">
               <span className="text-gray-500 text-sm font-semibold">Results:</span>
@@ -129,48 +130,46 @@ export default function BookSearch({ books, tags }: { books: BookExpanded[]; tag
               </span>
             </label>
           </div>
-          <div className="mt-10 max-w-screen-lg overflow-auto" role="menu" aria-orientation="horizontal" aria-labelledby="menu-button">
-            <div className="flex items-start gap-8 pb-4">
-              {data.results.map((book: BookExpanded, index: number) => (
-                <div key={index} className="flex w-44 flex-col">
-                  <p className="text-gray-500 mb-1 line-clamp-2 text-center text-sm" title={book.author || ''}>
-                    {book.author}
-                  </p>
+          <div
+            className="flex max-w-screen-lg items-start gap-6 space-x-6 overflow-x-auto pb-4"
+            role="menu"
+            aria-orientation="horizontal"
+            aria-labelledby="menu-button"
+          >
+            {data.results.map((book: BookExpanded, index: number) => (
+              <div key={index} className="flex w-44 flex-col">
+                <p className="text-gray-500 mb-1 line-clamp-2 text-center text-sm" title={book.author || ''}>
+                  {book.author}
+                </p>
 
-                  <div
-                    className={classNames(
-                      book.file && book.file.path ? 'bg-emerald-600' : 'bg-accent-600',
-                      'relative mx-auto flex h-60 w-40 flex-col overflow-hidden rounded-l-md rounded-r border border-primary-700 bg-cover bg-center bg-no-repeat',
-                      'shadow shadow-primary-950',
-                    )}
-                    style={{
-                      backgroundImage: book.file?.path ? `url('${book.file.path}')` : '',
-                      backgroundPosition: 'top center',
-                    }}
-                    title={book.title}
-                  >
-                    <div className="absolute left-1 top-0 h-60 w-1 border-r-2 border-primary-950 bg-secondary-900 opacity-30" />
-                    {(!book.file || !book.file.path) && (
-                      <>
-                        <h3 className="mt-5 line-clamp-5 grow px-3 text-center text-base font-semibold">{book.title}</h3>
-                        <p className="text-gray-500 mb-2 line-clamp-3 px-3 text-center text-xs">{book.author}</p>
-                      </>
-                    )}
-                  </div>
-                  <h3 className="mt-2 line-clamp-2 text-center text-base font-semibold" title={book.title}>
-                    {book.title}
-                  </h3>
-                  <p className="text-gray-500 mb-1 line-clamp-2 text-center text-sm" title={book.isbn || ''}>
-                    {book.isbn}
-                  </p>
-                  {!checkIfBookIsSaved(book) && (
-                    <button className="button mt-2" onClick={() => addBookAction(book)}>
-                      Add
-                    </button>
+                <div
+                  className={classNames(book.file && book.file.path ? 'bg-emerald-600' : 'bg-accent-600', styles['book'])}
+                  style={{
+                    backgroundImage: book.file?.path ? `url('${book.file.path}')` : '',
+                    backgroundPosition: 'top center',
+                  }}
+                  title={book.title}
+                >
+                  {(!book.file || !book.file.path) && (
+                    <>
+                      <h3>{book.title}</h3>
+                      <h4>{book.author}</h4>
+                    </>
                   )}
                 </div>
-              ))}
-            </div>
+                <h3 className="mt-2 line-clamp-2 text-center text-base font-semibold" title={book.title}>
+                  {book.title}
+                </h3>
+                <p className="text-gray-500 mb-1 line-clamp-2 text-center text-sm" title={book.isbn || ''}>
+                  {book.isbn}
+                </p>
+                {!checkIfBookIsSaved(book) && (
+                  <button className="button mt-2" onClick={() => addBookAction(book)}>
+                    Add
+                  </button>
+                )}
+              </div>
+            ))}
           </div>
         </div>
       )}
@@ -178,7 +177,7 @@ export default function BookSearch({ books, tags }: { books: BookExpanded[]; tag
         <div className="box-card mt-10 px-4">
           <Disclosure>
             <Disclosure.Button className="py-2 font-semibold">Tags ({tagResults.length})</Disclosure.Button>
-            <Disclosure.Panel className="grid grid-cols-4 items-center gap-6 py-4">
+            <Disclosure.Panel className="flex flex-wrap items-center gap-6 py-4">
               {tagResults.map((tag: any, index: number) => (
                 <div key={index} className="group line-clamp-2 flex items-center gap-2 text-sm" title={tag.name || ''}>
                   <button className="h-4 w-4 rounded bg-primary-400" onClick={changePublishedStatus(tag)}>
@@ -203,19 +202,14 @@ export default function BookSearch({ books, tags }: { books: BookExpanded[]; tag
             {results.map((book: BookExpanded, index: number) => (
               <div key={index} className="flex flex-col">
                 <div
-                  className={classNames(
-                    book.file && book.file.path ? 'bg-emerald-600' : 'bg-accent-600',
-                    'relative mx-auto flex h-60 w-40 flex-col overflow-hidden rounded-l-md rounded-r border border-primary-700 bg-cover bg-center bg-no-repeat',
-                    'shadow shadow-primary-950',
-                  )}
+                  className={classNames(book.file && book.file.path ? 'bg-emerald-600' : 'bg-accent-600', styles['book'])}
                   style={{ backgroundImage: book.file && book.file.path ? `url('/uploads/${book.file.path}')` : '', backgroundPosition: 'top center' }}
                   title={book.title}
                 >
-                  <div className="absolute left-1 top-0 h-60 w-1 border-r-2 border-primary-950 bg-secondary-900 opacity-30" />
                   {!book.file && (
                     <>
-                      <h3 className="mt-5 line-clamp-5 grow px-3 text-center text-base font-semibold">{book.title}</h3>
-                      <p className="text-gray-500 mb-2 line-clamp-3 px-3 text-center text-xs">{book.author}</p>
+                      <h3>{book.title}</h3>
+                      <h4>{book.author}</h4>
                     </>
                   )}
                 </div>

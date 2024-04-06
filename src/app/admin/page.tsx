@@ -26,7 +26,7 @@ export default async function AdminIndex() {
                 >
                   {item.title}
                 </h3>
-                <div className="mt-4 grid w-fit grid-cols-5 gap-6 md:grid-cols-3">
+                <div className="mt-4 flex flex-wrap gap-6">
                   {item.links.map((link, key) => (
                     <Link
                       key={key}

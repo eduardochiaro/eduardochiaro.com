@@ -38,7 +38,7 @@ const AdminSidebar = ({ isPageOpen }: { isPageOpen: boolean }) => {
   };
 
   return (
-    <div className={`relative z-40 sm:relative md:h-full ${openMenu ? styles['sidebar-open'] : styles['sidebar-closed']}`}>
+    <div className={`relative z-40 flex-none sm:relative md:h-screen ${openMenu ? styles['sidebar-open'] : styles['sidebar-closed']}`}>
       <div className="flex justify-between bg-primary-200 dark:bg-primary-600 md:fixed md:min-h-screen md:flex-col">
         <div className="relative grow px-3 md:p-3">
           <Link href="/admin" className={`flex h-14 items-center gap-4 md:my-3 ${styles['sidebar-logo']}`}>
