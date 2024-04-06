@@ -135,7 +135,7 @@ export default function Terminal() {
         <div className="h-3 w-3 rounded-full border border-secondary-600 bg-secondary-500"></div>
         <div className="h-3 w-3 rounded-full border border-emerald-600 bg-emerald-500"></div>
       </div>
-      <div className="grow justify-end overflow-y-auto rounded-b-lg bg-primary-900 p-4 font-mono text-primary-100 shadow-lg" onClick={() => setInputFocus}>
+      <div className="grow justify-end overflow-y-auto rounded-b-lg bg-primary-950 p-4 font-mono text-primary-50 shadow-lg" onClick={() => setInputFocus}>
         {state.history.map((line: any, index: number) => (
           <div key={`history-${index}`} className="mb-1">
             <div className="flex flex-row items-center space-x-2">
