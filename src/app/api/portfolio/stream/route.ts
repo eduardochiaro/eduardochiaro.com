@@ -19,7 +19,7 @@ export async function GET(request: NextRequest, response: NextResponse) {
     results.push({
       title: item.title,
       permalink: item.link[0]['href'],
-      published: moment(item.created).utc().toString(),
+      published: moment(item.created).utc().format(),
       timestamp: moment(item.created).unix(),
       type: 'Flickr',
       image: item.link[1]['href'],
@@ -31,7 +31,7 @@ export async function GET(request: NextRequest, response: NextResponse) {
     results.push({
       title: item.caption || item.id,
       permalink: item.permalink,
-      published: item.timestamp,
+      published: moment(item.timestamp).utc().format(),
       timestamp: moment(item.timestamp).unix(),
       type: 'Instagram',
       image: item.thumbnailUrl || item.mediaUrl,

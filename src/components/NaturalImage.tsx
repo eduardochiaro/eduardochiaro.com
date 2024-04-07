@@ -19,7 +19,7 @@ const NaturalImage = ({ size = 200, className, alt, ...props }: ImageProps & { s
       width={size}
       height={size / ratio}
       className={`bg-transparent transition duration-300 ${isReady ? 'scale-100 blur-0' : 'scale-120 blur-2xl'} ${className}`}
-      onLoadingComplete={onLoadCallback}
+      onLoad={(e) => onLoadCallback(e.target as HTMLImageElement)}
       priority={false}
     />
   );

@@ -23,7 +23,7 @@ export default function Stream() {
             <div className="flex">
               <h4 className="flex-1 font-header text-xl tracking-wide">{item.title}</h4>
             </div>
-            <p className="text-right font-mono text-xs opacity-70">{moment(item.published).fromNow()}</p>
+            {item.published && <p className="text-right font-mono text-xs opacity-70">{moment(item.published).fromNow()}</p>}
           </div>
         </Link>
       </div>
