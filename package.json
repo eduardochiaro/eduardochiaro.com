@@ -75,7 +75,7 @@
     "@typescript-eslint/typescript-estree": "^7.5.0",
     "concurrently": "^8.2.2",
     "cypress": "^13.7.2",
-    "eslint": "^9.0.0",
+    "eslint": "^8.57.0",
     "eslint-config-next": "^14.2.0-canary.62",
     "postcss": "^8.4.38",
     "prettier": "^3.2.5",
