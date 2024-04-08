@@ -50,8 +50,8 @@ export default async function Home() {
           </h2>
           <p className="mt-10">
             With {moment().diff('2005-09-01', 'years')} years of experience, Eduardo has been tinkering with Node.js for the last few years, building SaaS
-            applications that are scalable and flexible. He's a big believer in using the latest technologies and best practices to stay on the cutting edge of
-            development.
+            applications that are scalable and flexible. He&apos;s a big believer in using the latest technologies and best practices to stay on the cutting
+            edge of development.
           </p>
           <ul className="mt-10 flex flex-col gap-3 font-semibold text-primary-400 dark:text-primary-600">
             <li>
@@ -84,7 +84,12 @@ export default async function Home() {
           <div className="mt-10 flex flex-wrap items-center gap-5 md:justify-between">
             {works.map((job, index) => (
               <div className={'relative z-10 text-center align-middle'} key={`job-image-${index}`}>
-                <SVG title={job.name} className={'inline w-full fill-primary-400 dark:fill-primary-600 grayscale hover:grayscale-0'} src={`/works/${job.logo}`} height={20} />
+                <SVG
+                  title={job.name}
+                  className={'inline w-full fill-primary-400 grayscale hover:grayscale-0 dark:fill-primary-600'}
+                  src={`/works/${job.logo}`}
+                  height={20}
+                />
               </div>
             ))}
           </div>
