@@ -10,6 +10,7 @@ const header = Titillium_Web({
 });
 
 const mono = Roboto_Mono({
+  weight: ['400', '600', '700'],
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-mono',

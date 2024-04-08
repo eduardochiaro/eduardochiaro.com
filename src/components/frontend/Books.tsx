@@ -67,7 +67,10 @@ export default function Books({ data }: { data: BookWithTags[] }) {
                       </>
                     )}
                   </div>
-                  <p className="text-gray-500 mt-2 line-clamp-2 text-center text-xs" title={book.title || ''}>
+                  <p
+                    className="text-gray-500 z-10 mt-0.5 line-clamp-2 rounded-sm border border-primary-600 bg-primary-300 py-0.5 text-center text-xs capitalize shadow-md shadow-primary-700 dark:bg-primary-700 dark:shadow-primary-950"
+                    title={book.title || ''}
+                  >
                     {book.title}
                   </p>
                 </div>
