@@ -1,8 +1,7 @@
 import ThemeIcon from '@/components/ThemeIcon';
 import WireContainer from '@/components/WireContainer';
 import SVG from '@/utils/svg';
-import { BookOpenIcon, BriefcaseIcon } from '@heroicons/react/24/outline';
-import { CpuChipIcon, RssIcon } from '@heroicons/react/24/solid';
+import { BookOpenIcon, BriefcaseIcon, CpuChipIcon, RssIcon } from '@heroicons/react/24/outline';
 import moment from 'moment';
 import Link from 'next/link';
 
@@ -36,7 +35,7 @@ export default async function Home() {
 
   return (
     <div className="relative flex h-screen items-center">
-      <div className="absolute left-5 top-5">
+      <div className="absolute left-2.5 top-2.5">
         <WireContainer>
           <h1 className="font-header text-3xl font-normal">
             eduardo<span className="overlay-color font-semibold">chiaro</span>
@@ -81,15 +80,10 @@ export default async function Home() {
               </Link>
             </li>
           </ul>
-          <div className="mt-10 flex flex-wrap items-center gap-5 md:justify-between">
+          <div className="mt-10 flex flex-row flex-wrap items-center gap-5 md:justify-between">
             {works.map((job, index) => (
-              <div className={'relative z-10 text-center align-middle'} key={`job-image-${index}`}>
-                <SVG
-                  title={job.name}
-                  className={'inline w-full fill-primary-400 grayscale hover:grayscale-0 dark:fill-primary-600'}
-                  src={`/works/${job.logo}`}
-                  height={20}
-                />
+              <div className={'relative text-center align-middle'} key={`job-image-${index}`}>
+                <SVG title={job.name} className={'fill-primary-400 grayscale hover:grayscale-0 dark:fill-primary-600'} src={`/works/${job.logo}`} height={20} />
               </div>
             ))}
           </div>

@@ -1,6 +1,7 @@
 import Providers from '@/providers';
 import { Titillium_Web, Roboto_Mono } from 'next/font/google';
 import '../styles/globals.scss';
+import type { Viewport } from 'next';
 
 const header = Titillium_Web({
   weight: ['400', '600', '700'],
@@ -32,3 +33,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#EEF3F6' },
+    { media: '(prefers-color-scheme: dark)', color: '#111A22' },
+  ],
+};

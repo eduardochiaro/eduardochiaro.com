@@ -4,6 +4,7 @@ import SVG from 'react-inlinesvg';
 import moment from 'moment';
 import { ChevronDoubleRightIcon } from '@heroicons/react/20/solid';
 import { Prisma, Resume, ResumeProject, ResumeTag } from '@prisma/client';
+import { Fragment } from 'react';
 
 type ResumeProjectExpanded = Prisma.ResumeProjectGetPayload<{ include: { file: true } }>;
 type ResumeExpanded = Prisma.ResumeGetPayload<{ include: { tags: true; projects: { include: { file: true } }; file: true } }> & {
@@ -14,7 +15,6 @@ type ResumeExpanded = Prisma.ResumeGetPayload<{ include: { tags: true; projects:
 export default function ResumeComponent({ data }: { data: any[] }) {
   const mappedData = data
     ? data.map((job: ResumeExpanded) => {
-        console.log(job.projects);
         return {
           ...job,
           startYear: moment(job.startDate).format('YYYY'),
@@ -78,8 +78,8 @@ export default function ResumeComponent({ data }: { data: any[] }) {
                       <>
                         <h5 className="mb-2 mt-6 font-header text-lg">Projects</h5>
                         <div className="flex items-center gap-8 group-odd:justify-end">
-                          {job.projects?.map((project: ResumeProjectExpanded) => (
-                            <>
+                          {job.projects?.map((project: ResumeProjectExpanded, index: number) => (
+                            <Fragment key={`project-image-${index}`}>
                               {(project.file && project.file.path && (
                                 <SVG
                                   key={`resume_project_${project.id}`}
@@ -93,7 +93,7 @@ export default function ResumeComponent({ data }: { data: any[] }) {
                                   {project.name}
                                 </h6>
                               )}
-                            </>
+                            </Fragment>
                           ))}
                         </div>
                       </>
