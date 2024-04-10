@@ -23,7 +23,7 @@ export default function Header({ data }: { data: MenuLink[] }) {
 
   return (
     <header>
-      <nav className="relative flex w-full items-center justify-between gap-6 px-4 py-3">
+      <nav className="relative flex w-full items-center justify-between gap-6 p-5">
         <Menu as="div" className="inline-block md:hidden">
           <Menu.Button id="menu-short" title="open menu" className="flex items-center hover:cursor-pointer md:hidden">
             <Bars3BottomLeftIcon className={'w-7 transition hover:text-primary-900 dark:hover:text-primary-100'} />

@@ -6,6 +6,7 @@ import prisma from '@/utils/prisma';
 import { Metadata } from 'next';
 import styles from '@/styles/Resume.module.scss';
 import { cache } from 'react';
+import WireContainer from '@/components/WireContainer';
 
 export default async function Resume() {
   const resume = await getResume();
@@ -14,12 +15,12 @@ export default async function Resume() {
   return (
     <div className="flex min-h-screen flex-col justify-between">
       <Header data={menuLinks} />
-      <div className={`${styles.resume} flex grow flex-col bg-fixed`}>
-        <div className={'mb-auto grow pb-10'}>
+      <WireContainer type="large" className="mx-auto">
+        <div className="min-w-96 max-w-screen-lg rounded-xl bg-primary-50 p-6 font-mono shadow-lg dark:bg-primary-950">
           <ResumeComponent data={resume} />
         </div>
+			</WireContainer>
         <Footer />
-      </div>
     </div>
   );
 }

@@ -7,11 +7,12 @@ import Logo from '@/components/icons/Logo';
 import LinkedInIcon from '@/components/icons/Linkedin';
 import GitHubIcon from '@/components/icons/Github';
 import Copyright from '@/components/icons/Copyright';
+import WireContainer from '../WireContainer';
 
 export default function Footer() {
   return (
     <footer id="footer" className="mt-10 pb-4">
-      <div className="mx-auto max-w-5xl py-4">
+      <div className="mx-auto max-w-screen-xl py-4">
         <div className="grid grid-cols-1 items-center gap-5 md:grid-cols-3">
           <div className="flex items-center justify-center gap-2 md:justify-start">
             <Link href="/">
@@ -24,21 +25,25 @@ export default function Footer() {
           </div>
 
           <div className="flex justify-center gap-4 md:justify-end">
-            <Link
-              href="https://linkedin.com/in/eduardochiaro"
-              className="inline-flex h-8 w-8 items-center justify-center rounded-full text-center focus:outline-none focus:ring-2 focus:ring-secondary-600 focus:ring-offset-2 focus:ring-offset-primary-50 dark:focus:ring-offset-primary-900"
-              title="LinkedIn"
-            >
-              <LinkedInIcon className={'h-4 transition-colors duration-300 ease-out hover:text-secondary-600'} />
-            </Link>
 
-            <Link
-              href="https://github.com/eduardochiaro"
-              className="inline-flex h-8 w-8 items-center justify-center rounded-full text-center focus:outline-none focus:ring-2 focus:ring-secondary-600 focus:ring-offset-2 focus:ring-offset-primary-50 dark:focus:ring-offset-primary-900"
-              title="GitHub"
-            >
-              <GitHubIcon className={'h-4 transition-colors duration-300 ease-out hover:text-secondary-600'} />
-            </Link>
+        		<WireContainer>
+							<Link
+								href="https://linkedin.com/in/eduardochiaro"
+								className="inline-flex h-8 w-8 items-center justify-center rounded-full text-center focus:outline-none focus:ring-2 focus:ring-secondary-600 focus:ring-offset-2 focus:ring-offset-primary-50 dark:focus:ring-offset-primary-900"
+								title="LinkedIn"
+							>
+								<LinkedInIcon className={'h-4 transition-colors duration-300 ease-out hover:text-secondary-600'} />
+							</Link>
+						</WireContainer>
+        		<WireContainer>
+							<Link
+								href="https://github.com/eduardochiaro"
+								className="inline-flex h-8 w-8 items-center justify-center rounded-full text-center focus:outline-none focus:ring-2 focus:ring-secondary-600 focus:ring-offset-2 focus:ring-offset-primary-50 dark:focus:ring-offset-primary-900"
+								title="GitHub"
+							>
+								<GitHubIcon className={'h-4 transition-colors duration-300 ease-out hover:text-secondary-600'} />
+							</Link>
+						</WireContainer>
           </div>
         </div>
       </div>

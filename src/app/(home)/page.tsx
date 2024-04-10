@@ -35,7 +35,7 @@ export default async function Home() {
 
   return (
     <div className="relative flex h-screen items-center">
-      <div className="absolute left-2.5 top-2.5">
+      <div className="absolute left-5 top-5">
         <WireContainer>
           <h1 className="font-header text-3xl font-normal">
             eduardo<span className="overlay-color font-semibold">chiaro</span>
