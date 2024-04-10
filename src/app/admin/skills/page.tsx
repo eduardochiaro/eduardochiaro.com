@@ -29,7 +29,14 @@ export default async function AdminSkillsIndex() {
     const obj = { ...item, original: item };
     obj.category_d = obj.type;
     obj.updated = moment(item.updatedAt || item.createdAt).fromNow();
-    obj.image_d = <SVG title={item.name} className={'w-full fill-primary-700 dark:fill-primary-200'} src={`/images/svg-icons/${item.logo}`} height={50} />;
+    obj.image_d = (
+      <SVG
+        title={item.name}
+        className={'w-full fill-secondary-700 stroke-secondary-700 dark:fill-secondary-200 dark:stroke-secondary-200'}
+        src={`/images/svg-icons/${item.logo}`}
+        height={50}
+      />
+    );
     obj.description = item.percentage + '%';
     newData.push(obj);
   });
