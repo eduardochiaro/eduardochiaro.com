@@ -10,9 +10,9 @@ export default async function Stream() {
   const menuLinks = await getMenuLinks();
 
   return (
-    <div className="flex min-h-screen flex-col justify-between">
+    <div className={`${styles.stream} flex min-h-screen flex-col justify-between`}>
       <Header data={menuLinks} />
-      <div className={`${styles.stream} flex grow flex-col bg-fixed`}>
+      <div className={'flex grow flex-col bg-fixed'}>
         <div className={'mb-auto grow pb-10'}>
           <section className={'mt-10 px-4 lg:px-0'}>
             <div className="mx-auto max-w-5xl">

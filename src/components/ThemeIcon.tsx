@@ -55,7 +55,7 @@ export default function ThemeIcon({ orientation, size = 'h-7' }: { orientation: 
       setIconClass(
         resetClassColors.map((x) => {
           if (x.name === theme) {
-            x.className = 'text-primary-500 underline';
+            x.className = 'text-accent-500 dark:text-accent-400 underline';
           }
           return x;
         }),
@@ -104,7 +104,7 @@ export default function ThemeIcon({ orientation, size = 'h-7' }: { orientation: 
           aria-labelledby="menu-button"
         >
           {iconClass?.map((item, index) => (
-            <div className="font-semibold text-primary-400 dark:text-primary-600" key={index}>
+            <div className="font-semibold text-primary-600 dark:text-primary-400" key={index}>
               <Menu.Item>
                 {({ active }) => (
                   <div

@@ -12,18 +12,11 @@ import WireContainer from '../WireContainer';
 export default function Footer() {
   return (
     <footer id="footer" className="mt-10 pb-4">
-      <div className="mx-auto max-w-screen-xl py-4">
-        <div className="grid grid-cols-1 items-center gap-5 md:grid-cols-3">
-          <div className="flex items-center justify-center gap-2 md:justify-start">
-            <Link href="/">
-              <Logo className="logo size-8" />
-            </Link>
+      <div className="mx-auto max-w-screen-lg py-4">
+        <div className="flex items-center justify-between gap-5">
+          <div className="flex items-center justify-center gap-2 font-mono text-sm text-primary-500 md:justify-start">
+            <Logo className="logo size-4" /> {moment().year()}
           </div>
-
-          <div className="flex items-center justify-center gap-2 text-sm">
-            <Copyright className="w-4" /> Copyright {moment().year()}
-          </div>
-
           <div className="flex justify-center gap-4 md:justify-end">
             <WireContainer>
               <Link

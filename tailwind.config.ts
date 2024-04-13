@@ -55,6 +55,7 @@ export default {
     fontFamily: {
       header: ['var(--font-header)', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', 'Arial', 'sans-serif'],
       mono: ['var(--font-mono)', 'Courier New', 'monospace'],
+      sans: ['ui-sans-serif', 'system-ui', 'sans-serif', "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"]
     },
     extend: {
       transitionProperty: {

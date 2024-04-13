@@ -75,7 +75,7 @@ export default function Header({ data }: { data: MenuLink[] }) {
         </Menu>
 
         <WireContainer>
-          <h1 className="font-header text-3xl font-normal">
+          <h1 className="p-1 px-2 font-header text-3xl font-normal">
             <Link href="/">
               eduardo<span className="overlay-color font-semibold">chiaro</span>
             </Link>

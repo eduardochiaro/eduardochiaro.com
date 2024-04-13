@@ -89,6 +89,9 @@ table.admin-table {
 .box-card {
   @apply box-card-unstyled bg-primary-50 dark:bg-primary-950 ;
 }
+.card {
+  @apply rounded-xl bg-primary-50 p-6 font-mono shadow-lg dark:bg-primary-950;
+}
 .custom-img {
   object-fit: contain;
   width: 100% !important;

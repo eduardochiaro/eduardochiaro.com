@@ -37,18 +37,18 @@ export default async function Resume() {
     : [];
 
   return (
-    <div className="flex min-h-screen flex-col justify-between">
+    <div className="flex min-h-screen w-screen flex-col justify-between">
       <Header data={menuLinks} />
       <WireContainer type="large" className="mx-auto">
-        <div className="min-w-96 max-w-screen-lg rounded-xl bg-primary-50 p-6 font-mono shadow-lg dark:bg-primary-950">
+        <div className="card max-w-screen-xl md:min-w-96">
           <div className="mb-10">
             <h2 className="font-header text-5xl font-semibold">eduardo</h2>
             <h2 className="font-header text-5xl font-semibold">chiaro</h2>
           </div>
-          <div className="flex min-w-96 items-start gap-10">
-            <div className="w-1/4 min-w-56 text-right">
+          <div className="flex flex-col items-start gap-20 md:min-w-96 md:flex-row">
+            <div className="md:w-1/4 md:min-w-56 md:text-right">
               <h3 className="mb-4 font-header text-2xl font-semibold">Skills</h3>
-              <ul className="flex flex-col gap-1">
+              <ul className="flex flex-wrap gap-4 md:flex-col md:gap-1">
                 {skills.map((skill: Skill, index: number) => (
                   <li key={`skill-${index}`} className="flex items-center justify-end gap-2">
                     {skill.name}
@@ -80,14 +80,14 @@ export default async function Resume() {
                 </li>
               </ul>
             </div>
-            <div className="mb-10 w-3/4">
+            <div className="mb-10 md:w-3/4">
               <h3 className="mb-4 font-header text-2xl font-semibold">Work Experience</h3>
               <div className="flex flex-col gap-10">
                 {mappedData.map((job: ResumeExpanded, index: number) => (
                   <div key={`job-${index}`} className="">
-                    <h4 className="flex items-center gap-2 font-semibold">
+                    <h4 className="items-center gap-2 font-semibold md:flex">
                       <>{job.name}</>
-                      <span>|</span>
+                      <span className="px-2 md:px-0">|</span>
                       {job.file && job.file.path ? (
                         <SVG
                           title={job.company}

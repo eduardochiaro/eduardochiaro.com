@@ -43,7 +43,7 @@ export default async function Home() {
         </WireContainer>
       </div>
       <WireContainer type="large" className="mx-auto">
-        <div className="min-w-96 max-w-screen-sm rounded-xl bg-primary-50 p-6 font-mono shadow-lg dark:bg-primary-950">
+        <div className="card max-w-screen-sm md:min-w-96">
           <h2 className="font-semibold">
             Eduardo <span className="font-normal">is a software developer.</span>
           </h2>
