@@ -74,10 +74,10 @@ export default async function Projects() {
             <h2 className="flex h-10 align-bottom font-header text-xl font-light leading-tight tracking-wide md:flex-row-reverse">
               <span className="self-end">Lab</span>
             </h2>
-            <ul className="mt-5 flex flex-col gap-2 pl-0 md:pl-2">
+            <ul className="mt-6 flex flex-col gap-2 pl-0 md:pl-2">
               {projects.map((project, index) => (
                 <li key={`project-${index}`}>
-                  <WireContainer type="large" key={`app-${index}`}>
+                  <WireContainer type="medium" key={`app-${index}`}>
                     <div className="card p-4 text-base">
                       <Link href={project.url} className="group">
                         <h3 className="text-lg tracking-wide transition-colors duration-300 ease-out group-hover:text-secondary-600 dark:group-hover:text-secondary-600">

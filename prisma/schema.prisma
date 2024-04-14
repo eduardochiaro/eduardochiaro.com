@@ -65,11 +65,12 @@ model MenuLink {
 model Resume {
   id          Int             @id @default(autoincrement())
   name        String
+  description String?         @db.Text
   company     String?
   location    String?
   fileId      Int?            
   file        File?           @relation(fields: [fileId], references: [id])
-  description String?         @db.Text
+  featured    Boolean   @default(false)
   startDate   DateTime?
   endDate     DateTime?
   createdAt   DateTime?       @default(now())
@@ -92,6 +93,7 @@ model ResumeProject {
   resume      Resume    @relation(fields: [resumeId], references: [id])
   fileId      Int?      
   file        File?     @relation(fields: [fileId], references: [id])
+  featured    Boolean   @default(false)
   createdAt   DateTime? @default(now())
   updatedAt   DateTime? 
 

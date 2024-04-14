@@ -1,10 +1,8 @@
 import Footer from '@/components/frontend/Footer';
 import Header from '@/components/frontend/Header';
-import ResumeComponent from '@/components/frontend/Resume';
 import getMenuLinks from '@/utils/getMenuLinks';
 import prisma from '@/utils/prisma';
 import { Metadata } from 'next';
-import styles from '@/styles/Resume.module.scss';
 import { Fragment, cache } from 'react';
 import WireContainer from '@/components/WireContainer';
 import { Prisma, ResumeTag, Skill } from '@prisma/client';
@@ -12,7 +10,6 @@ import moment from 'moment';
 import SVG from '@/utils/svg';
 import Link from 'next/link';
 import LinkedInIcon from '@/components/icons/Linkedin';
-import LinkedIn from '../../components/icons/Linkedin';
 import GitHubIcon from '@/components/icons/Github';
 
 type ResumeProjectExpanded = Prisma.ResumeProjectGetPayload<{ include: { file: true } }>;

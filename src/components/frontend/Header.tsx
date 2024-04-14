@@ -1,7 +1,7 @@
 'use client';
 
 import React, { Fragment } from 'react';
-import { RssIcon, Bars3BottomLeftIcon } from '@heroicons/react/24/solid';
+import { RssIcon, Bars3BottomLeftIcon } from '@heroicons/react/20/solid';
 import { usePathname } from 'next/navigation';
 import { Menu, Transition } from '@headlessui/react';
 import ThemeIcon from '@/components/ThemeIcon';
@@ -81,7 +81,7 @@ export default function Header({ data }: { data: MenuLink[] }) {
             </Link>
           </h1>
         </WireContainer>
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-10">
           <div className="hidden items-center md:flex">
             <ul className="mx-auto items-center gap-6 font-semibold tracking-wider md:flex">
               {menuData

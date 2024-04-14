@@ -1,4 +1,5 @@
 import classNames from '@/utils/classNames';
+import { pad } from 'cypress/types/lodash';
 
 type Props = {
   children: React.ReactNode;
@@ -8,22 +9,27 @@ type Props = {
 };
 
 export default function WireContainer({ children, type = 'small', className = '', hideTop = false }: Props) {
-  let paddingArea = 'p-1';
-  let wireWidth = 'w-2';
-  let wireHeight = 'h-2';
-  switch (type) {
-    default:
-    case 'large':
-      paddingArea = 'p-4';
-      wireWidth = 'w-4';
-      wireHeight = 'h-4';
-      break;
-    case 'medium':
-      paddingArea = 'p-2';
-      wireWidth = 'w-3';
-      wireHeight = 'h-3';
-      break;
-  }
+  const mapSize = {
+    paddingArea: {
+      large: 'p-4',
+      medium: 'p-2',
+      small: 'p-1',
+    },
+    wireWidth: {
+      large: 'w-4',
+      medium: 'w-3',
+      small: 'w-2',
+    },
+    wireHeight: {
+      large: 'h-4',
+      medium: 'h-3',
+      small: 'h-2',
+    },
+  };
+
+  const paddingArea = mapSize.paddingArea[type as keyof typeof mapSize.paddingArea];
+  const wireWidth = mapSize.wireWidth[type as keyof typeof mapSize.wireWidth];
+  const wireHeight = mapSize.wireHeight[type as keyof typeof mapSize.wireWidth];
 
   return (
     <div className={classNames(className, 'flex flex-col')}>

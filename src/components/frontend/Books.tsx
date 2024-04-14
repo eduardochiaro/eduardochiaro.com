@@ -4,6 +4,7 @@ import classNames from '@/utils/classNames';
 import { Prisma } from '@prisma/client';
 import styles from '@/styles/Book.module.scss';
 import { useState } from 'react';
+import WireContainer from '../WireContainer';
 
 type BookWithTags = Prisma.BookGetPayload<{
   include: {
@@ -56,7 +57,11 @@ export default function Books({ data }: { data: BookWithTags[] }) {
               {results.map((book: BookWithTags, index: number) => (
                 <div key={index} className="flex flex-col">
                   <div
-                    className={classNames(book.file && book.file.path ? 'bg-emerald-600' : 'bg-accent-600', styles['book'], 'transition-all hover:scale-125')}
+                    className={classNames(
+                      book.file && book.file.path ? 'bg-emerald-600' : 'bg-cyan-600',
+                      styles['book'],
+                      'text-primary-300 transition-all hover:scale-125',
+                    )}
                     style={{ backgroundImage: book.file && book.file.path ? `url('/uploads/${book.file.path}')` : '', backgroundPosition: 'top center' }}
                     title={book.title}
                   >
@@ -68,7 +73,7 @@ export default function Books({ data }: { data: BookWithTags[] }) {
                     )}
                   </div>
                   <p
-                    className="text-gray-500 z-10 mt-0.5 line-clamp-2 rounded-sm border border-primary-600 bg-primary-300 py-0.5 text-center text-xs capitalize shadow-md shadow-primary-700 dark:bg-primary-700 dark:shadow-primary-950"
+                    className="z-10 line-clamp-2 rounded-sm border border-primary-600 bg-primary-300 py-0.5 text-center text-xs capitalize text-primary-500 shadow-md shadow-primary-700 dark:bg-primary-700 dark:shadow-primary-950"
                     title={book.title || ''}
                   >
                     {book.title}
@@ -79,28 +84,33 @@ export default function Books({ data }: { data: BookWithTags[] }) {
           </div>
         </div>
         <div className="mb-10 basis-full md:basis-1/4 md:text-right">
-          <h2 className="flex h-10 align-bottom font-header text-xl font-light leading-tight tracking-wide md:flex-row-reverse">
+          <h2 className="mb-8 flex h-10 align-bottom font-header text-xl font-light leading-tight tracking-wide md:flex-row-reverse">
             <span className="self-end">Tags</span>
           </h2>
           {tags.length > 0 && (
-            <ul className="box-card text-md mt-10 p-4 text-right">
-              <li className="flex h-10 justify-end">
-                <button className={classNames('flex items-center gap-2', selectedTag == null && 'font-semibold underline')} onClick={() => handleTagClick({})}>
-                  All ({data.length})
-                </button>
-              </li>
-              {tags.map((tag: any, index: number) => (
-                <li key={index} className="flex h-10 justify-end">
+            <WireContainer type="medium">
+              <ul className="card text-md text-right !font-sans">
+                <li className="flex h-10 justify-end">
                   <button
-                    className={classNames('flex items-center gap-2', selectedTag == tag.id && 'font-semibold underline')}
-                    title={tag.name || ''}
-                    onClick={() => handleTagClick(tag)}
+                    className={classNames('flex items-center gap-2', selectedTag == null && 'font-semibold underline')}
+                    onClick={() => handleTagClick({})}
                   >
-                    {tag.name} ({tag.count})
+                    All ({data.length})
                   </button>
                 </li>
-              ))}
-            </ul>
+                {tags.map((tag: any, index: number) => (
+                  <li key={index} className="flex h-10 justify-end">
+                    <button
+                      className={classNames('flex items-center gap-2', selectedTag == tag.id && 'font-semibold underline')}
+                      title={tag.name || ''}
+                      onClick={() => handleTagClick(tag)}
+                    >
+                      {tag.name} ({tag.count})
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </WireContainer>
           )}
         </div>
       </div>

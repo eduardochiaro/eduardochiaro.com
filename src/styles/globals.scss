@@ -90,7 +90,7 @@ table.admin-table {
   @apply box-card-unstyled bg-primary-50 dark:bg-primary-950 ;
 }
 .card {
-  @apply rounded-xl bg-primary-50 p-6 font-mono shadow-lg dark:bg-primary-950;
+  @apply rounded-xl bg-primary-50 p-6 font-mono shadow-lg dark:bg-primary-950 border border-primary-200 dark:border-primary-900;
 }
 .custom-img {
   object-fit: contain;

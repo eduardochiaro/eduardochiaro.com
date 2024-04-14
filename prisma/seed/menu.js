@@ -3,23 +3,27 @@ const prisma = new PrismaClient();
 
 const menuLinks = [
   {
-    id: 1,
-    name: 'Home',
-    url: '/',
+    name: 'Resume',
+    url: '/resume',
     order: 1,
     active: true,
     onlyMobile: false,
   },
   {
-    id: 2,
-    name: 'Bookmarks',
-    url: '/bookmarks',
+    name: 'Books',
+    url: '/books',
     order: 2,
-    active: false,
+    active: true,
     onlyMobile: false,
   },
   {
-    id: 3,
+    name: 'Bookmarks',
+    url: '/bookmarks',
+    order: 2,
+    active: true,
+    onlyMobile: false,
+  },
+  {
     name: 'Projects',
     url: '/projects',
     order: 3,

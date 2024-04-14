@@ -7,6 +7,7 @@ const resumes = [
     company: 'Verizon',
     location: 'Greater Seattle Area, USA',
     name: 'Software Engineer',
+    featured: true,
     file: {
       create: {
         name: 'Verizon',
@@ -23,6 +24,7 @@ const resumes = [
     company: 'Getty Images',
     location: 'Greater Seattle Area, USA',
     name: 'Software Developer',
+    featured: true,
     file: {
       create: {
         name: 'Getty Images',
@@ -46,6 +48,7 @@ const resumes = [
     projects: [
       {
         name: 'Microsoft',
+        featured: true,
         file: {
           create: {
             name: 'Microsoft',
@@ -56,6 +59,7 @@ const resumes = [
       },
       {
         name: 'HP',
+        featured: true,
         file: {
           create: {
             name: 'HP',
@@ -66,6 +70,7 @@ const resumes = [
       },
       {
         name: 'Samsung',
+        featured: true,
         file: {
           create: {
             name: 'Samsung',
@@ -76,6 +81,7 @@ const resumes = [
       },
       {
         name: 'LG',
+        featured: true,
         file: {
           create: {
             name: 'LG',
