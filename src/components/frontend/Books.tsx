@@ -60,7 +60,7 @@ export default function Books({ data }: { data: BookWithTags[] }) {
           </h1>
           <div className="mx-auto mt-10">
             <div className="flex flex-col">
-              <div className="mx-4 flex h-72 items-end gap-0">
+              <div className="mx-4 flex h-64 items-end gap-0">
                 {results.map((book: BookWithTags, index: number) => (
                   <div key={index} className="group">
                     <div
