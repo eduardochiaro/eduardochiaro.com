@@ -81,9 +81,9 @@ export default function Header({ data }: { data: MenuLink[] }) {
             </Link>
           </h1>
         </WireContainer>
-        <div className="flex items-center gap-10">
+        <div className="flex items-center gap-4 md:gap-10">
           <div className="hidden items-center md:flex">
-            <ul className="mx-auto items-center gap-6 font-semibold tracking-wider md:flex">
+            <ul className="mx-auto items-center gap-2 font-semibold tracking-wider md:flex md:gap-8">
               {menuData
                 .filter((x: any) => !x.onlyMobile && x.active)
                 .map((item: any, i: number) => {

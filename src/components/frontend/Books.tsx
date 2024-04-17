@@ -13,6 +13,12 @@ type BookWithTags = Prisma.BookGetPayload<{
   };
 }>;
 
+const randomHeight = () => {
+  // random number between 128 and 160
+  const height = Math.floor(Math.random() * (220 - 180 + 1)) + 180;
+  return height;
+};
+
 export default function Books({ data }: { data: BookWithTags[] }) {
   const [results, setResults] = useState(data);
   const [selectedTag, setSelectedTag] = useState<any>(null);
@@ -53,33 +59,43 @@ export default function Books({ data }: { data: BookWithTags[] }) {
             Books I&apos;ve <span className="overlay-color">read</span>...
           </h1>
           <div className="mx-auto mt-10">
-            <div className="grid grow grid-cols-3 items-end gap-16 px-10">
-              {results.map((book: BookWithTags, index: number) => (
-                <div key={index} className="flex flex-col">
-                  <div
-                    className={classNames(
-                      book.file && book.file.path ? 'bg-emerald-600' : 'bg-cyan-600',
-                      styles['book'],
-                      'text-primary-300 transition-all hover:scale-125',
-                    )}
-                    style={{ backgroundImage: book.file && book.file.path ? `url('/uploads/${book.file.path}')` : '', backgroundPosition: 'top center' }}
-                    title={book.title}
-                  >
-                    {!book.file && (
-                      <>
-                        <h3>{book.title}</h3>
-                        <h4>{book.author}</h4>
-                      </>
-                    )}
+            <div className="flex flex-col">
+              <div className="mx-4 flex h-72 items-end gap-0">
+                {results.map((book: BookWithTags, index: number) => (
+                  <div key={index} className="group">
+                    <div
+                      className="w-10 overflow-hidden rounded-sm border-l-2 border-r-2 border-primary-800 bg-cyan-600 ring-1 ring-primary-700 group-hover:hidden"
+                      style={{
+                        minHeight: randomHeight(),
+                        writingMode: 'vertical-lr',
+                        backgroundImage: book.file && book.file.path ? `url('/uploads/${book.file.path}')` : '',
+                        backgroundPosition: 'top center',
+                      }}
+                    >
+                      <div className="px-2 py-2 font-header text-primary-50 backdrop-blur-3xl">{book.title}</div>
+                    </div>
+                    <div key={index} className="hidden flex-col group-hover:flex">
+                      <div
+                        className={classNames(book.file && book.file.path ? 'bg-emerald-600' : 'bg-cyan-600', styles['book'], 'text-primary-300')}
+                        style={{ backgroundImage: book.file && book.file.path ? `url('/uploads/${book.file.path}')` : '', backgroundPosition: 'top center' }}
+                        title={book.title}
+                      >
+                        {!book.file && (
+                          <>
+                            <h3>{book.title}</h3>
+                            <h4>{book.author}</h4>
+                          </>
+                        )}
+                      </div>
+                    </div>
                   </div>
-                  <p
-                    className="z-10 line-clamp-2 rounded-sm border border-primary-600 bg-primary-300 py-0.5 text-center text-xs capitalize text-primary-500 shadow-md shadow-primary-700 dark:bg-primary-700 dark:shadow-primary-950"
-                    title={book.title || ''}
-                  >
-                    {book.title}
-                  </p>
-                </div>
-              ))}
+                ))}
+              </div>
+              <div className="h-2 rounded-lg bg-amber-950 drop-shadow-md"></div>
+              <div className="mx-auto flex w-1/2 justify-between">
+                <div className="size-3 rounded-b-full bg-primary-950 drop-shadow-md"></div>
+                <div className="size-3 rounded-b-full bg-primary-950 drop-shadow-md"></div>
+              </div>
             </div>
           </div>
         </div>

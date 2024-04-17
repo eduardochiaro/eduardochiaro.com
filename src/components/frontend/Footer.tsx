@@ -6,13 +6,12 @@ import Link from 'next/link';
 import Logo from '@/components/icons/Logo';
 import LinkedInIcon from '@/components/icons/Linkedin';
 import GitHubIcon from '@/components/icons/Github';
-import Copyright from '@/components/icons/Copyright';
 import WireContainer from '../WireContainer';
 
 export default function Footer() {
   return (
     <footer id="footer" className="mt-10 pb-4">
-      <div className="mx-auto max-w-screen-lg py-4">
+      <div className="mx-auto max-w-screen-lg p-4">
         <div className="flex items-center justify-between gap-5">
           <div className="flex items-center justify-center gap-2 font-mono text-sm text-primary-500 md:justify-start">
             <Logo className="logo size-4" /> {moment().year()}

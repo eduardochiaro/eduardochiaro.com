@@ -21,8 +21,9 @@ export default async function Home() {
       </div>
       <WireContainer type="large" className="mx-auto">
         <div className="card max-w-screen-sm md:min-w-96">
-          <h2 className="font-semibold">
-            Eduardo <span className="font-normal">is a software developer.</span>
+          <h2>
+            <span className="font-semibold">Eduardo</span> is a{' '}
+            <span className="underline decoration-accent-500 decoration-double decoration-2">software developer</span>.
           </h2>
           <p className="mt-10">
             With {moment().diff('2005-09-01', 'years')} years of experience, Eduardo has been tinkering with Node.js for the last few years, building SaaS

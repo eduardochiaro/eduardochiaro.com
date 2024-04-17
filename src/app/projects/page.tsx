@@ -43,7 +43,7 @@ export default async function Projects() {
                 <WireContainer type="large" key={`app-${index}`}>
                   <div className={'card group flex flex-wrap p-4'}>
                     {app.file?.path && (
-                      <div className={'relative basis-full md:basis-1/3'}>
+                      <div className={'relative h-32 basis-full md:h-auto md:basis-1/3'}>
                         <Image
                           src={`${process.env.NEXT_PUBLIC_CDN_URL}/${app.file.path}`}
                           fill
@@ -54,12 +54,17 @@ export default async function Projects() {
                         />
                       </div>
                     )}
-                    <div className={'basis-full px-8 py-4 md:basis-2/3'}>
+                    <div className={'basis-full pt-4 md:basis-2/3 md:px-8 md:py-4'}>
                       <h3 className="font-header text-2xl tracking-wide transition-colors duration-300 ease-out group-hover:text-secondary-600 dark:group-hover:text-secondary-600">
                         {app.name}
                       </h3>
                       <p className="text-normal mt-2">{app.description}</p>
-                      <Link href={app.url || '#'} target="_blank" rel="noreferrer" className="download-button mt-6 inline-flex items-center gap-4">
+                      <Link
+                        href={app.url || '#'}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="download-button mx-auto mt-6 inline-flex items-center gap-4 md:mx-0"
+                      >
                         <GitHubIcon className="w-6" />
                         Download from GitHub
                       </Link>
