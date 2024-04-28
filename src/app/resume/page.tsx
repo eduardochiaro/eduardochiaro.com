@@ -39,7 +39,7 @@ export default async function Resume() {
               <h2 className="font-header text-5xl font-semibold">eduardo</h2>
               <h2 className="font-header text-5xl font-semibold">chiaro</h2>
             </div>
-            <div className="flex flex-col items-start gap-20 md:min-w-96 md:flex-row">
+            <div className="flex flex-col items-start gap-10 md:min-w-96 md:flex-row">
               <div className="md:w-1/4 md:min-w-56 md:text-right">
                 <h3 className="mb-4 font-header text-2xl font-semibold">Skills</h3>
                 <ul className="flex flex-wrap gap-4 md:flex-col md:gap-1">
@@ -75,60 +75,66 @@ export default async function Resume() {
                 </ul>
               </div>
               <div className="mb-10 md:w-3/4">
-                <h3 className="mb-4 font-header text-2xl font-semibold">Work Experience</h3>
-                <div className="flex flex-col gap-10">
+                <h3 className="mb-4 ml-16 font-header text-2xl font-semibold">Work Experience</h3>
+                <div className="flex flex-col">
                   {mappedData.map((job: ResumeExpanded, index: number) => (
-                    <div key={`job-${index}`} className="">
-                      <h4 className="items-center gap-2 font-semibold md:flex">
-                        <>{job.name}</>
-                        <span className="px-2 md:px-0">|</span>
-                        {job.file && job.file.path ? (
-                          <SVG
-                            title={job.company}
-                            className={'inline-block fill-primary-700 dark:fill-primary-200'}
-                            src={`${process.env.NEXT_PUBLIC_CDN_URL}/${job.file.path}`}
-                            height={20}
-                          />
-                        ) : (
-                          <>{job.company}</>
-                        )}
-                      </h4>
-                      <p className="text-primary-500">
-                        {moment(job.startDate).format('MMMM YYYY')} - {job.endDate ? moment(job.endDate).format('MMMM YYYY') : 'Now'}
-                      </p>
-                      {job.tags?.length > 0 && (
-                        <div className="mt-2 flex items-center gap-4">
-                          {job.tags?.map((tag: ResumeTag) => (
-                            <span key={`resume_tag_${tag.id}`} className="rounded bg-secondary-800 px-2 py-1 text-xs text-primary-100">
-                              {tag.name}
-                            </span>
-                          ))}
-                        </div>
-                      )}
-                      {job.projects.length > 0 && (
-                        <>
-                          <h5 className="text-md my-2 ">Projects</h5>
-                          <div className="flex items-center gap-8">
-                            {job.projects?.map((project: ResumeProjectExpanded, index: number) => (
-                              <Fragment key={`project-image-${index}`}>
-                                {(project.file && project.file.path && (
-                                  <SVG
-                                    key={`resume_project_${project.id}`}
-                                    title={project.name}
-                                    className="fill-primary-700 dark:fill-primary-200"
-                                    src={`${process.env.NEXT_PUBLIC_CDN_URL}/${project.file.path}`}
-                                    height={15}
-                                  />
-                                )) || (
-                                  <h6 key={`resume_project_${project.id}`} className="mb-2 break-words text-xl font-bold">
-                                    {project.name}
-                                  </h6>
-                                )}
-                              </Fragment>
+                    <div className="group flex" key={`job-${index}`}>
+                      <div className="relative mx-2 hidden w-4 flex-none md:mx-4 md:block md:w-8">
+                        <div className="z-10 mx-auto h-full w-0.5 bg-secondary-500 group-first:mt-3 group-last:h-2 group-odd:bg-gradient-to-t"></div>
+                        <span className="absolute left-1/2 top-1 z-20 h-4 w-4 -translate-x-1/2 transform rounded-full border-2 border-primary-800 bg-primary-200 group-first:top-0 group-first:h-6 group-first:w-6 group-first:bg-emerald-500 group-last:top-0 group-last:h-6 group-last:w-6 group-last:bg-red-500"></span>
+                      </div>
+                      <div key={`job-${index}`} className="mb-10 flex-1">
+                        <h4 className="items-center gap-2 font-semibold md:flex">
+                          <>{job.name}</>
+                          <span className="px-2 md:px-0">|</span>
+                          {job.file && job.file.path ? (
+                            <SVG
+                              title={job.company}
+                              className={'inline-block fill-primary-700 dark:fill-primary-200'}
+                              src={`${process.env.NEXT_PUBLIC_CDN_URL}/${job.file.path}`}
+                              height={20}
+                            />
+                          ) : (
+                            <>{job.company}</>
+                          )}
+                        </h4>
+                        <p className="text-primary-500">
+                          {moment(job.startDate).format('MMMM YYYY')} - {job.endDate ? moment(job.endDate).format('MMMM YYYY') : 'Now'}
+                        </p>
+                        {job.tags?.length > 0 && (
+                          <div className="mt-2 flex items-center gap-4">
+                            {job.tags?.map((tag: ResumeTag) => (
+                              <span key={`resume_tag_${tag.id}`} className="rounded bg-secondary-800 px-2 py-1 text-xs text-primary-100">
+                                {tag.name}
+                              </span>
                             ))}
                           </div>
-                        </>
-                      )}
+                        )}
+                        {job.projects.length > 0 && (
+                          <>
+                            <h5 className="text-md my-2 ">Projects</h5>
+                            <div className="flex items-center gap-8">
+                              {job.projects?.map((project: ResumeProjectExpanded, index: number) => (
+                                <Fragment key={`project-image-${index}`}>
+                                  {(project.file && project.file.path && (
+                                    <SVG
+                                      key={`resume_project_${project.id}`}
+                                      title={project.name}
+                                      className="fill-primary-700 dark:fill-primary-200"
+                                      src={`${process.env.NEXT_PUBLIC_CDN_URL}/${project.file.path}`}
+                                      height={15}
+                                    />
+                                  )) || (
+                                    <h6 key={`resume_project_${project.id}`} className="mb-2 break-words text-xl font-bold">
+                                      {project.name}
+                                    </h6>
+                                  )}
+                                </Fragment>
+                              ))}
+                            </div>
+                          </>
+                        )}
+                      </div>
                     </div>
                   ))}
                 </div>
