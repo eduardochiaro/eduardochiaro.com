@@ -18,7 +18,7 @@ import useStaleSWR from '@/utils/staleSWR';
 const SidebarDivider = ({ title, openMenu }: { title: string; openMenu: boolean }) => (
   <li>
     <div className="flex h-8 flex-row items-center">
-      <span className={`dashed-border-t w-10 shrink  ${openMenu ? '' : 'hidden'}`}></span>
+      <span className={`dashed-border-t w-10 shrink ${openMenu ? '' : 'hidden'}`}></span>
       <div className={`mx-3 text-sm font-light tracking-wide ${openMenu ? '' : styles['hide-when-closed']}`}>{title}</div>
       <span className={'dashed-border-t w-full shrink'}></span>
     </div>
@@ -50,13 +50,13 @@ const AdminSidebar = ({ isPageOpen }: { isPageOpen: boolean }) => {
           <button onClick={() => setOpenMenu(!openMenu)} className="absolute right-1 top-1 hidden md:block">
             <Bars3BottomRightIcon className="w-5" />
           </button>
-          <ul className="hidden grow flex-col space-y-1 font-semibold tracking-wider md:flex ">
+          <ul className="hidden grow flex-col space-y-1 font-semibold tracking-wider md:flex">
             <li>
               <NavLink
                 type="sub"
                 href="/admin"
                 as="/admin"
-                className={`${styles['sidebar-link']} group border-transparent `}
+                className={`${styles['sidebar-link']} group border-transparent`}
                 activeClassName={`${styles['sidebar-link']} group bg-primary-50 dark:bg-primary-800 rounded-md`}
               >
                 <a className="flex items-center gap-2" title="Dashboard">
@@ -72,7 +72,7 @@ const AdminSidebar = ({ isPageOpen }: { isPageOpen: boolean }) => {
                 type="sub"
                 href="/admin/preview"
                 as="/admin/preview"
-                className={`${styles['sidebar-link']} group border-transparent `}
+                className={`${styles['sidebar-link']} group border-transparent`}
                 activeClassName={`${styles['sidebar-link']} group bg-primary-50 dark:bg-primary-800 rounded-md`}
               >
                 <a className="flex items-center gap-2" title="preview">
@@ -92,7 +92,7 @@ const AdminSidebar = ({ isPageOpen }: { isPageOpen: boolean }) => {
                       type="sub"
                       href={link.href}
                       as={link.href}
-                      className={`${styles['sidebar-link']} group border-transparent `}
+                      className={`${styles['sidebar-link']} group border-transparent`}
                       activeClassName={`${styles['sidebar-link']} group bg-primary-50 dark:bg-primary-800 rounded-md`}
                     >
                       <a className="flex items-center gap-2" title={link.title}>

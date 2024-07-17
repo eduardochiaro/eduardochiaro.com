@@ -39,7 +39,7 @@ const AdminModal = ({
           } my-8 transform overflow-hidden rounded-2xl bg-primary-50 text-left align-middle text-primary-900 shadow-xl dark:bg-primary-800 dark:text-primary-100`}
         >
           <div className="mb-4 flex bg-primary-100 px-6 pb-4 pt-6 dark:bg-primary-900">
-            <Dialog.Title as="h3" className="flex-1 text-4xl font-medium leading-6 ">
+            <Dialog.Title as="h3" className="flex-1 text-4xl font-medium leading-6">
               {title}
             </Dialog.Title>
             <div className="flex-none">
@@ -48,14 +48,14 @@ const AdminModal = ({
               </a>
             </div>
           </div>
-          <div className="mb-10 mt-2 px-6 ">
+          <div className="mb-10 mt-2 px-6">
             {React.Children.map(children, (child) => {
               return React.cloneElement(child);
             })}
           </div>
           {showButtons && (
             <div className="bg-primary-100 px-4 py-3 text-right dark:bg-primary-900 sm:px-6">
-              <button onClick={onSecondaryButtonClick} type="button" className=" mr-10 focus:underline focus:outline-none">
+              <button onClick={onSecondaryButtonClick} type="button" className="mr-10 focus:underline focus:outline-none">
                 {secondaryButtonLabel}
               </button>
               <button onClick={onPrimaryButtonClick} type="button" className={primaryButtonClass}>

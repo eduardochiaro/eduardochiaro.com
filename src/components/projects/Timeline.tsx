@@ -40,7 +40,7 @@ export default function Timeline({ data }: { data: any }) {
             </Link>{' '}
             / Timeline {type ? '' : '(variation)'}
           </h1>
-          <div className="hidden justify-end md:flex ">
+          <div className="hidden justify-end md:flex">
             <WireContainer type="small">
               <div className="card flex items-center gap-2 !p-2">
                 <span className="ml-3 text-sm font-medium">View variation</span>

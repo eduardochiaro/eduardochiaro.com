@@ -141,7 +141,7 @@ export default function List({
             type="text"
             value={search}
             id="website-admin-search"
-            className="block w-full min-w-0 grow rounded-none rounded-r-lg border border-primary-300 bg-primary-50 p-2 pr-8 text-sm focus:border-secondary-500 focus:ring-secondary-500 dark:border-primary-600 dark:bg-primary-700 dark:placeholder-primary-400  dark:focus:border-secondary-500 dark:focus:ring-secondary-500"
+            className="block w-full min-w-0 grow rounded-none rounded-r-lg border border-primary-300 bg-primary-50 p-2 pr-8 text-sm focus:border-secondary-500 focus:ring-secondary-500 dark:border-primary-600 dark:bg-primary-700 dark:placeholder-primary-400 dark:focus:border-secondary-500 dark:focus:ring-secondary-500"
             placeholder=""
           />
           {search && <XMarkIcon className="absolute right-2 top-2 w-5 cursor-pointer" onClick={() => filterData('')} />}
@@ -164,7 +164,7 @@ export default function List({
           ))}
         </div>
       </div>
-      <div className="border-primary-500/border:bg-primary-50  tracking-none mx-6 mb-2 mt-10 whitespace-nowrap border-b px-6 py-3 text-left text-sm font-bold uppercase opacity-50">
+      <div className="border-primary-500/border:bg-primary-50 tracking-none mx-6 mb-2 mt-10 whitespace-nowrap border-b px-6 py-3 text-left text-sm font-bold uppercase opacity-50">
         Records
       </div>
       <div className="flex flex-col gap-2 px-6" role="menu" aria-orientation="vertical" aria-labelledby="menu-button">

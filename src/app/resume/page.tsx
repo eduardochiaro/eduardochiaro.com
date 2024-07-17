@@ -33,14 +33,14 @@ export default async function Resume() {
   return (
     <FrontendLayout>
       <div className="mx-auto flex max-w-5xl flex-wrap">
-        <WireContainer type="large" className="mx-auto">
+        <WireContainer type="large" className="mx-auto w-full">
           <div className="card max-w-screen-xl md:min-w-96">
-            <div className="mb-10">
+            <div className="mb-10 ml-10">
               <h2 className="font-header text-5xl font-semibold">eduardo</h2>
               <h2 className="font-header text-5xl font-semibold">chiaro</h2>
             </div>
             <div className="flex flex-col items-start gap-10 md:min-w-96 md:flex-row">
-              <div className="md:w-1/4 md:min-w-56 md:text-right">
+              <div className="md:w-1/3 md:min-w-56 md:text-right">
                 <h3 className="mb-4 font-header text-2xl font-semibold">Skills</h3>
                 <ul className="flex flex-wrap gap-4 md:flex-col md:gap-1">
                   {skills.map((skill: Skill, index: number) => (
@@ -48,7 +48,7 @@ export default async function Resume() {
                       {skill.name}
                       <SVG
                         title={skill.name}
-                        className={'size-8 flex-none fill-secondary-700 stroke-secondary-700 dark:fill-secondary-200 dark:stroke-secondary-200'}
+                        className={'size-6 flex-none fill-secondary-700 stroke-secondary-700 dark:fill-secondary-200 dark:stroke-secondary-200'}
                         src={`/images/svg-icons/${skill.logo}`}
                       />
                     </li>
@@ -65,7 +65,7 @@ export default async function Resume() {
                     </Link>
                   </li>
                   <li>
-                    <Link href="https://linkedin.com/in/eduardochiaro" className="group inline-flex items-center justify-end gap-2" title="LinkedIn">
+                    <Link href="https://github.com/eduardochiaro" className="group inline-flex items-center justify-end gap-2" title="GitHub">
                       GitHub
                       <div className="rounded-full bg-secondary-700 p-0.5">
                         <GitHubIcon className={'size-4 text-secondary-50'} />
@@ -102,7 +102,7 @@ export default async function Resume() {
                           {moment(job.startDate).format('MMMM YYYY')} - {job.endDate ? moment(job.endDate).format('MMMM YYYY') : 'Now'}
                         </p>
                         {job.tags?.length > 0 && (
-                          <div className="mt-2 flex items-center gap-4">
+                          <div className="mt-2 flex items-center gap-2">
                             {job.tags?.map((tag: ResumeTag) => (
                               <span key={`resume_tag_${tag.id}`} className="rounded bg-secondary-800 px-2 py-1 text-xs text-primary-100">
                                 {tag.name}
@@ -111,8 +111,8 @@ export default async function Resume() {
                           </div>
                         )}
                         {job.projects.length > 0 && (
-                          <>
-                            <h5 className="text-md my-2 ">Projects</h5>
+                          <div className="mx-4 mt-4">
+                            <h5 className="text-md mb-2">Projects</h5>
                             <div className="flex items-center gap-8">
                               {job.projects?.map((project: ResumeProjectExpanded, index: number) => (
                                 <Fragment key={`project-image-${index}`}>
@@ -132,7 +132,7 @@ export default async function Resume() {
                                 </Fragment>
                               ))}
                             </div>
-                          </>
+                          </div>
                         )}
                       </div>
                     </div>

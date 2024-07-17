@@ -33,7 +33,7 @@ const skills = [
     percentage: 80,
   },
   {
-    name: 'AWS',
+    name: 'Amazon Web Services',
     logo: 'aws.svg',
     type: 'aws',
     percentage: 75,

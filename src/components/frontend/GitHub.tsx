@@ -42,7 +42,7 @@ export default function GitHub() {
                 <LoadImage src={repo.openGraphImageUrl} alt={repo.name} />
               </div>
               <div className="relative min-h-min w-full whitespace-nowrap p-4 md:w-2/3">
-                <h4 className="mt-2 font-header text-lg font-semibold tracking-wider ">{repo.name}</h4>
+                <h4 className="mt-2 font-header text-lg font-semibold tracking-wider">{repo.name}</h4>
                 <p className="mb-2 mt-4 text-xs antialiased">{repo.description}</p>
                 <p className="absolute right-4 top-2 flex items-center text-xs opacity-60">
                   <ClockIcon title="last updated" className="mr-2 h-3" /> {moment(repo.pushedAt).fromNow()}
@@ -59,7 +59,7 @@ export default function GitHub() {
                 <div className="mt-4">
                   {repo.topics.slice(0, 2).map((topic: string) => (
                     <div
-                      className="z-30 mb-2 mr-2 inline-block rounded-full bg-accent-300 px-3 py-1 text-xs font-semibold antialiased dark:bg-accent-700 "
+                      className="z-30 mb-2 mr-2 inline-block rounded-full bg-accent-300 px-3 py-1 text-xs font-semibold antialiased dark:bg-accent-700"
                       key={topic}
                     >
                       <div className="flex items-center">

@@ -42,7 +42,7 @@ export const logo = () => {
 export const fetch = () => {
   return (
     <div className="my-4 ml-4">
-      <div className="mb-2 w-1/3  border-b border-dashed">user@eduardochiaro.com</div>
+      <div className="mb-2 w-1/3 border-b border-dashed">user@eduardochiaro.com</div>
       <div className="flex w-1/3">
         <span className="grow text-emerald-500">OS</span>
         <span className="mx-2 text-red-500">-&gt;</span>

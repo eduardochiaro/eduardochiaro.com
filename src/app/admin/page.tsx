@@ -20,12 +20,7 @@ export default async function AdminIndex() {
             <h1 className="flex items-center gap-2 pb-4 text-3xl font-semibold">Welcome back{user ? ', ' + getFirstName(user.name as string) : ''}</h1>
             {menuList.map((item, i) => (
               <React.Fragment key={i}>
-                <h3
-                  className="mt-8
-             text-2xl"
-                >
-                  {item.title}
-                </h3>
+                <h3 className="mt-8 text-2xl">{item.title}</h3>
                 <div className="mt-4 flex flex-wrap gap-6">
                   {item.links.map((link, key) => (
                     <Link
@@ -34,10 +29,10 @@ export default async function AdminIndex() {
                       className={`group flex w-full items-start gap-2 rounded-lg drop-shadow transition duration-300 hover:scale-110 md:h-52 md:w-72 md:flex-col ${link.classColor} p-4 text-primary-50`}
                     >
                       <link.icon className={'w-10 md:w-12'} />
-                      <div className="md:flex-1 "></div>
+                      <div className="md:flex-1"></div>
                       <div className="">
                         <span className={'text-lg'}>{link.title}</span>
-                        <p className="text-sm opacity-50 ">{link.description}</p>
+                        <p className="text-sm opacity-50">{link.description}</p>
                       </div>
                     </Link>
                   ))}
