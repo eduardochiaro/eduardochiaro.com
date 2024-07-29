@@ -9,6 +9,7 @@ import Link from 'next/link';
 import LinkedInIcon from '@/components/icons/Linkedin';
 import GitHubIcon from '@/components/icons/Github';
 import FrontendLayout from '@/components/layouts/Frontend';
+import Logo from '@/components/icons/Logo';
 
 type ResumeProjectExpanded = Prisma.ResumeProjectGetPayload<{ include: { file: true } }>;
 type ResumeExpanded = Prisma.ResumeGetPayload<{ include: { tags: true; projects: { include: { file: true } }; file: true } }> & {
@@ -35,9 +36,12 @@ export default async function Resume() {
       <div className="mx-auto flex max-w-5xl flex-wrap">
         <WireContainer type="large" className="mx-auto w-full">
           <div className="card max-w-screen-xl md:min-w-96">
-            <div className="mb-10 ml-10">
-              <h2 className="font-header text-5xl font-semibold">eduardo</h2>
-              <h2 className="font-header text-5xl font-semibold">chiaro</h2>
+            <div className="mb-10 flex items-center justify-between">
+              <div className="ml-10">
+                <h2 className="font-header text-5xl font-semibold">eduardo</h2>
+                <h2 className="font-header text-5xl font-semibold">chiaro</h2>
+              </div>
+              <Logo className="mr-7 w-20" />
             </div>
             <div className="flex flex-col items-start gap-10 md:min-w-96 md:flex-row">
               <div className="md:w-1/3 md:min-w-56 md:text-right">
@@ -55,21 +59,17 @@ export default async function Resume() {
                   ))}
                 </ul>
                 <h3 className="mb-4 mt-8 font-header text-2xl font-semibold">Links</h3>
-                <ul className="flex flex-col gap-1">
+                <ul className="flex flex-col gap-2">
                   <li>
                     <Link href="https://linkedin.com/in/eduardochiaro" className="group inline-flex items-center justify-end gap-2" title="LinkedIn">
                       LinkedIn
-                      <div className="rounded-full bg-secondary-700 p-0.5">
-                        <LinkedInIcon className={'size-4 text-secondary-50'} />
-                      </div>
+                      <LinkedInIcon className={'size-5 text-secondary-50'} />
                     </Link>
                   </li>
                   <li>
                     <Link href="https://github.com/eduardochiaro" className="group inline-flex items-center justify-end gap-2" title="GitHub">
                       GitHub
-                      <div className="rounded-full bg-secondary-700 p-0.5">
-                        <GitHubIcon className={'size-4 text-secondary-50'} />
-                      </div>
+                      <GitHubIcon className={'size-5 text-secondary-50'} />
                     </Link>
                   </li>
                 </ul>
@@ -81,7 +81,7 @@ export default async function Resume() {
                     <div className="group flex" key={`job-${index}`}>
                       <div className="relative mx-2 hidden w-4 flex-none md:mx-4 md:block md:w-8">
                         <div className="z-10 mx-auto h-full w-0.5 bg-secondary-500 group-first:mt-3 group-last:h-2 group-odd:bg-gradient-to-t"></div>
-                        <span className="absolute left-1/2 top-1 z-20 h-4 w-4 -translate-x-1/2 transform rounded-full border-2 border-primary-800 bg-primary-200 group-first:top-0 group-first:h-6 group-first:w-6 group-first:bg-emerald-500 group-last:top-0 group-last:h-6 group-last:w-6 group-last:bg-red-500"></span>
+                        <span className="absolute left-1/2 top-1 z-20 h-4 w-4 -translate-x-1/2 transform rounded-full border-2 border-primary-800 bg-primary-200 group-first:top-0 group-first:h-6 group-first:w-6 group-first:bg-emerald-500 group-last:top-0 group-last:h-6 group-last:w-6 group-last:bg-red-500 dark:border-primary-500 dark:group-last:bg-red-700"></span>
                       </div>
                       <div key={`job-${index}`} className="mb-10 flex-1">
                         <h4 className="items-center gap-2 font-semibold md:flex">
@@ -111,8 +111,8 @@ export default async function Resume() {
                           </div>
                         )}
                         {job.projects.length > 0 && (
-                          <div className="mx-4 mt-4">
-                            <h5 className="text-md mb-2">Projects</h5>
+                          <div className="mx-8 mt-4 border-l-2 pl-2">
+                            <h5 className="mb-2 text-sm">I did projects for...</h5>
                             <div className="flex items-center gap-8">
                               {job.projects?.map((project: ResumeProjectExpanded, index: number) => (
                                 <Fragment key={`project-image-${index}`}>
@@ -122,7 +122,7 @@ export default async function Resume() {
                                       title={project.name}
                                       className="fill-primary-700 dark:fill-primary-200"
                                       src={`${process.env.NEXT_PUBLIC_CDN_URL}/${project.file.path}`}
-                                      height={15}
+                                      height={20}
                                     />
                                   )) || (
                                     <h6 key={`resume_project_${project.id}`} className="mb-2 break-words text-xl font-bold">

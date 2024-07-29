@@ -83,7 +83,7 @@ export default async function Projects() {
               {projects.map((project, index) => (
                 <li key={`project-${index}`}>
                   <WireContainer type="medium" key={`app-${index}`}>
-                    <div className="card p-4 text-base">
+                    <div className="card small p-4 text-base">
                       <Link href={project.url} className="group">
                         <h3 className="text-lg tracking-wide transition-colors duration-300 ease-out group-hover:text-secondary-600 dark:group-hover:text-secondary-600">
                           {project.name}

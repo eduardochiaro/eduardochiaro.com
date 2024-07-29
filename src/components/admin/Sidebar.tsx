@@ -4,7 +4,7 @@ import { Fragment, ReactElement, useEffect, useState } from 'react';
 import NavLink from '@/components/NavLink';
 import styles from '@/styles/Admin.Sidebar.module.scss';
 import { ArrowLeftCircleIcon, Bars3BottomRightIcon, CodeBracketIcon, HomeIcon } from '@heroicons/react/24/solid';
-import { Menu, Transition } from '@headlessui/react';
+import { Menu, MenuButton, MenuItem, MenuItems, Transition } from '@headlessui/react';
 import ThemeIcon from '../ThemeIcon';
 import Image from 'next/image';
 import classNames from '@/utils/classNames';
@@ -112,7 +112,7 @@ const AdminSidebar = ({ isPageOpen }: { isPageOpen: boolean }) => {
           className={`flex items-center justify-between gap-6 px-3 md:bg-primary-300 md:p-6 dark:md:bg-primary-500 ${openMenu ? 'flex-row' : 'md:flex-col'}`}
         >
           <Menu as="div" className="item-center relative flex">
-            <Menu.Button id="admin-menu-short" className="h-7 w-7 rounded-full ring-2 ring-primary-300 dark:ring-primary-500">
+            <MenuButton id="admin-menu-short" className="h-7 w-7 rounded-full ring-2 ring-primary-300 dark:ring-primary-500">
               {user && user.image && (
                 <Image
                   src={user.image as string}
@@ -128,7 +128,7 @@ const AdminSidebar = ({ isPageOpen }: { isPageOpen: boolean }) => {
                   <span className="text-sm font-semibold text-primary-900 dark:text-primary-100">{user?.name?.charAt(0)}</span>
                 </div>
               )}
-            </Menu.Button>
+            </MenuButton>
             <Transition
               as={Fragment}
               enter="transition ease-out duration-300"
@@ -138,14 +138,14 @@ const AdminSidebar = ({ isPageOpen }: { isPageOpen: boolean }) => {
               leaveFrom="opacity-100 translate-y-0"
               leaveTo="opacity-0 translate-y-1"
             >
-              <Menu.Items
+              <MenuItems
                 data-cy="user-settings-container"
                 className="absolute right-0 z-10 mt-10 w-36 transform divide-y divide-primary-200 rounded-md bg-primary-100 shadow-lg ring-1 ring-primary-900 ring-opacity-10 focus:outline-none dark:divide-primary-500 dark:bg-primary-700 md:bottom-0 md:left-0 md:mb-10"
                 aria-orientation="vertical"
                 aria-labelledby="user-button"
               >
                 <div className="py-1 font-semibold">
-                  <Menu.Item>
+                  <MenuItem>
                     {({ active }) => (
                       <div
                         onClick={() => signOutAction()}
@@ -158,9 +158,9 @@ const AdminSidebar = ({ isPageOpen }: { isPageOpen: boolean }) => {
                         <span>Logout</span>
                       </div>
                     )}
-                  </Menu.Item>
+                  </MenuItem>
                 </div>
-              </Menu.Items>
+              </MenuItems>
             </Transition>
           </Menu>
           <ThemeIcon orientation="top" />

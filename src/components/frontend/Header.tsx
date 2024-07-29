@@ -3,7 +3,7 @@
 import React, { Fragment } from 'react';
 import { RssIcon, Bars3BottomLeftIcon } from '@heroicons/react/20/solid';
 import { usePathname } from 'next/navigation';
-import { Menu, Transition } from '@headlessui/react';
+import { Menu, MenuButton, MenuItem, MenuItems, Transition } from '@headlessui/react';
 import ThemeIcon from '@/components/ThemeIcon';
 import NavLink from '@/components/NavLink';
 import Link from 'next/link';
@@ -11,6 +11,7 @@ import styles from '@/styles/Header.module.scss';
 import classNames from '@/utils/classNames';
 import type { MenuLink } from '@prisma/client';
 import WireContainer from '../WireContainer';
+import Logo from '../icons/Logo';
 
 export default function Header({ data }: { data: MenuLink[] }) {
   const pathname = usePathname();
@@ -25,9 +26,9 @@ export default function Header({ data }: { data: MenuLink[] }) {
     <header>
       <nav className="relative flex w-full items-center justify-between gap-6 p-5">
         <Menu as="div" className="inline-block md:hidden">
-          <Menu.Button id="menu-short" title="open menu" className="flex items-center hover:cursor-pointer md:hidden">
+          <MenuButton id="menu-short" title="open menu" className="flex items-center hover:cursor-pointer md:hidden">
             <Bars3BottomLeftIcon className={'w-7 transition hover:text-primary-900 dark:hover:text-primary-100'} />
-          </Menu.Button>
+          </MenuButton>
           <Transition
             as={Fragment}
             enter="transition ease-out duration-300"
@@ -37,13 +38,13 @@ export default function Header({ data }: { data: MenuLink[] }) {
             leaveFrom="opacity-100 translate-y-0"
             leaveTo="opacity-0 translate-y-1"
           >
-            <Menu.Items className="absolute left-0 top-full w-full max-w-lg divide-y divide-primary-400/50 bg-primary-100 shadow-2xl shadow-primary-600 focus:outline-none dark:bg-primary-800 dark:shadow-primary-900">
+            <MenuItems className="absolute left-0 top-full w-full max-w-lg divide-y divide-primary-400/50 bg-primary-100 shadow-2xl shadow-primary-600 focus:outline-none dark:bg-primary-800 dark:shadow-primary-900">
               {menuData
                 .filter((x: any) => x.active)
                 .map((item: any, i: number) => {
                   return (
                     <div key={`menu-link-${i}`} className="px-1 py-1 font-semibold text-secondary-700 dark:text-secondary-600">
-                      <Menu.Item>
+                      <MenuItem>
                         {({ active }) => (
                           <Link
                             href={item.link}
@@ -56,28 +57,32 @@ export default function Header({ data }: { data: MenuLink[] }) {
                             {item.text}
                           </Link>
                         )}
-                      </Menu.Item>
+                      </MenuItem>
                     </div>
                   );
                 })}
               <div className="px-1 py-1 font-semibold text-secondary-700 dark:text-secondary-600">
-                <Menu.Item>
+                <MenuItem>
                   <Link href="https://blog.eduardochiaro.com" className={`${styles.menuUrlMobile} !gap-1 text-primary-900 dark:text-primary-100`}>
                     <span>
                       <span className="text-accent-600 dark:text-accent-500">.</span>dev
                     </span>
                     <RssIcon className={'h-4 text-accent-600 dark:text-accent-500'} aria-hidden="true" />
                   </Link>
-                </Menu.Item>
+                </MenuItem>
               </div>
-            </Menu.Items>
+            </MenuItems>
           </Transition>
         </Menu>
 
         <WireContainer>
           <h1 className="p-1 px-2 font-header text-3xl font-normal">
-            <Link href="/">
-              eduardo<span className="overlay-color font-semibold">chiaro</span>
+            <Link href="/" className="flex items-center p-1 px-2 font-header text-3xl font-normal">
+              <span className="overlay-color">eduardo</span>
+              <span className="flex items-end font-semibold">
+                <Logo className="-mx-1 size-8" alt="c" />
+                hiaro
+              </span>
             </Link>
           </h1>
         </WireContainer>

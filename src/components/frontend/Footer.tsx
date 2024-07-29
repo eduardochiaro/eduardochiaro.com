@@ -14,7 +14,7 @@ export default function Footer() {
       <div className="mx-auto max-w-screen-lg p-4">
         <div className="flex items-center justify-between gap-5">
           <div className="flex items-center justify-center gap-2 font-mono text-sm text-primary-500 md:justify-start">
-            <Logo className="logo size-4" /> {moment().year()}
+            <Logo className="logo size-8 text-primary-950 dark:text-primary-50" /> {moment().year()}
           </div>
           <div className="flex justify-center gap-4 md:justify-end">
             <WireContainer>
