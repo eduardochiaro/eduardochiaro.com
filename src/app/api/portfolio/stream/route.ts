@@ -18,11 +18,11 @@ export async function GET(request: NextRequest, response: NextResponse) {
   flickr.items.slice(0, 5).forEach((item: { title: any; link: any; created: number; images: { [x: string]: { [x: string]: any } }[] }) => {
     results.push({
       title: item.title,
-      permalink: item.link[0]['href'],
+      permalink: item.link,
       published: moment(item.created).utc().format(),
       timestamp: moment(item.created).unix(),
       type: 'Flickr',
-      image: item.link[1]['href'],
+      image: item.link,
     });
   });
 

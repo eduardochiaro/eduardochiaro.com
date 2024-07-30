@@ -1,5 +1,7 @@
-import { parse } from 'rss-to-json';
+import Parser from 'rss-parser';
 import fsCache from './fsCache';
+
+let parser = new Parser();
 
 const flickr_base = 'https://www.flickr.com';
 const instagram_base = 'https://feeds.behold.so';
@@ -10,7 +12,7 @@ const hours = 10;
 const getCachedFlickr = async () => {
   return fsCache('flickr', hours, async () => {
     const url = `${flickr_base}/services/feeds/photos_public.gne?id=${flickr_username}`;
-    return parse(url);
+    return parser.parseURL(url);
   });
 };
 

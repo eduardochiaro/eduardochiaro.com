@@ -7,6 +7,10 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: 'www.flickr.com',
+      },
+      {
+        protocol: 'https',
         hostname: 'cdn.eduardochiaro.com',
       },
       {

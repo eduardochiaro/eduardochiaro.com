@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { parse } from 'rss-to-json';
+import Parser from 'rss-parser';
 import fsCache from '@/utils/fsCache';
 import stripTags from '@/utils/stripTags';
 import cutString from '@/utils/cutString';
+
+let parser = new Parser();
 
 const url = 'https://blog.eduardochiaro.com/rss/';
 
@@ -18,14 +20,15 @@ type RssFeedItem = {
 
 export async function GET(request: NextRequest, response: NextResponse) {
   const results = await fsCache(url, parseInt(RSS_CACHE_HOURS), async () => {
-    const feed = await parse(url);
+    const feed = await parser.parseURL(url);
     const results: RssFeedItem[] = [];
     feed.items.forEach((item) => {
+      const content = item.content ? cutString(stripTags(item.content), 400) + '...' : undefined;
       results.push({
         title: item.title,
         permalink: item.link,
         published: item.published,
-        content: cutString(stripTags(item.content), 400) + '...',
+        content,
         categories: item.categories,
       });
     });
