@@ -30,7 +30,7 @@ export default async function Home() {
             <div className="flex items-center justify-between">
               <h2>
                 <span className="font-semibold">Eduardo</span> is a{' '}
-                <span className="underline decoration-accent-500 decoration-double decoration-2">software developer</span>.
+                <span className="underline decoration-accent-500 decoration-double decoration-2">software engineer</span>.
               </h2>
               <Logo className="w-20" />
             </div>

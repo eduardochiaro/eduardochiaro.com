@@ -10,14 +10,14 @@ const Logo: FunctionComponent<SVGProps> = ({ width = '1024', height = '1024', ..
         fillRule="nonzero"
         opacity="1"
         stroke="none"
-        className="fill-amber-400 dark:fill-amber-700"
+        className="fill-sky-400 dark:fill-sky-600"
       />
       <path
         d="M164.295 608.894C164.295 608.894 213.209 721.284 307.17 765.223C397.669 807.543 473.893 808.351 511.472 806.798C615.9 802.483 718.488 687.677 718.488 687.677L593.327 574.064C593.327 574.064 531.242 650.916 439.854 628.388C362.056 609.21 285.362 505.34 285.362 505.34L164.295 608.894Z"
         fillRule="nonzero"
         opacity="1"
         stroke="none"
-        className="fill-amber-400 dark:fill-amber-700"
+        className="fill-sky-400 dark:fill-sky-600"
       />
     </g>
     <g id="blue">
@@ -26,14 +26,14 @@ const Logo: FunctionComponent<SVGProps> = ({ width = '1024', height = '1024', ..
         fillRule="nonzero"
         opacity="1"
         stroke="none"
-        className="fill-blue-400 dark:fill-blue-700"
+        className="fill-pink-600 dark:fill-pink-600"
       />
       <path
         d="M466.562 538.635L501.051 579.922C501.051 579.922 480.485 597.443 480.598 597.328C480.712 597.212 539.853 638.717 594.993 633.187C650.133 627.657 701.252 573.514 701.252 573.514L837.792 688.698C837.792 688.698 729.779 815.995 588.408 808.724C474.002 802.841 421.004 779.526 421.004 779.526L290.91 687.926L466.562 538.635Z"
         fillRule="nonzero"
         opacity="1"
         stroke="none"
-        className="fill-blue-400 dark:fill-blue-700"
+        className="fill-pink-600 dark:fill-pink-600"
       />
     </g>
     <g id="main">
