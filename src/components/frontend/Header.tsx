@@ -79,8 +79,8 @@ export default function Header({ data }: { data: MenuLink[] }) {
           <h1 className="p-1 px-2 font-header text-3xl font-normal">
             <Link href="/" className="flex items-center p-1 px-2 font-header text-3xl font-normal">
               <span className="overlay-color">eduardo</span>
-              <span className="flex items-end font-semibold">
-                <Logo className="-mx-1 size-8" alt="c" />
+              <span className="flex items-center font-semibold">
+                <Logo className="size-6" alt="c" />
                 hiaro
               </span>
             </Link>
