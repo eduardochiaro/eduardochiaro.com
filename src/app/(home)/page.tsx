@@ -41,31 +41,35 @@ export default async function Home() {
             </p>
             <ul className="mt-10 flex flex-col gap-3 font-semibold text-primary-600 dark:text-primary-200">
               <li>
-                <Link href="/resume" prefetch={false} className="group flex items-center gap-2 hover:text-primary-400">
+                <Link href="/resume" prefetch={false} className="group flex items-center gap-2 hover:underline dark:hover:text-primary-400">
                   <BriefcaseIcon title="Resume" className={'w-5 group-hover:text-accent-600 group-hover:dark:text-accent-500'} />
                   Resume
                 </Link>
               </li>
               <li>
-                <Link href="/books" prefetch={false} className="group flex items-center gap-2 hover:text-primary-400">
+                <Link href="/books" prefetch={false} className="group flex items-center gap-2 hover:underline dark:hover:text-primary-400">
                   <BookOpenIcon title="Books" className={'w-5 group-hover:text-accent-600 group-hover:dark:text-accent-500'} />
                   Books
                 </Link>
               </li>
               <li>
-                <Link href="/bookmarks" prefetch={false} className="group flex items-center gap-2 hover:text-primary-400">
+                <Link href="/bookmarks" prefetch={false} className="group flex items-center gap-2 hover:underline dark:hover:text-primary-400">
                   <BookmarkIcon title="Bookmarks" className={'w-5 group-hover:text-accent-600 group-hover:dark:text-accent-500'} />
                   Bookmarks
                 </Link>
               </li>
               <li>
-                <Link href="/projects" prefetch={false} className="group flex items-center gap-2 hover:text-primary-400">
+                <Link href="/projects" prefetch={false} className="group flex items-center gap-2 hover:underline dark:hover:text-primary-400">
                   <CpuChipIcon title="Projects" className={'w-5 group-hover:text-accent-600 group-hover:dark:text-accent-500'} />
                   Projects
                 </Link>
               </li>
               <li>
-                <Link href="https://blog.eduardochiaro.com" prefetch={false} className="group flex items-center gap-1 hover:text-primary-400">
+                <Link
+                  href="https://blog.eduardochiaro.com"
+                  prefetch={false}
+                  className="group flex items-center gap-1 hover:underline dark:hover:text-primary-400"
+                >
                   <RssIcon title="blog" className={'w-5 group-hover:text-accent-600 group-hover:dark:text-accent-500'} />
                   <span>
                     <span className="text-accent-600 dark:text-accent-500">.</span>dev

@@ -12,7 +12,7 @@ export default async function Bookmarks() {
   const books = await getBooks();
   const menuLinks = await getMenuLinks();
   return (
-    <div className={`${styles.layout} flex min-h-screen flex-col justify-between`}>
+    <div className={`${styles.layout} flex min-h-screen flex-col justify-between bg-secondary-50 dark:bg-secondary-900`}>
       <Header data={menuLinks} />
       <div className={'flex grow flex-col bg-fixed'}>
         <div className={'mb-auto grow pb-10'}>

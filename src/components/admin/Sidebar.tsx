@@ -41,11 +41,11 @@ const AdminSidebar = ({ isPageOpen }: { isPageOpen: boolean }) => {
     <div className={`relative z-40 flex-none sm:relative md:h-screen ${openMenu ? styles['sidebar-open'] : styles['sidebar-closed']}`}>
       <div className="flex justify-between bg-primary-200 dark:bg-primary-600 md:fixed md:min-h-screen md:flex-col">
         <div className="relative grow px-3 md:p-3">
-          <Link href="/admin" className={`flex h-14 items-center gap-4 md:my-3 ${styles['sidebar-logo']}`}>
+          <Link href="/admin" className={`flex h-14 items-center gap-4 px-2 md:my-3 ${styles['sidebar-logo']}`}>
             <div className={`${openMenu ? '' : 'md:mx-auto'}`}>
-              <Logo title="Eduardo Chiaro" className={'logo h-6'} />
+              <Logo title="Eduardo Chiaro" className={'logo size-8'} />
             </div>
-            <span className={`font-header text-3xl font-semibold ${!openMenu ? 'md:hidden' : 'block'}`}>Admin</span>
+            <span className={`font-header text-xl font-semibold ${!openMenu ? 'md:hidden' : 'block'}`}>Admin</span>
           </Link>
           <button onClick={() => setOpenMenu(!openMenu)} className="absolute right-1 top-1 hidden md:block">
             <Bars3BottomRightIcon className="w-5" />
