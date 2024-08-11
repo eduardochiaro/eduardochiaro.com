@@ -52,7 +52,7 @@ export default async function Resume() {
                       {skill.name}
                       <SVG
                         title={skill.name}
-                        className={'size-6 flex-none fill-secondary-700 stroke-secondary-700 dark:fill-secondary-200 dark:stroke-secondary-200'}
+                        className={'size-8 flex-none fill-secondary-700 stroke-secondary-700 dark:fill-secondary-200 dark:stroke-secondary-200'}
                         src={`/images/svg-icons/${skill.logo}`}
                       />
                     </li>
@@ -63,13 +63,13 @@ export default async function Resume() {
                   <li>
                     <Link href="https://linkedin.com/in/eduardochiaro" className="group inline-flex items-center justify-end gap-2" title="LinkedIn">
                       LinkedIn
-                      <LinkedInIcon className={'size-5 text-secondary-50'} />
+                      <LinkedInIcon className={'size-4 text-secondary-700 dark:text-secondary-200'} />
                     </Link>
                   </li>
                   <li>
                     <Link href="https://github.com/eduardochiaro" className="group inline-flex items-center justify-end gap-2" title="GitHub">
                       GitHub
-                      <GitHubIcon className={'size-5 text-secondary-50'} />
+                      <GitHubIcon className={'size-4 text-secondary-700 dark:text-secondary-200'} />
                     </Link>
                   </li>
                 </ul>
@@ -98,7 +98,7 @@ export default async function Resume() {
                             <>{job.company}</>
                           )}
                         </h4>
-                        <p className="text-primary-500">
+                        <p className="text-sm text-primary-500">
                           {moment(job.startDate).format('MMMM YYYY')} - {job.endDate ? moment(job.endDate).format('MMMM YYYY') : 'Now'}
                         </p>
                         {job.tags?.length > 0 && (
@@ -111,7 +111,7 @@ export default async function Resume() {
                           </div>
                         )}
                         {job.projects.length > 0 && (
-                          <div className="mx-8 mt-4 border-l-2 pl-2">
+                          <div className="mx-8 mt-4 border-l-2 border-primary-400 pl-2">
                             <h5 className="mb-2 text-sm">I did projects for...</h5>
                             <div className="flex items-center gap-8">
                               {job.projects?.map((project: ResumeProjectExpanded, index: number) => (
