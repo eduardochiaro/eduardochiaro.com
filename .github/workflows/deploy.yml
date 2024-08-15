@@ -1,0 +1,24 @@
+name: Build & Deploy
+on:
+  push:
+    branches: [master]
+
+jobjs:
+  deploy:
+  runs-on: ubuntu-latest
+  steps:
+    - name: Deploy App
+      uses: appleboy/ssh-actions@v1.0.3
+      with:
+        host: ${{secrets.SSH_HOST}}
+        key: ${{secrets.SSH_KEY}}
+        username: ${{secrets.SSH_USERNAME}}
+
+        script: |
+          pm2 stop eduardochiaro
+          cd /var/app/www
+          #backup or delete
+          git clone git@github.com:eduardochiaro/eduardochiaro.com.git #copy files
+          #build env file first
+          npm run build #finish deploy
+          pm2 start eduardochiaro
