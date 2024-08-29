@@ -6,7 +6,7 @@ const resumes = [
   {
     company: 'Verizon',
     location: 'Greater Seattle Area, USA',
-    name: 'Software Engineer',
+    name: 'Senior Software Engineer',
     featured: true,
     file: {
       create: {
