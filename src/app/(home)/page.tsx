@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { cache } from 'react';
 import prisma from '@/utils/prisma';
 import Logo from '@/components/icons/Logo';
+import { spec } from 'node:test/reporters';
 
 export default async function Home() {
   const works = await getFeatureWork();
@@ -93,6 +94,7 @@ export default async function Home() {
                     src={`${process.env.NEXT_PUBLIC_CDN_URL}/${job.logo}`}
                     height={20}
                   />
+                  {job.special && <span className="absolute -right-2 -top-2 text-xs text-accent-600 dark:text-accent-500">•</span>}
                 </div>
               ))}
             </div>
@@ -100,7 +102,10 @@ export default async function Home() {
         </div>
       </WireContainer>
 
-      <div className="absolute bottom-5 right-5">
+      <div className="absolute bottom-5 flex w-full items-center justify-between px-5">
+        <p className="text-xs">
+          <span className="text-accent-600 dark:text-accent-500">•</span> project under contracts
+        </p>
         <WireContainer>
           <ThemeIcon orientation="top left" size="h-6" />
         </WireContainer>
@@ -133,10 +138,23 @@ const getFeatureWork = cache(async () => {
     },
   });
 
-  return [...jobs, ...projects].map((job) => {
-    return {
+  const returnArray: any[] = [];
+
+  jobs.forEach((job) => {
+    returnArray.push({
       name: job.name,
       logo: job.file?.path,
-    };
+      special: false,
+    });
   });
+
+  projects.forEach((project) => {
+    returnArray.push({
+      name: project.name,
+      logo: project.file?.path,
+      special: true,
+    });
+  });
+
+  return returnArray;
 });

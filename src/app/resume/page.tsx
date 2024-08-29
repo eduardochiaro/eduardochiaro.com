@@ -115,7 +115,7 @@ export default async function Resume() {
                           <div className="mr-8 mt-4 flex items-start gap-2">
                             <ChevronRightIcon className="mt-0.5 size-4 text-secondary-700 dark:text-secondary-200" />
                             <div>
-                              <h5 className="mb-2 text-sm">I did projects for...</h5>
+                              <h5 className="mb-2 text-sm">Projects</h5>
                               <div className="flex items-center gap-8">
                                 {job.projects?.map((project: ResumeProjectExpanded, index: number) => (
                                   <Fragment key={`project-image-${index}`}>
