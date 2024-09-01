@@ -47,8 +47,8 @@ export default async function Home() {
   ];
 
   return (
-    <div className="relative flex h-screen items-center">
-      <div className="absolute left-5 top-5">
+    <div className="relative flex h-screen flex-col items-center md:flex-row">
+      <div className="left-5 top-5 md:absolute">
         <WireContainer>
           <h1 className="flex items-center p-1 px-2 font-header text-3xl font-normal">
             <span className="overlay-color">eduardo</span>
@@ -102,7 +102,7 @@ export default async function Home() {
         </div>
       </WireContainer>
 
-      <div className="absolute bottom-5 flex w-full items-center justify-between px-5">
+      <div className="bottom-5 flex w-full items-center justify-between px-5 md:absolute">
         <p className="text-xs">
           <span className="text-accent-600 dark:text-accent-500">•</span> project under contracts
         </p>
