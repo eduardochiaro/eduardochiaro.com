@@ -7,7 +7,6 @@ import Link from 'next/link';
 import { cache } from 'react';
 import prisma from '@/utils/prisma';
 import Logo from '@/components/icons/Logo';
-import { spec } from 'node:test/reporters';
 
 export default async function Home() {
   const works = await getFeatureWork();

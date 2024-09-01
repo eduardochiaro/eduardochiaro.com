@@ -68,13 +68,17 @@ export default async function Resume() {
                 <h3 className="mb-4 mt-8 font-header text-2xl font-semibold">Links</h3>
                 <ul className="flex flex-col gap-2">
                   <li>
-                    <Link href="https://linkedin.com/in/eduardochiaro" className="group inline-flex items-center justify-end gap-4" title="LinkedIn">
+                    <Link
+                      href="https://linkedin.com/in/eduardochiaro"
+                      className="group inline-flex w-1/2 items-center justify-between gap-2 pr-2"
+                      title="LinkedIn"
+                    >
                       LinkedIn
                       <LinkedInIcon className={'size-4 text-secondary-700 dark:text-secondary-200'} />
                     </Link>
                   </li>
                   <li>
-                    <Link href="https://github.com/eduardochiaro" className="group inline-flex items-center justify-end gap-4" title="GitHub">
+                    <Link href="https://github.com/eduardochiaro" className="group inline-flex w-1/2 items-center justify-between gap-2 pr-2" title="GitHub">
                       GitHub
                       <GitHubIcon className={'size-4 text-secondary-700 dark:text-secondary-200'} />
                     </Link>
