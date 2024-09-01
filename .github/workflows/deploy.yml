@@ -17,7 +17,7 @@ jobs:
 
           script: |
             pm2 stop eduardochiaro
-            cd /var/app/www
+            cd /var/www/html/
             #backup or delete
             git clone git@github.com:eduardochiaro/eduardochiaro.com.git #copy files
             #build env file first

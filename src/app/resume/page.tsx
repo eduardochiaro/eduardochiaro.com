@@ -45,17 +45,23 @@ export default async function Resume() {
               <Logo className="mr-7 w-20" />
             </div>
             <div className="flex flex-col items-start gap-10 md:min-w-96 md:flex-row">
-              <div className="md:w-1/3 md:min-w-56 md:text-right">
+              <div className="md:w-1/3 md:min-w-56">
                 <h3 className="mb-4 font-header text-2xl font-semibold">Skills</h3>
                 <ul className="flex flex-wrap gap-4 md:flex-col md:gap-1">
                   {skills.map((skill: Skill, index: number) => (
-                    <li key={`skill-${index}`} className="flex items-center justify-end gap-4">
+                    <li key={`skill-${index}`} className="flex items-center gap-2">
                       {skill.name}
+                      <span className="w-full shrink"></span>
                       <SVG
                         title={skill.name}
-                        className={'size-8 flex-none fill-secondary-700 stroke-secondary-700 dark:fill-secondary-200 dark:stroke-secondary-200'}
+                        className={'size-6 flex-none fill-secondary-700 stroke-secondary-700 dark:fill-secondary-200 dark:stroke-secondary-200'}
                         src={`/images/svg-icons/${skill.logo}`}
                       />
+                      <div className="w-1/2 flex-none">
+                        <div className="h-4 w-full rounded bg-primary-200 dark:bg-primary-900">
+                          <div className="h-4 rounded bg-primary-500" style={{ width: skill.percentage }}></div>
+                        </div>
+                      </div>
                     </li>
                   ))}
                 </ul>
@@ -175,7 +181,7 @@ const getResume = cache(async () => {
 const getSkills = cache(async () => {
   return prisma.skill.findMany({
     orderBy: {
-      percentage: 'desc',
+      name: 'asc',
     },
   });
 });
