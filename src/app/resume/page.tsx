@@ -58,8 +58,8 @@ export default async function Resume() {
                         src={`/images/svg-icons/${skill.logo}`}
                       />
                       <div className="w-1/2 flex-none">
-                        <div className="h-4 w-full rounded bg-primary-200 dark:bg-primary-900">
-                          <div className="h-4 rounded bg-primary-500" style={{ width: skill.percentage }}></div>
+                        <div className="h-3 w-full rounded-sm bg-primary-200 dark:bg-primary-900">
+                          <div className="h-3 rounded-sm bg-primary-500" style={{ width: skill.percentage }}></div>
                         </div>
                       </div>
                     </li>
