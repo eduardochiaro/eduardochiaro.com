@@ -8,11 +8,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Prisma } from '@prisma/client';
 import WireContainer from '@/components/WireContainer';
-
+import { fetchGitHub, GitHubItem } from '@/actions/github';
+import GitHubComponent from '@/components/frontend/GitHub';
 type AppExpanded = Prisma.AppGetPayload<{ include: { file: true } }>;
 
 export default async function Projects() {
   const apps = await getApps();
+  const githubData = await fetchGitHub();
 
   const projects = [
     {
@@ -37,8 +39,8 @@ export default async function Projects() {
       <section className={`${styles.apps} mt-10 px-4 lg:px-0`}>
         <div className="mx-auto flex max-w-5xl flex-wrap">
           <div className="mb-10 basis-full md:basis-3/4">
-            <h1 className="h-10 font-header text-3xl font-light leading-tight tracking-wide lg:text-4xl">Projects</h1>
-            <div className="mt-5 grid grid-cols-1 gap-4">
+            <h1 className="h-10 font-header text-3xl font-light leading-tight tracking-wide lg:text-4xl">Projects / Downloads</h1>
+            <div className="my-5 grid grid-cols-1 gap-4">
               {apps?.map((app: AppExpanded, index: number) => (
                 <WireContainer type="large" key={`app-${index}`}>
                   <div className={'card group flex flex-wrap p-4'}>
@@ -73,6 +75,8 @@ export default async function Projects() {
                 </WireContainer>
               ))}
             </div>
+            <h2 className="h-10 font-header text-3xl font-light leading-tight tracking-wide lg:text-4xl">Projects / GitHub</h2>
+            <GitHubComponent responseArray={githubData} />
           </div>
 
           <div className="mb-10 basis-full md:basis-1/4 md:text-right">
