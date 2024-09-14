@@ -39,7 +39,7 @@ export default async function Projects() {
       <section className={`${styles.apps} mt-10 px-4 lg:px-0`}>
         <div className="mx-auto flex max-w-5xl flex-wrap">
           <div className="mb-10 basis-full md:basis-3/4">
-            <h1 className="h-10 font-header text-3xl font-light leading-tight tracking-wide lg:text-4xl">Projects / Downloads</h1>
+            <h1 className="h-10 font-header text-3xl font-light leading-tight tracking-wide lg:text-4xl">Projects</h1>
             <div className="my-5 grid grid-cols-1 gap-4">
               {apps?.map((app: AppExpanded, index: number) => (
                 <WireContainer type="large" key={`app-${index}`}>
@@ -75,7 +75,7 @@ export default async function Projects() {
                 </WireContainer>
               ))}
             </div>
-            <h2 className="h-10 font-header text-3xl font-light leading-tight tracking-wide lg:text-4xl">Projects / GitHub</h2>
+            <h2 className="h-10 font-header text-3xl font-light leading-tight tracking-wide lg:text-4xl">GitHub</h2>
             <GitHubComponent responseArray={githubData} />
           </div>
 

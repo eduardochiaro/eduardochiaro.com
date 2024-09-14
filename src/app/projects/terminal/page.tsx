@@ -12,7 +12,7 @@ export default function Terminal() {
             <Link href="/projects" className="font-semibold text-secondary-600 hover:underline dark:text-secondary-600">
               Projects
             </Link>{' '}
-            / Terminal
+            / Lab / Terminal
           </h1>
           <div className="mt-5 h-2/3 grow">
             <TerminalComponent />

@@ -6,6 +6,7 @@ import SpinnerIcon from '@/components/icons/Spinner';
 import * as commands from '@/utils/projects/terminal/commands';
 import classNames from '@/utils/classNames';
 import WireContainer from '../WireContainer';
+import SquareSpinner from '@/components/SquareSpinner';
 
 const useFocus = () => {
   const htmlElRef = useRef(null);
@@ -172,9 +173,9 @@ export default function Terminal() {
                 onChange={(e) => dispatch({ command: e.target.value })}
                 value={state.command}
               />
-              {state.isLoading && <SpinnerIcon className="absolute right-0 top-0 h-5 animate-spin" />}
             </div>
           </div>
+          {state.isLoading && <SquareSpinner />}
           <AlwaysScrollToBottom />
         </div>
       </div>

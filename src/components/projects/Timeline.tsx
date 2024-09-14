@@ -38,12 +38,12 @@ export default function Timeline({ data }: { data: any }) {
             <Link href="/projects" className="font-semibold text-secondary-600 hover:underline dark:text-secondary-600">
               Projects
             </Link>{' '}
-            / Timeline {type ? '' : '(variation)'}
+            / Lab / Timeline {type ? '' : '(variation)'}
           </h1>
           <div className="hidden justify-end md:flex">
             <WireContainer type="small">
-              <div className="card flex items-center gap-2 !p-2">
-                <span className="ml-3 text-sm font-medium">View variation</span>
+              <div className="card small flex items-center gap-2 !p-2">
+                <span className="ml-3 text-sm font-medium">2 Sides</span>
                 <label htmlFor="toggle-example" className="relative flex cursor-pointer items-center">
                   <input type="checkbox" id="toggle-example" className="sr-only" onChange={() => setType(!type)} />
                   <div className="toggle-bg"></div>

@@ -76,7 +76,7 @@ export default async function Home() {
             <ul className="mt-10 flex flex-col gap-3 font-semibold text-primary-600 dark:text-primary-200">
               {menu.map((item, index) => (
                 <li key={`menu-item-${index}`}>
-                  <Link href={item.href} prefetch={false} className="group flex items-center gap-2 hover:underline dark:hover:text-primary-400">
+                  <Link href={item.href} prefetch={false} className="group inline-flex items-center gap-2 hover:underline dark:hover:text-primary-400">
                     <item.icon title={item.name.toString()} className={'w-5 group-hover:text-accent-600 group-hover:dark:text-accent-500'} />
                     <span>{item.name}</span>
                   </Link>

@@ -12,7 +12,7 @@ export default function RapidReading() {
             <Link href="/projects" className="font-semibold text-secondary-600 hover:underline dark:text-secondary-600">
               Projects
             </Link>{' '}
-            / Rapid Reading
+            / Lab / Rapid Reading
           </h1>
           <div className="mt-5 h-2/3 grow">
             <RapidReadingComponent />

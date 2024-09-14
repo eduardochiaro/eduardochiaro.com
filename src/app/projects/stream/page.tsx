@@ -20,7 +20,7 @@ export default async function Stream() {
                 <Link href="/projects" className="font-semibold text-secondary-600 hover:underline dark:text-secondary-600">
                   Projects
                 </Link>{' '}
-                / Stream
+                / Lab / Stream
               </h1>
               <div className="mt-5">
                 <StreamComponent />
