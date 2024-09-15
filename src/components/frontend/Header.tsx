@@ -38,7 +38,7 @@ export default function Header({ data }: { data: MenuLink[] }) {
             leaveFrom="opacity-100 translate-y-0"
             leaveTo="opacity-0 translate-y-1"
           >
-            <MenuItems className="absolute left-0 top-full w-full max-w-lg divide-y divide-primary-400/50 bg-primary-100 shadow-2xl shadow-primary-600 focus:outline-none dark:bg-primary-800 dark:shadow-primary-900">
+            <MenuItems className="absolute left-0 top-full z-20 w-full max-w-lg divide-y divide-primary-400/50 bg-primary-100 shadow-2xl shadow-primary-600 focus:outline-none dark:bg-primary-800 dark:shadow-primary-900">
               {menuData
                 .filter((x: any) => x.active)
                 .map((item: any, i: number) => {

@@ -25,7 +25,7 @@ export default {
       amber: colors.amber,
       emerald: colors.emerald,
       sky: colors.sky,
-      pink: colors.pink,
+      rose: colors.rose,
       primary: colors.slate,
       secondary: {
         50: "#EEF3F6",

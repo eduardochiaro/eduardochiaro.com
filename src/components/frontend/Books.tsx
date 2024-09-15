@@ -5,7 +5,8 @@ import { Prisma } from '@prisma/client';
 import styles from '@/styles/Book.module.scss';
 import { useEffect, useState } from 'react';
 import WireContainer from '../WireContainer';
-import SVG from '@/utils/svg';
+import { useSearchParams, usePathname, useRouter } from 'next/navigation';
+import { ChevronDoubleLeftIcon, ChevronDoubleRightIcon } from '@heroicons/react/20/solid';
 
 type BookWithTags = Prisma.BookGetPayload<{
   include: {
@@ -14,25 +15,38 @@ type BookWithTags = Prisma.BookGetPayload<{
   };
 }>;
 
-const randomHeight = () => {
-  // random number between 128 and 160
-  const height = Math.floor(Math.random() * (220 - 180 + 1)) + 180;
-  return height;
-};
-
-const chunkSize = 12;
-
-const chunk = (arr: any[]) =>
-  // Use Array.from to create a new array with a length equal to the number of chunks needed
-  Array.from({ length: Math.ceil(arr.length / chunkSize) }, (v, i) =>
-    // For each element in the new array, slice the original array to extract a chunk of 'size' elements
-    arr.slice(i * chunkSize, i * chunkSize + chunkSize),
-  );
+const pageSize = 6;
 
 export default function Books({ data }: { data: BookWithTags[] }) {
-  const [results, setResults] = useState(data);
-  const [chunks, setChunks] = useState<any[]>([]);
-  const [selectedTag, setSelectedTag] = useState<any>(null);
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
+  const currentPage = searchParams.get('page') || '1';
+  const currentTag = searchParams.get('tag');
+  //max pages
+
+  const [results, setResults] = useState<BookWithTags[]>([]);
+  const [selectedTag, setSelectedTag] = useState<any>(currentTag);
+  const [maxPages, setMaxPages] = useState(1);
+
+  //split data by page size
+  useEffect(() => {
+    if (currentPage) {
+      const start = (parseInt(currentPage) - 1) * pageSize;
+      const end = start + pageSize;
+      if (currentTag) {
+        const filteredBooks = data.filter((book: BookWithTags) => {
+          return book.tags.some((t) => t.id === parseInt(currentTag));
+        });
+        setResults(filteredBooks.slice(start, end));
+        setMaxPages(Math.ceil(filteredBooks.length / pageSize));
+      } else {
+        setMaxPages(Math.ceil(data.length / pageSize));
+        setResults(data.slice(start, end));
+      }
+      return;
+    }
+  }, [data, currentPage, currentTag]);
 
   //get unique tags with count from books data as object in array
   const tags = data.reduce((acc: any[], book: BookWithTags) => {
@@ -47,23 +61,37 @@ export default function Books({ data }: { data: BookWithTags[] }) {
     return acc;
   }, []);
 
-  useEffect(() => {
-    setChunks(chunk(results));
-  }, [results]);
-
   const handleTagClick = (tag: any) => {
+    const params = new URLSearchParams(searchParams);
+    params.set('page', '1');
     if (tag.id === undefined) {
       setSelectedTag(null);
       setResults(data);
+      params.delete('tag');
+      replace(`${pathname}?${params.toString()}`);
       return;
     }
     setSelectedTag(tag.id);
-    //filter books by tag
-    const filteredBooks = data.filter((book: BookWithTags) => {
-      return book.tags.some((t) => t.name === tag.name);
-    });
-    //update results
-    setResults(filteredBooks);
+    params.set('tag', tag.id);
+    replace(`${pathname}?${params.toString()}`);
+  };
+
+  const goNextPage = () => {
+    const page = searchParams.get('page') ? parseInt(searchParams.get('page') as string) + 1 : 2;
+    const start = (page - 1) * pageSize;
+    const end = start + pageSize;
+    const params = new URLSearchParams(searchParams);
+    params.set('page', page.toString());
+    replace(`${pathname}?${params.toString()}`);
+  };
+
+  const goPrevPage = () => {
+    const page = searchParams.get('page') ? parseInt(searchParams.get('page') as string) - 1 : 1;
+    const start = (page - 1) * pageSize;
+    const end = start + pageSize;
+    const params = new URLSearchParams(searchParams);
+    params.set('page', page.toString());
+    replace(`${pathname}?${params.toString()}`);
   };
 
   return (
@@ -71,53 +99,51 @@ export default function Books({ data }: { data: BookWithTags[] }) {
       <h1 className="mx-auto h-10 max-w-5xl font-header text-3xl font-light leading-tight tracking-wide lg:text-4xl">
         Books I&apos;ve <span className="overlay-color">read</span>...
       </h1>
+      {currentPage}
       <div className="mx-auto flex max-w-5xl">
-        <div className="mb-10 w-full md:w-3/4">
-          {chunks.map((chunk: BookWithTags[], index: number) => (
-            <div className="flex flex-col" key={`chunk-${index}`}>
-              <div className="mx-10 flex items-end justify-center gap-0 pt-5">
-                <SVG src="/images/svg-icons/side-bookcase-1.svg" width={100} />
-                {chunk.map((book: BookWithTags, index: number) => (
-                  <div key={index} className="group">
-                    <div
-                      className="w-10 overflow-hidden rounded-t border-l-2 border-r-2 border-primary-800 bg-cyan-600 ring-1 ring-primary-700 group-hover:hidden"
-                      style={{
-                        minHeight: randomHeight(),
-                        writingMode: 'vertical-lr',
-                        backgroundImage: book.file && book.file.path ? `url('/uploads/${book.file.path}')` : '',
-                        backgroundPosition: 'top center',
-                      }}
-                    >
-                      <div className="px-2 py-2 font-header text-primary-50 backdrop-blur-3xl">{book.title}</div>
-                    </div>
-                    <div key={index} className="hidden flex-col group-hover:flex">
-                      <div
-                        className={classNames(book.file && book.file.path ? 'bg-emerald-600' : 'bg-cyan-600', styles['book'], 'text-primary-300')}
-                        style={{ backgroundImage: book.file && book.file.path ? `url('/uploads/${book.file.path}')` : '', backgroundPosition: 'top center' }}
-                        title={book.title}
-                      >
-                        {!book.file && (
-                          <>
-                            <h3>{book.title}</h3>
-                            <h4>{book.author}</h4>
-                          </>
-                        )}
-                      </div>
-                    </div>
+        <div className="my-10 w-full md:w-3/4">
+          <div className="grid grid-cols-2 gap-10 md:grid-cols-3">
+            {results.map((book: BookWithTags, index: number) => (
+              <div key={index} className="group">
+                <div key={index} className="flex flex-col">
+                  <div
+                    className={classNames(book.file && book.file.path ? 'bg-emerald-600' : 'bg-rose-800', styles['book'], 'text-primary-300')}
+                    style={{ backgroundImage: book.file && book.file.path ? `url('/uploads/${book.file.path}')` : '', backgroundPosition: 'top center' }}
+                    title={book.title}
+                  >
+                    {!book.file && (
+                      <>
+                        <h3>{book.title}</h3>
+                        <h4>{book.author}</h4>
+                      </>
+                    )}
                   </div>
-                ))}
-                <SVG src="/images/svg-icons/side-bookcase-2.svg" width={100} />
+                </div>
+                <div className="mt-3 text-center">
+                  <h3 className="px-6 font-semibold">{book.title}</h3>
+                  <h4 className="text-sm">{book.author}</h4>
+                </div>
               </div>
-
-              <div className="h-2 rounded-lg bg-amber-950 drop-shadow-md"></div>
-              <div className="mx-auto flex w-1/2 justify-between">
-                <div className="size-3 rounded-b-full bg-primary-950 drop-shadow-md"></div>
-                <div className="size-3 rounded-b-full bg-primary-950 drop-shadow-md"></div>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
+          <div className="mt-10 flex justify-between">
+            {parseInt(currentPage) > 1 && (
+              <button onClick={() => goPrevPage()} className="rounded-lg bg-primary-300 px-3 py-1 font-semibold text-primary-900">
+                <ChevronDoubleLeftIcon className="size-6" />
+              </button>
+            )}
+            <div></div>
+            {maxPages > parseInt(currentPage) && (
+              <button
+                onClick={() => goNextPage()}
+                className="box-card-unstyled bg-primary-300 px-3 py-1 font-semibold hover:bg-primary-400 dark:bg-primary-700 dark:hover:bg-primary-900"
+              >
+                <ChevronDoubleRightIcon className="size-6" />
+              </button>
+            )}
+          </div>
         </div>
-        <div className="mb-10 w-full md:w-1/4 md:text-right">
+        <div className="mb-10 hidden w-full md:block md:w-1/4 md:text-right">
           <h2 className="mb-4 flex h-10 align-bottom font-header text-xl font-light leading-tight tracking-wide md:flex-row-reverse">
             <span className="self-end">Tags</span>
           </h2>
