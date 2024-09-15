@@ -8,11 +8,11 @@ import { useEffect, useState } from 'react';
 */
 
 const SquareSpinner = () => {
-  const interval = 80;
-  const frames = ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏'];
-  const [display, setDisplay] = useState(frames[0]);
+  const [display, setDisplay] = useState('');
 
   useEffect(() => {
+    const interval = 80;
+    const frames = ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏'];
     let i = 0;
     const intervalId = setInterval(() => {
       setDisplay(frames[i]);

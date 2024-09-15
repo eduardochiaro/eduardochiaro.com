@@ -49,7 +49,7 @@ export default async function Resume() {
                 <h3 className="mb-4 font-header text-2xl font-semibold">Skills</h3>
                 <ul className="flex flex-wrap gap-4 md:flex-col md:gap-1">
                   {skills.map((skill: Skill, index: number) => (
-                    <li key={`skill-${index}`} className="flex items-center gap-2">
+                    <li key={`skill-${index}`} className="flex items-center gap-2 text-sm">
                       {skill.name}
                       <span className="w-full shrink"></span>
                       <SVG
@@ -65,8 +65,8 @@ export default async function Resume() {
                     </li>
                   ))}
                 </ul>
-                <h3 className="mb-4 mt-8 font-header text-2xl font-semibold">Links</h3>
-                <ul className="flex flex-col gap-2">
+                <h3 className="mb-4 mt-8 font-header text-2xl font-semibold">Connections</h3>
+                <ul className="flex flex-col gap-2 text-sm">
                   <li>
                     <Link
                       href="https://linkedin.com/in/eduardochiaro"
