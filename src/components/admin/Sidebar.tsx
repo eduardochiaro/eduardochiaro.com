@@ -1,6 +1,6 @@
 'use client';
 
-import { Fragment, ReactElement, useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import NavLink from '@/components/NavLink';
 import styles from '@/styles/Admin.Sidebar.module.scss';
 import { ArrowLeftCircleIcon, Bars3BottomRightIcon, CodeBracketIcon, HomeIcon } from '@heroicons/react/24/solid';
@@ -12,7 +12,6 @@ import Logo from '../icons/Logo';
 import { menuList } from '@/utils/menuList';
 import Link from 'next/link';
 import { signOut } from '@/actions/access';
-import { redirect } from 'next/navigation';
 import useStaleSWR from '@/utils/staleSWR';
 
 const SidebarDivider = ({ title, openMenu }: { title: string; openMenu: boolean }) => (
