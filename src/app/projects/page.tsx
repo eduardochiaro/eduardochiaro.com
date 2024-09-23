@@ -8,7 +8,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Prisma } from '@prisma/client';
 import WireContainer from '@/components/WireContainer';
-import { fetchGitHub, GitHubItem } from '@/actions/github';
+import { fetchGitHub } from '@/actions/github';
 import GitHubComponent from '@/components/frontend/GitHub';
 type AppExpanded = Prisma.AppGetPayload<{ include: { file: true } }>;
 
