@@ -2,6 +2,7 @@ import Providers from '@/providers';
 import { Titillium_Web, Roboto_Mono } from 'next/font/google';
 import '../styles/globals.scss';
 import type { Viewport } from 'next';
+import { Suspense } from 'react';
 
 const header = Titillium_Web({
   weight: ['400', '600', '700'],
@@ -34,7 +35,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
       <meta name="msapplication-TileColor" content="#ffffff" />
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
+        </Providers>
       </body>
     </html>
   );

@@ -108,7 +108,10 @@ export default function Books({ data }: { data: BookWithTags[] }) {
                 <div key={index} className="flex flex-col">
                   <div
                     className={classNames(book.file && book.file.path ? 'bg-emerald-600' : 'bg-rose-800', styles['book'], 'text-primary-300')}
-                    style={{ backgroundImage: book.file && book.file.path ? `url('/uploads/${book.file.path}')` : '', backgroundPosition: 'top center' }}
+                    style={{
+                      backgroundImage: book.file && book.file.path ? `url('${process.env.NEXT_PUBLIC_CDN_URL}/${book.file.path}')` : '',
+                      backgroundPosition: 'top center',
+                    }}
                     title={book.title}
                   >
                     {!book.file && (

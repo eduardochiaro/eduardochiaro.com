@@ -3,7 +3,7 @@
 import { Checkbox } from '@headlessui/react';
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/solid';
 import { useState, cache } from 'react';
-import Link from "next/link";
+import Link from 'next/link';
 import classNames from '@/utils/classNames';
 
 type Props = {
@@ -60,11 +60,9 @@ export default function Table({ columns, data, useCheckboxes = false }: Props) {
       <table className="w-full text-left text-sm text-primary-500 dark:text-primary-400 rtl:text-right">
         <thead className="bg-primary-200 text-xs uppercase text-primary-700 dark:bg-primary-700 dark:text-primary-400">
           <tr>
-            {useCheckboxes && (
-            <th className="w-8"></th>
-            )}
+            {useCheckboxes && <th className="w-8"></th>}
             {tableColumns.map((column, index) => (
-              <th key={index} scope="col" className={classNames(`px-6 py-3`, column.classNames)}>
+              <th key={index} scope="col" className={classNames('px-6 py-3', column.classNames)}>
                 <div className="inline-flex items-center gap-2">
                   {column.title}
                   {column.sortable && (
@@ -85,31 +83,25 @@ export default function Table({ columns, data, useCheckboxes = false }: Props) {
               className="border-b bg-primary-50 last:border-0 hover:bg-primary-50 dark:border-primary-700 dark:bg-primary-800 dark:hover:bg-primary-600"
             >
               {useCheckboxes && (
-              <td className="px-6 py-4">
-                <Checkbox
-                  checked={row.checked || false}
-                  onChange={() => checkRow(index)}
-                  className="bg-white group inline-flex size-4 items-center justify-center rounded border bg-primary-200 data-[checked]:bg-primary-200"
-                >
-                  <div className="size-3 rounded-sm bg-primary-700 opacity-0 group-data-[checked]:opacity-100"></div>
-                </Checkbox>
-              </td>
+                <td className="px-6 py-4">
+                  <Checkbox
+                    checked={row.checked || false}
+                    onChange={() => checkRow(index)}
+                    className="bg-white group inline-flex size-4 items-center justify-center rounded border bg-primary-200 data-[checked]:bg-primary-200"
+                  >
+                    <div className="size-3 rounded-sm bg-primary-700 opacity-0 group-data-[checked]:opacity-100"></div>
+                  </Checkbox>
+                </td>
               )}
               {tableColumns.map((column, index) => (
                 <td key={index} className="relative px-6 py-4">
                   {column.key === 'actions' ? (
-                    <div className="flex items-center gap-2 justify-end">
-                      {row[column.key].map((action: any, index: number) =>
-                          <Link
-                            key={index}
-                            href={action.href}
-                            className={classNames(
-                              action.classNames
-                            )}
-                          >
-                            {action.label}
-                          </Link>
-                      )}
+                    <div className="flex items-center justify-end gap-2">
+                      {row[column.key].map((action: any, index: number) => (
+                        <Link key={index} href={action.href} className={classNames(action.classNames)}>
+                          {action.label}
+                        </Link>
+                      ))}
                     </div>
                   ) : column.key === 'actions_l' ? (
                     row[column.key]

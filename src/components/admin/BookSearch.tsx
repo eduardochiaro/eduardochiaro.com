@@ -203,7 +203,10 @@ export default function BookSearch({ books, tags }: { books: BookExpanded[]; tag
               <div key={index} className="flex flex-col">
                 <div
                   className={classNames(book.file && book.file.path ? 'bg-emerald-600' : 'bg-accent-600', styles['book'])}
-                  style={{ backgroundImage: book.file && book.file.path ? `url('/uploads/${book.file.path}')` : '', backgroundPosition: 'top center' }}
+                  style={{
+                    backgroundImage: book.file && book.file.path ? `url('${process.env.NEXT_PUBLIC_CDN_URL}/${book.file.path}')` : '',
+                    backgroundPosition: 'top center',
+                  }}
                   title={book.title}
                 >
                   {!book.file && (
