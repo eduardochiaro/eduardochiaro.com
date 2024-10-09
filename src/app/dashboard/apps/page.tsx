@@ -4,6 +4,7 @@ import prisma from '@/utils/prisma';
 import { Prisma } from '@prisma/client';
 import moment from 'moment';
 import Image from 'next/image';
+import Link from "next/link";
 
 type AppExpanded = Prisma.AppGetPayload<{ include: { file: true } }>;
 
@@ -15,28 +16,39 @@ const columns = [
   {
     title: 'Image',
     key: 'image',
+    classNames: '',
     sortable: false,
   },
   {
     title: 'App Name',
     key: 'app_name',
+    classNames: '',
     sortable: true,
   },
   {
     title: 'Description',
     key: 'description',
+    classNames: '',
     sortable: false,
   },
   {
     title: 'Created At',
     key: 'created_at',
+    classNames: '',
     sortable: true,
   },
   {
     title: 'Updated At',
     key: 'updated_at',
+    classNames: '',
     sortable: true,
   },
+  {
+    title: 'Actions',
+    key: 'actions',
+    classNames: 'text-right',
+    sortable: false,
+  }
 ];
 
 export default async function AdminIndex() {
@@ -59,8 +71,24 @@ export default async function AdminIndex() {
           ),
           app_name: app.name,
           description: app.description,
-          created_at: moment(app.createdAt).format('YYYY-MM-DD'),
-          updated_at: app.updatedAt ? moment(app.updatedAt).format('YYYY-MM-DD') : '',
+          created_at: moment(app.createdAt).fromNow(),
+          updated_at: app.updatedAt ? moment(app.updatedAt).fromNow() : '',
+          actions: [
+            {
+              label: 'Edit',
+              href: `/dashboard/apps/${app.id}`,
+              classNames: 'text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300',
+            }
+          ],
+          actions_l: (
+            <div className="flex items-center gap-2 justify-end">
+              <Link prefetch={false} href={`/dashboard/apps/${app.id}`} className="text-primary-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300">
+                Edit
+              </Link>
+              |
+              <button className="text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300">Delete</button>
+            </div>
+          ),
         };
       })
     : [];
@@ -68,7 +96,6 @@ export default async function AdminIndex() {
   return (
     <div>
       <h2 className="mb-10 mt-2 text-2xl font-semibold">Apps</h2>
-
       <Table columns={columns} data={data} />
     </div>
   );
