@@ -2,11 +2,11 @@
 
 import { KeyboardEvent, useEffect, useReducer, useRef } from 'react';
 import moment from 'moment';
-import SpinnerIcon from '@/components/icons/Spinner';
 import * as commands from '@/utils/projects/terminal/commands';
 import classNames from '@/utils/classNames';
-import WireContainer from '../WireContainer';
+import WireContainer from '../frontend/WireContainer';
 import SquareSpinner from '@/components/SquareSpinner';
+import Card from '../frontend/Card';
 
 const useFocus = () => {
   const htmlElRef = useRef(null);
@@ -132,7 +132,7 @@ export default function Terminal() {
 
   return (
     <WireContainer type="large">
-      <div className="card flex h-[500px] flex-col !p-0">
+      <Card className="flex h-[500px] flex-col !p-0">
         <div className="flex h-6 flex-none items-center gap-2 rounded-t-lg bg-primary-300 px-3">
           <div className="h-3 w-3 rounded-full border border-red-600 bg-red-500"></div>
           <div className="h-3 w-3 rounded-full border border-secondary-600 bg-secondary-500"></div>
@@ -178,7 +178,7 @@ export default function Terminal() {
           {state.isLoading && <SquareSpinner />}
           <AlwaysScrollToBottom />
         </div>
-      </div>
+      </Card>
     </WireContainer>
   );
 }

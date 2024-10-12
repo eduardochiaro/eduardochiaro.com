@@ -10,7 +10,7 @@ import Link from 'next/link';
 import styles from '@/styles/Header.module.scss';
 import classNames from '@/utils/classNames';
 import type { MenuLink } from '@prisma/client';
-import WireContainer from '../WireContainer';
+import WireContainer from './WireContainer';
 import Logo from '../icons/Logo';
 
 export default function Header({ data }: { data: MenuLink[] }) {
@@ -78,7 +78,7 @@ export default function Header({ data }: { data: MenuLink[] }) {
         <WireContainer>
           <h1 className="p-1 px-2 font-header text-3xl font-normal">
             <Link href="/" className="flex items-center p-1 px-2 font-header text-3xl font-normal">
-              <span className="overlay-color">eduardo</span>
+              <span className="text-secondary-700 dark:text-secondary-500">eduardo</span>
               <span className="flex items-center font-semibold">
                 <Logo className="size-6" alt="c" />
                 hiaro

@@ -9,7 +9,7 @@ import Link from 'next/link';
 type AppExpanded = Prisma.AppGetPayload<{ include: { file: true } }>;
 
 export const metadata: Metadata = {
-  title: 'Admin | Eduardo Chiaro',
+  title: 'Admin > Apps | Eduardo Chiaro',
 };
 
 const columns = [
@@ -51,7 +51,7 @@ const columns = [
   },
 ];
 
-export default async function AdminIndex() {
+export default async function DashboardAppsIndex() {
   const apps = await pullApps();
 
   const data = apps

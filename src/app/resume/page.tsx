@@ -1,7 +1,7 @@
 import prisma from '@/utils/prisma';
 import { Metadata } from 'next';
 import { Fragment, cache } from 'react';
-import WireContainer from '@/components/WireContainer';
+import WireContainer from '@/components/frontend/WireContainer';
 import { Prisma, ResumeTag, Skill } from '@prisma/client';
 import moment from 'moment';
 import SVG from '@/utils/svg';
@@ -11,6 +11,7 @@ import GitHubIcon from '@/components/icons/Github';
 import FrontendLayout from '@/components/layouts/Frontend';
 import Logo from '@/components/icons/Logo';
 import { ChevronRightIcon } from '@heroicons/react/24/solid';
+import Card from '@/components/frontend/Card';
 
 type ResumeProjectExpanded = Prisma.ResumeProjectGetPayload<{ include: { file: true } }>;
 type ResumeExpanded = Prisma.ResumeGetPayload<{ include: { tags: true; projects: { include: { file: true } }; file: true } }> & {
@@ -36,7 +37,7 @@ export default async function Resume() {
     <FrontendLayout>
       <div className="mx-auto flex max-w-5xl flex-wrap">
         <WireContainer type="large" className="mx-auto w-full">
-          <div className="card max-w-screen-xl md:min-w-96">
+          <Card className="max-w-screen-xl md:min-w-96">
             <div className="mb-10 flex items-center justify-between">
               <div className="ml-10">
                 <h2 className="font-header text-5xl font-semibold">eduardo</h2>
@@ -154,7 +155,7 @@ export default async function Resume() {
                 </div>
               </div>
             </div>
-          </div>
+          </Card>
         </WireContainer>
       </div>
     </FrontendLayout>

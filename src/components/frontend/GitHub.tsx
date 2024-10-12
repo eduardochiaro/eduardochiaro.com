@@ -2,9 +2,10 @@
 
 import Link from 'next/link';
 import Masonry from 'react-masonry-css';
-import WireContainer from '../WireContainer';
+import WireContainer from './WireContainer';
 import { GitHubItem } from '@/actions/github';
 import GitHubIcon from '@/components/icons/Github';
+import Card from './Card';
 
 const breakpointColumnsObj = {
   default: 2,
@@ -20,7 +21,7 @@ export default function GitHub({ responseArray }: Props) {
     <Masonry breakpointCols={breakpointColumnsObj} className="mt-5 flex w-auto gap-4" columnClassName="bg-clip-padding flex flex-col gap-4">
       {responseArray.map((repo) => (
         <WireContainer type="medium" key={`repo-${repo.id}`}>
-          <div className={'card small p-4 text-base'}>
+          <Card className="small p-4 text-base">
             <div className={'basis-full md:basis-2/3'}>
               <h3 className="font-header text-xl tracking-wide transition-colors duration-300 ease-out group-hover:text-secondary-600 dark:group-hover:text-secondary-600">
                 {repo.name}
@@ -31,7 +32,7 @@ export default function GitHub({ responseArray }: Props) {
                 View on GitHub
               </Link>
             </div>
-          </div>
+          </Card>
         </WireContainer>
       ))}
     </Masonry>

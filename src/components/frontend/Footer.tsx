@@ -6,7 +6,7 @@ import Link from 'next/link';
 import Logo from '@/components/icons/Logo';
 import LinkedInIcon from '@/components/icons/Linkedin';
 import GitHubIcon from '@/components/icons/Github';
-import WireContainer from '../WireContainer';
+import WireContainer from './WireContainer';
 
 export default function Footer() {
   return (

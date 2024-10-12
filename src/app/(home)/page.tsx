@@ -1,5 +1,5 @@
 import ThemeIcon from '@/components/ThemeIcon';
-import WireContainer from '@/components/WireContainer';
+import WireContainer from '@/components/frontend/WireContainer';
 import SVG from '@/utils/svg';
 import { BookOpenIcon, BookmarkIcon, BriefcaseIcon, CpuChipIcon, RssIcon } from '@heroicons/react/20/solid';
 import moment from 'moment';
@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { cache } from 'react';
 import prisma from '@/utils/prisma';
 import Logo from '@/components/icons/Logo';
+import Card from '@/components/frontend/Card';
 
 export default async function Home() {
   const works = await getFeatureWork();
@@ -17,13 +18,11 @@ export default async function Home() {
       href: '/resume',
       icon: BriefcaseIcon,
     },
-    /*
-      {
-        name: 'Books',
-        href: '/books',
-        icon: BookOpenIcon,
-      },
-      */
+    {
+      name: 'Books',
+      href: '/books',
+      icon: BookOpenIcon,
+    },
     {
       name: 'Bookmarks',
       href: '/bookmarks',
@@ -50,7 +49,7 @@ export default async function Home() {
       <div className="left-5 top-5 md:absolute">
         <WireContainer>
           <h1 className="flex items-center p-1 px-2 font-header text-3xl font-normal">
-            <span className="overlay-color">eduardo</span>
+            <span className="text-secondary-700 dark:text-secondary-500">eduardo</span>
             <span className="flex items-center font-semibold">
               <Logo className="size-6" alt="c" />
               hiaro
@@ -59,7 +58,7 @@ export default async function Home() {
         </WireContainer>
       </div>
       <WireContainer type="large" className="mx-auto">
-        <div className="card max-w-screen-sm md:min-w-96">
+        <Card className="max-w-screen-sm md:min-w-96">
           <div className="px-3">
             <div className="flex items-center justify-between">
               <h2>
@@ -89,7 +88,7 @@ export default async function Home() {
                 <div className={'relative text-center align-middle'} key={`job-image-${index}`}>
                   <SVG
                     title={job.name}
-                    className={'fill-primary-950 opacity-50 grayscale transition-all hover:opacity-100 hover:grayscale-0 dark:fill-primary-50'}
+                    className={'fill-primary-950 opacity-90 grayscale transition-all hover:opacity-100 hover:grayscale-0 dark:fill-primary-50'}
                     src={`${process.env.NEXT_PUBLIC_CDN_URL}/${job.logo}`}
                     height={20}
                   />
@@ -98,12 +97,12 @@ export default async function Home() {
               ))}
             </div>
           </div>
-        </div>
+        </Card>
       </WireContainer>
 
       <div className="bottom-5 flex w-full items-center justify-between px-5 md:absolute">
         <p className="text-xs">
-          <span className="text-accent-600 dark:text-accent-500">•</span> project under contracts
+          <span className="text-accent-600 dark:text-accent-500">•</span> project under contract
         </p>
         <WireContainer>
           <ThemeIcon orientation="top left" size="h-6" />

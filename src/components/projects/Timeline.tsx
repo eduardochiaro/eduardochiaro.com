@@ -3,7 +3,8 @@
 import Link from 'next/link';
 import { EvenTile, OddTile } from '@/components/projects/TimelineTile';
 import { useState } from 'react';
-import WireContainer from '../WireContainer';
+import WireContainer from '../frontend/WireContainer';
+import Card from '../frontend/Card';
 
 const Tile = ({ episodes, type }: { episodes: any[]; type: boolean }) => {
   if (type) {
@@ -42,13 +43,13 @@ export default function Timeline({ data }: { data: any }) {
           </h1>
           <div className="hidden justify-end md:flex">
             <WireContainer type="small">
-              <div className="card small flex items-center gap-2 !p-2">
+              <Card type="small" className="flex items-center gap-2 !p-2">
                 <span className="ml-3 text-sm font-medium">2 Sides</span>
                 <label htmlFor="toggle-example" className="relative flex cursor-pointer items-center">
                   <input type="checkbox" id="toggle-example" className="sr-only" onChange={() => setType(!type)} />
                   <div className="toggle-bg"></div>
                 </label>
-              </div>
+              </Card>
             </WireContainer>
           </div>
         </div>

@@ -1,8 +1,13 @@
 import getUser from '@/utils/getUser';
+import { redirect } from 'next/navigation';
 import Sidebar from '@/components/dashboard/Sidebar';
 
 export default async function AdminIndex({ children }: { children: React.ReactNode }) {
   const user = await getUser();
+  if (!user) {
+    redirect('/auth/signin');
+  }
+
   if (user) {
     return (
       <>

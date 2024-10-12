@@ -7,9 +7,10 @@ import styles from '@/styles/Projects.module.scss';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Prisma } from '@prisma/client';
-import WireContainer from '@/components/WireContainer';
+import WireContainer from '@/components/frontend/WireContainer';
 import { fetchGitHub } from '@/actions/github';
 import GitHubComponent from '@/components/frontend/GitHub';
+import Card from '@/components/frontend/Card';
 type AppExpanded = Prisma.AppGetPayload<{ include: { file: true } }>;
 
 export default async function Projects() {
@@ -17,11 +18,13 @@ export default async function Projects() {
   const githubData = await fetchGitHub();
 
   const projects = [
+    /*
     {
       name: 'Stream',
       url: '/projects/stream',
       description: 'Unified content stream from different feeds',
     },
+    */
     {
       name: 'Terminal',
       url: '/projects/terminal',
@@ -43,7 +46,7 @@ export default async function Projects() {
             <div className="my-5 grid grid-cols-1 gap-4">
               {apps?.map((app: AppExpanded, index: number) => (
                 <WireContainer type="large" key={`app-${index}`}>
-                  <div className={'card group flex flex-wrap p-4'}>
+                  <Card className="group flex flex-wrap p-4">
                     {app.file?.path && (
                       <div className={'relative h-32 basis-full md:h-auto md:basis-1/3'}>
                         <Image
@@ -71,7 +74,7 @@ export default async function Projects() {
                         Download from GitHub
                       </Link>
                     </div>
-                  </div>
+                  </Card>
                 </WireContainer>
               ))}
             </div>
@@ -87,14 +90,14 @@ export default async function Projects() {
               {projects.map((project, index) => (
                 <li key={`project-${index}`}>
                   <WireContainer type="medium" key={`app-${index}`}>
-                    <div className="card small p-4 text-base">
+                    <Card className="small p-4 text-base">
                       <Link href={project.url} className="group">
                         <h3 className="text-lg tracking-wide transition-colors duration-300 ease-out group-hover:text-secondary-600 dark:group-hover:text-secondary-600">
                           {project.name}
                         </h3>
                         <p className="mt-2 font-sans text-xs opacity-50">{project.description}</p>
                       </Link>
-                    </div>
+                    </Card>
                   </WireContainer>
                 </li>
               ))}

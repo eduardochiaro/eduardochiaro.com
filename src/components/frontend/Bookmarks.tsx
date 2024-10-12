@@ -10,7 +10,7 @@ import Masonry from 'react-masonry-css';
 import ImageWithFallback from '../ImageWithFallback';
 import emptyIcon from '@/components/icons/Empty';
 import { Bookmark, Category, Prisma } from '@prisma/client';
-import WireContainer from '../WireContainer';
+import WireContainer from './WireContainer';
 
 type BookmarkWithCategory = Prisma.BookmarkGetPayload<{
   include: {

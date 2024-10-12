@@ -1,7 +1,8 @@
 import classNames from '@/utils/classNames';
 import moment from 'moment';
 import Image from 'next/image';
-import WireContainer from '../WireContainer';
+import WireContainer from '../frontend/WireContainer';
+import Card from '../frontend/Card';
 
 type TileType = {
   episode: any;
@@ -21,7 +22,7 @@ export const EvenTile = ({ episode, maxCharacters = 6, type = 'small' }: TileTyp
     </div>
     <div className="flex-1 pb-16">
       <WireContainer type="medium">
-        <div className="card">
+        <Card>
           <h3 className="break-words font-header text-xl md:text-3xl">{episode.name}</h3>
           <p className="font-mono">{episode.episode}</p>
           <div className="mt-4 grid grid-cols-2 gap-4">
@@ -42,7 +43,7 @@ export const EvenTile = ({ episode, maxCharacters = 6, type = 'small' }: TileTyp
               </div>
             )}
           </div>
-        </div>
+        </Card>
       </WireContainer>
     </div>
   </div>
@@ -52,7 +53,7 @@ export const OddTile = ({ episode, maxCharacters = 6, type = 'small' }: TileType
   <div className="group flex">
     <div className="flex-1 pb-16">
       <WireContainer type="medium">
-        <div className="card text-right">
+        <Card className="text-right">
           <h3 className="break-words font-header text-xl md:text-3xl">{episode.name}</h3>
           <p className="font-mono">{episode.episode}</p>
           <div className="mt-4 grid grid-cols-2 gap-4">
@@ -73,7 +74,7 @@ export const OddTile = ({ episode, maxCharacters = 6, type = 'small' }: TileType
               </div>
             )}
           </div>
-        </div>
+        </Card>
       </WireContainer>
     </div>
     <div className="relative mx-2 hidden w-4 flex-none md:mx-4 md:block md:w-8">

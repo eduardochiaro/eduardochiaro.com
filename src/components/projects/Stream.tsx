@@ -7,14 +7,15 @@ import Flickr from '@/components/icons/Flickr';
 import Instagram from '@/components/icons/Instagram';
 import Masonry from 'react-masonry-css';
 import useStaleSWR from '@/utils/staleSWR';
-import WireContainer from '../WireContainer';
+import WireContainer from '../frontend/WireContainer';
+import Card from '../frontend/Card';
 
 export default function Stream() {
   const { data } = useStaleSWR('/api/portfolio/stream');
   const items = data?.results.map(function (item: any, id: number) {
     return (
       <WireContainer type="medium" key={id}>
-        <div className="card !p-2 shadow">
+        <Card className="!p-2 shadow">
           <Link href={item.permalink} target="_blank">
             <div className="relative">
               <NaturalImage size={500} src={item.image} alt={item.title} className="rounded" />
@@ -28,7 +29,7 @@ export default function Stream() {
               {item.published && <p className="text-right font-mono text-xs opacity-70">{moment(item.published).fromNow()}</p>}
             </div>
           </Link>
-        </div>
+        </Card>
       </WireContainer>
     );
   });

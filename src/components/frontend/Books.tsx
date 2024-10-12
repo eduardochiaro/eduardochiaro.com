@@ -4,9 +4,10 @@ import classNames from '@/utils/classNames';
 import { Prisma } from '@prisma/client';
 import styles from '@/styles/Book.module.scss';
 import { useEffect, useState } from 'react';
-import WireContainer from '../WireContainer';
+import WireContainer from './WireContainer';
 import { useSearchParams, usePathname, useRouter } from 'next/navigation';
 import { ChevronDoubleLeftIcon, ChevronDoubleRightIcon } from '@heroicons/react/20/solid';
+import Card from './Card';
 
 type BookWithTags = Prisma.BookGetPayload<{
   include: {
@@ -97,7 +98,7 @@ export default function Books({ data }: { data: BookWithTags[] }) {
   return (
     <section className={'mt-10 px-4 lg:px-0'}>
       <h1 className="mx-auto h-10 max-w-5xl font-header text-3xl font-light leading-tight tracking-wide lg:text-4xl">
-        Books I&apos;ve <span className="overlay-color">read</span>...
+        Books I&apos;ve <span className="text-secondary-700 dark:text-secondary-500">read</span>...
       </h1>
       {currentPage}
       <div className="mx-auto flex max-w-5xl">
@@ -152,27 +153,29 @@ export default function Books({ data }: { data: BookWithTags[] }) {
           </h2>
           {tags.length > 0 && (
             <WireContainer type="medium">
-              <ul className="card text-md text-right !font-sans">
-                <li className="flex h-10 justify-end">
-                  <button
-                    className={classNames('flex items-center gap-2', selectedTag == null && 'font-semibold underline')}
-                    onClick={() => handleTagClick({})}
-                  >
-                    All ({data.length})
-                  </button>
-                </li>
-                {tags.map((tag: any, index: number) => (
-                  <li key={index} className="flex h-10 justify-end">
+              <Card>
+                <ul className="text-md text-right !font-sans">
+                  <li className="flex h-10 justify-end">
                     <button
-                      className={classNames('flex items-center gap-2', selectedTag == tag.id && 'font-semibold underline')}
-                      title={tag.name || ''}
-                      onClick={() => handleTagClick(tag)}
+                      className={classNames('flex items-center gap-2', selectedTag == null && 'font-semibold underline')}
+                      onClick={() => handleTagClick({})}
                     >
-                      {tag.name} ({tag.count})
+                      All ({data.length})
                     </button>
                   </li>
-                ))}
-              </ul>
+                  {tags.map((tag: any, index: number) => (
+                    <li key={index} className="flex h-10 justify-end">
+                      <button
+                        className={classNames('flex items-center gap-2', selectedTag == tag.id && 'font-semibold underline')}
+                        title={tag.name || ''}
+                        onClick={() => handleTagClick(tag)}
+                      >
+                        {tag.name} ({tag.count})
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </Card>
             </WireContainer>
           )}
         </div>

@@ -89,12 +89,6 @@ table.admin-table {
 .box-card {
   @apply box-card-unstyled bg-primary-50 dark:bg-primary-950 ;
 }
-.card {
-  @apply rounded-xl bg-primary-50 p-6 font-mono shadow-lg dark:bg-primary-950 border border-primary-200 dark:border-primary-900;
-	&.small {
-		@apply rounded-lg;
-	}
-}
 .custom-img {
   object-fit: contain;
   width: 100% !important;
@@ -119,9 +113,6 @@ input:checked + .toggle-bg:after {
 }
 input:checked + .toggle-bg {
   @apply bg-secondary-600 border-secondary-600 dark:bg-secondary-600 dark:border-secondary-600;
-}
-.overlay-color {
-  @apply text-secondary-700 dark:text-secondary-500;
 }
 .logo {
   .accent path {
