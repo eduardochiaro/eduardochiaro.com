@@ -21,7 +21,7 @@ const SidebarDivider = ({ title }: { title: string }) => (
 
 export default function Sidebar({ user }: { user: any }) {
   return (
-    <div className="flex h-full flex-col bg-primary-50 dark:bg-primary-800">
+    <div className="flex h-full flex-col bg-primary-50 shadow dark:bg-primary-800">
       <div className="relative grow px-3 py-4">
         <Link href="/dashboard" className={'flex h-14 items-center gap-4 px-2 md:my-3'}>
           <Logo title="Eduardo Chiaro" className={'logo size-8'} />

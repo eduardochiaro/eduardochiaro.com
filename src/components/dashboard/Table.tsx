@@ -2,14 +2,14 @@
 
 import { Checkbox } from '@headlessui/react';
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/solid';
-import { useState, cache } from 'react';
-import Link from 'next/link';
+import React, { useState, Fragment } from 'react';
 import classNames from '@/utils/classNames';
 
 type Props = {
   columns: Column[];
   data: any[];
   useCheckboxes?: boolean;
+  tableRow: React.ComponentType<any>;
 };
 
 type Column = {
@@ -20,7 +20,7 @@ type Column = {
   searchable?: boolean;
 };
 
-export default function Table({ columns, data, useCheckboxes = false }: Props) {
+export default function Table({ columns, data, useCheckboxes = false, tableRow }: Props) {
   const [tableColumns, setTableColumns] = useState(columns.map((x) => ({ ...x, sortDirection: 0, checked: false })));
 
   const [tableData, setTableData] = useState(data);
@@ -78,41 +78,21 @@ export default function Table({ columns, data, useCheckboxes = false }: Props) {
         </thead>
         <tbody>
           {tableData.map((row, index) => (
-            <tr
-              key={index}
-              className="border-b bg-primary-50 last:border-0 hover:bg-primary-50 dark:border-primary-700 dark:bg-primary-800 dark:hover:bg-primary-600"
-            >
-              {useCheckboxes && (
-                <td className="px-6 py-4">
-                  <Checkbox
-                    checked={row.checked || false}
-                    onChange={() => checkRow(index)}
-                    className="bg-white group inline-flex size-4 items-center justify-center rounded border bg-primary-200 data-[checked]:bg-primary-200"
-                  >
-                    <div className="size-3 rounded-sm bg-primary-700 opacity-0 group-data-[checked]:opacity-100"></div>
-                  </Checkbox>
-                </td>
-              )}
-              {tableColumns.map((column, index) => (
-                <td key={index} className="relative px-6 py-4">
-                  {column.key === 'actions' ? (
-                    <div className="flex items-center justify-end gap-2">
-                      {row[column.key].map((action: any, index: number) => (
-                        <Link key={index} href={action.href} className={classNames(action.classNames)}>
-                          {action.label}
-                        </Link>
-                      ))}
-                    </div>
-                  ) : column.key === 'actions_l' ? (
-                    row[column.key]
-                  ) : column.key === 'image' ? (
-                    row[column.key]
-                  ) : (
-                    row[column.key]
-                  )}
-                </td>
-              ))}
-            </tr>
+            <Fragment key={index}>
+            {React.createElement(tableRow, { 
+              trClasses: "border-b bg-primary-50 last:border-0 hover:bg-primary-50 dark:border-primary-700 dark:bg-primary-800 dark:hover:bg-primary-600", 
+              tdClasses: "relative px-6 py-4", 
+              useCheckboxes,
+              checkbox: 
+                <Checkbox
+                checked={row.checked || false}
+                onChange={() => checkRow(index)}
+                className="bg-white group inline-flex size-4 items-center justify-center rounded border bg-primary-200 data-[checked]:bg-primary-200"
+              >
+                <div className="size-3 rounded-sm bg-primary-700 opacity-0 group-data-[checked]:opacity-100"></div>
+              </Checkbox>,
+              rowData: row })}
+            </Fragment>
           ))}
         </tbody>
       </table>
