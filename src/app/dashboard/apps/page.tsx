@@ -1,21 +1,22 @@
 import { Metadata } from 'next';
 import Table from '@/components/dashboard/Table';
 import prisma from '@/utils/prisma';
-import { columns, formatData, TableRow } from '@/components/dashboard/table/AppsFormat';
+import { columns, TableRow } from '@/components/dashboard/table/AppsFormat';
+import Card from "@/components/frontend/Card";
 
 export const metadata: Metadata = {
   title: 'Admin > Apps | Eduardo Chiaro',
 };
 
-
 export default async function DashboardAppsIndex() {
   const apps = await pullApps();
-  const data = apps ? formatData(apps) : [];
 
   return (
     <div>
-      <h2 className="mb-10 mt-2 text-2xl font-semibold">Apps</h2>
-      <Table columns={columns} data={data} tableRow={TableRow} useCheckboxes />
+      <Card type="small" className="mb-10">
+        <h2 className="text-2xl font-semibold ">Apps</h2>
+      </Card>
+      <Table columns={columns} data={apps} tableRow={TableRow} useCheckboxes />
     </div>
   );
 }

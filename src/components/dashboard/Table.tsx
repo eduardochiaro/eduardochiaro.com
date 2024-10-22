@@ -79,19 +79,21 @@ export default function Table({ columns, data, useCheckboxes = false, tableRow }
         <tbody>
           {tableData.map((row, index) => (
             <Fragment key={index}>
-            {React.createElement(tableRow, { 
-              trClasses: "border-b bg-primary-50 last:border-0 hover:bg-primary-50 dark:border-primary-700 dark:bg-primary-800 dark:hover:bg-primary-600", 
-              tdClasses: "relative px-6 py-4", 
-              useCheckboxes,
-              checkbox: 
-                <Checkbox
-                checked={row.checked || false}
-                onChange={() => checkRow(index)}
-                className="bg-white group inline-flex size-4 items-center justify-center rounded border bg-primary-200 data-[checked]:bg-primary-200"
-              >
-                <div className="size-3 rounded-sm bg-primary-700 opacity-0 group-data-[checked]:opacity-100"></div>
-              </Checkbox>,
-              rowData: row })}
+              {React.createElement(tableRow, {
+                trClasses: 'border-b bg-primary-50 last:border-0 hover:bg-primary-50 dark:border-primary-700 dark:bg-primary-800 dark:hover:bg-primary-600',
+                tdClasses: 'relative px-6 py-4',
+                useCheckboxes,
+                checkbox: (
+                  <Checkbox
+                    checked={row.checked || false}
+                    onChange={() => checkRow(index)}
+                    className="bg-white group inline-flex size-4 items-center justify-center rounded border bg-primary-200 data-[checked]:bg-primary-200"
+                  >
+                    <div className="size-3 rounded-sm bg-primary-700 opacity-0 group-data-[checked]:opacity-100"></div>
+                  </Checkbox>
+                ),
+                rowData: row,
+              })}
             </Fragment>
           ))}
         </tbody>
