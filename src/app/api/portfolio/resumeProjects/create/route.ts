@@ -8,7 +8,7 @@ import mime from 'mime-types';
 
 const uploadPath = './public/uploads/';
 
-export async function POST(request: NextRequest, response: NextResponse) {
+export async function POST(request: NextRequest) {
   const { name, resumeId, image } = await getFieldsFromForm(request, ['name', 'resumeId'], ['image']);
 
   //const file = formData.get("image") as Blob | null;

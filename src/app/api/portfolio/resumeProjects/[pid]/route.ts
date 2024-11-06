@@ -6,12 +6,11 @@ const uploadPath = './public/uploads/';
 
 export async function DELETE(
   request: NextRequest,
-  {
-    params,
-  }: {
-    params: { pid: string };
+  props: {
+    params: Promise<{ pid: string }>;
   },
 ) {
+  const params = await props.params;
   const { pid } = params;
   await prisma.resumeProject.delete({
     where: { id: parseInt(pid) },

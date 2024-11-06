@@ -33,7 +33,8 @@ const getError = (error: string) => {
   }
 };
 
-export default async function Error({ searchParams }: { searchParams: any }) {
+export default async function Error(props: { searchParams: Promise<any> }) {
+  const searchParams = await props.searchParams;
   const { error } = searchParams;
   const errorContent = getError(error);
 

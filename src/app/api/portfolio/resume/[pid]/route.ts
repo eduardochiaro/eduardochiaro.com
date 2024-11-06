@@ -12,12 +12,11 @@ const uploadPath = './public/uploads/';
 
 export async function PUT(
   request: NextRequest,
-  {
-    params,
-  }: {
-    params: { pid: string };
+  props: {
+    params: Promise<{ pid: string }>;
   },
 ) {
+  const params = await props.params;
   const { pid } = params;
   const resumeReturn = await prisma.resume.findFirst({
     where: {
@@ -110,12 +109,11 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  {
-    params,
-  }: {
-    params: { pid: string };
+  props: {
+    params: Promise<{ pid: string }>;
   },
 ) {
+  const params = await props.params;
   const { pid } = params;
   await prisma.resume.delete({
     where: { id: parseInt(pid) },

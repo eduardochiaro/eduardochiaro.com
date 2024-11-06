@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/utils/prisma';
 import getFieldsFromForm from '@/utils/getFieldsFromForm';
 
-export async function POST(request: NextRequest, response: NextResponse) {
+export async function POST(request: NextRequest) {
   const { name, type } = await getFieldsFromForm(request, ['name', 'type']);
 
   const category = await prisma.category.create({

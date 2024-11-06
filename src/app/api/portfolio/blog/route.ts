@@ -18,7 +18,7 @@ type RssFeedItem = {
   categories: string[] | undefined;
 };
 
-export async function GET(request: NextRequest, response: NextResponse) {
+export async function GET(request: NextRequest) {
   const results = await fsCache(url, parseInt(RSS_CACHE_HOURS), async () => {
     const feed = await parser.parseURL(url);
     const results: RssFeedItem[] = [];

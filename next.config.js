@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
+  sassOptions: {
+    silenceDeprecations: ['legacy-js-api'],
+  },
   images: {
     dangerouslyAllowSVG: true,
     remotePatterns: [

@@ -10,7 +10,7 @@ type Data = {
   results: BookmarkType[];
 };
 
-export async function GET(request: NextRequest, response: NextResponse) {
+export async function GET(request: NextRequest) {
   const bookmarks: BookmarkType[] = await prisma.bookmark.findMany({
     include: {
       category: true,

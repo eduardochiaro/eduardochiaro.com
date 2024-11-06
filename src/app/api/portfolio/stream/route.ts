@@ -11,7 +11,7 @@ type StreamItem = {
   image: string;
 };
 
-export async function GET(request: NextRequest, response: NextResponse) {
+export async function GET(request: NextRequest) {
   let results: StreamItem[] = [];
 
   const flickr = await getCachedFlickr();

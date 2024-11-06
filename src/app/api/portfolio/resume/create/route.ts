@@ -9,7 +9,7 @@ import mime from 'mime-types';
 
 const uploadPath = './public/uploads/';
 
-export async function POST(request: NextRequest, response: NextResponse) {
+export async function POST(request: NextRequest) {
   const { company, name, description, startDate, endDate, tags, image } = await getFieldsFromForm(
     request,
     ['company', 'name', 'description', 'startDate', 'endDate', 'tags'],

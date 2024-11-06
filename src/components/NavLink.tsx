@@ -15,7 +15,7 @@ export default function NavLink({
 }: LinkProps & { activeClassName: string; className: string; type: string; children: ReactElement }) {
   const asPath = usePathname();
 
-  const child = React.Children.only(children);
+  const child = React.Children.only(children) as ReactElement<{ className?: string }>;
   const asPathInitial = type == 'main' ? '/' + asPath?.split('#')[0].split('/')[1] : asPath;
 
   const [classInUse, setClassInUse] = useState(className);

@@ -4,12 +4,11 @@ import getFieldsFromForm from '@/utils/getFieldsFromForm';
 
 export async function PUT(
   request: NextRequest,
-  {
-    params,
-  }: {
-    params: { pid: string };
+  props: {
+    params: Promise<{ pid: string }>;
   },
 ) {
+  const params = await props.params;
   const { pid } = params;
 
   const { name } = await getFieldsFromForm(request, ['name']);
@@ -29,12 +28,11 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  {
-    params,
-  }: {
-    params: { pid: string };
+  props: {
+    params: Promise<{ pid: string }>;
   },
 ) {
+  const params = await props.params;
   const { pid } = params;
   await prisma.resumeTag.delete({
     where: { id: parseInt(pid) },
