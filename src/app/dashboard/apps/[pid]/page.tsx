@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import prisma from '@/utils/prisma';
-import Card from "@/components/frontend/Card";
+import Card from '@/components/frontend/Card';
 
 export const metadata: Metadata = {
   title: 'Admin > Apps | Eduardo Chiaro',
@@ -20,7 +20,8 @@ export default async function DashboardAppsView({ params }: { params: { pid: str
           <p>{app.file?.name}</p>
         </div>
       )}
-    </div>);
+    </div>
+  );
 }
 
 const pullSingleApp = async (id: string) => {
@@ -32,4 +33,4 @@ const pullSingleApp = async (id: string) => {
       file: true,
     },
   });
-}
+};
