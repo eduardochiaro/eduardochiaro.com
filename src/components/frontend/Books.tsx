@@ -2,12 +2,12 @@
 
 import classNames from '@/utils/classNames';
 import { Prisma } from '@prisma/client';
-import styles from '@/styles/Book.module.scss';
 import { useEffect, useState } from 'react';
 import WireContainer from './WireContainer';
 import { useSearchParams, usePathname, useRouter } from 'next/navigation';
 import { ChevronDoubleLeftIcon, ChevronDoubleRightIcon } from '@heroicons/react/20/solid';
 import Card from './Card';
+import Book, { BookHeader, BookTitle } from '@/components/ui/Book';
 
 type BookWithTags = Prisma.BookGetPayload<{
   include: {
@@ -104,31 +104,15 @@ export default function Books({ data }: { data: BookWithTags[] }) {
       <div className="mx-auto flex max-w-5xl">
         <div className="my-10 w-full md:w-3/4">
           <div className="grid grid-cols-2 gap-10 md:grid-cols-3">
-            {results.map((book: BookWithTags, index: number) => (
-              <div key={index} className="group">
-                <div key={index} className="flex flex-col">
-                  <div
-                    className={classNames(book.file && book.file.path ? 'bg-emerald-600' : 'bg-rose-800', styles['book'], 'text-primary-300')}
-                    style={{
-                      backgroundImage: book.file && book.file.path ? `url('${process.env.NEXT_PUBLIC_CDN_URL}/${book.file.path}')` : '',
-                      backgroundPosition: 'top center',
-                    }}
-                    title={book.title}
-                  >
-                    {!book.file && (
-                      <>
-                        <h3>{book.title}</h3>
-                        <h4>{book.author}</h4>
-                      </>
-                    )}
-                  </div>
-                </div>
-                <div className="mt-3 text-center">
-                  <h3 className="px-6 font-semibold">{book.title}</h3>
-                  <h4 className="text-sm">{book.author}</h4>
-                </div>
-              </div>
-            ))}
+            {results.map((book: BookWithTags, index: number) => {
+              const cover = book.file && book.file.path ? process.env.NEXT_PUBLIC_CDN_URL + '/' + book.file.path : '';
+              return (
+                <Book size="sm" key={index} cover={cover} color={cover ? 'primary' : 'red'}>
+                  <BookHeader className="text-xs text-primary-50">{book.author}</BookHeader>
+                  <BookTitle className="text-primary-50">{book.title}</BookTitle>
+                </Book>
+              );
+            })}
           </div>
           <div className="mt-10 flex justify-between">
             {parseInt(currentPage) > 1 && (
