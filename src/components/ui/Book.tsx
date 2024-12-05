@@ -1,7 +1,7 @@
 const radiusMap = {
-  sm: 'rounded-md',
-  md: 'rounded-lg',
-  lg: 'rounded-xl',
+  sm: 'rounded-l-sm rounded-r-md',
+  md: 'rounded-l-md rounded-r-lg',
+  lg: 'rounded-l-lg rounded-r-xl',
 };
 
 const sizeMap = {
