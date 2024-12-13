@@ -5,6 +5,7 @@ import getFirstName from '@/utils/getFirstName';
 import { Metadata } from 'next';
 import getUser from '@/utils/getUser';
 import { menuList } from '@/utils/menuList';
+import classNames from '@/utils/classNames';
 
 export const metadata: Metadata = {
   title: 'Admin | Eduardo Chiaro',
@@ -28,7 +29,9 @@ export default async function AdminIndex() {
                       href={link.href}
                       className={`group flex w-full items-start gap-2 rounded-lg drop-shadow transition duration-300 hover:scale-110 md:h-52 md:w-72 md:flex-col ${link.classColor} p-4 text-primary-50`}
                     >
-                      <link.icon className={'w-10 md:w-12'} />
+                      <div className="inline-block rounded bg-primary-50 p-1">
+                        <link.icon className={classNames('size-6 text-primary-950 md:size-8', link.textColor)} />
+                      </div>
                       <div className="md:flex-1"></div>
                       <div className="">
                         <span className={'text-lg'}>{link.title}</span>

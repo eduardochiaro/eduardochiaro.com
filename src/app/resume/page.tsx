@@ -10,7 +10,7 @@ import LinkedInIcon from '@/components/icons/Linkedin';
 import GitHubIcon from '@/components/icons/Github';
 import FrontendLayout from '@/components/layouts/Frontend';
 import Logo from '@/components/icons/Logo';
-import { ChevronRightIcon } from '@heroicons/react/24/solid';
+import { ChevronRightIcon } from 'lucide-react';
 import Card from '@/components/frontend/Card';
 
 type ResumeProjectExpanded = Prisma.ResumeProjectGetPayload<{ include: { file: true } }>;

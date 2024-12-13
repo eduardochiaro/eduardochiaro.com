@@ -1,7 +1,7 @@
 'use client';
 
 import ThemeIcon from '@/components/ThemeIcon';
-import { ArrowLeftIcon } from '@heroicons/react/24/solid';
+import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Custom404() {
@@ -18,7 +18,7 @@ export default function Custom404() {
           </div>
           <div className="mt-10 flex justify-center gap-3">
             <Link href="/" className="button flex items-center gap-2 !text-xl">
-              <ArrowLeftIcon className="h-6" />
+              <ArrowLeft className="h-6" />
               Back to Homepage
             </Link>
           </div>

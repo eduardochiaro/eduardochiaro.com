@@ -5,7 +5,7 @@ import { Fragment } from 'react';
 import Link from 'next/link';
 import Logo from '@/components/icons/Logo';
 import { Menu, MenuButton, MenuItem, MenuItems, Transition } from '@headlessui/react';
-import { ArrowLeftCircleIcon } from '@heroicons/react/24/solid';
+import { ArrowLeftCircleIcon } from 'lucide-react';
 import Image from 'next/image';
 import { signOut } from '@/actions/access';
 import classNames from '@/utils/classNames';

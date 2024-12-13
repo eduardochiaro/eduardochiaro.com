@@ -1,4 +1,4 @@
-import { ExclamationTriangleIcon, XCircleIcon } from '@heroicons/react/24/solid';
+import { TriangleAlertIcon, CircleXIcon } from 'lucide-react';
 import { forwardRef, DetailedHTMLProps, InputHTMLAttributes, Fragment, useRef, useState, useEffect } from 'react';
 import { Menu } from '@headlessui/react';
 import pluck from '@/utils/pluck';
@@ -87,7 +87,7 @@ const Tags = forwardRef<Ref, FormInputProps>(
               {!tag.deleted && (
                 <span className="group relative">
                   <span className={`rounded px-2 py-1 text-xs text-primary-100 ${tag.new ? 'bg-emerald-700' : 'bg-secondary-800'}`}>{tag.name}</span>
-                  <XCircleIcon
+                  <CircleXIcon
                     className="absolute -right-2 -top-2 hidden h-4 w-4 cursor-pointer text-primary-100 group-hover:block"
                     onClick={() => removeTag(key)}
                   />
@@ -134,7 +134,7 @@ const Tags = forwardRef<Ref, FormInputProps>(
           </Menu>
           {isInvalid && (
             <p className="mt-1 flex items-center gap-1 text-xs text-red-400">
-              <ExclamationTriangleIcon className="h-4" /> this field is required
+              <TriangleAlertIcon className="size-3" /> this field is required
             </p>
           )}
         </div>

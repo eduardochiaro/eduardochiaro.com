@@ -1,8 +1,7 @@
 'use client';
 
-import type { Prisma, ResumeProject } from '@prisma/client';
-import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
-import { PlusIcon } from '@heroicons/react/20/solid';
+import type { Prisma } from '@prisma/client';
+import { TriangleAlertIcon, PlusIcon, TrashIcon } from 'lucide-react';
 import Image from 'next/image';
 import { Input } from '../form';
 import { useReducer, useRef, useState } from 'react';
@@ -10,7 +9,6 @@ import { findInvalidElement, isFormValid } from '@/utils/formValidation';
 import { createEditItem, deleteItem } from '@/utils/apiAdmin';
 import useStaleSWR from '@/utils/staleSWR';
 import AdminModal from '@/components/admin/Modal';
-import { TrashIcon } from '@heroicons/react/24/solid';
 
 type Props = {
   resumeId?: number | null;
@@ -175,11 +173,9 @@ const AdminResumeProjects = ({ resumeId }: Props) => {
       >
         <>
           {form.error && (
-            <div className="relative mb-4 rounded border border-accent-400 bg-accent-100 px-4 py-3 text-accent-700" role="alert">
-              <strong className="font-bold">
-                <ExclamationTriangleIcon className="mr-4 inline-flex h-6 align-middle" />
-                Invalid Form!{' '}
-              </strong>
+            <div className="relative mb-4 flex items-center gap-2 rounded border border-accent-400 bg-accent-100 px-4 py-3 text-accent-700" role="alert">
+              <TriangleAlertIcon className="size-6 align-middle" />
+              <strong className="font-bold">Invalid Form! </strong>
               <span className="block sm:inline">Some required fields are missing.</span>
             </div>
           )}

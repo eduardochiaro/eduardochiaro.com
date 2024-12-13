@@ -1,8 +1,7 @@
 'use client';
 
 import classNames from '@/utils/classNames';
-import { PlusIcon } from '@heroicons/react/20/solid';
-import { XMarkIcon } from '@heroicons/react/24/solid';
+import { Plus as PlusIcon, X as XMarkIcon } from 'lucide-react';
 import React, { useEffect, useState, ChangeEvent } from 'react';
 
 const sortDirectionType = [

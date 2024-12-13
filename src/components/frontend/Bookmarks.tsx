@@ -1,8 +1,6 @@
 'use client';
 
-import { ChevronUpIcon, TagIcon } from '@heroicons/react/24/solid';
-import { BookmarkIcon } from '@heroicons/react/24/outline';
-import { BookmarkIcon as BookmarkFullIcon } from '@heroicons/react/24/solid';
+import { ChevronUpIcon, TagIcon, BookmarkIcon } from 'lucide-react';
 import Link from 'next/link';
 import * as React from 'react';
 import useStaleSWR from '@/utils/staleSWR';
@@ -64,7 +62,7 @@ export default function Bookmarks({ data }: { data: BookmarkWithCategory[] }) {
                         <Link href={bookmark.url} as={bookmark.url} target="_blank" className="block p-5" rel="noopener noreferrer">
                           <h3 className="mr-10 flex justify-between text-xl tracking-wide">
                             {bookmark.name}
-                            <BookmarkFullIcon className="absolute -top-2.5 right-2 size-10 text-secondary-600 group-hover/card:text-accent-600 dark:text-secondary-200" />
+                            <BookmarkIcon className="absolute -top-2.5 right-2 size-10 fill-secondary-600 text-secondary-600 group-hover/card:text-accent-600 dark:fill-secondary-200 dark:text-secondary-200" />
                           </h3>
                           <p className="flex items-center gap-2 text-sm tracking-wide opacity-80">
                             <span className="block w-5">

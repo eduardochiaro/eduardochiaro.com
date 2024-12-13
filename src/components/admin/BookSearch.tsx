@@ -7,7 +7,7 @@ import { addBook, deleteBook, deleteBookTag, getBookTags, getBooks, updateBookTa
 import { BookTag, Prisma } from '@prisma/client';
 import classNames from '@/utils/classNames';
 import { Disclosure } from '@headlessui/react';
-import { CheckIcon, TrashIcon } from '@heroicons/react/16/solid';
+import { CheckIcon, TrashIcon } from 'lucide-react';
 import styles from '@/styles/Book.module.scss';
 
 type BookExpanded = Prisma.BookGetPayload<{ include: { file: true; tags: true } }>;

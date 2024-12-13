@@ -1,26 +1,12 @@
-import { User } from '@prisma/client';
-import { lucia } from './auth';
-import { cookies } from 'next/headers';
+import type { User } from '@prisma/client';
+import { auth } from './auth';
 import prisma from './prisma';
 
 export default async function getUser(): Promise<User | null> {
-  const sessionId = (await cookies()).get(lucia.sessionCookieName)?.value ?? null;
-  if (!sessionId) return null;
-  const { user, session } = await lucia.validateSession(sessionId);
-  try {
-    if (session && session.fresh) {
-      const sessionCookie = lucia.createSessionCookie(session.id);
-      (await cookies()).set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
-    }
-    if (!session) {
-      const sessionCookie = lucia.createBlankSessionCookie();
-      (await cookies()).set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
-    }
-  } catch {
-    // Next.js throws error when attempting to set cookies when rendering page
-  }
+  const session = await auth();
+  const user = session?.user;
   if (user) {
-    return prisma.user.findUnique({ where: { id: user.id as unknown as number } });
+    return prisma.user.findUnique({ where: { email: user.email as unknown as string } });
   }
-  return user;
+  return null;
 }

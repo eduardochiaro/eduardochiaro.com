@@ -1,7 +1,7 @@
 'use client';
 
 import { Checkbox } from '@headlessui/react';
-import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/solid';
+import { ChevronDownIcon, ChevronUpIcon } from 'lucide-react';
 import React, { useState, Fragment } from 'react';
 import classNames from '@/utils/classNames';
 

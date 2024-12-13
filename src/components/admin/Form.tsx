@@ -2,8 +2,7 @@
 
 // React component form for admin to save data using axios
 import React, { useState, useReducer, useRef, useEffect, ReactElement } from 'react';
-import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
-import { CheckIcon, ChevronLeftIcon, TrashIcon } from '@heroicons/react/24/solid';
+import { CheckIcon, ChevronLeftIcon, TrashIcon, TriangleAlertIcon } from 'lucide-react';
 import { findInvalidElement, isFormValid } from '@/utils/formValidation';
 import { createEditItem, deleteItem } from '@/utils/apiAdmin';
 import AdminModal from '@/components/admin/Modal';
@@ -206,11 +205,9 @@ const AdminForm = ({ children, apiURL, itemFormat, itemData, inputList, titleEle
       <div className={'mx-auto mb-2 mt-8 max-w-5xl'}>
         <form ref={formRef} acceptCharset="UTF-8" method="POST" encType="multipart/form-data" onSubmit={(e: any) => onSubmitModal(e)}>
           {form.error && (
-            <div className="relative mb-4 rounded border border-accent-400 bg-accent-100 px-4 py-3 text-accent-700" role="alert">
-              <strong className="font-bold">
-                <ExclamationTriangleIcon className="mr-4 inline-flex h-6 align-middle" />
-                Invalid Form!{' '}
-              </strong>
+            <div className="relative mb-4 flex items-center gap-2 rounded border border-accent-400 bg-accent-100 px-4 py-3 text-accent-700" role="alert">
+              <TriangleAlertIcon className="size-6 align-middle" />
+              <strong className="font-bold">Invalid Form! </strong>
               <span className="block sm:inline">Some required fields are missing.</span>
             </div>
           )}

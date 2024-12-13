@@ -3,7 +3,6 @@
 import { Fragment, useEffect, useState } from 'react';
 import NavLink from '@/components/NavLink';
 import styles from '@/styles/Admin.Sidebar.module.scss';
-import { ArrowLeftCircleIcon, Bars3BottomRightIcon, CodeBracketIcon, HomeIcon } from '@heroicons/react/24/solid';
 import { Menu, MenuButton, MenuItem, MenuItems, Transition } from '@headlessui/react';
 import ThemeIcon from '../ThemeIcon';
 import Image from 'next/image';
@@ -13,6 +12,7 @@ import { menuList } from '@/utils/menuList';
 import Link from 'next/link';
 import { signOut } from '@/actions/access';
 import useStaleSWR from '@/utils/staleSWR';
+import { CircleArrowLeftIcon, HouseIcon, MenuIcon, ScanEyeIcon } from 'lucide-react';
 
 const SidebarDivider = ({ title, openMenu }: { title: string; openMenu: boolean }) => (
   <li>
@@ -47,7 +47,7 @@ const AdminSidebar = ({ isPageOpen }: { isPageOpen: boolean }) => {
             <span className={`font-header text-xl font-semibold ${!openMenu ? 'md:hidden' : 'block'}`}>Admin</span>
           </Link>
           <button onClick={() => setOpenMenu(!openMenu)} className="absolute right-1 top-1 hidden md:block">
-            <Bars3BottomRightIcon className="w-5" />
+            <MenuIcon className="w-5" />
           </button>
           <ul className="hidden grow flex-col space-y-1 font-semibold tracking-wider md:flex">
             <li>
@@ -59,7 +59,7 @@ const AdminSidebar = ({ isPageOpen }: { isPageOpen: boolean }) => {
                 activeClassName={`${styles['sidebar-link']} group bg-primary-50 dark:bg-primary-800 rounded-md`}
               >
                 <a className="flex items-center gap-2" title="Dashboard">
-                  <HomeIcon className="w-5 group-hover:text-secondary-600 dark:group-hover:text-secondary-600" />
+                  <HouseIcon className="w-5 group-hover:text-secondary-600 dark:group-hover:text-secondary-600" />
                   <span className={`group-hover:hunderline hidden truncate text-sm tracking-wide xl:block ${openMenu ? '' : styles['hide-when-closed']}`}>
                     Dashboard
                   </span>
@@ -75,7 +75,7 @@ const AdminSidebar = ({ isPageOpen }: { isPageOpen: boolean }) => {
                 activeClassName={`${styles['sidebar-link']} group bg-primary-50 dark:bg-primary-800 rounded-md`}
               >
                 <a className="flex items-center gap-2" title="preview">
-                  <CodeBracketIcon className="w-5 group-hover:text-secondary-600 dark:group-hover:text-secondary-600" />
+                  <ScanEyeIcon className="w-5 group-hover:text-secondary-600 dark:group-hover:text-secondary-600" />
                   <span className={`group-hover:hunderline hidden truncate text-sm tracking-wide xl:block ${openMenu ? '' : styles['hide-when-closed']}`}>
                     Preview
                   </span>
@@ -153,7 +153,7 @@ const AdminSidebar = ({ isPageOpen }: { isPageOpen: boolean }) => {
                         role="menuitem"
                         id={'user-logout'}
                       >
-                        <ArrowLeftCircleIcon className="inline-flex h-4" />
+                        <CircleArrowLeftIcon className="inline-flex h-4" />
                         <span>Logout</span>
                       </div>
                     )}

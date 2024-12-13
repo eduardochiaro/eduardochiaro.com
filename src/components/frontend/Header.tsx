@@ -1,7 +1,7 @@
 'use client';
 
 import React, { Fragment } from 'react';
-import { RssIcon, Bars3BottomLeftIcon } from '@heroicons/react/20/solid';
+import { RssIcon, MenuIcon } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { Menu, MenuButton, MenuItem, MenuItems, Transition } from '@headlessui/react';
 import ThemeIcon from '@/components/ThemeIcon';
@@ -27,7 +27,7 @@ export default function Header({ data }: { data: MenuLink[] }) {
       <nav className="relative flex w-full items-center justify-between gap-6 p-5">
         <Menu as="div" className="inline-block md:hidden">
           <MenuButton id="menu-short" title="open menu" className="flex items-center hover:cursor-pointer md:hidden">
-            <Bars3BottomLeftIcon className={'w-7 transition hover:text-primary-900 dark:hover:text-primary-100'} />
+            <MenuIcon className={'w-7 transition hover:text-primary-900 dark:hover:text-primary-100'} />
           </MenuButton>
           <Transition
             as={Fragment}

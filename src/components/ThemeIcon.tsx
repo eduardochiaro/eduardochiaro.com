@@ -1,11 +1,10 @@
 'use client';
 
 import React, { useState, useEffect, Fragment } from 'react';
-import { MoonIcon, ComputerDesktopIcon, SunIcon as SunIconSolid } from '@heroicons/react/24/solid';
-import { SunIcon } from '@heroicons/react/24/outline';
 import { useTheme } from 'next-themes';
 import { Menu, MenuButton, MenuItem, MenuItems, Transition } from '@headlessui/react';
 import classNames from '@/utils/classNames';
+import { SunMediumIcon, SunIcon, DockIcon, MoonIcon } from 'lucide-react';
 
 const orientationClass = (orientation = 'bottom') => {
   switch (orientation) {
@@ -19,7 +18,7 @@ const orientationClass = (orientation = 'bottom') => {
   }
 };
 
-export default function ThemeIcon({ orientation, size = 'h-7' }: { orientation: string; size?: string }) {
+export default function ThemeIcon({ orientation, size = 'size-7' }: { orientation: string; size?: string }) {
   const [iconClass, setIconClass] = useState<{ name: string; className: string; icon: any }[]>([]);
   const [inUseTheme, setInUseTheme] = useState('dark');
   const { systemTheme, theme, setTheme } = useTheme() as { systemTheme: string; theme: string; setTheme: (theme: string) => void };
@@ -33,17 +32,17 @@ export default function ThemeIcon({ orientation, size = 'h-7' }: { orientation: 
       {
         name: 'light',
         className: '',
-        icon: <SunIcon className="mr-2 block h-5 w-5 flex-none" />,
+        icon: <SunIcon className="mr-2 block size-5 flex-none" />,
       },
       {
         name: 'dark',
         className: '',
-        icon: <MoonIcon className="mr-2 block h-5 w-5 flex-none" />,
+        icon: <MoonIcon className="mr-2 block size-5 flex-none" />,
       },
       {
         name: 'system',
         className: '',
-        icon: <ComputerDesktopIcon className="mr-2 block h-5 w-5 flex-none" />,
+        icon: <DockIcon className="mr-2 block size-5 flex-none" />,
       },
     ];
 
@@ -78,14 +77,9 @@ export default function ThemeIcon({ orientation, size = 'h-7' }: { orientation: 
         {inUseTheme === 'dark' ? (
           <MoonIcon className={`${size} cursor-pointer rounded-full text-primary-50 transition-all duration-300 group-hover:fill-primary-800`} />
         ) : (
-          <>
-            <SunIcon
-              className={`${size} cursor-pointer rounded-full text-primary-800 transition-all duration-300 group-hover:hidden group-hover:text-accent-500`}
-            />
-            <SunIconSolid
-              className={`${size} hidden cursor-pointer rounded-full text-primary-800 transition-all duration-300 hover:rotate-45 group-hover:block group-hover:text-accent-500`}
-            />
-          </>
+          <SunMediumIcon
+            className={`${size} cursor-pointer rounded-full fill-primary-800 text-primary-800 transition-all duration-300 group-hover:fill-accent-500 group-hover:text-accent-500`}
+          />
         )}
       </MenuButton>
       <Transition

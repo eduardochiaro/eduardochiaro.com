@@ -5,7 +5,7 @@ import { Prisma } from '@prisma/client';
 import { useEffect, useState } from 'react';
 import WireContainer from './WireContainer';
 import { useSearchParams, usePathname, useRouter } from 'next/navigation';
-import { ChevronDoubleLeftIcon, ChevronDoubleRightIcon } from '@heroicons/react/20/solid';
+import { ChevronsLeftIcon, ChevronsRightIcon } from 'lucide-react';
 import Card from './Card';
 import Book, { BookHeader, BookTitle } from '@/components/ui/Book';
 
@@ -117,7 +117,7 @@ export default function Books({ data }: { data: BookWithTags[] }) {
           <div className="mt-10 flex justify-between">
             {parseInt(currentPage) > 1 && (
               <button onClick={() => goPrevPage()} className="rounded-lg bg-primary-300 px-3 py-1 font-semibold text-primary-900">
-                <ChevronDoubleLeftIcon className="size-6" />
+                <ChevronsLeftIcon className="size-6" />
               </button>
             )}
             <div></div>
@@ -126,7 +126,7 @@ export default function Books({ data }: { data: BookWithTags[] }) {
                 onClick={() => goNextPage()}
                 className="box-card-unstyled bg-primary-300 px-3 py-1 font-semibold hover:bg-primary-400 dark:bg-primary-700 dark:hover:bg-primary-900"
               >
-                <ChevronDoubleRightIcon className="size-6" />
+                <ChevronsRightIcon className="size-6" />
               </button>
             )}
           </div>

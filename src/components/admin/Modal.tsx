@@ -1,8 +1,8 @@
 'use client';
 
 import React, { ReactElement } from 'react';
-import { XMarkIcon } from '@heroicons/react/24/outline';
-import { Dialog } from '@headlessui/react';
+import { XIcon } from 'lucide-react';
+import { Dialog, DialogTitle } from '@headlessui/react';
 
 const AdminModal = ({
   children,
@@ -39,12 +39,12 @@ const AdminModal = ({
           } my-8 transform overflow-hidden rounded-2xl bg-primary-50 text-left align-middle text-primary-900 shadow-xl dark:bg-primary-800 dark:text-primary-100`}
         >
           <div className="mb-4 flex bg-primary-100 px-6 pb-4 pt-6 dark:bg-primary-900">
-            <Dialog.Title as="h3" className="flex-1 text-4xl font-medium leading-6">
+            <DialogTitle as="h3" className="flex-1 text-4xl font-medium leading-6">
               {title}
-            </Dialog.Title>
+            </DialogTitle>
             <div className="flex-none">
               <a onClick={closeModal} className="cursor-pointer">
-                <XMarkIcon className="w-8" />
+                <XIcon className="w-8" />
               </a>
             </div>
           </div>

@@ -1,4 +1,4 @@
-import { ExclamationTriangleIcon } from '@heroicons/react/24/solid';
+import { TriangleAlertIcon } from 'lucide-react';
 import { forwardRef, ReactNode, DetailedHTMLProps, InputHTMLAttributes } from 'react';
 
 type FormInputProps = {
@@ -34,7 +34,7 @@ const Select = forwardRef<Ref, FormInputProps>(({ children, name = '', label = '
       </select>
       {isInvalid && (
         <p className="mt-1 flex items-center gap-1 text-xs text-red-400">
-          <ExclamationTriangleIcon className="h-4" /> this field is required
+          <TriangleAlertIcon className="size-3" /> this field is required
         </p>
       )}
     </>

@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { SunIcon } from '@heroicons/react/24/solid';
+import { SunIcon } from 'lucide-react';
 
 const replacer = (match: any) => {
   const length = match.length < 6 ? match.length + 1 : match.length;

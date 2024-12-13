@@ -1,13 +1,13 @@
 import ThemeIcon from '@/components/ThemeIcon';
 import WireContainer from '@/components/frontend/WireContainer';
 import SVG from '@/utils/svg';
-import { BookOpenIcon, BookmarkIcon, BriefcaseIcon, CpuChipIcon, RssIcon } from '@heroicons/react/20/solid';
 import moment from 'moment';
 import Link from 'next/link';
 import { cache } from 'react';
 import prisma from '@/utils/prisma';
 import Logo from '@/components/icons/Logo';
 import Card from '@/components/frontend/Card';
+import { BookmarkCheckIcon, FileUserIcon, FlaskConicalIcon, LibraryBigIcon, RssIcon } from 'lucide-react';
 
 export default async function Home() {
   const works = await getFeatureWork();
@@ -16,22 +16,22 @@ export default async function Home() {
     {
       name: 'Resume',
       href: '/resume',
-      icon: BriefcaseIcon,
+      icon: FileUserIcon,
     },
     {
       name: 'Books',
       href: '/books',
-      icon: BookOpenIcon,
+      icon: LibraryBigIcon,
     },
     {
       name: 'Bookmarks',
       href: '/bookmarks',
-      icon: BookmarkIcon,
+      icon: BookmarkCheckIcon,
     },
     {
       name: 'Projects',
       href: '/projects',
-      icon: CpuChipIcon,
+      icon: FlaskConicalIcon,
     },
     {
       name: (
@@ -76,7 +76,7 @@ export default async function Home() {
               {menu.map((item, index) => (
                 <li key={`menu-item-${index}`}>
                   <Link href={item.href} prefetch={false} className="group inline-flex items-center gap-2 hover:underline dark:hover:text-primary-400">
-                    <item.icon title={item.name.toString()} className={'w-5 group-hover:text-accent-600 group-hover:dark:text-accent-500'} />
+                    <item.icon className={'w-5 group-hover:text-accent-600 group-hover:dark:text-accent-500'} />
                     <span>{item.name}</span>
                   </Link>
                 </li>
