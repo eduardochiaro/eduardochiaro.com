@@ -47,7 +47,7 @@ const AdminSidebar = ({ isPageOpen }: { isPageOpen: boolean }) => {
             <span className={`font-header text-xl font-semibold ${!openMenu ? 'md:hidden' : 'block'}`}>Admin</span>
           </Link>
           <button onClick={() => setOpenMenu(!openMenu)} className="absolute right-1 top-1 hidden md:block">
-            <MenuIcon className="w-5" />
+            <MenuIcon className="w-5 stroke-[3px]" />
           </button>
           <ul className="hidden grow flex-col space-y-1 font-semibold tracking-wider md:flex">
             <li>

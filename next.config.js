@@ -56,7 +56,12 @@ const nextConfig = {
         hostname: '**.openlibrary.org'
       }
     ],
-  }
+  },
+	experimental: {
+		serverActions: {
+			allowedOrigins: ['*.eduardochiaro.com', '127.0.0.1:3001']
+		},
+	}
 };
 
 module.exports = nextConfig

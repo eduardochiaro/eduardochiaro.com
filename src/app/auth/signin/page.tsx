@@ -18,7 +18,7 @@ export default async function SignIn() {
         <WireContainer type="large" className="mx-auto">
           <Card>
             <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={'logo mx-auto my-4 h-24'} />
-            <h1 className="my-6 font-header text-3xl">Not signed in</h1>
+            <h1 className="my-6 text-center font-header text-3xl">Not signed in</h1>
             <ShowProviders />
           </Card>
         </WireContainer>
