@@ -20,6 +20,15 @@ const SidebarDivider = ({ title }: { title: string }) => (
 );
 
 export default function Sidebar({ user }: { user: any }) {
+  //replace url 'admin' to `dashboard`
+  const newMenu = menuList.map((item) => {
+    const links = item.links.map((link) => {
+      link.href = link.href.replace('/admin', '/dashboard');
+      return link;
+    });
+    return { ...item, links };
+   });
+
   return (
     <div className="flex h-full flex-col bg-primary-50 shadow dark:bg-primary-800">
       <div className="relative grow px-3 py-4">
@@ -27,7 +36,7 @@ export default function Sidebar({ user }: { user: any }) {
           <Logo title="Eduardo Chiaro" className={'logo size-8'} />
           <span className={'font-header text-xl font-semibold text-primary-700 dark:text-primary-400'}>Dashboard</span>
         </Link>
-        {menuList.map((item, i) => (
+        {newMenu.map((item, i) => (
           <Fragment key={i}>
             <SidebarDivider title={item.title} />
             <ul className="space-y-2 font-medium">

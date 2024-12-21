@@ -6,8 +6,13 @@ export const metadata: Metadata = {
   title: 'Admin > Apps | Eduardo Chiaro',
 };
 
-export default async function DashboardAppsView({ params }: { params: { pid: string } }) {
-  const app = await pullSingleApp(params.pid);
+type Props = {
+  params: Promise<{ slug: string }>
+}
+
+export default async function DashboardAppsView({ params }: Props) {
+  const id = (await params).slug;
+  const app = await pullSingleApp(id);
   return (
     <div>
       <Card type="small" className="mb-10 flex justify-between gap-10">
