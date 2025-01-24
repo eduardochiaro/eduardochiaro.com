@@ -27,7 +27,7 @@ export default function Sidebar({ user }: { user: any }) {
       return link;
     });
     return { ...item, links };
-   });
+  });
 
   return (
     <div className="flex h-full flex-col bg-primary-50 shadow dark:bg-primary-800">

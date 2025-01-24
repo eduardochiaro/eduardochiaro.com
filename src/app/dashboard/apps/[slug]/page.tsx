@@ -7,8 +7,8 @@ export const metadata: Metadata = {
 };
 
 type Props = {
-  params: Promise<{ slug: string }>
-}
+  params: Promise<{ slug: string }>;
+};
 
 export default async function DashboardAppsView({ params }: Props) {
   const id = (await params).slug;

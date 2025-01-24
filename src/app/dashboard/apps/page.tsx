@@ -4,7 +4,7 @@ import prisma from '@/utils/prisma';
 import { columns, TableRow } from '@/components/dashboard/table/AppsFormat';
 import Card from '@/components/frontend/Card';
 import Link from 'next/link';
-import Button from "@/components/dashboard/Button";
+import Button from '@/components/dashboard/Button';
 
 export const metadata: Metadata = {
   title: 'Admin > Apps | Eduardo Chiaro',
