@@ -84,7 +84,7 @@ table.admin-table {
   }
 }
 @utility box-card-unstyled {
-  @apply drop-shadow rounded-lg transition hover:ring-4 ring-offset-1 ring-offset-primary-100 dark:ring-offset-primary-700 hover:ring-primary-200/50 dark:hover:ring-primary-900/50 ring-1 ring-primary-800 ring-black/50;
+  @apply drop-shadow rounded-lg transition hover:ring-4 ring-offset-1 ring-offset-primary-100 dark:ring-offset-primary-700 hover:ring-primary-400/50 dark:hover:ring-primary-700/50 ring ring-primary-200/50 dark:ring-primary-900;
 }
 .box-card {
   @apply box-card-unstyled bg-primary-50 dark:bg-primary-950 ;

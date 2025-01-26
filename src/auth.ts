@@ -45,6 +45,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return new URL('/admin', baseUrl).toString();
     },
   },
+  pages: {
+    signIn: '/access/signin',
+    error: '/access/error',
+  },
 });
 
 declare module 'next-auth' {
