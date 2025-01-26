@@ -14,7 +14,11 @@ export default async function SignIn() {
   return (
     <div>
       <div className="relative flex min-h-screen items-center justify-center">
-        <div className="absolute top-4 right-4"></div>
+        <div className="absolute top-4 right-4">
+          <WireContainer>
+            <ThemeIcon orientation="bottom" />
+          </WireContainer>
+        </div>
         <WireContainer type="large" className="mx-auto">
           <Card>
             <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={'logo mx-auto my-4 h-24'} />

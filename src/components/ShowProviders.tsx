@@ -27,7 +27,7 @@ const ShowProviders = function ShowProviders() {
         >
           <button
             type="submit"
-            className="bg-primary-300 text-primary-700 ring-primary-300 ring-offset-primary-100 dark:bg-primary-900 dark:text-primary-50 dark:ring-primary-700 dark:ring-offset-primary-600 mx-auto flex items-center gap-3 rounded-md p-3 px-4 text-xl ring-offset-2 drop-shadow transition duration-300 ease-in-out hover:ring-2"
+            className="bg-primary-300 text-primary-700 ring-primary-300 ring-offset-primary-100 dark:bg-primary-900 dark:text-primary-50 dark:ring-primary-700 dark:ring-offset-primary-600 mx-auto flex cursor-pointer items-center gap-4 rounded-md p-3 px-4 text-lg ring-offset-2 drop-shadow transition duration-300 ease-in-out hover:ring-2"
           >
             <LogoProvider id={provider} />
             Sign in with {provider}
