@@ -35,20 +35,20 @@ export default function WireContainer({ children, type = 'small', className = ''
     <div className={classNames(className, 'flex flex-col')}>
       {!hideTop && (
         <div className="flex">
-          <div className={classNames(wireWidth, wireHeight, 'flex-none border-b border-r border-secondary-200 dark:border-secondary-800')}></div>
-          <div className={classNames(wireHeight, 'grow border-b border-secondary-200 dark:border-secondary-800')}></div>
-          <div className={classNames(wireWidth, wireHeight, 'flex-none border-b border-l border-secondary-200 dark:border-secondary-800')}></div>
+          <div className={classNames(wireWidth, wireHeight, 'border-secondary-200 dark:border-secondary-800 flex-none border-r border-b')}></div>
+          <div className={classNames(wireHeight, 'border-secondary-200 dark:border-secondary-800 grow border-b')}></div>
+          <div className={classNames(wireWidth, wireHeight, 'border-secondary-200 dark:border-secondary-800 flex-none border-b border-l')}></div>
         </div>
       )}
       <div className="flex">
-        <div className={classNames(wireWidth, 'flex-none border-r border-secondary-200 dark:border-secondary-800')}></div>
+        <div className={classNames(wireWidth, 'border-secondary-200 dark:border-secondary-800 flex-none border-r')}></div>
         <div className={classNames(paddingArea, 'grow')}>{children}</div>
-        <div className={classNames(wireWidth, 'flex-none border-l border-secondary-200 dark:border-secondary-800')}></div>
+        <div className={classNames(wireWidth, 'border-secondary-200 dark:border-secondary-800 flex-none border-l')}></div>
       </div>
       <div className="flex">
-        <div className={classNames(wireWidth, wireHeight, 'flex-none border-r border-t border-secondary-200 dark:border-secondary-800')}></div>
-        <div className={classNames(wireHeight, 'grow border-t border-secondary-200 dark:border-secondary-800')}></div>
-        <div className={classNames(wireWidth, wireHeight, 'flex-none border-l border-t border-secondary-200 dark:border-secondary-800')}></div>
+        <div className={classNames(wireWidth, wireHeight, 'border-secondary-200 dark:border-secondary-800 flex-none border-t border-r')}></div>
+        <div className={classNames(wireHeight, 'border-secondary-200 dark:border-secondary-800 grow border-t')}></div>
+        <div className={classNames(wireWidth, wireHeight, 'border-secondary-200 dark:border-secondary-800 flex-none border-t border-l')}></div>
       </div>
     </div>
   );

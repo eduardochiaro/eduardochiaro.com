@@ -32,7 +32,7 @@ export default async function AdminSkillsIndex() {
     obj.image_d = (
       <SVG
         title={item.name}
-        className={'w-full fill-secondary-700 stroke-secondary-700 dark:fill-secondary-200 dark:stroke-secondary-200'}
+        className={'fill-secondary-700 stroke-secondary-700 dark:fill-secondary-200 dark:stroke-secondary-200 w-full'}
         src={`/images/svg-icons/${item.logo}`}
         height={50}
       />

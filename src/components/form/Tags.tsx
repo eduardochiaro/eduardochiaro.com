@@ -86,9 +86,9 @@ const Tags = forwardRef<Ref, FormInputProps>(
             <Fragment key={`tag-${key}`}>
               {!tag.deleted && (
                 <span className="group relative">
-                  <span className={`rounded px-2 py-1 text-xs text-primary-100 ${tag.new ? 'bg-emerald-700' : 'bg-secondary-800'}`}>{tag.name}</span>
+                  <span className={`text-primary-100 rounded-sm px-2 py-1 text-xs ${tag.new ? 'bg-emerald-700' : 'bg-secondary-800'}`}>{tag.name}</span>
                   <CircleXIcon
-                    className="absolute -right-2 -top-2 hidden h-4 w-4 cursor-pointer text-primary-100 group-hover:block"
+                    className="text-primary-100 absolute -top-2 -right-2 hidden h-4 w-4 cursor-pointer group-hover:block"
                     onClick={() => removeTag(key)}
                   />
                 </span>
@@ -105,7 +105,7 @@ const Tags = forwardRef<Ref, FormInputProps>(
               onChange={(e) => setSearchTerm(e.target.value)}
             />
             {openMenu && (
-              <Menu.Items static className="box-card absolute left-0 top-8 w-56 divide-y divide-primary-300 dark:divide-primary-500">
+              <Menu.Items static className="box-card divide-primary-300 dark:divide-primary-500 absolute top-8 left-0 w-56 divide-y">
                 {searchResults.map((tag: any, key: number) => (
                   <div className="px-1 py-1" key={key}>
                     <Menu.Item>

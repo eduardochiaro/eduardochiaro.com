@@ -16,7 +16,7 @@ export default async function AdminIndex({ children }: { children: React.ReactNo
           data-drawer-toggle="default-sidebar"
           aria-controls="default-sidebar"
           type="button"
-          className="ms-3 mt-2 inline-flex items-center rounded-lg p-2 text-sm text-primary-500 hover:bg-primary-100 focus:outline-none focus:ring-2 focus:ring-primary-200 dark:text-primary-400 dark:hover:bg-primary-700 dark:focus:ring-primary-600 sm:hidden"
+          className="text-primary-500 hover:bg-primary-100 focus:ring-primary-200 dark:text-primary-400 dark:hover:bg-primary-700 dark:focus:ring-primary-600 ms-3 mt-2 inline-flex items-center rounded-lg p-2 text-sm focus:ring-2 focus:outline-none sm:hidden"
         >
           <span className="sr-only">Open sidebar</span>
           <svg className="h-6 w-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -30,7 +30,7 @@ export default async function AdminIndex({ children }: { children: React.ReactNo
 
         <aside
           id="default-sidebar"
-          className="fixed left-0 top-0 z-40 h-screen w-64 -translate-x-full transition-transform sm:translate-x-0"
+          className="fixed top-0 left-0 z-40 h-screen w-64 -translate-x-full transition-transform sm:translate-x-0"
           aria-label="Sidebar"
         >
           <Sidebar user={user} />

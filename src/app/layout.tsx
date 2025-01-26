@@ -1,6 +1,6 @@
 import Providers from '@/providers';
 import { Titillium_Web, Roboto_Mono } from 'next/font/google';
-import '../styles/globals.scss';
+import '../styles/globals.css';
 import type { Viewport } from 'next';
 import { Suspense } from 'react';
 

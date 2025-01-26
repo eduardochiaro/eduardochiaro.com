@@ -22,7 +22,7 @@ export default function Card({ children, className, type = 'medium' }: Props) {
   return (
     <div
       className={classNames(
-        'border border-primary-200 bg-primary-50 p-6 font-mono shadow-lg dark:border-primary-900 dark:bg-primary-800',
+        'border-primary-200 bg-primary-50 dark:border-primary-900 dark:bg-primary-800 border p-6 font-mono shadow-lg',
         className,
         appendClass(type),
       )}

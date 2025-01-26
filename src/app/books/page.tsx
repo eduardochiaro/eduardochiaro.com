@@ -6,13 +6,13 @@ import Footer from '@/components/frontend/Footer';
 import Header from '@/components/frontend/Header';
 import getMenuLinks from '@/utils/getMenuLinks';
 
-import styles from '@/styles/Book.module.scss';
+import styles from '@/styles/Book.module.css';
 
 export default async function Bookmarks() {
   const books = await getBooks();
   const menuLinks = await getMenuLinks();
   return (
-    <div className={`${styles.layout} flex min-h-screen flex-col justify-between bg-secondary-50 dark:bg-secondary-900`}>
+    <div className={`${styles.layout} bg-secondary-50 dark:bg-secondary-900 flex min-h-screen flex-col justify-between`}>
       <Header data={menuLinks} />
       <div className={'flex grow flex-col bg-fixed'}>
         <div className={'mb-auto grow pb-10'}>

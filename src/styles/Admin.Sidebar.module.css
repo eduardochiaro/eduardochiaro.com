@@ -1,3 +1,5 @@
+@reference "./globals.css";
+
 .sidebar-link {
   @apply relative flex items-center gap-2 h-11 focus:outline-none px-3;
 }

@@ -1,5 +1,7 @@
+@reference "./globals.css";
+
 .book {
-  @apply z-10 relative mx-auto flex h-60 w-40 flex-col overflow-hidden rounded border border-primary-700 bg-cover bg-center bg-no-repeat shadow-lg shadow-primary-950 dark:shadow-primary-50;
+  @apply z-10 relative mx-auto flex h-60 w-40 flex-col overflow-hidden rounded-sm border border-primary-700 bg-cover bg-center bg-no-repeat shadow-lg shadow-primary-950 dark:shadow-primary-50;
   &:before {
     content: '';
     @apply absolute left-1.5 top-0 h-60 w-1 bg-secondary-50 opacity-10;

@@ -14,11 +14,11 @@ export default async function SignIn() {
   return (
     <div>
       <div className="relative flex min-h-screen items-center justify-center">
-        <div className="absolute right-4 top-4"></div>
+        <div className="absolute top-4 right-4"></div>
         <WireContainer type="large" className="mx-auto">
           <Card>
             <Logo title="Eduardo Chiaro" alt="Eduardo Chiaro" className={'logo mx-auto my-4 h-24'} />
-            <h1 className="my-6 text-center font-header text-3xl">Not signed in</h1>
+            <h1 className="font-header my-6 text-center text-3xl">Not signed in</h1>
             <ShowProviders />
           </Card>
         </WireContainer>

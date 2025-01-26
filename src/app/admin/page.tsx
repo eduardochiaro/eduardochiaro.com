@@ -27,10 +27,10 @@ export default async function AdminIndex() {
                     <Link
                       key={key}
                       href={link.href}
-                      className={`group flex w-full items-start gap-2 rounded-lg drop-shadow transition duration-300 hover:scale-110 md:h-52 md:w-72 md:flex-col ${link.classColor} p-4 text-primary-50`}
+                      className={`group flex w-full items-start gap-2 rounded-lg drop-shadow transition duration-300 hover:scale-110 md:h-52 md:w-72 md:flex-col ${link.classColor} text-primary-50 p-4`}
                     >
-                      <div className="inline-block rounded bg-primary-50 p-1">
-                        <link.icon className={classNames('size-6 text-primary-950 md:size-8', link.textColor)} />
+                      <div className="bg-primary-50 inline-block rounded-sm p-1">
+                        <link.icon className={classNames('text-primary-950 size-6 md:size-8', link.textColor)} />
                       </div>
                       <div className="md:flex-1"></div>
                       <div className="">

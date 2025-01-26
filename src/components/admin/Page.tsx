@@ -66,7 +66,7 @@ export default function AdminPage({ format, columns, title, single, data, inputL
           sortDefault={sortDefault}
         />
       </div>
-      <div className={`min-h-screen grow bg-primary-50 px-6 py-8 dark:bg-primary-900 ${isOpen ? '' : 'hidden'}`}>
+      <div className={`bg-primary-50 dark:bg-primary-900 min-h-screen grow px-6 py-8 ${isOpen ? '' : 'hidden'}`}>
         <AdminForm apiURL={apiURL} titleElement={single} itemFormat={format} itemData={item} inputList={inputList} closeElement={closeElement} />
       </div>
     </BackendLayout>

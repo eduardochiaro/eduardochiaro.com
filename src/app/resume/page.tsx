@@ -47,7 +47,7 @@ export default async function Resume() {
             </div>
             <div className="flex flex-col items-start gap-10 md:min-w-96 md:flex-row">
               <div className="md:w-1/3 md:min-w-56">
-                <h3 className="mb-4 font-header text-2xl font-semibold">Skills</h3>
+                <h3 className="font-header mb-4 text-2xl font-semibold">Skills</h3>
                 <ul className="flex flex-wrap gap-4 md:flex-col md:gap-1">
                   {skills.map((skill: Skill, index: number) => (
                     <li key={`skill-${index}`} className="flex items-center gap-2 text-sm">
@@ -55,18 +55,18 @@ export default async function Resume() {
                       <span className="w-full shrink"></span>
                       <SVG
                         title={skill.name}
-                        className={'size-6 flex-none fill-secondary-700 stroke-secondary-700 dark:fill-secondary-200 dark:stroke-secondary-200'}
+                        className={'fill-secondary-700 stroke-secondary-700 dark:fill-secondary-200 dark:stroke-secondary-200 size-6 flex-none'}
                         src={`/images/svg-icons/${skill.logo}`}
                       />
                       <div className="w-1/2 flex-none">
-                        <div className="h-3 w-full rounded-sm bg-primary-200 dark:bg-primary-900">
-                          <div className="h-3 rounded-sm bg-primary-500" style={{ width: skill.percentage + '%' }}></div>
+                        <div className="bg-primary-200 dark:bg-primary-900 h-3 w-full rounded-xs">
+                          <div className="bg-primary-500 h-3 rounded-xs" style={{ width: skill.percentage + '%' }}></div>
                         </div>
                       </div>
                     </li>
                   ))}
                 </ul>
-                <h3 className="mb-4 mt-8 font-header text-2xl font-semibold">Connections</h3>
+                <h3 className="font-header mt-8 mb-4 text-2xl font-semibold">Connections</h3>
                 <ul className="flex flex-col gap-2 text-sm">
                   <li>
                     <Link
@@ -75,25 +75,25 @@ export default async function Resume() {
                       title="LinkedIn"
                     >
                       LinkedIn
-                      <LinkedInIcon className={'size-4 text-secondary-700 dark:text-secondary-200'} />
+                      <LinkedInIcon className={'text-secondary-700 dark:text-secondary-200 size-4'} />
                     </Link>
                   </li>
                   <li>
                     <Link href="https://github.com/eduardochiaro" className="group inline-flex w-1/2 items-center justify-between gap-2 pr-2" title="GitHub">
                       GitHub
-                      <GitHubIcon className={'size-4 text-secondary-700 dark:text-secondary-200'} />
+                      <GitHubIcon className={'text-secondary-700 dark:text-secondary-200 size-4'} />
                     </Link>
                   </li>
                 </ul>
               </div>
               <div className="mb-10 md:w-3/4">
-                <h3 className="mb-4 ml-16 font-header text-2xl font-semibold">Work Experience</h3>
+                <h3 className="font-header mb-4 ml-16 text-2xl font-semibold">Work Experience</h3>
                 <div className="flex flex-col">
                   {mappedData.map((job: ResumeExpanded, index: number) => (
                     <div className="group flex" key={`job-${index}`}>
                       <div className="relative mx-2 hidden w-4 flex-none md:mx-4 md:block md:w-8">
-                        <div className="z-10 mx-auto h-full w-0.5 bg-secondary-500 group-first:mt-3 group-last:h-2 group-odd:bg-gradient-to-t"></div>
-                        <span className="absolute left-1/2 top-1 z-20 h-4 w-4 -translate-x-1/2 transform rounded-full border-2 border-primary-800 bg-primary-200 group-first:top-0 group-first:h-6 group-first:w-6 group-first:bg-emerald-500 group-last:top-0 group-last:h-6 group-last:w-6 group-last:bg-red-500 dark:border-primary-500 dark:group-last:bg-red-700"></span>
+                        <div className="bg-secondary-500 z-10 mx-auto h-full w-0.5 group-first:mt-3 group-last:h-2 group-odd:bg-gradient-to-t"></div>
+                        <span className="border-primary-800 bg-primary-200 dark:border-primary-500 absolute top-1 left-1/2 z-20 h-4 w-4 -translate-x-1/2 transform rounded-full border-2 group-first:top-0 group-first:h-6 group-first:w-6 group-first:bg-emerald-500 group-last:top-0 group-last:h-6 group-last:w-6 group-last:bg-red-500 dark:group-last:bg-red-700"></span>
                       </div>
                       <div key={`job-${index}`} className="mb-10 flex-1">
                         <h4 className="items-center gap-2 font-semibold md:flex">
@@ -102,7 +102,7 @@ export default async function Resume() {
                           {job.file && job.file.path ? (
                             <SVG
                               title={job.company}
-                              className={'inline-block fill-primary-700 dark:fill-primary-200'}
+                              className={'fill-primary-700 dark:fill-primary-200 inline-block'}
                               src={`${process.env.NEXT_PUBLIC_CDN_URL}/${job.file.path}`}
                               height={20}
                             />
@@ -110,21 +110,21 @@ export default async function Resume() {
                             <>{job.company}</>
                           )}
                         </h4>
-                        <p className="text-sm text-primary-500">
+                        <p className="text-primary-500 text-sm">
                           {moment(job.startDate).format('MMMM YYYY')} - {job.endDate ? moment(job.endDate).format('MMMM YYYY') : 'Now'}
                         </p>
                         {job.tags?.length > 0 && (
                           <div className="mt-2 flex items-center gap-2">
                             {job.tags?.map((tag: ResumeTag) => (
-                              <span key={`resume_tag_${tag.id}`} className="rounded bg-secondary-800 px-2 py-1 text-xs text-primary-100">
+                              <span key={`resume_tag_${tag.id}`} className="bg-secondary-800 text-primary-100 rounded-sm px-2 py-1 text-xs">
                                 {tag.name}
                               </span>
                             ))}
                           </div>
                         )}
                         {job.projects.length > 0 && (
-                          <div className="mr-8 mt-4 flex items-start gap-2">
-                            <ChevronRightIcon className="mt-0.5 size-4 text-secondary-700 dark:text-secondary-200" />
+                          <div className="mt-4 mr-8 flex items-start gap-2">
+                            <ChevronRightIcon className="text-secondary-700 dark:text-secondary-200 mt-0.5 size-4" />
                             <div>
                               <h5 className="mb-2 text-sm">Projects</h5>
                               <div className="flex items-center gap-8">
@@ -139,7 +139,7 @@ export default async function Resume() {
                                         height={20}
                                       />
                                     )) || (
-                                      <h6 key={`resume_project_${project.id}`} className="mb-2 break-words text-xl font-bold">
+                                      <h6 key={`resume_project_${project.id}`} className="mb-2 text-xl font-bold break-words">
                                         {project.name}
                                       </h6>
                                     )}

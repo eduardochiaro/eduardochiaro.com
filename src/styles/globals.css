@@ -1,12 +1,12 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+@import "./theme.css";
 
 body {
   @apply bg-secondary-50 dark:bg-secondary-900 text-primary-950 dark:text-primary-50 bg-center;
   background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="400"%3E%3Cdefs%3E%3Cpattern id="square" width="20" height="20" patternUnits="userSpaceOnUse"%3E%3Crect width="20" height="20" style="fill:none;stroke:%23a9a9a9" opacity="0.5" /%3E%3C/pattern%3E%3Cpattern id="quad" width="100" height="100" patternUnits="userSpaceOnUse" %3E%3Crect width="100" height="100" style="stroke:%23366" fill="url(%23square)" opacity="1"/%3E%3C/pattern%3E%3C/defs%3E%3Crect width="400" height="400" fill="url(%23quad)" style="stroke:%23366;stroke-width:2px" opacity="0.08"/%3E%3C/svg%3E');
 }
-// Form styles 
+/* Form styles */
 .input-label {
   @apply text-sm font-medium text-primary-900 dark:text-primary-100;
 }
@@ -25,7 +25,7 @@ body {
     @apply bg-emerald-500 dark:bg-secondary-500;
   }
 }
-.button {
+@utility button {
   @apply inline-flex justify-center py-1 px-2 border border-transparent shadow-sm text-sm font-medium rounded-md transition-all ease-out duration-300;
   @apply bg-primary-700 dark:bg-primary-50 text-primary-50 dark:text-primary-900 hover:bg-primary-500 hover:dark:bg-primary-300;
   @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-500;
@@ -39,7 +39,7 @@ body {
   @apply hover:shadow-[0px_0px_15px_0px_#D14542];
 
 }
-//Admin tables
+/* Admin tables */
 table.admin-table {
   @apply min-w-full divide-y divide-primary-200 dark:divide-primary-600;
   thead {
@@ -83,8 +83,8 @@ table.admin-table {
     background: linear-gradient(90deg, red 0%, yellow 15%, lime 30%, cyan 50%, blue 65%, magenta 80%, red 100%) !important;
   }
 }
-.box-card-unstyled {
-  @apply drop-shadow rounded-lg transition hover:ring-4 ring-offset-1 ring-offset-primary-100 dark:ring-offset-primary-700 hover:ring-primary-200/50 dark:hover:ring-primary-900/50 ring-1 ring-primary-800 ring-opacity-5;
+@utility box-card-unstyled {
+  @apply drop-shadow rounded-lg transition hover:ring-4 ring-offset-1 ring-offset-primary-100 dark:ring-offset-primary-700 hover:ring-primary-200/50 dark:hover:ring-primary-900/50 ring-1 ring-primary-800 ring-black/50;
 }
 .box-card {
   @apply box-card-unstyled bg-primary-50 dark:bg-primary-950 ;
@@ -124,7 +124,7 @@ input:checked + .toggle-bg {
     @apply text-accent-600 dark:text-accent-500;
   }
 }
-.dashed-border {
+@utility dashed-border {
   @apply border-accent-600 dark:border-accent-400/70 border-dashed;
 }
 .dashed-border-t {
@@ -144,13 +144,13 @@ input:checked + .toggle-bg {
   }
 }
 .download-button {
-  @apply bg-primary-900 transition-all ease-in-out duration-300 text-primary-100 px-4 py-2 text-base rounded-md text-shadow-sm shadow-primary-800;
+  @apply bg-primary-900 transition-all ease-in-out duration-300 text-primary-100 px-4 py-2 text-base rounded-md shadow-primary-800;
   &:hover {
     background-image: url(/images/starfield.svg);
   }
 }
 .tabs {
-  @apply flex items-center divide-x overflow-hidden rounded bg-primary-300 text-primary-50 dark:bg-primary-50 dark:text-primary-900;
+  @apply flex items-center divide-x overflow-hidden rounded-sm bg-primary-300 text-primary-50 dark:bg-primary-50 dark:text-primary-900;
   .tab {
     @apply flex-none px-4 py-2 text-xs font-bold hover:underline text-primary-600;
     &.active {

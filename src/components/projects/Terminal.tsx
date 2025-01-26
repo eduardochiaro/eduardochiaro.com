@@ -133,12 +133,12 @@ export default function Terminal() {
   return (
     <WireContainer type="large">
       <Card className="flex h-[500px] flex-col !p-0">
-        <div className="flex h-6 flex-none items-center gap-2 rounded-t-lg bg-primary-300 px-3">
+        <div className="bg-primary-300 flex h-6 flex-none items-center gap-2 rounded-t-lg px-3">
           <div className="h-3 w-3 rounded-full border border-red-600 bg-red-500"></div>
-          <div className="h-3 w-3 rounded-full border border-secondary-600 bg-secondary-500"></div>
+          <div className="border-secondary-600 bg-secondary-500 h-3 w-3 rounded-full border"></div>
           <div className="h-3 w-3 rounded-full border border-emerald-600 bg-emerald-500"></div>
         </div>
-        <div className="grow justify-end overflow-y-auto rounded-b-lg bg-primary-950 p-4 font-mono text-primary-50 shadow-lg" onClick={() => setInputFocus}>
+        <div className="bg-primary-950 text-primary-50 grow justify-end overflow-y-auto rounded-b-lg p-4 font-mono shadow-lg" onClick={() => setInputFocus}>
           {state.history.map((line: any, index: number) => (
             <div key={`history-${index}`} className="mb-1">
               <div className="flex flex-row items-center space-x-2">
@@ -149,7 +149,7 @@ export default function Terminal() {
                   <p>{line.command}</p>
                 </div>
               </div>
-              {line.output && <div className="whitespace-pre-wrap break-words text-secondary-100">{line.output}</div>}
+              {line.output && <div className="text-secondary-100 break-words whitespace-pre-wrap">{line.output}</div>}
             </div>
           ))}
           <div className="flex flex-row items-center space-x-2">

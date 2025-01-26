@@ -133,7 +133,7 @@ const AdminResumeProjects = ({ resumeId }: Props) => {
 
   return (
     <>
-      <div className="mb-5 mt-10 flex items-center gap-4 border-b border-primary-700 pb-4">
+      <div className="border-primary-700 mt-10 mb-5 flex items-center gap-4 border-b pb-4">
         <h3 className="grow text-lg font-bold">Projects</h3>
         <button className="button flex items-center gap-1" onClick={() => openModal({})} title={'New project'}>
           <PlusIcon className="h-5" /> add new
@@ -141,7 +141,7 @@ const AdminResumeProjects = ({ resumeId }: Props) => {
       </div>
 
       {projects?.results.map((project: ResumeProjectExpanded, key: any) => (
-        <div className="border:bg-primary-50/50 my-4 flex h-14 items-center gap-4 border-b border-primary-500/50 px-4 pb-4" key={key}>
+        <div className="border:bg-primary-50/50 border-primary-500/50 my-4 flex h-14 items-center gap-4 border-b px-4 pb-4" key={key}>
           <div className="relative h-14 w-16">
             {project.file && (
               <Image
@@ -173,7 +173,7 @@ const AdminResumeProjects = ({ resumeId }: Props) => {
       >
         <>
           {form.error && (
-            <div className="relative mb-4 flex items-center gap-2 rounded border border-accent-400 bg-accent-100 px-4 py-3 text-accent-700" role="alert">
+            <div className="border-accent-400 bg-accent-100 text-accent-700 relative mb-4 flex items-center gap-2 rounded-sm border px-4 py-3" role="alert">
               <TriangleAlertIcon className="size-6 align-middle" />
               <strong className="font-bold">Invalid Form! </strong>
               <span className="block sm:inline">Some required fields are missing.</span>
@@ -195,7 +195,7 @@ const AdminResumeProjects = ({ resumeId }: Props) => {
                     sizes="33vw"
                     alt="preview"
                     title="preview"
-                    className="bg-transparent fill-primary-700 object-contain dark:fill-primary-200"
+                    className="fill-primary-700 dark:fill-primary-200 bg-transparent object-contain"
                     priority={false}
                   />
                 </div>

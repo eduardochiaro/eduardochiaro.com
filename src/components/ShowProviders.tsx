@@ -1,7 +1,6 @@
-'use client';
 import GitHubIcon from '@/components/icons/Github';
 import GoogleIcon from '@/components/icons/Google';
-import { signIn } from 'next-auth/react';
+import { signIn } from '@/auth';
 
 const LogoProvider = ({ id }: { id: string }) => {
   switch (id) {
@@ -19,14 +18,21 @@ const ShowProviders = function ShowProviders() {
   return (
     <div className="flex flex-col gap-6 py-4">
       {providers.map((provider) => (
-        <button
+        <form
           key={provider}
-          onClick={() => signIn(provider, { redirectTo: '/admin' })}
-          className="mx-auto flex items-center gap-3 rounded-md bg-primary-300 p-3 px-4 text-xl text-primary-700 ring-primary-300 ring-offset-2 ring-offset-primary-100 drop-shadow transition duration-300 ease-in-out hover:ring-2 dark:bg-primary-900 dark:text-primary-50 dark:ring-primary-700 dark:ring-offset-primary-600"
+          action={async () => {
+            'use server';
+            await signIn(provider, { redirectTo: '/admin' });
+          }}
         >
-          <LogoProvider id={provider} />
-          Sign in with {provider}
-        </button>
+          <button
+            type="submit"
+            className="bg-primary-300 text-primary-700 ring-primary-300 ring-offset-primary-100 dark:bg-primary-900 dark:text-primary-50 dark:ring-primary-700 dark:ring-offset-primary-600 mx-auto flex items-center gap-3 rounded-md p-3 px-4 text-xl ring-offset-2 drop-shadow transition duration-300 ease-in-out hover:ring-2"
+          >
+            <LogoProvider id={provider} />
+            Sign in with {provider}
+          </button>
+        </form>
       ))}
     </div>
   );

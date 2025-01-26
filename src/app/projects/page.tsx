@@ -3,7 +3,7 @@ import prisma from '@/utils/prisma';
 import { Metadata } from 'next';
 import { cache } from 'react';
 import GitHubIcon from '@/components/icons/Github';
-import styles from '@/styles/Projects.module.scss';
+import styles from '@/styles/Projects.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Prisma } from '@prisma/client';
@@ -42,7 +42,7 @@ export default async function Projects() {
       <section className={`${styles.apps} mt-10 px-4 lg:px-0`}>
         <div className="mx-auto flex max-w-5xl flex-wrap">
           <div className="mb-10 basis-full md:basis-3/4">
-            <h1 className="h-10 font-header text-3xl font-light leading-tight tracking-wide lg:text-4xl">Projects</h1>
+            <h1 className="font-header h-10 text-3xl leading-tight font-light tracking-wide lg:text-4xl">Projects</h1>
             <div className="my-5 grid grid-cols-1 gap-4">
               {apps?.map((app: AppExpanded, index: number) => (
                 <WireContainer type="large" key={`app-${index}`}>
@@ -60,7 +60,7 @@ export default async function Projects() {
                       </div>
                     )}
                     <div className={'basis-full pt-4 md:basis-2/3 md:px-8 md:py-4'}>
-                      <h3 className="font-header text-2xl tracking-wide transition-colors duration-300 ease-out group-hover:text-secondary-600 dark:group-hover:text-secondary-600">
+                      <h3 className="font-header group-hover:text-secondary-600 dark:group-hover:text-secondary-600 text-2xl tracking-wide transition-colors duration-300 ease-out">
                         {app.name}
                       </h3>
                       <p className="text-normal mt-2">{app.description}</p>
@@ -78,12 +78,12 @@ export default async function Projects() {
                 </WireContainer>
               ))}
             </div>
-            <h2 className="h-10 font-header text-3xl font-light leading-tight tracking-wide lg:text-4xl">GitHub</h2>
+            <h2 className="font-header h-10 text-3xl leading-tight font-light tracking-wide lg:text-4xl">GitHub</h2>
             <GitHubComponent responseArray={githubData} />
           </div>
 
           <div className="mb-10 basis-full md:basis-1/4 md:text-right">
-            <h2 className="flex h-10 align-bottom font-header text-xl font-light leading-tight tracking-wide md:flex-row-reverse">
+            <h2 className="font-header flex h-10 align-bottom text-xl leading-tight font-light tracking-wide md:flex-row-reverse">
               <span className="self-end">Lab</span>
             </h2>
             <ul className="mt-6 flex flex-col gap-2 pl-0 md:pl-2">
@@ -92,7 +92,7 @@ export default async function Projects() {
                   <WireContainer type="medium" key={`app-${index}`}>
                     <Card className="small p-4 text-base">
                       <Link href={project.url} className="group">
-                        <h3 className="text-lg tracking-wide transition-colors duration-300 ease-out group-hover:text-secondary-600 dark:group-hover:text-secondary-600">
+                        <h3 className="group-hover:text-secondary-600 dark:group-hover:text-secondary-600 text-lg tracking-wide transition-colors duration-300 ease-out">
                           {project.name}
                         </h3>
                         <p className="mt-2 font-sans text-xs opacity-50">{project.description}</p>

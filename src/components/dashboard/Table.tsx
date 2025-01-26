@@ -57,8 +57,8 @@ export default function Table({ columns, data, useCheckboxes = false, tableRow }
 
   return (
     <div className="overflow-x-auto shadow-md sm:rounded-lg">
-      <table className="w-full text-left text-sm text-primary-500 dark:text-primary-400 rtl:text-right">
-        <thead className="bg-primary-200 text-xs uppercase text-primary-700 dark:bg-primary-700 dark:text-primary-400">
+      <table className="text-primary-500 dark:text-primary-400 w-full text-left text-sm rtl:text-right">
+        <thead className="bg-primary-200 text-primary-700 dark:bg-primary-700 dark:text-primary-400 text-xs uppercase">
           <tr>
             {useCheckboxes && <th className="w-8"></th>}
             {tableColumns.map((column, index) => (
@@ -87,9 +87,9 @@ export default function Table({ columns, data, useCheckboxes = false, tableRow }
                   <Checkbox
                     checked={row.checked || false}
                     onChange={() => checkRow(index)}
-                    className="bg-white group inline-flex size-4 items-center justify-center rounded border bg-primary-200 data-[checked]:bg-primary-200"
+                    className="group bg-primary-200 data-[checked]:bg-primary-200 inline-flex size-4 items-center justify-center rounded-sm border bg-white"
                   >
-                    <div className="size-3 rounded-sm bg-primary-700 opacity-0 group-data-[checked]:opacity-100"></div>
+                    <div className="bg-primary-700 size-3 rounded-xs opacity-0 group-data-[checked]:opacity-100"></div>
                   </Checkbox>
                 ),
                 rowData: row,
@@ -99,8 +99,8 @@ export default function Table({ columns, data, useCheckboxes = false, tableRow }
         </tbody>
       </table>
       {countChecked > 0 && (
-        <div className="absolute bottom-5 left-0 right-0 mx-auto flex justify-center">
-          <div className="flex min-w-96 items-center justify-between rounded-lg bg-primary-100 p-4 text-sm text-primary-700 shadow-md dark:bg-primary-700 dark:text-primary-400 sm:rounded-lg">
+        <div className="absolute right-0 bottom-5 left-0 mx-auto flex justify-center">
+          <div className="bg-primary-100 text-primary-700 dark:bg-primary-700 dark:text-primary-400 flex min-w-96 items-center justify-between rounded-lg p-4 text-sm shadow-md sm:rounded-lg">
             <span>Number of rows selected: {countChecked}</span>
             <a href="#" className="font-medium text-blue-600 hover:underline dark:text-blue-500">
               Delete

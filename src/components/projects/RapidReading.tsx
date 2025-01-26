@@ -72,13 +72,13 @@ export default function RapidReading() {
           </button>
         </div>
         <textarea
-          className="mb-8 w-full rounded-md border-2 border-primary-300 bg-primary-100 text-primary-900 shadow-sm transition ease-in-out focus:border-secondary-500 focus:ring-secondary-500 sm:text-sm"
+          className="border-primary-300 bg-primary-100 text-primary-900 focus:border-secondary-500 focus:ring-secondary-500 mb-8 w-full rounded-md border-2 shadow-sm transition ease-in-out sm:text-sm"
           rows={10}
           onChange={(event) => setText(event.target.value)}
           value={text}
         />
       </div>
-      {output && <div className="rounded-md bg-primary-200 p-4 text-primary-900 antialiased" dangerouslySetInnerHTML={{ __html: output }}></div>}
+      {output && <div className="bg-primary-200 text-primary-900 rounded-md p-4 antialiased" dangerouslySetInnerHTML={{ __html: output }}></div>}
     </>
   );
 }

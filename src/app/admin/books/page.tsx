@@ -17,11 +17,11 @@ export default async function AdminBooksIndex() {
   return (
     <BackendLayout isPageOpen={false}>
       <div className={'h-full grow'}>
-        <div className="h-screen overflow-auto bg-primary-100 py-8 dark:bg-primary-800">
+        <div className="bg-primary-100 dark:bg-primary-800 h-screen overflow-auto py-8">
           <div className="flex items-center gap-6 px-6 text-3xl">
             <h1 className="grow font-semibold md:flex-grow-0">{title}</h1>
           </div>
-          <div className="mb-2 mt-8 flex flex-col items-start gap-4 px-6 md:flex-row md:items-center">
+          <div className="mt-8 mb-2 flex flex-col items-start gap-4 px-6 md:flex-row md:items-center">
             <BookSearch books={books} tags={tags} />
           </div>
         </div>

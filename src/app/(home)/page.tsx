@@ -46,9 +46,9 @@ export default async function Home() {
 
   return (
     <div className="relative flex h-screen flex-col items-center md:flex-row">
-      <div className="left-5 top-5 md:absolute">
+      <div className="top-5 left-5 md:absolute">
         <WireContainer>
-          <h1 className="flex items-center p-1 px-2 font-header text-3xl font-normal">
+          <h1 className="font-header flex items-center p-1 px-2 text-3xl font-normal">
             <span className="text-secondary-700 dark:text-secondary-500">eduardo</span>
             <span className="flex items-center font-semibold">
               <Logo className="size-6" alt="c" />
@@ -63,7 +63,7 @@ export default async function Home() {
             <div className="flex items-center justify-between">
               <h2>
                 <span className="font-semibold">Eduardo</span> is a{' '}
-                <span className="underline decoration-accent-500 decoration-double decoration-2">software engineer</span>.
+                <span className="decoration-accent-500 underline decoration-double decoration-2">software engineer</span>.
               </h2>
               <Logo className="w-20" />
             </div>
@@ -72,11 +72,11 @@ export default async function Home() {
               applications that are scalable and flexible. He&apos;s a big believer in using the latest technologies and best practices to stay on the cutting
               edge of development.
             </p>
-            <ul className="mt-10 flex flex-col gap-3 font-semibold text-primary-600 dark:text-primary-200">
+            <ul className="text-primary-600 dark:text-primary-200 mt-10 flex flex-col gap-3 font-semibold">
               {menu.map((item, index) => (
                 <li key={`menu-item-${index}`}>
-                  <Link href={item.href} prefetch={false} className="group inline-flex items-center gap-2 hover:underline dark:hover:text-primary-400">
-                    <item.icon className={'w-5 group-hover:text-accent-600 group-hover:dark:text-accent-500'} />
+                  <Link href={item.href} prefetch={false} className="group dark:hover:text-primary-400 inline-flex items-center gap-2 hover:underline">
+                    <item.icon className={'group-hover:text-accent-600 group-hover:dark:text-accent-500 w-5'} />
                     <span>{item.name}</span>
                   </Link>
                 </li>
@@ -88,11 +88,11 @@ export default async function Home() {
                 <div className={'relative text-center align-middle'} key={`job-image-${index}`}>
                   <SVG
                     title={job.name}
-                    className={'fill-primary-950 opacity-90 grayscale transition-all hover:opacity-100 hover:grayscale-0 dark:fill-primary-50'}
+                    className={'fill-primary-950 dark:fill-primary-50 opacity-90 grayscale transition-all hover:opacity-100 hover:grayscale-0'}
                     src={`${process.env.NEXT_PUBLIC_CDN_URL}/${job.logo}`}
                     height={20}
                   />
-                  {job.special && <span className="absolute -right-2 -top-2 text-xs text-accent-600 dark:text-accent-500">•</span>}
+                  {job.special && <span className="text-accent-600 dark:text-accent-500 absolute -top-2 -right-2 text-xs">•</span>}
                 </div>
               ))}
             </div>

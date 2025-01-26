@@ -1,4 +1,4 @@
-import { auth } from '@/utils/auth';
+import { auth } from '@/auth';
 import { NextResponse } from 'next/server';
 import { nanoid } from 'nanoid';
 import { NextAuthRequest } from 'next-auth/lib';

@@ -1,13 +1,9 @@
 'use server';
-import getUser from '@/utils/getUser';
-import { redirect } from 'next/navigation';
+import { signOut } from '@/auth';
 
-async function signOut() {
+async function signOutAction() {
   'use server';
-  const user = await getUser();
-  if (user) {
-    redirect('/admin');
-  }
+  await signOut();
 }
 
-export { signOut };
+export { signOutAction };

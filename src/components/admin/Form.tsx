@@ -199,20 +199,20 @@ const AdminForm = ({ children, apiURL, itemFormat, itemData, inputList, titleEle
           </button>
         </div>
       </div>
-      <h2 className="left-1/2 top-7 my-3 flex items-center gap-2 text-2xl md:absolute md:my-0">
+      <h2 className="top-7 left-1/2 my-3 flex items-center gap-2 text-2xl md:absolute md:my-0">
         {item.id ? `Edit ${titleElement}` : `Add new ${titleElement}`}
       </h2>
-      <div className={'mx-auto mb-2 mt-8 max-w-5xl'}>
+      <div className={'mx-auto mt-8 mb-2 max-w-5xl'}>
         <form ref={formRef} acceptCharset="UTF-8" method="POST" encType="multipart/form-data" onSubmit={(e: any) => onSubmitModal(e)}>
           {form.error && (
-            <div className="relative mb-4 flex items-center gap-2 rounded border border-accent-400 bg-accent-100 px-4 py-3 text-accent-700" role="alert">
+            <div className="border-accent-400 bg-accent-100 text-accent-700 relative mb-4 flex items-center gap-2 rounded-sm border px-4 py-3" role="alert">
               <TriangleAlertIcon className="size-6 align-middle" />
               <strong className="font-bold">Invalid Form! </strong>
               <span className="block sm:inline">Some required fields are missing.</span>
             </div>
           )}
           {form.success && (
-            <div className="relative mb-4 rounded border border-emerald-400 bg-emerald-100 px-4 py-3 text-emerald-700" role="alert">
+            <div className="relative mb-4 rounded-sm border border-emerald-400 bg-emerald-100 px-4 py-3 text-emerald-700" role="alert">
               <strong className="font-bold">
                 <CheckIcon className="mr-4 inline-flex h-6 align-middle" />
                 Success!{' '}
@@ -221,7 +221,7 @@ const AdminForm = ({ children, apiURL, itemFormat, itemData, inputList, titleEle
             </div>
           )}
           {form.info && (
-            <div className="relative mb-4 rounded border border-blue-400 bg-blue-200 px-4 py-3 text-blue-700" role="alert">
+            <div className="relative mb-4 rounded-sm border border-blue-400 bg-blue-200 px-4 py-3 text-blue-700" role="alert">
               <span className="block sm:inline">{form.info}</span>
             </div>
           )}

@@ -97,7 +97,7 @@ export default function Books({ data }: { data: BookWithTags[] }) {
 
   return (
     <section className={'mt-10 px-4 lg:px-0'}>
-      <h1 className="mx-auto h-10 max-w-5xl font-header text-3xl font-light leading-tight tracking-wide lg:text-4xl">
+      <h1 className="font-header mx-auto h-10 max-w-5xl text-3xl leading-tight font-light tracking-wide lg:text-4xl">
         Books I&apos;ve <span className="text-secondary-700 dark:text-secondary-500">read</span>...
       </h1>
       {currentPage}
@@ -108,7 +108,7 @@ export default function Books({ data }: { data: BookWithTags[] }) {
               const cover = book.file && book.file.path ? process.env.NEXT_PUBLIC_CDN_URL + '/' + book.file.path : '';
               return (
                 <Book size="sm" key={index} cover={cover} color={cover ? 'primary' : 'red'}>
-                  <BookHeader className="text-xs text-primary-50">{book.author}</BookHeader>
+                  <BookHeader className="text-primary-50 text-xs">{book.author}</BookHeader>
                   <BookTitle className="text-primary-50">{book.title}</BookTitle>
                 </Book>
               );
@@ -116,7 +116,7 @@ export default function Books({ data }: { data: BookWithTags[] }) {
           </div>
           <div className="mt-10 flex justify-between">
             {parseInt(currentPage) > 1 && (
-              <button onClick={() => goPrevPage()} className="rounded-lg bg-primary-300 px-3 py-1 font-semibold text-primary-900">
+              <button onClick={() => goPrevPage()} className="bg-primary-300 text-primary-900 rounded-lg px-3 py-1 font-semibold">
                 <ChevronsLeftIcon className="size-6" />
               </button>
             )}
@@ -124,7 +124,7 @@ export default function Books({ data }: { data: BookWithTags[] }) {
             {maxPages > parseInt(currentPage) && (
               <button
                 onClick={() => goNextPage()}
-                className="box-card-unstyled bg-primary-300 px-3 py-1 font-semibold hover:bg-primary-400 dark:bg-primary-700 dark:hover:bg-primary-900"
+                className="box-card-unstyled bg-primary-300 hover:bg-primary-400 dark:bg-primary-700 dark:hover:bg-primary-900 px-3 py-1 font-semibold"
               >
                 <ChevronsRightIcon className="size-6" />
               </button>
@@ -132,7 +132,7 @@ export default function Books({ data }: { data: BookWithTags[] }) {
           </div>
         </div>
         <div className="mb-10 hidden w-full md:block md:w-1/4 md:text-right">
-          <h2 className="mb-4 flex h-10 align-bottom font-header text-xl font-light leading-tight tracking-wide md:flex-row-reverse">
+          <h2 className="font-header mb-4 flex h-10 align-bottom text-xl leading-tight font-light tracking-wide md:flex-row-reverse">
             <span className="self-end">Tags</span>
           </h2>
           {tags.length > 0 && (

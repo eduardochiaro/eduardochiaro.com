@@ -142,7 +142,7 @@ const InputType = ({ input, itemData, form, imagePreview, inputFileRef, handleCh
               sizes="33vw"
               alt={input.name}
               title={input.name}
-              className="bg-transparent fill-primary-700 object-contain dark:fill-primary-200"
+              className="fill-primary-700 dark:fill-primary-200 bg-transparent object-contain"
               priority={false}
             />
           </div>
@@ -152,7 +152,7 @@ const InputType = ({ input, itemData, form, imagePreview, inputFileRef, handleCh
       }
     case 'svgPreview':
       if (itemData[input.name]) {
-        return <SVG title="" className={'inline-block w-14 fill-primary-700 dark:fill-primary-200'} src={`/images/svg-icons/${itemData[input.name]}`} />;
+        return <SVG title="" className={'fill-primary-700 dark:fill-primary-200 inline-block w-14'} src={`/images/svg-icons/${itemData[input.name]}`} />;
       } else {
         return <></>;
       }

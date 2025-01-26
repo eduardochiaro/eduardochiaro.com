@@ -67,13 +67,13 @@ export const fetch = () => {
       <div className="mt-4">
         color scheme:
         <div className="flex gap-1">
-          <span className="h-6 w-6 flex-none border border-secondary-500 bg-secondary-500"></span>
-          <span className="h-6 w-6 flex-none border border-accent-500 bg-accent-500"></span>
+          <span className="border-secondary-500 bg-secondary-500 h-6 w-6 flex-none border"></span>
+          <span className="border-accent-500 bg-accent-500 h-6 w-6 flex-none border"></span>
           <span className="h-6 w-6 flex-none border border-red-500 bg-red-500"></span>
           <span className="h-6 w-6 flex-none border border-emerald-500 bg-emerald-500"></span>
           <span className="h-6 w-6 flex-none border border-blue-500 bg-blue-500"></span>
-          <span className="h-6 w-6 flex-none border border-primary-700 bg-primary-900"></span>
-          <span className="h-6 w-6 flex-none border border-primary-300 bg-primary-100"></span>
+          <span className="border-primary-700 bg-primary-900 h-6 w-6 flex-none border"></span>
+          <span className="border-primary-300 bg-primary-100 h-6 w-6 flex-none border"></span>
         </div>
       </div>
     </div>

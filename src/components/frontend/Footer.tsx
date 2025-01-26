@@ -13,26 +13,26 @@ export default function Footer() {
     <footer id="footer" className="mt-10 pb-4">
       <div className="mx-auto max-w-screen-lg p-4">
         <div className="flex items-center justify-between gap-5">
-          <div className="flex items-center justify-center gap-2 font-mono text-sm text-primary-500 md:justify-start">
-            <Logo className="logo size-8 text-primary-950 dark:text-primary-50" /> {moment().year()}
+          <div className="text-primary-500 flex items-center justify-center gap-2 font-mono text-sm md:justify-start">
+            <Logo className="logo text-primary-950 dark:text-primary-50 size-8" /> {moment().year()}
           </div>
           <div className="flex justify-center gap-4 md:justify-end">
             <WireContainer>
               <Link
                 href="https://linkedin.com/in/eduardochiaro"
-                className="inline-flex size-8 items-center justify-center rounded-full text-center focus:outline-none focus:ring-2 focus:ring-secondary-600 focus:ring-offset-2 focus:ring-offset-primary-50 dark:focus:ring-offset-primary-900"
+                className="focus:ring-secondary-600 focus:ring-offset-primary-50 dark:focus:ring-offset-primary-900 inline-flex size-8 items-center justify-center rounded-full text-center focus:ring-2 focus:ring-offset-2 focus:outline-none"
                 title="LinkedIn"
               >
-                <LinkedInIcon className={'size-6 transition-colors duration-300 ease-out hover:text-secondary-600'} />
+                <LinkedInIcon className={'hover:text-secondary-600 size-6 transition-colors duration-300 ease-out'} />
               </Link>
             </WireContainer>
             <WireContainer>
               <Link
                 href="https://github.com/eduardochiaro"
-                className="inline-flex size-8 items-center justify-center rounded-full text-center focus:outline-none focus:ring-2 focus:ring-secondary-600 focus:ring-offset-2 focus:ring-offset-primary-50 dark:focus:ring-offset-primary-900"
+                className="focus:ring-secondary-600 focus:ring-offset-primary-50 dark:focus:ring-offset-primary-900 inline-flex size-8 items-center justify-center rounded-full text-center focus:ring-2 focus:ring-offset-2 focus:outline-none"
                 title="GitHub"
               >
-                <GitHubIcon className={'size-6 transition-colors duration-300 ease-out hover:text-secondary-600'} />
+                <GitHubIcon className={'hover:text-secondary-600 size-6 transition-colors duration-300 ease-out'} />
               </Link>
             </WireContainer>
           </div>

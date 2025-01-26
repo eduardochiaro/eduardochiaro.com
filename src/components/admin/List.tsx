@@ -120,18 +120,18 @@ export default function List({
   };
 
   return (
-    <div className="h-screen overflow-auto bg-primary-100 py-8 dark:bg-primary-800">
+    <div className="bg-primary-100 dark:bg-primary-800 h-screen overflow-auto py-8">
       <div className="flex items-center gap-6 px-6 text-3xl">
         <h1 className="grow font-semibold md:flex-grow-0">{title}</h1>
         <button className="button flex items-center gap-1" onClick={() => openAction(format)} title={`New ${single}`}>
           <PlusIcon className="h-5" /> add new
         </button>
       </div>
-      <div className="mb-2 mt-8 flex flex-col items-start gap-4 px-6 md:flex-row md:items-center">
+      <div className="mt-8 mb-2 flex flex-col items-start gap-4 px-6 md:flex-row md:items-center">
         <div className="relative flex">
           <label
             htmlFor="website-admin-search"
-            className="inline-flex items-center rounded-l-md border border-r-0 border-primary-300 bg-primary-200 px-3 text-sm dark:border-primary-600 dark:bg-primary-600"
+            className="border-primary-300 bg-primary-200 dark:border-primary-600 dark:bg-primary-600 inline-flex items-center rounded-l-md border border-r-0 px-3 text-sm"
           >
             Search
           </label>
@@ -140,10 +140,10 @@ export default function List({
             type="text"
             value={search}
             id="website-admin-search"
-            className="block w-full min-w-0 grow rounded-none rounded-r-lg border border-primary-300 bg-primary-50 p-2 pr-8 text-sm focus:border-secondary-500 focus:ring-secondary-500 dark:border-primary-600 dark:bg-primary-700 dark:placeholder-primary-400 dark:focus:border-secondary-500 dark:focus:ring-secondary-500"
+            className="border-primary-300 bg-primary-50 focus:border-secondary-500 focus:ring-secondary-500 dark:border-primary-600 dark:bg-primary-700 dark:placeholder-primary-400 dark:focus:border-secondary-500 dark:focus:ring-secondary-500 block w-full min-w-0 grow rounded-none rounded-r-lg border p-2 pr-8 text-sm"
             placeholder=""
           />
-          {search && <XMarkIcon className="absolute right-2 top-2 w-5 cursor-pointer" onClick={() => filterData('')} />}
+          {search && <XMarkIcon className="absolute top-2 right-2 w-5 cursor-pointer" onClick={() => filterData('')} />}
         </div>
 
         <div className="grow text-right">Sort by</div>
@@ -163,24 +163,24 @@ export default function List({
           ))}
         </div>
       </div>
-      <div className="border-primary-500/border:bg-primary-50 tracking-none mx-6 mb-2 mt-10 whitespace-nowrap border-b px-6 py-3 text-left text-sm font-bold uppercase opacity-50">
+      <div className="border-primary-500/border:bg-primary-50 tracking-none mx-6 mt-10 mb-2 border-b px-6 py-3 text-left text-sm font-bold whitespace-nowrap uppercase opacity-50">
         Records
       </div>
       <div className="flex flex-col gap-2 px-6" role="menu" aria-orientation="vertical" aria-labelledby="menu-button">
         {filteredData.length > 0 ? (
           filteredData.map((item) => (
-            <div key={`list-${item.id}`} className="border:bg-primary-50/50 group border-b border-primary-500/50">
+            <div key={`list-${item.id}`} className="border:bg-primary-50/50 group border-primary-500/50 border-b">
               <div
-                className={'group flex cursor-pointer items-center gap-4 rounded-l-lg p-2 pl-4 pr-8'}
+                className={'group flex cursor-pointer items-center gap-4 rounded-l-lg p-2 pr-8 pl-4'}
                 onClick={() => editAction(item.original || item)}
                 role="menuitem"
               >
-                {item.image_d ? <div className="relative hidden h-14 w-16 overflow-hidden rounded xl:block">{item.image_d}</div> : ''}
+                {item.image_d ? <div className="relative hidden h-14 w-16 overflow-hidden rounded-sm xl:block">{item.image_d}</div> : ''}
                 <div className="flex grow flex-col gap-1">
                   <div className="flex items-center justify-between gap-2">
-                    <h4 className="text-lg group-hover:text-secondary-600">{item.name}</h4>
+                    <h4 className="group-hover:text-secondary-600 text-lg">{item.name}</h4>
                     {item.category_d ? (
-                      <div className="hidden gap-2 rounded bg-secondary-800 px-2 py-1 text-xs text-primary-100 xl:block">{item.category_d}</div>
+                      <div className="bg-secondary-800 text-primary-100 hidden gap-2 rounded-sm px-2 py-1 text-xs xl:block">{item.category_d}</div>
                     ) : (
                       ''
                     )}

@@ -75,10 +75,10 @@ export default function ThemeIcon({ orientation, size = 'size-7' }: { orientatio
         className={`group rounded-full transition-all duration-300 ease-in-out ${inUseTheme === 'dark' ? 'hover:bg-primary-100' : ''}`}
       >
         {inUseTheme === 'dark' ? (
-          <MoonIcon className={`${size} cursor-pointer rounded-full text-primary-50 transition-all duration-300 group-hover:fill-primary-800`} />
+          <MoonIcon className={`${size} text-primary-50 group-hover:fill-primary-800 cursor-pointer rounded-full transition-all duration-300`} />
         ) : (
           <SunMediumIcon
-            className={`${size} cursor-pointer rounded-full fill-primary-800 text-primary-800 transition-all duration-300 group-hover:fill-accent-500 group-hover:text-accent-500`}
+            className={`${size} fill-primary-800 text-primary-800 group-hover:fill-accent-500 group-hover:text-accent-500 cursor-pointer rounded-full transition-all duration-300`}
           />
         )}
       </MenuButton>
@@ -98,7 +98,7 @@ export default function ThemeIcon({ orientation, size = 'size-7' }: { orientatio
           aria-labelledby="menu-button"
         >
           {iconClass?.map((item, index) => (
-            <div className="font-semibold text-primary-600 dark:text-primary-400" key={index}>
+            <div className="text-primary-600 dark:text-primary-400 font-semibold" key={index}>
               <MenuItem>
                 {({ active }) => (
                   <div

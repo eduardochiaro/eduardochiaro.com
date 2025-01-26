@@ -42,7 +42,7 @@ const Book: React.FC<BookProps> = ({ radius = 'sm', size = 'md', color = 'primar
       >
         {/* Front Side */}
         <div
-          className={`text-white ] ${radiusMap[radius]} absolute inset-y-0 left-0 flex size-full flex-col justify-end overflow-hidden bg-gradient-to-tr bg-cover bg-center bg-no-repeat p-6 ${gradient.from} ${gradient.to}`}
+          className={`] text-white ${radiusMap[radius]} absolute inset-y-0 left-0 flex size-full flex-col justify-end overflow-hidden bg-gradient-to-tr bg-cover bg-center bg-no-repeat p-6 ${gradient.from} ${gradient.to}`}
           style={{
             transform: 'translateZ(25px)',
             boxShadow: '5px 5px 20px var(--shadowColor)',
@@ -51,7 +51,7 @@ const Book: React.FC<BookProps> = ({ radius = 'sm', size = 'md', color = 'primar
           }}
         >
           <div
-            className="absolute left-0 top-0 h-full"
+            className="absolute top-0 left-0 h-full"
             style={{
               minWidth: '8.2%',
               background:
@@ -64,7 +64,7 @@ const Book: React.FC<BookProps> = ({ radius = 'sm', size = 'md', color = 'primar
 
         {/* Spine */}
         <div
-          className="bg-white absolute left-0"
+          className="absolute left-0 bg-white"
           style={{
             top: '3px',
             bottom: '3px',
@@ -76,7 +76,7 @@ const Book: React.FC<BookProps> = ({ radius = 'sm', size = 'md', color = 'primar
 
         {/* Back Side */}
         <div
-          className={`text-white absolute inset-y-0 left-0 flex size-full flex-col justify-end overflow-hidden bg-gradient-to-tr p-6 ${gradient.from} ${gradient.to} ${radiusMap[radius]}`}
+          className={`absolute inset-y-0 left-0 flex size-full flex-col justify-end overflow-hidden bg-gradient-to-tr p-6 text-white ${gradient.from} ${gradient.to} ${radiusMap[radius]}`}
           style={{
             transform: 'translateZ(-25px)',
             boxShadow: '-10px 0 50px 10px var(--shadowColor)',
@@ -100,7 +100,7 @@ interface BookTitleProps {
 }
 
 export const BookTitle: React.FC<BookTitleProps> = ({ children, className = '' }) => (
-  <h1 className={`mb-1 mt-3 select-none text-balance font-bold ${className}`}>{children}</h1>
+  <h1 className={`mt-3 mb-1 font-bold text-balance select-none ${className}`}>{children}</h1>
 );
 
 interface BookDescriptionProps {
@@ -109,7 +109,7 @@ interface BookDescriptionProps {
 }
 
 export const BookDescription: React.FC<BookDescriptionProps> = ({ children, className = '' }) => (
-  <p className={`select-none text-xs/relaxed opacity-80 ${className}`}>{children}</p>
+  <p className={`text-xs/relaxed opacity-80 select-none ${className}`}>{children}</p>
 );
 
 export default Book;

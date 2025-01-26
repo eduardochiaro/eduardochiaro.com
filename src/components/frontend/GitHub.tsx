@@ -23,7 +23,7 @@ export default function GitHub({ responseArray }: Props) {
         <WireContainer type="medium" key={`repo-${repo.id}`}>
           <Card className="small p-4 text-base">
             <div className={'basis-full md:basis-2/3'}>
-              <h3 className="font-header text-xl tracking-wide transition-colors duration-300 ease-out group-hover:text-secondary-600 dark:group-hover:text-secondary-600">
+              <h3 className="font-header group-hover:text-secondary-600 dark:group-hover:text-secondary-600 text-xl tracking-wide transition-colors duration-300 ease-out">
                 {repo.name}
               </h3>
               <p className="mt-2 font-sans text-sm">{repo.description}</p>

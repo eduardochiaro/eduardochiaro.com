@@ -37,7 +37,7 @@ export default async function AdminResumeIndex() {
       item.file && item.file.path ? (
         <SVG
           title={item.name}
-          className={'w-full fill-primary-700 dark:fill-primary-200'}
+          className={'fill-primary-700 dark:fill-primary-200 w-full'}
           src={`${process.env.NEXT_PUBLIC_CDN_URL}/${item.file.path}`}
           height={25}
         />
