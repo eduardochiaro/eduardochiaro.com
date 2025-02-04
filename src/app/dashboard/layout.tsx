@@ -36,7 +36,7 @@ export default async function AdminIndex({ children }: { children: React.ReactNo
           <Sidebar user={user} />
         </aside>
 
-        <div className="relative h-screen p-4 sm:ml-64">{children}</div>
+        <div className="bg-primary-200 dark:bg-primary-900 relative h-screen p-4 sm:ml-64">{children}</div>
       </>
     );
   }

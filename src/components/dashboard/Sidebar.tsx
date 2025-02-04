@@ -7,7 +7,7 @@ import Logo from '@/components/icons/Logo';
 import { Menu, MenuButton, MenuItem, MenuItems, Transition } from '@headlessui/react';
 import { ArrowLeftCircleIcon } from 'lucide-react';
 import Image from 'next/image';
-import { signOut } from '@/actions/access';
+import { signOutAction } from '@/actions/access';
 import classNames from '@/utils/classNames';
 import ThemeIcon from '@/components/ThemeIcon';
 
@@ -44,7 +44,7 @@ export default function Sidebar({ user }: { user: any }) {
                 <li key={key}>
                   <a
                     href={link.href}
-                    className="group text-primary-900 hover:bg-primary-100 dark:text-primary-400 dark:hover:bg-primary-700 flex items-center rounded-lg p-2 dark:text-white"
+                    className="group text-primary-900 hover:bg-primary-100 dark:text-primary-400 dark:hover:bg-primary-700 flex items-center rounded-lg p-2"
                   >
                     <link.icon className="text-primary-500 group-hover:text-accent-500 dark:text-primary-400 h-5 w-5 transition duration-75 dark:group-hover:text-white" />
                     <span className="ms-3">{link.title}</span>
@@ -93,7 +93,7 @@ export default function Sidebar({ user }: { user: any }) {
                 <MenuItem>
                   {({ focus }) => (
                     <div
-                      onClick={() => signOut()}
+                      onClick={() => signOutAction()}
                       title="logout"
                       className={classNames('flex cursor-pointer items-center gap-2 px-4 py-2', focus ? 'bg-primary-300 dark:bg-primary-500' : '')}
                       role="menuitem"

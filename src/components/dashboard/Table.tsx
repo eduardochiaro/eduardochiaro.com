@@ -4,6 +4,8 @@ import { Checkbox } from '@headlessui/react';
 import { ChevronDownIcon, ChevronUpIcon } from 'lucide-react';
 import React, { useState, Fragment } from 'react';
 import classNames from '@/utils/classNames';
+import Card from '../frontend/Card';
+import { pad } from 'cypress/types/lodash';
 
 type Props = {
   columns: Column[];
@@ -56,9 +58,9 @@ export default function Table({ columns, data, useCheckboxes = false, tableRow }
   };
 
   return (
-    <div className="overflow-x-auto shadow-md sm:rounded-lg">
+    <Card type="medium" className="mb-10 overflow-x-auto" padding="p-0">
       <table className="text-primary-500 dark:text-primary-400 w-full text-left text-sm rtl:text-right">
-        <thead className="bg-primary-200 text-primary-700 dark:bg-primary-700 dark:text-primary-400 text-xs uppercase">
+        <thead className="bg-primary-300 text-primary-700 dark:bg-primary-700 dark:text-primary-400 text-xs uppercase">
           <tr>
             {useCheckboxes && <th className="w-8"></th>}
             {tableColumns.map((column, index) => (
@@ -87,7 +89,7 @@ export default function Table({ columns, data, useCheckboxes = false, tableRow }
                   <Checkbox
                     checked={row.checked || false}
                     onChange={() => checkRow(index)}
-                    className="group bg-primary-200 data-[checked]:bg-primary-200 inline-flex size-4 items-center justify-center rounded-sm border bg-white"
+                    className="group bg-primary-200 data-[checked]:bg-primary-200 inline-flex size-4 items-center justify-center rounded-sm border"
                   >
                     <div className="bg-primary-700 size-3 rounded-xs opacity-0 group-data-[checked]:opacity-100"></div>
                   </Checkbox>
@@ -108,6 +110,6 @@ export default function Table({ columns, data, useCheckboxes = false, tableRow }
           </div>
         </div>
       )}
-    </div>
+    </Card>
   );
 }

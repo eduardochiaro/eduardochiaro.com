@@ -1,3 +1,5 @@
+'use client';
+
 import { TriangleAlertIcon, CircleXIcon } from 'lucide-react';
 import { forwardRef, DetailedHTMLProps, InputHTMLAttributes, Fragment, useRef, useState, useEffect } from 'react';
 import { Menu } from '@headlessui/react';

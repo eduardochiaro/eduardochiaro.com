@@ -1,6 +1,8 @@
+'use client';
+
 import { TriangleAlertIcon } from 'lucide-react';
 import moment from 'moment';
-import { forwardRef, DetailedHTMLProps, InputHTMLAttributes } from 'react';
+import { forwardRef, DetailedHTMLProps, InputHTMLAttributes, useState } from 'react';
 
 export type FormInputProps = {
   id?: string;
@@ -16,8 +18,9 @@ export type Ref = HTMLInputElement;
 
 const Input = forwardRef<Ref, FormInputProps>(
   ({ id, type = 'text', name = '', label = '', value = '', placeholder = '', invalid = false, className, ...props }, ref) => {
+    const [newValue, setNewValue] = useState(value);
     const isInvalid =
-      type == 'file' ? invalid && ref != null && typeof ref !== 'function' && ref.current && ref.current.value == '' : invalid && value.length <= 0;
+      type == 'file' ? invalid && ref != null && typeof ref !== 'function' && ref.current && ref.current.value == '' : invalid && newValue.length <= 0;
 
     value = type == 'date' && value && value != '' ? moment(value).format('YYYY-MM-DD') : value;
     return (
@@ -38,7 +41,10 @@ const Input = forwardRef<Ref, FormInputProps>(
           data-lpignore="true"
           data-form-type="other"
           className={`${isInvalid && '!border-red-400'} input-field mt-1 px-2 py-1.5 focus:outline-none ${className}`}
-          value={value || ''}
+          value={newValue}
+          onChange={(e) => {
+            setNewValue(e.target.value);
+          }}
           {...props}
         />
         {isInvalid && (

@@ -1,3 +1,5 @@
+'use client';
+
 import { TriangleAlertIcon } from 'lucide-react';
 import { forwardRef, DetailedHTMLProps, InputHTMLAttributes } from 'react';
 

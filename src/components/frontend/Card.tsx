@@ -4,9 +4,10 @@ type Props = {
   children: React.ReactNode;
   type?: 'small' | 'medium' | 'large';
   className?: String;
+  padding?: String;
 };
 
-export default function Card({ children, className, type = 'medium' }: Props) {
+export default function Card({ children, className, type = 'medium', padding }: Props) {
   const appendClass = (type: string) => {
     switch (type) {
       case 'small':
@@ -22,7 +23,8 @@ export default function Card({ children, className, type = 'medium' }: Props) {
   return (
     <div
       className={classNames(
-        'border-primary-200 bg-primary-50 dark:border-primary-900 dark:bg-primary-800 border p-6 font-mono shadow-lg',
+        'border-primary-200 bg-primary-50 dark:border-primary-900 dark:bg-primary-800 border font-mono shadow-xs',
+        padding ? padding : 'p-6',
         className,
         appendClass(type),
       )}
