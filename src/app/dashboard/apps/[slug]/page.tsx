@@ -25,15 +25,12 @@ export default async function DashboardAppsView({ params }: Props) {
     const rawFormData = {
       name: formData.get('name'),
       description: formData.get('description'),
+      url: formData.get('url'),
+      file: formData.get('file') as File,
     };
-
-    console.log(rawFormData);
     updateApp(id, rawFormData);
 
     redirect('/dashboard/apps');
-
-    // mutate data
-    // revalidate cache
   }
 
   return (
@@ -51,6 +48,9 @@ export default async function DashboardAppsView({ params }: Props) {
             </div>
             <div>
               <Textarea name="description" label="Description" value={app.description || ''} required />
+            </div>
+            <div>
+              <Input name="url" type="url" label="URL" value={app.url || ''} required />
             </div>
             <div className="flex items-start gap-4">
               <div className="grow">

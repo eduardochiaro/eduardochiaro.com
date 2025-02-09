@@ -1,11 +1,10 @@
 'use client';
 
 import { Checkbox } from '@headlessui/react';
-import { ChevronDownIcon, ChevronUpIcon } from 'lucide-react';
+import { Check, ChevronDownIcon, ChevronUpIcon } from 'lucide-react';
 import React, { useState, Fragment } from 'react';
 import classNames from '@/utils/classNames';
 import Card from '../frontend/Card';
-import { pad } from 'cypress/types/lodash';
 
 type Props = {
   columns: Column[];
@@ -89,9 +88,9 @@ export default function Table({ columns, data, useCheckboxes = false, tableRow }
                   <Checkbox
                     checked={row.checked || false}
                     onChange={() => checkRow(index)}
-                    className="group bg-primary-200 data-[checked]:bg-primary-200 inline-flex size-4 items-center justify-center rounded-sm border"
+                    className="group bg-primary-200 data-[checked]:bg-primary-200 border-primary-400 dark:border-primary-700 inline-flex size-4 items-center justify-center rounded-sm border"
                   >
-                    <div className="bg-primary-700 size-3 rounded-xs opacity-0 group-data-[checked]:opacity-100"></div>
+                    <Check strokeWidth={5} className="text-primary-800 size-3 opacity-0 group-data-[checked]:opacity-100" />
                   </Checkbox>
                 ),
                 rowData: row,
@@ -103,8 +102,8 @@ export default function Table({ columns, data, useCheckboxes = false, tableRow }
       {countChecked > 0 && (
         <div className="absolute right-0 bottom-5 left-0 mx-auto flex justify-center">
           <div className="bg-primary-100 text-primary-700 dark:bg-primary-700 dark:text-primary-400 flex min-w-96 items-center justify-between rounded-lg p-4 text-sm shadow-md sm:rounded-lg">
-            <span>Number of rows selected: {countChecked}</span>
-            <a href="#" className="font-medium text-blue-600 hover:underline dark:text-blue-500">
+            <strong>{countChecked} selected</strong>
+            <a href="#" className="text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300">
               Delete
             </a>
           </div>
