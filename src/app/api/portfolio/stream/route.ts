@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getCachedFlickr, getCacheInstagram } from '@/utils/getCachedFeeds';
+import { getCachedFlickr, getCacheInstagram, getCachePixelfed } from '@/utils/getCachedFeeds';
 import moment from 'moment';
 
 type StreamItem = {
@@ -13,7 +13,7 @@ type StreamItem = {
 
 export async function GET(request: NextRequest) {
   let results: StreamItem[] = [];
-
+  /*
   const flickr = await getCachedFlickr();
   flickr.items.slice(0, 5).forEach((item: { title: any; link: any; created: number; images: { [x: string]: { [x: string]: any } }[] }) => {
     results.push({
@@ -40,6 +40,18 @@ export async function GET(request: NextRequest) {
 
   results = results.sort(function (x, y) {
     return y.timestamp - x.timestamp;
+  });
+  */
+  const pixelfed = await getCachePixelfed();
+  pixelfed.slice(0, 5).forEach((item: { content: any; url: any; created_at: moment.MomentInput; media_attachments: { url: any }[] }) => {
+    results.push({
+      title: item.content,
+      permalink: item.url,
+      published: moment(item.created_at).utc().format(),
+      timestamp: moment(item.created_at).unix(),
+      type: 'Pixelfed',
+      image: item.media_attachments[0].url,
+    });
   });
 
   if (results) {

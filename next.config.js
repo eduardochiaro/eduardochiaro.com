@@ -54,8 +54,12 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: '**.openlibrary.org'
+      },
+      {
+        protocol: 'https',
+        hostname: 'pxscdn.com'
       }
-    ],
+    ]
   },
 	experimental: {
 		serverActions: {

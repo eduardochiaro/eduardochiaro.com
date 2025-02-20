@@ -5,7 +5,7 @@ import Card from '@/components/frontend/Card';
 import { Input, Textarea } from '@/components/form';
 import { updateApp } from '@/actions/apps';
 import Image from 'next/image';
-import { ArrowLeftIcon, ChevronRight } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Admin > Apps | Eduardo Chiaro',
