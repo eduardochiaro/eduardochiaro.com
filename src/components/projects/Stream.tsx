@@ -14,11 +14,11 @@ import Pixelfed from '../icons/Pixelfed';
 const GetIcon = ({ type }: { type: string }) => {
   switch (type) {
     case 'Flickr':
-      return <Flickr className="text-primary-100 w-6" alt={type} />;
+      return <Flickr className="w-6" alt={type} />;
     case 'Instagram':
-      return <Instagram className="text-primary-100 w-6" alt={type} />;
+      return <Instagram className="w-6" alt={type} />;
     case 'Pixelfed':
-      return <Pixelfed className="text-primary-100 w-6" alt={type} />;
+      return <Pixelfed className="w-6" alt={type} />;
     default:
       return <span className="text-sm font-semibold capitalize">{type}</span>;
   }
