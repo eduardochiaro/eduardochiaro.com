@@ -50,7 +50,10 @@ export default async function Resume() {
                 <ul className="flex flex-wrap gap-4 md:flex-col md:gap-1">
                   {skills.map((skill: Skill, index: number) => (
                     <li key={`skill-${index}`} className="flex items-center gap-2 text-sm">
-                      {skill.name}
+                      <>
+                        {skill.name}
+                        <span className="hidden">: {skill.percentage}%</span>
+                      </>
                       <span className="w-full shrink"></span>
                       <SVG
                         title={skill.name}
@@ -97,14 +100,17 @@ export default async function Resume() {
                       <div key={`job-${index}`} className="mb-10 flex-1">
                         <h4 className="items-center gap-2 font-semibold md:flex">
                           <>{job.name}</>
-                          <span className="px-2 md:px-0">|</span>
+                          <span className="px-2 md:px-0"> | </span>
                           {job.file && job.file.path ? (
-                            <SVG
-                              title={job.company}
-                              className={'fill-primary-700 dark:fill-primary-200 inline-block'}
-                              src={`${process.env.NEXT_PUBLIC_CDN_URL}/${job.file.path}`}
-                              height={20}
-                            />
+                            <>
+                              <SVG
+                                title={job.company}
+                                className={'fill-primary-700 dark:fill-primary-200 inline-block'}
+                                src={`${process.env.NEXT_PUBLIC_CDN_URL}/${job.file.path}`}
+                                height={20}
+                              />
+                              <span className="hidden">{job.company}</span>
+                            </>
                           ) : (
                             <>{job.company}</>
                           )}
@@ -113,39 +119,37 @@ export default async function Resume() {
                           {moment(job.startDate).format('MMMM YYYY')} - {job.endDate ? moment(job.endDate).format('MMMM YYYY') : 'Now'}
                         </p>
                         {job.tags?.length > 0 && (
-                          <div className="mt-2 flex items-center gap-2">
+                          <ul className="mt-2 flex items-center gap-2">
                             {job.tags?.map((tag: ResumeTag) => (
-                              <span key={`resume_tag_${tag.id}`} className="bg-secondary-800 text-primary-100 rounded-sm px-2 py-1 text-xs">
+                              <li key={`resume_tag_${tag.id}`} className="bg-secondary-800 text-primary-100 rounded-sm px-2 py-1 text-xs">
                                 {tag.name}
-                              </span>
+                              </li>
                             ))}
-                          </div>
+                          </ul>
                         )}
                         {job.projects.length > 0 && (
-                          <div className="mt-4 mr-8 flex items-start gap-2">
-                            <ChevronRightIcon className="text-secondary-700 dark:text-secondary-200 mt-0.5 size-4" />
-                            <div>
-                              <h5 className="mb-2 text-sm">Projects</h5>
-                              <div className="flex items-center gap-8">
-                                {job.projects?.map((project: ResumeProjectExpanded, index: number) => (
-                                  <Fragment key={`project-image-${index}`}>
-                                    {(project.file && project.file.path && (
+                          <div className="ml-4">
+                            <div className="mt-4 mr-8 flex items-start gap-2">
+                              <ChevronRightIcon className="text-secondary-700 dark:text-secondary-200 mt-0.5 size-4" />
+                              <p className="mb-2 text-sm">Projects</p>
+                            </div>
+                            <ul className="flex items-center gap-8">
+                              {job.projects?.map((project: ResumeProjectExpanded, index: number) => (
+                                <li key={`project-image-${index}`}>
+                                  {(project.file && project.file.path && (
+                                    <>
                                       <SVG
-                                        key={`resume_project_${project.id}`}
                                         title={project.name}
                                         className="fill-primary-700 dark:fill-primary-200"
                                         src={`${process.env.NEXT_PUBLIC_CDN_URL}/${project.file.path}`}
                                         height={20}
                                       />
-                                    )) || (
-                                      <h6 key={`resume_project_${project.id}`} className="mb-2 text-xl font-bold break-words">
-                                        {project.name}
-                                      </h6>
-                                    )}
-                                  </Fragment>
-                                ))}
-                              </div>
-                            </div>
+                                      <p className="hidden">{project.name}</p>
+                                    </>
+                                  )) || <p className="mb-2 text-xl font-bold break-words">{project.name}</p>}
+                                </li>
+                              ))}
+                            </ul>
                           </div>
                         )}
                       </div>
