@@ -35,7 +35,7 @@ export default async function AdminIndex() {
                       <div className="md:flex-1"></div>
                       <div className="">
                         <span className={'text-lg'}>{link.title}</span>
-                        <p className="text-sm opacity-50">{link.description}</p>
+                        <p className="text-primary-500 dark:text-primary-400 text-sm">{link.description}</p>
                       </div>
                     </Link>
                   ))}

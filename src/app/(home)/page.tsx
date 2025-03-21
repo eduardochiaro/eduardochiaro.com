@@ -46,68 +46,71 @@ export default async function Home() {
 
   return (
     <div className="relative flex h-screen flex-col items-center md:flex-row">
-      <div className="top-5 left-5 md:absolute">
+      <header className="top-5 left-5 md:absolute">
         <WireContainer>
           <h1 className="font-header flex items-center p-1 px-2 text-3xl font-normal">
             <span className="text-secondary-700 dark:text-secondary-500">eduardo</span>
             <span className="flex items-center font-semibold">
               <Logo className="size-6" alt="c" />
-              hiaro
+              <span className="hidden">c</span>hiaro
             </span>
           </h1>
         </WireContainer>
-      </div>
-      <WireContainer type="large" className="mx-auto">
-        <Card className="max-w-screen-sm md:min-w-96">
-          <div className="px-3">
-            <div className="flex items-center justify-between">
-              <h2>
-                <span className="font-semibold">Eduardo</span> is a{' '}
-                <span className="decoration-accent-500 underline decoration-double decoration-2">software engineer</span>.
-              </h2>
-              <Logo className="w-20" />
+      </header>
+      <main className="mx-auto">
+        <WireContainer type="large">
+          <Card className="max-w-screen-sm md:min-w-96">
+            <div className="px-3">
+              <div className="flex items-center justify-between">
+                <h2>
+                  <span className="font-semibold">Eduardo</span> is a{' '}
+                  <span className="decoration-accent-500 underline decoration-double decoration-2">software engineer</span>.
+                </h2>
+                <Logo className="w-20" />
+              </div>
+              <p className="mt-10">
+                With {moment().diff('2005-09-01', 'years')} years of experience, Eduardo has been tinkering with Node.js for the last few years, building SaaS
+                applications that are scalable and flexible. He&apos;s a big believer in using the latest technologies and best practices to stay on the cutting
+                edge of development.
+              </p>
+              <ul cy-data="menu" className="text-primary-600 dark:text-primary-200 mt-10 flex flex-col gap-3 font-semibold">
+                {menu.map((item, index) => (
+                  <li key={`menu-item-${index}`}>
+                    <Link href={item.href} prefetch={false} className="group dark:hover:text-primary-400 inline-flex items-center gap-2 hover:underline">
+                      <item.icon className={'group-hover:text-accent-600 group-hover:dark:text-accent-500 w-5'} />
+                      <span>{item.name}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <p className="text-primary-400 dark:text-primary-500 mt-10 text-xs font-semibold">I worked for...</p>
+              <div className="flex flex-row flex-wrap items-center gap-5 md:justify-between">
+                {works.map((job, index) => (
+                  <div className={'relative text-center align-middle'} key={`job-image-${index}`}>
+                    <SVG
+                      title={job.name}
+                      className={'fill-primary-950 dark:fill-primary-50 opacity-90 grayscale transition-all hover:opacity-100 hover:grayscale-0'}
+                      src={`${process.env.NEXT_PUBLIC_CDN_URL}/${job.logo}`}
+                      height={20}
+                    />
+                    <span className="hidden">{job.name}</span>
+                    {job.special && <span className="text-accent-600 dark:text-accent-500 absolute -top-2 -right-2 text-xs">•</span>}
+                  </div>
+                ))}
+              </div>
             </div>
-            <p className="mt-10">
-              With {moment().diff('2005-09-01', 'years')} years of experience, Eduardo has been tinkering with Node.js for the last few years, building SaaS
-              applications that are scalable and flexible. He&apos;s a big believer in using the latest technologies and best practices to stay on the cutting
-              edge of development.
-            </p>
-            <ul className="text-primary-600 dark:text-primary-200 mt-10 flex flex-col gap-3 font-semibold">
-              {menu.map((item, index) => (
-                <li key={`menu-item-${index}`}>
-                  <Link href={item.href} prefetch={false} className="group dark:hover:text-primary-400 inline-flex items-center gap-2 hover:underline">
-                    <item.icon className={'group-hover:text-accent-600 group-hover:dark:text-accent-500 w-5'} />
-                    <span>{item.name}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <p className="mt-10 text-xs font-semibold opacity-50">I worked for...</p>
-            <div className="flex flex-row flex-wrap items-center gap-5 md:justify-between">
-              {works.map((job, index) => (
-                <div className={'relative text-center align-middle'} key={`job-image-${index}`}>
-                  <SVG
-                    title={job.name}
-                    className={'fill-primary-950 dark:fill-primary-50 opacity-90 grayscale transition-all hover:opacity-100 hover:grayscale-0'}
-                    src={`${process.env.NEXT_PUBLIC_CDN_URL}/${job.logo}`}
-                    height={20}
-                  />
-                  {job.special && <span className="text-accent-600 dark:text-accent-500 absolute -top-2 -right-2 text-xs">•</span>}
-                </div>
-              ))}
-            </div>
-          </div>
-        </Card>
-      </WireContainer>
+          </Card>
+        </WireContainer>
+      </main>
 
-      <div className="bottom-5 flex w-full items-center justify-between px-5 md:absolute">
+      <footer className="bottom-5 flex w-full items-center justify-between px-5 md:absolute">
         <p className="text-xs">
           <span className="text-accent-600 dark:text-accent-500">•</span> project under contract
         </p>
         <WireContainer>
           <ThemeIcon orientation="top left" size="h-6" />
         </WireContainer>
-      </div>
+      </footer>
     </div>
   );
 }

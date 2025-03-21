@@ -39,9 +39,8 @@ export default async function Resume() {
         <WireContainer type="large" className="mx-auto w-full">
           <Card className="max-w-screen-xl md:min-w-96">
             <div className="mb-10 flex items-center justify-between">
-              <div className="ml-10">
-                <h2 className="font-header text-5xl font-semibold">eduardo</h2>
-                <h2 className="font-header text-5xl font-semibold">chiaro</h2>
+              <div className="ml-10 w-10">
+                <h2 className="font-header text-5xl font-semibold">eduardo chiaro</h2>
               </div>
               <Logo className="mr-7 w-20" />
             </div>

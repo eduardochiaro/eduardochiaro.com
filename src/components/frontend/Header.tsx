@@ -80,7 +80,7 @@ export default function Header({ data }: { data: MenuLink[] }) {
               <span className="text-secondary-700 dark:text-secondary-500">eduardo</span>
               <span className="flex items-center font-semibold">
                 <Logo className="size-6" alt="c" />
-                hiaro
+                <span className="hidden">c</span>hiaro
               </span>
             </Link>
           </h1>

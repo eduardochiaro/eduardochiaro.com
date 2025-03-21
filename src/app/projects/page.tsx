@@ -3,7 +3,6 @@ import prisma from '@/utils/prisma';
 import { Metadata } from 'next';
 import { cache } from 'react';
 import GitHubIcon from '@/components/icons/Github';
-import styles from '@/styles/Projects.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Prisma } from '@prisma/client';
@@ -39,7 +38,7 @@ export default async function Projects() {
 
   return (
     <FrontendLayout>
-      <section className={`${styles.apps} mt-10 px-4 lg:px-0`}>
+      <section className={'mt-10 px-4 lg:px-0'}>
         <div className="mx-auto flex max-w-5xl flex-wrap">
           <div className="mb-10 basis-full md:basis-3/4">
             <h1 className="font-header h-10 text-3xl leading-tight font-light tracking-wide lg:text-4xl">Projects</h1>
@@ -95,7 +94,7 @@ export default async function Projects() {
                         <h3 className="group-hover:text-secondary-600 dark:group-hover:text-secondary-600 text-lg tracking-wide transition-colors duration-300 ease-out">
                           {project.name}
                         </h3>
-                        <p className="mt-2 font-sans text-xs opacity-50">{project.description}</p>
+                        <p className="text-primary-500 dark:text-primary-400 mt-2 font-sans text-xs">{project.description}</p>
                       </Link>
                     </Card>
                   </WireContainer>
