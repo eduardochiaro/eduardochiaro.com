@@ -30,7 +30,7 @@
     "@apollo/client": "^3.13.5",
     "@auth/prisma-adapter": "^2.7.4",
     "@headlessui/react": "^2.2.0",
-    "@prisma/client": "^6.3.1",
+    "@prisma/client": "^6.5.0",
     "@tailwindcss/postcss": "^4.0.15",
     "axios": "^1.8.4",
     "cheerio": "^1.0.0",
@@ -81,6 +81,6 @@
     "postcss": "^8.5.3",
     "prettier": "^3.5.3",
     "prettier-plugin-tailwindcss": "^0.6.11",
-    "prisma": "^6.3.1"
+    "prisma": "^6.5.0"
   }
 }
