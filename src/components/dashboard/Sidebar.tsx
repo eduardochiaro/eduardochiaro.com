@@ -85,7 +85,7 @@ export default function Sidebar({ user }: { user: any }) {
           >
             <MenuItems
               data-cy="user-settings-container"
-              className="divide-primary-200 bg-primary-100 ring-primary-900 ring-opacity-10 dark:divide-primary-500 dark:bg-primary-700 absolute right-0 z-10 mt-10 w-36 transform divide-y rounded-md ring-1 shadow-lg focus:outline-none md:bottom-0 md:left-0 md:mb-10"
+              className="divide-primary-200 bg-primary-100 ring-primary-900 ring-opacity-10 dark:divide-primary-500 dark:bg-primary-700 absolute right-0 z-10 mt-10 w-36 transform divide-y rounded-md shadow-lg ring-1 focus:outline-none md:bottom-0 md:left-0 md:mb-10"
               aria-orientation="vertical"
               aria-labelledby="user-button"
             >

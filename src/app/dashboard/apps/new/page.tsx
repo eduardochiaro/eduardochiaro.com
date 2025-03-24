@@ -1,0 +1,64 @@
+import { Metadata } from 'next';
+import { redirect } from 'next/navigation';
+import Card from '@/components/frontend/Card';
+import { Input, Textarea } from '@/components/form';
+import { addApp } from '@/actions/apps';
+
+export const metadata: Metadata = {
+  title: 'Admin > Apps | Eduardo Chiaro',
+};
+
+type Props = {
+  params: Promise<{ slug: string }>;
+};
+
+export default async function DashboardAppsView({ params }: Props) {
+  const id = (await params).slug;
+
+  async function saveData(formData: FormData) {
+    'use server';
+
+    const rawFormData = {
+      name: formData.get('name'),
+      description: formData.get('description'),
+      url: formData.get('url'),
+      file: formData.get('file') as File,
+    };
+    addApp(rawFormData);
+    redirect('/dashboard/apps');
+  }
+
+  return (
+    <div>
+      <Card type="small" className="mb-10 flex justify-between gap-10">
+        <h2 className="flex items-center text-2xl font-semibold">Apps New</h2>
+      </Card>
+      <Card className="mx-auto max-w-3xl">
+        <form action={saveData} className="flex flex-col gap-4">
+          <div>
+            <Input type="text" name="name" label="Name" value="" required />
+          </div>
+          <div>
+            <Textarea name="description" label="Description" value="" required />
+          </div>
+          <div>
+            <Input name="url" type="url" label="URL" value="" required />
+          </div>
+          <div className="flex items-start gap-4">
+            <div className="grow">
+              <Input type="file" name="file" label="File" value="" required />
+            </div>
+          </div>
+          <div className="flex items-center justify-end">
+            <button 
+              type="submit" 
+              className="bg-accent-600 hover:bg-accent-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 shadow-sm"
+            >
+              Save
+            </button>
+          </div>
+        </form>
+      </Card>
+    </div>
+  );
+}

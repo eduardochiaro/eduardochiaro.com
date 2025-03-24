@@ -99,7 +99,7 @@ export function TableRow({ trClasses, tdClasses, rowData, useCheckboxes, checkbo
               >
                 Edit
               </Link>
-              |<button className="text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300">Delete</button>
+              |<button className="cursor-pointer text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300">Delete</button>
             </div>
           ) : column.key === 'image' ? (
             mappedData[column.key as keyof MappedData]

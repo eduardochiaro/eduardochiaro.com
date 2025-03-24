@@ -22,14 +22,15 @@ export default async function DashboardAppsView({ params }: Props) {
   async function saveData(formData: FormData) {
     'use server';
 
+    let file = formData.get('file') as File;
+
     const rawFormData = {
       name: formData.get('name'),
       description: formData.get('description'),
       url: formData.get('url'),
-      file: formData.get('file') as File,
+      file: file.size > 0 ? file : null,
     };
     updateApp(id, rawFormData);
-
     redirect('/dashboard/apps');
   }
 
@@ -75,7 +76,7 @@ export default async function DashboardAppsView({ params }: Props) {
                 )}
               </div>
             </div>
-            <div>
+            <div className="flex items-center justify-end">
               <button type="submit" className="button">
                 Save
               </button>

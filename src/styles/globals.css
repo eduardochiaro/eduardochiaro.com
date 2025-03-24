@@ -86,9 +86,12 @@ table.admin-table {
   top: -6rem;
   visibility: hidden;
 }
+@utility rainbow {
+  background: linear-gradient(90deg, red 0%, yellow 15%, lime 30%, cyan 50%, blue 65%, magenta 80%, red 100%) !important;
+}
 #nprogress {
   .bar {
-    background: linear-gradient(90deg, red 0%, yellow 15%, lime 30%, cyan 50%, blue 65%, magenta 80%, red 100%) !important;
+    @apply rainbow;
   }
 }
 @utility box-card-unstyled {
