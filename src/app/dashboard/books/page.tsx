@@ -4,7 +4,7 @@ import BookSearch from '@/components/admin/BookSearch';
 import { getBookTags, getBooks } from '@/actions/books';
 
 export const metadata: Metadata = {
-  title: 'Admin > Apps | Eduardo Chiaro',
+  title: 'Admin > Books | Eduardo Chiaro',
 };
 
 export default async function AdminBooksIndex() {
