@@ -35,7 +35,7 @@ const Input = forwardRef<Ref, FormInputProps>(
           ref={ref}
           type={type}
           name={name}
-          placeholder={placeholder || type == 'url' ? 'https://' : ''}
+          placeholder={placeholder || (type == 'url' ? 'https://' : '')}
           id={id ? id : `${name}-form`}
           autoComplete="off"
           data-lpignore="true"

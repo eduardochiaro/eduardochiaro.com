@@ -50,9 +50,9 @@ export default async function DashboardAppsView({ params }: Props) {
             </div>
           </div>
           <div className="flex items-center justify-end">
-            <button 
-              type="submit" 
-              className="bg-accent-600 hover:bg-accent-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 shadow-sm"
+            <button
+              type="submit"
+              className="bg-accent-600 hover:bg-accent-700 focus:ring-primary-500 rounded-md px-4 py-2 font-medium text-white shadow-sm transition-colors duration-200 focus:ring-2 focus:ring-offset-2 focus:outline-none"
             >
               Save
             </button>

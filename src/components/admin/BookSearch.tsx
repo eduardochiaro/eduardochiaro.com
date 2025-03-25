@@ -12,8 +12,35 @@ import styles from '@/styles/Book.module.css';
 
 type BookExpanded = Prisma.BookGetPayload<{ include: { file: true; tags: true } }>;
 
+const BookCard = ({ book, local = false }: { book: BookExpanded; local: boolean }) => {
+  const backgroundImage =
+    book.file && book.file.path ? (local ? `url('${process.env.NEXT_PUBLIC_CDN_URL}/${book.file.path}')` : `url('${book.file.path}')`) : '';
+
+  return (
+    <div className="flex flex-col">
+      <div
+        className={classNames(
+          book.file && book.file.path ? 'bg-emerald-600' : 'bg-accent-600',
+          'border-primary-700 relative z-10 mx-auto flex h-60 w-40 flex-col overflow-hidden rounded-sm border bg-cover bg-center bg-no-repeat shadow-md',
+        )}
+        style={{
+          backgroundImage: backgroundImage,
+          backgroundPosition: 'top center',
+        }}
+        title={book.title}
+      >
+        {(!book.file || !book.file.path) && (
+          <>
+            <h3 className="mt-5 line-clamp-5 grow px-3 text-center text-base font-semibold">{book.title}</h3>
+            <h4 className="mb-2 line-clamp-3 px-3 text-center text-xs opacity-80">{book.author}</h4>
+          </>
+        )}
+      </div>
+    </div>
+  );
+};
+
 export default function BookSearch({ books, tags }: { books: BookExpanded[]; tags: any[] }) {
-  const [search, setSearch] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState<BookExpanded[]>(books);
   const [tagResults, setTags] = useState<any[]>(tags);
@@ -45,11 +72,13 @@ export default function BookSearch({ books, tags }: { books: BookExpanded[]; tag
     return updateSavedBooks();
   };
 
-  const handleSearch = () => {
+  const handleSearch = (formData: FormData) => {
     //fetch data from https://openlibrary.org/search.json
     setIsLoading(true);
 
-    const response = fetch(`https://openlibrary.org/search.json?q=${search}&fields=title,author_name,cover_i,isbn,subject&limit=100&offset=0`)
+    const search = formData.get('search') as string;
+
+    fetch(`https://openlibrary.org/search.json?q=${search}&fields=title,author_name,cover_i,isbn,subject&limit=100&offset=0`)
       .then((response) => response.json())
       .then((data) => {
         setIsLoading(false);
@@ -98,22 +127,12 @@ export default function BookSearch({ books, tags }: { books: BookExpanded[]; tag
   return (
     <div className="w-full">
       <div className="flex items-center gap-2">
-        <Input
-          label="Search"
-          name="search"
-          type="text"
-          placeholder="Search book by name or author..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') {
-              handleSearch();
-            }
-          }}
-        />
-        <button className="button" onClick={handleSearch}>
-          Search
-        </button>
+        <form action={handleSearch} className="flex w-full items-center gap-4">
+          <Input label="Search" name="search" type="text" value={''} placeholder="Search book by name or author..." autoCorrect="off" autoComplete="off" />
+          <button className="button" type="submit">
+            Search
+          </button>
+        </form>
       </div>
       {isLoading && (
         <p className="mt-10 flex items-center gap-2">
@@ -130,46 +149,23 @@ export default function BookSearch({ books, tags }: { books: BookExpanded[]; tag
               </span>
             </label>
           </div>
-          <div
-            className="flex max-w-screen-lg items-start gap-6 space-x-6 overflow-x-auto pb-4"
-            role="menu"
-            aria-orientation="horizontal"
-            aria-labelledby="menu-button"
-          >
-            {data.results.map((book: BookExpanded, index: number) => (
-              <div key={index} className="flex w-44 flex-col">
-                <p className="mb-1 line-clamp-2 text-center text-sm text-gray-500" title={book.author || ''}>
-                  {book.author}
-                </p>
+          <div className="w-full">
+            <div className="flex gap-6 space-x-6 overflow-x-auto pb-4" role="menu" aria-orientation="horizontal" aria-labelledby="menu-button">
+              {data.results.map((book: BookExpanded, index: number) => (
+                <div key={index} className="flex w-44 flex-col">
+                  <p className="mb-1 line-clamp-2 text-center text-sm text-gray-500">{book.author}</p>
 
-                <div
-                  className={classNames(book.file && book.file.path ? 'bg-emerald-600' : 'bg-accent-600', styles['book'])}
-                  style={{
-                    backgroundImage: book.file?.path ? `url('${book.file.path}')` : '',
-                    backgroundPosition: 'top center',
-                  }}
-                  title={book.title}
-                >
-                  {(!book.file || !book.file.path) && (
-                    <>
-                      <h3>{book.title}</h3>
-                      <h4>{book.author}</h4>
-                    </>
+                  <BookCard book={book} local={false} />
+                  <h3 className="mt-2 line-clamp-2 text-center text-base font-semibold">{book.title}</h3>
+                  <p className="mb-1 line-clamp-2 grow text-center text-sm text-gray-500">{book.isbn}</p>
+                  {!checkIfBookIsSaved(book) && (
+                    <button className="button mt-2" onClick={() => addBookAction(book)}>
+                      Add
+                    </button>
                   )}
                 </div>
-                <h3 className="mt-2 line-clamp-2 text-center text-base font-semibold" title={book.title}>
-                  {book.title}
-                </h3>
-                <p className="mb-1 line-clamp-2 text-center text-sm text-gray-500" title={book.isbn || ''}>
-                  {book.isbn}
-                </p>
-                {!checkIfBookIsSaved(book) && (
-                  <button className="button mt-2" onClick={() => addBookAction(book)}>
-                    Add
-                  </button>
-                )}
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       )}
@@ -201,21 +197,7 @@ export default function BookSearch({ books, tags }: { books: BookExpanded[]; tag
           <div className="grid grid-cols-4 items-end gap-6">
             {results.map((book: BookExpanded, index: number) => (
               <div key={index} className="flex flex-col">
-                <div
-                  className={classNames(book.file && book.file.path ? 'bg-emerald-600' : 'bg-accent-600', styles['book'])}
-                  style={{
-                    backgroundImage: book.file && book.file.path ? `url('${process.env.NEXT_PUBLIC_CDN_URL}/${book.file.path}')` : '',
-                    backgroundPosition: 'top center',
-                  }}
-                  title={book.title}
-                >
-                  {!book.file && (
-                    <>
-                      <h3>{book.title}</h3>
-                      <h4>{book.author}</h4>
-                    </>
-                  )}
-                </div>
+                <BookCard book={book} local={true} />
                 <p className="mt-2 line-clamp-2 text-center text-xs text-gray-500" title={book.title || ''}>
                   {book.title}
                 </p>
