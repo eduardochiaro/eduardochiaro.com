@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import SVG from '@/utils/svg';
 import { Skill } from '@prisma/client';
+import prisma from '@/utils/prisma';
 import moment from 'moment';
 import Button from '@/components/dashboard/Button';
 import Link from 'next/link';
