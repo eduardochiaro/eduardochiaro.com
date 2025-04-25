@@ -1,10 +1,10 @@
 import Providers from '@/providers';
-import { Titillium_Web, Roboto_Mono } from 'next/font/google';
+import { Josefin_Sans, Roboto_Mono } from 'next/font/google';
 import '../styles/globals.css';
 import type { Viewport } from 'next';
 import { Suspense } from 'react';
 
-const header = Titillium_Web({
+const header = Josefin_Sans({
   weight: ['400', '600', '700'],
   subsets: ['latin'],
   display: 'swap',

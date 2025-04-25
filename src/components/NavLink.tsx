@@ -27,7 +27,7 @@ export default function NavLink({
   }, [asPath, asPathInitial, href, as, activeClassName, className]);
 
   return (
-    <Link href={href} as={as} {...props} legacyBehavior>
+    <Link href={href} as={as} {...props}>
       {React.cloneElement(child, { className: classInUse })}
     </Link>
   );

@@ -17,7 +17,7 @@ export default function Header({ data }: { data: MenuLink[] }) {
 
   const menuData = data
     ? data.map((menuLink: MenuLink) => {
-        return { text: <>{menuLink.name}</>, link: menuLink.url, current: false, onlyMobile: menuLink.onlyMobile, active: menuLink.active };
+        return { text: <span>{menuLink.name}</span>, link: menuLink.url, current: false, onlyMobile: menuLink.onlyMobile, active: menuLink.active };
       })
     : [];
 
@@ -99,7 +99,7 @@ export default function Header({ data }: { data: MenuLink[] }) {
                         activeClassName={'block md:inline-block text-2xl md:text-sm active-url'}
                         type="main"
                       >
-                        <a>{item.text}</a>
+                        {item.text}
                       </NavLink>
                     </li>
                   );
