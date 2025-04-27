@@ -11,6 +11,7 @@ import classNames from '@/utils/classNames';
 import type { MenuLink } from '@prisma/client';
 import WireContainer from './WireContainer';
 import Logo from '../icons/Logo';
+import SiteLogo from './SiteLogo';
 
 export default function Header({ data }: { data: MenuLink[] }) {
   const pathname = usePathname();
@@ -74,17 +75,9 @@ export default function Header({ data }: { data: MenuLink[] }) {
           </Transition>
         </Menu>
 
-        <WireContainer>
-          <h1 className="font-header p-1 px-2 text-3xl font-normal">
-            <Link href="/" className="font-header flex items-center p-1 px-2 text-3xl font-normal">
-              <span className="text-secondary-700 dark:text-secondary-500">eduardo</span>
-              <span className="flex items-center font-semibold">
-                <Logo className="size-6" alt="c" />
-                <span className="hidden">c</span>hiaro
-              </span>
-            </Link>
-          </h1>
-        </WireContainer>
+        <Link href="/" className="font-header flex items-center p-1 px-2 text-3xl font-normal">
+          <SiteLogo />
+        </Link>
         <div className="flex items-center gap-4 md:gap-10">
           <div className="hidden items-center md:flex">
             <ul className="mx-auto items-center gap-2 font-semibold tracking-wider md:flex md:gap-8">

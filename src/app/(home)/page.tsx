@@ -8,6 +8,7 @@ import prisma from '@/utils/prisma';
 import Logo from '@/components/icons/Logo';
 import Card from '@/components/frontend/Card';
 import { BookmarkCheckIcon, FileUserIcon, FlaskConicalIcon, LibraryBigIcon, RssIcon } from 'lucide-react';
+import SiteLogo from '@/components/frontend/SiteLogo';
 
 export default async function Home() {
   const works = await getFeatureWork();
@@ -47,15 +48,7 @@ export default async function Home() {
   return (
     <div className="relative flex h-screen flex-col items-center md:flex-row">
       <header className="top-5 left-5 md:absolute">
-        <WireContainer>
-          <h1 className="font-header flex items-center p-1 px-2 text-3xl font-normal">
-            <span className="text-secondary-700 dark:text-secondary-500">eduardo</span>
-            <span className="flex items-center font-semibold">
-              <Logo className="size-6" alt="c" />
-              <span className="hidden">c</span>hiaro
-            </span>
-          </h1>
-        </WireContainer>
+        <SiteLogo />
       </header>
       <main className="mx-auto">
         <WireContainer type="large">

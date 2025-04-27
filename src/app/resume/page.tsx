@@ -49,7 +49,7 @@ export default async function Resume() {
                 <h3 className="font-header mb-4 text-2xl font-semibold">Skills</h3>
                 <ul className="flex flex-wrap gap-4 md:flex-col md:gap-1">
                   {skills.map((skill: Skill, index: number) => (
-                    <li key={`skill-${index}`} className="flex items-center gap-2 text-sm group">
+                    <li key={`skill-${index}`} className="group flex items-center gap-2 text-sm">
                       <>
                         {skill.name}
                         <span className="hidden">: {skill.percentage}%</span>
@@ -62,7 +62,10 @@ export default async function Resume() {
                       />
                       <div className="w-1/2 flex-none">
                         <div className="bg-primary-200 dark:bg-primary-900 h-3 w-full rounded-xs">
-                          <div className="bg-primary-500 h-3 rounded-xs group-hover:bg-accent-500 transition-colors duration-300" style={{ width: skill.percentage + '%' }}></div>
+                          <div
+                            className="bg-primary-500 group-hover:bg-accent-500 h-3 rounded-xs transition-colors duration-300"
+                            style={{ width: skill.percentage + '%' }}
+                          ></div>
                         </div>
                       </div>
                     </li>
