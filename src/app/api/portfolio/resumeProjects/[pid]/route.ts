@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/utils/prisma';
-import { rmFile } from 'rm-file';
+import getUser from '@/utils/getUser';
 
 const uploadPath = './public/uploads/';
 
@@ -10,6 +10,12 @@ export async function DELETE(
     params: Promise<{ pid: string }>;
   },
 ) {
+  const user = await getUser();
+  if (!user) {
+    return new Response('Unauthorized', {
+      status: 401,
+    });
+  }
   const params = await props.params;
   const { pid } = params;
   await prisma.resumeProject.delete({

@@ -3,7 +3,6 @@
 import { ChevronUpIcon, TagIcon, BookmarkIcon } from 'lucide-react';
 import Link from 'next/link';
 import * as React from 'react';
-import useStaleSWR from '@/utils/staleSWR';
 import Masonry from 'react-masonry-css';
 import ImageWithFallback from '../ImageWithFallback';
 import emptyIcon from '@/components/icons/Empty';
@@ -26,16 +25,6 @@ export default function Bookmarks({ data }: { data: BookmarkWithCategory[] }) {
   const uniqueCategories = categories
     .filter((value: any, index: number, self: any) => index === self.findIndex((t: any) => t.id === value.id))
     .sort((a: any, b: any) => (a.name > b.name ? 1 : -1));
-  /*
-  const menuData = uniqueCategories.map((item, index) => {
-    return {
-      id: `bookmarks-${index}`,
-      text: item.name,
-      link: `#bookmarks-${index}`,
-      pre: <TagIcon className="h-4" />,
-    };
-  });
-  */
   return (
     <div className="flex">
       <section id="work" className={'mx-auto mt-10 max-w-5xl grow px-4 lg:px-0'}>

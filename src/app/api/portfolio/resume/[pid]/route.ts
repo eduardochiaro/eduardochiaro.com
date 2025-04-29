@@ -3,10 +3,10 @@ import prisma from '@/utils/prisma';
 import fs from 'fs';
 import { join } from 'path';
 import { nanoid } from 'nanoid';
-import { rmFile } from 'rm-file';
 import getFieldsFromForm from '@/utils/getFieldsFromForm';
 import moment from 'moment';
 import mime from 'mime-types';
+import getUser from '@/utils/getUser';
 
 const uploadPath = './public/uploads/';
 
@@ -16,6 +16,12 @@ export async function PUT(
     params: Promise<{ pid: string }>;
   },
 ) {
+  const user = await getUser();
+  if (!user) {
+    return new Response('Unauthorized', {
+      status: 401,
+    });
+  }
   const params = await props.params;
   const { pid } = params;
   const resumeReturn = await prisma.resume.findFirst({
@@ -113,6 +119,12 @@ export async function DELETE(
     params: Promise<{ pid: string }>;
   },
 ) {
+  const user = await getUser();
+  if (!user) {
+    return new Response('Unauthorized', {
+      status: 401,
+    });
+  }
   const params = await props.params;
   const { pid } = params;
   await prisma.resume.delete({

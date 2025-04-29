@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/utils/prisma';
 import getFieldsFromForm from '@/utils/getFieldsFromForm';
+import getUser from '@/utils/getUser';
 
 export async function PUT(
   request: NextRequest,
@@ -8,6 +9,12 @@ export async function PUT(
     params: Promise<{ pid: string }>;
   },
 ) {
+  const user = await getUser();
+  if (!user) {
+    return new Response('Unauthorized', {
+      status: 401,
+    });
+  }
   const params = await props.params;
   const { pid } = params;
 
@@ -32,6 +39,12 @@ export async function DELETE(
     params: Promise<{ pid: string }>;
   },
 ) {
+  const user = await getUser();
+  if (!user) {
+    return new Response('Unauthorized', {
+      status: 401,
+    });
+  }
   const params = await props.params;
   const { pid } = params;
   await prisma.resumeTag.delete({

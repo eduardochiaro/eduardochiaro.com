@@ -56,14 +56,14 @@ const AdminSidebar = ({ isPageOpen }: { isPageOpen: boolean }) => {
                 href="/admin"
                 as="/admin"
                 className={`${styles['sidebar-link']} group border-transparent`}
-                activeClassName={`${styles['sidebar-link']} group bg-primary-50 dark:bg-primary-800 rounded-md`}
+                activeClassName={`${styles['sidebar-link']} group bg-primary-50 dark:bg-primary-800 rounded-md flex items-center gap-2`}
               >
-                <a className="flex items-center gap-2" title="Dashboard">
+                <span className="flex items-center gap-2" title="Dashboard">
                   <HouseIcon className="group-hover:text-secondary-600 dark:group-hover:text-secondary-600 w-5" />
                   <span className={`group-hover:hunderline hidden truncate text-sm tracking-wide xl:block ${openMenu ? '' : styles['hide-when-closed']}`}>
                     Dashboard
                   </span>
-                </a>
+                </span>
               </NavLink>
             </li>
             <li>
@@ -74,12 +74,12 @@ const AdminSidebar = ({ isPageOpen }: { isPageOpen: boolean }) => {
                 className={`${styles['sidebar-link']} group border-transparent`}
                 activeClassName={`${styles['sidebar-link']} group bg-primary-50 dark:bg-primary-800 rounded-md`}
               >
-                <a className="flex items-center gap-2" title="preview">
+                <span className="flex items-center gap-2" title="preview">
                   <ScanEyeIcon className="group-hover:text-secondary-600 dark:group-hover:text-secondary-600 w-5" />
                   <span className={`group-hover:hunderline hidden truncate text-sm tracking-wide xl:block ${openMenu ? '' : styles['hide-when-closed']}`}>
                     Preview
                   </span>
-                </a>
+                </span>
               </NavLink>
             </li>
             {menuList.map((item, key) => (
@@ -94,12 +94,12 @@ const AdminSidebar = ({ isPageOpen }: { isPageOpen: boolean }) => {
                       className={`${styles['sidebar-link']} group border-transparent`}
                       activeClassName={`${styles['sidebar-link']} group bg-primary-50 dark:bg-primary-800 rounded-md`}
                     >
-                      <a className="flex items-center gap-2" title={link.title}>
+                      <span className="flex items-center gap-2" title={link.title}>
                         <link.icon className="group-hover:text-secondary-600 dark:group-hover:text-secondary-600 w-5" />
                         <span className={`group-hover:hunderline hidden truncate text-sm tracking-wide xl:block ${openMenu ? '' : styles['hide-when-closed']}`}>
                           {link.title}
                         </span>
-                      </a>
+                      </span>
                     </NavLink>
                   </li>
                 ))}

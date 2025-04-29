@@ -1,7 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/utils/prisma';
+import getUser from '@/utils/getUser';
 
 export async function GET(request: NextRequest) {
+  const user = await getUser();
+  if (!user) {
+    return new Response('Unauthorized', {
+      status: 401,
+    });
+  }
   const { searchParams } = new URL(request.url);
   const text = searchParams.get('text') as string;
 

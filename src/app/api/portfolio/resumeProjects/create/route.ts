@@ -5,10 +5,17 @@ import { join } from 'path';
 import { nanoid } from 'nanoid';
 import getFieldsFromForm from '@/utils/getFieldsFromForm';
 import mime from 'mime-types';
+import getUser from '@/utils/getUser';
 
 const uploadPath = './public/uploads/';
 
 export async function POST(request: NextRequest) {
+  const user = await getUser();
+  if (!user) {
+    return new Response('Unauthorized', {
+      status: 401,
+    });
+  }
   const { name, resumeId, image } = await getFieldsFromForm(request, ['name', 'resumeId'], ['image']);
 
   //const file = formData.get("image") as Blob | null;

@@ -6,10 +6,17 @@ import { nanoid } from 'nanoid';
 import getFieldsFromForm from '@/utils/getFieldsFromForm';
 import moment from 'moment';
 import mime from 'mime-types';
+import getUser from '@/utils/getUser';
 
 const uploadPath = './public/uploads/';
 
 export async function POST(request: NextRequest) {
+  const user = await getUser();
+  if (!user) {
+    return new Response('Unauthorized', {
+      status: 401,
+    });
+  }
   const { company, name, description, startDate, endDate, tags, image } = await getFieldsFromForm(
     request,
     ['company', 'name', 'description', 'startDate', 'endDate', 'tags'],
