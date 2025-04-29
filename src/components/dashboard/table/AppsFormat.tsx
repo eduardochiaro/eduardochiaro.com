@@ -94,12 +94,19 @@ export function TableRow({ trClasses, tdClasses, rowData, useCheckboxes, checkbo
             <div className="flex items-center justify-end gap-2">
               <Link
                 prefetch={false}
-                href={`/dashboard/apps/${mappedData.id}`}
+                href={`/dashboard/apps/${mappedData.id}/edit`}
                 className="text-primary-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
               >
                 Edit
               </Link>
-              |<button className="cursor-pointer text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300">Delete</button>
+              |
+              <Link
+                prefetch={false}
+                href={`/dashboard/apps/${mappedData.id}/delete`}
+                className="text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300"
+              >
+                Delete
+              </Link>
             </div>
           ) : column.key === 'image' ? (
             mappedData[column.key as keyof MappedData]

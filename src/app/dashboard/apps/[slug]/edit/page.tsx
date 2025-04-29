@@ -35,10 +35,10 @@ export default async function DashboardAppsView({ params }: Props) {
   }
 
   return (
-    <div>
+    <div className="p-6">
       <Card type="small" className="mb-10 flex justify-between gap-10">
         <h2 className="flex items-center text-2xl font-semibold">
-          Apps Edit <ChevronRight className="mx-2" /> {app?.name}{' '}
+          Apps Delete <ChevronRight className="mx-2" /> {app?.name}{' '}
         </h2>
       </Card>
       {app && (

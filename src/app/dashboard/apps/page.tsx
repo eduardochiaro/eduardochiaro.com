@@ -14,7 +14,7 @@ export default async function DashboardAppsIndex() {
   const apps = await pullApps();
 
   return (
-    <div>
+    <div className="p-6">
       <Card type="small" className="mb-10 flex justify-between gap-10">
         <h2 className="text-2xl font-semibold">Apps</h2>
         <Link href={'/dashboard/apps/new'} prefetch={false}>

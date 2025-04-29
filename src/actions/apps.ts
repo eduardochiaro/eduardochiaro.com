@@ -58,4 +58,43 @@ async function addApp(data: AppData) {
   });
 }
 
-export { updateApp, addApp };
+async function deleteApp(id: string) {
+  const app = await prisma.app.findUnique({
+    where: {
+      id: parseInt(id),
+    },
+    include: {
+      file: true,
+    },
+  });
+  if (!app) {
+    throw new Error('App not found');
+  }
+  // delete file from disk first
+  const file = app.file;
+  if (file) {
+    const filePath = `./public/uploads/${file.path}`;
+    const fs = require('fs');
+    await fs.unlink(filePath, async (err: any) => {
+      if (err) {
+        console.error('Error deleting file:', err);
+      } else {
+        console.log('File deleted successfully');
+        await prisma.file.delete({
+          where: {
+            id: file.id,
+          },
+        });
+      }
+    });
+  }
+  // delete app from database
+  await prisma.app.delete({
+    where: {
+      id: parseInt(id),
+    },
+  });
+  return app;
+}
+
+export { updateApp, addApp, deleteApp };

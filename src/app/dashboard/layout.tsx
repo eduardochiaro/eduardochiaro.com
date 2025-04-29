@@ -1,6 +1,7 @@
 import getUser from '@/utils/getUser';
 import { redirect } from 'next/navigation';
 import Sidebar from '@/components/dashboard/Sidebar';
+import MenuIcon from '@/components/icons/Menu';
 
 export default async function AdminIndex({ children }: { children: React.ReactNode }) {
   const user = await getUser();
@@ -19,13 +20,7 @@ export default async function AdminIndex({ children }: { children: React.ReactNo
           className="text-primary-500 hover:bg-primary-100 focus:ring-primary-200 dark:text-primary-400 dark:hover:bg-primary-700 dark:focus:ring-primary-600 ms-3 mt-2 inline-flex items-center rounded-lg p-2 text-sm focus:ring-2 focus:outline-none sm:hidden"
         >
           <span className="sr-only">Open sidebar</span>
-          <svg className="h-6 w-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <path
-              clipRule="evenodd"
-              fillRule="evenodd"
-              d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
-            ></path>
-          </svg>
+          <MenuIcon className="fill-primary-50 size-6" />
         </button>
 
         <aside

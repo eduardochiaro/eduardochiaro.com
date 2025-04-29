@@ -12,7 +12,7 @@ export default async function AdminBooksIndex() {
   const tags = await getBookTags();
 
   return (
-    <div className={'p-6'}>
+    <div className="p-6">
       <Card type="small" className="mb-10 flex justify-between gap-10">
         <h2 className="text-2xl font-semibold">Books</h2>
       </Card>
