@@ -74,4 +74,6 @@ const ListboxComponent = forwardRef<Ref, FormInputProps>(({ name = '', label = '
   );
 });
 
+ListboxComponent.displayName = 'Listbox';
+
 export default ListboxComponent;
