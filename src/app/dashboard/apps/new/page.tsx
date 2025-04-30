@@ -8,13 +8,7 @@ export const metadata: Metadata = {
   title: 'Admin > Apps | Eduardo Chiaro',
 };
 
-type Props = {
-  params: Promise<{ slug: string }>;
-};
-
-export default async function DashboardAppsView({ params }: Props) {
-  const id = (await params).slug;
-
+export default async function DashboardAppsView() {
   async function saveData(formData: FormData) {
     'use server';
 

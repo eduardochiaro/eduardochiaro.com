@@ -18,7 +18,7 @@ export default async function SkillsDashboard() {
     <div className="p-6">
       <Card type="small" className="mb-10 flex justify-between gap-10">
         <h2 className="text-2xl font-semibold">Skills</h2>
-        <Link href={'/dashboard/apps/new'} prefetch={false}>
+        <Link href={'/dashboard/skills/new'} prefetch={false}>
           <Button className="text-sm">Add Skill</Button>
         </Link>
       </Card>

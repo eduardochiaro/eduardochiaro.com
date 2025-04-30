@@ -9,6 +9,30 @@ type AppData = {
   file?: FormDataEntryValue | null;
 };
 
+async function addApp(data: AppData) {
+  const appData: any = {
+    name: data.name as string,
+    description: data.description as string,
+    url: data.url as string,
+    createdAt: new Date(),
+  };
+  if (data.file && data.file instanceof File) {
+    const fileUploaded = await uploadFile(data.file, 'public/uploads');
+    appData['file'] = {
+      create: {
+        name: data.name as string,
+        path: fileUploaded.name,
+        type: fileUploaded.type,
+      },
+    };
+  }
+  return prisma.app.create({
+    data: {
+      ...appData,
+    },
+  });
+}
+
 const updateApp = async (id: string, data: AppData) => {
   const appData: any = {
     name: data.name as string,
@@ -33,30 +57,6 @@ const updateApp = async (id: string, data: AppData) => {
     data: appData,
   });
 };
-
-async function addApp(data: AppData) {
-  const appData: any = {
-    name: data.name as string,
-    description: data.description as string,
-    url: data.url as string,
-    createdAt: new Date(),
-  };
-  if (data.file && data.file instanceof File) {
-    const fileUploaded = await uploadFile(data.file, 'public/uploads');
-    appData['file'] = {
-      create: {
-        name: data.name as string,
-        path: fileUploaded.name,
-        type: fileUploaded.type,
-      },
-    };
-  }
-  return prisma.app.create({
-    data: {
-      ...appData,
-    },
-  });
-}
 
 async function deleteApp(id: string) {
   const app = await prisma.app.findUnique({

@@ -45,7 +45,9 @@ export default function Sidebar({ user }: { user: any }) {
                   <Link
                     href={link.href}
                     prefetch={false}
-                    className="group text-primary-900 hover:bg-primary-100 dark:text-primary-400 dark:hover:bg-primary-700 flex items-center rounded-lg p-2"
+                    className={classNames(
+                      'group text-primary-900 hover:bg-primary-100 dark:text-primary-400 dark:hover:bg-primary-700 flex items-center rounded-lg p-2',
+                    )}
                   >
                     <link.icon className="text-primary-500 group-hover:text-accent-500 dark:text-primary-400 h-5 w-5 transition duration-75 dark:group-hover:text-white" />
                     <span className="ms-3">{link.title}</span>
