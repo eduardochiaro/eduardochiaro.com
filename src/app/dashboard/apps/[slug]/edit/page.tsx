@@ -15,9 +15,12 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
-export default async function DashboardAppsView({ params }: Props) {
+export default async function DashboardAppsEdit({ params }: Props) {
   const id = (await params).slug;
   const app = await pullSingleApp(id);
+  if (!app) {
+    redirect('/dashboard/apps');
+  }
 
   async function saveData(formData: FormData) {
     'use server';
@@ -38,7 +41,7 @@ export default async function DashboardAppsView({ params }: Props) {
     <div className="p-6">
       <Card type="small" className="mb-10 flex justify-between gap-10">
         <h2 className="flex items-center text-2xl font-semibold">
-          Apps Delete <ChevronRight className="mx-2" /> {app?.name}{' '}
+          Apps Edit <ChevronRight className="mx-2" /> {app?.name}{' '}
         </h2>
       </Card>
       {app && (
@@ -77,7 +80,7 @@ export default async function DashboardAppsView({ params }: Props) {
               </div>
             </div>
             <div className="flex items-center justify-end">
-              <button type="submit" className="button">
+              <button type="submit" className="button-danger">
                 Save
               </button>
             </div>

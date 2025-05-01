@@ -2,17 +2,26 @@ import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import Card from '@/components/frontend/Card';
 import { Input, Listbox, Range, Select, Textarea } from '@/components/form';
-import { addSkill } from '@/actions/skills';
+import { updateSkill } from '@/actions/skills';
 import fs from 'fs';
 import path from 'path';
-import { logo } from '../../../../utils/projects/terminal/commands';
+import { ChevronRight } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Admin > Skills | Eduardo Chiaro',
 };
 
-export default async function DashboardSkillsNew() {
+type Props = {
+  params: Promise<{ slug: string }>;
+};
+
+export default async function DashboardSkillsEdit({ params }: Props) {
+  const id = (await params).slug;
   const images = await getImages();
+  const skill = await pullSingleSkill(id);
+  if (!skill) {
+    redirect('/dashboard/skills');
+  }
 
   async function saveData(formData: FormData) {
     'use server';
@@ -23,7 +32,7 @@ export default async function DashboardSkillsNew() {
       logo: formData.get('logo'),
       percentage: formData.get('percentage'),
     };
-    addSkill(rawFormData);
+    updateSkill(id, rawFormData);
     redirect('/dashboard/skills');
   }
 
@@ -33,25 +42,29 @@ export default async function DashboardSkillsNew() {
     image: `/images/svg-icons/${item}`,
   }));
 
+  const selectedItem = mappedImages.find((item) => item.id === skill.logo);
+
   return (
     <div className="p-6">
       <Card type="small" className="mb-10 flex justify-between gap-10">
-        <h2 className="flex items-center text-2xl font-semibold">Skill New</h2>
+        <h2 className="flex items-center text-2xl font-semibold">
+          Update New <ChevronRight className="mx-2" /> {skill.name}{' '}
+        </h2>
       </Card>
       <Card className="mx-auto max-w-3xl">
         <form action={saveData} className="flex flex-col gap-4">
           <div>
-            <Input type="text" name="name" label="Name" value="" required />
+            <Input type="text" name="name" label="Name" value={skill.name} required />
           </div>
           <div>
-            <Listbox name="logo" label="Logo" value={null} itemList={mappedImages} required />
+            <Listbox name="logo" label="Logo" value={selectedItem} itemList={mappedImages} required />
           </div>
           <div className="flex gap-4">
             <div className="flex-1">
-              <Range name="percentage" label="Percentage" min={0} max={100} step={5} value="0" required />
+              <Range name="percentage" label="Percentage" min={0} max={100} step={5} value={String(skill.percentage)} required />
             </div>
             <div>
-              <Input type="text" name="type" label="Type" value="" required />
+              <Input type="text" name="type" label="Type" value={skill.type} required />
             </div>
           </div>
           <div className="flex items-center justify-end">
@@ -71,4 +84,12 @@ async function getImages() {
   //filter for only svg files
   const files = fs.readdirSync(dir).filter((file) => file.endsWith('.svg'));
   return files;
+}
+
+async function pullSingleSkill(id: string) {
+  return prisma.skill.findUnique({
+    where: {
+      id: parseInt(id),
+    },
+  });
 }

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: 'Admin > Apps | Eduardo Chiaro',
 };
 
-export default async function DashboardAppsView() {
+export default async function DashboardAppsNew() {
   async function saveData(formData: FormData) {
     'use server';
 
@@ -23,7 +23,7 @@ export default async function DashboardAppsView() {
   }
 
   return (
-    <div>
+    <div className="p-6">
       <Card type="small" className="mb-10 flex justify-between gap-10">
         <h2 className="flex items-center text-2xl font-semibold">Apps New</h2>
       </Card>
