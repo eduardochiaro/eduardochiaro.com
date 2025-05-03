@@ -39,8 +39,9 @@ export default async function Resume() {
         <WireContainer type="large" className="mx-auto w-full">
           <Card className="max-w-screen-xl md:min-w-96">
             <div className="mb-10 flex items-center justify-between">
-              <div className="ml-10 w-10">
-                <h2 className="font-header text-5xl font-semibold">eduardo chiaro</h2>
+              <div className="mt-3">
+                <h2 className="font-header text-5xl font-semibold">Eduardo Chiaro</h2>
+                <h3 className="font-header text-primary-700 dark:text-primary-400 text-3xl">Software Engineer</h3>
               </div>
               <Logo className="mr-7 w-20" />
             </div>
@@ -54,7 +55,7 @@ export default async function Resume() {
                         {skill.name}
                         <span className="hidden">: {skill.percentage}%</span>
                       </>
-                      <span className="w-full shrink"></span>
+                      <span className="w-full shrink border-b border-dashed"></span>
                       <SVG
                         title={skill.name}
                         className={'fill-secondary-700 stroke-secondary-700 dark:fill-secondary-200 dark:stroke-secondary-200 size-6 flex-none'}
@@ -63,7 +64,7 @@ export default async function Resume() {
                       <div className="w-1/2 flex-none">
                         <div className="bg-primary-200 dark:bg-primary-900 h-3 w-full rounded-xs">
                           <div
-                            className="bg-primary-500 group-hover:bg-accent-500 h-3 rounded-xs transition-colors duration-300"
+                            className="bg-primary-700 dark:bg-primary-400 group-hover:bg-accent-500 h-3 rounded-xs transition-colors duration-300"
                             style={{ width: skill.percentage + '%' }}
                           ></div>
                         </div>
@@ -80,12 +81,14 @@ export default async function Resume() {
                       title="LinkedIn"
                     >
                       LinkedIn
+                      <span className="grow border-b border-dashed"></span>
                       <LinkedInIcon className={'text-secondary-700 dark:text-secondary-200 size-4'} />
                     </Link>
                   </li>
                   <li>
                     <Link href="https://github.com/eduardochiaro" className="group inline-flex w-1/2 items-center justify-between gap-2 pr-2" title="GitHub">
                       GitHub
+                      <span className="grow border-b border-dashed"></span>
                       <GitHubIcon className={'text-secondary-700 dark:text-secondary-200 size-4'} />
                     </Link>
                   </li>
@@ -118,7 +121,7 @@ export default async function Resume() {
                             <>{job.company}</>
                           )}
                         </h4>
-                        <p className="text-primary-500 text-sm">
+                        <p className="text-primary-700 dark:text-primary-300 text-sm">
                           {moment(job.startDate).format('MMMM YYYY')} - {job.endDate ? moment(job.endDate).format('MMMM YYYY') : 'Now'}
                         </p>
                         {job.tags?.length > 0 && (

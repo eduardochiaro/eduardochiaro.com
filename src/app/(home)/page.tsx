@@ -54,7 +54,7 @@ export default async function Home() {
         <WireContainer type="large">
           <Card className="max-w-screen-sm md:min-w-96">
             <div className="px-3">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between text-lg">
                 <h2>
                   <span className="font-semibold">Eduardo</span> is a{' '}
                   <span className="decoration-accent-500 underline decoration-double decoration-2">software engineer</span>.

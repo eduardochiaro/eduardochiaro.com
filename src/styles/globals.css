@@ -169,11 +169,3 @@ input:checked + .toggle-bg {
     }
   }
 }
-.border-custom {
-	border-image: url('/images/border.svg');
-	border-image-slice: 1075 200 2562 200;
-	border-image-width: 1px 1px 1px 1px;
-	border-image-outset: 0px 0px 0px 0px;
-	border-image-repeat: stretch stretch;
-	border-style: solid;
-}

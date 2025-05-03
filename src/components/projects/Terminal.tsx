@@ -134,9 +134,9 @@ export default function Terminal() {
     <WireContainer type="large">
       <Card className="flex h-[500px] flex-col !p-0">
         <div className="bg-primary-300 flex h-6 flex-none items-center gap-2 rounded-t-lg px-3">
-          <div className="h-3 w-3 rounded-full border border-red-600 bg-red-500"></div>
-          <div className="border-secondary-600 bg-secondary-500 h-3 w-3 rounded-full border"></div>
-          <div className="h-3 w-3 rounded-full border border-emerald-600 bg-emerald-500"></div>
+          <div className="size-3 rounded-full border border-red-600 bg-red-500"></div>
+          <div className="size-3 rounded-full border border-yellow-600 bg-yellow-500"></div>
+          <div className="size-3 rounded-full border border-emerald-600 bg-emerald-500"></div>
         </div>
         <div className="bg-primary-950 text-primary-50 grow justify-end overflow-y-auto rounded-b-lg p-4 font-mono shadow-lg" onClick={() => setInputFocus}>
           {state.history.map((line: any, index: number) => (
@@ -166,7 +166,7 @@ export default function Terminal() {
                 data-lpignore="true"
                 data-form-type="other"
                 className={classNames(
-                  'w-full border-0 border-transparent bg-transparent p-0 focus:border-transparent focus:ring-0',
+                  'w-full border-0 border-transparent bg-transparent p-0 focus:border-transparent focus:ring-0 focus:outline-none',
                   !isACommand(state.command) && state.command != '' ? 'text-red-400' : 'text-emerald-500',
                 )}
                 onKeyDown={handleChange}
