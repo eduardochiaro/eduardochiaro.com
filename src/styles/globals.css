@@ -19,6 +19,9 @@ body {
   &::file-selector-button:hover {
     @apply bg-primary-500 dark:bg-primary-500;
   }
+  &:disabled {
+    @apply text-primary-500
+  }
 }
 .range-field {
   @apply rounded-lg appearance-none bg-primary-200 dark:bg-primary-500 h-3 w-full;
@@ -95,7 +98,7 @@ table.admin-table {
   }
 }
 @utility box-card-unstyled {
-  @apply drop-shadow rounded-lg transition hover:ring-4 ring-offset-1 ring-offset-primary-100 dark:ring-offset-primary-700 hover:ring-primary-400/50 dark:hover:ring-primary-700/50 ring ring-primary-200/50 dark:ring-primary-900;
+  @apply drop-shadow rounded-lg transition hover:ring-1 ring-offset-1 ring-offset-primary-100 dark:ring-offset-primary-700 hover:ring-primary-400/50 dark:hover:ring-primary-700/50 ring ring-primary-200/50 dark:ring-primary-900;
 }
 .box-card {
   @apply box-card-unstyled bg-primary-50 dark:bg-primary-950 ;

@@ -9,6 +9,7 @@ import Logo from '@/components/icons/Logo';
 import Card from '@/components/frontend/Card';
 import { BookmarkCheckIcon, FileUserIcon, FlaskConicalIcon, LibraryBigIcon, RssIcon } from 'lucide-react';
 import SiteLogo from '@/components/frontend/SiteLogo';
+import { unstable_ViewTransition as ViewTransition } from 'react';
 
 export default async function Home() {
   const works = await getFeatureWork();
@@ -44,7 +45,6 @@ export default async function Home() {
       icon: RssIcon,
     },
   ];
-
   return (
     <div className="relative flex h-screen flex-col items-center md:flex-row">
       <header className="top-5 left-5 md:absolute">
@@ -70,7 +70,7 @@ export default async function Home() {
                 {menu.map((item, index) => (
                   <li key={`menu-item-${index}`}>
                     <Link href={item.href} prefetch={false} className="group dark:hover:text-primary-400 inline-flex items-center gap-2 hover:underline">
-                      <item.icon className={'group-hover:text-accent-600 group-hover:dark:text-accent-500 w-5'} />
+                      <item.icon className={'group-hover:text-accent-600 group-hover:dark:text-accent-500 w-5'} absoluteStrokeWidth />
                       <span>{item.name}</span>
                     </Link>
                   </li>
@@ -100,9 +100,11 @@ export default async function Home() {
         <p className="text-xs">
           <span className="text-accent-600 dark:text-accent-500">•</span> project under contract
         </p>
-        <WireContainer>
-          <ThemeIcon orientation="top left" size="h-6" />
-        </WireContainer>
+        <ViewTransition name="theme-switch">
+          <WireContainer>
+            <ThemeIcon orientation="top left" size="h-6" />
+          </WireContainer>
+        </ViewTransition>
       </footer>
     </div>
   );

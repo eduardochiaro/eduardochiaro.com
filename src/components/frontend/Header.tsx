@@ -10,7 +10,7 @@ import Link from 'next/link';
 import classNames from '@/utils/classNames';
 import type { MenuLink } from '@prisma/client';
 import WireContainer from './WireContainer';
-import Logo from '../icons/Logo';
+import { unstable_ViewTransition as ViewTransition } from 'react';
 import SiteLogo from './SiteLogo';
 
 export default function Header({ data }: { data: MenuLink[] }) {
@@ -45,13 +45,13 @@ export default function Header({ data }: { data: MenuLink[] }) {
                   return (
                     <div key={`menu-link-${i}`} className="text-secondary-700 dark:text-secondary-600 px-1 py-1 font-semibold">
                       <MenuItem>
-                        {({ active }) => (
+                        {({ focus }) => (
                           <Link
                             href={item.link}
                             className={classNames(
                               'flex w-full items-center px-2 py-2',
                               pathname == item.link ? '' : 'text-primary-900 dark:text-primary-100',
-                              active ? 'bg-primary-300 dark:bg-primary-500' : '',
+                              focus ? 'bg-primary-300 dark:bg-primary-500' : '',
                             )}
                           >
                             {item.text}
@@ -110,9 +110,11 @@ export default function Header({ data }: { data: MenuLink[] }) {
               <RssIcon className={'text-accent-600 dark:text-accent-500 h-4'} aria-hidden="true" />
             </Link>
           </div>
-          <WireContainer>
-            <ThemeIcon orientation="right" size="h-6" />
-          </WireContainer>
+          <ViewTransition name="theme-switch">
+            <WireContainer>
+              <ThemeIcon orientation="right" size="h-6" />
+            </WireContainer>
+          </ViewTransition>
         </div>
       </nav>
     </header>

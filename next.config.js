@@ -62,6 +62,7 @@ const nextConfig = {
     ]
   },
 	experimental: {
+    viewTransition: true,
 		serverActions: {
 			allowedOrigins: ['*.eduardochiaro.com', '127.0.0.1:3001']
 		},

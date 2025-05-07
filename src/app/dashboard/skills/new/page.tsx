@@ -1,11 +1,10 @@
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import Card from '@/components/frontend/Card';
-import { Input, Listbox, Range, Select, Textarea } from '@/components/form';
+import { Input, Listbox, Range } from '@/components/form';
 import { addSkill } from '@/actions/skills';
 import fs from 'fs';
 import path from 'path';
-import { logo } from '../../../../utils/projects/terminal/commands';
 
 export const metadata: Metadata = {
   title: 'Admin > Skills | Eduardo Chiaro',

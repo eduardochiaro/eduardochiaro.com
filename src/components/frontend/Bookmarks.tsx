@@ -48,7 +48,7 @@ export default function Bookmarks({ data }: { data: BookmarkWithCategory[] }) {
                     <Link href={bookmark.url} as={bookmark.url} target="_blank" className="block p-5" rel="noopener noreferrer">
                       <h3 className="mr-10 flex justify-between text-xl tracking-wide">
                         {bookmark.name}
-                        <BookmarkIcon className="fill-secondary-600 text-secondary-600 group-hover/card:text-accent-600 dark:fill-secondary-200 dark:text-secondary-200 absolute -top-2.5 right-2 size-10" />
+                        <BookmarkIcon className="fill-secondary-600 text-secondary-600 group-hover/card:text-accent-600 group-hover/card:fill-accent-600 dark:fill-secondary-200 dark:text-secondary-200 absolute -top-2.5 right-2 size-10" />
                       </h3>
                       <p className="flex items-center gap-2 text-sm tracking-wide opacity-80">
                         <span className="block w-5">

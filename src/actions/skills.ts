@@ -8,7 +8,7 @@ type SkillData = {
   percentage: FormDataEntryValue | null;
 };
 
-async function addSkill(data: SkillData) {
+const addSkill = async (data: SkillData) => {
   const skillData: any = {
     name: data.name as string,
     type: data.type as string,
@@ -21,7 +21,7 @@ async function addSkill(data: SkillData) {
       ...skillData,
     },
   });
-}
+};
 
 const updateSkill = async (id: string, data: SkillData) => {
   const skillData: any = {

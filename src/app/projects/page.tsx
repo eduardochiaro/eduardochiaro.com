@@ -70,7 +70,7 @@ export default async function Projects() {
                         className="download-button mx-auto mt-6 inline-flex items-center gap-4 md:mx-0"
                       >
                         <GitHubIcon className="w-6" />
-                        Download from GitHub
+                        Check it on GitHub
                       </Link>
                     </div>
                   </Card>

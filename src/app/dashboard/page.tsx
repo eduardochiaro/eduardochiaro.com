@@ -18,14 +18,14 @@ export default async function DashboardIndex() {
   });
 
   return (
-    <div>
+    <div className="p-6">
       <Card>
-        <h1>Dashboard</h1>
+        <h2 className="text-2xl font-semibold">Dashboard</h2>
       </Card>
       <div className="mt-10 grid gap-6 md:grid-cols-2">
         {newMenu.map((item, i) => (
           <div key={i}>
-            <h2 className="mb-4 text-xl font-semibold">{item.title}</h2>
+            <h2 className="font-header mb-4 text-xl font-semibold">{item.title}</h2>
             <Card type="medium" className="flex flex-col gap-4">
               {item.links.map((link, key) => (
                 <Link
