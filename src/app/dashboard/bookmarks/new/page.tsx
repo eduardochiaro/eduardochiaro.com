@@ -9,7 +9,6 @@ export const metadata: Metadata = {
 };
 
 export default async function DashboardBookmarksNew(props: { searchParams: Promise<any> }) {
-
   const searchParams = await props.searchParams;
   const { url } = searchParams;
   const metadata = await fetchMetadataFromUrl(url);

@@ -9,7 +9,6 @@ export const metadata: Metadata = {
 };
 
 export default async function DashboardBookmarksUrl() {
-
   return (
     <div className="p-6">
       <Card type="small" className="mb-10 flex justify-between gap-10">

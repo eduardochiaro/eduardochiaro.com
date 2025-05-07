@@ -81,7 +81,7 @@ const fetchMetadataFromUrl = async (url: string) => {
 
   return {
     title,
-    description
+    description,
   };
 };
 
