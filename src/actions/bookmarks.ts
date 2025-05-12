@@ -4,7 +4,7 @@ import * as cheerio from 'cheerio';
 
 type BookmarkData = {
   name: FormDataEntryValue | null;
-  url: FormDataEntryValue | null;
+  url?: FormDataEntryValue | null;
   description: FormDataEntryValue | null;
   categoryId: FormDataEntryValue | null;
 };
@@ -27,7 +27,6 @@ const addBookmark = async (data: BookmarkData) => {
 const updateBookmark = async (id: string, data: BookmarkData) => {
   const bookmarkData: any = {
     name: data.name as string,
-    url: data.url as string,
     description: data.description as string,
     categoryId: parseInt(data.categoryId as string),
     updatedAt: new Date(),
