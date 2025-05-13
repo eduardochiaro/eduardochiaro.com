@@ -1,9 +1,10 @@
 'use client';
 
 import moment from 'moment';
-import Link from 'next/link';
 import React from 'react';
 import ActionColumn from './ActionColumn';
+import Image from 'next/image';
+import SVG from '@/utils/svg';
 
 export const columns = [
   {
@@ -31,6 +32,12 @@ export const columns = [
     sortable: true,
   },
   {
+    title: 'Tags',
+    key: 'tags',
+    classNames: '',
+    sortable: false,
+  },
+  {
     title: 'Actions',
     key: 'actions',
     classNames: 'text-right',
@@ -38,13 +45,30 @@ export const columns = [
   },
 ];
 
-const formatData = (resume: any) => {
+const formatData = (job: any) => {
   return {
-    id: resume.id,
-    company: resume.company,
-    name: resume.name,
-    startDate: moment(resume.startDate).format('MMMM YYYY'),
-    endDate: resume.endDate ? moment(resume.endDate).format('MMMM YYYY') : 'Present',
+    id: job.id,
+    company: job.file ? (
+      <>
+        <SVG
+          title={job.company}
+          className={'fill-primary-700 dark:fill-primary-200 inline-block'}
+          src={`${process.env.NEXT_PUBLIC_CDN_URL}/${job.file.path}`}
+          height={20}
+        />
+        <span className="hidden">{job.company}</span>
+      </>
+    ) : (
+      job.company
+    ),
+    name: job.name,
+    tags: job.tags.map((tag: any) => (
+      <span key={tag.id} className="bg-secondary-800 text-primary-100 mr-2 rounded-sm px-2 py-1 text-xs">
+        {tag.name}
+      </span>
+    )),
+    startDate: moment(job.startDate).format('MMMM YYYY'),
+    endDate: job.endDate ? moment(job.endDate).format('MMMM YYYY') : 'Present',
   };
 };
 
