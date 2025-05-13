@@ -84,4 +84,15 @@ const fetchMetadataFromUrl = async (url: string) => {
   };
 };
 
-export { addBookmark, updateBookmark, deleteBookmark, fetchMetadataFromUrl };
+const getBookmarks = async () => {
+  return prisma.bookmark.findMany({
+    orderBy: {
+      createdAt: 'desc',
+    },
+    include: {
+      category: true,
+    },
+  });
+};
+
+export { getBookmarks, addBookmark, updateBookmark, deleteBookmark, fetchMetadataFromUrl };

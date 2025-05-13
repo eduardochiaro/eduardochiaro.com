@@ -1,39 +1,32 @@
 'use client';
 
 import moment from 'moment';
-import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import ActionColumn from './ActionColumn';
 
 export const columns = [
   {
-    title: 'Image',
-    key: 'image',
+    title: 'Title',
+    key: 'name',
     classNames: '',
     sortable: false,
   },
   {
-    title: 'App Name',
-    key: 'app_name',
-    classNames: '',
-    sortable: true,
-  },
-  {
-    title: 'Description',
-    key: 'description',
+    title: 'Company',
+    key: 'company',
     classNames: '',
     sortable: false,
   },
   {
-    title: 'Created At',
-    key: 'created_at',
+    title: 'Start Date',
+    key: 'startDate',
     classNames: '',
     sortable: true,
   },
   {
-    title: 'Updated At',
-    key: 'updated_at',
+    title: 'End Date',
+    key: 'endDate',
     classNames: '',
     sortable: true,
   },
@@ -45,35 +38,22 @@ export const columns = [
   },
 ];
 
-const formatData = (app: any) => {
+const formatData = (resume: any) => {
   return {
-    id: app.id,
-    image: app.file ? (
-      <Image
-        src={`${process.env.NEXT_PUBLIC_CDN_URL}/${app.file.path}`}
-        fill
-        sizes="30vw"
-        alt={app.name}
-        className="bg-transparent object-contain"
-        priority={false}
-      />
-    ) : (
-      ''
-    ),
-    app_name: app.name,
-    description: app.description,
-    created_at: moment(app.createdAt).fromNow(),
-    updated_at: app.updatedAt ? moment(app.updatedAt).fromNow() : '',
+    id: resume.id,
+    company: resume.company,
+    name: resume.name,
+    startDate: moment(resume.startDate).format('MMMM YYYY'),
+    endDate: resume.endDate ? moment(resume.endDate).format('MMMM YYYY') : 'Present',
   };
 };
 
 type MappedData = {
   id: string;
-  image: string;
-  app_name: string;
-  description: string;
-  created_at: string;
-  updated_at: string;
+  company: string;
+  name: string;
+  startDate: string;
+  endDate: string;
 };
 
 type Props = {
@@ -92,7 +72,7 @@ export function TableRow({ trClasses, tdClasses, rowData, useCheckboxes, checkbo
       {columns.map((column, index) => (
         <td key={index} className="relative px-6 py-4">
           {column.key === 'actions' ? (
-            <ActionColumn editUrl={`/dashboard/apps/${mappedData.id}/edit`} deleteUrl={`/dashboard/apps/${mappedData.id}/delete`} />
+            <ActionColumn editUrl={`/dashboard/resume/${mappedData.id}/edit`} deleteUrl={`/dashboard/resume/${mappedData.id}/delete`} />
           ) : (
             mappedData[column.key as keyof MappedData]
           )}

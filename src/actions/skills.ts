@@ -1,5 +1,6 @@
 'use server';
 import prisma from '@/utils/prisma';
+import { Skill } from '@prisma/client';
 
 type SkillData = {
   name: FormDataEntryValue | null;
@@ -47,4 +48,21 @@ const deleteSkill = async (id: string) => {
   });
 };
 
-export { addSkill, updateSkill, deleteSkill };
+const getSkills = async () => {
+  const data = await prisma.skill.findMany({
+    orderBy: {
+      createdAt: 'desc',
+    },
+  });
+
+  if (data) {
+    return data.map((skill: Skill) => ({
+      ...skill,
+      updated: skill.updatedAt || skill.createdAt,
+      category: skill.type,
+    }));
+  }
+  return [];
+};
+
+export { getSkills, addSkill, updateSkill, deleteSkill };

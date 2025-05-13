@@ -97,4 +97,15 @@ async function deleteApp(id: string) {
   return app;
 }
 
-export { updateApp, addApp, deleteApp };
+const getApps = async () => {
+  return prisma.app.findMany({
+    orderBy: {
+      createdAt: 'desc',
+    },
+    include: {
+      file: true,
+    },
+  });
+};
+
+export { getApps, updateApp, addApp, deleteApp };

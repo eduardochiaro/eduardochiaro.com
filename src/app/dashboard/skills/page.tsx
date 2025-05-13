@@ -1,18 +1,16 @@
 import { Metadata } from 'next';
 import SVG from '@/utils/svg';
-import { Skill } from '@prisma/client';
-import prisma from '@/utils/prisma';
-import moment from 'moment';
 import Button from '@/components/dashboard/Button';
 import Link from 'next/link';
 import Card from '@/components/frontend/Card';
+import { getSkills } from '@/actions/skills';
 
 export const metadata: Metadata = {
   title: 'Admin > Skills | Eduardo Chiaro',
 };
 
 export default async function SkillsDashboard() {
-  const skills = await pullSkills();
+  const skills = await getSkills();
 
   return (
     <div className="p-6">
@@ -78,21 +76,3 @@ export default async function SkillsDashboard() {
     </div>
   );
 }
-
-const pullSkills = async () => {
-  const data = await prisma.skill.findMany({
-    orderBy: {
-      createdAt: 'desc',
-    },
-  });
-
-  if (data) {
-    return data.map((skill: Skill) => ({
-      ...skill,
-      updated: moment(skill.updatedAt || skill.createdAt).fromNow(),
-      category: skill.type,
-    }));
-  }
-
-  return [];
-};

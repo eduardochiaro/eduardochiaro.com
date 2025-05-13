@@ -1,17 +1,17 @@
 import { Metadata } from 'next';
 import Table from '@/components/dashboard/Table';
-import prisma from '@/utils/prisma';
 import { columns, TableRow } from '@/components/dashboard/table/AppsFormat';
 import Card from '@/components/frontend/Card';
 import Link from 'next/link';
 import Button from '@/components/dashboard/Button';
+import { getApps } from '@/actions/apps';
 
 export const metadata: Metadata = {
   title: 'Admin > Apps | Eduardo Chiaro',
 };
 
 export default async function DashboardAppsIndex() {
-  const apps = await pullApps();
+  const apps = await getApps();
 
   return (
     <div className="p-6">
@@ -25,14 +25,3 @@ export default async function DashboardAppsIndex() {
     </div>
   );
 }
-
-const pullApps = async () => {
-  return prisma.app.findMany({
-    include: {
-      file: true,
-    },
-    orderBy: {
-      createdAt: 'desc',
-    },
-  });
-};
