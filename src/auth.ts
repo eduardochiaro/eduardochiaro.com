@@ -42,7 +42,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return false; // Do different verification for other providers that don't have `email_verified`
     },
     redirect({ baseUrl }) {
-      return new URL('/admin', baseUrl).toString();
+      return new URL('/dashboard', baseUrl).toString();
     },
   },
   pages: {

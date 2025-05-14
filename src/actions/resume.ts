@@ -131,6 +131,13 @@ const getResume = async () => {
           name: true,
         },
       },
+      projects: {
+        select: {
+          id: true,
+          name: true,
+          file: true,
+        },
+      },
     },
   });
 };
