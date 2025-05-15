@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/utils/prisma';
-import type { Bookmark } from '@prisma/client';
+import type { Bookmark } from '@/utils/prismaClient';
 
 interface BookmarkType extends Bookmark {
   domain?: string;

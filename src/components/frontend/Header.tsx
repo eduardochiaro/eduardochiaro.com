@@ -8,7 +8,7 @@ import ThemeIcon from '@/components/ThemeIcon';
 import NavLink from '@/components/NavLink';
 import Link from 'next/link';
 import classNames from '@/utils/classNames';
-import type { MenuLink } from '@prisma/client';
+import type { MenuLink } from '@/utils/prismaClient';
 import WireContainer from './WireContainer';
 import { unstable_ViewTransition as ViewTransition } from 'react';
 import SiteLogo from './SiteLogo';

@@ -1,4 +1,4 @@
-import type { User } from '@prisma/client';
+import type { User } from '@/utils/prismaClient';
 import { auth } from '@/auth';
 import prisma from './prisma';
 

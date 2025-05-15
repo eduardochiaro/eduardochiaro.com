@@ -1,6 +1,6 @@
 import BookmarksComponent from '@/components/frontend/Bookmarks';
 import FrontendLayout from '@/components/layouts/Frontend';
-import { Category, Bookmark } from '@prisma/client';
+import { Category, Bookmark } from '@/utils/prismaClient';
 import { Metadata } from 'next';
 import prisma from '@/utils/prisma';
 import { cache } from 'react';

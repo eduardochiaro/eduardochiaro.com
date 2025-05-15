@@ -11,12 +11,6 @@ import Card from '@/components/frontend/Card';
 
 export const columns = [
   {
-    title: '',
-    key: 'projects',
-    classNames: 'w-10',
-    sortable: false,
-  },
-  {
     title: 'Title',
     key: 'name',
     classNames: '',
@@ -39,6 +33,12 @@ export const columns = [
     key: 'endDate',
     classNames: '',
     sortable: true,
+  },
+  {
+    title: 'Projects',
+    key: 'projects',
+    classNames: 'w-10',
+    sortable: false,
   },
   {
     title: 'Tags',
@@ -71,6 +71,7 @@ const formatData = (job: any) => {
       job.company
     ),
     name: job.name,
+    projects: job.projects.length,
     tags: job.tags.map((tag: any) => (
       <span key={tag.id} className="bg-secondary-800 text-primary-100 mr-2 rounded-sm px-2 py-1 text-xs">
         {tag.name}
@@ -110,7 +111,8 @@ export function TableRow({ trClasses, tdClasses, rowData, useCheckboxes, checkbo
             {column.key === 'actions' ? (
               <ActionColumn editUrl={`/dashboard/resume/${mappedData.id}/edit`} deleteUrl={`/dashboard/resume/${mappedData.id}/delete`} />
             ) : column.key === 'projects' ? (
-              <div>
+              <div className="flex items-center gap-2">
+                <span className="text-primary-500 dark:text-primary-400">{mappedData[column.key as keyof MappedData]}</span>
                 <ChevronDown
                   className={classNames('text-primary-500 dark:text-primary-400 h-4 w-4', useProjects ? 'hidden' : '')}
                   onClick={() => setUseProjects(!useProjects)}
@@ -139,7 +141,7 @@ export function TableRow({ trClasses, tdClasses, rowData, useCheckboxes, checkbo
               <span className="px-4 text-xs">{project.name}</span>
               <Link
                 prefetch={false}
-                href={`/dashboard/resume/${mappedData.id}/projects/delete`}
+                href={`/dashboard/resume/projects/${project.id}/delete`}
                 className="bg-primary-100 dark:bg-primary-700 w-full px-4 py-2 text-center text-xs text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300"
               >
                 Delete
@@ -150,7 +152,7 @@ export function TableRow({ trClasses, tdClasses, rowData, useCheckboxes, checkbo
         <td colSpan={columns.length} className="text-center">
           <Link
             prefetch={false}
-            href={`/dashboard/resume/${mappedData.id}/projects/new`}
+            href={`/dashboard/resume/projects/${mappedData.id}/new`}
             className="text-primary-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
           >
             Add Project

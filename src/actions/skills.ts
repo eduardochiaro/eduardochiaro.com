@@ -1,6 +1,6 @@
 'use server';
 import prisma from '@/utils/prisma';
-import { Skill } from '@prisma/client';
+import { Skill } from '@/utils/prismaClient';
 import moment from 'moment';
 
 type SkillData = {

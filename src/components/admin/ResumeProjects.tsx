@@ -1,6 +1,6 @@
 'use client';
 
-import type { Prisma } from '@prisma/client';
+import type { Prisma } from '@/utils/prismaClient';
 import { TriangleAlertIcon, PlusIcon, TrashIcon } from 'lucide-react';
 import Image from 'next/image';
 import { Input } from '../form';

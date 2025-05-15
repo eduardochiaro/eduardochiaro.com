@@ -2,7 +2,7 @@
 import prisma from '@/utils/prisma';
 import { nanoid } from 'nanoid';
 import fs from 'fs';
-import { Book, BookTag, Prisma } from '@prisma/client';
+import { Book, BookTag, Prisma } from '@/utils/prismaClient';
 
 const uploadPath = './public/uploads/';
 type BookExpanded = Prisma.BookGetPayload<{ include: { file: true; tags: true } }>;

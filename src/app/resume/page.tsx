@@ -2,7 +2,7 @@ import prisma from '@/utils/prisma';
 import { Metadata } from 'next';
 import { Fragment, cache } from 'react';
 import WireContainer from '@/components/frontend/WireContainer';
-import { Prisma, ResumeTag, Skill } from '@prisma/client';
+import { Prisma, ResumeTag, Skill } from '@/utils/prismaClient';
 import moment from 'moment';
 import SVG from '@/utils/svg';
 import Link from 'next/link';

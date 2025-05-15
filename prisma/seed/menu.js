@@ -1,4 +1,4 @@
-const { PrismaClient } = require('@prisma/client');
+const { PrismaClient } = require('@/utils/prismaClient');
 const prisma = new PrismaClient();
 
 const menuLinks = [

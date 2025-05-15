@@ -4,7 +4,7 @@ const menuSeed = require('./menu.js');
 const appsSeed = require('./apps.js');
 const resumeSeed = require('./resume.js');
 const filesSeed = require('./files.js');
-const { PrismaClient } = require('@prisma/client');
+const { PrismaClient } = require('@/utils/prismaClient');
 const prisma = new PrismaClient();
 
 const load = async () => {

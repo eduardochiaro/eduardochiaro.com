@@ -5,7 +5,7 @@ import { cache } from 'react';
 import GitHubIcon from '@/components/icons/Github';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Prisma } from '@prisma/client';
+import { Prisma } from '@/utils/prismaClient';
 import WireContainer from '@/components/frontend/WireContainer';
 import { fetchGitHub } from '@/actions/github';
 import GitHubComponent from '@/components/frontend/GitHub';

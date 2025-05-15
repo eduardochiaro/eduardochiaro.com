@@ -1,6 +1,6 @@
 'use server';
 import prisma from '@/utils/prisma';
-import uploadFile from '@/utils/uploadFile';
+import { deleteFile, uploadFile } from '@/utils/files';
 
 type ResumeData = {
   name: FormDataEntryValue | null;
@@ -112,6 +112,27 @@ const updateResume = async (id: string, data: ResumeData) => {
   });
 };
 const deleteResume = async (id: string) => {
+  const resume = await prisma.resume.findUnique({
+    where: {
+      id: parseInt(id),
+    },
+    include: {
+      file: true,
+      projects: true,
+    },
+  });
+  if (!resume) {
+    throw new Error('Project not found');
+  }
+  // delete file from disk
+  if (resume.file) {
+    deleteFile(resume.file.path, 'public/uploads');
+  }
+  if (resume.projects) {
+    resume.projects.forEach((project: any) => {
+      deleteProject(project.id.toString());
+    });
+  }
   return prisma.resume.delete({
     where: {
       id: parseInt(id),
@@ -142,4 +163,56 @@ const getResume = async () => {
   });
 };
 
-export { addResume, updateResume, deleteResume, getResume };
+const addProject = async (id: string, data: any) => {
+  const projectData: any = {
+    name: data.name as string,
+    description: data.description as string,
+  };
+
+  if (data.file && data.file instanceof File) {
+    if (data.file.size > 0) {
+      const fileUploaded = await uploadFile(data.file, 'public/uploads');
+      projectData['file'] = {
+        create: {
+          name: data.name as string,
+          path: fileUploaded.name,
+          type: fileUploaded.type,
+        },
+      };
+    }
+  }
+  return prisma.resume.update({
+    where: {
+      id: parseInt(id),
+    },
+    data: {
+      projects: {
+        create: projectData,
+      },
+    },
+  });
+};
+const deleteProject = async (id: string) => {
+  const project = await prisma.resumeProject.findUnique({
+    where: {
+      id: parseInt(id),
+    },
+    include: {
+      file: true,
+    },
+  });
+  if (!project) {
+    throw new Error('Project not found');
+  }
+  // delete file from disk
+  if (project.file) {
+    deleteFile(project.file.path, 'public/uploads');
+  }
+  return prisma.resumeProject.delete({
+    where: {
+      id: parseInt(id),
+    },
+  });
+};
+
+export { addResume, updateResume, deleteResume, getResume, addProject, deleteProject };

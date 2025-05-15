@@ -4,11 +4,10 @@ import { useReducer, useState } from 'react';
 import { Input } from '../form';
 import SpinnerIcon from '@/components/icons/Spinner';
 import { addBook, deleteBook, deleteBookTag, getBookTags, getBooks, updateBookTagPublished } from '@/actions/books';
-import { BookTag, Prisma } from '@prisma/client';
+import { BookTag, Prisma } from '@/utils/prismaClient';
 import classNames from '@/utils/classNames';
 import { Disclosure } from '@headlessui/react';
 import { CheckIcon, TrashIcon } from 'lucide-react';
-import styles from '@/styles/Book.module.css';
 
 type BookExpanded = Prisma.BookGetPayload<{ include: { file: true; tags: true } }>;
 

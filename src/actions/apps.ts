@@ -1,6 +1,6 @@
 'use server';
 import prisma from '@/utils/prisma';
-import uploadFile from '@/utils/uploadFile';
+import { deleteFile, uploadFile } from '@/utils/files';
 
 type AppData = {
   name: FormDataEntryValue | null;
@@ -70,23 +70,9 @@ async function deleteApp(id: string) {
   if (!app) {
     throw new Error('App not found');
   }
-  // delete file from disk first
-  const file = app.file;
-  if (file) {
-    const filePath = `./public/uploads/${file.path}`;
-    const fs = require('fs');
-    await fs.unlink(filePath, async (err: any) => {
-      if (err) {
-        console.error('Error deleting file:', err);
-      } else {
-        console.log('File deleted successfully');
-        await prisma.file.delete({
-          where: {
-            id: file.id,
-          },
-        });
-      }
-    });
+  // delete file from disk
+  if (app.file) {
+    deleteFile(app.file.path, 'public/uploads');
   }
   // delete app from database
   await prisma.app.delete({

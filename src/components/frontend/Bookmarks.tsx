@@ -6,7 +6,7 @@ import * as React from 'react';
 import Masonry from 'react-masonry-css';
 import ImageWithFallback from '../ImageWithFallback';
 import emptyIcon from '@/components/icons/Empty';
-import { Bookmark, Category, Prisma } from '@prisma/client';
+import { Bookmark, Category, Prisma } from '@/utils/prismaClient';
 import WireContainer from './WireContainer';
 
 type BookmarkWithCategory = Prisma.BookmarkGetPayload<{

@@ -1,7 +1,7 @@
 'use client';
 
 import classNames from '@/utils/classNames';
-import { Prisma } from '@prisma/client';
+import { Prisma } from '@/utils/prismaClient';
 import { useEffect, useState } from 'react';
 import WireContainer from './WireContainer';
 import { useSearchParams, usePathname, useRouter } from 'next/navigation';
