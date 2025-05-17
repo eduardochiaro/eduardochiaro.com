@@ -1,7 +1,6 @@
 'use client';
 
 import moment from 'moment';
-import Link from 'next/link';
 import React from 'react';
 import ActionColumn from './ActionColumn';
 
@@ -10,7 +9,8 @@ export const columns = [
     title: 'Title',
     key: 'name',
     classNames: '',
-    sortable: false,
+    sortable: true,
+    searchable: true,
   },
   {
     title: 'Category',
@@ -23,6 +23,7 @@ export const columns = [
     key: 'url',
     classNames: '',
     sortable: false,
+    searchable: true,
   },
   {
     title: 'Created At',

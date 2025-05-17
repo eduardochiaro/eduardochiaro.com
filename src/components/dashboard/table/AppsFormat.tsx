@@ -17,6 +17,8 @@ export const columns = [
     key: 'app_name',
     classNames: '',
     sortable: true,
+    sortKey: 'name',
+    searchable: true,
   },
   {
     title: 'Description',

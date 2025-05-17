@@ -10,18 +10,21 @@ export const columns = [
     key: 'order',
     classNames: 'w-4',
     sortable: true,
+    sortKey: 'order',
   },
   {
     title: 'Name',
     key: 'name',
     classNames: '',
     sortable: false,
+    searchable: true,
   },
   {
     title: 'URL',
     key: 'url',
     classNames: '',
     sortable: false,
+    searchable: true,
   },
   {
     title: 'Mobile Only',
@@ -34,6 +37,7 @@ export const columns = [
     key: 'status',
     classNames: '',
     sortable: true,
+    sortKey: 'active',
   },
   {
     title: 'Actions',
@@ -53,19 +57,9 @@ const formatData = (menu: any) => {
         {menu.name}
       </div>
     ),
-    url: (
-      <a href={menu.url || ''} target="_blank" rel="noopener noreferrer" className="block max-w-xs truncate hover:underline">
-        {menu.url}
-      </a>
-    ),
+    url: menu.url,
     onlyMobile: menu.onlyMobile ? 'Yes' : 'No',
-    status: (
-      <span
-        className={`rounded px-3 py-1 text-xs font-semibold ${menu.active ? 'border border-green-700 bg-green-800 text-green-100' : 'border border-gray-200 bg-gray-100 text-gray-600'}`}
-      >
-        {menu.active ? 'Active' : 'Inactive'}
-      </span>
-    ),
+    status: menu.active ? 'Active' : 'Inactive',
   };
 };
 
@@ -86,6 +80,21 @@ export function TableRow({ trClasses, tdClasses, rowData, useCheckboxes, checkbo
         <td key={index} className="relative px-6 py-4">
           {column.key === 'actions' ? (
             <ActionColumn editUrl={`/dashboard/menu/${mappedData.id}/edit`} deleteUrl={`/dashboard/menu/${mappedData.id}/delete`} />
+          ) : column.key === 'url' ? (
+            <a
+              href={mappedData[column.key as keyof MappedData] || ''}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block max-w-xs truncate hover:underline"
+            >
+              {mappedData[column.key as keyof MappedData]}
+            </a>
+          ) : column.key === 'status' ? (
+            <span
+              className={`rounded px-3 py-1 text-xs font-semibold ${mappedData[column.key as keyof MappedData] === 'Active' ? 'border border-green-700 bg-green-800 text-green-100' : 'border border-gray-200 bg-gray-100 text-gray-600'}`}
+            >
+              {mappedData[column.key as keyof MappedData]}
+            </span>
           ) : (
             mappedData[column.key as keyof MappedData]
           )}

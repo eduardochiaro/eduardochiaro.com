@@ -15,12 +15,14 @@ export const columns = [
     key: 'name',
     classNames: '',
     sortable: false,
+    searchable: true,
   },
   {
     title: 'Company',
     key: 'company',
     classNames: '',
     sortable: false,
+    searchable: true,
   },
   {
     title: 'Start Date',
