@@ -50,6 +50,13 @@ export default async function Home() {
       <header className="top-5 left-5 md:absolute">
         <SiteLogo />
       </header>
+      <div className="top-5 right-5 md:absolute">
+        <ViewTransition name="theme-switch">
+          <WireContainer>
+            <ThemeIcon orientation="bottom left" size="h-6" />
+          </WireContainer>
+        </ViewTransition>
+      </div>
       <main className="mx-auto">
         <WireContainer type="large">
           <Card className="max-w-screen-sm md:min-w-96">
@@ -100,11 +107,6 @@ export default async function Home() {
         <p className="text-xs">
           <span className="text-accent-600 dark:text-accent-500">•</span> project under contract
         </p>
-        <ViewTransition name="theme-switch">
-          <WireContainer>
-            <ThemeIcon orientation="top left" size="h-6" />
-          </WireContainer>
-        </ViewTransition>
       </footer>
     </div>
   );
