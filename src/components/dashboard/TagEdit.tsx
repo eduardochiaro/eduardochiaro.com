@@ -38,7 +38,7 @@ export default function TagEdit({ tag }: { tag: ResumeTagWithCountJobs }) {
   return (
     <div
       key={tag.id}
-      className="group bg-primary-100 hover:bg-primary-50 dark:bg-primary-700 dark:hover:bg-primary-600 flex items-center justify-between rounded-lg p-3"
+      className="group bg-primary-200 hover:bg-primary-100 dark:bg-primary-700 dark:hover:bg-primary-600 flex items-center justify-between rounded-lg p-3"
     >
       {editingTag?.id === tag.id ? (
         <div className="flex flex-1 items-center space-x-4">
@@ -63,7 +63,7 @@ export default function TagEdit({ tag }: { tag: ResumeTagWithCountJobs }) {
         <>
           <div className="flex items-center">
             <span className="font-medium">{tag.name}</span>
-            <span className="ml-2 rounded-full bg-gray-200 px-2 py-0.5 text-xs text-gray-700">
+            <span className="bg-primary-300 text-primary-700 ml-2 rounded-full px-2 py-0.5 text-xs">
               {tag._count.jobs} {tag._count.jobs === 1 ? 'job' : 'jobs'}
             </span>
           </div>

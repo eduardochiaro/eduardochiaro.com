@@ -23,7 +23,7 @@ export default function Card({ children, className, type = 'medium', padding }: 
   return (
     <div
       className={classNames(
-        'border-primary-200 bg-primary-50 dark:border-primary-900 dark:bg-primary-800 border font-mono shadow-xs',
+        'border-primary-200 bg-primary-50 dark:border-primary-900 dark:bg-primary-800 border font-mono shadow-sm',
         padding ? padding : 'p-6',
         className,
         appendClass(type),

@@ -3,6 +3,14 @@
 import Link from 'next/link';
 import React from 'react';
 
+export type TableRowProps = {
+  trClasses: string;
+  tdClasses: string;
+  rowData: any;
+  useCheckboxes: boolean;
+  checkbox: React.ReactElement;
+};
+
 export default function ActionColumn({ editUrl, deleteUrl }: { editUrl: string; deleteUrl: string }) {
   return (
     <div className="flex items-center justify-end gap-2">

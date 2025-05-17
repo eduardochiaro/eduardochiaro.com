@@ -58,12 +58,12 @@ export default function Table({ columns, data, useCheckboxes = false, tableRow }
 
   return (
     <Card type="medium" className="mb-10 overflow-x-auto" padding="p-0">
-      <table className="text-primary-500 dark:text-primary-400 w-full text-left text-sm rtl:text-right">
-        <thead className="bg-primary-300 text-primary-700 dark:bg-primary-700 dark:text-primary-400 text-xs uppercase">
+      <table className="text-primary-500 dark:text-primary-400 dark:divide-primary-700 min-w-full divide-y divide-gray-200 text-left text-sm rtl:text-right">
+        <thead className="bg-primary-100 dark:bg-primary-700 text-primary-500 dark:text-primary-300 uppercase">
           <tr>
             {useCheckboxes && <th className="w-8"></th>}
             {tableColumns.map((column, index) => (
-              <th key={index} scope="col" className={classNames('px-6 py-3', column.classNames)}>
+              <th key={index} scope="col" className={classNames('px-6 py-3 text-xs font-medium tracking-wider', column.classNames)}>
                 <div className="inline-flex items-center gap-2">
                   {column.title}
                   {column.sortable && (

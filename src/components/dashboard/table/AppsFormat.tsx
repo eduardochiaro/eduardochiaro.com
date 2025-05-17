@@ -3,7 +3,7 @@
 import moment from 'moment';
 import Image from 'next/image';
 import React from 'react';
-import ActionColumn from './ActionColumn';
+import ActionColumn, { TableRowProps } from './ActionColumn';
 
 export const columns = [
   {
@@ -75,15 +75,7 @@ type MappedData = {
   updated_at: string;
 };
 
-type Props = {
-  trClasses: string;
-  tdClasses: string;
-  rowData: any;
-  useCheckboxes: boolean;
-  checkbox: React.ReactElement;
-};
-
-export function TableRow({ trClasses, tdClasses, rowData, useCheckboxes, checkbox }: Props) {
+export function TableRow({ trClasses, tdClasses, rowData, useCheckboxes, checkbox }: TableRowProps) {
   const mappedData = formatData(rowData);
   return (
     <tr className={trClasses}>
