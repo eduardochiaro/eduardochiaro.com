@@ -7,15 +7,18 @@ import Logo from '@/components/icons/Logo';
 import LinkedInIcon from '@/components/icons/Linkedin';
 import GitHubIcon from '@/components/icons/Github';
 import WireContainer from './WireContainer';
+import { unstable_ViewTransition as ViewTransition } from 'react';
 
 export default function Footer() {
   return (
     <footer id="footer" className="mt-10 pb-4">
       <div className="mx-auto max-w-screen-lg p-4">
         <div className="flex items-center justify-between gap-5">
-          <div className="text-primary-500 flex items-center justify-center gap-2 font-mono text-sm md:justify-start">
-            <Logo className="logo text-primary-950 dark:text-primary-50 size-8" /> {moment().year()}
-          </div>
+          <ViewTransition name="footer-logo">
+            <div className="text-primary-500 flex items-center justify-center gap-2 font-mono text-sm md:justify-start">
+              <Logo className="logo text-primary-950 dark:text-primary-50 size-8" /> {moment().year()}
+            </div>
+          </ViewTransition>
           <div className="flex justify-center gap-4 md:justify-end">
             <WireContainer>
               <Link

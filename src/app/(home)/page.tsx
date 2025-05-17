@@ -111,6 +111,11 @@ export default async function Home() {
         <p className="text-xs">
           <span className="text-accent-600 dark:text-accent-500">•</span> project under contract
         </p>
+        <ViewTransition name="footer-logo">
+          <span className="text-primary-500 flex items-center justify-center gap-2 font-mono text-sm md:justify-start">
+            <Logo className="logo text-primary-950 dark:text-primary-50 size-8" /> {moment().year()}
+          </span>
+        </ViewTransition>
       </footer>
     </div>
   );
