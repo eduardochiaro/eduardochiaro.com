@@ -11,7 +11,11 @@ export const metadata: Metadata = {
   title: 'Admin > Resume | Eduardo Chiaro',
 };
 
-export default async function DashboardResumeEdit({ params }: { params: { slug: string } }) {
+type Props = {
+  params: Promise<{ slug: string }>;
+};
+
+export default async function DashboardResumeEdit({ params }: Props) {
   const id = (await params).slug;
   const resume = await pullSingleResume(id);
   if (!resume) {

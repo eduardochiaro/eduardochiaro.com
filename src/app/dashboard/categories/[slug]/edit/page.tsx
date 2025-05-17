@@ -8,7 +8,11 @@ export const metadata: Metadata = {
   title: 'Admin > Categories | Eduardo Chiaro',
 };
 
-export default async function DashboardCategoryEdit({ params }: { params: { slug: string } }) {
+type Props = {
+  params: Promise<{ slug: string }>;
+};
+
+export default async function DashboardCategoryEdit({ params }: Props) {
   const id = (await params).slug;
   const category = await pullSingleCategory(id);
   if (!category) {
