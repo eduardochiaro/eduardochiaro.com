@@ -14,6 +14,7 @@
     "cy:open": "concurrently \"next dev\" \"cypress open\"",
     "cy:run": "concurrently \"next dev\" \"cypress run\"",
     "prisma:generate": "prisma generate",
+    "prisma:reset": "dotenv -e .env.local prisma migrate reset",
     "prisma:push": "dotenv -e .env.local prisma db push --accept-data-loss && prisma generate",
     "prisma:migrate-dev": "dotenv -e .env.local prisma migrate dev",
     "prisma:migrate-prod": "dotenv -e .env.local prisma migrate deploy",
