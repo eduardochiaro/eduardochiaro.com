@@ -1,6 +1,6 @@
 import prisma from '@/utils/prisma';
 import { Metadata } from 'next';
-import { Fragment, cache } from 'react';
+import { cache } from 'react';
 import WireContainer from '@/components/frontend/WireContainer';
 import { Prisma, ResumeTag, Skill } from '@/utils/prismaClient';
 import moment from 'moment';
@@ -12,6 +12,7 @@ import FrontendLayout from '@/components/layouts/Frontend';
 import Logo from '@/components/icons/Logo';
 import { ChevronRightIcon } from 'lucide-react';
 import Card from '@/components/frontend/Card';
+import { unstable_ViewTransition as ViewTransition } from 'react';
 
 type ResumeProjectExpanded = Prisma.ResumeProjectGetPayload<{ include: { file: true } }>;
 type ResumeExpanded = Prisma.ResumeGetPayload<{ include: { tags: true; projects: { include: { file: true } }; file: true } }> & {
@@ -43,7 +44,9 @@ export default async function Resume() {
                 <h2 className="font-header text-5xl font-semibold">Eduardo Chiaro</h2>
                 <h3 className="font-header text-primary-700 dark:text-primary-400 text-3xl">Software Engineer</h3>
               </div>
-              <Logo className="mr-7 w-20" />
+              <ViewTransition name="logo">
+                <Logo className="mr-7 w-20" />
+              </ViewTransition>
             </div>
             <div className="flex flex-col items-start gap-10 md:min-w-96 md:flex-row">
               <div className="md:w-1/3 md:min-w-56">

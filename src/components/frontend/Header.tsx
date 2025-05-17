@@ -75,8 +75,10 @@ export default function Header({ data }: { data: MenuLink[] }) {
           </Transition>
         </Menu>
 
-        <Link href="/" className="font-header flex items-center p-1 px-2 text-3xl font-normal">
-          <SiteLogo />
+        <Link href="/" className="font-header flex items-center text-3xl font-normal">
+          <ViewTransition name="header-logo">
+            <SiteLogo />
+          </ViewTransition>
         </Link>
         <div className="flex items-center gap-4 md:gap-10">
           <div className="hidden items-center md:flex">

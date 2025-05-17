@@ -47,10 +47,12 @@ export default async function Home() {
   ];
   return (
     <div className="relative flex h-screen flex-col items-center md:flex-row">
-      <header className="top-5 left-5 md:absolute">
-        <SiteLogo />
+      <header className="top-6 left-6 md:absolute">
+        <ViewTransition name="header-logo">
+          <SiteLogo />
+        </ViewTransition>
       </header>
-      <div className="top-5 right-5 md:absolute">
+      <div className="top-6 right-6 md:absolute">
         <ViewTransition name="theme-switch">
           <WireContainer>
             <ThemeIcon orientation="bottom left" size="h-6" />
@@ -66,7 +68,9 @@ export default async function Home() {
                   <span className="font-semibold">Eduardo</span> is a{' '}
                   <span className="decoration-accent-500 underline decoration-double decoration-2">software engineer</span>.
                 </h2>
-                <Logo className="w-20" />
+                <ViewTransition name="logo">
+                  <Logo className="w-20" />
+                </ViewTransition>
               </div>
               <p className="mt-10">
                 With {moment().diff('2005-09-01', 'years')} years of experience, Eduardo has been tinkering with Node.js for the last few years, building SaaS
