@@ -1,7 +1,7 @@
 import Footer from '@/components/frontend/Footer';
 import Header from '@/components/frontend/Header';
 import Link from 'next/link';
-import styles from '@/styles/Stream.module.scss';
+import styles from '@/styles/Stream.module.css';
 import StreamComponent from '@/components/projects/Stream';
 import { Metadata } from 'next';
 import getMenuLinks from '@/utils/getMenuLinks';
@@ -10,17 +10,17 @@ export default async function Stream() {
   const menuLinks = await getMenuLinks();
 
   return (
-    <div className="flex min-h-screen flex-col justify-between">
+    <div className={`${styles.stream} flex min-h-screen flex-col justify-between`}>
       <Header data={menuLinks} />
-      <div className={`${styles.stream} flex grow flex-col bg-fixed`}>
+      <div className={'flex grow flex-col bg-fixed'}>
         <div className={'mb-auto grow pb-10'}>
           <section className={'mt-10 px-4 lg:px-0'}>
             <div className="mx-auto max-w-5xl">
-              <h1 className="font-header text-3xl font-light leading-tight tracking-wide lg:text-4xl">
-                <Link href="/projects" className="font-semibold text-secondary-600 hover:underline dark:text-secondary-600">
+              <h1 className="font-header text-3xl leading-tight font-light tracking-wide lg:text-4xl">
+                <Link href="/projects" className="text-secondary-600 dark:text-secondary-600 font-semibold hover:underline">
                   Projects
                 </Link>{' '}
-                / Stream
+                / Lab / Stream
               </h1>
               <div className="mt-5">
                 <StreamComponent />

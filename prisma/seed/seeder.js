@@ -3,11 +3,13 @@ const skillsSeed = require('./skills.js');
 const menuSeed = require('./menu.js');
 const appsSeed = require('./apps.js');
 const resumeSeed = require('./resume.js');
-const { PrismaClient } = require('@prisma/client');
+const filesSeed = require('./files.js');
+const { PrismaClient } = require('@/utils/prismaClient');
 const prisma = new PrismaClient();
 
 const load = async () => {
   try {
+    await filesSeed();
     await categoriesSeed();
     await skillsSeed();
     await menuSeed();

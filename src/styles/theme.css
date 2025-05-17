@@ -1,0 +1,41 @@
+@theme { 
+  --color-primary-50: oklch(0.984 0.003 247.858);
+  --color-primary-100: oklch(0.968 0.007 247.896);
+  --color-primary-200: oklch(0.929 0.013 255.508);
+  --color-primary-300: oklch(0.869 0.022 252.894);
+  --color-primary-400: oklch(0.704 0.04 256.788);
+  --color-primary-500: oklch(0.554 0.046 257.417);
+  --color-primary-600: oklch(0.446 0.043 257.281);
+  --color-primary-700: oklch(0.372 0.044 257.287);
+  --color-primary-800: oklch(0.279 0.041 260.031);
+  --color-primary-900: oklch(0.208 0.042 265.755);
+  --color-primary-950: oklch(0.129 0.042 264.695);
+
+  --color-secondary-50: oklch(96.12% 0.007 233.64);
+  --color-secondary-100: oklch(92.05% 0.015 244.73);
+  --color-secondary-200: oklch(84.94% 0.028 244.73);
+  --color-secondary-300: oklch(76.75% 0.044 245.1);
+  --color-secondary-400: oklch(69.34% 0.058 243.72);
+  --color-secondary-500: oklch(61.19% 0.074 243.52);
+  --color-secondary-600: oklch(52.61% 0.067 244.32);
+  --color-secondary-700: oklch(42.57% 0.052 243.32);
+  --color-secondary-800: oklch(32.79% 0.038 244.71);
+  --color-secondary-900: oklch(21.29% 0.021 245.8);
+  --color-secondary-950: oklch(15.66% 0.011 248.32);
+
+  --color-accent-50: oklch(95.17% 0.016 22.08);
+  --color-accent-100: oklch(91.33% 0.03 20.26);
+  --color-accent-200: oklch(82.58% 0.064 19.74);
+  --color-accent-300: oklch(73.38% 0.104 21.35);
+  --color-accent-400: oklch(65.51% 0.142 22.8);
+  --color-accent-500: oklch(58.79% 0.177 25.47);
+  --color-accent-600: oklch(50.34% 0.168 26.33);
+  --color-accent-700: oklch(40.89% 0.132 26.2);
+  --color-accent-800: oklch(31.7% 0.098 25.45);
+  --color-accent-900: oklch(21.02% 0.055 24.71);
+  --color-accent-950: oklch(14.45% 0.031 21.73);
+
+  --font-header: var(--font-header), 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', 'Arial', 'sans-serif';
+  --font-sans: 'ui-sans-serif', 'system-ui', 'sans-serif', "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-mono: var(--font-mono), 'Courier New', 'monospace';
+}

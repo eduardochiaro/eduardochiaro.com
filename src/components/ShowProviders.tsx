@@ -1,38 +1,41 @@
-'use client';
-
-import GitHub from '@/components/icons/Github';
-import Google from '@/components/icons/Google';
-import { getProviders, signIn } from 'next-auth/react';
+import GitHubIcon from '@/components/icons/Github';
+import GoogleIcon from '@/components/icons/Google';
+import { signIn } from '@/auth';
 
 const LogoProvider = ({ id }: { id: string }) => {
   switch (id) {
     case 'github':
-      return <GitHub className="w-6" />;
+      return <GitHubIcon className="w-6" />;
     case 'google':
-      return <Google className="w-6" />;
+      return <GoogleIcon className="w-6" />;
     default:
       return <></>;
   }
 };
 
-const ShowProviders = async function ShowProviders() {
-  const providers = await getProviders();
+const ShowProviders = function ShowProviders() {
+  const providers = ['github', 'google'];
   return (
     <div className="flex flex-col gap-6 py-4">
-      {providers &&
-        Object.values(providers).map((provider) => (
-          <div key={provider.name}>
-            <button
-              onClick={() => signIn(provider.id)}
-              className="mx-auto flex items-center gap-3 rounded-md bg-primary-300 p-3 px-4 text-xl text-primary-700 ring-primary-300 ring-offset-2 ring-offset-primary-100 drop-shadow transition duration-300 ease-in-out hover:ring-2 dark:bg-primary-900 dark:text-primary-50 dark:ring-primary-700 dark:ring-offset-primary-600"
-            >
-              <LogoProvider id={provider.id} />
-              Sign in with {provider.name}
-            </button>
-          </div>
-        ))}
+      {providers.map((provider) => (
+        <form
+          key={provider}
+          action={async () => {
+            'use server';
+            await signIn(provider, { redirectTo: '/admin' });
+          }}
+        >
+          <button
+            type="submit"
+            className="bg-primary-300 text-primary-700 ring-primary-300 ring-offset-primary-100 dark:bg-primary-900 dark:text-primary-50 dark:ring-primary-700 dark:ring-offset-primary-600 mx-auto flex cursor-pointer items-center gap-4 rounded-md p-3 px-4 text-lg ring-offset-2 drop-shadow transition duration-300 ease-in-out hover:ring-2"
+          >
+            <LogoProvider id={provider} />
+            Sign in with {provider.charAt(0).toUpperCase() + provider.slice(1)}
+          </button>
+        </form>
+      ))}
     </div>
   );
 };
 
-export default ShowProviders as unknown as () => JSX.Element;
+export default ShowProviders;
