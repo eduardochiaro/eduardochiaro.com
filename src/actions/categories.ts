@@ -3,8 +3,8 @@ import prisma from '@/utils/prisma';
 
 type CategoryData = {
   name: FormDataEntryValue | null;
-  type: FormDataEntryValue | null;
-}
+  type?: FormDataEntryValue | null;
+};
 
 async function addCategory(data: CategoryData) {
   const categoryData: any = {
@@ -47,7 +47,7 @@ const getCategories = async () => {
       createdAt: 'desc',
     },
     include: {
-      bookmarks: true
+      bookmarks: true,
     },
   });
 };

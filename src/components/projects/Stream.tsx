@@ -25,7 +25,7 @@ const GetIcon = ({ type }: { type: string }) => {
 };
 
 export default function Stream() {
-  const { data } = useStaleSWR('/api/portfolio/stream');
+  const { data } = useStaleSWR('/api/stream');
   const items = data?.results.map(function (item: any, id: number) {
     return (
       <WireContainer type="medium" key={id}>

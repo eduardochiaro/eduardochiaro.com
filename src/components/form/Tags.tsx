@@ -30,7 +30,7 @@ const Tags = forwardRef<Ref, FormInputProps>(
     useEffect(() => {
       const delayDebounceFn = setTimeout(async () => {
         if (searchTerm.length >= 3) {
-          const res = await fetch(`/api/admin/tags/search?text=${searchTerm}`);
+          const res = await fetch(`/api/tags?text=${searchTerm}`);
           const tagSearch = await res.json();
           const currentTags = pluck(originalValue, 'id');
           const tags = tagSearch.results.length > 0 ? tagSearch.results.filter((x: any) => !currentTags.includes(x.id)) : [];

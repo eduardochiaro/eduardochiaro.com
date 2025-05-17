@@ -4,7 +4,7 @@ import { columns, TableRow } from '@/components/dashboard/table/MenuFormat';
 import Card from '@/components/frontend/Card';
 import Link from 'next/link';
 import Button from '@/components/dashboard/Button';
-import { getMenuLinks } from "@/actions/menu";
+import { getMenuLinks } from '@/actions/menu';
 
 export const metadata: Metadata = {
   title: 'Admin > Menu links | Eduardo Chiaro',

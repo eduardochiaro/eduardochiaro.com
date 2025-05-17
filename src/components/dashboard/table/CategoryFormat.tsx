@@ -21,6 +21,12 @@ export const columns = [
     sortKey: 'type',
   },
   {
+    title: 'Used in',
+    key: 'bookmarks',
+    classNames: '',
+    sortable: true,
+  },
+  {
     title: 'Created At',
     key: 'created_at',
     classNames: '',
@@ -45,6 +51,7 @@ const formatData = (category: any) => {
     id: category.id,
     name: category.name,
     type: category.type,
+    bookmarks: category.bookmarks.length == 1 ? category.bookmarks.length + ' bookmark' : category.bookmarks.length + ' bookmarks',
     created_at: moment(category.createdAt).fromNow(),
     updated_at: category.updatedAt ? moment(category.updatedAt).fromNow() : '',
   };
@@ -66,7 +73,7 @@ export function TableRow({ trClasses, tdClasses, rowData, useCheckboxes, checkbo
       {columns.map((column, index) => (
         <td key={index} className="relative px-6 py-4">
           {column.key === 'actions' ? (
-            <ActionColumn editUrl={`/dashboard/apps/${mappedData.id}/edit`} deleteUrl={`/dashboard/apps/${mappedData.id}/delete`} />
+            <ActionColumn editUrl={`/dashboard/categories/${mappedData.id}/edit`} deleteUrl={`/dashboard/categories/${mappedData.id}/delete`} />
           ) : (
             mappedData[column.key as keyof MappedData]
           )}

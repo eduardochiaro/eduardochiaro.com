@@ -32,7 +32,7 @@ export default async function DashboardResumeEdit({ params }: { params: { slug: 
       tags: formData.get('tags'),
       file: file.size > 0 ? file : null,
     };
-    updateResume(params.slug, rawFormData);
+    updateResume(id, rawFormData);
     redirect('/dashboard/resume');
   }
   return (
