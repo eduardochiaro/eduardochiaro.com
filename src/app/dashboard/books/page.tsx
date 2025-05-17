@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import Card from '@/components/frontend/Card';
-import BookSearch from '@/components/admin/BookSearch';
+import BookSearch from '@/components/dashboard/BookSearch';
 import { getBookTags, getBooks } from '@/actions/books';
 
 export const metadata: Metadata = {
