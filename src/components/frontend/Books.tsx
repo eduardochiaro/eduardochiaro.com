@@ -100,7 +100,6 @@ export default function Books({ data }: { data: BookWithTags[] }) {
       <h1 className="font-header mx-auto h-10 max-w-5xl text-3xl leading-tight font-light tracking-wide lg:text-4xl">
         Books I&apos;ve <span className="text-secondary-700 dark:text-secondary-500">read</span>...
       </h1>
-      {currentPage}
       <div className="mx-auto flex max-w-5xl">
         <div className="my-10 w-full md:w-3/4">
           <div className="grid grid-cols-2 gap-10 md:grid-cols-3">
