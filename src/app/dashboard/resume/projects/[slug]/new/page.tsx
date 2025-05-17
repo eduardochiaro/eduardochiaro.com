@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import Card from '@/components/frontend/Card';
-import { Input, Tags, Textarea } from '@/components/form';
+import { Input } from '@/components/form';
 import { addProject } from '@/actions/resume';
 
 export const metadata: Metadata = {
