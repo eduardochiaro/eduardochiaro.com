@@ -1,0 +1,32 @@
+@reference "./globals.css";
+
+.sidebar-link {
+  @apply relative flex items-center gap-2 h-11 focus:outline-none px-3;
+}
+.sidebar-open {
+  @apply w-full md:w-28 xl:w-64;
+  > div {
+    @apply w-full md:w-28 xl:w-64;
+  }
+  svg {
+    @apply md:mx-auto xl:mx-0
+  }
+}
+.sidebar-closed {
+  @apply w-full md:w-20;
+  > div {
+    @apply w-full md:w-20;
+  }
+  .sidebar-link,
+  .sidebar-logo {
+    svg {
+      @apply md:mx-auto
+    }
+  }
+  .hide-when-closed {
+    @apply hidden;
+  }
+  .sidebar-link {
+    @apply px-0;
+  }
+}

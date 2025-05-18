@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  output   = "../out/prisma"
 }
 
 datasource db {
@@ -13,22 +14,19 @@ model Skill {
   type       String
   logo       String
   percentage Int
-  createdAt  DateTime? @default(now()) @map("created_at")
-  updatedAt  DateTime? @map("updated_at")
-
-  @@map("skills")
+  createdAt  DateTime? @default(now())
+  updatedAt  DateTime?
 }
 
 model App {
   id          Int       @id @default(autoincrement())
   name        String
-  image       String
-  url         String?
-  createdAt   DateTime? @default(now()) @map("created_at")
-  updatedAt   DateTime? @map("updated_at")
   description String?
-
-  @@map("apps")
+  fileId      Int?      
+  file        File?     @relation(fields: [fileId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  url         String?
+  createdAt   DateTime? @default(now())
+  updatedAt   DateTime?
 }
 
 model Bookmark {
@@ -36,25 +34,22 @@ model Bookmark {
   name        String
   description String?
   url         String
-  createdAt   DateTime? @default(now()) @map("created_at")
-  updatedAt   DateTime? @map("updated_at")
-  categoryId  Int       @map("category_id")
+  categoryId  Int      
   category    Category  @relation(fields: [categoryId], references: [id])
+  createdAt   DateTime? @default(now())
+  updatedAt   DateTime? 
 
-  @@index([categoryId], map: "bookmarks_category_id_fkey")
-  @@map("bookmarks")
+  @@index([categoryId], map: "bookmarks_category_id")
 }
 
 model Category {
   id        Int        @id @default(autoincrement())
   name      String
   type      String
-  createdAt DateTime?  @default(now()) @map("created_at")
-  updatedAt DateTime?  @map("updated_at")
-  deletedAt DateTime?  @map("deleted_at")
+  createdAt DateTime?  @default(now())
+  updatedAt DateTime?  
+  deletedAt DateTime?
   bookmarks Bookmark[]
-
-  @@map("categories")
 }
 
 model MenuLink {
@@ -64,111 +59,135 @@ model MenuLink {
   onlyMobile Boolean   @default(false)
   active     Boolean   @default(true)
   order      Int       @default(0)
-  createdAt  DateTime? @default(now()) @map("created_at")
-  updatedAt  DateTime? @map("updated_at")
-
-  @@map("menu_links")
+  createdAt  DateTime? @default(now())
+  updatedAt  DateTime? 
 }
 
 model Resume {
   id          Int             @id @default(autoincrement())
   name        String
+  description String?         @db.Text
   company     String?
   location    String?
-  image       String?
-  description String?         @db.Text
+  fileId      Int?            
+  file        File?           @relation(fields: [fileId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  featured    Boolean   @default(false)
   startDate   DateTime?
   endDate     DateTime?
-  createdAt   DateTime?       @default(now()) @map("created_at")
-  updatedAt   DateTime?       @map("updated_at")
+  createdAt   DateTime?       @default(now())
+  updatedAt   DateTime?       
   projects    ResumeProject[]
   tags        ResumeTag[]
-
-  @@map("resume")
 }
 
 model ResumeTag {
   id   Int      @id @default(autoincrement())
   name String   @unique // change
   jobs Resume[]
-
-  @@map("resume_tags")
 }
 
 model ResumeProject {
   id          Int       @id @default(autoincrement())
   name        String
   description String?
-  image       String
-  createdAt   DateTime? @default(now()) @map("created_at")
-  updatedAt   DateTime? @map("updated_at")
-  resumeId    Int       @map("resume_id")
+  resumeId    Int       
   resume      Resume    @relation(fields: [resumeId], references: [id])
+  fileId      Int?      
+  file        File?     @relation(fields: [fileId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  featured    Boolean   @default(false)
+  createdAt   DateTime? @default(now())
+  updatedAt   DateTime? 
 
-  @@index([resumeId], map: "resume_projects_resume_id_fkey")
-  @@map("resume_projects")
+  @@index([resumeId], map: "project_resume_id")
 }
 
-model UserAccess {
-  id    Int    @id @default(autoincrement())
-  email String
-  role  String
-  user  User   @relation(fields: [email], references: [email])
-
-  @@map("user_access")
+model Book {
+  id          Int       @id @default(autoincrement())
+  title       String
+  author      String?
+  fileId      Int?             
+  file        File?           @relation(fields: [fileId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  isbn        String  @unique
+  createdAt   DateTime? @default(now())
+  updatedAt   DateTime? 
+  tags        BookTag[]
 }
 
-model Account {
-  id                 String  @id @default(cuid())
-  userId             String  @map("user_id")
-  type               String
-  provider           String
-  providerAccountId  String  @map("provider_account_id")
-  refresh_token      String? @db.Text
-  access_token       String? @db.Text
-  expires_at         Int?
-  token_type         String?
-  scope              String?
-  id_token           String? @db.Text
-  session_state      String?
-  oauth_token_secret String?
-  oauth_token        String?
-  user               User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@unique([provider, providerAccountId])
-  @@index([userId], map: "accounts_user_id_fkey")
-  @@map("accounts")
+model BookTag {
+  id   Int      @id @default(autoincrement())
+  name String   @unique // change
+  published Boolean @default(false)
+  books Book[]
 }
 
-model Session {
-  id           Int      @id @default(autoincrement())
-  sessionToken String   @unique @map("session_token")
-  userId       String   @map("user_id")
-  expires      DateTime
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+model File {
+  id          Int       @id @default(autoincrement())
+  name        String
+  type        String
+  path        String  @unique
+  createdAt   DateTime? @default(now())
+  updatedAt   DateTime? 
 
-  @@index([userId], map: "sessions_user_id_fkey")
-  @@map("sessions")
+  books      Book[]
+  resumes    Resume[]
+  resumeProjects ResumeProject[]
+  apps       App[]
 }
 
 model User {
-  id            String       @id @default(cuid())
+  id            Int       @id @default(autoincrement())
   name          String?
-  email         String?      @unique
-  emailVerified DateTime?    @map("email_verified")
+  username      String?         @unique
+  email         String?         @unique
+  emailVerified DateTime?
   image         String?
+  role          String?
   accounts      Account[]
   sessions      Session[]
-  access        UserAccess[]
-
-  @@map("users")
+ 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt @default(now())
 }
 
+ 
+model Account {
+  id                       String  @id @default(cuid())
+  userId                   Int  @unique
+  type                     String
+  provider                 String
+  providerAccountId        String
+  refresh_token            String? @db.Text
+  access_token             String? @db.Text
+  expires_at               Int?
+  token_type               String?
+  scope                    String?
+  id_token                 String? @db.Text
+  session_state            String?
+  refresh_token_expires_in Int?
+  user                     User?   @relation(fields: [userId], references: [id])
+ 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+ 
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       Int
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id])
+ 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+ 
 model VerificationToken {
   identifier String
-  token      String   @unique
+  token      String
   expires    DateTime
-
+ 
   @@unique([identifier, token])
-  @@map("verification_tokens")
 }

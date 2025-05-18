@@ -1,20 +1,30 @@
-const { PrismaClient } = require('@prisma/client');
+const { PrismaClient } = require('@/utils/prismaClient');
 const prisma = new PrismaClient();
 
 const apps = [
   {
-    id: 1,
     name: 'Impact (v2.0.0)',
     description: 'Ghost blog theme using TailwindCSS',
     url: "https://github.com/eduardochiaro/Impact",
-    image: 'impact.png',
+    file: {
+      create: {
+        name: 'Impact',
+        path: 'impact.png',
+        type: 'image/png',
+      }
+    }
   },
   {
-    id: 2,
     name: 'CompactLine',
     description: 'Oh My Zsh theme',
     url: "https://github.com/eduardochiaro/compactline",
-    image: 'compactline.png',
+    file: {
+      create: {
+        name: 'CompactLine',
+        path: 'compactline.png',
+        type: 'image/png',
+      }
+    }
   },
 ];
 
@@ -22,11 +32,13 @@ const seed = async () => {
   await prisma.app.deleteMany();
   console.log('Deleted records in apps table');
 
-  await prisma.$queryRaw`ALTER TABLE apps AUTO_INCREMENT = 1`;
+  await prisma.$queryRaw`ALTER TABLE App AUTO_INCREMENT = 1`;
   console.log('reset apps auto increment to 1');
 
-  await prisma.app.createMany({
-    data: apps,
+  await apps.map(async (app) => {
+    await prisma.app.create({
+      data: app,
+    });
   });
   console.log('Added apps data');
 }

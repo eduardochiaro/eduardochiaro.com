@@ -1,25 +1,29 @@
-const { PrismaClient } = require('@prisma/client');
+const { PrismaClient } = require('@/utils/prismaClient');
 const prisma = new PrismaClient();
 
 const menuLinks = [
   {
-    id: 1,
-    name: 'Home',
-    url: '/',
+    name: 'Resume',
+    url: '/resume',
     order: 1,
     active: true,
     onlyMobile: false,
   },
   {
-    id: 2,
-    name: 'Bookmarks',
-    url: '/bookmarks',
+    name: 'Books',
+    url: '/books',
     order: 2,
-    active: false,
+    active: true,
     onlyMobile: false,
   },
   {
-    id: 3,
+    name: 'Bookmarks',
+    url: '/bookmarks',
+    order: 2,
+    active: true,
+    onlyMobile: false,
+  },
+  {
     name: 'Projects',
     url: '/projects',
     order: 3,
@@ -32,7 +36,7 @@ const seed = async () => {
   await prisma.menuLink.deleteMany();
   console.log('Deleted records in menu links table');
 
-  await prisma.$queryRaw`ALTER TABLE menu_links AUTO_INCREMENT = 1`;
+  await prisma.$queryRaw`ALTER TABLE MenuLink AUTO_INCREMENT = 1`;
   console.log('reset menu links auto increment to 1');
 
   await prisma.menuLink.createMany({

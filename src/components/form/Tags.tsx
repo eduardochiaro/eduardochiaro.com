@@ -1,35 +1,38 @@
-import { ExclamationTriangleIcon, XCircleIcon } from '@heroicons/react/24/solid';
+'use client';
+
+import { TriangleAlertIcon, CircleXIcon, X, XIcon } from 'lucide-react';
 import { forwardRef, DetailedHTMLProps, InputHTMLAttributes, Fragment, useRef, useState, useEffect } from 'react';
-import { Menu } from '@headlessui/react';
+import { Menu, MenuItem, MenuItems } from '@headlessui/react';
 import pluck from '@/utils/pluck';
+import { set } from 'cypress/types/lodash';
 
 export type FormInputProps = {
   id?: string;
   name: string;
   label: string;
-  value: any[];
+  originalValue: any[];
   type?: string;
   className?: string;
   invalid?: boolean;
   handleChange?: any;
-  updateItem: (e: any) => void;
 } & DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
 
 export type Ref = HTMLInputElement;
 
 const Tags = forwardRef<Ref, FormInputProps>(
-  ({ id = '', type = 'text', name = '', label = '', value = [], placeholder = '', invalid = false, updateItem, className, ...props }, ref) => {
+  ({ id = '', type = 'text', name = '', label = '', originalValue = [], placeholder = '', invalid = false, className, ...props }, ref) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const [openMenu, setOpenMenu] = useState(false);
     const inputSearchRef = useRef<null | HTMLInputElement>(null);
+    const [newValue, setNewValue] = useState(originalValue);
 
     useEffect(() => {
       const delayDebounceFn = setTimeout(async () => {
         if (searchTerm.length >= 3) {
-          const res = await fetch(`/api/admin/tags/search?text=${searchTerm}`);
+          const res = await fetch(`/api/tags?text=${searchTerm}`);
           const tagSearch = await res.json();
-          const currentTags = pluck(value, 'id');
+          const currentTags = pluck(originalValue, 'id');
           const tags = tagSearch.results.length > 0 ? tagSearch.results.filter((x: any) => !currentTags.includes(x.id)) : [];
           setOpenMenu(true);
           if (tags.length > 0) {
@@ -39,7 +42,7 @@ const Tags = forwardRef<Ref, FormInputProps>(
       }, 500);
       resetSearch();
       return () => clearTimeout(delayDebounceFn);
-    }, [searchTerm, value]);
+    }, [searchTerm, originalValue]);
 
     const addTag = (tag: any) => {
       resetSearch();
@@ -47,23 +50,21 @@ const Tags = forwardRef<Ref, FormInputProps>(
         inputSearchRef.current.value = '';
       }
 
-      value.push({ ...tag, new: true });
-      updateItem(value);
+      originalValue.push({ ...tag, new: true });
+      setNewValue(originalValue);
     };
 
     const removeTag = (key: number) => {
       // remove tags from resume using index key
       resetSearch();
-      const tag = value[key];
+      const tag = originalValue[key];
       if (tag.new) {
-        value.splice(key, 1);
+        originalValue.splice(key, 1);
       } else {
         tag.deleted = true;
-        value[key] = tag;
+        originalValue[key] = tag;
       }
-
-      updateItem(value);
-      //setResume({ ...resume });
+      setNewValue(originalValue);
     };
 
     const resetSearch = () => {
@@ -72,25 +73,24 @@ const Tags = forwardRef<Ref, FormInputProps>(
     };
 
     const isInvalid =
-      type == 'file' ? invalid && ref != null && typeof ref !== 'function' && ref.current && ref.current.value == '' : invalid && value.length <= 0;
+      type == 'file' ? invalid && ref != null && typeof ref !== 'function' && ref.current && ref.current.value == '' : invalid && originalValue.length <= 0;
     return (
       <>
         <label htmlFor={id ? id : `${name}-form`} className="input-label flex items-center">
           <span className="grow">
-            {label} {props.required && <span className="text-secondary-600">*</span>} ({value.length})
+            {label} {props.required && <span className="text-secondary-600">*</span>} ({originalValue.length})
           </span>
         </label>
-
+        <input type="hidden" name={name} value={JSON.stringify(newValue)} />
         <div className={`${isInvalid && '!border-red-400'} input-field relative mt-1 flex flex-wrap items-center gap-2 p-2`}>
-          {value?.map((tag, key) => (
+          {originalValue?.map((tag, key) => (
             <Fragment key={`tag-${key}`}>
               {!tag.deleted && (
-                <span className="group relative">
-                  <span className={`rounded px-2 py-1 text-xs text-primary-100 ${tag.new ? 'bg-emerald-700' : 'bg-secondary-800'}`}>{tag.name}</span>
-                  <XCircleIcon
-                    className="absolute -right-2 -top-2 hidden h-4 w-4 cursor-pointer text-primary-100 group-hover:block"
-                    onClick={() => removeTag(key)}
-                  />
+                <span
+                  className={`text-primary-100 divide-primary-500 flex items-center gap-1 divide-x rounded-sm px-2 py-1 text-xs ${tag.new ? 'bg-emerald-700' : 'bg-accent-800'}`}
+                >
+                  <span className="pr-2">{tag.name}</span>
+                  <XIcon className="solid size-3 cursor-pointer" onClick={() => removeTag(key)} />
                 </span>
               )}
             </Fragment>
@@ -105,16 +105,16 @@ const Tags = forwardRef<Ref, FormInputProps>(
               onChange={(e) => setSearchTerm(e.target.value)}
             />
             {openMenu && (
-              <Menu.Items static className="box-card absolute left-0 top-8 w-56 divide-y divide-primary-300 dark:divide-primary-500">
+              <MenuItems static className="box-card divide-primary-300 dark:divide-primary-500 absolute top-8 left-0 w-56 divide-y">
                 {searchResults.map((tag: any, key: number) => (
                   <div className="px-1 py-1" key={key}>
-                    <Menu.Item>
-                      {({ active }) => (
-                        <button className={`flex w-full p-2 ${active && 'bg-blue-500'}`} onClick={() => addTag(tag)}>
+                    <MenuItem>
+                      {({ focus }) => (
+                        <button className={`flex w-full p-2 ${focus && 'bg-blue-500'}`} onClick={() => addTag(tag)}>
                           {tag.name}
                         </button>
                       )}
-                    </Menu.Item>
+                    </MenuItem>
                   </div>
                 ))}
                 {searchResults.length == 0 && (
@@ -129,12 +129,12 @@ const Tags = forwardRef<Ref, FormInputProps>(
                     </div>
                   </>
                 )}
-              </Menu.Items>
+              </MenuItems>
             )}
           </Menu>
           {isInvalid && (
             <p className="mt-1 flex items-center gap-1 text-xs text-red-400">
-              <ExclamationTriangleIcon className="h-4" /> this field is required
+              <TriangleAlertIcon className="size-3" /> this field is required
             </p>
           )}
         </div>
