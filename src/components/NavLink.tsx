@@ -15,7 +15,7 @@ export default function NavLink({
 }: LinkProps & { activeClassName: string; className: string; type: string; children: ReactElement }) {
   const asPath = usePathname();
 
-  const child = React.Children.only(children) as ReactElement<{ className?: string }>;
+  const child = React.Children.only(children);
   const asPathInitial = type == 'main' ? '/' + asPath?.split('#')[0].split('/')[1] : asPath;
 
   const [classInUse, setClassInUse] = useState(className);
@@ -27,7 +27,7 @@ export default function NavLink({
   }, [asPath, asPathInitial, href, as, activeClassName, className]);
 
   return (
-    <Link href={href} as={as} {...props}>
+    <Link href={href} as={as} {...props} legacyBehavior>
       {React.cloneElement(child, { className: classInUse })}
     </Link>
   );

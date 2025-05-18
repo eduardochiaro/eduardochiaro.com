@@ -1,4 +1,4 @@
-const { PrismaClient } = require('@/utils/prismaClient');
+const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 const moment = require('moment');
 
@@ -6,15 +6,8 @@ const resumes = [
   {
     company: 'Verizon',
     location: 'Greater Seattle Area, USA',
-    name: 'Senior Software Engineer',
-    featured: true,
-    file: {
-      create: {
-        name: 'Verizon',
-        path: 'Verizon_logo.svg',
-        type: 'image/svg',
-      }
-    },
+    name: 'Software Engineer',
+    image: 'Verizon_logo.svg',
     description: '',
     startDate: moment('2017-06-01').toISOString(),
     endDate: null,
@@ -24,14 +17,7 @@ const resumes = [
     company: 'Getty Images',
     location: 'Greater Seattle Area, USA',
     name: 'Software Developer',
-    featured: true,
-    file: {
-      create: {
-        name: 'Getty Images',
-        path: 'Getty_Images_logo.svg',
-        type: 'image/svg',
-      }
-    },
+    image: 'Getty_Images_logo.svg',
     description: 'Update and include new functionality on iStockPhoto website to help the transition to GettyImages platform in long run. Technologies used: PHP5, Zend, PHPUnit MySQL, Javascript, AngularJS, HTML, Git, Linux, and Windows.',
     startDate: moment('2016-05-01').toISOString(),
     endDate: moment('2016-11-01').toISOString(),
@@ -48,47 +34,19 @@ const resumes = [
     projects: [
       {
         name: 'Microsoft',
-        featured: true,
-        file: {
-          create: {
-            name: 'Microsoft',
-            path: 'Microsoft_logo.svg',
-            type: 'image/svg',
-          }
-        }
+        image: 'Microsoft_logo.svg'
       },
       {
         name: 'HP',
-        featured: true,
-        file: {
-          create: {
-            name: 'HP',
-            path: 'HP_logo.svg',
-            type: 'image/svg',
-          }
-        }
+        image: 'HP_logo.svg'
       },
       {
         name: 'Samsung',
-        featured: true,
-        file: {
-          create: {
-            name: 'Samsung',
-            path: 'Samsung_logo.svg',
-            type: 'image/svg',
-          }
-        }
+        image: 'Samsung_logo.svg'
       },
       {
         name: 'LG',
-        featured: true,
-        file: {
-          create: {
-            name: 'LG',
-            path: 'LG_logo.svg',
-            type: 'image/svg',
-          }
-        }
+        image: 'LG_logo.svg'
       }
     ]
   },
@@ -122,14 +80,14 @@ const resumes = [
 ];
 
 const seed = async () => {
-  await prisma.resumeTag.deleteMany();
   await prisma.resumeProject.deleteMany();
   await prisma.resume.deleteMany();
+  await prisma.resumeTag.deleteMany();
   console.log('Deleted records in resumes table');
 
-  await prisma.$queryRaw`ALTER TABLE Resume AUTO_INCREMENT = 1`;
-  await prisma.$queryRaw`ALTER TABLE ResumeProject AUTO_INCREMENT = 1`;
-  await prisma.$queryRaw`ALTER TABLE ResumeTag AUTO_INCREMENT = 1`;
+  await prisma.$queryRaw`ALTER TABLE resume AUTO_INCREMENT = 1`;
+  await prisma.$queryRaw`ALTER TABLE resume_tags AUTO_INCREMENT = 1`;
+  await prisma.$queryRaw`ALTER TABLE resume_projects AUTO_INCREMENT = 1`;
   console.log('reset resumes auto increment to 1');
 
   let resumeTags = [];

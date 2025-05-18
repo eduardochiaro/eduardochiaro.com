@@ -1,7 +1,5 @@
-'use client';
-
-import { TriangleAlertIcon } from 'lucide-react';
-import { forwardRef, DetailedHTMLProps, InputHTMLAttributes, useState } from 'react';
+import { ExclamationTriangleIcon } from '@heroicons/react/24/solid';
+import { forwardRef, DetailedHTMLProps, InputHTMLAttributes } from 'react';
 
 export type FormInputProps = {
   id?: string;
@@ -19,8 +17,7 @@ export type Ref = HTMLInputElement;
 
 const Range = forwardRef<Ref, FormInputProps>(
   ({ id = '', name = '', label = '', value = '', min = 0, max = 100, step = 1, invalid = false, className = '', ...props }, ref) => {
-    const [newValue, setNewValue] = useState(value);
-    const isInvalid = invalid && newValue.length <= 0;
+    const isInvalid = invalid && value.length <= 0;
     const rows = [];
     for (let i = min; i <= max; i += 10) {
       rows.push(
@@ -32,11 +29,8 @@ const Range = forwardRef<Ref, FormInputProps>(
     return (
       <>
         <label htmlFor={id ? id : `${name}-form`} className="input-label flex items-center">
-          <span className="flex grow items-center justify-between">
-            <span>
-              {label} {props.required && <span className="text-secondary-600">*</span>}
-            </span>
-            <span className="text-xs">(current: {newValue}%)</span>
+          <span className="grow">
+            {label} {props.required && <span className="text-secondary-600">*</span>} (current: {value}%)
           </span>
         </label>
         <input
@@ -46,17 +40,14 @@ const Range = forwardRef<Ref, FormInputProps>(
           min={min}
           max={max}
           step={step}
-          value={newValue}
+          value={value}
           id={id ? id : `${name}-form`}
-          className={`${isInvalid && '!border-red-400'} range-field mt-1 ${className}`}
-          onChange={(e) => {
-            setNewValue(e.target.value);
-          }}
+          className={`${isInvalid && '!border-red-400'} range-field mt-4 ${className}`}
           {...props}
         />
         {isInvalid && (
           <p className="mt-1 flex items-center gap-1 text-xs text-red-400">
-            <TriangleAlertIcon className="size-3" /> this field is required
+            <ExclamationTriangleIcon className="h-4" /> this field is required
           </p>
         )}
         <ul className="flex w-full justify-between px-2 text-xs">{rows}</ul>

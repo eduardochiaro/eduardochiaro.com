@@ -24,11 +24,11 @@ export default async function Palette() {
     <FrontendLayout>
       <section className={'mt-10 px-4 lg:px-0'}>
         <div className="mx-auto max-w-5xl">
-          <h1 className="font-header h-10 text-3xl leading-tight font-light tracking-wide lg:text-4xl">Palette</h1>
+          <h1 className="h-10 font-header text-3xl font-light leading-tight tracking-wide lg:text-4xl">Palette</h1>
           <div className="mt-10 grid gap-10 md:grid-cols-3">
             {palette.map((color, key) => (
-              <div key={key} className="w-full overflow-hidden rounded-sm drop-shadow-xl">
-                <div className={`h-48 w-full ${color.main} font-header text-primary-100 p-4 text-2xl`}>{color.name}</div>
+              <div key={key} className="w-full overflow-hidden rounded drop-shadow-xl">
+                <div className={`h-48 w-full ${color.main} p-4 font-header text-2xl text-primary-100`}>{color.name}</div>
                 <div className="grid grid-cols-4">
                   {color.scale.map((shade, k) => (
                     <div key={k} className={`h-10 ${shade}`}></div>
@@ -39,7 +39,7 @@ export default async function Palette() {
           </div>
           <div className="mt-10 grid grid-cols-3 gap-10 md:grid-cols-6">
             {secondaryPalette.map((color, key) => (
-              <div key={key} className={`h-12 w-12 ${color} m-auto rounded-sm drop-shadow-xl`}></div>
+              <div key={key} className={`h-12 w-12 ${color} m-auto rounded drop-shadow-xl`}></div>
             ))}
           </div>
         </div>

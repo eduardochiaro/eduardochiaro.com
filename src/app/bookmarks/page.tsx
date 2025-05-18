@@ -1,6 +1,6 @@
 import BookmarksComponent from '@/components/frontend/Bookmarks';
 import FrontendLayout from '@/components/layouts/Frontend';
-import { Category, Bookmark } from '@/utils/prismaClient';
+import { Category, Bookmark } from '@prisma/client';
 import { Metadata } from 'next';
 import prisma from '@/utils/prisma';
 import { cache } from 'react';
@@ -14,12 +14,7 @@ export default async function Bookmarks() {
   const bookmarks = await getBookmarks();
   return (
     <FrontendLayout>
-      <div className="flex">
-        <section id="work" className={'mx-auto mt-10 max-w-5xl grow px-4 lg:px-0'}>
-          <h1 className="font-header text-3xl leading-tight font-light tracking-wide lg:text-4xl">Bookmarks</h1>
-          <BookmarksComponent data={bookmarks} />
-        </section>
-      </div>
+      <BookmarksComponent data={bookmarks} />
     </FrontendLayout>
   );
 }

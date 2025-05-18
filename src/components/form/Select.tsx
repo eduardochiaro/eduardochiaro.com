@@ -1,7 +1,5 @@
-'use client';
-
-import { TriangleAlertIcon } from 'lucide-react';
-import { forwardRef, ReactNode, DetailedHTMLProps, InputHTMLAttributes, useState } from 'react';
+import { ExclamationTriangleIcon } from '@heroicons/react/24/solid';
+import { forwardRef, ReactNode, DetailedHTMLProps, InputHTMLAttributes } from 'react';
 
 type FormInputProps = {
   children?: ReactNode;
@@ -16,8 +14,7 @@ type FormInputProps = {
 export type Ref = HTMLSelectElement;
 
 const Select = forwardRef<Ref, FormInputProps>(({ children, name = '', label = '', value = '', invalid = false, className, ...props }, ref) => {
-  const [newValue, setNewValue] = useState(value);
-  const isInvalid = invalid && !newValue;
+  const isInvalid = invalid && !value;
   return (
     <>
       <label htmlFor={`${name}-form`} className="input-label flex items-center">
@@ -29,18 +26,15 @@ const Select = forwardRef<Ref, FormInputProps>(({ children, name = '', label = '
         ref={ref}
         name={name}
         id={`${name}-form`}
-        className={`${isInvalid && '!border-red-400'} input-field mt-1 appearance-none px-4 py-1.5 focus:outline-none ${className}`}
-        value={newValue}
-        onChange={(e) => {
-          setNewValue(e.target.value);
-        }}
+        className={`${isInvalid && '!border-red-400'} input-field mt-1 px-2 py-1.5 focus:outline-none ${className}`}
+        value={value}
         {...props}
       >
         {children}
       </select>
       {isInvalid && (
         <p className="mt-1 flex items-center gap-1 text-xs text-red-400">
-          <TriangleAlertIcon className="size-3" /> this field is required
+          <ExclamationTriangleIcon className="h-4" /> this field is required
         </p>
       )}
     </>
