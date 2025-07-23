@@ -1,5 +1,5 @@
 import Providers from '@/providers';
-import { Cabin_Sketch, Josefin_Sans, Roboto_Mono } from 'next/font/google';
+import { Josefin_Sans, Roboto_Mono } from 'next/font/google';
 import '../styles/globals.css';
 import type { Viewport } from 'next';
 import { Suspense } from 'react';

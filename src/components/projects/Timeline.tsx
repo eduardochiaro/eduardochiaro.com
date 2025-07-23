@@ -10,7 +10,9 @@ const Tile = ({ episodes, type }: { episodes: any[]; type: boolean }) => {
   if (type) {
     return (
       <div className="mx-auto mt-5 w-2/3">
-        {episodes?.map((episode, index) => <EvenTile key={`episode-${index}`} episode={episode} maxCharacters={6} type="large" />)}
+        {episodes?.map((episode, index) => (
+          <EvenTile key={`episode-${index}`} episode={episode} maxCharacters={6} type="large" />
+        ))}
       </div>
     );
   } else {
