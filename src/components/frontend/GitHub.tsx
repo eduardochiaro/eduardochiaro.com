@@ -18,11 +18,11 @@ type Props = {
 
 export default function GitHub({ responseArray }: Props) {
   return (
-    <Masonry breakpointCols={breakpointColumnsObj} className="mt-5 flex w-auto gap-4" columnClassName="bg-clip-padding flex flex-col gap-4">
+    <Masonry breakpointCols={breakpointColumnsObj} className="masonry-grid mt-5 flex w-auto gap-4" columnClassName="bg-clip-padding flex flex-col gap-4">
       {responseArray.map((repo) => (
         <WireContainer type="medium" key={`repo-${repo.id}`}>
           <Card className="small p-4 text-base">
-            <div className={'basis-full md:basis-2/3'}>
+            <div className={'basis-full md:basis-2/3'} data-cy="repo-card">
               <h3 className="font-header group-hover:text-secondary-600 dark:group-hover:text-secondary-600 text-xl tracking-wide transition-colors duration-300 ease-out">
                 {repo.name}
               </h3>
