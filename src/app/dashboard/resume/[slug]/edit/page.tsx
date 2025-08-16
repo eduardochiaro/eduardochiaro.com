@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation';
 import Card from '@/components/frontend/Card';
 import { Input, Tags, Textarea } from '@/components/form';
 import { updateResume } from '@/actions/resume';
-import moment from 'moment';
+import { format } from 'date-fns';
 import Image from 'next/image';
 import SVG from '@/utils/svg';
 
@@ -51,10 +51,16 @@ export default async function DashboardResumeEdit({ params }: Props) {
           </div>
           <div className="flex items-start gap-4">
             <div className="grow">
-              <Input type="date" name="startDate" label="Start Date" value={resume.startDate ? moment(resume.startDate).format('YYYY-MM-DD') : ''} required />
+              <Input
+                type="date"
+                name="startDate"
+                label="Start Date"
+                value={resume.startDate ? format(new Date(resume.startDate), 'yyyy-MM-dd') : ''}
+                required
+              />
             </div>
             <div className="grow">
-              <Input type="date" name="endDate" label="End Date" value={resume.endDate ? moment(resume.endDate).format('YYYY-MM-DD') : ''} />
+              <Input type="date" name="endDate" label="End Date" value={resume.endDate ? format(new Date(resume.endDate), 'yyyy-MM-dd') : ''} />
             </div>
           </div>
           <div>

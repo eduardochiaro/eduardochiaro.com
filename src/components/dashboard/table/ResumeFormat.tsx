@@ -1,6 +1,6 @@
 'use client';
 
-import moment from 'moment';
+import { format } from '@/utils/date';
 import React from 'react';
 import ActionColumn from './ActionColumn';
 import SVG from '@/utils/svg';
@@ -79,8 +79,8 @@ const formatData = (job: any) => {
         {tag.name}
       </span>
     )),
-    startDate: moment(job.startDate).format('MMMM YYYY'),
-    endDate: job.endDate ? moment(job.endDate).format('MMMM YYYY') : 'Present',
+    startDate: format(job.startDate, 'MMMM yyyy', 'Unknown'),
+    endDate: format(job.endDate, 'MMMM yyyy', 'Present'),
   };
 };
 

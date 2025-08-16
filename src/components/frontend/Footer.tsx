@@ -1,6 +1,6 @@
 'use client';
 
-import moment from 'moment';
+import { format as dateFormat } from '@/utils/date';
 import * as React from 'react';
 import Link from 'next/link';
 import Logo from '@/components/icons/Logo';
@@ -16,7 +16,7 @@ export default function Footer() {
         <div className="flex items-center justify-between gap-5">
           <ViewTransition name="footer-logo">
             <div className="text-primary-500 flex items-center justify-center gap-2 font-mono text-sm md:justify-start">
-              <Logo className="logo text-primary-950 dark:text-primary-50 size-8" /> {moment().year()}
+              <Logo className="logo text-primary-950 dark:text-primary-50 size-8" /> {dateFormat(new Date(), 'yyyy')}
             </div>
           </ViewTransition>
           <div className="flex justify-center gap-4 md:justify-end">

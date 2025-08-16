@@ -1,11 +1,12 @@
 'use client';
 
 import Link from 'next/link';
-import moment from 'moment';
+import { fromNow } from '@/utils/date';
 import NaturalImage from '@/components/NaturalImage';
 import Flickr from '@/components/icons/Flickr';
 import Instagram from '@/components/icons/Instagram';
-import Masonry from 'react-masonry-css';
+import dynamic from 'next/dynamic';
+const Masonry = dynamic(() => import('react-masonry-css'), { ssr: false });
 import useStaleSWR from '@/utils/staleSWR';
 import WireContainer from '../frontend/WireContainer';
 import Card from '../frontend/Card';
@@ -40,7 +41,7 @@ export default function Stream() {
               </div>
               <div className="flex items-center justify-between">
                 <GetIcon type={item.type} />
-                {item.published && <p className="text-right font-mono text-xs opacity-70">{moment(item.published).fromNow()}</p>}
+                {item.published && <p className="text-right font-mono text-xs opacity-70">{fromNow(item.published, true)}</p>}
               </div>
             </div>
           </Link>

@@ -1,7 +1,7 @@
 'use server';
 import prisma from '@/utils/prisma';
 import { Skill } from '@/utils/prismaClient';
-import moment from 'moment';
+import { fromNow } from '@/utils/date';
 
 type SkillData = {
   name: FormDataEntryValue | null;
@@ -59,7 +59,7 @@ const getSkills = async () => {
   if (data) {
     return data.map((skill: Skill) => ({
       ...skill,
-      updated: moment(skill.updatedAt || skill.createdAt).fromNow(),
+      updated: fromNow((skill.updatedAt ?? skill.createdAt) as Date, true),
       category: skill.type,
     }));
   }

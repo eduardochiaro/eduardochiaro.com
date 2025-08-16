@@ -1,10 +1,11 @@
-import axios from 'axios';
+// use fetch to avoid bundling axios
 
 const getWeather = async (city: string) => {
   try {
-    const { data } = await axios.get(`https://wttr.in/${city}?ATnq0`);
-    return data;
-  } catch (error) {
+    const res = await fetch(`https://wttr.in/${city}?ATnq0`);
+    if (!res.ok) return `Failed to fetch weather (${res.status})`;
+    return res.text();
+  } catch (error: any) {
     return error?.toString();
   }
 };
@@ -40,7 +41,7 @@ export const logo = () => {
                     %@( ((*             `;
 };
 
-export const fetch = () => {
+const sysInfo = () => {
   return (
     <div className="my-4 ml-4">
       <div className="mb-2 w-1/3 border-b border-dashed">user@eduardochiaro.com</div>
@@ -79,3 +80,5 @@ export const fetch = () => {
     </div>
   );
 };
+
+export { sysInfo as fetch };

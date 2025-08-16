@@ -1,7 +1,7 @@
 import ThemeIcon from '@/components/ThemeIcon';
 import WireContainer from '@/components/frontend/WireContainer';
 import SVG from '@/utils/svg';
-import moment from 'moment';
+import { format as dateFormat } from '@/utils/date';
 import Link from 'next/link';
 import { cache } from 'react';
 import prisma from '@/utils/prisma';
@@ -73,7 +73,7 @@ export default async function Home() {
                 </ViewTransition>
               </div>
               <p className="mt-10">
-                With {moment().diff('2005-09-01', 'years')} years of experience, Eduardo has been tinkering with Node.js for the last few years, building SaaS
+                With {new Date().getFullYear() - 2005} years of experience, Eduardo has been tinkering with Node.js for the last few years, building SaaS
                 applications that are scalable and flexible. He&apos;s a big believer in using the latest technologies and best practices to stay on the cutting
                 edge of development.
               </p>
@@ -113,7 +113,7 @@ export default async function Home() {
         </p>
         <ViewTransition name="footer-logo">
           <span className="text-primary-500 flex items-center justify-center gap-2 font-mono text-sm md:justify-start">
-            <Logo className="logo text-primary-950 dark:text-primary-50 size-8" /> {moment().year()}
+            <Logo className="logo text-primary-950 dark:text-primary-50 size-8" /> {dateFormat(new Date(), 'yyyy')}
           </span>
         </ViewTransition>
       </footer>

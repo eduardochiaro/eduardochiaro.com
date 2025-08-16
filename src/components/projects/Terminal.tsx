@@ -1,26 +1,23 @@
 'use client';
 
 import { KeyboardEvent, useEffect, useReducer, useRef } from 'react';
-import moment from 'moment';
+import { format as dateFormat } from '@/utils/date';
 import * as commands from '@/utils/projects/terminal/commands';
 import classNames from '@/utils/classNames';
 import WireContainer from '../frontend/WireContainer';
 import SquareSpinner from '@/components/SquareSpinner';
 import Card from '../frontend/Card';
 
-const useFocus = () => {
-  const htmlElRef = useRef(null);
+const useFocus = (): [React.RefObject<HTMLInputElement | null>, () => void] => {
+  const htmlElRef = useRef<HTMLInputElement | null>(null);
   const setFocus = () => {
-    if (htmlElRef && htmlElRef.current) {
-      const el = htmlElRef.current as HTMLInputElement;
-      el.focus();
-    }
+    htmlElRef.current?.focus();
   };
   return [htmlElRef, setFocus];
 };
 
 const initialState = {
-  time: moment().format('HH:mm'),
+  time: dateFormat(new Date(), 'HH:mm'),
   command: '',
   historyIndex: 0,
   history: [],
@@ -40,7 +37,7 @@ export default function Terminal() {
   const callAction = async (command: string, commandArgs: string[]) => {
     dispatch({ historyIndex: 0 });
     let currentHistory = [...state.history];
-    const time = moment().format('HH:mm');
+    const time = dateFormat(new Date(), 'HH:mm');
     switch (command) {
       case 'help':
         const outputHelp = 'Available commands: \n\n' + availableCommands.join(', ');
@@ -82,7 +79,7 @@ export default function Terminal() {
 
       dispatch({ isLoading: true });
       await callAction(command, commandArgs);
-      dispatch({ time: moment().format('HH:mm'), command: '' });
+      dispatch({ time: dateFormat(new Date(), 'HH:mm'), command: '' });
     }
 
     if (e.key === 'ArrowUp') {
@@ -90,7 +87,7 @@ export default function Terminal() {
       const index = state.historyIndex + 1;
       const findOldCommand = state.history[state.history.length - index]?.command;
       if (findOldCommand) {
-        dispatch({ time: moment().format('HH:mm'), command: findOldCommand, historyIndex: index });
+        dispatch({ time: dateFormat(new Date(), 'HH:mm'), command: findOldCommand, historyIndex: index });
       }
     }
 
@@ -99,9 +96,9 @@ export default function Terminal() {
       const index = state.historyIndex - 1;
       const findOldCommand = state.history[state.history.length - index]?.command;
       if (findOldCommand) {
-        dispatch({ time: moment().format('HH:mm'), command: findOldCommand, historyIndex: index });
+        dispatch({ time: dateFormat(new Date(), 'HH:mm'), command: findOldCommand, historyIndex: index });
       } else {
-        dispatch({ time: moment().format('HH:mm'), command: '', historyIndex: 0 });
+        dispatch({ time: dateFormat(new Date(), 'HH:mm'), command: '', historyIndex: 0 });
       }
     }
   };
@@ -138,7 +135,7 @@ export default function Terminal() {
           <div className="size-3 rounded-full border border-yellow-600 bg-yellow-500"></div>
           <div className="size-3 rounded-full border border-emerald-600 bg-emerald-500"></div>
         </div>
-        <div className="bg-primary-950 text-primary-50 grow justify-end overflow-y-auto rounded-b-lg p-4 font-mono shadow-lg" onClick={() => setInputFocus}>
+        <div className="bg-primary-950 text-primary-50 grow justify-end overflow-y-auto rounded-b-lg p-4 font-mono shadow-lg" onClick={() => setInputFocus()}>
           {state.history.map((line: any, index: number) => (
             <div key={`history-${index}`} className="mb-1">
               <div className="flex flex-row items-center space-x-2">

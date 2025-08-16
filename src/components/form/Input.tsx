@@ -1,7 +1,7 @@
 'use client';
 
 import { TriangleAlertIcon } from 'lucide-react';
-import moment from 'moment';
+import { format as dateFormat } from '@/utils/date';
 import { forwardRef, DetailedHTMLProps, InputHTMLAttributes, useState } from 'react';
 
 export type FormInputProps = {
@@ -22,7 +22,7 @@ const Input = forwardRef<Ref, FormInputProps>(
     const isInvalid =
       type == 'file' ? invalid && ref != null && typeof ref !== 'function' && ref.current && ref.current.value == '' : invalid && newValue.length <= 0;
 
-    value = type == 'date' && value && value != '' ? moment(value).format('YYYY-MM-DD') : value;
+    value = type == 'date' && value && value != '' ? dateFormat(value, 'yyyy-MM-dd') : value;
     return (
       <>
         <label htmlFor={id ? id : `${name}-form`} className="input-label flex items-center">

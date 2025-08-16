@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getCachedFlickr, getCacheInstagram, getCachePixelfed } from '@/utils/getCachedFeeds';
-import moment from 'moment';
+import { formatISO, getUnixTime } from 'date-fns';
 
 type StreamItem = {
   title: string;
   permalink: string;
-  published: moment.MomentInput;
+  published: string | number | Date;
   timestamp: number;
   type: string;
   image: string;
@@ -43,12 +43,12 @@ export async function GET(request: NextRequest) {
   });
   */
   const pixelfed = await getCachePixelfed();
-  pixelfed.slice(0, 5).forEach((item: { content: any; url: any; created_at: moment.MomentInput; media_attachments: { url: any }[] }) => {
+  pixelfed.slice(0, 5).forEach((item: { content: any; url: any; created_at: string | number | Date; media_attachments: { url: any }[] }) => {
     results.push({
       title: item.content,
       permalink: item.url,
-      published: moment(item.created_at).utc().format(),
-      timestamp: moment(item.created_at).unix(),
+      published: formatISO(new Date(item.created_at)),
+      timestamp: getUnixTime(new Date(item.created_at)),
       type: 'Pixelfed',
       image: item.media_attachments[0].url,
     });

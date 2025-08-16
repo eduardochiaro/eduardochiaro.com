@@ -1,7 +1,6 @@
 'use client';
 import { deleteTag, updateTag } from '@/actions/resumeTags';
 import { Prisma } from '@/utils/prismaClient';
-import { PencilIcon, TrashIcon } from 'lucide-react';
 import { redirect } from 'next/navigation';
 import React from 'react';
 

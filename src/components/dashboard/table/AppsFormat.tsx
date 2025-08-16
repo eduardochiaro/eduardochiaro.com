@@ -1,6 +1,6 @@
 'use client';
 
-import moment from 'moment';
+import { fromNow } from '@/utils/date';
 import Image from 'next/image';
 import React from 'react';
 import ActionColumn, { TableRowProps } from './ActionColumn';
@@ -63,8 +63,8 @@ const formatData = (app: any) => {
     ),
     app_name: app.name,
     description: app.description,
-    created_at: moment(app.createdAt).fromNow(),
-    updated_at: app.updatedAt ? moment(app.updatedAt).fromNow() : '',
+    created_at: fromNow(app.createdAt, true),
+    updated_at: fromNow(app.updatedAt, true),
   };
 };
 

@@ -2,7 +2,8 @@
 
 import { ChevronUpIcon, TagIcon, BookmarkIcon } from 'lucide-react';
 import Link from 'next/link';
-import Masonry from 'react-masonry-css';
+import dynamic from 'next/dynamic';
+const Masonry = dynamic(() => import('react-masonry-css'), { ssr: false });
 import ImageWithFallback from '../ImageWithFallback';
 import emptyIcon from '@/components/icons/Empty';
 import { Bookmark, Category, Prisma } from '@/utils/prismaClient';

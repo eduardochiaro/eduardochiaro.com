@@ -1,6 +1,6 @@
 'use client';
 
-import moment from 'moment';
+import { fromNow } from '@/utils/date';
 import React from 'react';
 import ActionColumn, { TableRowProps } from './ActionColumn';
 
@@ -52,8 +52,8 @@ const formatData = (category: any) => {
     name: category.name,
     type: category.type,
     bookmarks: category.bookmarks.length == 1 ? category.bookmarks.length + ' bookmark' : category.bookmarks.length + ' bookmarks',
-    created_at: moment(category.createdAt).fromNow(),
-    updated_at: category.updatedAt ? moment(category.updatedAt).fromNow() : '',
+    created_at: fromNow(category.createdAt, true),
+    updated_at: fromNow(category.updatedAt, true),
   };
 };
 

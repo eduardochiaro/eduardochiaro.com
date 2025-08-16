@@ -18,10 +18,7 @@ type EventParams = {
   value?: number;
 };
 
-export const event = (
-  action: string,
-  { event_category, event_label, value }: EventParams
-) => {
+export const event = (action: string, { event_category, event_label, value }: EventParams) => {
   window.gtag('event', action, {
     event_category,
     event_label,

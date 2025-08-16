@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+});
+
 const nextConfig = {
   reactStrictMode: true,
   sassOptions: {
@@ -6,6 +10,7 @@ const nextConfig = {
   },
   images: {
     dangerouslyAllowSVG: true,
+  formats: ['image/avif', 'image/webp'],
     remotePatterns: [
       {
         protocol: 'https',
@@ -66,7 +71,8 @@ const nextConfig = {
 		serverActions: {
 			allowedOrigins: ['*.eduardochiaro.com', '127.0.0.1:3001']
 		},
-	}
+	},
+  productionBrowserSourceMaps: false,
 };
 
-module.exports = nextConfig
+module.exports = withBundleAnalyzer(nextConfig);

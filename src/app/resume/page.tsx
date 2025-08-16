@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import { cache } from 'react';
 import WireContainer from '@/components/frontend/WireContainer';
 import { Prisma, ResumeTag, Skill } from '@/utils/prismaClient';
-import moment from 'moment';
+import { format as dateFormat } from '@/utils/date';
 import SVG from '@/utils/svg';
 import Link from 'next/link';
 import LinkedInIcon from '@/components/icons/Linkedin';
@@ -28,8 +28,8 @@ export default async function Resume() {
     ? resume.map((job: ResumeExpanded) => {
         return {
           ...job,
-          startYear: moment(job.startDate).format('YYYY'),
-          endYear: job.endDate ? moment(job.endDate).format('YYYY') : 'Now',
+          startYear: dateFormat(job.startDate, 'yyyy', 'Unknown'),
+          endYear: dateFormat(job.endDate, 'yyyy', 'Now'),
         };
       })
     : [];
@@ -125,7 +125,7 @@ export default async function Resume() {
                           )}
                         </h4>
                         <p className="text-primary-700 dark:text-primary-300 text-sm">
-                          {moment(job.startDate).format('MMMM YYYY')} - {job.endDate ? moment(job.endDate).format('MMMM YYYY') : 'Now'}
+                          {dateFormat(job.startDate, 'MMMM yyyy', 'Unknown')} - {dateFormat(job.endDate, 'MMMM yyyy', 'Now')}
                         </p>
                         {job.tags?.length > 0 && (
                           <ul className="mt-2 flex items-center gap-2">

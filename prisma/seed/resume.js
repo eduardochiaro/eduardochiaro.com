@@ -1,6 +1,7 @@
 const { PrismaClient } = require('../../out/prisma/client');
 const prisma = new PrismaClient();
-const moment = require('moment');
+
+const iso = (dateStr) => new Date(dateStr).toISOString();
 
 const resumes = [
   {
@@ -16,7 +17,7 @@ const resumes = [
       }
     },
     description: '',
-    startDate: moment('2017-06-01').toISOString(),
+  startDate: iso('2017-06-01'),
     endDate: null,
     tags: ['Node.JS', 'GraphQL', 'PostgreSQL']
   },
@@ -33,8 +34,8 @@ const resumes = [
       }
     },
     description: 'Update and include new functionality on iStockPhoto website to help the transition to GettyImages platform in long run. Technologies used: PHP5, Zend, PHPUnit MySQL, Javascript, AngularJS, HTML, Git, Linux, and Windows.',
-    startDate: moment('2016-05-01').toISOString(),
-    endDate: moment('2016-11-01').toISOString(),
+  startDate: iso('2016-05-01'),
+  endDate: iso('2016-11-01'),
     tags: ['PHP', 'MySQL']
   },
   {
@@ -42,8 +43,8 @@ const resumes = [
     location: 'London, UK',
     name: 'Senior PHP Developer',
     description: 'Create and develop a new version of the content provider application and many other products for Brands like HP, Samsung, LG, and retailers like BestBuy, FNAC, Amazon, and Dixon. Contributed software development expertise in the development of an updated version of content solutions provider software through the software lifecycle covering phases like requirement gathering, analysis, coding, testing, deployment, bug fixing, troubleshooting, documentation, and deployment.',
-    startDate: moment('2011-06-01').toISOString(),
-    endDate: moment('2016-03-01').toISOString(),
+  startDate: iso('2011-06-01'),
+  endDate: iso('2016-03-01'),
     tags: ['PHP', 'MySQL', 'JS', 'Zend'],
     projects: [
       {
@@ -97,8 +98,8 @@ const resumes = [
     location: 'Italy',
     name: 'Software Developer',
     description: 'Developed a new CMS framework based on Zend, designed and created of a number of projects, primarily aimed at travel agents and vacation blogs. Led the development of websites, e-commerce, WordPress blogs, mobile sites, and web applications. Managed all aspects of client support, including communication, problem resolution, and relationship building.',
-    startDate: moment('2010-03-01').toISOString(),
-    endDate: moment('2011-02-01').toISOString(),
+  startDate: iso('2010-03-01'),
+  endDate: iso('2011-02-01'),
     tags: ['PHP', 'MySQL', 'HTML', 'JS', 'Zend']
   },
   {
@@ -106,8 +107,8 @@ const resumes = [
     location: 'Italy',
     name: 'PHP Developer',
     description: 'Developed the DonnaPiu Franchising web application for stores and warehouses, building websites for non-profit organizations and music associations. Developed websites and WordPress blogs. Designed, created, and enhanced business web applications. Liaised with clients to ensure that all comply with standards and guidelines..',
-    startDate: moment('2009-05-01').toISOString(),
-    endDate: moment('2010-01-01').toISOString(),
+  startDate: iso('2009-05-01'),
+  endDate: iso('2010-01-01'),
     tags: ['PHP', 'MySQL', 'HTML', 'JS']
   },
   {
@@ -115,8 +116,8 @@ const resumes = [
     location: 'Italy',
     name: 'PHP Developer',
     description: 'Completed a variety of consumer projects, including CiaoPeople, a high traffic social community. Partnered with designers and project management staff to capture requirements for the functional elements of website projects. Promoter and author of transition from ASP to PHP for all company CMs. Leveraged Joomla technology.',
-    startDate: moment('2005-09-01').toISOString(),
-    endDate: moment('2008-10-01').toISOString(),
+  startDate: iso('2005-09-01'),
+  endDate: iso('2008-10-01'),
     tags: ['PHP', 'MySQL', 'HTML', 'JS']
   },
 ];

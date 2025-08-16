@@ -1,6 +1,6 @@
 'use client';
 
-import moment from 'moment';
+import { fromNow } from '@/utils/date';
 import React from 'react';
 import ActionColumn from './ActionColumn';
 
@@ -51,8 +51,8 @@ const formatData = (bookmark: any) => {
     category: bookmark.category.name,
     name: bookmark.name,
     url: bookmark.url.length > 40 ? `${bookmark.url.substring(0, 40)}...` : bookmark.url,
-    created_at: moment(bookmark.createdAt).fromNow(),
-    updated_at: bookmark.updatedAt ? moment(bookmark.updatedAt).fromNow() : '',
+    created_at: fromNow(bookmark.createdAt, true),
+    updated_at: fromNow(bookmark.updatedAt, true),
   };
 };
 
