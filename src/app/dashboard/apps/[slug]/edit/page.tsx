@@ -25,7 +25,7 @@ export default async function DashboardAppsEdit({ params }: Props) {
   async function saveData(formData: FormData) {
     'use server';
 
-    let file = formData.get('file') as File;
+    const file = formData.get('file') as File;
 
     const rawFormData = {
       name: formData.get('name'),

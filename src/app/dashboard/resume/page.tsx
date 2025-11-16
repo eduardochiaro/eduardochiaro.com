@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import prisma from '@/utils/prisma';
 import Link from 'next/link';
 import Card from '@/components/frontend/Card';
 import Button from '@/components/dashboard/Button';

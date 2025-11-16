@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import prisma from '@/utils/prisma';
 import { redirect } from 'next/navigation';
 import Card from '@/components/frontend/Card';
-import { Input, Select, Textarea } from '@/components/form';
+import { Input, Select } from '@/components/form';
 import { updateMenuLink } from '@/actions/menu';
 import { ChevronRight } from 'lucide-react';
 

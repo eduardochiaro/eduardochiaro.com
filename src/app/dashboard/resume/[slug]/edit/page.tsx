@@ -4,7 +4,6 @@ import Card from '@/components/frontend/Card';
 import { Input, Tags, Textarea } from '@/components/form';
 import { updateResume } from '@/actions/resume';
 import { format } from 'date-fns';
-import Image from 'next/image';
 import SVG from '@/utils/svg';
 
 export const metadata: Metadata = {
@@ -24,7 +23,7 @@ export default async function DashboardResumeEdit({ params }: Props) {
 
   async function saveData(formData: FormData) {
     'use server';
-    let file = formData.get('file') as File;
+    const file = formData.get('file') as File;
 
     const rawFormData = {
       name: formData.get('name'),

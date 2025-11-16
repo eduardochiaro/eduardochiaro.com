@@ -1,6 +1,6 @@
 'use server';
 
-import { PlusIcon, SearchIcon, Tag, TagIcon } from 'lucide-react';
+import { PlusIcon, TagIcon } from 'lucide-react';
 import Card from '@/components/frontend/Card';
 import { Prisma } from '@/utils/prismaClient';
 import { addTag, getTags } from '@/actions/resumeTags';

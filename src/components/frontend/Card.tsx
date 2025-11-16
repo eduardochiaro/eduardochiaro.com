@@ -3,8 +3,8 @@ import classNames from '@/utils/classNames';
 type Props = {
   children: React.ReactNode;
   type?: 'small' | 'medium' | 'large';
-  className?: String;
-  padding?: String;
+  className?: string;
+  padding?: string;
 };
 
 export default function Card({ children, className, type = 'medium', padding }: Props) {

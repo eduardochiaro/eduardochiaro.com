@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { getCachedFlickr, getCacheInstagram, getCachePixelfed } from '@/utils/getCachedFeeds';
+import { NextResponse } from 'next/server';
+import { getCachePixelfed } from '@/utils/getCachedFeeds';
 import { formatISO, getUnixTime } from 'date-fns';
 
 type StreamItem = {
@@ -11,8 +11,8 @@ type StreamItem = {
   image: string;
 };
 
-export async function GET(request: NextRequest) {
-  let results: StreamItem[] = [];
+export async function GET() {
+  const results: StreamItem[] = [];
   /*
   const flickr = await getCachedFlickr();
   flickr.items.slice(0, 5).forEach((item: { title: any; link: any; created: number; images: { [x: string]: { [x: string]: any } }[] }) => {

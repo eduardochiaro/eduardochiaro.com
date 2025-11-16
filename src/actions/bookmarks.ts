@@ -65,7 +65,7 @@ const fetchMetadataFromUrl = async (url: string) => {
       ? $('meta[name="description"]').first().attr('content')
       : $('meta[property="og:description"]').first().attr('content');
 
-  let title = titleText ? titleText : '';
+  const title = titleText ? titleText : '';
   let description = descriptionText ? descriptionText : '';
 
   if (description.length > 191) {

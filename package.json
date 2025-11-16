@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start -p 3001",
     "start-dev": "next start -p 3000",
-    "lint": "next lint",
-    "lint:fix": "next lint --fix",
+    "lint": "eslint ./src/",
+    "lint:fix": "eslint --fix ./src/",
     "prettier": "prettier --write \"src/**/*.{ts,tsx,js,json,graphql}\"",
     "cleanup": "npm run prettier && npm run lint:fix",
     "cy:open": "concurrently \"next dev\" \"cypress open\"",
@@ -29,18 +29,18 @@
     "url": "https://www.eduardochiaro.com"
   },
   "dependencies": {
-    "@apollo/client": "^3.13.9",
+    "@apollo/client": "^4.0.0",
     "@auth/prisma-adapter": "^2.10.0",
     "@headlessui/react": "^2.2.7",
     "@prisma/client": "^6.14.0",
     "@tailwindcss/postcss": "^4.1.12",
     "cheerio": "^1.1.2",
     "cors": "^2.8.5",
-    "date-fns": "^3.6.0",
+    "date-fns": "^4.1.0",
     "dotenv-cli": "^10.0.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "graphql": "^16.11.0",
-    "lucide-react": "^0.539.0",
+    "lucide-react": "^0.541.0",
     "mime-types": "^3.0.1",
     "nanoid": "^5.1.5",
     "next": "15.5.0",
@@ -60,6 +60,7 @@
     "typescript": "^5.9.2"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
     "@next/bundle-analyzer": "15.5.0",
     "@next/eslint-plugin-next": "15.5.0",
     "@tailwindcss/aspect-ratio": "^0.4.2",
@@ -68,14 +69,14 @@
     "@types/gtag.js": "^0.0.20",
     "@types/mime-types": "^3.0.1",
     "@types/node": "^24.3.0",
-    "@types/react": "19.1.10",
+    "@types/react": "19.1.11",
     "@types/react-dom": "19.1.7",
     "@types/uuid": "^10.0.0",
-    "@typescript-eslint/parser": "^8.39.1",
-    "@typescript-eslint/typescript-estree": "^8.39.1",
+    "@typescript-eslint/parser": "^8.40.0",
+    "@typescript-eslint/typescript-estree": "^8.40.0",
     "concurrently": "^9.2.0",
-    "cypress": "^14.5.4",
-    "eslint": "^9.33.0",
+    "cypress": "^15.0.0",
+    "eslint": "^9.34.0",
     "eslint-config-next": "15.5.0",
     "postcss": "^8.5.6",
     "prettier": "^3.6.2",
@@ -83,7 +84,7 @@
     "prisma": "^6.14.0"
   },
   "overrides": {
-    "@types/react": "19.1.10",
+    "@types/react": "19.1.11",
     "@types/react-dom": "19.1.7"
   }
 }

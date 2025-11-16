@@ -79,8 +79,6 @@ export default function Books({ data }: { data: BookWithTags[] }) {
 
   const goNextPage = () => {
     const page = searchParams.get('page') ? parseInt(searchParams.get('page') as string) + 1 : 2;
-    const start = (page - 1) * pageSize;
-    const end = start + pageSize;
     const params = new URLSearchParams(searchParams);
     params.set('page', page.toString());
     replace(`${pathname}?${params.toString()}`);
@@ -88,8 +86,6 @@ export default function Books({ data }: { data: BookWithTags[] }) {
 
   const goPrevPage = () => {
     const page = searchParams.get('page') ? parseInt(searchParams.get('page') as string) - 1 : 1;
-    const start = (page - 1) * pageSize;
-    const end = start + pageSize;
     const params = new URLSearchParams(searchParams);
     params.set('page', page.toString());
     replace(`${pathname}?${params.toString()}`);

@@ -5,7 +5,7 @@ const apps = [
   {
     name: 'Impact (v2.0.0)',
     description: 'Ghost blog theme using TailwindCSS',
-    url: "https://github.com/eduardochiaro/Impact",
+    url: 'https://github.com/eduardochiaro/Impact',
     file: {
       create: {
         name: 'Impact',
@@ -17,7 +17,7 @@ const apps = [
   {
     name: 'CompactLine',
     description: 'Oh My Zsh theme',
-    url: "https://github.com/eduardochiaro/compactline",
+    url: 'https://github.com/eduardochiaro/compactline',
     file: {
       create: {
         name: 'CompactLine',

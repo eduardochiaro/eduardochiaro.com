@@ -1,5 +1,4 @@
 import { AppWindowMac, BookmarkCheckIcon, FileUserIcon, HashIcon, LibraryBigIcon, MenuIcon, SquareTerminalIcon, TagsIcon } from 'lucide-react';
-import { text } from 'stream/consumers';
 
 const menuList = [
   {

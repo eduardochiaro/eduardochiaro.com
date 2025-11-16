@@ -1,7 +1,7 @@
 import Parser from 'rss-parser';
 import fsCache from './fsCache';
 
-let parser = new Parser();
+const parser = new Parser();
 
 const flickr_base = 'https://www.flickr.com';
 const instagram_base = 'https://feeds.behold.so';

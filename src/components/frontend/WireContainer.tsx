@@ -1,5 +1,4 @@
 import classNames from '@/utils/classNames';
-import { pad } from 'cypress/types/lodash';
 
 type Props = {
   children: React.ReactNode;

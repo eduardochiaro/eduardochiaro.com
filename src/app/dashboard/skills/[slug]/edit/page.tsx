@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import Card from '@/components/frontend/Card';
-import { Input, Listbox, Range, Select, Textarea } from '@/components/form';
+import { Input, Listbox, Range } from '@/components/form';
 import { updateSkill } from '@/actions/skills';
 import fs from 'fs';
 import path from 'path';

@@ -19,16 +19,9 @@ const uploadFile = async (file: File, path: string) => {
 const deleteFile = async (fileName: string, path: string) => {
   try {
     const filePath = `${path}/${fileName}`;
-    const fs = require('fs');
-    return fs.unlink(filePath, async (err: any) => {
-      if (err) {
-        console.error('Error deleting file:', err);
-        return false;
-      } else {
-        console.log('File deleted successfully');
-        return false;
-      }
-    });
+    await fs.unlink(filePath);
+    console.log('\nDeleted file');
+    return true;
   } catch (error) {
     console.error('Error deleting file:', error);
     return false;

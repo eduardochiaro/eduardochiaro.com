@@ -1,8 +1,6 @@
 import { Metadata } from 'next';
-import { redirect } from 'next/navigation';
 import Card from '@/components/frontend/Card';
-import { Input, Select, Textarea } from '@/components/form';
-import { addBookmark } from '@/actions/bookmarks';
+import { Input } from '@/components/form';
 
 export const metadata: Metadata = {
   title: 'Admin > Bookmarks | Eduardo Chiaro',
@@ -29,12 +27,4 @@ export default async function DashboardBookmarksUrl() {
       </Card>
     </div>
   );
-}
-
-async function getCategories() {
-  return prisma.category.findMany({
-    where: {
-      type: 'BOOKMARK',
-    },
-  });
 }

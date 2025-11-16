@@ -1,6 +1,5 @@
 'use server';
 import prisma from '@/utils/prisma';
-import { any } from 'cypress/types/bluebird';
 
 type MenuLinkData = {
   name: FormDataEntryValue | null;

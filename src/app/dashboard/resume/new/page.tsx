@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default async function DashboardResumeNew() {
   async function saveData(formData: FormData) {
     'use server';
-    let file = formData.get('file') as File;
+    const file = formData.get('file') as File;
 
     const rawFormData = {
       name: formData.get('name'),
