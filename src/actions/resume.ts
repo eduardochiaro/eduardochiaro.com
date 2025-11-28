@@ -19,7 +19,7 @@ const addResume = async (data: ResumeData) => {
     name: data.name as string,
     description: data.description as string,
     startDate: new Date(data.startDate as string),
-    endDate: new Date(data.endDate as string),
+    endDate: data.endDate ? new Date(data.endDate as string) : null,
     location: data.location as string,
     createdAt: new Date(),
   };
@@ -65,7 +65,7 @@ const updateResume = async (id: string, data: ResumeData) => {
     name: data.name as string,
     description: data.description as string,
     startDate: new Date(data.startDate as string),
-    endDate: new Date(data.endDate as string),
+    endDate: data.endDate ? new Date(data.endDate as string) : null,
     location: data.location as string,
     updatedAt: new Date(),
   };

@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import prisma from '@/utils/prisma';
 import { redirect } from 'next/navigation';
 import Card from '@/components/frontend/Card';
 import { Input, Tags, Textarea } from '@/components/form';
